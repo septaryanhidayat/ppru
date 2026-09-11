@@ -40,7 +40,7 @@ class HomeController extends Controller
         ];
 
         // 2. Sambutan Kepala Sekolah
-        $sambutan = Post::where('type', 'page')->whereIn('slug', ['sambutan-kepala-sekolah', 'sambutan-ketua-dpd'])->first();
+        $sambutan = Post::where('type', 'page')->where('slug', 'sambutan-kepala-sekolah')->first();
 
         // 3. Ambil semua post publik untuk fallback
         $allPosts = Post::posts()
@@ -59,8 +59,8 @@ class HomeController extends Controller
             ->published()
             ->with(['categories'])
             ->where(function ($q) {
-                $q->whereHas('categories', fn ($c) => $c->whereIn('slug', ['program-unggulan', 'ekstrakurikuler', 'tahfidz', 'senayan', 'dpr-ri']))
-                    ->orWhereHas('tags', fn ($t) => $t->whereIn('slug', ['ekskul', 'pramuka', 'tahfidz', 'robotik', 'bpi']));
+                $q->whereHas('categories', fn ($c) => $c->whereIn('slug', ['kesiswaan-ekskul', 'tahfidz-keislaman', 'akademik-riset']))
+                    ->orWhereHas('tags', fn ($t) => $t->whereIn('slug', ['ekskul', 'pramuka', 'tahfidz', 'robotika']));
             })
             ->orderBy('published_at', 'desc')
             ->orderBy('id', 'desc')
@@ -76,8 +76,8 @@ class HomeController extends Controller
             ->published()
             ->with(['categories'])
             ->where(function ($q) {
-                $q->whereHas('categories', fn ($c) => $c->whereIn('slug', ['prestasi', 'kejuaraan', 'olimpiade', 'fraksi', 'dprd-oi']))
-                    ->orWhereHas('tags', fn ($t) => $t->whereIn('slug', ['prestasi', 'juara', 'lomba']));
+                $q->whereHas('categories', fn ($c) => $c->whereIn('slug', ['prestasi-siswa', 'akademik-riset']))
+                    ->orWhereHas('tags', fn ($t) => $t->whereIn('slug', ['prestasi', 'juara', 'olimpiade', 'sains']));
             })
             ->whereNotIn('id', $senayanPosts->pluck('id'))
             ->orderBy('published_at', 'desc')
@@ -94,7 +94,7 @@ class HomeController extends Controller
         $nasionalPosts = Post::posts()
             ->published()
             ->with(['categories'])
-            ->whereHas('categories', fn ($c) => $c->whereIn('slug', ['akademik', 'kurikulum', 'pembelajaran', 'nasional']))
+            ->whereHas('categories', fn ($c) => $c->whereIn('slug', ['akademik-riset', 'prestasi-siswa']))
             ->orderBy('published_at', 'desc')
             ->orderBy('id', 'desc')
             ->take(6)
@@ -108,7 +108,7 @@ class HomeController extends Controller
         $daerahPosts = Post::posts()
             ->published()
             ->with(['categories'])
-            ->whereHas('categories', fn ($c) => $c->whereIn('slug', ['kesiswaan', 'osis', 'kegiatan', 'daerah', 'ogan-ilir']))
+            ->whereHas('categories', fn ($c) => $c->whereIn('slug', ['kesiswaan-ekskul', 'tahfidz-keislaman', 'kabar-kampus']))
             ->orderBy('published_at', 'desc')
             ->orderBy('id', 'desc')
             ->take(6)
@@ -140,21 +140,21 @@ class HomeController extends Controller
             ->toArray();
 
         $fallbackRow1 = [
-            ['url' => '/uploads/2023/07/banner-faculty.webp', 'title' => 'Gedung Kampus & Kompleks Pembelajaran Robbani'],
-            ['url' => '/uploads/2023/07/1.webp', 'title' => 'Suasana Belajar Mengajar Interaktif di Kelas'],
-            ['url' => '/uploads/2023/07/2.webp', 'title' => 'Praktikum Sains & Laboratorium Biologi Siswa'],
-            ['url' => '/uploads/2023/07/event-3.webp', 'title' => 'Wisuda Tahfidzul Qur\'an & Khotmil Qur\'an'],
-            ['url' => '/uploads/2023/08/fak-ib.webp', 'title' => 'Pembinaan Karakter & Halaqah Al-Qur\'an'],
-            ['url' => '/uploads/2023/08/farmasi.webp', 'title' => 'Laboratorium Komputer & Riset Teknologi'],
+            ['url' => '/uploads/campus-robbani.jpg', 'title' => 'Gedung Kampus & Kompleks Pembelajaran Robbani'],
+            ['url' => '/uploads/library-robbani.jpg', 'title' => 'Suasana Belajar Mengajar Interaktif di Kelas & Perpustakaan'],
+            ['url' => '/uploads/lab-robbani.jpg', 'title' => 'Praktikum Sains & Riset Laboratorium Terpadu Siswa'],
+            ['url' => '/uploads/tahfidz-robbani.jpg', 'title' => 'Wisuda Tahfidzul Qur\'an & Khotmil Qur\'an Santri'],
+            ['url' => '/uploads/activities-robbani.jpg', 'title' => 'Pembinaan Karakter & Latihan Olahraga Sunnah Memanah'],
+            ['url' => '/uploads/robotics-robbani.jpg', 'title' => 'Laboratorium Komputer & Riset Teknologi Robotika'],
         ];
 
         $fallbackRow2 = [
-            ['url' => '/uploads/2023/08/feb.webp', 'title' => 'Perpustakaan Sekolah & Pojok Literasi Digital'],
-            ['url' => '/uploads/2023/08/filsafat.webp', 'title' => 'Kegiatan Keputrian & Pembinaan Akhlakul Karimah'],
-            ['url' => '/uploads/2023/08/fasi.webp', 'title' => 'Upacara Peringatan Hari Santri & Hari Guru'],
-            ['url' => '/uploads/2023/08/fak-geo.webp', 'title' => 'Latihan Rutin Memanah & Olahraga Prestasi'],
-            ['url' => '/uploads/2023/08/edu-4.webp', 'title' => 'Kemah Ukhuwah Pramuka SIT Robbani'],
-            ['url' => '/uploads/2023/08/edu-1.webp', 'title' => 'Bakti Sosial & Safari Dakwah Siswa Robbani'],
+            ['url' => '/uploads/library-robbani.jpg', 'title' => 'Perpustakaan Sekolah & Pojok Literasi Digital'],
+            ['url' => '/uploads/tahfidz-robbani.jpg', 'title' => 'Kegiatan Halaqah Tahfidz & Pembinaan Akhlakul Karimah'],
+            ['url' => '/uploads/campus-robbani.jpg', 'title' => 'Upacara Peringatan Hari Santri & Hari Guru'],
+            ['url' => '/uploads/activities-robbani.jpg', 'title' => 'Latihan Rutin Memanah & Olahraga Prestasi'],
+            ['url' => '/uploads/robotics-robbani.jpg', 'title' => 'Inovasi Robotika & Pemrograman Internet of Things'],
+            ['url' => '/uploads/lab-robbani.jpg', 'title' => 'Eksperimen Biologi & Kimia Terapan Siswa Robbani'],
         ];
 
         if (! empty($dbGallery)) {
@@ -174,17 +174,19 @@ class HomeController extends Controller
         // 12. E-Library & Modul Pembelajaran Siswa (Section 15)
         $ebookDownloads = Download::where('category_type', 'E-Book')->get();
         $ebookCovers = [
-            'Tahfidz' => '/uploads/2025/09/Marifatul-Quran-320x448.jpg.webp',
-            'Kurikulum' => '/uploads/2025/09/Cover-Kurikulum-Pembinaan-Dai-Muda-320x455.jpg.webp',
-            'Sains' => '/uploads/2025/09/Ghazwul-Fikri-320x448.jpg.webp',
-            'Qur\'an' => '/uploads/2025/09/Marifatul-Quran-320x448.jpg.webp',
-            'Olahraga' => '/uploads/2025/10/ADAB-OLAHRAGA.webp',
-            'Karakter' => '/uploads/2025/09/Marifatullah.jpg.webp',
+            'Tahfidz' => '/uploads/tahfidz-robbani.jpg',
+            'Kurikulum' => '/uploads/campus-robbani.jpg',
+            'Sains' => '/uploads/lab-robbani.jpg',
+            'Qur\'an' => '/uploads/tahfidz-robbani.jpg',
+            'Olahraga' => '/uploads/activities-robbani.jpg',
+            'Karakter' => '/uploads/library-robbani.jpg',
+            'Robotika' => '/uploads/robotics-robbani.jpg',
+            'PPDB' => '/uploads/campus-robbani.jpg',
         ];
 
         if ($ebookDownloads->isNotEmpty()) {
             $ebooks = $ebookDownloads->map(function ($dl) use ($ebookCovers) {
-                $cover = '/uploads/2025/09/Marifatul-Quran-320x448.jpg.webp';
+                $cover = '/uploads/campus-robbani.jpg';
                 foreach ($ebookCovers as $key => $img) {
                     if (stripos($dl->title, $key) !== false) {
                         $cover = $img;
@@ -205,31 +207,31 @@ class HomeController extends Controller
                 [
                     'id' => 1,
                     'title' => 'Buku Panduan Akademik & Kurikulum SMA IT Plus Robbani',
-                    'cover' => '/uploads/2025/09/Cover-Kurikulum-Pembinaan-Dai-Muda-320x455.jpg.webp',
+                    'cover' => '/uploads/campus-robbani.jpg',
                     'pdf' => '#',
                 ],
                 [
                     'id' => 2,
                     'title' => "Modul Tahsin & Tahfidzul Qur'an Bersanad",
-                    'cover' => '/uploads/2025/09/Marifatul-Quran-320x448.jpg.webp',
+                    'cover' => '/uploads/tahfidz-robbani.jpg',
                     'pdf' => '#',
                 ],
                 [
                     'id' => 3,
-                    'title' => 'Panduan Riset Ilmiah Remaja & Inovasi Teknologi',
-                    'cover' => '/uploads/2025/09/Ghazwul-Fikri-320x448.jpg.webp',
+                    'title' => 'Panduan Riset Ilmiah Remaja & Inovasi Teknologi Robotika',
+                    'cover' => '/uploads/robotics-robbani.jpg',
                     'pdf' => '#',
                 ],
                 [
                     'id' => 4,
                     'title' => "Buku Saku Adab & Karakter Generasi Qur'ani",
-                    'cover' => '/uploads/2025/09/Marifatullah.jpg.webp',
+                    'cover' => '/uploads/library-robbani.jpg',
                     'pdf' => '#',
                 ],
                 [
                     'id' => 5,
                     'title' => 'Panduan Sukses Seleksi Nasional Masuk PTN (SNBT/UTBK)',
-                    'cover' => '/uploads/2025/10/ADAB-OLAHRAGA.webp',
+                    'cover' => '/uploads/activities-robbani.jpg',
                     'pdf' => '#',
                 ],
             ];

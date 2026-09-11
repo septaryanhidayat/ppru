@@ -19,7 +19,7 @@
                     Selamat Datang, {{ auth()->user()->name }}! 👋
                 </h2>
                 <p class="text-xs sm:text-sm text-slate-300 max-w-xl font-light leading-relaxed">
-                    Panel kendali resmi DPD Partai Keadilan Sejahtera Kabupaten Ogan Ilir. Anda dapat mengelola seluruh konten, memantau aktivitas sistem, mengedit halaman profil, serta mengamankan website secara terpusat.
+                    Panel kendali resmi SMA IT Plus Robbani Kabupaten Ogan Ilir. Anda dapat mengelola seluruh konten, memantau aktivitas sistem, mengedit informasi sekolah, serta mengamankan website secara terpusat.
                 </p>
             </div>
 
@@ -60,7 +60,7 @@
     {{-- 3. KPI ANALYTICS GRID (Warna-Warni Vibrant & Modern) --}}
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
         
-        {{-- Card 1: Berita & Views (Oranye PKS Luminous) --}}
+        {{-- Card 1: Berita & Views (Oranye Robbani Luminous) --}}
         <div class="bg-gradient-to-br from-[#ff5001] via-[#f97316] to-[#ea580c] text-white rounded-3xl p-6 shadow-lg shadow-orange-500/20 border border-orange-300/30 relative overflow-hidden group hover:scale-[1.02] transition duration-300">
             <div class="absolute -right-6 -bottom-6 w-24 h-24 bg-white/10 rounded-full blur-xl pointer-events-none"></div>
             <div class="flex items-center justify-between mb-4 relative z-10">
@@ -100,18 +100,18 @@
         <div class="bg-gradient-to-br from-[#6366f1] via-[#7c3aed] to-[#8b5cf6] text-white rounded-3xl p-6 shadow-lg shadow-purple-500/20 border border-purple-300/30 relative overflow-hidden group hover:scale-[1.02] transition duration-300">
             <div class="absolute -right-6 -bottom-6 w-24 h-24 bg-white/10 rounded-full blur-xl pointer-events-none"></div>
             <div class="flex items-center justify-between mb-4 relative z-10">
-                <span class="text-xs font-bold text-purple-100 uppercase tracking-wider">Fraksi & Struktur</span>
+                <span class="text-xs font-bold text-purple-100 uppercase tracking-wider">Dewan Guru & GTK</span>
                 <div class="w-11 h-11 rounded-2xl bg-white/20 backdrop-blur-md text-white flex items-center justify-center text-xl shadow-inner group-hover:rotate-6 transition duration-300">
-                    <i class="fa-solid fa-landmark"></i>
+                    <i class="fa-solid fa-chalkboard-user"></i>
                 </div>
             </div>
             <div class="text-3xl sm:text-4xl font-black text-white tracking-tight relative z-10">
-                {{ $stats['total_dewan'] }} <span class="text-base font-medium text-purple-200">DPRD</span>
+                {{ $stats['total_dewan'] }} <span class="text-base font-medium text-purple-200">Pendidik</span>
             </div>
             <div class="flex items-center space-x-2 text-xs text-purple-100 font-semibold mt-3 relative z-10">
-                <span>{{ $stats['total_bidang'] }} Bidang</span>
+                <span>{{ $stats['total_bidang'] }} Fasilitas</span>
                 <span>•</span>
-                <span>{{ $stats['total_dpc'] }} DPC Kecamatan</span>
+                <span>{{ $stats['total_dpc'] }} Program Unggulan</span>
             </div>
         </div>
 
@@ -250,8 +250,8 @@
             </a>
 
             <a href="{{ route('admin.dewan.index') }}" class="p-4 rounded-2xl bg-slate-50 hover:bg-orange-50 border border-slate-200/70 hover:border-orange-200 text-slate-700 hover:text-[#ff5001] transition group">
-                <i class="fa-solid fa-user-tie text-xl mb-2 text-purple-500 group-hover:scale-110 transition block"></i>
-                <span class="text-xs font-bold block">Fraksi DPRD</span>
+                <i class="fa-solid fa-chalkboard-user text-xl mb-2 text-purple-500 group-hover:scale-110 transition block"></i>
+                <span class="text-xs font-bold block">Dewan Guru</span>
             </a>
 
             <a href="{{ route('admin.media.index') }}" class="p-4 rounded-2xl bg-slate-50 hover:bg-orange-50 border border-slate-200/70 hover:border-orange-200 text-slate-700 hover:text-[#ff5001] transition group">

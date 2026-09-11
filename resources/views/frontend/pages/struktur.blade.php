@@ -37,9 +37,10 @@
         @php
             $schoolLeaders = [
                 [
-                    'name' => 'Drs. H. Ahmad Robbani, M.Pd.I',
+                    'name' => 'Drs. H. Ahmad Husen, M.Pd.I',
                     'role' => 'Kepala Sekolah',
-                    'desc' => 'Pimpinan Utama',
+                    'title' => 'Penanggung Jawab Utama',
+                    'desc' => 'Memimpin seluruh tata kelola pendidikan terpadu, penjaminan mutu kurikulum, dan sinergi kemitraan yayasan serta masyarakat.',
                     'photo' => '/uploads/kepala-sekolah-robbani.jpg',
                     'badge_bg' => 'bg-emerald-100 text-[#0d6b38]'
                 ],

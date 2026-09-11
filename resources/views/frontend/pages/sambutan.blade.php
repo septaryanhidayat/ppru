@@ -1,7 +1,7 @@
 @extends('layouts.frontend')
 
 @section('title', 'Sambutan Kepala Sekolah - SMA IT Plus Robbani')
-@section('meta_description', 'Sambutan resmi Kepala Sekolah SMA IT Plus Robbani, Drs. H. Ahmad Robbani, M.Pd.I.')
+@section('meta_description', 'Sambutan resmi Kepala Sekolah SMA IT Plus Robbani, Drs. H. Ahmad Husen, M.Pd.I.')
 
 @section('content')
 {{-- HERO HEADER --}}
@@ -26,14 +26,14 @@
         {{-- PROFIL PIMPINAN HEADER --}}
         <div class="flex flex-col md:flex-row items-center gap-8 mb-8 pb-8 border-b border-gray-100">
             <div class="w-48 h-56 sm:w-52 sm:h-60 rounded-2xl overflow-hidden shadow-lg border-4 border-white ring-4 ring-green-100 flex-shrink-0 bg-green-50">
-                <img src="/uploads/kepala-sekolah-robbani.jpg" alt="Drs. H. Ahmad Robbani, M.Pd.I - Kepala Sekolah SMA IT Plus Robbani" class="w-full h-full object-cover object-top" onerror="this.src='/uploads/logo-robbani-emblem.svg'">
+                <img src="/uploads/kepala-sekolah-robbani.jpg" alt="Drs. H. Ahmad Husen, M.Pd.I - Kepala Sekolah SMA IT Plus Robbani" class="w-full h-full object-cover object-top" onerror="this.src='/uploads/logo-robbani-emblem.svg'">
             </div>
             <div class="space-y-2 text-center md:text-left">
                 <span class="inline-block bg-green-100 text-[#0d6b38] text-xs font-bold px-3.5 py-1.5 rounded-full uppercase tracking-wider">
                     Kepala Sekolah SMA IT Plus Robbani
                 </span>
                 <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight">
-                    Drs. H. Ahmad Robbani, M.Pd.I
+                    Drs. H. Ahmad Husen, M.Pd.I
                 </h2>
                 <p class="text-xs sm:text-sm text-[#0d6b38] font-semibold">Pendidik Berpengalaman &amp; Praktisi Pendidikan Karakter Islami</p>
                 <p class="text-xs sm:text-sm text-gray-600 italic pt-1">"Membina Generasi Qur'ani, Berakhlak Mulia, Cerdas, dan Siap Memimpin Peradaban Masa Depan."</p>
@@ -61,7 +61,7 @@
 
                 <div class="pt-6 border-t border-gray-100 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                     <div>
-                        <h3 class="font-bold text-gray-900 text-base">DRS. H. AHMAD ROBBANI, M.Pd.I</h3>
+                        <h3 class="font-bold text-gray-900 text-base">DRS. H. AHMAD HUSEN, M.Pd.I</h3>
                         <p class="text-xs text-gray-500">Kepala SMA IT Plus Robbani Kabupaten Ogan Ilir</p>
                     </div>
                     <div class="inline-flex items-center space-x-2 bg-green-50 px-4 py-2 rounded-xl text-xs text-[#0d6b38] border border-green-200">

@@ -28,10 +28,10 @@
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
             <div class="lg:col-span-4 flex justify-center">
                 <div class="w-56 h-72 sm:w-64 sm:h-80 rounded-2xl overflow-hidden shadow-xl border-4 border-white ring-4 ring-green-100 bg-green-50 relative group">
-                    <img src="/uploads/kepala-sekolah-robbani.jpg" alt="Drs. H. Ahmad Robbani, M.Pd.I - Kepala Sekolah" class="w-full h-full object-cover object-top group-hover:scale-105 transition duration-500">
-                    <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent p-4 text-white text-center">
-                        <span class="block text-xs font-bold uppercase tracking-wider text-orange-300">Kepala Sekolah</span>
-                        <span class="block text-sm font-extrabold">Drs. H. Ahmad Robbani, M.Pd.I</span>
+                    <img src="/uploads/kepala-sekolah-robbani.jpg" alt="Drs. H. Ahmad Husen, M.Pd.I - Kepala Sekolah" class="w-full h-full object-cover object-top group-hover:scale-105 transition duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+                    <div class="absolute bottom-3 left-3 text-white">
+                        <span class="block text-sm font-extrabold">Drs. H. Ahmad Husen, M.Pd.I</span>
                     </div>
                 </div>
             </div>

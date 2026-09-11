@@ -46,6 +46,6 @@ class Video extends Model
             return "https://i.ytimg.com/vi/{$id}/hqdefault.jpg";
         }
 
-        return '/uploads/2025/09/logo-thumbnail.webp';
+        return '/uploads/campus-robbani.jpg';
     }
 }

@@ -329,7 +329,7 @@ class VisitorTrackerService
             'galeri' => 'Galeri Foto Kegiatan',
             'download' => 'Pusat Unduhan Berkas',
             'e-book' => 'Download Modul & E-Book',
-            'hymne-mars-pks' => 'Hymne & Mars Robbani',
+            'hymne-mars' => 'Hymne & Mars Robbani',
             'hymne-mars' => 'Hymne & Mars Robbani',
             'hubungi' => 'Konsultasi & Informasi PPDB',
             'donasi' => 'Infaq & Beasiswa Robbani',

@@ -49,13 +49,13 @@ Route::prefix('admin')->middleware('auth')->name('admin.')->group(function () {
     Route::get('/pages/{page}/edit', [AdminPageController::class, 'edit'])->name('pages.edit');
     Route::put('/pages/{page}', [AdminPageController::class, 'update'])->name('pages.update');
 
-    // Anggota Dewan (Fraksi PKS)
+    // Dewan Guru & GTK
     Route::resource('dewan', AdminDewanController::class);
 
-    // Bidang DPD
+    // Fasilitas Sekolah
     Route::resource('bidang', AdminBidangController::class);
 
-    // DPC Kecamatan
+    // Program Unggulan
     Route::resource('dpc', AdminDpcController::class);
 
     // Galeri Foto & Video YouTube
@@ -149,7 +149,6 @@ Route::get('/galeri', [InformationController::class, 'galeri'])->name('galeri.in
 Route::get('/download', [DownloadController::class, 'index'])->name('download.index');
 Route::get('/e-book', [DownloadController::class, 'ebook'])->name('download.ebook');
 Route::get('/hymne-mars', [DownloadController::class, 'hymneMars'])->name('download.hymne-mars');
-Route::get('/hymne-mars-pks', [DownloadController::class, 'hymneMars']);
 Route::get('/logo', [DownloadController::class, 'logo'])->name('download.logo');
 Route::get('/unduh/{id}', [DownloadController::class, 'downloadFile'])->name('download.file');
 Route::get('/download/file/{id}', [DownloadController::class, 'downloadFile'])->name('download.file.alt');
@@ -158,7 +157,6 @@ Route::get('/download-file/{id}', [DownloadController::class, 'downloadFile']);
 // Program Unggulan
 Route::get('/program-unggulan', [PageController::class, 'dpc'])->name('dpc.index');
 Route::get('/dpc', [PageController::class, 'dpc']);
-Route::get('/dpc-pks', [PageController::class, 'dpc']);
 
 // Hubungi & Donasi
 Route::get('/hubungi', [ContactController::class, 'hubungi'])->name('hubungi');

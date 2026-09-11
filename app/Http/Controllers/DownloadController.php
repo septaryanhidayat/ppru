@@ -24,7 +24,7 @@ class DownloadController extends Controller
 
     public function hymneMars()
     {
-        $page = Post::pages()->whereIn('slug', ['hymne-mars', 'hymne-mars-robbani', 'hymne-mars-pks'])->first();
+        $page = Post::pages()->whereIn('slug', ['hymne-mars', 'hymne-mars-robbani'])->first();
         $audioFiles = Download::where('file_type', 'MP3')->orWhere('title', 'like', '%Mars%')->orWhere('title', 'like', '%Hymne%')->get();
 
         return view('frontend.download.hymne-mars', compact('page', 'audioFiles'));
@@ -45,7 +45,7 @@ class DownloadController extends Controller
             abort(404, 'Akses unduhan tidak valid.');
         }
 
-        $allowedExtensions = ['pdf', 'mp3', 'png', 'jpg', 'jpeg', 'webp', 'zip', 'doc', 'docx', 'xls', 'xlsx'];
+        $allowedExtensions = ['pdf', 'mp3', 'png', 'jpg', 'jpeg', 'webp', 'svg', 'zip', 'doc', 'docx', 'xls', 'xlsx'];
         $allowedRoots = [
             realpath(public_path('uploads')),
             realpath(storage_path('app/public')),
@@ -134,6 +134,7 @@ class DownloadController extends Controller
                 'pdf' => 'application/pdf',
                 'mp3' => 'audio/mpeg',
                 'png' => 'image/png',
+                'svg' => 'image/svg+xml',
                 'jpg', 'jpeg' => 'image/jpeg',
                 'webp' => 'image/webp',
                 'zip' => 'application/zip',

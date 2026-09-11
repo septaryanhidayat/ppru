@@ -244,14 +244,14 @@
     <div class="max-w-6xl mx-auto px-4 sm:px-6">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
             
-            {{-- Foto Kepala Sekolah --}}
+            {{-- Foto Kepala Sekolah (Ukuran Pas & Proporsional Sesuai Web Referensi) --}}
             <div class="lg:col-span-6 reveal-fade-up delay-1">
-                <div class="max-w-md sm:max-w-lg mx-auto">
-                    <div class="rounded-3xl overflow-hidden shadow-2xl border border-gray-100 bg-gradient-to-b from-green-50 to-emerald-100">
-                        <img src="/uploads/kepala-sekolah-robbani.jpg" alt="Drs. H. Ahmad Robbani, M.Pd.I - Kepala SMA IT Plus Robbani" class="w-full h-auto object-cover transform hover:scale-102 transition duration-500">
+                <div class="max-w-sm sm:max-w-md mx-auto">
+                    <div class="rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl border border-gray-100 bg-gradient-to-b from-green-50 to-emerald-100 aspect-[4/3] max-h-[340px]">
+                        <img src="/uploads/kepala-sekolah-robbani.jpg" alt="Drs. H. Ahmad Husen, M.Pd.I - Kepala SMA IT Plus Robbani" class="w-full h-full object-cover object-center transform hover:scale-105 transition duration-500">
                     </div>
-                    <p class="font-extrabold text-gray-900 text-lg sm:text-xl text-center mt-3.5 tracking-tight">
-                        Drs. H. Ahmad Robbani, M.Pd.I
+                    <p class="font-extrabold text-gray-900 text-lg sm:text-xl text-center mt-3 tracking-tight">
+                        Drs. H. Ahmad Husen, M.Pd.I
                     </p>
                     <p class="text-xs text-[#0d6b38] font-bold text-center">Kepala Sekolah SMA IT Plus Robbani</p>
                 </div>

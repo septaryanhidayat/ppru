@@ -28,6 +28,6 @@ class AnggotaDewan extends Model
             return '/'.ltrim($path, '/');
         }
 
-        return '/uploads/2023/11/Asmawi.webp';
+        return '/uploads/kepala-sekolah-robbani.jpg';
     }
 }

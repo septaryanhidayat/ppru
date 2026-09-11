@@ -62,7 +62,7 @@
             [
                 'id' => 7,
                 'title' => "Kurikulum Pembinaan Da'i Muda & Khitabah",
-                'cover' => '/uploads/kepala-sekolah-robbani.jpg',
+                'cover' => '/uploads/library-robbani.jpg',
                 'description' => "Kumpulan materi public speaking, retorika dakwah, dasar-dasar aqidah dan fiqih dakwah praktis untuk melatih santri menjadi da'i dan orator andal.",
                 'pdf' => '#',
                 'badge' => 'Kepemimpinan'
