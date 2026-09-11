@@ -120,7 +120,7 @@ CREATE TABLE IF NOT EXISTS `visitor_logs` (
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
         
         {{-- Card 1: Total Kunjungan (Pageviews) --}}
-        <div class="bg-gradient-to-br from-[#ff5001] via-[#f97316] to-[#ea580c] text-white rounded-3xl p-6 shadow-lg shadow-orange-500/20 border border-orange-300/30 relative overflow-hidden group">
+        <div class="bg-gradient-to-br from-[#ff5001] via-[#da251c] to-[#b91c1c] text-white rounded-3xl p-6 shadow-lg shadow-orange-500/20 border border-orange-300/30 relative overflow-hidden group">
             <div class="flex items-center justify-between mb-4">
                 <span class="text-xs font-bold text-orange-100 uppercase tracking-wider">Total Tayangan Halaman</span>
                 <div class="w-10 h-10 rounded-2xl bg-white/20 backdrop-blur-md text-white flex items-center justify-center text-lg">

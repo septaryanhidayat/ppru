@@ -1,18 +1,18 @@
 @extends('layouts.frontend')
 
-@section('title', 'Galeri Dokumentasi Foto - SMA IT Plus Robbani')
-@section('meta_description', 'Dokumentasi foto kegiatan belajar mengajar, tahfidz, laboratorium sains, wisuda, dan prestasi santri SMA IT Plus Robbani Indralaya Ogan Ilir.')
+@section('title', 'Galeri Dokumentasi Foto - SMA IT Ishlahul Ummah Prabumulih')
+@section('meta_description', 'Dokumentasi foto kegiatan belajar mengajar, tahfidz, laboratorium sains, wisuda, dan prestasi santri SMA Islam Terpadu Ishlahul Ummah Prabumulih.')
 
 @section('content')
 {{-- HERO HEADER --}}
-<div class="bg-gradient-to-r from-emerald-950 via-[#0d6b38] to-emerald-900 text-white py-12">
+<div class="bg-gradient-to-r from-emerald-950 via-[#00913e] to-emerald-900 text-white py-12">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <nav class="text-xs text-emerald-200 mb-3 flex items-center space-x-2">
             <a href="{{ route('home') }}" class="hover:text-white transition">Beranda</a>
             <span>/</span>
             <span class="text-amber-300 font-semibold">Galeri</span>
         </nav>
-        <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Galeri Foto SMA IT Plus Robbani</h1>
+        <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Galeri Foto SMA IT Ishlahul Ummah Prabumulih</h1>
         <p class="text-sm text-emerald-100 mt-2 font-light max-w-2xl">
             Rekam jejak visual dinamika belajar, pembiasaan ibadah, praktikum sains, dan keceriaan santri di lingkungan kampus.
         </p>
@@ -24,16 +24,16 @@
     <div class="text-center max-w-2xl mx-auto">
         <span class="text-xs font-bold text-orange-500 uppercase tracking-wider block">ALBUM KEGIATAN SANTRI</span>
         <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight mt-1">
-            Dokumentasi Sekolah Robbani
+            Dokumentasi Sekolah Ishum
         </h2>
-        <div class="w-16 h-1 bg-[#0d6b38] mx-auto rounded-full mt-3"></div>
+        <div class="w-16 h-1 bg-[#00913e] mx-auto rounded-full mt-3"></div>
     </div>
 
     <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
         @forelse($galleryImages as $idx => $img)
             <div class="group relative rounded-2xl overflow-hidden bg-gray-100 shadow-md hover:shadow-2xl transition transform hover:-translate-y-1 aspect-square cursor-pointer reveal-fade-up delay-{{ $idx % 4 }}"
                  @click="activeImg = '{{ $img->featured_image }}'; activeTitle = '{{ addslashes($img->title) }}'; lightboxOpen = true">
-                <img src="{{ $img->featured_image }}" alt="{{ $img->title }}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" onerror="this.src='/uploads/campus-robbani.jpg'">
+                <img src="{{ $img->featured_image }}" alt="{{ $img->title }}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" onerror="this.src='/uploads/campus-ishum.jpg'">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex flex-col justify-end p-4">
                     <span class="text-white text-xs font-bold line-clamp-2 leading-snug">{{ $img->title }}</span>
                     <span class="text-[10px] text-amber-300 mt-1 font-semibold flex items-center">

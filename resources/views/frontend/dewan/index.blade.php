@@ -1,11 +1,11 @@
 @extends('layouts.frontend')
 
-@section('title', 'Dewan Guru & Tenaga Kependidikan - SMA IT Plus Robbani')
-@section('meta_description', 'Profil pendidik, ustadz, dan tenaga kependidikan berdedikasi tinggi di SMA IT Plus Robbani Indralaya Ogan Ilir.')
+@section('title', 'Dewan Guru & Tenaga Kependidikan - SMA IT Ishlahul Ummah Prabumulih')
+@section('meta_description', 'Profil pendidik, ustadz, dan tenaga kependidikan berdedikasi tinggi di SMA Islam Terpadu Ishlahul Ummah Prabumulih.')
 
 @section('content')
 {{-- HERO HEADER --}}
-<div class="bg-gradient-to-r from-emerald-950 via-[#0d6b38] to-emerald-900 text-white py-12">
+<div class="bg-gradient-to-r from-emerald-950 via-[#00913e] to-emerald-900 text-white py-12">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <nav class="text-xs text-emerald-200 mb-3 flex items-center space-x-2">
             <a href="{{ route('home') }}" class="hover:text-white transition">Beranda</a>
@@ -28,8 +28,8 @@
         <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight mt-1">
             Guru & Tenaga Kependidikan (GTK)
         </h2>
-        <p class="text-xs sm:text-sm text-gray-500 mt-1">SMA IT Plus Robbani Indralaya Ogan Ilir</p>
-        <div class="w-16 h-1 bg-[#0d6b38] mx-auto rounded-full mt-3"></div>
+        <p class="text-xs sm:text-sm text-gray-500 mt-1">SMA Islam Terpadu Ishlahul Ummah Prabumulih</p>
+        <div class="w-16 h-1 bg-[#00913e] mx-auto rounded-full mt-3"></div>
     </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -38,7 +38,7 @@
                 
                 {{-- FOTO GURU --}}
                 <div class="h-80 w-full overflow-hidden bg-gray-100 relative group">
-                    <img src="{{ $d->photo_url }}" alt="{{ $d->name }}" class="w-full h-full object-cover object-top group-hover:scale-105 transition duration-500" onerror="this.src='/uploads/kepala-sekolah-robbani.jpg'">
+                    <img src="{{ $d->photo_url }}" alt="{{ $d->name }}" class="w-full h-full object-cover object-top group-hover:scale-105 transition duration-500" onerror="this.src='/uploads/kepsek-agi-gustiawan.jpg'">
                     <div class="absolute bottom-0 inset-x-0 h-24 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
                     @if($d->fraction)
                     <span class="absolute bottom-3 left-4 text-[11px] font-extrabold text-white bg-orange-500 px-3 py-1 rounded-full shadow">
@@ -50,7 +50,7 @@
                 {{-- DESKRIPSI GURU --}}
                 <div class="p-6 flex-grow flex flex-col justify-between space-y-4">
                     <div>
-                        <h3 class="font-extrabold text-gray-900 text-lg leading-snug hover:text-[#0d6b38] transition">
+                        <h3 class="font-extrabold text-gray-900 text-lg leading-snug hover:text-[#00913e] transition">
                             {{ $d->name }}
                         </h3>
                         <span class="text-xs font-semibold text-orange-600 block mt-1">{{ $d->position }}</span>
@@ -62,7 +62,7 @@
                     </div>
 
                     <div class="pt-4 border-t border-gray-100 flex items-center justify-between text-xs text-gray-500">
-                        <span class="font-medium text-emerald-700">SMA IT Plus Robbani</span>
+                        <span class="font-medium text-emerald-700">SMA IT Ishlahul Ummah Prabumulih</span>
                         <span class="inline-flex items-center text-amber-500 font-semibold">
                             <i class="fa-solid fa-award mr-1"></i> Pendidik Berdedikasi
                         </span>

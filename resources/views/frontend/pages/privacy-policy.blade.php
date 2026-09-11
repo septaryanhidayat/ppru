@@ -1,11 +1,11 @@
 @extends('layouts.frontend')
 
-@section('title', 'Kebijakan Privasi - SMA IT Plus Robbani')
-@section('meta_description', 'Kebijakan Privasi resmi Website SMA IT Plus Robbani yang menjelaskan pengelolaan dan perlindungan data pengunjung, siswa, dan orang tua.')
+@section('title', 'Kebijakan Privasi - SMA IT Ishlahul Ummah Prabumulih')
+@section('meta_description', 'Kebijakan Privasi resmi Website SMA IT Ishlahul Ummah Prabumulih yang menjelaskan pengelolaan dan perlindungan data pengunjung, siswa, dan orang tua.')
 
 @section('content')
 {{-- HERO HEADER --}}
-<div class="bg-gradient-to-r from-emerald-950 via-[#0d6b38] to-emerald-900 text-white py-12">
+<div class="bg-gradient-to-r from-emerald-950 via-[#00913e] to-emerald-900 text-white py-12">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <nav class="text-xs text-emerald-200 mb-3 flex items-center space-x-2">
             <a href="{{ route('home') }}" class="hover:text-white transition">Beranda</a>
@@ -14,7 +14,7 @@
         </nav>
         <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Kebijakan Privasi (Privacy Policy)</h1>
         <p class="text-sm text-emerald-100 mt-2 font-light max-w-2xl">
-            Komitmen transparansi dan perlindungan privasi data setiap pengunjung situs resmi SMA IT Plus Robbani.
+            Komitmen transparansi dan perlindungan privasi data setiap pengunjung situs resmi SMA IT Ishlahul Ummah Prabumulih.
         </p>
     </div>
 </div>
@@ -27,9 +27,9 @@
             <div>
                 <span class="text-xs font-bold text-orange-500 uppercase tracking-wider block">Dokumen Resmi</span>
                 <h2 class="text-xl sm:text-2xl font-extrabold text-gray-900 mt-1">Kebijakan Privasi Website</h2>
-                <p class="text-xs text-gray-500 mt-1">Website Resmi SMA IT Plus Robbani Indralaya Ogan Ilir</p>
+                <p class="text-xs text-gray-500 mt-1">Website Resmi SMA Islam Terpadu Ishlahul Ummah Prabumulih</p>
             </div>
-            <div class="bg-emerald-50 text-[#0d6b38] px-4 py-2 rounded-xl text-xs font-bold border border-emerald-200">
+            <div class="bg-emerald-50 text-[#00913e] px-4 py-2 rounded-xl text-xs font-bold border border-emerald-200">
                 Terbit: 2026
             </div>
         </div>
@@ -41,11 +41,11 @@
             @else
                 <section class="space-y-2">
                     <h3 class="text-lg sm:text-xl font-bold text-gray-900 flex items-center space-x-2">
-                        <span class="w-7 h-7 rounded-lg bg-[#0d6b38] text-white inline-flex items-center justify-center text-xs font-bold mr-2">1</span>
+                        <span class="w-7 h-7 rounded-lg bg-[#00913e] text-white inline-flex items-center justify-center text-xs font-bold mr-2">1</span>
                         <span>Pendahuluan</span>
                     </h3>
                     <p>
-                        SMA IT Plus Robbani menghargai privasi setiap pengunjung website resmi kami. Kebijakan privasi ini menjelaskan bagaimana kami mengumpulkan, menggunakan, dan melindungi informasi pribadi Anda saat mengakses dan menggunakan layanan di website kami.
+                        SMA IT Ishlahul Ummah Prabumulih menghargai privasi setiap pengunjung website resmi kami. Kebijakan privasi ini menjelaskan bagaimana kami mengumpulkan, menggunakan, dan melindungi informasi pribadi Anda saat mengakses dan menggunakan layanan di website kami.
                     </p>
                     <p>
                         Dengan mengunjungi website ini, Anda menyetujui praktik yang dijelaskan dalam Kebijakan Privasi ini.
@@ -54,7 +54,7 @@
 
                 <section class="space-y-2">
                     <h3 class="text-lg sm:text-xl font-bold text-gray-900 flex items-center space-x-2">
-                        <span class="w-7 h-7 rounded-lg bg-[#0d6b38] text-white inline-flex items-center justify-center text-xs font-bold mr-2">2</span>
+                        <span class="w-7 h-7 rounded-lg bg-[#00913e] text-white inline-flex items-center justify-center text-xs font-bold mr-2">2</span>
                         <span>Informasi yang Kami Kumpulkan</span>
                     </h3>
                     <p>Kami dapat mengumpulkan informasi dari pengunjung, baik secara langsung maupun tidak langsung, termasuk:</p>
@@ -66,7 +66,7 @@
 
                 <section class="space-y-2">
                     <h3 class="text-lg sm:text-xl font-bold text-gray-900 flex items-center space-x-2">
-                        <span class="w-7 h-7 rounded-lg bg-[#0d6b38] text-white inline-flex items-center justify-center text-xs font-bold mr-2">3</span>
+                        <span class="w-7 h-7 rounded-lg bg-[#00913e] text-white inline-flex items-center justify-center text-xs font-bold mr-2">3</span>
                         <span>Penggunaan Informasi</span>
                     </h3>
                     <p>Informasi yang kami kumpulkan digunakan untuk keperluan:</p>
@@ -80,7 +80,7 @@
 
                 <section class="space-y-2">
                     <h3 class="text-lg sm:text-xl font-bold text-gray-900 flex items-center space-x-2">
-                        <span class="w-7 h-7 rounded-lg bg-[#0d6b38] text-white inline-flex items-center justify-center text-xs font-bold mr-2">4</span>
+                        <span class="w-7 h-7 rounded-lg bg-[#00913e] text-white inline-flex items-center justify-center text-xs font-bold mr-2">4</span>
                         <span>Perlindungan Informasi</span>
                     </h3>
                     <p>
@@ -90,7 +90,7 @@
 
                 <section class="space-y-2">
                     <h3 class="text-lg sm:text-xl font-bold text-gray-900 flex items-center space-x-2">
-                        <span class="w-7 h-7 rounded-lg bg-[#0d6b38] text-white inline-flex items-center justify-center text-xs font-bold mr-2">5</span>
+                        <span class="w-7 h-7 rounded-lg bg-[#00913e] text-white inline-flex items-center justify-center text-xs font-bold mr-2">5</span>
                         <span>Penggunaan Cookies</span>
                     </h3>
                     <p>
@@ -100,17 +100,17 @@
 
                 <section class="space-y-2">
                     <h3 class="text-lg sm:text-xl font-bold text-gray-900 flex items-center space-x-2">
-                        <span class="w-7 h-7 rounded-lg bg-[#0d6b38] text-white inline-flex items-center justify-center text-xs font-bold mr-2">6</span>
+                        <span class="w-7 h-7 rounded-lg bg-[#00913e] text-white inline-flex items-center justify-center text-xs font-bold mr-2">6</span>
                         <span>Tautan ke Situs Pihak Ketiga</span>
                     </h3>
                     <p>
-                        Website kami dapat memuat tautan ke situs eksternal yang tidak dikelola langsung oleh SMA IT Plus Robbani. Kami tidak bertanggung jawab atas isi maupun kebijakan privasi dari situs-situs pihak ketiga tersebut.
+                        Website kami dapat memuat tautan ke situs eksternal yang tidak dikelola langsung oleh SMA IT Ishlahul Ummah Prabumulih. Kami tidak bertanggung jawab atas isi maupun kebijakan privasi dari situs-situs pihak ketiga tersebut.
                     </p>
                 </section>
 
                 <section class="space-y-2">
                     <h3 class="text-lg sm:text-xl font-bold text-gray-900 flex items-center space-x-2">
-                        <span class="w-7 h-7 rounded-lg bg-[#0d6b38] text-white inline-flex items-center justify-center text-xs font-bold mr-2">7</span>
+                        <span class="w-7 h-7 rounded-lg bg-[#00913e] text-white inline-flex items-center justify-center text-xs font-bold mr-2">7</span>
                         <span>Hak Pengunjung</span>
                     </h3>
                     <p>
@@ -120,24 +120,24 @@
 
                 <section class="space-y-2">
                     <h3 class="text-lg sm:text-xl font-bold text-gray-900 flex items-center space-x-2">
-                        <span class="w-7 h-7 rounded-lg bg-[#0d6b38] text-white inline-flex items-center justify-center text-xs font-bold mr-2">8</span>
+                        <span class="w-7 h-7 rounded-lg bg-[#00913e] text-white inline-flex items-center justify-center text-xs font-bold mr-2">8</span>
                         <span>Perubahan Kebijakan Privasi</span>
                     </h3>
                     <p>
-                        SMA IT Plus Robbani berhak memperbarui Kebijakan Privasi ini sewaktu-waktu. Setiap perubahan akan langsung dipublikasikan di halaman ini dengan tanggal pembaruan yang jelas.
+                        SMA IT Ishlahul Ummah Prabumulih berhak memperbarui Kebijakan Privasi ini sewaktu-waktu. Setiap perubahan akan langsung dipublikasikan di halaman ini dengan tanggal pembaruan yang jelas.
                     </p>
                 </section>
 
                 <section class="space-y-2 bg-emerald-50/50 p-6 rounded-2xl border border-emerald-100">
                     <h3 class="text-lg sm:text-xl font-bold text-gray-900 flex items-center space-x-2">
-                        <span class="w-7 h-7 rounded-lg bg-[#0d6b38] text-white inline-flex items-center justify-center text-xs font-bold mr-2">9</span>
+                        <span class="w-7 h-7 rounded-lg bg-[#00913e] text-white inline-flex items-center justify-center text-xs font-bold mr-2">9</span>
                         <span>Kontak Sekolah</span>
                     </h3>
                     <p>Jika Anda memiliki pertanyaan mengenai Kebijakan Privasi ini, silakan hubungi kami:</p>
                     <div class="text-xs sm:text-sm space-y-1 text-gray-600 mt-2">
-                        <p>📧 Email: <strong>{{ $siteSettings['contact_email'] ?? 'info@smaitplusrobbani.sch.id' }}</strong></p>
-                        <p>📞 Telepon: <strong>{{ $siteSettings['contact_phone'] ?? '0821-7788-9900' }}</strong></p>
-                        <p>📍 Alamat: {{ $siteSettings['contact_address'] ?? 'Jl. Lintas Timur Palembang-Prabumulih KM 35, Indralaya, Ogan Ilir, Sumatera Selatan' }}</p>
+                        <p>📧 Email: <strong>{{ $siteSettings['contact_email'] ?? 'info@smaitplusishum.sch.id' }}</strong></p>
+                        <p>📞 Telepon: <strong>{{ $siteSettings['contact_phone'] ?? '0821-8268-0647' }}</strong></p>
+                        <p>📍 Alamat: {{ $siteSettings['contact_address'] ?? 'Jl. Lintas Timur Palembang-Prabumulih KM 35, Prabumulih, Sumatera Selatan' }}</p>
                     </div>
                 </section>
             @endif

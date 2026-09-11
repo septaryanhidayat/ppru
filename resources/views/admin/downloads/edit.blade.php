@@ -26,7 +26,7 @@
 
             <div>
                 <label for="category_type" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Kategori Berkas *</label>
-                <select name="category_type" id="category_type" required class="w-full bg-slate-50 text-xs text-slate-800 rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0d6b38] transition">
+                <select name="category_type" id="category_type" required class="w-full bg-slate-50 text-xs text-slate-800 rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00913e] transition">
                     <option value="Logo Resmi" {{ old('category_type', $download->category_type) === 'Logo Resmi' ? 'selected' : '' }}>Logo Resmi Sekolah</option>
                     <option value="Panduan & Kurikulum" {{ old('category_type', $download->category_type) === 'Panduan & Kurikulum' ? 'selected' : '' }}>Panduan Akademik & Kurikulum</option>
                     <option value="E-Book & Publikasi" {{ old('category_type', $download->category_type) === 'E-Book & Publikasi' ? 'selected' : '' }}>Modul Siswa & E-Book</option>
@@ -39,7 +39,7 @@
             <div>
                 <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">File Saat Ini</label>
                 <div class="flex items-center space-x-3 p-3 bg-slate-50 rounded-xl border border-slate-200 mb-3 text-xs">
-                    <i class="fa-solid fa-file-check text-[#0d6b38]"></i>
+                    <i class="fa-solid fa-file-check text-[#00913e]"></i>
                     <a href="{{ $download->file_path }}" target="_blank" class="font-mono text-blue-600 hover:underline truncate">{{ $download->file_path }}</a>
                     <span class="text-slate-400">({{ $download->file_size }})</span>
                 </div>

@@ -1,9 +1,9 @@
 @extends('layouts.frontend')
 
-@section('title', $announcement->title . ' - Pengumuman SMA IT Plus Robbani')
+@section('title', $announcement->title . ' - Pengumuman SMA IT Ishlahul Ummah Prabumulih')
 
 @section('content')
-<div class="bg-gradient-to-r from-emerald-950 via-[#0d6b38] to-emerald-900 text-white py-12">
+<div class="bg-gradient-to-r from-emerald-950 via-[#00913e] to-emerald-900 text-white py-12">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <nav class="text-xs text-emerald-200 mb-3 flex items-center space-x-2">
             <a href="{{ route('home') }}" class="hover:text-white transition">Beranda</a>
@@ -19,9 +19,9 @@
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
         <div class="lg:col-span-2 bg-white p-6 sm:p-10 rounded-3xl shadow-sm border border-gray-100 space-y-6">
-            <div class="flex items-center space-x-3 text-xs text-[#0d6b38] font-bold">
+            <div class="flex items-center space-x-3 text-xs text-[#00913e] font-bold">
                 <i class="fa-solid fa-bullhorn text-base text-orange-500"></i>
-                <span>Pengumuman Resmi SMA IT Plus Robbani</span>
+                <span>Pengumuman Resmi SMA IT Ishlahul Ummah Prabumulih</span>
             </div>
 
             @if($announcement->featured_image)
@@ -37,13 +37,13 @@
             @if($announcement->file_attachment)
                 <div class="p-4 bg-emerald-50 rounded-2xl border border-emerald-200 flex items-center justify-between">
                     <div class="flex items-center space-x-3">
-                        <i class="fa-solid fa-file-arrow-down text-2xl text-[#0d6b38]"></i>
+                        <i class="fa-solid fa-file-arrow-down text-2xl text-[#00913e]"></i>
                         <div>
                             <span class="font-bold text-xs text-gray-800 block">Lampiran Dokumen</span>
                             <span class="text-[11px] text-gray-500">Unduh dokumen lampiran pengumuman ini</span>
                         </div>
                     </div>
-                    <a href="{{ $announcement->file_attachment }}" target="_blank" class="bg-[#0d6b38] hover:bg-emerald-800 text-white px-4 py-2 rounded-xl text-xs font-semibold transition">
+                    <a href="{{ $announcement->file_attachment }}" target="_blank" class="bg-[#00913e] hover:bg-emerald-800 text-white px-4 py-2 rounded-xl text-xs font-semibold transition">
                         Unduh File
                     </a>
                 </div>

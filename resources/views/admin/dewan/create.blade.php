@@ -26,19 +26,19 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                     <label for="position" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Jabatan / Amanah *</label>
-                    <input type="text" name="position" id="position" required value="{{ old('position') }}" placeholder="Contoh: Guru Matematika / Pembina Tahfidz" class="w-full bg-slate-50 text-xs text-slate-800 rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0d6b38] transition">
+                    <input type="text" name="position" id="position" required value="{{ old('position') }}" placeholder="Contoh: Guru Matematika / Pembina Tahfidz" class="w-full bg-slate-50 text-xs text-slate-800 rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00913e] transition">
                     @error('position') <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span> @enderror
                 </div>
 
                 <div>
                     <label for="fraction" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Bidang Studi / Tugas Tambahan</label>
-                    <input type="text" name="fraction" id="fraction" value="{{ old('fraction', 'Dewan Guru & GTK') }}" placeholder="Contoh: Pengampu MIPA & Sains" class="w-full bg-slate-50 text-xs text-slate-800 rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0d6b38] transition">
+                    <input type="text" name="fraction" id="fraction" value="{{ old('fraction', 'Dewan Guru & GTK') }}" placeholder="Contoh: Pengampu MIPA & Sains" class="w-full bg-slate-50 text-xs text-slate-800 rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00913e] transition">
                 </div>
             </div>
 
             <div>
                 <label for="photo" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Foto Resmi Guru / Tenaga Pendidik</label>
-                <input type="file" name="photo" id="photo" accept="image/*" class="w-full text-xs text-slate-600 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-[#0d6b38] file:text-white hover:file:bg-[#094d28]">
+                <input type="file" name="photo" id="photo" accept="image/*" class="w-full text-xs text-slate-600 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-[#00913e] file:text-white hover:file:bg-[#094d28]">
                 <p class="text-[11px] text-slate-400 mt-1">Disarankan foto rasio potret (portrait) 3:4 atau 1:1 format JPG/PNG/WebP.</p>
                 @error('photo') <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span> @enderror
             </div>

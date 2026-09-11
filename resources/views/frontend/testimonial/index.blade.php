@@ -1,11 +1,11 @@
 @extends('layouts.frontend')
 
-@section('title', 'Testimonial Wali Santri & Alumni - SMA IT Plus Robbani')
-@section('meta_description', 'Suara, apresiasi, dan kesan para orang tua murid dan alumni terhadap mutu pendidikan di SMA IT Plus Robbani Indralaya Ogan Ilir.')
+@section('title', 'Testimonial Wali Santri & Alumni - SMA IT Ishlahul Ummah Prabumulih')
+@section('meta_description', 'Suara, apresiasi, dan kesan para orang tua murid dan alumni terhadap mutu pendidikan di SMA Islam Terpadu Ishlahul Ummah Prabumulih.')
 
 @section('content')
 {{-- HERO HEADER --}}
-<div class="bg-gradient-to-r from-emerald-950 via-[#0d6b38] to-emerald-900 text-white py-12">
+<div class="bg-gradient-to-r from-emerald-950 via-[#00913e] to-emerald-900 text-white py-12">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <nav class="text-xs text-emerald-200 mb-3 flex items-center space-x-2">
             <a href="{{ route('home') }}" class="hover:text-white transition">Beranda</a>
@@ -16,7 +16,7 @@
         </nav>
         <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Testimonial Orang Tua & Alumni</h1>
         <p class="text-sm text-emerald-100 mt-2 font-light max-w-2xl">
-            Kesan, apresiasi, dan pengalaman nyata para orang tua santri dan alumni mengenai kualitas pendidikan karakter dan akademik di SMA IT Plus Robbani.
+            Kesan, apresiasi, dan pengalaman nyata para orang tua santri dan alumni mengenai kualitas pendidikan karakter dan akademik di SMA IT Ishlahul Ummah Prabumulih.
         </p>
     </div>
 </div>
@@ -26,9 +26,9 @@
     <div class="text-center max-w-2xl mx-auto">
         <span class="text-xs font-bold text-orange-500 uppercase tracking-wider block">Kesan & Pengalaman Nyata</span>
         <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight mt-1">
-            Apresiasi Terhadap SMA IT Plus Robbani
+            Apresiasi Terhadap SMA IT Ishlahul Ummah Prabumulih
         </h2>
-        <div class="w-16 h-1 bg-[#0d6b38] mx-auto rounded-full mt-3"></div>
+        <div class="w-16 h-1 bg-[#00913e] mx-auto rounded-full mt-3"></div>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -41,9 +41,9 @@
                     </p>
                 </div>
                 <div class="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left space-y-3 sm:space-y-0 sm:space-x-3 pt-4 border-t border-gray-50">
-                    <div class="w-12 h-12 rounded-full bg-emerald-100 text-[#0d6b38] font-bold flex items-center justify-center flex-shrink-0 overflow-hidden text-base shadow-sm mx-auto sm:mx-0">
+                    <div class="w-12 h-12 rounded-full bg-emerald-100 text-[#00913e] font-bold flex items-center justify-center flex-shrink-0 overflow-hidden text-base shadow-sm mx-auto sm:mx-0">
                         @if($testi->photo)
-                            <img src="{{ $testi->photo }}" alt="{{ $testi->name }}" class="w-full h-full object-cover" onerror="this.src='/uploads/campus-robbani.jpg'">
+                            <img src="{{ $testi->photo }}" alt="{{ $testi->name }}" class="w-full h-full object-cover" onerror="this.src='/uploads/campus-ishum.jpg'">
                         @else
                             {{ substr($testi->name, 0, 1) }}
                         @endif

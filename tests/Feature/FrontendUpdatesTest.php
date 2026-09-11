@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Download;
+use App\Models\Category;
 use App\Models\Dpc;
 use App\Models\Post;
 
@@ -21,7 +21,7 @@ test('halaman program unggulan / dpc menampilkan program sekolah', function () {
 });
 
 test('halaman home menampilkan kabar sekolah dan showcase e-library', function () {
-    $category = \App\Models\Category::firstOrCreate(['name' => 'Kabar Kampus'], ['slug' => 'kabar-kampus']);
+    $category = Category::firstOrCreate(['name' => 'Kabar Kampus'], ['slug' => 'kabar-kampus']);
     for ($i = 1; $i <= 6; $i++) {
         $post = Post::create([
             'title' => "Kabar Prestasi Sekolah $i",
@@ -68,15 +68,15 @@ test('halaman download ebook memuat tombol unduh modul', function () {
     $response = $this->get(route('download.ebook'));
 
     $response->assertStatus(200);
-    $response->assertSee("Panduan Mutqin Tahfidz");
-    $response->assertSee("Download Modul (PDF)");
+    $response->assertSee('Panduan Mutqin Tahfidz');
+    $response->assertSee('Download Modul (PDF)');
 });
 
 test('footer memuat live counter pengunjung dan copyright sekolah', function () {
     $response = $this->get(route('home'));
 
     $response->assertStatus(200);
-    $response->assertSee('SMA IT Plus Robbani');
+    $response->assertSee('SMA Islam Terpadu Ishlahul Ummah Prabumulih');
     $response->assertSee('Pengunjung');
     $response->assertSee('Galeri');
     $response->assertSee('Kabar Sekolah');

@@ -1,9 +1,9 @@
 @extends('layouts.frontend')
 
-@section('title', $agenda->title . ' - Agenda SMA IT Plus Robbani')
+@section('title', $agenda->title . ' - Agenda SMA IT Ishlahul Ummah Prabumulih')
 
 @section('content')
-<div class="bg-gradient-to-r from-emerald-950 via-[#0d6b38] to-emerald-900 text-white py-12">
+<div class="bg-gradient-to-r from-emerald-950 via-[#00913e] to-emerald-900 text-white py-12">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <nav class="text-xs text-emerald-200 mb-3 flex items-center space-x-2">
             <a href="{{ route('home') }}" class="hover:text-white transition">Beranda</a>
@@ -21,13 +21,13 @@
         <div class="lg:col-span-2 bg-white p-6 sm:p-10 rounded-3xl shadow-sm border border-gray-100 space-y-6">
             <div class="flex flex-wrap items-center gap-4 p-4 bg-emerald-50 rounded-2xl border border-emerald-100 text-xs text-gray-700">
                 <div class="flex items-center">
-                    <i class="fa-regular fa-calendar-days text-[#0d6b38] mr-2 text-base"></i>
+                    <i class="fa-regular fa-calendar-days text-[#00913e] mr-2 text-base"></i>
                     <span class="font-bold">{{ $agenda->event_date ? $agenda->event_date->translatedFormat('l, d F Y') : '-' }}</span>
                 </div>
                 <span>&bull;</span>
                 <div class="flex items-center">
                     <i class="fa-solid fa-location-dot text-orange-500 mr-2 text-base"></i>
-                    <span>{{ $agenda->location ?: 'Kampus SMA IT Plus Robbani' }}</span>
+                    <span>{{ $agenda->location ?: 'Kampus SMA IT Ishlahul Ummah Prabumulih' }}</span>
                 </div>
             </div>
 

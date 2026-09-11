@@ -1,24 +1,24 @@
 @extends('layouts.frontend')
 
-@section('title', ($post->meta_title ?: $post->title) . ' - ' . ($siteSettings['site_name'] ?? 'SMA IT Plus Robbani'))
+@section('title', ($post->meta_title ?: $post->title) . ' - ' . ($siteSettings['site_name'] ?? 'SMA IT Ishlahul Ummah Prabumulih'))
 @section('og_title', $post->meta_title ?: $post->title)
 @section('meta_description', $post->meta_description ?: Str::limit(strip_tags($post->content), 160))
 @section('og_description', $post->meta_description ?: Str::limit(strip_tags($post->content), 160))
 @section('meta_keywords', $post->meta_keywords)
 @section('og_type', 'article')
-@section('og_image', $post->featured_image ? asset($post->featured_image) : asset('/uploads/campus-robbani.jpg'))
+@section('og_image', $post->featured_image ? asset($post->featured_image) : asset('/uploads/campus-ishum.jpg'))
 
 @section('content')
 {{-- BREADCRUMB HEADER --}}
 <div class="bg-gray-100 py-6 border-b border-gray-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <nav class="text-xs text-gray-500 flex flex-wrap items-center gap-2">
-            <a href="{{ route('home') }}" class="hover:text-[#0d6b38] transition">Beranda</a>
+            <a href="{{ route('home') }}" class="hover:text-[#00913e] transition">Beranda</a>
             <span>/</span>
-            <a href="{{ route('artikel.index') }}" class="hover:text-[#0d6b38] transition">Berita</a>
+            <a href="{{ route('artikel.index') }}" class="hover:text-[#00913e] transition">Berita</a>
             @if($post->categories->isNotEmpty())
                 <span>/</span>
-                <a href="{{ route('artikel.index', ['kategori' => $post->categories->first()->slug]) }}" class="hover:text-[#0d6b38] transition">
+                <a href="{{ route('artikel.index', ['kategori' => $post->categories->first()->slug]) }}" class="hover:text-[#00913e] transition">
                     {{ $post->categories->first()->name }}
                 </a>
             @endif
@@ -38,7 +38,7 @@
             @if($post->categories->isNotEmpty())
                 <div class="flex flex-wrap gap-2 mb-4">
                     @foreach($post->categories as $cat)
-                        <a href="{{ route('artikel.index', ['kategori' => $cat->slug]) }}" class="bg-emerald-100 text-[#0d6b38] hover:bg-[#0d6b38] hover:text-white transition text-xs font-bold px-3 py-1 rounded-full">
+                        <a href="{{ route('artikel.index', ['kategori' => $cat->slug]) }}" class="bg-emerald-100 text-[#00913e] hover:bg-[#00913e] hover:text-white transition text-xs font-bold px-3 py-1 rounded-full">
                             {{ $cat->name }}
                         </a>
                     @endforeach
@@ -53,12 +53,12 @@
             {{-- Meta Info --}}
             <div class="flex flex-wrap items-center text-xs text-gray-500 gap-4 py-3 border-y border-gray-100 mb-6">
                 <div class="flex items-center space-x-2">
-                    <i class="fa-solid fa-user text-[#0d6b38]"></i>
-                    <span>{{ $post->author?->name ?: 'Humas SMA IT Plus Robbani' }}</span>
+                    <i class="fa-solid fa-user text-[#00913e]"></i>
+                    <span>{{ $post->author?->name ?: 'Humas SMA IT Ishlahul Ummah Prabumulih' }}</span>
                 </div>
                 <span>&bull;</span>
                 <div class="flex items-center space-x-2">
-                    <i class="fa-regular fa-calendar text-[#0d6b38]"></i>
+                    <i class="fa-regular fa-calendar text-[#00913e]"></i>
                     <span>{{ $post->published_at ? $post->published_at->translatedFormat('l, d F Y - H:i') : '-' }} WIB</span>
                 </div>
                 <span>&bull;</span>
@@ -86,7 +86,7 @@
                     <span class="text-xs font-bold text-gray-500 uppercase tracking-wider block mb-2">Tag Terkait:</span>
                     <div class="flex flex-wrap gap-2">
                         @foreach($post->tags as $t)
-                            <a href="{{ route('artikel.index', ['tag' => $t->slug]) }}" class="text-xs bg-gray-100 hover:bg-[#0d6b38] hover:text-white text-gray-600 px-3 py-1 rounded-md transition">
+                            <a href="{{ route('artikel.index', ['tag' => $t->slug]) }}" class="text-xs bg-gray-100 hover:bg-[#00913e] hover:text-white text-gray-600 px-3 py-1 rounded-md transition">
                                 #{{ $t->name }}
                             </a>
                         @endforeach
@@ -97,7 +97,7 @@
             {{-- Social Share Buttons --}}
             <div class="mt-8 p-5 bg-emerald-50/60 rounded-2xl border border-emerald-100 flex flex-col sm:flex-row items-center justify-between gap-4">
                 <div class="text-xs font-bold text-gray-700 uppercase tracking-wider flex items-center">
-                    <i class="fa-solid fa-share-nodes text-[#0d6b38] mr-2 text-base"></i>
+                    <i class="fa-solid fa-share-nodes text-[#00913e] mr-2 text-base"></i>
                     Bagikan Berita Ini:
                 </div>
                 <div class="flex items-center space-x-2">
@@ -128,15 +128,15 @@
                             <a href="{{ route('artikel.show', $rPost->slug) }}" class="group block">
                                 <div class="h-36 rounded-xl overflow-hidden bg-gray-100 mb-3 shadow-sm">
                                     @if($rPost->featured_image)
-                                        <img src="{{ $rPost->featured_image }}" alt="{{ $rPost->title }}" class="w-full h-full object-cover group-hover:scale-105 transition" onerror="this.src='/uploads/campus-robbani.jpg'">
+                                        <img src="{{ $rPost->featured_image }}" alt="{{ $rPost->title }}" class="w-full h-full object-cover group-hover:scale-105 transition" onerror="this.src='/uploads/campus-ishum.jpg'">
                                     @else
-                                        <img src="/uploads/campus-robbani.jpg" alt="{{ $rPost->title }}" class="w-full h-full object-cover">
+                                        <img src="/uploads/campus-ishum.jpg" alt="{{ $rPost->title }}" class="w-full h-full object-cover">
                                     @endif
                                 </div>
                                 <span class="text-[10px] text-gray-400 block mb-1">
                                     {{ $rPost->published_at ? $rPost->published_at->translatedFormat('d M Y') : '-' }}
                                 </span>
-                                <h4 class="font-bold text-xs text-gray-900 line-clamp-2 group-hover:text-[#0d6b38] transition leading-snug">
+                                <h4 class="font-bold text-xs text-gray-900 line-clamp-2 group-hover:text-[#00913e] transition leading-snug">
                                     {{ $rPost->title }}
                                 </h4>
                             </a>
@@ -152,8 +152,8 @@
             <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
                 <h3 class="font-bold text-sm text-gray-900 mb-3 uppercase tracking-wider">Cari Artikel</h3>
                 <form action="{{ route('artikel.index') }}" method="GET" class="relative">
-                    <input type="text" name="q" placeholder="Ketik kata kunci..." class="w-full bg-gray-50 text-xs text-gray-800 rounded-xl pl-4 pr-10 py-3 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#0d6b38]">
-                    <button type="submit" class="absolute right-3 top-3 text-gray-400 hover:text-[#0d6b38]" aria-label="Search">
+                    <input type="text" name="q" placeholder="Ketik kata kunci..." class="w-full bg-gray-50 text-xs text-gray-800 rounded-xl pl-4 pr-10 py-3 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
+                    <button type="submit" class="absolute right-3 top-3 text-gray-400 hover:text-[#00913e]" aria-label="Search">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </button>
                 </form>
@@ -167,7 +167,7 @@
                 <ul class="space-y-2 text-xs">
                     @foreach($categories->take(12) as $cat)
                         <li>
-                            <a href="{{ route('artikel.index', ['kategori' => $cat->slug]) }}" class="flex items-center justify-between py-1.5 px-2 rounded-lg hover:bg-emerald-50 hover:text-[#0d6b38] transition text-gray-600">
+                            <a href="{{ route('artikel.index', ['kategori' => $cat->slug]) }}" class="flex items-center justify-between py-1.5 px-2 rounded-lg hover:bg-emerald-50 hover:text-[#00913e] transition text-gray-600">
                                 <span>{{ $cat->name }}</span>
                                 <span class="text-gray-400 text-[11px] bg-gray-100 px-2 py-0.5 rounded-full">{{ $cat->posts_count }}</span>
                             </a>
@@ -186,16 +186,16 @@
                         <div class="flex items-start space-x-3 group">
                             <a href="{{ route('artikel.show', $rPost->slug) }}" class="w-16 h-16 rounded-xl overflow-hidden bg-gray-100 flex-shrink-0">
                                 @if($rPost->featured_image)
-                                    <img src="{{ $rPost->featured_image }}" alt="{{ $rPost->title }}" class="w-full h-full object-cover group-hover:scale-105 transition" onerror="this.src='/uploads/campus-robbani.jpg'">
+                                    <img src="{{ $rPost->featured_image }}" alt="{{ $rPost->title }}" class="w-full h-full object-cover group-hover:scale-105 transition" onerror="this.src='/uploads/campus-ishum.jpg'">
                                 @else
-                                    <img src="/uploads/campus-robbani.jpg" alt="{{ $rPost->title }}" class="w-full h-full object-cover">
+                                    <img src="/uploads/campus-ishum.jpg" alt="{{ $rPost->title }}" class="w-full h-full object-cover">
                                 @endif
                             </a>
                             <div class="flex-grow">
                                 <span class="text-[10px] text-gray-400 block mb-1">
                                     {{ $rPost->published_at ? $rPost->published_at->translatedFormat('d M Y') : '-' }}
                                 </span>
-                                <h4 class="text-xs font-bold text-gray-800 line-clamp-2 group-hover:text-[#0d6b38] transition leading-snug">
+                                <h4 class="text-xs font-bold text-gray-800 line-clamp-2 group-hover:text-[#00913e] transition leading-snug">
                                     <a href="{{ route('artikel.show', $rPost->slug) }}">{{ $rPost->title }}</a>
                                 </h4>
                             </div>
@@ -205,10 +205,10 @@
             </div>
 
             {{-- Banner PPDB --}}
-            <div class="rounded-2xl overflow-hidden shadow-lg bg-gradient-to-br from-emerald-900 to-[#0d6b38] p-6 text-white text-center space-y-3">
+            <div class="rounded-2xl overflow-hidden shadow-lg bg-gradient-to-br from-emerald-900 to-[#00913e] p-6 text-white text-center space-y-3">
                 <span class="inline-block bg-orange-500 text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full text-white">PPDB Online</span>
                 <h4 class="text-lg font-extrabold text-white">Penerimaan Santri Baru</h4>
-                <p class="text-xs text-emerald-100">Jadilah bagian dari generasi Qur'ani dan saintis berprestasi di SMA IT Plus Robbani.</p>
+                <p class="text-xs text-emerald-100">Jadilah bagian dari generasi Qur'ani dan saintis berprestasi di SMA IT Ishlahul Ummah Prabumulih.</p>
                 <a href="{{ route('hubungi') }}" class="inline-block w-full bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold py-2.5 rounded-xl text-xs hover:from-orange-600 hover:to-amber-600 transition shadow">
                     Daftar Sekarang
                 </a>

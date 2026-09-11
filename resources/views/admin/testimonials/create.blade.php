@@ -26,7 +26,7 @@
 
                 <div>
                     <label for="profession" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Profesi / Asal Kecamatan</label>
-                    <input type="text" name="profession" id="profession" value="{{ old('profession') }}" placeholder="Contoh: Tokoh Pemuda Indralaya" class="w-full bg-slate-50 text-xs text-slate-800 rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#ff5001]">
+                    <input type="text" name="profession" id="profession" value="{{ old('profession') }}" placeholder="Contoh: Tokoh Pemuda Prabumulih" class="w-full bg-slate-50 text-xs text-slate-800 rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#ff5001]">
                 </div>
             </div>
 

@@ -19,13 +19,13 @@
             
             <div>
                 <label for="name" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Nama Program Unggulan *</label>
-                <input type="text" name="name" id="name" required value="{{ old('name') }}" placeholder="Contoh: Program Tahfidzul Qur'an 30 Juz" class="w-full bg-slate-50 text-xs text-slate-800 rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0d6b38] transition">
+                <input type="text" name="name" id="name" required value="{{ old('name') }}" placeholder="Contoh: Program Tahfidzul Qur'an 30 Juz" class="w-full bg-slate-50 text-xs text-slate-800 rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00913e] transition">
                 @error('name') <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span> @enderror
             </div>
 
             <div>
                 <label for="head_name" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Koordinator / Penanggung Jawab Program</label>
-                <input type="text" name="head_name" id="head_name" value="{{ old('head_name') }}" placeholder="Contoh: Ustadz Muhammad Fauzi, Lc." class="w-full bg-slate-50 text-xs text-slate-800 rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0d6b38] transition">
+                <input type="text" name="head_name" id="head_name" value="{{ old('head_name') }}" placeholder="Contoh: Ustadz Muhammad Fauzi, Lc." class="w-full bg-slate-50 text-xs text-slate-800 rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00913e] transition">
             </div>
 
             <div>

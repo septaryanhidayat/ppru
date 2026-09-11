@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'Admin Panel') - SMA IT Plus Robbani</title>
-    <link rel="icon" type="image/svg+xml" href="/uploads/logo-robbani-emblem.svg">
+    <title>@yield('title', 'Admin Panel') - SMA IT Ishlahul Ummah Prabumulih</title>
+    <link rel="icon" type="image/svg+xml" href="/uploads/logo-ishum-square.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -69,11 +69,11 @@
             <div class="h-20 flex items-center px-6 border-b border-slate-800/80 bg-[#070b14]/50">
                 <a href="{{ route('admin.dashboard') }}" class="flex items-center space-x-3 group">
                     <div class="w-10 h-10 rounded-xl bg-white p-1 flex items-center justify-center shadow-md group-hover:scale-105 transition">
-                        <img src="/uploads/logo-robbani-emblem.svg" alt="Logo Robbani" class="h-8 w-auto object-contain">
+                        <img src="/uploads/logo-ishum-square.png" alt="Logo Ishum" class="h-8 w-auto object-contain">
                     </div>
                     <div>
-                        <span class="font-black text-white text-base tracking-tight block">ADMIN ROBBANI</span>
-                        <span class="text-[10px] text-[#f97316] font-semibold tracking-wider uppercase block">Control Center</span>
+                        <span class="font-black text-white text-base tracking-tight block">ADMIN ISHUM</span>
+                        <span class="text-[10px] text-[#da251c] font-semibold tracking-wider uppercase block">Control Center</span>
                     </div>
                 </a>
             </div>
@@ -115,17 +115,17 @@
                 <div class="space-y-1">
                     <span class="px-4 text-[10px] font-bold tracking-wider text-slate-400 uppercase">Pendidik &amp; Fasilitas</span>
                     
-                    <a href="{{ route('admin.dewan.index') }}" class="flex items-center space-x-3 px-4 py-2.5 rounded-xl transition {{ request()->routeIs('admin.dewan*') ? 'bg-gradient-to-r from-[#0d6b38] to-[#15803d] text-white font-bold shadow-md' : 'hover:bg-slate-800/70 text-slate-300 hover:text-white' }}">
+                    <a href="{{ route('admin.dewan.index') }}" class="flex items-center space-x-3 px-4 py-2.5 rounded-xl transition {{ request()->routeIs('admin.dewan*') ? 'bg-gradient-to-r from-[#00913e] to-[#05a849] text-white font-bold shadow-md' : 'hover:bg-slate-800/70 text-slate-300 hover:text-white' }}">
                         <i class="fa-solid fa-chalkboard-user text-sm w-4 text-center"></i>
                         <span>Dewan Guru &amp; GTK</span>
                     </a>
 
-                    <a href="{{ route('admin.bidang.index') }}" class="flex items-center space-x-3 px-4 py-2.5 rounded-xl transition {{ request()->routeIs('admin.bidang*') ? 'bg-gradient-to-r from-[#0d6b38] to-[#15803d] text-white font-bold shadow-md' : 'hover:bg-slate-800/70 text-slate-300 hover:text-white' }}">
+                    <a href="{{ route('admin.bidang.index') }}" class="flex items-center space-x-3 px-4 py-2.5 rounded-xl transition {{ request()->routeIs('admin.bidang*') ? 'bg-gradient-to-r from-[#00913e] to-[#05a849] text-white font-bold shadow-md' : 'hover:bg-slate-800/70 text-slate-300 hover:text-white' }}">
                         <i class="fa-solid fa-layer-group text-sm w-4 text-center"></i>
                         <span>Fasilitas &amp; Sarana</span>
                     </a>
 
-                    <a href="{{ route('admin.dpc.index') }}" class="flex items-center space-x-3 px-4 py-2.5 rounded-xl transition {{ request()->routeIs('admin.dpc*') ? 'bg-gradient-to-r from-[#0d6b38] to-[#15803d] text-white font-bold shadow-md' : 'hover:bg-slate-800/70 text-slate-300 hover:text-white' }}">
+                    <a href="{{ route('admin.dpc.index') }}" class="flex items-center space-x-3 px-4 py-2.5 rounded-xl transition {{ request()->routeIs('admin.dpc*') ? 'bg-gradient-to-r from-[#00913e] to-[#05a849] text-white font-bold shadow-md' : 'hover:bg-slate-800/70 text-slate-300 hover:text-white' }}">
                         <i class="fa-solid fa-star-and-crescent text-sm w-4 text-center"></i>
                         <span>Program Unggulan</span>
                     </a>
@@ -245,7 +245,7 @@
                 </button>
                 <div>
                     <h1 class="font-extrabold text-lg sm:text-xl text-slate-800 tracking-tight">@yield('header_title', 'Panel Kontrol')</h1>
-                    <p class="text-[11px] text-slate-400">SMA IT Plus Robbani Kabupaten Ogan Ilir</p>
+                    <p class="text-[11px] text-slate-400">SMA Islam Terpadu Ishlahul Ummah Prabumulih</p>
                 </div>
             </div>
 

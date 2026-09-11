@@ -14,26 +14,26 @@ class HomeController extends Controller
 {
     public function index()
     {
-        // 1. Hero slides data - SMA IT Plus Robbani
+        // 1. Hero slides data - SMA Islam Terpadu Ishlahul Ummah Prabumulih
         $heroSlides = [
             [
                 'title' => 'Selamat Datang di Website Resmi',
-                'subtitle' => 'SMA IT Plus Robbani Kabupaten Ogan Ilir',
-                'image' => '/uploads/campus-robbani.jpg',
+                'subtitle' => 'SMA Islam Terpadu Ishlahul Ummah Prabumulih',
+                'image' => '/uploads/ishum/fasilitas_3427_IMG-20240528-WA0106-scaled.jpg',
                 'btn_text' => 'Sambutan Kepala Sekolah',
                 'btn_link' => route('page.sambutan', [], false),
             ],
             [
-                'title' => 'Membina Generasi Qur\'ani & Unggul Berprestasi',
-                'subtitle' => 'Memadukan Kurikulum Nasional, Pendalaman Sains Modern, dan Tahfidzul Qur\'an Bersanad.',
-                'image' => '/uploads/lab-robbani.jpg',
+                'title' => 'Tanggap, Tangkas dan Tangguh Menuju Indonesia Emas',
+                'subtitle' => 'Sekolah Islam Terpadu Pertama di Prabumulih Tergabung dalam JSIT dengan Kurikulum Terpadu & Tahfidzul Qur\'an.',
+                'image' => '/uploads/ishum/fasilitas_1278_HALL-SIT-Ishlahul-Ummah_.jpg',
                 'btn_text' => 'Profil Singkat Sekolah',
                 'btn_link' => route('page.tentang-kami', [], false),
             ],
             [
                 'title' => 'Penerimaan Peserta Didik Baru (PPDB)',
-                'subtitle' => 'Mari Bergabung Bersama Keluarga Besar Robbani. Wujudkan Cita-cita Menjadi Generasi Emas Berakhlak Mulia.',
-                'image' => '/uploads/tahfidz-robbani.jpg',
+                'subtitle' => 'Mari Bergabung Bersama Keluarga Besar SMA IT Ishlahul Ummah Prabumulih (SMA IT Ishum). Mendidik Sepenuh Cinta.',
+                'image' => '/uploads/ishum/fasilitas_1377_IMG-20240528-WA0094-scaled.jpg',
                 'btn_text' => 'Daftar PPDB Online',
                 'btn_link' => route('hubungi', ['type' => 'ppdb'], false),
             ],
@@ -140,21 +140,21 @@ class HomeController extends Controller
             ->toArray();
 
         $fallbackRow1 = [
-            ['url' => '/uploads/campus-robbani.jpg', 'title' => 'Gedung Kampus & Kompleks Pembelajaran Robbani'],
-            ['url' => '/uploads/library-robbani.jpg', 'title' => 'Suasana Belajar Mengajar Interaktif di Kelas & Perpustakaan'],
-            ['url' => '/uploads/lab-robbani.jpg', 'title' => 'Praktikum Sains & Riset Laboratorium Terpadu Siswa'],
-            ['url' => '/uploads/tahfidz-robbani.jpg', 'title' => 'Wisuda Tahfidzul Qur\'an & Khotmil Qur\'an Santri'],
-            ['url' => '/uploads/activities-robbani.jpg', 'title' => 'Pembinaan Karakter & Latihan Olahraga Sunnah Memanah'],
-            ['url' => '/uploads/robotics-robbani.jpg', 'title' => 'Laboratorium Komputer & Riset Teknologi Robotika'],
+            ['url' => '/uploads/ishum/fasilitas_3427_IMG-20240528-WA0106-scaled.jpg', 'title' => 'Gedung Kampus SMA IT Ishlahul Ummah Prabumulih'],
+            ['url' => '/uploads/ishum/fasilitas_1274_Ruang-Lab-Komputer1.jpg', 'title' => 'Laboratorium Komputer & Digital Siswa'],
+            ['url' => '/uploads/ishum/fasilitas_1275_R.-Lab-IPA.jpg', 'title' => 'Laboratorium IPA & Eksperimen Sains Terpadu'],
+            ['url' => '/uploads/ishum/fasilitas_1278_HALL-SIT-Ishlahul-Ummah_.jpg', 'title' => 'Aula & Hall Pertemuan SIT Ishlahul Ummah'],
+            ['url' => '/uploads/ishum/fasilitas_1277_Ruang-Belajar.jpg', 'title' => 'Ruang Belajar Interaktif Berkarakter Islami'],
+            ['url' => '/uploads/ishum/fasilitas_1377_IMG-20240528-WA0094-scaled.jpg', 'title' => 'Gerbang Utama Kampus SMA IT Ishlahul Ummah'],
         ];
 
         $fallbackRow2 = [
-            ['url' => '/uploads/library-robbani.jpg', 'title' => 'Perpustakaan Sekolah & Pojok Literasi Digital'],
-            ['url' => '/uploads/tahfidz-robbani.jpg', 'title' => 'Kegiatan Halaqah Tahfidz & Pembinaan Akhlakul Karimah'],
-            ['url' => '/uploads/campus-robbani.jpg', 'title' => 'Upacara Peringatan Hari Santri & Hari Guru'],
-            ['url' => '/uploads/activities-robbani.jpg', 'title' => 'Latihan Rutin Memanah & Olahraga Prestasi'],
-            ['url' => '/uploads/robotics-robbani.jpg', 'title' => 'Inovasi Robotika & Pemrograman Internet of Things'],
-            ['url' => '/uploads/lab-robbani.jpg', 'title' => 'Eksperimen Biologi & Kimia Terapan Siswa Robbani'],
+            ['url' => '/uploads/ishum/fasilitas_2059_IMG-20221101-WA0010.jpg', 'title' => 'Mushola & Lapangan Olahraga Siswa'],
+            ['url' => '/uploads/ishum/fasilitas_3431_IMG-20241014-WA0013-scaled.jpg', 'title' => 'Ruang UKS 3T Terpadu'],
+            ['url' => '/uploads/ishum/fasilitas_3427_IMG-20240528-WA0106-scaled.jpg', 'title' => 'Suasana Lingkungan Sekolah Islami & Nyaman'],
+            ['url' => '/uploads/ishum/fasilitas_1278_HALL-SIT-Ishlahul-Ummah_.jpg', 'title' => 'Kegiatan Wisuda & Munaqosah Qur\'an di Hall SIT'],
+            ['url' => '/uploads/ishum/fasilitas_1274_Ruang-Lab-Komputer1.jpg', 'title' => 'Asesmen & Simulasi Komputer Siswa'],
+            ['url' => '/uploads/ishum/fasilitas_1275_R.-Lab-IPA.jpg', 'title' => 'Praktikum & Eksplorasi Sains Santri'],
         ];
 
         if (! empty($dbGallery)) {

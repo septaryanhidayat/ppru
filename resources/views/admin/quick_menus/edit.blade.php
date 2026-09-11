@@ -55,7 +55,7 @@
 
                 <div>
                     <label for="icon" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Atau Path Gambar / Class FontAwesome</label>
-                    <input type="text" name="icon" id="icon" value="{{ old('icon', $quickMenu->icon) }}" class="w-full bg-slate-50 text-xs text-slate-800 rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0d6b38] font-mono">
+                    <input type="text" name="icon" id="icon" value="{{ old('icon', $quickMenu->icon) }}" class="w-full bg-slate-50 text-xs text-slate-800 rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00913e] font-mono">
                 </div>
             </div>
 
@@ -63,21 +63,21 @@
             <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200 space-y-2">
                 <span class="text-[11px] font-bold text-slate-600 block uppercase tracking-wider">Pilihan Icon Cepat Bawaan:</span>
                 <div class="flex flex-wrap gap-2">
-                    <button type="button" onclick="document.getElementById('icon').value='fa-solid fa-user-tie'" class="text-[11px] bg-white hover:bg-emerald-50 hover:text-[#0d6b38] border border-slate-200 px-3 py-1.5 rounded-lg transition font-medium">Sambutan</button>
-                    <button type="button" onclick="document.getElementById('icon').value='fa-solid fa-school'" class="text-[11px] bg-white hover:bg-emerald-50 hover:text-[#0d6b38] border border-slate-200 px-3 py-1.5 rounded-lg transition font-medium">Profil</button>
-                    <button type="button" onclick="document.getElementById('icon').value='fa-solid fa-chalkboard-user'" class="text-[11px] bg-white hover:bg-emerald-50 hover:text-[#0d6b38] border border-slate-200 px-3 py-1.5 rounded-lg transition font-medium">Dewan Guru</button>
-                    <button type="button" onclick="document.getElementById('icon').value='fa-solid fa-flask'" class="text-[11px] bg-white hover:bg-emerald-50 hover:text-[#0d6b38] border border-slate-200 px-3 py-1.5 rounded-lg transition font-medium">Fasilitas</button>
-                    <button type="button" onclick="document.getElementById('icon').value='fa-solid fa-newspaper'" class="text-[11px] bg-white hover:bg-emerald-50 hover:text-[#0d6b38] border border-slate-200 px-3 py-1.5 rounded-lg transition font-medium">Berita</button>
-                    <button type="button" onclick="document.getElementById('icon').value='fa-solid fa-bullhorn'" class="text-[11px] bg-white hover:bg-emerald-50 hover:text-[#0d6b38] border border-slate-200 px-3 py-1.5 rounded-lg transition font-medium">Pengumuman</button>
-                    <button type="button" onclick="document.getElementById('icon').value='fa-solid fa-video'" class="text-[11px] bg-white hover:bg-emerald-50 hover:text-[#0d6b38] border border-slate-200 px-3 py-1.5 rounded-lg transition font-medium">Video</button>
-                    <button type="button" onclick="document.getElementById('icon').value='fa-solid fa-calendar-days'" class="text-[11px] bg-white hover:bg-emerald-50 hover:text-[#0d6b38] border border-slate-200 px-3 py-1.5 rounded-lg transition font-medium">Agenda</button>
+                    <button type="button" onclick="document.getElementById('icon').value='fa-solid fa-user-tie'" class="text-[11px] bg-white hover:bg-emerald-50 hover:text-[#00913e] border border-slate-200 px-3 py-1.5 rounded-lg transition font-medium">Sambutan</button>
+                    <button type="button" onclick="document.getElementById('icon').value='fa-solid fa-school'" class="text-[11px] bg-white hover:bg-emerald-50 hover:text-[#00913e] border border-slate-200 px-3 py-1.5 rounded-lg transition font-medium">Profil</button>
+                    <button type="button" onclick="document.getElementById('icon').value='fa-solid fa-chalkboard-user'" class="text-[11px] bg-white hover:bg-emerald-50 hover:text-[#00913e] border border-slate-200 px-3 py-1.5 rounded-lg transition font-medium">Dewan Guru</button>
+                    <button type="button" onclick="document.getElementById('icon').value='fa-solid fa-flask'" class="text-[11px] bg-white hover:bg-emerald-50 hover:text-[#00913e] border border-slate-200 px-3 py-1.5 rounded-lg transition font-medium">Fasilitas</button>
+                    <button type="button" onclick="document.getElementById('icon').value='fa-solid fa-newspaper'" class="text-[11px] bg-white hover:bg-emerald-50 hover:text-[#00913e] border border-slate-200 px-3 py-1.5 rounded-lg transition font-medium">Berita</button>
+                    <button type="button" onclick="document.getElementById('icon').value='fa-solid fa-bullhorn'" class="text-[11px] bg-white hover:bg-emerald-50 hover:text-[#00913e] border border-slate-200 px-3 py-1.5 rounded-lg transition font-medium">Pengumuman</button>
+                    <button type="button" onclick="document.getElementById('icon').value='fa-solid fa-video'" class="text-[11px] bg-white hover:bg-emerald-50 hover:text-[#00913e] border border-slate-200 px-3 py-1.5 rounded-lg transition font-medium">Video</button>
+                    <button type="button" onclick="document.getElementById('icon').value='fa-solid fa-calendar-days'" class="text-[11px] bg-white hover:bg-emerald-50 hover:text-[#00913e] border border-slate-200 px-3 py-1.5 rounded-lg transition font-medium">Agenda</button>
                 </div>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                     <label for="order" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Urutan Tampil (1, 2, 3...)</label>
-                    <input type="number" name="order" id="order" value="{{ old('order', $quickMenu->order) }}" class="w-full bg-slate-50 text-xs text-slate-800 rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0d6b38]">
+                    <input type="number" name="order" id="order" value="{{ old('order', $quickMenu->order) }}" class="w-full bg-slate-50 text-xs text-slate-800 rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
                 </div>
 
                 <div class="flex items-center space-x-3 pt-6">

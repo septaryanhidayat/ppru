@@ -1,11 +1,11 @@
 @extends('layouts.frontend')
 
-@section('title', 'Download Modul Belajar & E-Book Siswa - SMA IT Plus Robbani')
-@section('meta_description', 'Kumpulan modul kurikulum, e-book materi tahfidz, panduan praktikum sains, dan buku digital gratis untuk siswa SMA IT Plus Robbani.')
+@section('title', 'Download Modul Belajar & E-Book Siswa - SMA IT Ishlahul Ummah Prabumulih')
+@section('meta_description', 'Kumpulan modul kurikulum, e-book materi tahfidz, panduan praktikum sains, dan buku digital gratis untuk siswa SMA IT Ishlahul Ummah Prabumulih.')
 
 @section('content')
 {{-- HERO HEADER --}}
-<div class="bg-gradient-to-r from-emerald-950 via-[#0d6b38] to-emerald-900 text-white py-12">
+<div class="bg-gradient-to-r from-emerald-950 via-[#00913e] to-emerald-900 text-white py-12">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <nav class="text-xs text-emerald-200 mb-3 flex items-center space-x-2">
             <a href="{{ route('home') }}" class="hover:text-white transition">Beranda</a>
@@ -16,7 +16,7 @@
         </nav>
         <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">E-Book & Modul Pembelajaran Digital</h1>
         <p class="text-sm text-emerald-100 mt-2 font-light max-w-2xl">
-            Buku panduan siswa, modul tahfidz mutqin, buku saku adab santri, dan materi suplemen sains SMA IT Plus Robbani.
+            Buku panduan siswa, modul tahfidz mutqin, buku saku adab santri, dan materi suplemen sains SMA IT Ishlahul Ummah Prabumulih.
         </p>
     </div>
 </div>
@@ -30,7 +30,7 @@
             Modul Pembelajaran & Literasi Siswa
         </h2>
         <p class="text-xs sm:text-sm text-gray-500 mt-1">Silakan unduh materi pegangan siswa untuk memperluas wawasan keilmuan Islam, sains, dan bahasa.</p>
-        <div class="w-16 h-1 bg-[#0d6b38] mx-auto rounded-full mt-3"></div>
+        <div class="w-16 h-1 bg-[#00913e] mx-auto rounded-full mt-3"></div>
     </div>
 
     @php
@@ -38,15 +38,15 @@
             [
                 'id' => 4,
                 'title' => "Panduan Mutqin Tahfidz Al-Qur'an",
-                'cover' => '/uploads/tahfidz-robbani.jpg',
-                'description' => "Modul panduan tahfidz mutqin SMA IT Plus Robbani yang memuat metode menghafal cepat, jadwal muraja'ah harian, target juz kelulusan, dan adab penghafal Al-Qur'an.",
+                'cover' => '/uploads/tahfidz-ishum.jpg',
+                'description' => "Modul panduan tahfidz mutqin SMA IT Ishlahul Ummah Prabumulih yang memuat metode menghafal cepat, jadwal muraja'ah harian, target juz kelulusan, dan adab penghafal Al-Qur'an.",
                 'pdf' => '#',
                 'badge' => 'Tahfidz Al-Qur\'an'
             ],
             [
                 'id' => 5,
-                'title' => "Buku Saku Adab & Karakter Santri Robbani",
-                'cover' => '/uploads/campus-robbani.jpg',
+                'title' => "Buku Saku Adab & Karakter Santri Ishum",
+                'cover' => '/uploads/campus-ishum.jpg',
                 'description' => "Panduan pembiasaan karakter islami, akhlak kepada guru dan orang tua, adab pergaulan islami di asrama dan sekolah, serta panduan ibadah yaumiyah.",
                 'pdf' => '#',
                 'badge' => 'Bina Karakter'
@@ -54,7 +54,7 @@
             [
                 'id' => 6,
                 'title' => "Petunjuk Praktikum Laboratorium Sains Terpadu",
-                'cover' => '/uploads/lab-robbani.jpg',
+                'cover' => '/uploads/lab-ishum.jpg',
                 'description' => "Buku pedoman eksperimen laboratorium biologi, kimia, dan fisika untuk siswa kelas X-XII yang dilengkapi keselamatan kerja lab dan metode analisis data ilmiah.",
                 'pdf' => '#',
                 'badge' => 'Sains & Riset'
@@ -62,7 +62,7 @@
             [
                 'id' => 7,
                 'title' => "Kurikulum Pembinaan Da'i Muda & Khitabah",
-                'cover' => '/uploads/library-robbani.jpg',
+                'cover' => '/uploads/library-ishum.jpg',
                 'description' => "Kumpulan materi public speaking, retorika dakwah, dasar-dasar aqidah dan fiqih dakwah praktis untuk melatih santri menjadi da'i dan orator andal.",
                 'pdf' => '#',
                 'badge' => 'Kepemimpinan'
@@ -70,7 +70,7 @@
             [
                 'id' => 8,
                 'title' => "Buku Saku Kosakata Bahasa Arab & Inggris",
-                'cover' => '/uploads/campus-robbani.jpg',
+                'cover' => '/uploads/campus-ishum.jpg',
                 'description' => "Modul percakapan bilingual harian asrama santri untuk mempercepat penguasaan active speaking bahasa Arab dan Inggris.",
                 'pdf' => '#',
                 'badge' => 'Bilingual Program'
@@ -78,7 +78,7 @@
             [
                 'id' => 9,
                 'title' => "Panduan Sukses Seleksi SNBT & Masuk PTN",
-                'cover' => '/uploads/lab-robbani.jpg',
+                'cover' => '/uploads/lab-ishum.jpg',
                 'description' => "Strategi sukses menembus perguruan tinggi negeri impian, tips penalaran matematika, literasi bahasa, dan pembahasan soal SNBT terstandar.",
                 'pdf' => '#',
                 'badge' => 'Karier & PTN'
@@ -93,7 +93,7 @@
                     {{-- COVER IMAGE --}}
                     <div class="h-60 rounded-2xl overflow-hidden shadow-md bg-gray-100 flex items-center justify-center relative group">
                         <img src="{{ $eb['cover'] }}" alt="{{ $eb['title'] }}" class="h-full w-full object-cover group-hover:scale-105 transition duration-500">
-                        <span class="absolute top-3 left-3 bg-[#0d6b38] text-white text-[10px] font-bold px-2.5 py-0.5 rounded-full shadow">
+                        <span class="absolute top-3 left-3 bg-[#00913e] text-white text-[10px] font-bold px-2.5 py-0.5 rounded-full shadow">
                             {{ $eb['badge'] }}
                         </span>
                     </div>
@@ -111,7 +111,7 @@
 
                 {{-- BUTTON DOWNLOAD --}}
                 <div class="p-6 pt-0 border-t border-gray-100 mt-2">
-                    <a href="{{ $eb['pdf'] }}" class="w-full bg-[#0d6b38] hover:bg-emerald-800 text-white py-3 rounded-xl text-xs font-bold shadow transition flex items-center justify-center space-x-2">
+                    <a href="{{ $eb['pdf'] }}" class="w-full bg-[#00913e] hover:bg-emerald-800 text-white py-3 rounded-xl text-xs font-bold shadow transition flex items-center justify-center space-x-2">
                         <i class="fa-regular fa-circle-down text-base"></i>
                         <span>Download Modul (PDF)</span>
                     </a>

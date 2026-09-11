@@ -19,7 +19,7 @@
                     Selamat Datang, {{ auth()->user()->name }}! 👋
                 </h2>
                 <p class="text-xs sm:text-sm text-slate-300 max-w-xl font-light leading-relaxed">
-                    Panel kendali resmi SMA IT Plus Robbani Kabupaten Ogan Ilir. Anda dapat mengelola seluruh konten, memantau aktivitas sistem, mengedit informasi sekolah, serta mengamankan website secara terpusat.
+                    Panel kendali resmi SMA Islam Terpadu Ishlahul Ummah Prabumulih. Anda dapat mengelola seluruh konten, memantau aktivitas sistem, mengedit informasi sekolah, serta mengamankan website secara terpusat.
                 </p>
             </div>
 
@@ -60,8 +60,8 @@
     {{-- 3. KPI ANALYTICS GRID (Warna-Warni Vibrant & Modern) --}}
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
         
-        {{-- Card 1: Berita & Views (Oranye Robbani Luminous) --}}
-        <div class="bg-gradient-to-br from-[#ff5001] via-[#f97316] to-[#ea580c] text-white rounded-3xl p-6 shadow-lg shadow-orange-500/20 border border-orange-300/30 relative overflow-hidden group hover:scale-[1.02] transition duration-300">
+        {{-- Card 1: Berita & Views (Oranye Ishum Luminous) --}}
+        <div class="bg-gradient-to-br from-[#ff5001] via-[#da251c] to-[#b91c1c] text-white rounded-3xl p-6 shadow-lg shadow-orange-500/20 border border-orange-300/30 relative overflow-hidden group hover:scale-[1.02] transition duration-300">
             <div class="absolute -right-6 -bottom-6 w-24 h-24 bg-white/10 rounded-full blur-xl pointer-events-none"></div>
             <div class="flex items-center justify-between mb-4 relative z-10">
                 <span class="text-xs font-bold text-orange-100 uppercase tracking-wider">Artikel Berita</span>
@@ -292,10 +292,10 @@
                     <div class="py-3.5 flex items-center justify-between gap-4">
                         <div class="flex items-center space-x-3 min-w-0">
                             <div class="w-12 h-12 rounded-xl bg-slate-100 overflow-hidden flex-shrink-0 border border-slate-200">
-                                <img src="{{ $post->featured_image ?? '/uploads/logo-robbani-emblem.svg' }}" alt="{{ $post->title }}" class="w-full h-full object-cover">
+                                <img src="{{ $post->featured_image ?? '/uploads/logo-ishum-square.png' }}" alt="{{ $post->title }}" class="w-full h-full object-cover">
                             </div>
                             <div class="min-w-0">
-                                <a href="{{ route('admin.posts.edit', $post) }}" class="font-bold text-xs sm:text-sm text-slate-800 hover:text-[#0d6b38] truncate block">
+                                <a href="{{ route('admin.posts.edit', $post) }}" class="font-bold text-xs sm:text-sm text-slate-800 hover:text-[#00913e] truncate block">
                                     {{ $post->title }}
                                 </a>
                                 <div class="flex items-center space-x-3 text-[11px] text-slate-400 mt-1">

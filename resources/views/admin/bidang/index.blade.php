@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title', 'Fasilitas & Sarana Kampus')
-@section('header_title', 'Fasilitas & Sarana SMA IT Plus Robbani')
+@section('header_title', 'Fasilitas & Sarana SMA IT Ishlahul Ummah Prabumulih')
 
 @section('content')
 <div class="space-y-6">
@@ -11,7 +11,7 @@
                 <h2 class="text-lg font-black text-slate-800">Daftar Fasilitas & Sarana Sekolah</h2>
                 <p class="text-xs text-slate-500 mt-0.5">Kelola fasilitas kampus, deskripsi sarana prasarana, dan nomor urut tampil.</p>
             </div>
-            <a href="{{ route('admin.bidang.create') }}" class="inline-flex items-center space-x-2 bg-[#0d6b38] hover:bg-[#094d28] text-white font-bold text-xs px-5 py-2.5 rounded-xl shadow-md transition self-start sm:self-auto">
+            <a href="{{ route('admin.bidang.create') }}" class="inline-flex items-center space-x-2 bg-[#00913e] hover:bg-[#094d28] text-white font-bold text-xs px-5 py-2.5 rounded-xl shadow-md transition self-start sm:self-auto">
                 <i class="fa-solid fa-plus"></i>
                 <span>Tambah Fasilitas Baru</span>
             </a>

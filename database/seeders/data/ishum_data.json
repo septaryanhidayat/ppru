@@ -1,0 +1,1635 @@
+{
+    "gurus": [
+        {
+            "name": "Agi Gustiawan, S. Pd",
+            "slug": "agi-gustiawan-s-pd",
+            "position": "Kepala Sekolah",
+            "fraction": "Pimpinan Sekolah",
+            "photo": "\/uploads\/kepsek-agi-gustiawan.jpg",
+            "profile_summary": "Kepala SMA Islam Terpadu Ishlahul Ummah Prabumulih. Berkomitmen mendidik generasi Qur'ani yang tanggap, tangkas, dan tangguh menuju Indonesia Emas.",
+            "education": "S1 Pendidikan",
+            "order": 1
+        },
+        {
+            "name": "Sesiana Giovani Lestari, S. Pd",
+            "slug": "ustadzah-sesi",
+            "position": "Guru Kelas (Biologi, BPI)",
+            "fraction": "Guru Biologi, BPI",
+            "photo": "\/uploads\/ishum\/guru_1813_Ustazah-Sesi.jpg",
+            "profile_summary": "Tenaga pendidik profesional SMA IT Ishlahul Ummah Prabumulih mengampu mata pelajaran Biologi, BPI.",
+            "education": "S1 Pendidikan Biologi, Universitas Muhammadiyah Palembang",
+            "order": 2
+        },
+        {
+            "name": "Anita Carlyna, S. IP., M.Pd",
+            "slug": "anita-carlyna-s-ip-m-pd",
+            "position": "Waka Kurikulum (PPKn)",
+            "fraction": "Guru PPKn",
+            "photo": "\/uploads\/ishum\/guru_1821_IMG_20240928_222131.png",
+            "profile_summary": "Tenaga pendidik profesional SMA IT Ishlahul Ummah Prabumulih mengampu mata pelajaran PPKn.",
+            "education": "S1 Ilmu Administrasi Negara, Universitas Sriwijaya\nS2 Manajemen Pendidikan, Universitas PGRI Palembang ",
+            "order": 3
+        },
+        {
+            "name": "Nisa'ul Istiqomah, S.T",
+            "slug": "nisaul-istiqomah-s-t",
+            "position": "Guru Kelas (MIPA-Kimia)",
+            "fraction": "Guru MIPA-Kimia",
+            "photo": "\/uploads\/ishum\/guru_2724_IMG_20240928_220722-scaled.jpg",
+            "profile_summary": "Tenaga pendidik profesional SMA IT Ishlahul Ummah Prabumulih mengampu mata pelajaran MIPA-Kimia.",
+            "education": "S1 Teknik Kimia, Universitas Sriwijaya",
+            "order": 4
+        },
+        {
+            "name": "Herman Nurdiansyah, S.E",
+            "slug": "herman-nurdiansyah-s-e",
+            "position": "Guru Mata Pelajaran (PAI, Hadits, PJOK)",
+            "fraction": "Guru PAI, Hadits, PJOK",
+            "photo": "\/uploads\/ishum\/guru_2728_IMG_20240928_220741-scaled.jpg",
+            "profile_summary": "Tenaga pendidik profesional SMA IT Ishlahul Ummah Prabumulih mengampu mata pelajaran PAI, Hadits, PJOK.",
+            "education": "Stei Al-Furqon",
+            "order": 5
+        },
+        {
+            "name": "Helen Azmi, S. Pd",
+            "slug": "helen-azmi-s-pd",
+            "position": "Guru Mata Pelajaran (TTQ)",
+            "fraction": "Guru TTQ",
+            "photo": "\/uploads\/ishum\/guru_3878_2.png",
+            "profile_summary": "Tenaga pendidik profesional SMA IT Ishlahul Ummah Prabumulih mengampu mata pelajaran TTQ.",
+            "education": "Sarjana Pendidikan Agama Islam. \nSekolah Tinggi Agama Islam Raudhatul Ulum ",
+            "order": 6
+        },
+        {
+            "name": "Lilis Trianti, S.Pd.",
+            "slug": "lilis",
+            "position": "Guru Mata Pelajaran",
+            "fraction": "Tenaga Pendidik",
+            "photo": "\/uploads\/ishum\/guru_3880_4.png",
+            "profile_summary": "Tenaga pendidik profesional SMA IT Ishlahul Ummah Prabumulih mengampu mata pelajaran .",
+            "education": "Universitas Sriwijaya S1 Pendidikan Sejarah ",
+            "order": 7
+        },
+        {
+            "name": "Ayasa Hanikmah Ikliqis, S.E.",
+            "slug": "ayasa",
+            "position": "Guru Mata Pelajaran (PAI)",
+            "fraction": "Guru PAI",
+            "photo": "\/uploads\/ishum\/guru_3882_5.png",
+            "profile_summary": "Tenaga pendidik profesional SMA IT Ishlahul Ummah Prabumulih mengampu mata pelajaran PAI.",
+            "education": "STEI (Sekolah Tinggi Ekonomi Islam) Al Furqon Prabumulih\nS1 Ekonomi Syariah ",
+            "order": 8
+        },
+        {
+            "name": "Nadirin, S. S",
+            "slug": "nadirin-s-s",
+            "position": "Guru Mata Pelajaran (Bahasa Arab dan Hadits)",
+            "fraction": "Guru Bahasa Arab dan Hadits",
+            "photo": "\/uploads\/ishum\/guru_3884_1.png",
+            "profile_summary": "Tenaga pendidik profesional SMA IT Ishlahul Ummah Prabumulih mengampu mata pelajaran Bahasa Arab dan Hadits.",
+            "education": "S1 UIN RADEN FATAH BSA ( BAHASA DAN SASTRA ARAB )",
+            "order": 9
+        }
+    ],
+    "facilities": [
+        {
+            "name": "Laboratorium Komputer",
+            "slug": "lab-komputer",
+            "description": "Lab Komputer\n",
+            "icon": "fa-solid fa-laptop-code",
+            "thumbnail": "\/uploads\/ishum\/fasilitas_1274_Ruang-Lab-Komputer1.jpg",
+            "order": 1
+        },
+        {
+            "name": "Laboratorium IPA",
+            "slug": "laboratorium-ipa",
+            "description": "Laboratorium IPA\n",
+            "icon": "fa-solid fa-flask-vial",
+            "thumbnail": "\/uploads\/ishum\/fasilitas_1275_R.-Lab-IPA.jpg",
+            "order": 2
+        },
+        {
+            "name": "Mushola",
+            "slug": "mushola",
+            "description": "Foto Mushola\n",
+            "icon": "fa-solid fa-mosque",
+            "thumbnail": "\/uploads\/ishum\/fasilitas_2059_IMG-20221101-WA0010.jpg",
+            "order": 3
+        },
+        {
+            "name": "Ruang Belajar",
+            "slug": "ruang-belajar",
+            "description": "Ruang belajar\n",
+            "icon": "fa-solid fa-chalkboard-user",
+            "thumbnail": "\/uploads\/ishum\/fasilitas_1277_Ruang-Belajar.jpg",
+            "order": 4
+        },
+        {
+            "name": "Aula",
+            "slug": "aula",
+            "description": "Foto aula\n",
+            "icon": "fa-solid fa-building-columns",
+            "thumbnail": "\/uploads\/ishum\/fasilitas_1278_HALL-SIT-Ishlahul-Ummah_.jpg",
+            "order": 5
+        },
+        {
+            "name": "Gerbang Sekolah",
+            "slug": "gerbang-sekolah",
+            "description": "Foto gerbang sekolah tampak dari depan\n",
+            "icon": "fa-solid fa-archway",
+            "thumbnail": "\/uploads\/ishum\/fasilitas_1377_IMG-20240528-WA0094-scaled.jpg",
+            "order": 6
+        },
+        {
+            "name": "Lapangan Olahraga",
+            "slug": "lapangan-olahraga",
+            "description": "Ini adalah lapangan sepak bola\n",
+            "icon": "fa-solid fa-futbol",
+            "thumbnail": "\/uploads\/ishum\/fasilitas_2059_IMG-20221101-WA0010.jpg",
+            "order": 7
+        },
+        {
+            "name": "Gedung Sekolah",
+            "slug": "gedung-sekolah",
+            "description": "Fasilitas penunjang kegiatan belajar mengajar Gedung Sekolah di SMA IT Ishlahul Ummah Prabumulih.",
+            "icon": "fa-solid fa-school",
+            "thumbnail": "\/uploads\/ishum\/fasilitas_3427_IMG-20240528-WA0106-scaled.jpg",
+            "order": 8
+        },
+        {
+            "name": "UKS 3T",
+            "slug": "uks-3t",
+            "description": "Fasilitas penunjang kegiatan belajar mengajar UKS 3T di SMA IT Ishlahul Ummah Prabumulih.",
+            "icon": "fa-solid fa-kit-medical",
+            "thumbnail": "\/uploads\/ishum\/fasilitas_3431_IMG-20241014-WA0013-scaled.jpg",
+            "order": 9
+        }
+    ],
+    "videos": [
+        {
+            "title": "Haflah Akhirussanah Angkatan ke 10 SD IT Ishlahul Ummah Prabumulih",
+            "slug": "haflah-akhirussanah-angkatan-ke-10-sd-it-ishlahul-ummah-prabumulih",
+            "youtube_url": "https:\/\/youtu.be\/z_8UfoyayV4",
+            "youtube_id": "z_8UfoyayV4",
+            "description": "Dokumentasi video resmi SMA IT Ishlahul Ummah Prabumulih: Haflah Akhirussanah Angkatan ke 10 SD IT Ishlahul Ummah Prabumulih"
+        },
+        {
+            "title": "Latihan Dasar Kepemimpinan Siswa (LDKS) SMP & SMA IT Ishlahul Ummah Prabumulih 2021",
+            "slug": "latihan-dasar-kepemimpinan-siswa-ldks-smp-sma-it-ishlahul-ummah-prabumulih-2021",
+            "youtube_url": "https:\/\/youtu.be\/EMXi0o_2vsI",
+            "youtube_id": "EMXi0o_2vsI",
+            "description": "Dokumentasi video resmi SMA IT Ishlahul Ummah Prabumulih: Latihan Dasar Kepemimpinan Siswa (LDKS) SMP & SMA IT Ishlahul Ummah Prabumulih 2021"
+        },
+        {
+            "title": "Haflah Akhirussanah Angkatan 7 SMP IT Ishlahul Ummah Prabumulih",
+            "slug": "haflah-akhirussanah-angkatan-7-smp-it-ishlahul-ummah-prabumulih",
+            "youtube_url": "https:\/\/youtu.be\/CXe2aRMit-Q",
+            "youtube_id": "CXe2aRMit-Q",
+            "description": "Dokumentasi video resmi SMA IT Ishlahul Ummah Prabumulih: Haflah Akhirussanah Angkatan 7 SMP IT Ishlahul Ummah Prabumulih"
+        },
+        {
+            "title": "Profil SMA IT IU dalam rangka Visitasi Daring Akreditasi 2021",
+            "slug": "profil-sma-it-iu-dalam-rangka-visitasi-daring-akreditasi-2021",
+            "youtube_url": "https:\/\/youtu.be\/bne1xP_0aho",
+            "youtube_id": "bne1xP_0aho",
+            "description": "Dokumentasi video resmi SMA IT Ishlahul Ummah Prabumulih: Profil SMA IT IU dalam rangka Visitasi Daring Akreditasi 2021"
+        },
+        {
+            "title": "PILKETOS SMA IT Ishlahul Ummah",
+            "slug": "pemilu-ketos",
+            "youtube_url": "https:\/\/www.youtube.com\/watch?v=YjRpwcNNpuI",
+            "youtube_id": "YjRpwcNNpuI",
+            "description": "Dokumentasi video resmi SMA IT Ishlahul Ummah Prabumulih: PILKETOS SMA IT Ishlahul Ummah"
+        },
+        {
+            "title": "P5 \"Gaya Hidup Berkelanjutan\"",
+            "slug": "p5-gaya-hidup-berkelanjutan",
+            "youtube_url": "https:\/\/www.youtube.com\/watch?v=dd5VtJxIaEo",
+            "youtube_id": "dd5VtJxIaEo",
+            "description": "Dokumentasi video resmi SMA IT Ishlahul Ummah Prabumulih: P5 \"Gaya Hidup Berkelanjutan\""
+        },
+        {
+            "title": "Melukis Kehidupan",
+            "slug": "melukis-kehidupan",
+            "youtube_url": "https:\/\/www.youtube.com\/watch?v=AEHUgTMWHac",
+            "youtube_id": "AEHUgTMWHac",
+            "description": "Dokumentasi video resmi SMA IT Ishlahul Ummah Prabumulih: Melukis Kehidupan"
+        },
+        {
+            "title": "Ngaji Santuy",
+            "slug": "ngaji-santuy",
+            "youtube_url": "https:\/\/www.youtube.com\/watch?v=VTxq0kuW-rY&amp;t=70s",
+            "youtube_id": "VTxq0kuW-rY",
+            "description": "Dokumentasi video resmi SMA IT Ishlahul Ummah Prabumulih: Ngaji Santuy"
+        },
+        {
+            "title": "EVALUASI DAN REFLEKSI GURU OLEH SISWA TAHUN 2023",
+            "slug": "evaluasi-dan-refleksi-guru-oleh-siswa-tahun-2023",
+            "youtube_url": "https:\/\/www.youtube.com\/watch?v=ZVaVth8Y76s&amp;t=86s",
+            "youtube_id": "ZVaVth8Y76s",
+            "description": "Dokumentasi video resmi SMA IT Ishlahul Ummah Prabumulih: EVALUASI DAN REFLEKSI GURU OLEH SISWA TAHUN 2023"
+        },
+        {
+            "title": "PEMAPARAN EVALUASI DAN REFLEKSI GURU OLEH TEMAN SEJAWAT TAHUN 2023",
+            "slug": "pemaparan-evaluasi-dan-refleksi-guru-oleh-teman-sejawat-tahun-2023",
+            "youtube_url": "https:\/\/www.youtube.com\/watch?v=ZLF10EqxXYc&amp;t=1s",
+            "youtube_id": "ZLF10EqxXYc",
+            "description": "Dokumentasi video resmi SMA IT Ishlahul Ummah Prabumulih: PEMAPARAN EVALUASI DAN REFLEKSI GURU OLEH TEMAN SEJAWAT TAHUN 2023"
+        },
+        {
+            "title": "KUMPULAN HADITS",
+            "slug": "kumpulan-hadits",
+            "youtube_url": "https:\/\/www.youtube.com\/watch?v=o02skmwQWfg",
+            "youtube_id": "o02skmwQWfg",
+            "description": "Dokumentasi video resmi SMA IT Ishlahul Ummah Prabumulih: KUMPULAN HADITS"
+        },
+        {
+            "title": "HADITS ARBAIN KE 12",
+            "slug": "hadits-arbain-ke-12",
+            "youtube_url": "https:\/\/www.youtube.com\/watch?v=N6vVGzXJCHg",
+            "youtube_id": "N6vVGzXJCHg",
+            "description": "Dokumentasi video resmi SMA IT Ishlahul Ummah Prabumulih: HADITS ARBAIN KE 12"
+        },
+        {
+            "title": "HADITS ARBAIN KE 1",
+            "slug": "hadits-arbain-ke-1",
+            "youtube_url": "https:\/\/www.youtube.com\/watch?v=oHRBkPunTOw&amp;t=21s",
+            "youtube_id": "oHRBkPunTOw",
+            "description": "Dokumentasi video resmi SMA IT Ishlahul Ummah Prabumulih: HADITS ARBAIN KE 1"
+        },
+        {
+            "title": "Hari Raya 1445 H",
+            "slug": "hari-raya-1445-h",
+            "youtube_url": "https:\/\/www.youtube.com\/watch?v=0XPCOPHNtM0",
+            "youtube_id": "0XPCOPHNtM0",
+            "description": "Dokumentasi video resmi SMA IT Ishlahul Ummah Prabumulih: Hari Raya 1445 H"
+        }
+    ],
+    "testimonials": [
+        {
+            "name": "Eva Astuti",
+            "profession": "Wali Murid SMA IT Ishum",
+            "content": "Anakku bernama Abdurrosyad Fadlillah saat ini duduk di kelas XI Al-Quds. Alhamdulillah skrg sdh mulai berani tampil walau kdg2 msh kurang pede, bs lebih sopan n santun skrg. Smg dg sisa wkt yg lebih kurang 1,5 thn kedepan dg bantuan n bimbingan dari ustad\/zah kk bisa lebih percaya diri lg, bisa lebih tau apa yg diinginkan sehingga bs membuat keputusan sendiri, mau berusaha lebih keras lg n lebih disiplin waktu. Aamiin",
+            "photo": "\/uploads\/ishum\/testi_2008_aa-e1669180943813.jpg",
+            "status": "publish"
+        },
+        {
+            "name": "Ayu Putri",
+            "profession": "Wali Murid SMA IT Ishum",
+            "content": "Toby aldinata timothy anakku siswa baru tahun ini. Semoga yang baik menjadi lebih baik lagi.",
+            "photo": "\/uploads\/ishum\/testi_2010_ab-e1669180894929.jpg",
+            "status": "publish"
+        },
+        {
+            "name": "Evi Riani",
+            "profession": "Wali Murid SMA IT Ishum",
+            "content": "Putri sulungku Seren Rahmadani saat ini di kelas akhir. Alhamdulillah ada perubahan yang terus signifikan, semoga anakku istiqomah dalam ibadah, berakhlah mulia dan beradab.",
+            "photo": "\/uploads\/ishum\/testi_2025_z-e1669181074941.jpg",
+            "status": "publish"
+        },
+        {
+            "name": "Penny Cahyani",
+            "profession": "Wali Murid SMA IT Ishum",
+            "content": "Najwa rizkiya ramadhani nama putriku yang saat ini duduk di kelas akhir. Semoga setelah lulus dari SMA IT ananda bisa menjadi anak sukses dan berakhlak mulia.",
+            "photo": "\/uploads\/ishum\/testi_2028_zz-e1669181127751.jpg",
+            "status": "publish"
+        },
+        {
+            "name": "Yulianti Widiastuti",
+            "profession": "Wali Murid SMA IT Ishum",
+            "content": "Anakku bernama Annisa dhiya abelia, saat ini sudah kelas XII Gaza. Anak mulai PD, hafalannya semakin bagus, selalu melakukan hal dengan mengingat agama sehingga ia selalu hati2 dlm bertindak.",
+            "photo": "\/uploads\/ishum\/testi_2031_wa-e1669181180765.jpg",
+            "status": "publish"
+        },
+        {
+            "name": "Dora Indah",
+            "profession": "Wali Murid SMA IT Ishum",
+            "content": "Anakku bernama Ragil rizgy putra yang sudah duduk di kelas XI Al-Quds. Saya merasa membuat pilihan yang sangat tepat meletakkan dan menitipkan anak saya disini...pesan kami sebagai orang tua adalah anggap anak kami adalah bagian dari keluarga besar islahul ummah..sehingga para orang tua yang disekolah benar2 merasakan dan memiliki harapan yang sama dengan kami..unt mengantarkan anak2 kita kegerbang sukses dunia dan akhiratnya aamiin",
+            "photo": "\/uploads\/ishum\/testi_2273_20221104_152813-Dora-Indah-e1669708484674.jpg",
+            "status": "publish"
+        },
+        {
+            "name": "Suharyanti",
+            "profession": "Wali Murid SMA IT Ishum",
+            "content": "Abi anggara santriyano adalah anak laki-lakiku yang saat ini duduk di kelas XII Gaza. .semoga tetap mengutamakan kwalitas pendidikan agama nya agar tercipta nya siswa\/siswi yg berakhlak mulia aamiin..dan untuk para pengajar nya tetap memberikan perhatian yg ter baik untuk anak2 ,semoga allah memudah kan dan melancar kan setiap masalah dan diberkahi allah subhanahu waataala aamiin.",
+            "photo": "\/uploads\/ishum\/testi_2275_IMG-20220316-WA0010-Alqauzza-Anggrayano-e1669708419526.jpg",
+            "status": "publish"
+        },
+        {
+            "name": "Sugiarti",
+            "profession": "Siswi \/ Alumni SMA IT Ishum",
+            "content": "Nissa Tri Antika selama sekolah di SMA IT menjadi tambah pintar, mengerti tentang agama dan menjadi lebih disiplin dari sebelumnya. Semoga anak anak yang didik oleh ustad dan ustazah di sekolah IT lulus dari sekolah dengan baik dan dapat menjadi harapan bagi Nusa bangsa dan orang orang banyak",
+            "photo": "\/uploads\/ishum\/testi_2278_IMG_20221030_104206-Suga-scaled-e1669708577193.jpg",
+            "status": "publish"
+        },
+        {
+            "name": "Shella Destiani",
+            "profession": "Alumni SMA IT Ishum - Mahasiswi",
+            "content": "Shella Destiani, saat ini sedang Kursus di LPMKA YKPP, Jurusan Adm. Perkantoran\nSekolah di SMA IT menurut saya berbeda dari sekolah lain, terutama tentang lingkungan pertemanan, yang tidak ada yang namanya senioritas, dan itu membuat saya sangat suka berada di lingkungan ini, semua gurunya selalu memotivasi saya, terutama untuk mendapatkan nilai yang lebih baik lagi, ada beberapa yang saya suka dengan guru disini, karena kepeduliannya, bisa di ajak bercerita tentang masalah atau suatu hal yang sulit untuk dijalani oleh muridnya, yang paling saya suka, ada 1 guru juga di SMA IT yang sangat saya kagumi, dia guru yang mungkin umurnya tidak terlalu jauh dari kami, dengan dia kami selalu bercerita banyak hal tanpa ragu, dia memberikan saran dan juga bisa mendengarkan kritik yang selalu kami berikan, dan dia adalah guru yang sangat sabar. Makasi ust\/z!!!\nHarapan saya untuk sekolah ini, semoga sekolah ini menjadi sekolah yang maju, muridnya makin banyak, murid\u201dnya juga semoga makin banyak yang bisa berinisiatif dalam hal apapun, semoga semua guru bisa mendengarkan dan memberikan saran tanpa menjatuhkan saran dari seorang murid, karena walaupun seorang murid perlu juga didengarkan sarannya, semoga cepat pindah ke gedung baru yeayy, organisasinya berjalan lancar tanpa ada kendala yang terjadi di tahun\u201d sebelumnya, semoga semua guru dan muridnya sukses!!!\n&nbsp;",
+            "photo": "\/uploads\/ishum\/testi_2280_EDAE9F28-48F4-4E75-987A-87E654C2CA4F-Shella-Destiani-e1669708636134.jpeg",
+            "status": "publish"
+        },
+        {
+            "name": "Toni Siswanto dan Widyaningtyastuti",
+            "profession": "Wali Murid SMA IT Ishum",
+            "content": "Assalamu'alaykum warahmatullahi wabarakatuh.. Kami Orang tua dari ananda Yunita Andini Amalia. Alhamdulillah ananda Yunita bersekolah di SMAIT Ishlahul Ummah. Sekolah Ishlahul Ummah mendidik sepenuh cinta berkarakter islami. bukan hanya dibekali ilmu pengetahuan umum, tetapi anak kami dibekali juga dengan Tahfiz dan Tahsin. metode belajarnya juga tidak membosankan. Guru-guru nya yang tegas dan ramah dan teman-teman yang baik dan suportif. Alhamdulillah Insyaallah lingkungannya terjaga.",
+            "photo": "\/uploads\/ishum\/testi_3223_IMG-20240702-WA0016.jpg",
+            "status": "publish"
+        },
+        {
+            "name": "Sugiarti",
+            "profession": "Wali Murid SMA IT Ishum",
+            "content": "Setelah 3 tahun di SMAIT Ishlahul Ummah, saya dan ibu saya mearasa bahwa saya bisa lebih disiplin dalam hal ibadah dari sebelumnya, dan juga ilmu yang saya dapat tentang agama islam juga lebih banyak dari sebelumnya, karena di SMAIT Ishlahul Ummah saya mendapatkan ilmu bukan hanya dari ustad dan ustadzahnya saja melainkan dari teman-teman saya yang selalu mau membagikan ilmunya kepada saya",
+            "photo": "\/uploads\/ishum\/testi_3225_IMG-20240702-WA0015-rotated.jpg",
+            "status": "publish"
+        }
+    ],
+    "downloads": [
+        {
+            "title": "Pendidikan Pancasila & Kewarganegaraan untuk SMA\/SMK Kelas X",
+            "category_type": "e-book",
+            "file_path": "https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2021\/09\/PPKN-BS-KLS-X.pdf",
+            "file_type": "pdf",
+            "file_size": "Digital E-Book",
+            "download_count": 255
+        },
+        {
+            "title": "Buku Panduan Guru Informatika untuk SMA Kelas X",
+            "category_type": "e-book",
+            "file_path": "https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2022\/04\/Informatika-BG-KLS-X.pdf",
+            "file_type": "pdf",
+            "file_size": "Digital E-Book",
+            "download_count": 137
+        },
+        {
+            "title": "Sunshine",
+            "category_type": "e-book",
+            "file_path": "#",
+            "file_type": "pdf",
+            "file_size": "Digital E-Book",
+            "download_count": 223
+        },
+        {
+            "title": "Zahra dan Abyan",
+            "category_type": "e-book",
+            "file_path": "#",
+            "file_type": "pdf",
+            "file_size": "Digital E-Book",
+            "download_count": 287
+        },
+        {
+            "title": "Panduan Zakat Minimal 2,5%",
+            "category_type": "e-book",
+            "file_path": "https:\/\/ebook.trenggalekkab.go.id\/media\/2021\/09\/panduan-zakat-minimal-2-5-persen.pdf",
+            "file_type": "pdf",
+            "file_size": "Digital E-Book",
+            "download_count": 307
+        },
+        {
+            "title": "Buku Pelajaran",
+            "category_type": "e-book",
+            "file_path": "#",
+            "file_type": "pdf",
+            "file_size": "Digital E-Book",
+            "download_count": 179
+        }
+    ],
+    "articles": [
+        {
+            "title": "IU Safar 2025",
+            "slug": "iu-safar",
+            "excerpt": "...",
+            "content": "",
+            "featured_image": "\/uploads\/ishum\/post_3898_Hallo-Sahabat-shalih-shalihah-SMA-IT-Ishum-sudah-pernah-mendengar-atau-mengikuti-kegiatan-IU-SA.webp",
+            "category": "kesiswaan-ekskul",
+            "views_count": 1162,
+            "published_at": "2025-10-30 16:57:10"
+        },
+        {
+            "title": "Haflah dan Wisuda Qur\u2019an Angkatan IV : Menjadi Generasi Cinta Al-Qur\u2019an",
+            "slug": "haflah-dan-wisuda-quran-angkatan-iv-menjadi-generasi-cinta-al-quran",
+            "excerpt": "Haflah dan Wisuda Qur\u2019an Gaza Angkatan IV: Menjadi Generasi Cinta Al-Qur\u2019an Alhamdulillah, momen penuh keberkahan dan haru kembali hadir dalam acara Haflah dan Wisuda Qur\u2019an Gaza Angkatan IV yang berlangsung dengan khidmat dan penuh makna (6 Mei 2025) \u2764\ufe0f. Acara ini menjadi bentuk apresiasi atas perjuangan dan kesungguhan para santri dalam menghafal kalamullah. Di antaranya [\u2026]\n",
+            "content": "<p>Haflah dan Wisuda Qur&#8217;an Gaza Angkatan IV: Menjadi Generasi Cinta Al-Qur&#8217;an<\/p>\n<p>Alhamdulillah, momen penuh keberkahan dan haru kembali hadir dalam acara Haflah dan Wisuda Qur&#8217;an Gaza Angkatan IV yang berlangsung dengan khidmat dan penuh makna (6 Mei 2025) \u2764\ufe0f.<\/p>\n<p>Acara ini menjadi bentuk apresiasi atas perjuangan dan kesungguhan para santri dalam menghafal kalamullah. Di antaranya adalah ananda Gaza, yang telah menyelesaikan hafalan dengan baik. Semoga Allah senantiasa menjaga hafalannya dan menjadikannya pribadi yang senantiasa mengamalkan Al-Qur\u2019an dalam kehidupan sehari-hari.<\/p>\n<p>Acara semakin bermakna dengan hadirnya Ust. Heri Sholeh, L.C, yang memberikan motivasi dan nasihat mendalam tentang pentingnya menjadikan Al-Qur\u2019an sebagai pedoman hidup. Beliau mengingatkan bahwa Al-Qur\u2019an bukan hanya untuk dihafal, tapi untuk dipahami, diamalkan, dan dijadikan cahaya penuntun dalam setiap langkah kehidupan.<\/p>\n<p>Wisuda Qur\u2019an ini bukanlah akhir dari perjalanan, melainkan awal dari komitmen panjang untuk terus bersama Al-Qur\u2019an. Menjadi generasi cinta Al-Qur\u2019an berarti terus memperbaiki diri, memperkuat hafalan, dan menjadikan Al-Qur\u2019an sebagai dasar dalam bersikap dan bertindak.<\/p>\n<p>Semoga:<\/p>\n<p>Setiap huruf yang dihafal menjadi cahaya di dunia dan akhirat<\/p>\n<p>Para santri terus istiqomah dalam menjaga hafalan<\/p>\n<p>Kita semua terinspirasi menjadi bagian dari generasi Qur\u2019ani yang diridhai Allah<\/p>\n<p>&nbsp;<\/p>\n<p>&#8212;<\/p>\n<p>\ud83d\udccc #HafalanQuran #WisudaQuran #CintaAlQuran<\/p>\n<p>&nbsp;<\/p>\n",
+            "featured_image": "\/uploads\/kepsek-agi-gustiawan.jpg",
+            "category": "tahfidz-keislaman",
+            "views_count": 1605,
+            "published_at": "2025-07-08 09:37:17"
+        },
+        {
+            "title": "OUTING CLASS \u2013 Swimming Time",
+            "slug": "outing-class-swimming-time",
+            "excerpt": "...",
+            "content": "",
+            "featured_image": "\/uploads\/ishum\/post_3830_2_20250430_114112_0001.png",
+            "category": "kesiswaan-ekskul",
+            "views_count": 875,
+            "published_at": "2025-04-30 12:17:42"
+        },
+        {
+            "title": "IU Berkhidmat",
+            "slug": "iu-berkhidmat",
+            "excerpt": "...",
+            "content": "",
+            "featured_image": "\/uploads\/ishum\/post_3778_3_20250406_085630_0002.png",
+            "category": "kesiswaan-ekskul",
+            "views_count": 1026,
+            "published_at": "2025-04-07 13:44:29"
+        },
+        {
+            "title": "Belajar Bersama Maestro 2025",
+            "slug": "belajar-bersama-maestro-2025",
+            "excerpt": "...",
+            "content": "",
+            "featured_image": "\/uploads\/ishum\/post_3771_2_20250406_085630_0001.png",
+            "category": "akademik-riset",
+            "views_count": 863,
+            "published_at": "2025-04-07 12:43:36"
+        },
+        {
+            "title": "Sanlat Ramadhan 1446 H",
+            "slug": "sanlat-ramadhan-1446-h",
+            "excerpt": "...",
+            "content": "",
+            "featured_image": "\/uploads\/ishum\/post_3751_1_20250406_085630_0000.png",
+            "category": "tahfidz-keislaman",
+            "views_count": 253,
+            "published_at": "2025-04-07 12:29:08"
+        },
+        {
+            "title": "Sumatif Akhir Semester Genap Tahun Pelajaran 2024-2025",
+            "slug": "sumatif-akhir-semester-genap-tahun-pelajaran-2024-2025",
+            "excerpt": "...",
+            "content": "",
+            "featured_image": "\/uploads\/ishum\/post_3747_4_20250406_085630_0003.png",
+            "category": "akademik-riset",
+            "views_count": 1816,
+            "published_at": "2025-04-07 08:37:46"
+        },
+        {
+            "title": "Tarhib Ramadhan Ishlahul Ummah",
+            "slug": "tarhib-ramadhan-ishlahul-ummah",
+            "excerpt": "...",
+            "content": "",
+            "featured_image": "\/uploads\/kepsek-agi-gustiawan.jpg",
+            "category": "tahfidz-keislaman",
+            "views_count": 1773,
+            "published_at": "2025-02-24 13:39:59"
+        },
+        {
+            "title": "Munaqosah TTQ Kelas Akhir 2025",
+            "slug": "munaqosah-ttq-kelas-akhir-2025",
+            "excerpt": "...",
+            "content": "",
+            "featured_image": "\/uploads\/ishum\/post_3692_2_20250224_100013_0001.png",
+            "category": "tahfidz-keislaman",
+            "views_count": 1484,
+            "published_at": "2025-02-24 11:29:49"
+        },
+        {
+            "title": "HIT GENIUS Berlangsung 3 Hari, Berjalan Lancar dan Meriah",
+            "slug": "hit-genius-berlangsung-3-hari-berjalan-lancar-dan-meriah",
+            "excerpt": "...",
+            "content": "",
+            "featured_image": "\/uploads\/ishum\/post_3671_Banner-Utama-HIT-GENIUS_20250114_121330_0000.png",
+            "category": "prestasi-siswa",
+            "views_count": 767,
+            "published_at": "2025-01-31 10:10:26"
+        },
+        {
+            "title": "RAPAT KOMITE DAN PEMBAGIAN HASIL BELAJAR SEMESTER GANJIL 2024-2025",
+            "slug": "rapat-komite-dan-pembagian-hasil-belajar-semester-ganjil-2024-2025",
+            "excerpt": "...",
+            "content": "",
+            "featured_image": "\/uploads\/ishum\/post_3646_WhatsApp-Image-2024-12-19-at-11.21.29-scaled.jpeg",
+            "category": "akademik-riset",
+            "views_count": 1626,
+            "published_at": "2024-12-19 11:38:31"
+        },
+        {
+            "title": "PERKEMAHAN DAN PELANTIKAN BANTARA DAN LAKSANA",
+            "slug": "perkemahan-dan-pelantikan-bantara-dan-laksana",
+            "excerpt": "...",
+            "content": "",
+            "featured_image": "\/uploads\/ishum\/post_3632_7.png",
+            "category": "kabar-kampus",
+            "views_count": 840,
+            "published_at": "2024-12-19 11:18:46"
+        },
+        {
+            "title": "One Day Class with Bang Muzammil Hasballah",
+            "slug": "one-day-class-with-bang-muzammil-hasballah",
+            "excerpt": "...",
+            "content": "",
+            "featured_image": "\/uploads\/ishum\/post_3618_6.png",
+            "category": "kabar-kampus",
+            "views_count": 1393,
+            "published_at": "2024-12-19 11:02:02"
+        },
+        {
+            "title": "SAS Ganjil TP. 2024-2025",
+            "slug": "sas-ganjil-tp-2024-2025",
+            "excerpt": "...",
+            "content": "",
+            "featured_image": "\/uploads\/ishum\/post_3612_8.png",
+            "category": "kabar-kampus",
+            "views_count": 1319,
+            "published_at": "2024-12-19 10:47:12"
+        },
+        {
+            "title": "Pelatihan dan Sertifikasi Content Creator dan Social Media Marketing",
+            "slug": "pelatihan-dan-sertifikasi-content-creator-dan-social-media-marketing",
+            "excerpt": "...",
+            "content": "",
+            "featured_image": "\/uploads\/ishum\/post_3602_5.png",
+            "category": "kabar-kampus",
+            "views_count": 409,
+            "published_at": "2024-12-19 10:39:50"
+        },
+        {
+            "title": "IU Nyantri",
+            "slug": "iu-nyantri-2",
+            "excerpt": "...",
+            "content": "",
+            "featured_image": "\/uploads\/ishum\/post_3587_4.png",
+            "category": "kabar-kampus",
+            "views_count": 532,
+            "published_at": "2024-12-19 10:14:28"
+        },
+        {
+            "title": "Kajian Buku",
+            "slug": "kajian-buku",
+            "excerpt": "...",
+            "content": "",
+            "featured_image": "\/uploads\/ishum\/post_3579_3.png",
+            "category": "kabar-kampus",
+            "views_count": 718,
+            "published_at": "2024-12-19 09:56:34"
+        },
+        {
+            "title": "Musyawarah Besar Organisasi",
+            "slug": "musyawarah-besar-organisasi",
+            "excerpt": "...",
+            "content": "",
+            "featured_image": "\/uploads\/ishum\/post_3567_2.png",
+            "category": "kabar-kampus",
+            "views_count": 874,
+            "published_at": "2024-12-19 09:13:34"
+        },
+        {
+            "title": "SUARA DEMOKRASI",
+            "slug": "suara-demokrasi",
+            "excerpt": "...",
+            "content": "",
+            "featured_image": "\/uploads\/ishum\/post_3557_1.png",
+            "category": "kabar-kampus",
+            "views_count": 327,
+            "published_at": "2024-12-19 08:51:58"
+        },
+        {
+            "title": "Belajar Mengenal Transportasi Umum \u2013 IU SAFAR ke Palembang",
+            "slug": "belajar-mengenal-transportasi-umum-iu-safar-ke-palembang",
+            "excerpt": "...",
+            "content": "",
+            "featured_image": "\/uploads\/ishum\/post_3478_IMG-20241020-WA0008-scaled.jpg",
+            "category": "kesiswaan-ekskul",
+            "views_count": 700,
+            "published_at": "2024-10-20 07:58:17"
+        },
+        {
+            "title": "Mewujudkan Lingkungan Sekolah Sehat",
+            "slug": "mewujudkan-lingkungan-sekolah-sehat",
+            "excerpt": "...",
+            "content": "",
+            "featured_image": "\/uploads\/ishum\/post_3472_IMG-20241020-WA0003-scaled.jpg",
+            "category": "kabar-kampus",
+            "views_count": 1433,
+            "published_at": "2024-10-20 06:58:29"
+        },
+        {
+            "title": "Sarasehan Kepala Sekolah SIT se-Sumatera Selatan",
+            "slug": "sarasehan-kepala-sekolah-sit-se-sumatera-selatan",
+            "excerpt": "...",
+            "content": "",
+            "featured_image": "\/uploads\/ishum\/post_3467_IMG-20241020-WA0004-scaled.jpg",
+            "category": "kabar-kampus",
+            "views_count": 1683,
+            "published_at": "2024-10-20 06:44:53"
+        },
+        {
+            "title": "Peningkatan Kapasitas Pembina dan Pengelolaan BPI",
+            "slug": "peningkatan-kapasitas-pembina-dan-pengelolaan-bpi",
+            "excerpt": "...",
+            "content": "",
+            "featured_image": "\/uploads\/ishum\/post_3464_IMG-20241020-WA0005-scaled.jpg",
+            "category": "kabar-kampus",
+            "views_count": 1801,
+            "published_at": "2024-10-20 06:39:40"
+        },
+        {
+            "title": "Teman BBQ",
+            "slug": "teman-bbq",
+            "excerpt": "...",
+            "content": "",
+            "featured_image": "\/uploads\/ishum\/post_3460_IMG-20241020-WA0007-scaled.jpg",
+            "category": "kabar-kampus",
+            "views_count": 1812,
+            "published_at": "2024-10-20 06:35:30"
+        },
+        {
+            "title": "Perkemahan Penerimaan Tamu Ambalan",
+            "slug": "perkemahan-penerimaan-tamu-ambalan",
+            "excerpt": "...",
+            "content": "",
+            "featured_image": "\/uploads\/ishum\/post_3442_IMG-20241020-WA0006-scaled.jpg",
+            "category": "kabar-kampus",
+            "views_count": 864,
+            "published_at": "2024-10-20 06:25:41"
+        },
+        {
+            "title": "Upacara Peringatan Hari Kemerdekaan RI ke-79",
+            "slug": "upacara-peringatan-hari-kemerdekaan-ri-ke-79",
+            "excerpt": "...",
+            "content": "",
+            "featured_image": "\/uploads\/ishum\/post_3386_website-2024.zip-2.png",
+            "category": "kabar-kampus",
+            "views_count": 537,
+            "published_at": "2024-09-12 10:54:23"
+        },
+        {
+            "title": "PROYEK SEDEKAH SAMPAH",
+            "slug": "proyek-sedekah-sampah",
+            "excerpt": "...",
+            "content": "",
+            "featured_image": "\/uploads\/ishum\/post_3377_website-2024.zip-3.png",
+            "category": "kabar-kampus",
+            "views_count": 517,
+            "published_at": "2024-09-12 10:17:06"
+        },
+        {
+            "title": "IU CARE",
+            "slug": "iu-care-2",
+            "excerpt": "...",
+            "content": "",
+            "featured_image": "\/uploads\/ishum\/post_3354_website-2024.zip-4.png",
+            "category": "kabar-kampus",
+            "views_count": 1673,
+            "published_at": "2024-09-12 06:13:37"
+        },
+        {
+            "title": "Memasak Lauk Khas Sumatera Selatan",
+            "slug": "memasak-lauk-khas-sumatera-selatan",
+            "excerpt": "...",
+            "content": "",
+            "featured_image": "\/uploads\/ishum\/post_3346_website-2024.zip-28.png",
+            "category": "kabar-kampus",
+            "views_count": 951,
+            "published_at": "2024-09-12 05:56:23"
+        },
+        {
+            "title": "NOBAR FILM KAHF \u201cDemi Masa\u201d",
+            "slug": "nobar-film-kahf-demi-masa",
+            "excerpt": "...",
+            "content": "",
+            "featured_image": "\/uploads\/ishum\/post_3298_website-2024.zip-21.png",
+            "category": "kabar-kampus",
+            "views_count": 606,
+            "published_at": "2024-08-04 21:30:22"
+        },
+        {
+            "title": "SMAIT Ishlahul Ummah menyelenggarakan Penandatanganan Deklarasi Anti Kekerasan",
+            "slug": "smait-ishlahul-ummah-menyelenggarakan-penandatanganan-deklarasi-anti-kekerasan",
+            "excerpt": "...",
+            "content": "",
+            "featured_image": "\/uploads\/ishum\/post_3289_website-2024.zip-20.png",
+            "category": "kabar-kampus",
+            "views_count": 1465,
+            "published_at": "2024-08-04 20:16:55"
+        },
+        {
+            "title": "MPLS 2024 SMAIT Ishlahul Ummah Prabumulih",
+            "slug": "pelajar-pancasila-yang-tanggap-tangkas-dan-tangguh-untuk-perbaikan-umat-masa-kini-dan-nanti-smait-ishlahul-ummah-mengadakan-mpls-ke-6-nya-di-tahun-pelajaran-2024-2025",
+            "excerpt": "...",
+            "content": "",
+            "featured_image": "\/uploads\/ishum\/post_3267_website-2024.zip-19.png",
+            "category": "kabar-kampus",
+            "views_count": 582,
+            "published_at": "2024-08-04 17:37:10"
+        },
+        {
+            "title": "Sehat itu Mahal, Tidak Merokok itu Keren",
+            "slug": "sehat-itu-mahal-tidak-merokok-itu-keren",
+            "excerpt": "...",
+            "content": "",
+            "featured_image": "\/uploads\/ishum\/post_3227_IMG-20240703-WA0057.jpg",
+            "category": "kabar-kampus",
+            "views_count": 593,
+            "published_at": "2024-07-04 08:27:45"
+        },
+        {
+            "title": "Arabic Class for Teacher Lv. 1",
+            "slug": "arabic-class-for-teacher",
+            "excerpt": "Lv\n",
+            "content": "<p>Lv<\/p>\n",
+            "featured_image": "\/uploads\/ishum\/post_3203_website-2024_20240621_203545_0000.png",
+            "category": "kabar-kampus",
+            "views_count": 876,
+            "published_at": "2024-06-21 21:09:28"
+        },
+        {
+            "title": "Rapat Komite & Pembagian Rapor X & XI",
+            "slug": "rapat-komite-pembagian-rapor-x-xi",
+            "excerpt": "SMAIT ISHUM NEWS~~ RAPAT KOMITE, PEMBAGIAN RAPOR X, XI Telah usai pelaporan perkembangan sekolah dan siswa kepada komite sekolah. Kemudian dilanjutkan dengan pergantian pengurus komite, adapun Ketua Komite Terpilih untuk TP. 2024\/2025 yaitu Bapak Rusdi Efendi. Adapun dalam sambutan kepala sekolah Ustadzah Anita dalam kesempatan ini beliau menyampaikan kabar gembira, bahwa SMA IT Ishlahul Ummah [\u2026]\n",
+            "content": "<p>SMAIT ISHUM NEWS~~ RAPAT KOMITE, PEMBAGIAN RAPOR X, XI<\/p>\n<p>Telah usai pelaporan perkembangan sekolah dan siswa kepada komite sekolah. Kemudian dilanjutkan dengan pergantian pengurus komite, adapun Ketua Komite Terpilih untuk TP. 2024\/2025 yaitu Bapak Rusdi Efendi. Adapun dalam sambutan kepala sekolah Ustadzah Anita dalam kesempatan ini beliau menyampaikan kabar gembira, bahwa SMA IT Ishlahul Ummah Prabumulih tahun ini berhasil mempertahankan predikat sekolah berkemajuan terbaik dari kemendikbudristek dari tahun 2023 hingga tahun ini dengan dua tahun berturut-turut.<\/p>\n<p>Setelah rapat komite berjalan lancar, kegiatan selanjutnya dilanjutkan dengan pembagian hasil belajar selama semester genap untuk kelas X dan XI bersama wali kelas masing-masing.<\/p>\n<p>&nbsp;<\/p>\n<p>&nbsp;<\/p>\n",
+            "featured_image": "\/uploads\/ishum\/post_3195_website-2024_20240621_202040_0000.png",
+            "category": "kabar-kampus",
+            "views_count": 563,
+            "published_at": "2024-06-21 20:54:14"
+        },
+        {
+            "title": "WISUDA AKBAR",
+            "slug": "wisuda-akbar",
+            "excerpt": "I\n",
+            "content": "<p>I<\/p>\n",
+            "featured_image": "\/uploads\/ishum\/post_3187_SISWA-BERPRESTASI-2024-1280-x-720-piksel6.png",
+            "category": "tahfidz-keislaman",
+            "views_count": 332,
+            "published_at": "2024-06-19 08:31:29"
+        },
+        {
+            "title": "FAMILY GATHERING ANGKATAN III 2024",
+            "slug": "family-gathering-angkatan-iii-2024",
+            "excerpt": "...",
+            "content": "",
+            "featured_image": "\/uploads\/ishum\/post_3094_SISWA-BERPRESTASI-2024-1280-x-720-piksel2.png",
+            "category": "kabar-kampus",
+            "views_count": 884,
+            "published_at": "2024-05-08 09:30:16"
+        },
+        {
+            "title": "STUDI TIRU 2024",
+            "slug": "studi-tiru-2024",
+            "excerpt": "...",
+            "content": "",
+            "featured_image": "\/uploads\/ishum\/post_3085_SISWA-BERPRESTASI-2024-1280-x-720-piksel1.png",
+            "category": "kabar-kampus",
+            "views_count": 1718,
+            "published_at": "2024-05-05 16:23:03"
+        },
+        {
+            "title": "Gen Z, Lemah MENTAL?",
+            "slug": "gen-z-lemah-mental",
+            "excerpt": "...",
+            "content": "",
+            "featured_image": "\/uploads\/ishum\/post_3076_SISWA-BERPRESTASI-20242.png",
+            "category": "kabar-kampus",
+            "views_count": 760,
+            "published_at": "2024-04-25 10:21:30"
+        },
+        {
+            "title": "Pengumuman Hasil OSN-K Tingkat Kabuten\/Kota",
+            "slug": "pengumuman-hasil-osn-k-tingkat-kabuten-kota",
+            "excerpt": "...",
+            "content": "",
+            "featured_image": "\/uploads\/ishum\/post_3064_WhatsApp-Image-2024-04-22-at-09.19.51-scaled.jpeg",
+            "category": "kabar-kampus",
+            "views_count": 915,
+            "published_at": "2024-04-18 09:32:31"
+        },
+        {
+            "title": "IU CARE",
+            "slug": "iu-care",
+            "excerpt": "...",
+            "content": "",
+            "featured_image": "\/uploads\/ishum\/post_3052_IMG-20240406-WA0007.jpg",
+            "category": "kabar-kampus",
+            "views_count": 1210,
+            "published_at": "2024-04-04 16:30:21"
+        },
+        {
+            "title": "PENGUMUMAN HASIL SNBP 2024",
+            "slug": "pengumuman-hasil-smbp-2024",
+            "excerpt": "...",
+            "content": "",
+            "featured_image": "\/uploads\/ishum\/post_3048_Snapinsta.app_434220171_18054550498566334_4372152882803157098_n_1080-1.jpg",
+            "category": "kabar-kampus",
+            "views_count": 1352,
+            "published_at": "2024-03-26 13:55:43"
+        },
+        {
+            "title": "IU Nyantri",
+            "slug": "iu-nyantri",
+            "excerpt": "...",
+            "content": "",
+            "featured_image": "\/uploads\/ishum\/post_3041_Snapinsta.app_434208176_18054441094566334_1477257153867739978_n_1080.jpg",
+            "category": "kabar-kampus",
+            "views_count": 1069,
+            "published_at": "2024-03-25 13:50:49"
+        },
+        {
+            "title": "SUMATIF AKHIR SEMESTER (SAS) GENAP TP.2023-2024",
+            "slug": "sumatif-akhir-semester-sas-genap-tp-2023-2024",
+            "excerpt": "...",
+            "content": "",
+            "featured_image": "\/uploads\/ishum\/post_2988_Snapinsta.app_431374655_18052911643566334_3306612257766624171_n_1080.jpg",
+            "category": "akademik-riset",
+            "views_count": 470,
+            "published_at": "2024-03-08 11:54:47"
+        },
+        {
+            "title": "TARHIB DAN PAWAI RAMADHAN 2024",
+            "slug": "tarhib-dan-pawai-ramadhan-2024",
+            "excerpt": "...",
+            "content": "",
+            "featured_image": "\/uploads\/ishum\/post_2977_@smait_ishum_prabumulih.png",
+            "category": "tahfidz-keislaman",
+            "views_count": 1253,
+            "published_at": "2024-03-07 15:36:10"
+        },
+        {
+            "title": "MUNAQOSAH HADITS KELAS AKHIR 2024",
+            "slug": "munaqosah-hadits-kelas-akhir-2024",
+            "excerpt": "...",
+            "content": "",
+            "featured_image": "\/uploads\/ishum\/post_3026_Snapinsta.app_421773522_18048468199566334_1009039121762798981_n_1080.jpg",
+            "category": "tahfidz-keislaman",
+            "views_count": 1476,
+            "published_at": "2024-02-29 13:26:55"
+        },
+        {
+            "title": "MUNAQOSAH TAHSIN DAN TAHFIZH QUR\u2019AN KELAS AKHIR 2024",
+            "slug": "munaqosah-tahsin-dan-tahfizh-quran-kelas-akhir-2024",
+            "excerpt": "...",
+            "content": "",
+            "featured_image": "\/uploads\/ishum\/post_2967_Snapinsta.app_431510092_18052396183566334_7926316184581577171_n_1080.jpg",
+            "category": "tahfidz-keislaman",
+            "views_count": 1011,
+            "published_at": "2024-02-29 10:59:39"
+        },
+        {
+            "title": "PERINGATAN ISRA MI\u2019RAJ 1445H\/2024",
+            "slug": "peringatan-isra-miraj-1445h-2024",
+            "excerpt": "...",
+            "content": "",
+            "featured_image": "\/uploads\/ishum\/post_3012_Snapinsta.app_428462961_18051117451566334_5915217743299279655_n_1080.jpg",
+            "category": "kabar-kampus",
+            "views_count": 667,
+            "published_at": "2024-02-20 13:08:48"
+        },
+        {
+            "title": "IU TADDABUR 2024",
+            "slug": "iu-taddabur-2024",
+            "excerpt": "...",
+            "content": "",
+            "featured_image": "\/uploads\/ishum\/post_2983_Snapinsta.app_426178614_18049979521566334_3969151918927596474_n_1080.jpg",
+            "category": "kabar-kampus",
+            "views_count": 771,
+            "published_at": "2024-02-08 11:45:42"
+        },
+        {
+            "title": "Ngobar (Ngobrol Bareng) 2024",
+            "slug": "ngobar-ngobrol-bareng-2024",
+            "excerpt": "...",
+            "content": "",
+            "featured_image": "\/uploads\/ishum\/post_3006_Snapinsta.app_423223895_18048872125566334_4589360529432580198_n_1080.jpg",
+            "category": "kabar-kampus",
+            "views_count": 853,
+            "published_at": "2024-01-28 12:59:37"
+        },
+        {
+            "title": "BBM (Belajar Bersama Maestro) 2024",
+            "slug": "bbm-belajar-bersama-maestro-2024",
+            "excerpt": "...",
+            "content": "",
+            "featured_image": "\/uploads\/ishum\/post_2990_Snapinsta.app_421794121_18048653713566334_8666163768545332372_n_1080.jpg",
+            "category": "akademik-riset",
+            "views_count": 883,
+            "published_at": "2024-01-26 12:00:15"
+        },
+        {
+            "title": "Literasi Sekolah",
+            "slug": "literasi-sekolah",
+            "excerpt": "...",
+            "content": "",
+            "featured_image": "\/uploads\/ishum\/post_2960_Snapinsta.app_421773765_18048468181566334_5234613695284888337_n_1080.jpg",
+            "category": "kabar-kampus",
+            "views_count": 1373,
+            "published_at": "2024-01-22 08:00:11"
+        },
+        {
+            "title": "RAPAT KOMITE DAN PEMBERIAN SERTIFIKAT MUNAQOSAH TAHSIN DAN TAHFIZH QUR\u2019AN",
+            "slug": "rapat-komite-dan-pemberian-sertifikat-munaqosah-tahsin-dan-tahfizh-quran",
+            "excerpt": "...",
+            "content": "",
+            "featured_image": "\/uploads\/ishum\/post_2946_Snapinsta.app_411252046_18044175397566334_6942874359018038142_n_1080.jpg",
+            "category": "tahfidz-keislaman",
+            "views_count": 1114,
+            "published_at": "2024-01-04 13:57:30"
+        },
+        {
+            "title": "1 MUHARRAM 1445 H",
+            "slug": "1-muharram-1445-h",
+            "excerpt": "...",
+            "content": "",
+            "featured_image": "\/uploads\/ishum\/post_2747_Snapinsta.app_361116580_259033736882734_4449034481999193349_n_1080.jpg",
+            "category": "kabar-kampus",
+            "views_count": 608,
+            "published_at": "2023-10-12 14:12:30"
+        },
+        {
+            "title": "[Hari Raya Idul Adha 1444 H]",
+            "slug": "hari-raya-idul-adha-1444-h",
+            "excerpt": "...",
+            "content": "",
+            "featured_image": "\/uploads\/ishum\/post_2732_Snapinsta.app_356266366_122720224189478_5952045886615671413_n_1024.jpg",
+            "category": "kabar-kampus",
+            "views_count": 969,
+            "published_at": "2023-10-12 13:57:22"
+        },
+        {
+            "title": "PROJECT SOCIAL (Menyantuni Anak Yatim)",
+            "slug": "project-social-menyantuni-anak-yatim",
+            "excerpt": "...",
+            "content": "",
+            "featured_image": "\/uploads\/kepsek-agi-gustiawan.jpg",
+            "category": "kabar-kampus",
+            "views_count": 1692,
+            "published_at": "2023-07-26 14:21:09"
+        },
+        {
+            "title": "Day\u20135 MPLS",
+            "slug": "day-5-mpls",
+            "excerpt": "[Khutbah Jum\u2019at] Hari ini, jum\u2019at (21\/7) salah satu peserta didik SMA IT Ishlahul Ummah telah melaksanakan khutbah jum\u2019at di masjid SIT Ishlahul Ummah. \ud83d\udc73 Khotib Jum\u2019at : Ananda M. Abi Khatim Al Habsy Lubis (XI. Al-Quds) Semoga menjadi bekal nanti ketika terjun ke masyarakat\ud83e\udd32\ud83e\udd32\ud83e\udd32 _______________ #jum\u2018atberkah\u00a0#jum\u2018atsejahtera\u00a0#khotibjum\u2018at Yuk ikuti kami disini \ud83d\udc47 \ud83c\udfe2 SMA IT Ishlahul [\u2026]\n",
+            "content": "<div id='gallery-1' class='gallery galleryid-2853 gallery-columns-3 gallery-size-thumbnail'><figure class='gallery-item'>\n\t\t\t<div class='gallery-icon landscape'>\n\t\t\t\t<a href='https:\/\/smaitishumpbm.sch.id\/agenda\/day-5-mpls-tp-2023-2024\/snapinsta-app_362022000_595477979415695_4303335474860469038_n_1080\/'><img decoding=\"async\" width=\"150\" height=\"150\" src=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_362022000_595477979415695_4303335474860469038_n_1080-150x150.jpg\" class=\"attachment-thumbnail size-thumbnail\" alt=\"\" srcset=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_362022000_595477979415695_4303335474860469038_n_1080-150x150.jpg 150w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_362022000_595477979415695_4303335474860469038_n_1080-300x300.jpg 300w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_362022000_595477979415695_4303335474860469038_n_1080-1024x1024.jpg 1024w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_362022000_595477979415695_4303335474860469038_n_1080-768x768.jpg 768w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_362022000_595477979415695_4303335474860469038_n_1080.jpg 1032w\" sizes=\"(max-width: 150px) 100vw, 150px\" \/><\/a>\n\t\t\t<\/div><\/figure><figure class='gallery-item'>\n\t\t\t<div class='gallery-icon landscape'>\n\t\t\t\t<a href='https:\/\/smaitishumpbm.sch.id\/agenda\/day-5-mpls-tp-2023-2024\/snapinsta-app_362042427_325277913182192_7787074961638524297_n_1080\/'><img decoding=\"async\" width=\"150\" height=\"150\" src=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_362042427_325277913182192_7787074961638524297_n_1080-150x150.jpg\" class=\"attachment-thumbnail size-thumbnail\" alt=\"\" srcset=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_362042427_325277913182192_7787074961638524297_n_1080-150x150.jpg 150w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_362042427_325277913182192_7787074961638524297_n_1080-300x300.jpg 300w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_362042427_325277913182192_7787074961638524297_n_1080.jpg 720w\" sizes=\"(max-width: 150px) 100vw, 150px\" \/><\/a>\n\t\t\t<\/div><\/figure><figure class='gallery-item'>\n\t\t\t<div class='gallery-icon landscape'>\n\t\t\t\t<a href='https:\/\/smaitishumpbm.sch.id\/agenda\/day-5-mpls-tp-2023-2024\/snapinsta-app_361610114_211382455196767_642716783763906453_n_1080\/'><img decoding=\"async\" width=\"150\" height=\"150\" src=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361610114_211382455196767_642716783763906453_n_1080-150x150.jpg\" class=\"attachment-thumbnail size-thumbnail\" alt=\"\" srcset=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361610114_211382455196767_642716783763906453_n_1080-150x150.jpg 150w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361610114_211382455196767_642716783763906453_n_1080-300x300.jpg 300w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361610114_211382455196767_642716783763906453_n_1080-1024x1024.jpg 1024w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361610114_211382455196767_642716783763906453_n_1080-768x768.jpg 768w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361610114_211382455196767_642716783763906453_n_1080.jpg 1080w\" sizes=\"(max-width: 150px) 100vw, 150px\" \/><\/a>\n\t\t\t<\/div><\/figure><figure class='gallery-item'>\n\t\t\t<div class='gallery-icon landscape'>\n\t\t\t\t<a href='https:\/\/smaitishumpbm.sch.id\/agenda\/day-5-mpls-tp-2023-2024\/snapinsta-app_362332120_2371894686319463_7702468081775446733_n_1080\/'><img decoding=\"async\" width=\"150\" height=\"150\" src=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_362332120_2371894686319463_7702468081775446733_n_1080-150x150.jpg\" class=\"attachment-thumbnail size-thumbnail\" alt=\"\" srcset=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_362332120_2371894686319463_7702468081775446733_n_1080-150x150.jpg 150w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_362332120_2371894686319463_7702468081775446733_n_1080-300x300.jpg 300w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_362332120_2371894686319463_7702468081775446733_n_1080-1024x1024.jpg 1024w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_362332120_2371894686319463_7702468081775446733_n_1080-768x768.jpg 768w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_362332120_2371894686319463_7702468081775446733_n_1080.jpg 1080w\" sizes=\"(max-width: 150px) 100vw, 150px\" \/><\/a>\n\t\t\t<\/div><\/figure><figure class='gallery-item'>\n\t\t\t<div class='gallery-icon landscape'>\n\t\t\t\t<a href='https:\/\/smaitishumpbm.sch.id\/agenda\/day-5-mpls-tp-2023-2024\/snapinsta-app_362293921_818308019647180_7585783510311784401_n_1080\/'><img decoding=\"async\" width=\"150\" height=\"150\" src=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_362293921_818308019647180_7585783510311784401_n_1080-150x150.jpg\" class=\"attachment-thumbnail size-thumbnail\" alt=\"\" srcset=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_362293921_818308019647180_7585783510311784401_n_1080-150x150.jpg 150w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_362293921_818308019647180_7585783510311784401_n_1080-300x300.jpg 300w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_362293921_818308019647180_7585783510311784401_n_1080-768x768.jpg 768w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_362293921_818308019647180_7585783510311784401_n_1080.jpg 900w\" sizes=\"(max-width: 150px) 100vw, 150px\" \/><\/a>\n\t\t\t<\/div><\/figure><figure class='gallery-item'>\n\t\t\t<div class='gallery-icon landscape'>\n\t\t\t\t<a href='https:\/\/smaitishumpbm.sch.id\/agenda\/day-5-mpls-tp-2023-2024\/snapinsta-app_361729212_256016070507393_6968858122641369474_n_1080\/'><img decoding=\"async\" width=\"150\" height=\"150\" src=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361729212_256016070507393_6968858122641369474_n_1080-150x150.jpg\" class=\"attachment-thumbnail size-thumbnail\" alt=\"\" srcset=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361729212_256016070507393_6968858122641369474_n_1080-150x150.jpg 150w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361729212_256016070507393_6968858122641369474_n_1080-300x300.jpg 300w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361729212_256016070507393_6968858122641369474_n_1080.jpg 720w\" sizes=\"(max-width: 150px) 100vw, 150px\" \/><\/a>\n\t\t\t<\/div><\/figure><figure class='gallery-item'>\n\t\t\t<div class='gallery-icon landscape'>\n\t\t\t\t<a href='https:\/\/smaitishumpbm.sch.id\/agenda\/day-5-mpls-tp-2023-2024\/snapinsta-app_362610132_277459494886189_451966171272658818_n_1080\/'><img decoding=\"async\" width=\"150\" height=\"150\" src=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_362610132_277459494886189_451966171272658818_n_1080-150x150.jpg\" class=\"attachment-thumbnail size-thumbnail\" alt=\"\" srcset=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_362610132_277459494886189_451966171272658818_n_1080-150x150.jpg 150w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_362610132_277459494886189_451966171272658818_n_1080-300x300.jpg 300w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_362610132_277459494886189_451966171272658818_n_1080-1024x1024.jpg 1024w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_362610132_277459494886189_451966171272658818_n_1080-768x768.jpg 768w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_362610132_277459494886189_451966171272658818_n_1080.jpg 1080w\" sizes=\"(max-width: 150px) 100vw, 150px\" \/><\/a>\n\t\t\t<\/div><\/figure><figure class='gallery-item'>\n\t\t\t<div class='gallery-icon landscape'>\n\t\t\t\t<a href='https:\/\/smaitishumpbm.sch.id\/agenda\/day-5-mpls-tp-2023-2024\/snapinsta-app_362039535_1026008538763136_1709490802917015375_n_1080\/'><img decoding=\"async\" width=\"150\" height=\"150\" src=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_362039535_1026008538763136_1709490802917015375_n_1080-150x150.jpg\" class=\"attachment-thumbnail size-thumbnail\" alt=\"\" srcset=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_362039535_1026008538763136_1709490802917015375_n_1080-150x150.jpg 150w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_362039535_1026008538763136_1709490802917015375_n_1080-300x300.jpg 300w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_362039535_1026008538763136_1709490802917015375_n_1080-1024x1024.jpg 1024w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_362039535_1026008538763136_1709490802917015375_n_1080-768x768.jpg 768w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_362039535_1026008538763136_1709490802917015375_n_1080.jpg 1080w\" sizes=\"(max-width: 150px) 100vw, 150px\" \/><\/a>\n\t\t\t<\/div><\/figure>\n\t\t<\/div>\n\n<p>[Khutbah Jum&#8217;at]<\/p>\n<p>Hari ini, jum&#8217;at (21\/7) salah satu peserta didik SMA IT Ishlahul Ummah telah melaksanakan khutbah jum&#8217;at di masjid SIT Ishlahul Ummah.<\/p>\n<p>\ud83d\udc73 Khotib Jum&#8217;at :<br \/>\nAnanda M. Abi Khatim Al Habsy Lubis (XI. Al-Quds)<\/p>\n<p>Semoga menjadi bekal nanti ketika terjun ke masyarakat\ud83e\udd32\ud83e\udd32\ud83e\udd32<\/p>\n<p>_______________<br \/>\n<a class=\"x1i10hfl xjbqb8w x6umtig x1b1mbwd xaqea5y xav7gou x9f619 x1ypdohk xt0psk2 xe8uvvx xdj266r x11i5rnm xat24cr x1mh8g0r xexx8yu x4uap5 x18d9i69 xkhd6sd x16tdsg8 x1hl2dhg xggy1nq x1a2a7pz  _aa9_ _a6hd\" tabindex=\"0\" role=\"link\" href=\"https:\/\/www.instagram.com\/explore\/tags\/jum\/\">#jum<\/a>&#8216;atberkah\u00a0<a class=\"x1i10hfl xjbqb8w x6umtig x1b1mbwd xaqea5y xav7gou x9f619 x1ypdohk xt0psk2 xe8uvvx xdj266r x11i5rnm xat24cr x1mh8g0r xexx8yu x4uap5 x18d9i69 xkhd6sd x16tdsg8 x1hl2dhg xggy1nq x1a2a7pz  _aa9_ _a6hd\" tabindex=\"0\" role=\"link\" href=\"https:\/\/www.instagram.com\/explore\/tags\/jum\/\">#jum<\/a>&#8216;atsejahtera\u00a0<a class=\"x1i10hfl xjbqb8w x6umtig x1b1mbwd xaqea5y xav7gou x9f619 x1ypdohk xt0psk2 xe8uvvx xdj266r x11i5rnm xat24cr x1mh8g0r xexx8yu x4uap5 x18d9i69 xkhd6sd x16tdsg8 x1hl2dhg xggy1nq x1a2a7pz  _aa9_ _a6hd\" tabindex=\"0\" role=\"link\" href=\"https:\/\/www.instagram.com\/explore\/tags\/khotibjum\/\">#khotibjum<\/a>&#8216;at<\/p>\n<p>Yuk ikuti kami disini \ud83d\udc47<br \/>\n\ud83c\udfe2 SMA IT Ishlahul Ummah Prabumulih<\/p>\n<p>\ud83d\udfe2 Tiktok-Facebook-Youtube<br \/>\nsmait_ishum_prabumulih<\/p>\n<p>\ud83d\udfe2Website<br \/>\nsmaitishumpbm.sch.id<\/p>\n<p>\ud83d\udfe2Email<br \/>\nSmaitishlahulummah2019@gmail.com<\/p>\n<p>\ud83d\udfe2Alamat<br \/>\nJl. Sadewa RT 01 RW 04 Kel. Karang Raja Kec. Prabumulih Timur<\/p>\n<p>\ud83d\udfe2Cp WA Admin SMAIT<br \/>\n0821-8268-0647<\/p>\n",
+            "featured_image": "\/uploads\/ishum\/post_2853_Snapinsta.app_361778841_956094075651112_5227493163692866355_n_1080.jpg",
+            "category": "kabar-kampus",
+            "views_count": 174,
+            "published_at": "2023-07-21 12:43:00"
+        },
+        {
+            "title": "Day \u2014 4 MPLS TP.2023-2024",
+            "slug": "day-4-mpls-tp-2023-2024",
+            "excerpt": "Alhamdulillah hari ke-4 MPLS berjalan lancar. Diawali dengan sholat tahajud, ngaji, subuh bersama, Senam pagi lalu dilanjutkan dengan Jalan pagi dan Outbond \ud83d\ude0d Alhamdulillah regu Nusaibah binti Ka\u2019ab, Umar bin Khattab, dan Ali bin Abi Thalib telah melaksanakan misi \ud83d\udc4c Yuk ikuti kami disini \ud83d\udc47 \ud83c\udfe2 SMA IT Ishlahul Ummah Prabumulih \ud83d\udfe2 Tiktok-Facebook-Youtube smait_ishum_prabumulih \ud83d\udfe2Website [\u2026]\n",
+            "content": "<div id='gallery-2' class='gallery galleryid-2851 gallery-columns-3 gallery-size-thumbnail'><figure class='gallery-item'>\n\t\t\t<div class='gallery-icon landscape'>\n\t\t\t\t<a href='https:\/\/smaitishumpbm.sch.id\/agenda\/day-4-mpls-tp-2023-2024\/snapinsta-app_361628221_3528162974133103_8141397868382329195_n_1080\/'><img decoding=\"async\" width=\"150\" height=\"150\" src=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361628221_3528162974133103_8141397868382329195_n_1080-150x150.jpg\" class=\"attachment-thumbnail size-thumbnail\" alt=\"\" srcset=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361628221_3528162974133103_8141397868382329195_n_1080-150x150.jpg 150w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361628221_3528162974133103_8141397868382329195_n_1080-300x300.jpg 300w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361628221_3528162974133103_8141397868382329195_n_1080-768x768.jpg 768w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361628221_3528162974133103_8141397868382329195_n_1080.jpg 963w\" sizes=\"(max-width: 150px) 100vw, 150px\" \/><\/a>\n\t\t\t<\/div><\/figure><figure class='gallery-item'>\n\t\t\t<div class='gallery-icon landscape'>\n\t\t\t\t<a href='https:\/\/smaitishumpbm.sch.id\/agenda\/day-4-mpls-tp-2023-2024\/snapinsta-app_361619067_675625471102516_7252216550047204507_n_1080\/'><img decoding=\"async\" width=\"150\" height=\"150\" src=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361619067_675625471102516_7252216550047204507_n_1080-150x150.jpg\" class=\"attachment-thumbnail size-thumbnail\" alt=\"\" srcset=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361619067_675625471102516_7252216550047204507_n_1080-150x150.jpg 150w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361619067_675625471102516_7252216550047204507_n_1080-300x300.jpg 300w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361619067_675625471102516_7252216550047204507_n_1080-1024x1024.jpg 1024w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361619067_675625471102516_7252216550047204507_n_1080-768x768.jpg 768w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361619067_675625471102516_7252216550047204507_n_1080.jpg 1080w\" sizes=\"(max-width: 150px) 100vw, 150px\" \/><\/a>\n\t\t\t<\/div><\/figure><figure class='gallery-item'>\n\t\t\t<div class='gallery-icon landscape'>\n\t\t\t\t<a href='https:\/\/smaitishumpbm.sch.id\/agenda\/day-4-mpls-tp-2023-2024\/snapinsta-app_361740778_662717812440886_8823805979478771885_n_1080\/'><img decoding=\"async\" width=\"150\" height=\"150\" src=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361740778_662717812440886_8823805979478771885_n_1080-150x150.jpg\" class=\"attachment-thumbnail size-thumbnail\" alt=\"\" srcset=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361740778_662717812440886_8823805979478771885_n_1080-150x150.jpg 150w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361740778_662717812440886_8823805979478771885_n_1080-300x300.jpg 300w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361740778_662717812440886_8823805979478771885_n_1080-1024x1024.jpg 1024w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361740778_662717812440886_8823805979478771885_n_1080-768x768.jpg 768w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361740778_662717812440886_8823805979478771885_n_1080.jpg 1080w\" sizes=\"(max-width: 150px) 100vw, 150px\" \/><\/a>\n\t\t\t<\/div><\/figure><figure class='gallery-item'>\n\t\t\t<div class='gallery-icon landscape'>\n\t\t\t\t<a href='https:\/\/smaitishumpbm.sch.id\/agenda\/day-4-mpls-tp-2023-2024\/snapinsta-app_361967098_3117752071704949_3925856315337678392_n_1080\/'><img decoding=\"async\" width=\"150\" height=\"150\" src=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361967098_3117752071704949_3925856315337678392_n_1080-150x150.jpg\" class=\"attachment-thumbnail size-thumbnail\" alt=\"\" srcset=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361967098_3117752071704949_3925856315337678392_n_1080-150x150.jpg 150w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361967098_3117752071704949_3925856315337678392_n_1080-300x300.jpg 300w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361967098_3117752071704949_3925856315337678392_n_1080-1024x1024.jpg 1024w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361967098_3117752071704949_3925856315337678392_n_1080-768x768.jpg 768w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361967098_3117752071704949_3925856315337678392_n_1080.jpg 1080w\" sizes=\"(max-width: 150px) 100vw, 150px\" \/><\/a>\n\t\t\t<\/div><\/figure><figure class='gallery-item'>\n\t\t\t<div class='gallery-icon landscape'>\n\t\t\t\t<a href='https:\/\/smaitishumpbm.sch.id\/agenda\/day-4-mpls-tp-2023-2024\/snapinsta-app_361934511_312419854564358_5885621884898152401_n_1080\/'><img decoding=\"async\" width=\"150\" height=\"150\" src=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361934511_312419854564358_5885621884898152401_n_1080-150x150.jpg\" class=\"attachment-thumbnail size-thumbnail\" alt=\"\" srcset=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361934511_312419854564358_5885621884898152401_n_1080-150x150.jpg 150w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361934511_312419854564358_5885621884898152401_n_1080-300x300.jpg 300w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361934511_312419854564358_5885621884898152401_n_1080-1024x1024.jpg 1024w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361934511_312419854564358_5885621884898152401_n_1080-768x768.jpg 768w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361934511_312419854564358_5885621884898152401_n_1080.jpg 1080w\" sizes=\"(max-width: 150px) 100vw, 150px\" \/><\/a>\n\t\t\t<\/div><\/figure><figure class='gallery-item'>\n\t\t\t<div class='gallery-icon landscape'>\n\t\t\t\t<a href='https:\/\/smaitishumpbm.sch.id\/agenda\/day-4-mpls-tp-2023-2024\/snapinsta-app_361765246_809254657368184_2454247251006013637_n_1080\/'><img decoding=\"async\" width=\"150\" height=\"150\" src=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361765246_809254657368184_2454247251006013637_n_1080-150x150.jpg\" class=\"attachment-thumbnail size-thumbnail\" alt=\"\" srcset=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361765246_809254657368184_2454247251006013637_n_1080-150x150.jpg 150w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361765246_809254657368184_2454247251006013637_n_1080-300x300.jpg 300w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361765246_809254657368184_2454247251006013637_n_1080-1024x1024.jpg 1024w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361765246_809254657368184_2454247251006013637_n_1080-768x768.jpg 768w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361765246_809254657368184_2454247251006013637_n_1080.jpg 1080w\" sizes=\"(max-width: 150px) 100vw, 150px\" \/><\/a>\n\t\t\t<\/div><\/figure><figure class='gallery-item'>\n\t\t\t<div class='gallery-icon landscape'>\n\t\t\t\t<a href='https:\/\/smaitishumpbm.sch.id\/agenda\/day-4-mpls-tp-2023-2024\/snapinsta-app_361566635_295782393114759_7751718028876049345_n_1080\/'><img decoding=\"async\" width=\"150\" height=\"150\" src=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361566635_295782393114759_7751718028876049345_n_1080-150x150.jpg\" class=\"attachment-thumbnail size-thumbnail\" alt=\"\" srcset=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361566635_295782393114759_7751718028876049345_n_1080-150x150.jpg 150w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361566635_295782393114759_7751718028876049345_n_1080-300x300.jpg 300w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361566635_295782393114759_7751718028876049345_n_1080-1024x1024.jpg 1024w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361566635_295782393114759_7751718028876049345_n_1080-768x768.jpg 768w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361566635_295782393114759_7751718028876049345_n_1080.jpg 1080w\" sizes=\"(max-width: 150px) 100vw, 150px\" \/><\/a>\n\t\t\t<\/div><\/figure><figure class='gallery-item'>\n\t\t\t<div class='gallery-icon landscape'>\n\t\t\t\t<a href='https:\/\/smaitishumpbm.sch.id\/agenda\/day-4-mpls-tp-2023-2024\/snapinsta-app_361569546_941873943741366_2104369345473960806_n_1080\/'><img decoding=\"async\" width=\"150\" height=\"150\" src=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361569546_941873943741366_2104369345473960806_n_1080-150x150.jpg\" class=\"attachment-thumbnail size-thumbnail\" alt=\"\" srcset=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361569546_941873943741366_2104369345473960806_n_1080-150x150.jpg 150w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361569546_941873943741366_2104369345473960806_n_1080-300x300.jpg 300w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361569546_941873943741366_2104369345473960806_n_1080-768x768.jpg 768w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361569546_941873943741366_2104369345473960806_n_1080.jpg 868w\" sizes=\"(max-width: 150px) 100vw, 150px\" \/><\/a>\n\t\t\t<\/div><\/figure>\n\t\t<\/div>\n\n<p>Alhamdulillah hari ke-4 MPLS berjalan lancar.<br \/>\nDiawali dengan sholat tahajud, ngaji, subuh bersama,<br \/>\nSenam pagi lalu dilanjutkan dengan<br \/>\nJalan pagi dan Outbond \ud83d\ude0d<\/p>\n<p>Alhamdulillah regu Nusaibah binti Ka&#8217;ab, Umar bin Khattab, dan Ali bin Abi Thalib telah melaksanakan misi \ud83d\udc4c<\/p>\n<p>Yuk ikuti kami disini \ud83d\udc47<br \/>\n\ud83c\udfe2 SMA IT Ishlahul Ummah Prabumulih<\/p>\n<p>\ud83d\udfe2 Tiktok-Facebook-Youtube<br \/>\nsmait_ishum_prabumulih<\/p>\n<p>\ud83d\udfe2Website<br \/>\nsmaitishumpbm.sch.id<\/p>\n<p>\ud83d\udfe2Email<br \/>\nSmaitishlahulummah2019@gmail.com<\/p>\n<p>\ud83d\udfe2Alamat<br \/>\nJl. Sadewa RT 01 RW 04 Kel. Karang Raja Kec. Prabumulih Timur<\/p>\n<p>\ud83d\udfe2Cp WA Admin SMAIT<br \/>\n0821-8268-0647<\/p>\n",
+            "featured_image": "\/uploads\/ishum\/post_2851_Snapinsta.app_361950474_774019584405812_3639800662250093157_n_1080.jpg",
+            "category": "kabar-kampus",
+            "views_count": 651,
+            "published_at": "2023-07-20 12:35:14"
+        },
+        {
+            "title": "[Day 3 \u2013 MPLS TP. 2023-2024]",
+            "slug": "day-3-mpls-tp-2023-2024",
+            "excerpt": "Keseruan di hari ketiga MPLS, Temu Tokoh bersama Ketua Yayasan Ishlahul Ummah Hj. TL. Fasmawati, S.Ag sekaligus Pengusaha Sukses dbidangnya (pendidikan, WO, cathering, dll). Maa syaa Allah Tabarakallah, banyak sekali hikmah dan pembelajaran dari perjalanan hidup dari sang tokoh yaitu Ummi Fasma \ud83e\udd17 \u201cKetika ada niat baik, maka akan Allah turunkan pertolongan dengan mendatangkan orang-orang [\u2026]\n",
+            "content": "<div id='gallery-3' class='gallery galleryid-2786 gallery-columns-3 gallery-size-thumbnail'><figure class='gallery-item'>\n\t\t\t<div class='gallery-icon landscape'>\n\t\t\t\t<a href='https:\/\/smaitishumpbm.sch.id\/agenda\/day-3-masa-pengenalan-lingkungan-sekolah\/snapinsta-app_361750188_194548879990720_6978615718852041965_n_1080\/'><img decoding=\"async\" width=\"150\" height=\"150\" src=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361750188_194548879990720_6978615718852041965_n_1080-150x150.jpg\" class=\"attachment-thumbnail size-thumbnail\" alt=\"\" srcset=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361750188_194548879990720_6978615718852041965_n_1080-150x150.jpg 150w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361750188_194548879990720_6978615718852041965_n_1080-300x300.jpg 300w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361750188_194548879990720_6978615718852041965_n_1080.jpg 720w\" sizes=\"(max-width: 150px) 100vw, 150px\" \/><\/a>\n\t\t\t<\/div><\/figure><figure class='gallery-item'>\n\t\t\t<div class='gallery-icon landscape'>\n\t\t\t\t<a href='https:\/\/smaitishumpbm.sch.id\/agenda\/day-3-masa-pengenalan-lingkungan-sekolah\/snapinsta-app_361573113_1442242896631601_2803455104301448265_n_1080\/'><img decoding=\"async\" width=\"150\" height=\"150\" src=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361573113_1442242896631601_2803455104301448265_n_1080-150x150.jpg\" class=\"attachment-thumbnail size-thumbnail\" alt=\"\" srcset=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361573113_1442242896631601_2803455104301448265_n_1080-150x150.jpg 150w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361573113_1442242896631601_2803455104301448265_n_1080-300x300.jpg 300w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361573113_1442242896631601_2803455104301448265_n_1080-768x768.jpg 768w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361573113_1442242896631601_2803455104301448265_n_1080.jpg 960w\" sizes=\"(max-width: 150px) 100vw, 150px\" \/><\/a>\n\t\t\t<\/div><\/figure><figure class='gallery-item'>\n\t\t\t<div class='gallery-icon landscape'>\n\t\t\t\t<a href='https:\/\/smaitishumpbm.sch.id\/agenda\/day-3-masa-pengenalan-lingkungan-sekolah\/snapinsta-app_361410868_1305848183360296_1973447350638601491_n_1080\/'><img decoding=\"async\" width=\"150\" height=\"150\" src=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361410868_1305848183360296_1973447350638601491_n_1080-150x150.jpg\" class=\"attachment-thumbnail size-thumbnail\" alt=\"\" srcset=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361410868_1305848183360296_1973447350638601491_n_1080-150x150.jpg 150w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361410868_1305848183360296_1973447350638601491_n_1080-300x300.jpg 300w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361410868_1305848183360296_1973447350638601491_n_1080-1024x1024.jpg 1024w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361410868_1305848183360296_1973447350638601491_n_1080-768x768.jpg 768w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361410868_1305848183360296_1973447350638601491_n_1080.jpg 1080w\" sizes=\"(max-width: 150px) 100vw, 150px\" \/><\/a>\n\t\t\t<\/div><\/figure><figure class='gallery-item'>\n\t\t\t<div class='gallery-icon landscape'>\n\t\t\t\t<a href='https:\/\/smaitishumpbm.sch.id\/agenda\/day-3-masa-pengenalan-lingkungan-sekolah\/snapinsta-app_361584975_304659092011435_872075239671373416_n_1080\/'><img decoding=\"async\" width=\"150\" height=\"150\" src=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361584975_304659092011435_872075239671373416_n_1080-150x150.jpg\" class=\"attachment-thumbnail size-thumbnail\" alt=\"\" srcset=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361584975_304659092011435_872075239671373416_n_1080-150x150.jpg 150w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361584975_304659092011435_872075239671373416_n_1080-300x300.jpg 300w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361584975_304659092011435_872075239671373416_n_1080-1024x1024.jpg 1024w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361584975_304659092011435_872075239671373416_n_1080-768x768.jpg 768w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361584975_304659092011435_872075239671373416_n_1080.jpg 1080w\" sizes=\"(max-width: 150px) 100vw, 150px\" \/><\/a>\n\t\t\t<\/div><\/figure><figure class='gallery-item'>\n\t\t\t<div class='gallery-icon landscape'>\n\t\t\t\t<a href='https:\/\/smaitishumpbm.sch.id\/agenda\/day-3-masa-pengenalan-lingkungan-sekolah\/snapinsta-app_361200385_202625049444415_4012642114050960538_n_10802\/'><img decoding=\"async\" width=\"150\" height=\"150\" src=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361200385_202625049444415_4012642114050960538_n_10802-150x150.jpg\" class=\"attachment-thumbnail size-thumbnail\" alt=\"\" srcset=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361200385_202625049444415_4012642114050960538_n_10802-150x150.jpg 150w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361200385_202625049444415_4012642114050960538_n_10802-300x300.jpg 300w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361200385_202625049444415_4012642114050960538_n_10802-768x768.jpg 768w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361200385_202625049444415_4012642114050960538_n_10802.jpg 960w\" sizes=\"(max-width: 150px) 100vw, 150px\" \/><\/a>\n\t\t\t<\/div><\/figure>\n\t\t<\/div>\n\n<p>Keseruan di hari ketiga MPLS, Temu Tokoh bersama Ketua Yayasan Ishlahul Ummah Hj. TL. Fasmawati, S.Ag sekaligus Pengusaha Sukses dbidangnya (pendidikan, WO, cathering, dll).<br \/>\nMaa syaa Allah Tabarakallah, banyak sekali hikmah dan pembelajaran dari perjalanan hidup dari sang tokoh yaitu Ummi Fasma \ud83e\udd17<br \/>\n&#8220;Ketika ada niat baik, maka akan Allah turunkan pertolongan dengan mendatangkan orang-orang baik di sekitar kita&#8221; by Ummi Fasma (Ummi Muaz)<br \/>\nSukses selalu ummi, jazakillah atas ilmu dan kebaikannya untuk kami anak-anakmu dan untuk umat \ud83d\udc99\ud83e\udd17<\/p>\n<p>Dan terakhir kegiatan malam ini ditutup dengan Nobar bareng film Atap Padang Mahsyar ditemani kopi hangat dan cemilan. Banyak sekali ilmu yang bisa kita dapatkan dan hikmah dari film ini. Bahwasanya kita semua akan dilindungi di padang mahsyar dengan amalan dan sedekah yang kita lakukan \ud83e\udd32\u2764\ufe0f<\/p>\n<p>Yuk ikuti kami disini \ud83d\udc47<br \/>\n\ud83c\udfe2 SMA IT Ishlahul Ummah Prabumulih<\/p>\n<p>\ud83d\udfe2 Tiktok-Facebook-Youtube<br \/>\nsmait_ishum_prabumulih<\/p>\n<p>\ud83d\udfe2Website<br \/>\nsmaitishumpbm.sch.id<\/p>\n<p>\ud83d\udfe2Email<br \/>\nSmaitishlahulummah2019@gmail.com<\/p>\n<p>\ud83d\udfe2Alamat<br \/>\nJl. Sadewa RT 01 RW 04 Kel. Karang Raja Kec. Prabumulih Timur<\/p>\n<p>\ud83d\udfe2Cp WA Admin SMAIT<br \/>\n0821-8268-0647<\/p>\n",
+            "featured_image": "\/uploads\/ishum\/post_2786_Snapinsta.app_361765247_251616127653101_8233146300930404242_n_1080.jpg",
+            "category": "kabar-kampus",
+            "views_count": 1485,
+            "published_at": "2023-07-19 15:01:17"
+        },
+        {
+            "title": "[Day 2 \u2014 MPLS TP. 2023-2024]",
+            "slug": "day-2-mpls-tp-2023-2024",
+            "excerpt": "Alhamdulillah hari ini ananda Sholih Sholihah telah menyelesaikan projek membuat makanan khas Sumatera Selatan \ud83d\udc9b Yuk ikuti kami disini \ud83d\udc47 \ud83c\udfe2 SMA IT Ishlahul Ummah Prabumulih \ud83d\udfe2 Tiktok-Facebook-Youtube smait_ishum_prabumulih \ud83d\udfe2Website smaitishumpbm.sch.id \ud83d\udfe2Email Smaitishlahulummah2019@gmail.com \ud83d\udfe2Alamat Jl. Sadewa RT 01 RW 04 Kel. Karang Raja Kec. Prabumulih Timur \ud83d\udfe2Cp WA Admin SMAIT 0821-8268-0647\n",
+            "content": "<div id='gallery-4' class='gallery galleryid-2773 gallery-columns-3 gallery-size-thumbnail'><figure class='gallery-item'>\n\t\t\t<div class='gallery-icon landscape'>\n\t\t\t\t<a href='https:\/\/smaitishumpbm.sch.id\/agenda\/day-2-masa-pengenalan-lingkungan-sekolah\/snapinsta-app_361305984_294957259656976_3877017649602474910_n_1024\/'><img decoding=\"async\" width=\"150\" height=\"150\" src=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361305984_294957259656976_3877017649602474910_n_1024-150x150.jpg\" class=\"attachment-thumbnail size-thumbnail\" alt=\"\" srcset=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361305984_294957259656976_3877017649602474910_n_1024-150x150.jpg 150w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361305984_294957259656976_3877017649602474910_n_1024-300x300.jpg 300w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361305984_294957259656976_3877017649602474910_n_1024-768x768.jpg 768w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361305984_294957259656976_3877017649602474910_n_1024.jpg 864w\" sizes=\"(max-width: 150px) 100vw, 150px\" \/><\/a>\n\t\t\t<\/div><\/figure><figure class='gallery-item'>\n\t\t\t<div class='gallery-icon landscape'>\n\t\t\t\t<a href='https:\/\/smaitishumpbm.sch.id\/agenda\/day-2-masa-pengenalan-lingkungan-sekolah\/snapinsta-app_361618240_819999923111680_5748688706738005957_n_1024\/'><img decoding=\"async\" width=\"150\" height=\"150\" src=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361618240_819999923111680_5748688706738005957_n_1024-150x150.jpg\" class=\"attachment-thumbnail size-thumbnail\" alt=\"\" srcset=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361618240_819999923111680_5748688706738005957_n_1024-150x150.jpg 150w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361618240_819999923111680_5748688706738005957_n_1024-300x300.jpg 300w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361618240_819999923111680_5748688706738005957_n_1024-1024x1024.jpg 1024w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361618240_819999923111680_5748688706738005957_n_1024-768x768.jpg 768w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361618240_819999923111680_5748688706738005957_n_1024.jpg 1080w\" sizes=\"(max-width: 150px) 100vw, 150px\" \/><\/a>\n\t\t\t<\/div><\/figure><figure class='gallery-item'>\n\t\t\t<div class='gallery-icon landscape'>\n\t\t\t\t<a href='https:\/\/smaitishumpbm.sch.id\/agenda\/day-2-masa-pengenalan-lingkungan-sekolah\/snapinsta-app_361129568_601829698606453_386272318339059607_n_1024\/'><img decoding=\"async\" width=\"150\" height=\"150\" src=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361129568_601829698606453_386272318339059607_n_1024-150x150.jpg\" class=\"attachment-thumbnail size-thumbnail\" alt=\"\" srcset=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361129568_601829698606453_386272318339059607_n_1024-150x150.jpg 150w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361129568_601829698606453_386272318339059607_n_1024-300x300.jpg 300w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361129568_601829698606453_386272318339059607_n_1024.jpg 720w\" sizes=\"(max-width: 150px) 100vw, 150px\" \/><\/a>\n\t\t\t<\/div><\/figure><figure class='gallery-item'>\n\t\t\t<div class='gallery-icon landscape'>\n\t\t\t\t<a href='https:\/\/smaitishumpbm.sch.id\/agenda\/day-2-masa-pengenalan-lingkungan-sekolah\/snapinsta-app_361402893_178391991770059_3276518166578359029_n_1024\/'><img decoding=\"async\" width=\"150\" height=\"150\" src=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361402893_178391991770059_3276518166578359029_n_1024-150x150.jpg\" class=\"attachment-thumbnail size-thumbnail\" alt=\"\" srcset=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361402893_178391991770059_3276518166578359029_n_1024-150x150.jpg 150w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361402893_178391991770059_3276518166578359029_n_1024-300x300.jpg 300w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361402893_178391991770059_3276518166578359029_n_1024-768x768.jpg 768w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361402893_178391991770059_3276518166578359029_n_1024.jpg 864w\" sizes=\"(max-width: 150px) 100vw, 150px\" \/><\/a>\n\t\t\t<\/div><\/figure><figure class='gallery-item'>\n\t\t\t<div class='gallery-icon landscape'>\n\t\t\t\t<a href='https:\/\/smaitishumpbm.sch.id\/agenda\/day-2-masa-pengenalan-lingkungan-sekolah\/snapinsta-app_361080348_273832878666857_5807453894346802044_n_1024\/'><img decoding=\"async\" width=\"150\" height=\"150\" src=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361080348_273832878666857_5807453894346802044_n_1024-150x150.jpg\" class=\"attachment-thumbnail size-thumbnail\" alt=\"\" srcset=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361080348_273832878666857_5807453894346802044_n_1024-150x150.jpg 150w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361080348_273832878666857_5807453894346802044_n_1024-300x300.jpg 300w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361080348_273832878666857_5807453894346802044_n_1024-1024x1024.jpg 1024w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361080348_273832878666857_5807453894346802044_n_1024-768x768.jpg 768w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361080348_273832878666857_5807453894346802044_n_1024.jpg 1080w\" sizes=\"(max-width: 150px) 100vw, 150px\" \/><\/a>\n\t\t\t<\/div><\/figure><figure class='gallery-item'>\n\t\t\t<div class='gallery-icon landscape'>\n\t\t\t\t<a href='https:\/\/smaitishumpbm.sch.id\/agenda\/day-2-masa-pengenalan-lingkungan-sekolah\/snapinsta-app_361110267_691721129437506_1478366415248807879_n_1024\/'><img decoding=\"async\" width=\"150\" height=\"150\" src=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361110267_691721129437506_1478366415248807879_n_1024-150x150.jpg\" class=\"attachment-thumbnail size-thumbnail\" alt=\"\" srcset=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361110267_691721129437506_1478366415248807879_n_1024-150x150.jpg 150w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361110267_691721129437506_1478366415248807879_n_1024-300x300.jpg 300w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361110267_691721129437506_1478366415248807879_n_1024-1024x1024.jpg 1024w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361110267_691721129437506_1478366415248807879_n_1024-768x768.jpg 768w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361110267_691721129437506_1478366415248807879_n_1024.jpg 1080w\" sizes=\"(max-width: 150px) 100vw, 150px\" \/><\/a>\n\t\t\t<\/div><\/figure>\n\t\t<\/div>\n\n<p>Alhamdulillah hari ini ananda Sholih Sholihah telah menyelesaikan projek membuat makanan khas Sumatera Selatan \ud83d\udc9b<\/p>\n<p>Yuk ikuti kami disini \ud83d\udc47<br \/>\n\ud83c\udfe2 SMA IT Ishlahul Ummah Prabumulih<\/p>\n<p>\ud83d\udfe2 Tiktok-Facebook-Youtube<br \/>\nsmait_ishum_prabumulih<\/p>\n<p>\ud83d\udfe2Website<br \/>\nsmaitishumpbm.sch.id<\/p>\n<p>\ud83d\udfe2Email<br \/>\nSmaitishlahulummah2019@gmail.com<\/p>\n<p>\ud83d\udfe2Alamat<br \/>\nJl. Sadewa RT 01 RW 04 Kel. Karang Raja Kec. Prabumulih Timur<\/p>\n<p>\ud83d\udfe2Cp WA Admin SMAIT<br \/>\n0821-8268-0647<\/p>\n",
+            "featured_image": "\/uploads\/ishum\/post_2773_Snapinsta.app_361682306_1390651781795174_1505963460050011450_n_1024.jpg",
+            "category": "kabar-kampus",
+            "views_count": 1667,
+            "published_at": "2023-07-18 14:51:14"
+        },
+        {
+            "title": "[DAY 1 \u2014 MPLS TP. 2023-2024]",
+            "slug": "day-1-masa-pengenalan-lingkungan-sekolah-tp-2022-2023",
+            "excerpt": "Alhamdulillah hari ini SMA IT Ishlahul Ummah Prabumulih telah melaksanakan MPLS hari pertama. Banyak sekali pelajaran\/hikmah yang didapatkan dari ust\/ustzah serta teman-teman \ud83d\ude0a\ud83e\udd32 Barakallahufiikum ananda sholih sholihah.. keep growing, humble \ud83c\udf31\ud83c\udf31 Besok kita masih MPLS\u2026 Persiapkan diri kalian jangan lupa istirahat \u270a\ufe0f\ud83d\ude0d yang pastinya insyaallah besok makin seru MPLS nya.. \u201cSekolah Bahagia, Kebanggaan Kita Semua\u201d [\u2026]\n",
+            "content": "<div id='gallery-5' class='gallery galleryid-2756 gallery-columns-3 gallery-size-thumbnail'><figure class='gallery-item'>\n\t\t\t<div class='gallery-icon landscape'>\n\t\t\t\t<a href='https:\/\/smaitishumpbm.sch.id\/agenda\/day-1-masa-pengenalan-lingkungan-sekolah-tp-2023-2024\/snapinsta-app_360934712_2044618849213756_4502029925004384735_n_1080\/'><img decoding=\"async\" width=\"150\" height=\"150\" src=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_360934712_2044618849213756_4502029925004384735_n_1080-150x150.jpg\" class=\"attachment-thumbnail size-thumbnail\" alt=\"\" srcset=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_360934712_2044618849213756_4502029925004384735_n_1080-150x150.jpg 150w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_360934712_2044618849213756_4502029925004384735_n_1080-300x300.jpg 300w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_360934712_2044618849213756_4502029925004384735_n_1080-768x768.jpg 768w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_360934712_2044618849213756_4502029925004384735_n_1080.jpg 963w\" sizes=\"(max-width: 150px) 100vw, 150px\" \/><\/a>\n\t\t\t<\/div><\/figure><figure class='gallery-item'>\n\t\t\t<div class='gallery-icon landscape'>\n\t\t\t\t<a href='https:\/\/smaitishumpbm.sch.id\/agenda\/day-1-masa-pengenalan-lingkungan-sekolah-tp-2023-2024\/snapinsta-app_361389841_656987693019351_2536190500724447789_n_1080\/'><img decoding=\"async\" width=\"150\" height=\"150\" src=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361389841_656987693019351_2536190500724447789_n_1080-150x150.jpg\" class=\"attachment-thumbnail size-thumbnail\" alt=\"\" srcset=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361389841_656987693019351_2536190500724447789_n_1080-150x150.jpg 150w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361389841_656987693019351_2536190500724447789_n_1080-300x300.jpg 300w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361389841_656987693019351_2536190500724447789_n_1080.jpg 760w\" sizes=\"(max-width: 150px) 100vw, 150px\" \/><\/a>\n\t\t\t<\/div><\/figure><figure class='gallery-item'>\n\t\t\t<div class='gallery-icon landscape'>\n\t\t\t\t<a href='https:\/\/smaitishumpbm.sch.id\/agenda\/day-1-masa-pengenalan-lingkungan-sekolah-tp-2023-2024\/snapinsta-app_360235522_1452013828895570_9089008798776676088_n_1080\/'><img decoding=\"async\" width=\"150\" height=\"150\" src=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_360235522_1452013828895570_9089008798776676088_n_1080-150x150.jpg\" class=\"attachment-thumbnail size-thumbnail\" alt=\"\" srcset=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_360235522_1452013828895570_9089008798776676088_n_1080-150x150.jpg 150w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_360235522_1452013828895570_9089008798776676088_n_1080-300x300.jpg 300w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_360235522_1452013828895570_9089008798776676088_n_1080-768x768.jpg 768w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_360235522_1452013828895570_9089008798776676088_n_1080.jpg 963w\" sizes=\"(max-width: 150px) 100vw, 150px\" \/><\/a>\n\t\t\t<\/div><\/figure><figure class='gallery-item'>\n\t\t\t<div class='gallery-icon landscape'>\n\t\t\t\t<a href='https:\/\/smaitishumpbm.sch.id\/agenda\/day-1-masa-pengenalan-lingkungan-sekolah-tp-2023-2024\/snapinsta-app_361610117_1950649418618072_4011060058276643191_n_1080\/'><img decoding=\"async\" width=\"150\" height=\"150\" src=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361610117_1950649418618072_4011060058276643191_n_1080-150x150.jpg\" class=\"attachment-thumbnail size-thumbnail\" alt=\"\" srcset=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361610117_1950649418618072_4011060058276643191_n_1080-150x150.jpg 150w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361610117_1950649418618072_4011060058276643191_n_1080-300x300.jpg 300w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361610117_1950649418618072_4011060058276643191_n_1080-768x768.jpg 768w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361610117_1950649418618072_4011060058276643191_n_1080.jpg 774w\" sizes=\"(max-width: 150px) 100vw, 150px\" \/><\/a>\n\t\t\t<\/div><\/figure><figure class='gallery-item'>\n\t\t\t<div class='gallery-icon landscape'>\n\t\t\t\t<a href='https:\/\/smaitishumpbm.sch.id\/agenda\/day-1-masa-pengenalan-lingkungan-sekolah-tp-2023-2024\/snapinsta-app_361371107_1007057240561873_4884990894418069637_n_1080\/'><img decoding=\"async\" width=\"150\" height=\"150\" src=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361371107_1007057240561873_4884990894418069637_n_1080-150x150.jpg\" class=\"attachment-thumbnail size-thumbnail\" alt=\"\" srcset=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361371107_1007057240561873_4884990894418069637_n_1080-150x150.jpg 150w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361371107_1007057240561873_4884990894418069637_n_1080-300x300.jpg 300w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361371107_1007057240561873_4884990894418069637_n_1080-768x768.jpg 768w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361371107_1007057240561873_4884990894418069637_n_1080.jpg 963w\" sizes=\"(max-width: 150px) 100vw, 150px\" \/><\/a>\n\t\t\t<\/div><\/figure><figure class='gallery-item'>\n\t\t\t<div class='gallery-icon landscape'>\n\t\t\t\t<a href='https:\/\/smaitishumpbm.sch.id\/agenda\/day-1-masa-pengenalan-lingkungan-sekolah-tp-2023-2024\/snapinsta-app_361018104_816054326784111_5185291575085714527_n_1080\/'><img decoding=\"async\" width=\"150\" height=\"150\" src=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361018104_816054326784111_5185291575085714527_n_1080-150x150.jpg\" class=\"attachment-thumbnail size-thumbnail\" alt=\"\" srcset=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361018104_816054326784111_5185291575085714527_n_1080-150x150.jpg 150w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361018104_816054326784111_5185291575085714527_n_1080-300x300.jpg 300w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361018104_816054326784111_5185291575085714527_n_1080-768x768.jpg 768w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361018104_816054326784111_5185291575085714527_n_1080.jpg 963w\" sizes=\"(max-width: 150px) 100vw, 150px\" \/><\/a>\n\t\t\t<\/div><\/figure><figure class='gallery-item'>\n\t\t\t<div class='gallery-icon landscape'>\n\t\t\t\t<a href='https:\/\/smaitishumpbm.sch.id\/agenda\/day-1-masa-pengenalan-lingkungan-sekolah-tp-2023-2024\/snapinsta-app_361070306_127686250376429_4362340634333116704_n_1080\/'><img decoding=\"async\" width=\"150\" height=\"150\" src=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361070306_127686250376429_4362340634333116704_n_1080-150x150.jpg\" class=\"attachment-thumbnail size-thumbnail\" alt=\"\" srcset=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361070306_127686250376429_4362340634333116704_n_1080-150x150.jpg 150w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361070306_127686250376429_4362340634333116704_n_1080-300x300.jpg 300w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361070306_127686250376429_4362340634333116704_n_1080-768x768.jpg 768w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_361070306_127686250376429_4362340634333116704_n_1080.jpg 963w\" sizes=\"(max-width: 150px) 100vw, 150px\" \/><\/a>\n\t\t\t<\/div><\/figure><figure class='gallery-item'>\n\t\t\t<div class='gallery-icon landscape'>\n\t\t\t\t<a href='https:\/\/smaitishumpbm.sch.id\/agenda\/day-1-masa-pengenalan-lingkungan-sekolah-tp-2023-2024\/snapinsta-app_360809951_209356921720342_3043713283736117555_n_1080\/'><img decoding=\"async\" width=\"150\" height=\"150\" src=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_360809951_209356921720342_3043713283736117555_n_1080-150x150.jpg\" class=\"attachment-thumbnail size-thumbnail\" alt=\"\" srcset=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_360809951_209356921720342_3043713283736117555_n_1080-150x150.jpg 150w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_360809951_209356921720342_3043713283736117555_n_1080-300x300.jpg 300w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_360809951_209356921720342_3043713283736117555_n_1080-768x768.jpg 768w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/10\/Snapinsta.app_360809951_209356921720342_3043713283736117555_n_1080.jpg 963w\" sizes=\"(max-width: 150px) 100vw, 150px\" \/><\/a>\n\t\t\t<\/div><\/figure>\n\t\t<\/div>\n\n<p>Alhamdulillah hari ini SMA IT Ishlahul Ummah Prabumulih telah melaksanakan MPLS hari pertama.<br \/>\nBanyak sekali pelajaran\/hikmah yang didapatkan dari ust\/ustzah serta teman-teman \ud83d\ude0a\ud83e\udd32<\/p>\n<p>Barakallahufiikum ananda sholih sholihah.. keep growing, humble \ud83c\udf31\ud83c\udf31<\/p>\n<p>Besok kita masih MPLS&#8230; Persiapkan diri kalian jangan lupa istirahat \u270a\ufe0f\ud83d\ude0d yang pastinya insyaallah besok makin seru MPLS nya..<\/p>\n<p>&#8220;Sekolah Bahagia, Kebanggaan Kita Semua&#8221;<\/p>\n<p><a class=\"x1i10hfl xjbqb8w x6umtig x1b1mbwd xaqea5y xav7gou x9f619 x1ypdohk xt0psk2 xe8uvvx xdj266r x11i5rnm xat24cr x1mh8g0r xexx8yu x4uap5 x18d9i69 xkhd6sd x16tdsg8 x1hl2dhg xggy1nq x1a2a7pz _aa9_ _a6hd\" tabindex=\"0\" role=\"link\" href=\"https:\/\/www.instagram.com\/explore\/tags\/mpls\/\">#mpls<\/a>\u00a0<a class=\"x1i10hfl xjbqb8w x6umtig x1b1mbwd xaqea5y xav7gou x9f619 x1ypdohk xt0psk2 xe8uvvx xdj266r x11i5rnm xat24cr x1mh8g0r xexx8yu x4uap5 x18d9i69 xkhd6sd x16tdsg8 x1hl2dhg xggy1nq x1a2a7pz _aa9_ _a6hd\" tabindex=\"0\" role=\"link\" href=\"https:\/\/www.instagram.com\/explore\/tags\/mpls2023\/\">#mpls2023<\/a>\u00a0<a class=\"x1i10hfl xjbqb8w x6umtig x1b1mbwd xaqea5y xav7gou x9f619 x1ypdohk xt0psk2 xe8uvvx xdj266r x11i5rnm xat24cr x1mh8g0r xexx8yu x4uap5 x18d9i69 xkhd6sd x16tdsg8 x1hl2dhg xggy1nq x1a2a7pz _aa9_ _a6hd\" tabindex=\"0\" role=\"link\" href=\"https:\/\/www.instagram.com\/explore\/tags\/smaitishumprabumulih\/\">#smaitishumprabumulih<\/a>\u00a0<a class=\"x1i10hfl xjbqb8w x6umtig x1b1mbwd xaqea5y xav7gou x9f619 x1ypdohk xt0psk2 xe8uvvx xdj266r x11i5rnm xat24cr x1mh8g0r xexx8yu x4uap5 x18d9i69 xkhd6sd x16tdsg8 x1hl2dhg xggy1nq x1a2a7pz _aa9_ _a6hd\" tabindex=\"0\" role=\"link\" href=\"https:\/\/www.instagram.com\/explore\/tags\/mplssmaitprabumulih\/\">#mplssmaitprabumulih<\/a>\u00a0<a class=\"x1i10hfl xjbqb8w x6umtig x1b1mbwd xaqea5y xav7gou x9f619 x1ypdohk xt0psk2 xe8uvvx xdj266r x11i5rnm xat24cr x1mh8g0r xexx8yu x4uap5 x18d9i69 xkhd6sd x16tdsg8 x1hl2dhg xggy1nq x1a2a7pz _aa9_ _a6hd\" tabindex=\"0\" role=\"link\" href=\"https:\/\/www.instagram.com\/explore\/tags\/prabumulih\/\">#Prabumulih<\/a>\u00a0<a class=\"x1i10hfl xjbqb8w x6umtig x1b1mbwd xaqea5y xav7gou x9f619 x1ypdohk xt0psk2 xe8uvvx xdj266r x11i5rnm xat24cr x1mh8g0r xexx8yu x4uap5 x18d9i69 xkhd6sd x16tdsg8 x1hl2dhg xggy1nq x1a2a7pz _aa9_ _a6hd\" tabindex=\"0\" role=\"link\" href=\"https:\/\/www.instagram.com\/explore\/tags\/sumateraselatan\/\">#sumateraselatan<\/a>\u00a0<a class=\"x1i10hfl xjbqb8w x6umtig x1b1mbwd xaqea5y xav7gou x9f619 x1ypdohk xt0psk2 xe8uvvx xdj266r x11i5rnm xat24cr x1mh8g0r xexx8yu x4uap5 x18d9i69 xkhd6sd x16tdsg8 x1hl2dhg xggy1nq x1a2a7pz _aa9_ _a6hd\" tabindex=\"0\" role=\"link\" href=\"https:\/\/www.instagram.com\/explore\/tags\/indonesia\/\">#indonesia<\/a>\u00a0<a class=\"x1i10hfl xjbqb8w x6umtig x1b1mbwd xaqea5y xav7gou x9f619 x1ypdohk xt0psk2 xe8uvvx xdj266r x11i5rnm xat24cr x1mh8g0r xexx8yu x4uap5 x18d9i69 xkhd6sd x16tdsg8 x1hl2dhg xggy1nq x1a2a7pz _aa9_ _a6hd\" tabindex=\"0\" role=\"link\" href=\"https:\/\/www.instagram.com\/explore\/tags\/jsit\/\">#jsit<\/a><\/p>\n",
+            "featured_image": "\/uploads\/ishum\/post_2756_Snapinsta.app_361778993_793263675633238_5952535775623676116_n_1080.jpg",
+            "category": "kabar-kampus",
+            "views_count": 834,
+            "published_at": "2023-07-17 14:35:17"
+        },
+        {
+            "title": "WISUDA AKBAR TAHFIDZH QUR\u2019AN TP. 2022-2023",
+            "slug": "wisuda-akbar-tahfidzh-quran-sit-ishlahul-ummah",
+            "excerpt": "\n\t\t\t\n\t\t\t\t\n\t\t\t\n\t\t\t\n\t\t\t\t\n\t\t\t\n\t\t\t\n\t\t\t\t\n\t\t\t\n\t\t\t\n\t\t\t\t\n\t\t\t\n\t\t\t\n\t\t\t\t\n\t\t\t\n\t\t\n\n...",
+            "content": "<div id='gallery-6' class='gallery galleryid-2719 gallery-columns-3 gallery-size-thumbnail'><figure class='gallery-item'>\n\t\t\t<div class='gallery-icon landscape'>\n\t\t\t\t<a href='https:\/\/smaitishumpbm.sch.id\/wisuda-akbar-tahfidzh-quran-sit-ishlahul-ummah\/snapinsta-app_355277169_3520321464903245_5629529157268499541_n_1080\/'><img decoding=\"async\" width=\"150\" height=\"150\" src=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/06\/Snapinsta.app_355277169_3520321464903245_5629529157268499541_n_1080-150x150.jpg\" class=\"attachment-thumbnail size-thumbnail\" alt=\"\" srcset=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/06\/Snapinsta.app_355277169_3520321464903245_5629529157268499541_n_1080-150x150.jpg 150w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/06\/Snapinsta.app_355277169_3520321464903245_5629529157268499541_n_1080-300x300.jpg 300w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/06\/Snapinsta.app_355277169_3520321464903245_5629529157268499541_n_1080-1024x1024.jpg 1024w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/06\/Snapinsta.app_355277169_3520321464903245_5629529157268499541_n_1080-768x768.jpg 768w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/06\/Snapinsta.app_355277169_3520321464903245_5629529157268499541_n_1080.jpg 1032w\" sizes=\"(max-width: 150px) 100vw, 150px\" \/><\/a>\n\t\t\t<\/div><\/figure><figure class='gallery-item'>\n\t\t\t<div class='gallery-icon landscape'>\n\t\t\t\t<a href='https:\/\/smaitishumpbm.sch.id\/wisuda-akbar-tahfidzh-quran-sit-ishlahul-ummah\/snapinsta-app_356237168_1341023933424888_8272271849562836460_n_1080\/'><img decoding=\"async\" width=\"150\" height=\"150\" src=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/06\/Snapinsta.app_356237168_1341023933424888_8272271849562836460_n_1080-150x150.jpg\" class=\"attachment-thumbnail size-thumbnail\" alt=\"\" srcset=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/06\/Snapinsta.app_356237168_1341023933424888_8272271849562836460_n_1080-150x150.jpg 150w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/06\/Snapinsta.app_356237168_1341023933424888_8272271849562836460_n_1080-300x300.jpg 300w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/06\/Snapinsta.app_356237168_1341023933424888_8272271849562836460_n_1080.jpg 653w\" sizes=\"(max-width: 150px) 100vw, 150px\" \/><\/a>\n\t\t\t<\/div><\/figure><figure class='gallery-item'>\n\t\t\t<div class='gallery-icon landscape'>\n\t\t\t\t<a href='https:\/\/smaitishumpbm.sch.id\/wisuda-akbar-tahfidzh-quran-sit-ishlahul-ummah\/snapinsta-app_356415111_284067067425227_3928876298079628463_n_1080\/'><img decoding=\"async\" width=\"150\" height=\"150\" src=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/06\/Snapinsta.app_356415111_284067067425227_3928876298079628463_n_1080-150x150.jpg\" class=\"attachment-thumbnail size-thumbnail\" alt=\"\" srcset=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/06\/Snapinsta.app_356415111_284067067425227_3928876298079628463_n_1080-150x150.jpg 150w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/06\/Snapinsta.app_356415111_284067067425227_3928876298079628463_n_1080-300x300.jpg 300w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/06\/Snapinsta.app_356415111_284067067425227_3928876298079628463_n_1080-1024x1024.jpg 1024w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/06\/Snapinsta.app_356415111_284067067425227_3928876298079628463_n_1080-768x768.jpg 768w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/06\/Snapinsta.app_356415111_284067067425227_3928876298079628463_n_1080.jpg 1032w\" sizes=\"(max-width: 150px) 100vw, 150px\" \/><\/a>\n\t\t\t<\/div><\/figure><figure class='gallery-item'>\n\t\t\t<div class='gallery-icon landscape'>\n\t\t\t\t<a href='https:\/\/smaitishumpbm.sch.id\/wisuda-akbar-tahfidzh-quran-sit-ishlahul-ummah\/snapinsta-app_356613792_1191628614851646_4852254771386008893_n_1080\/'><img decoding=\"async\" width=\"150\" height=\"150\" src=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/06\/Snapinsta.app_356613792_1191628614851646_4852254771386008893_n_1080-150x150.jpg\" class=\"attachment-thumbnail size-thumbnail\" alt=\"\" srcset=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/06\/Snapinsta.app_356613792_1191628614851646_4852254771386008893_n_1080-150x150.jpg 150w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/06\/Snapinsta.app_356613792_1191628614851646_4852254771386008893_n_1080-300x300.jpg 300w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/06\/Snapinsta.app_356613792_1191628614851646_4852254771386008893_n_1080-1024x1024.jpg 1024w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/06\/Snapinsta.app_356613792_1191628614851646_4852254771386008893_n_1080-768x768.jpg 768w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/06\/Snapinsta.app_356613792_1191628614851646_4852254771386008893_n_1080.jpg 1032w\" sizes=\"(max-width: 150px) 100vw, 150px\" \/><\/a>\n\t\t\t<\/div><\/figure><figure class='gallery-item'>\n\t\t\t<div class='gallery-icon landscape'>\n\t\t\t\t<a href='https:\/\/smaitishumpbm.sch.id\/wisuda-akbar-tahfidzh-quran-sit-ishlahul-ummah\/snapinsta-app_356624095_1615001368998981_631844763356123199_n_1080\/'><img decoding=\"async\" width=\"150\" height=\"150\" src=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/06\/Snapinsta.app_356624095_1615001368998981_631844763356123199_n_1080-150x150.jpg\" class=\"attachment-thumbnail size-thumbnail\" alt=\"\" srcset=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/06\/Snapinsta.app_356624095_1615001368998981_631844763356123199_n_1080-150x150.jpg 150w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/06\/Snapinsta.app_356624095_1615001368998981_631844763356123199_n_1080-300x300.jpg 300w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/06\/Snapinsta.app_356624095_1615001368998981_631844763356123199_n_1080-1024x1024.jpg 1024w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/06\/Snapinsta.app_356624095_1615001368998981_631844763356123199_n_1080-768x768.jpg 768w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/06\/Snapinsta.app_356624095_1615001368998981_631844763356123199_n_1080.jpg 1080w\" sizes=\"(max-width: 150px) 100vw, 150px\" \/><\/a>\n\t\t\t<\/div><\/figure>\n\t\t<\/div>\n\n",
+            "featured_image": "\/uploads\/ishum\/post_2719_Snapinsta.app_356624095_1615001368998981_631844763356123199_n_1080.jpg",
+            "category": "tahfidz-keislaman",
+            "views_count": 1094,
+            "published_at": "2023-06-27 11:53:45"
+        },
+        {
+            "title": "Forum Orang tua Murid dan Guru (FOMG) Semester Genap Tp. 2022-2023",
+            "slug": "forum-orang-tua-murid-dan-guru-fomg",
+            "excerpt": "\n\t\t\t\n\t\t\t\t\n\t\t\t\n\t\t\t\n\t\t\t\t\n\t\t\t\n\t\t\t\n\t\t\t\t\n\t\t\t\n\t\t\t\n\t\t\t\t\n\t\t\t\n\t\t\n\n...",
+            "content": "<div id='gallery-7' class='gallery galleryid-2717 gallery-columns-3 gallery-size-thumbnail'><figure class='gallery-item'>\n\t\t\t<div class='gallery-icon landscape'>\n\t\t\t\t<a href='https:\/\/smaitishumpbm.sch.id\/forum-orang-tua-murid-dan-guru-fomg\/snapinsta-app_356212740_2773516136142328_3400306368824309124_n_1080\/'><img decoding=\"async\" width=\"150\" height=\"150\" src=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/08\/Snapinsta.app_356212740_2773516136142328_3400306368824309124_n_1080-150x150.jpg\" class=\"attachment-thumbnail size-thumbnail\" alt=\"\" srcset=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/08\/Snapinsta.app_356212740_2773516136142328_3400306368824309124_n_1080-150x150.jpg 150w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/08\/Snapinsta.app_356212740_2773516136142328_3400306368824309124_n_1080-300x300.jpg 300w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/08\/Snapinsta.app_356212740_2773516136142328_3400306368824309124_n_1080-1024x1024.jpg 1024w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/08\/Snapinsta.app_356212740_2773516136142328_3400306368824309124_n_1080-768x768.jpg 768w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/08\/Snapinsta.app_356212740_2773516136142328_3400306368824309124_n_1080.jpg 1080w\" sizes=\"(max-width: 150px) 100vw, 150px\" \/><\/a>\n\t\t\t<\/div><\/figure><figure class='gallery-item'>\n\t\t\t<div class='gallery-icon landscape'>\n\t\t\t\t<a href='https:\/\/smaitishumpbm.sch.id\/forum-orang-tua-murid-dan-guru-fomg\/snapinsta-app_356765561_225593150321597_3405756899116656317_n_1080\/'><img decoding=\"async\" width=\"150\" height=\"150\" src=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/08\/Snapinsta.app_356765561_225593150321597_3405756899116656317_n_1080-150x150.jpg\" class=\"attachment-thumbnail size-thumbnail\" alt=\"\" srcset=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/08\/Snapinsta.app_356765561_225593150321597_3405756899116656317_n_1080-150x150.jpg 150w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/08\/Snapinsta.app_356765561_225593150321597_3405756899116656317_n_1080-300x300.jpg 300w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/08\/Snapinsta.app_356765561_225593150321597_3405756899116656317_n_1080-1024x1024.jpg 1024w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/08\/Snapinsta.app_356765561_225593150321597_3405756899116656317_n_1080-768x768.jpg 768w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/08\/Snapinsta.app_356765561_225593150321597_3405756899116656317_n_1080.jpg 1080w\" sizes=\"(max-width: 150px) 100vw, 150px\" \/><\/a>\n\t\t\t<\/div><\/figure><figure class='gallery-item'>\n\t\t\t<div class='gallery-icon landscape'>\n\t\t\t\t<a href='https:\/\/smaitishumpbm.sch.id\/forum-orang-tua-murid-dan-guru-fomg\/snapinsta-app_356383707_774945514365179_2412414690728870548_n_1080\/'><img decoding=\"async\" width=\"150\" height=\"150\" src=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/08\/Snapinsta.app_356383707_774945514365179_2412414690728870548_n_1080-150x150.jpg\" class=\"attachment-thumbnail size-thumbnail\" alt=\"\" srcset=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/08\/Snapinsta.app_356383707_774945514365179_2412414690728870548_n_1080-150x150.jpg 150w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/08\/Snapinsta.app_356383707_774945514365179_2412414690728870548_n_1080-300x300.jpg 300w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/08\/Snapinsta.app_356383707_774945514365179_2412414690728870548_n_1080-1024x1024.jpg 1024w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/08\/Snapinsta.app_356383707_774945514365179_2412414690728870548_n_1080-768x768.jpg 768w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/08\/Snapinsta.app_356383707_774945514365179_2412414690728870548_n_1080.jpg 1080w\" sizes=\"(max-width: 150px) 100vw, 150px\" \/><\/a>\n\t\t\t<\/div><\/figure><figure class='gallery-item'>\n\t\t\t<div class='gallery-icon landscape'>\n\t\t\t\t<a href='https:\/\/smaitishumpbm.sch.id\/forum-orang-tua-murid-dan-guru-fomg\/snapinsta-app_356208769_652708296354864_8920708865477276170_n_1080\/'><img decoding=\"async\" width=\"150\" height=\"150\" src=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/08\/Snapinsta.app_356208769_652708296354864_8920708865477276170_n_1080-150x150.jpg\" class=\"attachment-thumbnail size-thumbnail\" alt=\"\" srcset=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/08\/Snapinsta.app_356208769_652708296354864_8920708865477276170_n_1080-150x150.jpg 150w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/08\/Snapinsta.app_356208769_652708296354864_8920708865477276170_n_1080-300x300.jpg 300w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/08\/Snapinsta.app_356208769_652708296354864_8920708865477276170_n_1080-1024x1024.jpg 1024w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/08\/Snapinsta.app_356208769_652708296354864_8920708865477276170_n_1080-768x768.jpg 768w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/08\/Snapinsta.app_356208769_652708296354864_8920708865477276170_n_1080.jpg 1080w\" sizes=\"(max-width: 150px) 100vw, 150px\" \/><\/a>\n\t\t\t<\/div><\/figure>\n\t\t<\/div>\n\n",
+            "featured_image": "\/uploads\/ishum\/post_2717_Snapinsta.app_356099401_1020202562687493_68607309339346271_n_1080.jpg",
+            "category": "akademik-riset",
+            "views_count": 1820,
+            "published_at": "2023-06-27 11:31:44"
+        },
+        {
+            "title": "SMART PARENTING SCHOOL",
+            "slug": "smart-parenting-school",
+            "excerpt": "...",
+            "content": "",
+            "featured_image": "\/uploads\/ishum\/post_2699_WhatsApp-Image-2023-06-12-at-07.41.31-3.jpeg",
+            "category": "kabar-kampus",
+            "views_count": 1343,
+            "published_at": "2023-06-21 17:06:40"
+        },
+        {
+            "title": "WISUDA QUR\u2019AN DAN HAFLAH AKHIRUSSANAH ANGKATAN II SMA IT ISHLAHUL UMMAH PRABUMULIH",
+            "slug": "wisuda-quran-dan-haflah-akhirussanah-angkatan-ii-sma-it-ishlahul-ummah-prabumulih",
+            "excerpt": "...",
+            "content": "",
+            "featured_image": "\/uploads\/ishum\/post_2652_IMG-20230602-WA0010.jpg",
+            "category": "tahfidz-keislaman",
+            "views_count": 1639,
+            "published_at": "2023-06-03 09:12:47"
+        },
+        {
+            "title": "[MUNAQOSAH TAHSIN & TAHFIDHZUL QUR\u2019AN SEMESTER II TA. 2022\/2023]",
+            "slug": "munaqosah-tahsin-tahfidhzul-quran-semester-ii-ta-2022-2023",
+            "excerpt": "...",
+            "content": "",
+            "featured_image": "\/uploads\/ishum\/post_2642_WhatsApp-Image-2023-05-22-at-16.34.13.jpeg",
+            "category": "tahfidz-keislaman",
+            "views_count": 393,
+            "published_at": "2023-05-23 11:41:36"
+        },
+        {
+            "title": "[Olimpiade Sains Nasional (OSN) Tingkat Kabupaten\/ Kota Tahun 2023]",
+            "slug": "olimpiade-sains-nasional-osn-tingkat-kabupaten-kota-tahun-2023",
+            "excerpt": "...",
+            "content": "",
+            "featured_image": "\/uploads\/ishum\/post_2637_WhatsApp-Image-2023-05-07-at-06.54.53-1.jpeg",
+            "category": "prestasi-siswa",
+            "views_count": 229,
+            "published_at": "2023-05-23 08:21:12"
+        },
+        {
+            "title": "Hari Pendidikan Nasional 2023",
+            "slug": "hari-pendidikan-nasional-2023",
+            "excerpt": "...",
+            "content": "",
+            "featured_image": "\/uploads\/ishum\/post_2624_WhatsApp-Image-2023-05-03-at-15.12.59-2.jpeg",
+            "category": "kabar-kampus",
+            "views_count": 334,
+            "published_at": "2023-05-03 15:16:27"
+        },
+        {
+            "title": "Day 3 [MUNAQOSAH TAHFIDHZUL QUR\u2019AN KELAS AKHIR TAHUN AJARAN 2022\/2023]",
+            "slug": "day-3-munaqosah-tahfidhzul-quran-kelas-akhir-tahun-ajaran-2022-2023",
+            "excerpt": "...",
+            "content": "",
+            "featured_image": "\/uploads\/ishum\/post_2602_IMG-20230303-WA0012.jpg",
+            "category": "tahfidz-keislaman",
+            "views_count": 1108,
+            "published_at": "2023-03-09 13:45:42"
+        },
+        {
+            "title": "Day 2 [MUNAQOSAH TAHFIDHZ TAHSIN QUR\u2019AN KELAS AKHIR]",
+            "slug": "day-2-munaqosah-tahfidhz-tahsin-quran-kelas-akhir",
+            "excerpt": "...",
+            "content": "",
+            "featured_image": "\/uploads\/ishum\/post_2593_IMG-20230223-WA0043.jpg",
+            "category": "tahfidz-keislaman",
+            "views_count": 1594,
+            "published_at": "2023-03-09 13:36:38"
+        },
+        {
+            "title": "Day 1 [MUNAQOSAH TAHFIDHZ TAHSIN QUR\u2019AN KELAS AKHIR]",
+            "slug": "day-1-munaqosah-tahfidhz-tahsin-quran-kelas-akhir",
+            "excerpt": "...",
+            "content": "",
+            "featured_image": "\/uploads\/ishum\/post_2577_IMG-20230223-WA0000-1.jpg",
+            "category": "tahfidz-keislaman",
+            "views_count": 1138,
+            "published_at": "2023-02-23 08:52:17"
+        },
+        {
+            "title": "Study Tour SMA IT Ishlahul Ummah Prabumulih",
+            "slug": "study-tour-sma-it-ishlahul-ummah-prabumulih",
+            "excerpt": "...",
+            "content": "",
+            "featured_image": "\/uploads\/ishum\/post_2509_IMG-20230121-WA0074.jpg",
+            "category": "kabar-kampus",
+            "views_count": 1574,
+            "published_at": "2023-02-03 09:39:59"
+        },
+        {
+            "title": "FESTIVAL ISHUM III 2023",
+            "slug": "festival-ishum-iii-2023",
+            "excerpt": "...",
+            "content": "",
+            "featured_image": "https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/01\/WhatsApp-Image-2023-01-16-at-12.46.39-2-1.jpeg",
+            "category": "kabar-kampus",
+            "views_count": 1202,
+            "published_at": "2023-01-16 14:10:47"
+        },
+        {
+            "title": "GRAND OPENING HALL ISHLAHUL UMMAH",
+            "slug": "grand-opening-hall-ishlahul-ummah",
+            "excerpt": "...",
+            "content": "",
+            "featured_image": "https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/01\/WhatsApp-Image-2023-01-16-at-12.11.04.jpeg",
+            "category": "kabar-kampus",
+            "views_count": 556,
+            "published_at": "2023-01-16 13:57:49"
+        },
+        {
+            "title": "[Forum Orang tua Murid dan Guru]",
+            "slug": "forum-orang-tua-murid-dan-guru",
+            "excerpt": "...",
+            "content": "",
+            "featured_image": "\/uploads\/ishum\/post_2439_IMG-20221221-WA0008.jpg",
+            "category": "kabar-kampus",
+            "views_count": 816,
+            "published_at": "2022-12-21 08:41:10"
+        },
+        {
+            "title": "Pengumuman dan Penyematan Pin Munaqosah Tahsin dan Tahfidz Qur\u2019an",
+            "slug": "pengumuman-dan-penyematan-pin-munaqosah-tahsin-dan-tahfidz-quran",
+            "excerpt": "...",
+            "content": "",
+            "featured_image": "\/uploads\/ishum\/post_2433_IMG_20221216_134351.jpg",
+            "category": "tahfidz-keislaman",
+            "views_count": 481,
+            "published_at": "2022-12-19 21:26:33"
+        },
+        {
+            "title": "PKKS dan Monev Pengawas Pembina Tahun 2022",
+            "slug": "pkks-dan-monev-pengawas-pembina-tahun-2022-penilaian-kinerja-kepala-sekolah-pkks",
+            "excerpt": "\u00a0 \u00a0\n",
+            "content": "<p>&nbsp;<\/p>\n<p>&nbsp;<\/p>\n",
+            "featured_image": "\/uploads\/ishum\/post_2385_WhatsApp-Image-2022-12-07-at-10.09.40.jpeg",
+            "category": "kabar-kampus",
+            "views_count": 1558,
+            "published_at": "2022-12-07 14:23:34"
+        },
+        {
+            "title": "Deteksi Dini ABK (Anak Berkebutuhan Khusus) dan Cara Penanganannya",
+            "slug": "cara-menyusun-rencana-masa-depan-dijamin-mudah",
+            "excerpt": "...",
+            "content": "",
+            "featured_image": "\/uploads\/ishum\/post_1639_n2qev5f1kwpgxzs4eqpc.jpg",
+            "category": "kabar-kampus",
+            "views_count": 932,
+            "published_at": "2022-11-29 10:49:04"
+        },
+        {
+            "title": "Munaqosah Tahsin dan Tahfidz 2022",
+            "slug": "hello-dunia-tipu-tipu",
+            "excerpt": "\n...",
+            "content": "<p><img decoding=\"async\" class=\"alignnone size-medium wp-image-2378\" src=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2022\/04\/IMG-20221123-WA0035-300x169.jpg\" alt=\"\" width=\"300\" height=\"169\" srcset=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2022\/04\/IMG-20221123-WA0035-300x169.jpg 300w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2022\/04\/IMG-20221123-WA0035-1024x576.jpg 1024w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2022\/04\/IMG-20221123-WA0035-150x84.jpg 150w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2022\/04\/IMG-20221123-WA0035-768x432.jpg 768w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2022\/04\/IMG-20221123-WA0035-1536x864.jpg 1536w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2022\/04\/IMG-20221123-WA0035.jpg 1600w\" sizes=\"(max-width: 300px) 100vw, 300px\" \/><img decoding=\"async\" class=\"alignnone size-medium wp-image-2377\" src=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2022\/04\/IMG-20221123-WA0011-300x225.jpg\" alt=\"\" width=\"300\" height=\"225\" srcset=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2022\/04\/IMG-20221123-WA0011-300x225.jpg 300w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2022\/04\/IMG-20221123-WA0011-1024x768.jpg 1024w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2022\/04\/IMG-20221123-WA0011-150x113.jpg 150w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2022\/04\/IMG-20221123-WA0011-768x576.jpg 768w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2022\/04\/IMG-20221123-WA0011.jpg 1376w\" sizes=\"(max-width: 300px) 100vw, 300px\" \/><img decoding=\"async\" class=\"alignnone size-medium wp-image-2376\" src=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2022\/04\/IMG-20221123-WA0009-300x225.jpg\" alt=\"\" width=\"300\" height=\"225\" srcset=\"https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2022\/04\/IMG-20221123-WA0009-300x225.jpg 300w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2022\/04\/IMG-20221123-WA0009-1024x768.jpg 1024w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2022\/04\/IMG-20221123-WA0009-150x113.jpg 150w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2022\/04\/IMG-20221123-WA0009-768x576.jpg 768w, https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2022\/04\/IMG-20221123-WA0009.jpg 1376w\" sizes=\"(max-width: 300px) 100vw, 300px\" \/><\/p>\n",
+            "featured_image": "\/uploads\/ishum\/post_1272_IMG-20221123-WA0037.jpg",
+            "category": "tahfidz-keislaman",
+            "views_count": 1432,
+            "published_at": "2022-11-23 11:06:14"
+        },
+        {
+            "title": "Mendidik Anak tanpa TV dan Gadget",
+            "slug": "mendidik-anak-tanpa-gadget",
+            "excerpt": "...",
+            "content": "",
+            "featured_image": "\/uploads\/ishum\/post_1640_R.-Lab-IPA4.jpg",
+            "category": "kabar-kampus",
+            "views_count": 1141,
+            "published_at": "2022-04-22 10:52:05"
+        },
+        {
+            "title": "Pentingnya Pendidikan islam di Era Globalisasi",
+            "slug": "lulusan-it-lulusan-paling-dicari",
+            "excerpt": "...",
+            "content": "",
+            "featured_image": "\/uploads\/ishum\/post_1641_tkj1.jpg",
+            "category": "kabar-kampus",
+            "views_count": 630,
+            "published_at": "2022-04-21 10:52:00"
+        },
+        {
+            "title": "Generasi Muda Generasi Harapan Bangsa",
+            "slug": "test-artikel",
+            "excerpt": "...",
+            "content": "",
+            "featured_image": "\/uploads\/ishum\/post_1270_AR200427-scaled.jpg",
+            "category": "kabar-kampus",
+            "views_count": 592,
+            "published_at": "2022-04-06 11:03:03"
+        },
+        {
+            "title": "Menjadi Orang Tua Idaman Anak",
+            "slug": "selamat-datang-di-flymotion",
+            "excerpt": "...",
+            "content": "",
+            "featured_image": "\/uploads\/ishum\/post_1268_AR200903-scaled.jpg",
+            "category": "kabar-kampus",
+            "views_count": 1107,
+            "published_at": "2022-04-06 11:00:51"
+        },
+        {
+            "title": "Prestasi Siswa: Juara 4 Sambung Ayat Qur'an (Juara 4 Tingkat Kota Prabumulih)",
+            "slug": "prestasi-juara-4-sambung-ayat",
+            "excerpt": "Alhamdulillah, siswa SMA IT Ishlahul Ummah Prabumulih berhasil meraih prestasi Juara 4 Sambung Ayat Qur'an (Juara 4) dalam ajang yang diselenggarakan oleh ADI (Akademi Da'wah Indonesia) Maliki Kota Prabumulih.",
+            "content": "<p>Alhamdulillah, siswa SMA IT Ishlahul Ummah Prabumulih berhasil meraih prestasi Juara 4 Sambung Ayat Qur'an (Juara 4) dalam ajang yang diselenggarakan oleh ADI (Akademi Da'wah Indonesia) Maliki Kota Prabumulih.<\/p><p>Ajang ini diselenggarakan pada tahun 22 November 2022 tingkat Kota Prabumulih. Semoga capaian membanggakan ini menjadi motivasi bagi seluruh santri SMA IT Ishum Prabumulih untuk terus berprestasi dan berakhlak mulia.<\/p>",
+            "featured_image": "\/uploads\/ishum\/prestasi_770_35.jpg",
+            "category": "prestasi-siswa",
+            "views_count": 822,
+            "published_at": "2024-05-10 10:00:00"
+        },
+        {
+            "title": "Prestasi Siswa: Juara 1 Lomba Kaligrafi (Juara 1 Tingkat Kota Prabumulih)",
+            "slug": "prestasi-juara-1-lomba-kaligrafi",
+            "excerpt": "Alhamdulillah, siswa SMA IT Ishlahul Ummah Prabumulih berhasil meraih prestasi Juara 1 Lomba Kaligrafi (Juara 1) dalam ajang yang diselenggarakan oleh Organisasi Muhammadiyah &amp; Aisyiyah Se-Sumatera Selatan.",
+            "content": "<p>Alhamdulillah, siswa SMA IT Ishlahul Ummah Prabumulih berhasil meraih prestasi Juara 1 Lomba Kaligrafi (Juara 1) dalam ajang yang diselenggarakan oleh Organisasi Muhammadiyah &amp; Aisyiyah Se-Sumatera Selatan.<\/p><p>Ajang ini diselenggarakan pada tahun 14 Desember 2022 tingkat Kota Prabumulih. Semoga capaian membanggakan ini menjadi motivasi bagi seluruh santri SMA IT Ishum Prabumulih untuk terus berprestasi dan berakhlak mulia.<\/p>",
+            "featured_image": "\/uploads\/ishum\/prestasi_2484_33.jpg",
+            "category": "prestasi-siswa",
+            "views_count": 362,
+            "published_at": "2024-05-10 10:00:00"
+        },
+        {
+            "title": "Prestasi Siswa: Juara 3 Lomba Kaligrafi (Juara 3 Tingkat Kota Prabumulih)",
+            "slug": "prestasi-juara-3-lomba-kaligrafi",
+            "excerpt": "Alhamdulillah, siswa SMA IT Ishlahul Ummah Prabumulih berhasil meraih prestasi Juara 3 Lomba Kaligrafi (Juara 3) dalam ajang yang diselenggarakan oleh Organisasi Muhammadiyah &amp; Aisyiyah Se-Sumatera Selatan.",
+            "content": "<p>Alhamdulillah, siswa SMA IT Ishlahul Ummah Prabumulih berhasil meraih prestasi Juara 3 Lomba Kaligrafi (Juara 3) dalam ajang yang diselenggarakan oleh Organisasi Muhammadiyah &amp; Aisyiyah Se-Sumatera Selatan.<\/p><p>Ajang ini diselenggarakan pada tahun 14 Desember 2022 tingkat Kota Prabumulih. Semoga capaian membanggakan ini menjadi motivasi bagi seluruh santri SMA IT Ishum Prabumulih untuk terus berprestasi dan berakhlak mulia.<\/p>",
+            "featured_image": "\/uploads\/ishum\/prestasi_2492_34.jpg",
+            "category": "prestasi-siswa",
+            "views_count": 529,
+            "published_at": "2024-05-10 10:00:00"
+        },
+        {
+            "title": "Prestasi Siswa: Juara 3 KSN-K BIOLOGI (Juara 3 Tingkat Kota Prabumulih)",
+            "slug": "prestasi-juara-3-ksn-k-biologi",
+            "excerpt": "Alhamdulillah, siswa SMA IT Ishlahul Ummah Prabumulih berhasil meraih prestasi Juara 3 KSN-K BIOLOGI (Juara 3) dalam ajang yang diselenggarakan oleh KEMDIKBUD (KEMENTRIAN PENDIDIKAN DAN KEBUDAYAAN) INDONESIA.",
+            "content": "<p>Alhamdulillah, siswa SMA IT Ishlahul Ummah Prabumulih berhasil meraih prestasi Juara 3 KSN-K BIOLOGI (Juara 3) dalam ajang yang diselenggarakan oleh KEMDIKBUD (KEMENTRIAN PENDIDIKAN DAN KEBUDAYAAN) INDONESIA.<\/p><p>Ajang ini diselenggarakan pada tahun 24 Mei 2022 tingkat Kota Prabumulih. Semoga capaian membanggakan ini menjadi motivasi bagi seluruh santri SMA IT Ishum Prabumulih untuk terus berprestasi dan berakhlak mulia.<\/p>",
+            "featured_image": "\/uploads\/ishum\/prestasi_2497_KSN-CACA.jpg",
+            "category": "prestasi-siswa",
+            "views_count": 572,
+            "published_at": "2024-05-10 10:00:00"
+        },
+        {
+            "title": "Prestasi Siswa: Juara 3 Karate Internasional (Juara 3 Tingkat Internasional)",
+            "slug": "prestasi-juara-3-karate-internasional",
+            "excerpt": "Alhamdulillah, siswa SMA IT Ishlahul Ummah Prabumulih berhasil meraih prestasi Juara 3 Karate Internasional (Juara 3) dalam ajang yang diselenggarakan oleh RECTOR CUP BUDI LUHUR UNIVERSITY 2022.",
+            "content": "<p>Alhamdulillah, siswa SMA IT Ishlahul Ummah Prabumulih berhasil meraih prestasi Juara 3 Karate Internasional (Juara 3) dalam ajang yang diselenggarakan oleh RECTOR CUP BUDI LUHUR UNIVERSITY 2022.<\/p><p>Ajang ini diselenggarakan pada tahun 8 - 9 JANUARI  2022  tingkat Internasional. Semoga capaian membanggakan ini menjadi motivasi bagi seluruh santri SMA IT Ishum Prabumulih untuk terus berprestasi dan berakhlak mulia.<\/p>",
+            "featured_image": "\/uploads\/ishum\/prestasi_2501_J-3-Karate-Internasional-Rafi.jpg",
+            "category": "prestasi-siswa",
+            "views_count": 712,
+            "published_at": "2024-05-10 10:00:00"
+        },
+        {
+            "title": "Prestasi Siswa: Juara 2 Karate Nasional (Juara 2 Tingkat Nasional)",
+            "slug": "prestasi-juara-2-karate-nasional",
+            "excerpt": "Alhamdulillah, siswa SMA IT Ishlahul Ummah Prabumulih berhasil meraih prestasi Juara 2 Karate Nasional (Juara 2) dalam ajang yang diselenggarakan oleh OPAN KARATE CHAMPIONSHIP SBY CUP XVIII-2022.",
+            "content": "<p>Alhamdulillah, siswa SMA IT Ishlahul Ummah Prabumulih berhasil meraih prestasi Juara 2 Karate Nasional (Juara 2) dalam ajang yang diselenggarakan oleh OPAN KARATE CHAMPIONSHIP SBY CUP XVIII-2022.<\/p><p>Ajang ini diselenggarakan pada tahun 6 - 7 MARET 2022 tingkat Nasional. Semoga capaian membanggakan ini menjadi motivasi bagi seluruh santri SMA IT Ishum Prabumulih untuk terus berprestasi dan berakhlak mulia.<\/p>",
+            "featured_image": "\/uploads\/ishum\/prestasi_2503_J-2-Karate-nasional-Rafi.jpg",
+            "category": "prestasi-siswa",
+            "views_count": 224,
+            "published_at": "2024-05-10 10:00:00"
+        },
+        {
+            "title": "Prestasi Siswa: PORPROV KE XIII SUMSEL CABOR KARATE (Provinsi Tingkat Provinsi Sumatera Selatan)",
+            "slug": "prestasi-porprov-ke-xiii-sumsel-cabor-karate",
+            "excerpt": "Alhamdulillah, siswa SMA IT Ishlahul Ummah Prabumulih berhasil meraih prestasi PORPROV KE XIII SUMSEL CABOR KARATE (Provinsi) dalam ajang yang diselenggarakan oleh KONI : PORPROV KE XIII SUMSEL.",
+            "content": "<p>Alhamdulillah, siswa SMA IT Ishlahul Ummah Prabumulih berhasil meraih prestasi PORPROV KE XIII SUMSEL CABOR KARATE (Provinsi) dalam ajang yang diselenggarakan oleh KONI : PORPROV KE XIII SUMSEL.<\/p><p>Ajang ini diselenggarakan pada tahun 2021 tingkat Provinsi Sumatera Selatan. Semoga capaian membanggakan ini menjadi motivasi bagi seluruh santri SMA IT Ishum Prabumulih untuk terus berprestasi dan berakhlak mulia.<\/p>",
+            "featured_image": "\/uploads\/ishum\/prestasi_2505_porprov-karate-rafi.jpg",
+            "category": "prestasi-siswa",
+            "views_count": 1129,
+            "published_at": "2024-05-10 10:00:00"
+        },
+        {
+            "title": "Prestasi Siswa: SNBT SNPMB 2023 ( Tingkat )",
+            "slug": "prestasi-snbt-snpmb-2023",
+            "excerpt": "Alhamdulillah, siswa SMA IT Ishlahul Ummah Prabumulih berhasil meraih prestasi SNBT SNPMB 2023 () dalam ajang yang diselenggarakan oleh .",
+            "content": "<p>Alhamdulillah, siswa SMA IT Ishlahul Ummah Prabumulih berhasil meraih prestasi SNBT SNPMB 2023 () dalam ajang yang diselenggarakan oleh .<\/p><p>Ajang ini diselenggarakan pada tahun 2023 tingkat . Semoga capaian membanggakan ini menjadi motivasi bagi seluruh santri SMA IT Ishum Prabumulih untuk terus berprestasi dan berakhlak mulia.<\/p>",
+            "featured_image": "\/uploads\/ishum\/prestasi_2694_WhatsApp-Image-2023-06-21-at-16.35.49.jpeg",
+            "category": "prestasi-siswa",
+            "views_count": 215,
+            "published_at": "2024-05-10 10:00:00"
+        },
+        {
+            "title": "Prestasi Siswa: LULUS UM-PTKIN 2023 ( Tingkat )",
+            "slug": "prestasi-lulus-um-ptkin-2023",
+            "excerpt": "Alhamdulillah, siswa SMA IT Ishlahul Ummah Prabumulih berhasil meraih prestasi LULUS UM-PTKIN 2023 () dalam ajang yang diselenggarakan oleh .",
+            "content": "<p>Alhamdulillah, siswa SMA IT Ishlahul Ummah Prabumulih berhasil meraih prestasi LULUS UM-PTKIN 2023 () dalam ajang yang diselenggarakan oleh .<\/p><p>Ajang ini diselenggarakan pada tahun  tingkat . Semoga capaian membanggakan ini menjadi motivasi bagi seluruh santri SMA IT Ishum Prabumulih untuk terus berprestasi dan berakhlak mulia.<\/p>",
+            "featured_image": "\/uploads\/ishum\/prestasi_2714_WhatsApp-Image-2023-08-01-at-10.31.22.jpeg",
+            "category": "prestasi-siswa",
+            "views_count": 207,
+            "published_at": "2024-05-10 10:00:00"
+        },
+        {
+            "title": "Prestasi Siswa: Lulus Seleksi Rapor & USM 2023 ( Tingkat )",
+            "slug": "prestasi-lulus-seleksi-rapor-usm-2023",
+            "excerpt": "Alhamdulillah, siswa SMA IT Ishlahul Ummah Prabumulih berhasil meraih prestasi Lulus Seleksi Rapor & USM 2023 () dalam ajang yang diselenggarakan oleh .",
+            "content": "<p>Alhamdulillah, siswa SMA IT Ishlahul Ummah Prabumulih berhasil meraih prestasi Lulus Seleksi Rapor & USM 2023 () dalam ajang yang diselenggarakan oleh .<\/p><p>Ajang ini diselenggarakan pada tahun  tingkat . Semoga capaian membanggakan ini menjadi motivasi bagi seluruh santri SMA IT Ishum Prabumulih untuk terus berprestasi dan berakhlak mulia.<\/p>",
+            "featured_image": "\/uploads\/ishum\/prestasi_2726_Snapinsta.app_356010529_269433909106678_7752288791437961269_n_1080.jpg",
+            "category": "prestasi-siswa",
+            "views_count": 980,
+            "published_at": "2024-05-10 10:00:00"
+        },
+        {
+            "title": "Prestasi Siswa: LULUS SELEKSI NILAI RAPOR 2023 ( Tingkat )",
+            "slug": "prestasi-lulus-seleksi-nilai-rapor-2023",
+            "excerpt": "Alhamdulillah, siswa SMA IT Ishlahul Ummah Prabumulih berhasil meraih prestasi LULUS SELEKSI NILAI RAPOR 2023 () dalam ajang yang diselenggarakan oleh .",
+            "content": "<p>Alhamdulillah, siswa SMA IT Ishlahul Ummah Prabumulih berhasil meraih prestasi LULUS SELEKSI NILAI RAPOR 2023 () dalam ajang yang diselenggarakan oleh .<\/p><p>Ajang ini diselenggarakan pada tahun  tingkat . Semoga capaian membanggakan ini menjadi motivasi bagi seluruh santri SMA IT Ishum Prabumulih untuk terus berprestasi dan berakhlak mulia.<\/p>",
+            "featured_image": "\/uploads\/ishum\/prestasi_2736_Snapinsta.app_357317424_220882297534043_8050884700143453370_n_1080.jpg",
+            "category": "prestasi-siswa",
+            "views_count": 1044,
+            "published_at": "2024-05-10 10:00:00"
+        },
+        {
+            "title": "Prestasi Siswa: SNBP 2024 ( Tingkat )",
+            "slug": "prestasi-snbp-2024",
+            "excerpt": "Alhamdulillah, siswa SMA IT Ishlahul Ummah Prabumulih berhasil meraih prestasi SNBP 2024 () dalam ajang yang diselenggarakan oleh .",
+            "content": "<p>Alhamdulillah, siswa SMA IT Ishlahul Ummah Prabumulih berhasil meraih prestasi SNBP 2024 () dalam ajang yang diselenggarakan oleh .<\/p><p>Ajang ini diselenggarakan pada tahun  tingkat . Semoga capaian membanggakan ini menjadi motivasi bagi seluruh santri SMA IT Ishum Prabumulih untuk terus berprestasi dan berakhlak mulia.<\/p>",
+            "featured_image": "\/uploads\/ishum\/prestasi_3020_Snapinsta.app_434220171_18054550498566334_4372152882803157098_n_1080.jpg",
+            "category": "prestasi-siswa",
+            "views_count": 1039,
+            "published_at": "2024-05-10 10:00:00"
+        },
+        {
+            "title": "Prestasi Siswa: SNBT 2024 ( Tingkat )",
+            "slug": "prestasi-snbt-2024",
+            "excerpt": "Alhamdulillah, siswa SMA IT Ishlahul Ummah Prabumulih berhasil meraih prestasi SNBT 2024 () dalam ajang yang diselenggarakan oleh .",
+            "content": "<p>Alhamdulillah, siswa SMA IT Ishlahul Ummah Prabumulih berhasil meraih prestasi SNBT 2024 () dalam ajang yang diselenggarakan oleh .<\/p><p>Ajang ini diselenggarakan pada tahun  tingkat . Semoga capaian membanggakan ini menjadi motivasi bagi seluruh santri SMA IT Ishum Prabumulih untuk terus berprestasi dan berakhlak mulia.<\/p>",
+            "featured_image": "\/uploads\/ishum\/prestasi_3334_Feed-IG-smait.zip-85.png",
+            "category": "prestasi-siswa",
+            "views_count": 399,
+            "published_at": "2024-05-10 10:00:00"
+        },
+        {
+            "title": "Prestasi Siswa: Wisuda Strata 2 ( Tingkat )",
+            "slug": "prestasi-wisuda-strata-2",
+            "excerpt": "Alhamdulillah, siswa SMA IT Ishlahul Ummah Prabumulih berhasil meraih prestasi Wisuda Strata 2 () dalam ajang yang diselenggarakan oleh .",
+            "content": "<p>Alhamdulillah, siswa SMA IT Ishlahul Ummah Prabumulih berhasil meraih prestasi Wisuda Strata 2 () dalam ajang yang diselenggarakan oleh .<\/p><p>Ajang ini diselenggarakan pada tahun  tingkat . Semoga capaian membanggakan ini menjadi motivasi bagi seluruh santri SMA IT Ishum Prabumulih untuk terus berprestasi dan berakhlak mulia.<\/p>",
+            "featured_image": "\/uploads\/ishum\/prestasi_3513_IMG-20240928-WA0038.jpg",
+            "category": "prestasi-siswa",
+            "views_count": 505,
+            "published_at": "2024-05-10 10:00:00"
+        },
+        {
+            "title": "Prestasi Siswa: Lomba Scout Creativity II Se-Kota Prabumulih ( Tingkat )",
+            "slug": "prestasi-lomba-scout-creativity-ii-se-kota-prabumulih",
+            "excerpt": "Alhamdulillah, siswa SMA IT Ishlahul Ummah Prabumulih berhasil meraih prestasi Lomba Scout Creativity II Se-Kota Prabumulih () dalam ajang yang diselenggarakan oleh .",
+            "content": "<p>Alhamdulillah, siswa SMA IT Ishlahul Ummah Prabumulih berhasil meraih prestasi Lomba Scout Creativity II Se-Kota Prabumulih () dalam ajang yang diselenggarakan oleh .<\/p><p>Ajang ini diselenggarakan pada tahun  tingkat . Semoga capaian membanggakan ini menjadi motivasi bagi seluruh santri SMA IT Ishum Prabumulih untuk terus berprestasi dan berakhlak mulia.<\/p>",
+            "featured_image": "\/uploads\/ishum\/prestasi_3516_IMG-20240928-WA0032-1-scaled.jpg",
+            "category": "prestasi-siswa",
+            "views_count": 200,
+            "published_at": "2024-05-10 10:00:00"
+        },
+        {
+            "title": "Prestasi Siswa: Juara 1 MHQ (Juz 30) (Juara 1 Tingkat Kota)",
+            "slug": "prestasi-juara-1-mhq-juz-30",
+            "excerpt": "Alhamdulillah, siswa SMA IT Ishlahul Ummah Prabumulih berhasil meraih prestasi Juara 1 MHQ (Juz 30) (Juara 1) dalam ajang yang diselenggarakan oleh Akademi Da'wah Kota Prabumulih.",
+            "content": "<p>Alhamdulillah, siswa SMA IT Ishlahul Ummah Prabumulih berhasil meraih prestasi Juara 1 MHQ (Juz 30) (Juara 1) dalam ajang yang diselenggarakan oleh Akademi Da'wah Kota Prabumulih.<\/p><p>Ajang ini diselenggarakan pada tahun 08.00 tingkat Kota. Semoga capaian membanggakan ini menjadi motivasi bagi seluruh santri SMA IT Ishum Prabumulih untuk terus berprestasi dan berakhlak mulia.<\/p>",
+            "featured_image": "\/uploads\/ishum\/prestasi_3656_41_20250108_141948_0004.png",
+            "category": "prestasi-siswa",
+            "views_count": 562,
+            "published_at": "2024-05-10 10:00:00"
+        },
+        {
+            "title": "Prestasi Siswa: Juara 1 MTQ (Cabang 30 Juz) (Juara 1 Tingkat Kota)",
+            "slug": "prestasi-juara-1-mtq-cabang-30-juz",
+            "excerpt": "Alhamdulillah, siswa SMA IT Ishlahul Ummah Prabumulih berhasil meraih prestasi Juara 1 MTQ (Cabang 30 Juz) (Juara 1) dalam ajang yang diselenggarakan oleh LPTQ Prabumulih.",
+            "content": "<p>Alhamdulillah, siswa SMA IT Ishlahul Ummah Prabumulih berhasil meraih prestasi Juara 1 MTQ (Cabang 30 Juz) (Juara 1) dalam ajang yang diselenggarakan oleh LPTQ Prabumulih.<\/p><p>Ajang ini diselenggarakan pada tahun  tingkat Kota. Semoga capaian membanggakan ini menjadi motivasi bagi seluruh santri SMA IT Ishum Prabumulih untuk terus berprestasi dan berakhlak mulia.<\/p>",
+            "featured_image": "\/uploads\/ishum\/prestasi_3658_19_20250108_141947_0000.png",
+            "category": "prestasi-siswa",
+            "views_count": 340,
+            "published_at": "2024-05-10 10:00:00"
+        },
+        {
+            "title": "Prestasi Siswa: Juara 2 MHQ (Juara 2 Tingkat Provinsi Sumatera Selatan)",
+            "slug": "prestasi-juara-2-mhq",
+            "excerpt": "Alhamdulillah, siswa SMA IT Ishlahul Ummah Prabumulih berhasil meraih prestasi Juara 2 MHQ (Juara 2) dalam ajang yang diselenggarakan oleh JSIT Wilayah Sumatera Selatan.",
+            "content": "<p>Alhamdulillah, siswa SMA IT Ishlahul Ummah Prabumulih berhasil meraih prestasi Juara 2 MHQ (Juara 2) dalam ajang yang diselenggarakan oleh JSIT Wilayah Sumatera Selatan.<\/p><p>Ajang ini diselenggarakan pada tahun  tingkat Provinsi Sumatera Selatan. Semoga capaian membanggakan ini menjadi motivasi bagi seluruh santri SMA IT Ishum Prabumulih untuk terus berprestasi dan berakhlak mulia.<\/p>",
+            "featured_image": "\/uploads\/ishum\/prestasi_3660_31_20250108_141948_0002.png",
+            "category": "prestasi-siswa",
+            "views_count": 1086,
+            "published_at": "2024-05-10 10:00:00"
+        },
+        {
+            "title": "Prestasi Siswa: Setoran Hafalan 30 Juz Riwayat Hafsh ( Tingkat )",
+            "slug": "prestasi-setoran-hafalan-30-juz-riwayat-hafsh",
+            "excerpt": "Alhamdulillah, siswa SMA IT Ishlahul Ummah Prabumulih berhasil meraih prestasi Setoran Hafalan 30 Juz Riwayat Hafsh () dalam ajang yang diselenggarakan oleh .",
+            "content": "<p>Alhamdulillah, siswa SMA IT Ishlahul Ummah Prabumulih berhasil meraih prestasi Setoran Hafalan 30 Juz Riwayat Hafsh () dalam ajang yang diselenggarakan oleh .<\/p><p>Ajang ini diselenggarakan pada tahun  tingkat . Semoga capaian membanggakan ini menjadi motivasi bagi seluruh santri SMA IT Ishum Prabumulih untuk terus berprestasi dan berakhlak mulia.<\/p>",
+            "featured_image": "\/uploads\/ishum\/prestasi_3811_Feed-IG-smait_20250326_132427_0000.png",
+            "category": "prestasi-siswa",
+            "views_count": 610,
+            "published_at": "2024-05-10 10:00:00"
+        },
+        {
+            "title": "Prestasi Siswa: Beasiswa Hafizah Hafizh Pendidikan Kedokteran UII Yogyakarta ( Tingkat )",
+            "slug": "prestasi-beasiswa-hafizah-hafizh-pendidikan-kedokteran-uii-yogyakarta",
+            "excerpt": "Alhamdulillah, siswa SMA IT Ishlahul Ummah Prabumulih berhasil meraih prestasi Beasiswa Hafizah Hafizh Pendidikan Kedokteran UII Yogyakarta () dalam ajang yang diselenggarakan oleh .",
+            "content": "<p>Alhamdulillah, siswa SMA IT Ishlahul Ummah Prabumulih berhasil meraih prestasi Beasiswa Hafizah Hafizh Pendidikan Kedokteran UII Yogyakarta () dalam ajang yang diselenggarakan oleh .<\/p><p>Ajang ini diselenggarakan pada tahun  tingkat . Semoga capaian membanggakan ini menjadi motivasi bagi seluruh santri SMA IT Ishum Prabumulih untuk terus berprestasi dan berakhlak mulia.<\/p>",
+            "featured_image": "\/uploads\/ishum\/prestasi_3813_PPDB-SMAIT-ISHUM-21-x-29.7-cm-1080-x-1350-piksel_20250330_144819_0000.png",
+            "category": "prestasi-siswa",
+            "views_count": 414,
+            "published_at": "2024-05-10 10:00:00"
+        },
+        {
+            "title": "Prestasi Siswa: Tsabitah Aulia meraih Juara 3 Tingkat Provinsi Hifdzil Qur'an (Juara 3 Tingkat Provinsi Sumatera Selatan)",
+            "slug": "prestasi-3823",
+            "excerpt": "Alhamdulillah, siswa SMA IT Ishlahul Ummah Prabumulih berhasil meraih prestasi Tsabitah Aulia meraih Juara 3 Tingkat Provinsi Hifdzil Qur'an (Juara 3) dalam ajang yang diselenggarakan oleh LPTQ Sumsel.",
+            "content": "<p>Alhamdulillah, siswa SMA IT Ishlahul Ummah Prabumulih berhasil meraih prestasi Tsabitah Aulia meraih Juara 3 Tingkat Provinsi Hifdzil Qur'an (Juara 3) dalam ajang yang diselenggarakan oleh LPTQ Sumsel.<\/p><p>Ajang ini diselenggarakan pada tahun  tingkat Provinsi Sumatera Selatan. Semoga capaian membanggakan ini menjadi motivasi bagi seluruh santri SMA IT Ishum Prabumulih untuk terus berprestasi dan berakhlak mulia.<\/p>",
+            "featured_image": "\/uploads\/ishum\/prestasi_3823_IMG-20250428-WA0115-scaled.jpg",
+            "category": "prestasi-siswa",
+            "views_count": 392,
+            "published_at": "2024-05-10 10:00:00"
+        }
+    ],
+    "agendas": [
+        {
+            "title": "Siswa menjadi Pelopor Peringatan HGN 2022",
+            "slug": "lomba-memperingati-hari-guru",
+            "content": "<p>Agenda kegiatan resmi civitas akademika SMA IT Ishlahul Ummah Prabumulih: Siswa menjadi Pelopor Peringatan HGN 2022.<\/p>",
+            "location": "Kampus SMA IT Ishlahul Ummah Prabumulih",
+            "event_date": "2022-11-24 08:53:52",
+            "status": "publish",
+            "featured_image": "https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2022\/03\/IMG-20221124-WA0021.jpg"
+        },
+        {
+            "title": "Rujak Party BPI meriahkan HGN 2022",
+            "slug": "rujak-party-bpi",
+            "content": "<p>Agenda kegiatan resmi civitas akademika SMA IT Ishlahul Ummah Prabumulih: Rujak Party BPI meriahkan HGN 2022.<\/p>",
+            "location": "Kampus SMA IT Ishlahul Ummah Prabumulih",
+            "event_date": "2022-11-25 08:59:40",
+            "status": "publish",
+            "featured_image": "https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2022\/03\/20221125_090554-scaled.jpg"
+        },
+        {
+            "title": "PPDB T.A. 2022\/2023 Telah Dibuka",
+            "slug": "ppdb-t-a-2022-2023-telah-dibuka",
+            "content": "<p>Agenda kegiatan resmi civitas akademika SMA IT Ishlahul Ummah Prabumulih: PPDB T.A. 2022\/2023 Telah Dibuka.<\/p>",
+            "location": "Kampus SMA IT Ishlahul Ummah Prabumulih",
+            "event_date": "2022-03-31 09:06:26",
+            "status": "publish",
+            "featured_image": "https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2022\/11\/photo_2022-11-14_11-55-12-3.jpg"
+        },
+        {
+            "title": "PAS Ganjil TA. 22\/23",
+            "slug": "pas-ganjil-ta-22-23",
+            "content": "<p>Agenda kegiatan resmi civitas akademika SMA IT Ishlahul Ummah Prabumulih: PAS Ganjil TA. 22\/23.<\/p>",
+            "location": "Kampus SMA IT Ishlahul Ummah Prabumulih",
+            "event_date": "2022-12-01 10:10:27",
+            "status": "publish",
+            "featured_image": "https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2022\/12\/WhatsApp-Image-2022-12-01-at-8.13.34-AM.jpeg"
+        },
+        {
+            "title": "Future Plan",
+            "slug": "future-plan",
+            "content": "<p>Agenda kegiatan resmi civitas akademika SMA IT Ishlahul Ummah Prabumulih: Future Plan.<\/p>",
+            "location": "Kampus SMA IT Ishlahul Ummah Prabumulih",
+            "event_date": "2023-02-09 13:41:14",
+            "status": "publish",
+            "featured_image": "https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/02\/IMG-20230121-WA0055.jpg"
+        },
+        {
+            "title": "Renang",
+            "slug": "berenang",
+            "content": "<p>Agenda kegiatan resmi civitas akademika SMA IT Ishlahul Ummah Prabumulih: Renang.<\/p>",
+            "location": "Kampus SMA IT Ishlahul Ummah Prabumulih",
+            "event_date": "2023-02-09 13:56:10",
+            "status": "publish",
+            "featured_image": "https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/02\/IMG-20230119-WA0015.jpg"
+        },
+        {
+            "title": "Munaqosah Tahsin Tahfidhz Qur'an Kelas Akhir",
+            "slug": "munaqosah-tahsin-tahfidhz-quran-kelas-akhir",
+            "content": "<p>Agenda kegiatan resmi civitas akademika SMA IT Ishlahul Ummah Prabumulih: Munaqosah Tahsin Tahfidhz Qur'an Kelas Akhir.<\/p>",
+            "location": "Kampus SMA IT Ishlahul Ummah Prabumulih",
+            "event_date": "2023-02-10 10:34:58",
+            "status": "publish",
+            "featured_image": "https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/02\/IMG-20221121-WA0031.jpg"
+        },
+        {
+            "title": "PTS Kelas 10 & 11. PAS 12",
+            "slug": "pts-kelas-10-11-pas-12",
+            "content": "<p>Agenda kegiatan resmi civitas akademika SMA IT Ishlahul Ummah Prabumulih: PTS Kelas 10 & 11. PAS 12.<\/p>",
+            "location": "Kampus SMA IT Ishlahul Ummah Prabumulih",
+            "event_date": "2023-02-10 10:46:41",
+            "status": "publish",
+            "featured_image": "https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/02\/IMG-20221202-WA0008.jpg"
+        },
+        {
+            "title": "Ramadhan Karem",
+            "slug": "ramadhan-karem",
+            "content": "<p>Agenda kegiatan resmi civitas akademika SMA IT Ishlahul Ummah Prabumulih: Ramadhan Karem.<\/p>",
+            "location": "Kampus SMA IT Ishlahul Ummah Prabumulih",
+            "event_date": "2023-03-09 14:00:20",
+            "status": "publish",
+            "featured_image": "https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/03\/IMG-20230119-WA0024.jpg"
+        },
+        {
+            "title": "WISUDAH TAHFIDZH, TAHSIN DAN PERPISAHAN KELAS AKHIR SMA IT ISHLAHUL UMMAH PRABUMULIH",
+            "slug": "wisudah-tahfidzh-tahsin-dan-perpisahan-kelas-akhir-sma-it-ishlahul-ummah-prabumulih",
+            "content": "<p>Agenda kegiatan resmi civitas akademika SMA IT Ishlahul Ummah Prabumulih: WISUDAH TAHFIDZH, TAHSIN DAN PERPISAHAN KELAS AKHIR SMA IT ISHLAHUL UMMAH PRABUMULIH.<\/p>",
+            "location": "Kampus SMA IT Ishlahul Ummah Prabumulih",
+            "event_date": "2023-05-03 09:40:44",
+            "status": "publish",
+            "featured_image": "https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/05\/WhatsApp-Image-2023-04-21-at-18.22.17.jpeg"
+        },
+        {
+            "title": "Manasik Haji",
+            "slug": "manasik-haji",
+            "content": "<p>Agenda kegiatan resmi civitas akademika SMA IT Ishlahul Ummah Prabumulih: Manasik Haji.<\/p>",
+            "location": "Kampus SMA IT Ishlahul Ummah Prabumulih",
+            "event_date": "2023-06-11 21:04:47",
+            "status": "publish",
+            "featured_image": "\/uploads\/campus-robbani.jpg"
+        },
+        {
+            "title": "Rapat Komite + Bagi Raport",
+            "slug": "rapat-komite-bagi-raport",
+            "content": "<p>Agenda kegiatan resmi civitas akademika SMA IT Ishlahul Ummah Prabumulih: Rapat Komite + Bagi Raport.<\/p>",
+            "location": "Kampus SMA IT Ishlahul Ummah Prabumulih",
+            "event_date": "2023-06-11 21:12:27",
+            "status": "publish",
+            "featured_image": "https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/06\/WhatsApp-Image-2023-06-05-at-07.56.06.jpeg"
+        }
+    ],
+    "pengumumen": [
+        {
+            "title": "PAS Ganjil TA. 2022\/2023",
+            "slug": "pas-ganjil-2022-2023",
+            "content": "<p>Pengumuman resmi dari manajemen SMA IT Ishlahul Ummah Prabumulih terkait PAS Ganjil TA. 2022\/2023.<\/p>",
+            "status": "publish",
+            "featured_image": "https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2022\/03\/20221129_085235-scaled.jpg"
+        },
+        {
+            "title": "PPDB T.A. 2024\/2025 Telah Dibuka",
+            "slug": "ppdb-t-a-2024-2025-telah-dibuka",
+            "content": "<p>Pengumuman resmi dari manajemen SMA IT Ishlahul Ummah Prabumulih terkait PPDB T.A. 2024\/2025 Telah Dibuka.<\/p>",
+            "status": "publish",
+            "featured_image": "https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/11\/smaitishumpbm.sch_.id_.png"
+        },
+        {
+            "title": "LULUS MUNAQOSAH 2023",
+            "slug": "lolos-munaqosah-2023",
+            "content": "<p>Pengumuman resmi dari manajemen SMA IT Ishlahul Ummah Prabumulih terkait LULUS MUNAQOSAH 2023.<\/p>",
+            "status": "publish",
+            "featured_image": "https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/11\/WhatsApp-Image-2023-11-21-at-20.16.27.jpeg"
+        },
+        {
+            "title": "LULUS MUNAQOSAH 2023",
+            "slug": "lulus-munaqosah-2023",
+            "content": "<p>Pengumuman resmi dari manajemen SMA IT Ishlahul Ummah Prabumulih terkait LULUS MUNAQOSAH 2023.<\/p>",
+            "status": "publish",
+            "featured_image": "https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/11\/WhatsApp-Image-2023-11-21-at-20.07.121.jpeg"
+        },
+        {
+            "title": "LULUS MUNAQOSAH 2023",
+            "slug": "lulus-munaqosah-2023-2",
+            "content": "<p>Pengumuman resmi dari manajemen SMA IT Ishlahul Ummah Prabumulih terkait LULUS MUNAQOSAH 2023.<\/p>",
+            "status": "publish",
+            "featured_image": "https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2023\/11\/WhatsApp-Image-2023-11-21-at-20.07.12.jpeg"
+        },
+        {
+            "title": "LULUS MUNAQOSAH AKHIR 2024",
+            "slug": "lulus-munaqosah-akhir-2024",
+            "content": "<p>Pengumuman resmi dari manajemen SMA IT Ishlahul Ummah Prabumulih terkait LULUS MUNAQOSAH AKHIR 2024.<\/p>",
+            "status": "publish",
+            "featured_image": "\/uploads\/campus-robbani.jpg"
+        },
+        {
+            "title": "JADWAL PRAKTIK & MUNAQOSAH SEMESTER GENAP TP. 23\/24",
+            "slug": "jadwal-praktik-munaqosah-semester-genap-tp-23-24",
+            "content": "<p>Pengumuman resmi dari manajemen SMA IT Ishlahul Ummah Prabumulih terkait JADWAL PRAKTIK & MUNAQOSAH SEMESTER GENAP TP. 23\/24.<\/p>",
+            "status": "publish",
+            "featured_image": "https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2024\/05\/jadwal-ujian-praktik-genap.png"
+        },
+        {
+            "title": "JADWAL PESERTA MUNAQOSAH TAHSIN & TAHFIDZH QUR'AN",
+            "slug": "jadwal-peserta-munaqosah-tahsin-tahfidzh-quran",
+            "content": "<p>Pengumuman resmi dari manajemen SMA IT Ishlahul Ummah Prabumulih terkait JADWAL PESERTA MUNAQOSAH TAHSIN & TAHFIDZH QUR'AN.<\/p>",
+            "status": "publish",
+            "featured_image": "https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2024\/05\/WhatsApp-Image-2024-05-22-at-08.31.061.jpeg"
+        },
+        {
+            "title": "JADWAL SAS GENAP TP. 2023\/2024",
+            "slug": "jadwal-sas-genap-tp-2023-2024",
+            "content": "<p>Pengumuman resmi dari manajemen SMA IT Ishlahul Ummah Prabumulih terkait JADWAL SAS GENAP TP. 2023\/2024.<\/p>",
+            "status": "publish",
+            "featured_image": "https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2024\/05\/jadwal-sas.png"
+        },
+        {
+            "title": "Hasil SAS Bahasa Arab Kelas X",
+            "slug": "hasil-sas-bahasa-arab-kelas-x",
+            "content": "<p>Pengumuman resmi dari manajemen SMA IT Ishlahul Ummah Prabumulih terkait Hasil SAS Bahasa Arab Kelas X.<\/p>",
+            "status": "publish",
+            "featured_image": "https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2024\/06\/IMG-20240604-WA0012.jpg"
+        },
+        {
+            "title": "HASIL SAS BAHASA ARAB KELAS XI",
+            "slug": "hasil-sas-bahasa-arab-kelas-xi",
+            "content": "<p>Pengumuman resmi dari manajemen SMA IT Ishlahul Ummah Prabumulih terkait HASIL SAS BAHASA ARAB KELAS XI.<\/p>",
+            "status": "publish",
+            "featured_image": "https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2024\/06\/IMG-20240604-WA0011.jpg"
+        },
+        {
+            "title": "HASIL SAS SOSIOLOGI KELAS X",
+            "slug": "hasil-sas-sosiologi-kelas-x",
+            "content": "<p>Pengumuman resmi dari manajemen SMA IT Ishlahul Ummah Prabumulih terkait HASIL SAS SOSIOLOGI KELAS X.<\/p>",
+            "status": "publish",
+            "featured_image": "https:\/\/smaitishumpbm.sch.id\/wp-content\/uploads\/2024\/06\/remed-sos-X.png"
+        }
+    ]
+}

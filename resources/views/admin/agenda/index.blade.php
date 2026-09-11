@@ -21,19 +21,19 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 <div>
                     <label class="block text-[11px] font-bold text-slate-600 mb-1">Nama Agenda Kegiatan *</label>
-                    <input type="text" name="title" required placeholder="Contoh: Wisuda Tahfidz Angkatan X" class="w-full bg-white text-xs text-slate-800 rounded-xl px-4 py-2.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0d6b38]">
+                    <input type="text" name="title" required placeholder="Contoh: Wisuda Tahfidz Angkatan X" class="w-full bg-white text-xs text-slate-800 rounded-xl px-4 py-2.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
                 </div>
                 <div>
                     <label class="block text-[11px] font-bold text-slate-600 mb-1">Tanggal Pelaksanaan *</label>
-                    <input type="date" name="event_date" required class="w-full bg-white text-xs text-slate-800 rounded-xl px-4 py-2.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0d6b38]">
+                    <input type="date" name="event_date" required class="w-full bg-white text-xs text-slate-800 rounded-xl px-4 py-2.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
                 </div>
                 <div>
                     <label class="block text-[11px] font-bold text-slate-600 mb-1">Lokasi Tempat *</label>
-                    <input type="text" name="location" required placeholder="Aula Utama Kampus Robbani" class="w-full bg-white text-xs text-slate-800 rounded-xl px-4 py-2.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0d6b38]">
+                    <input type="text" name="location" required placeholder="Aula Utama Kampus Ishum" class="w-full bg-white text-xs text-slate-800 rounded-xl px-4 py-2.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
                 </div>
                 <div>
                     <label class="block text-[11px] font-bold text-slate-600 mb-1">Status Agenda</label>
-                    <select name="status" class="w-full bg-white text-xs text-slate-800 rounded-xl px-4 py-2.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0d6b38]">
+                    <select name="status" class="w-full bg-white text-xs text-slate-800 rounded-xl px-4 py-2.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
                         <option value="upcoming">Akan Datang</option>
                         <option value="ongoing">Sedang Berlangsung</option>
                         <option value="completed">Selesai</option>
@@ -107,11 +107,11 @@
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div class="sm:col-span-2">
                     <label class="block text-[11px] font-bold text-slate-600 mb-1">Judul Pengumuman *</label>
-                    <input type="text" name="title" required placeholder="Contoh: Pengumuman Seleksi Penerimaan Santri Baru (PPDB)" class="w-full bg-white text-xs text-slate-800 rounded-xl px-4 py-2.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0d6b38]">
+                    <input type="text" name="title" required placeholder="Contoh: Pengumuman Seleksi Penerimaan Santri Baru (PPDB)" class="w-full bg-white text-xs text-slate-800 rounded-xl px-4 py-2.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
                 </div>
                 <div>
                     <label class="block text-[11px] font-bold text-slate-600 mb-1">Status Publikasi</label>
-                    <select name="status" class="w-full bg-white text-xs text-slate-800 rounded-xl px-4 py-2.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0d6b38]">
+                    <select name="status" class="w-full bg-white text-xs text-slate-800 rounded-xl px-4 py-2.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
                         <option value="publish">Publikasikan Langsung</option>
                         <option value="draft">Draft</option>
                     </select>
@@ -119,10 +119,10 @@
             </div>
             <div>
                 <label class="block text-[11px] font-bold text-slate-600 mb-1">Isi Pesan Pengumuman *</label>
-                <textarea name="content" required rows="3" placeholder="Tuliskan detail rincian pengumuman di sini..." class="w-full bg-white text-xs text-slate-800 rounded-xl p-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0d6b38]"></textarea>
+                <textarea name="content" required rows="3" placeholder="Tuliskan detail rincian pengumuman di sini..." class="w-full bg-white text-xs text-slate-800 rounded-xl p-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]"></textarea>
             </div>
             <div class="flex justify-end">
-                <button type="submit" class="bg-[#0d6b38] hover:bg-[#094d28] text-white font-bold text-xs px-5 py-2.5 rounded-xl shadow-md transition flex items-center space-x-2 cursor-pointer">
+                <button type="submit" class="bg-[#00913e] hover:bg-[#094d28] text-white font-bold text-xs px-5 py-2.5 rounded-xl shadow-md transition flex items-center space-x-2 cursor-pointer">
                     <i class="fa-solid fa-bullhorn"></i>
                     <span>Terbitkan Pengumuman</span>
                 </button>

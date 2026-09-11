@@ -19,12 +19,12 @@
         <form action="{{ route('admin.media.photo.store') }}" method="POST" enctype="multipart/form-data" class="bg-slate-50 p-5 rounded-2xl border border-slate-200/80 flex flex-col md:flex-row items-center gap-4">
             @csrf
             <div class="w-full md:w-1/3">
-                <input type="text" name="title" required placeholder="Judul / Keterangan Foto..." class="w-full bg-white text-xs text-slate-800 rounded-xl px-4 py-2.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0d6b38]">
+                <input type="text" name="title" required placeholder="Judul / Keterangan Foto..." class="w-full bg-white text-xs text-slate-800 rounded-xl px-4 py-2.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
             </div>
             <div class="w-full md:w-1/2">
-                <input type="file" name="image" required accept="image/*" class="w-full text-xs text-slate-600 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-[#0d6b38] file:text-white hover:file:bg-[#094d28]">
+                <input type="file" name="image" required accept="image/*" class="w-full text-xs text-slate-600 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-[#00913e] file:text-white hover:file:bg-[#094d28]">
             </div>
-            <button type="submit" class="w-full md:w-auto bg-[#0d6b38] hover:bg-[#094d28] text-white font-bold text-xs px-6 py-2.5 rounded-xl shadow-md transition flex items-center justify-center space-x-2 flex-shrink-0 cursor-pointer">
+            <button type="submit" class="w-full md:w-auto bg-[#00913e] hover:bg-[#094d28] text-white font-bold text-xs px-6 py-2.5 rounded-xl shadow-md transition flex items-center justify-center space-x-2 flex-shrink-0 cursor-pointer">
                 <i class="fa-solid fa-upload"></i>
                 <span>Unggah Foto</span>
             </button>
@@ -61,7 +61,7 @@
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-100">
             <div>
                 <h2 class="text-lg font-black text-slate-800">Video YouTube Resmi</h2>
-                <p class="text-xs text-slate-500 mt-0.5">Tambah tayangan video resmi dari channel YouTube SMA IT Plus Robbani.</p>
+                <p class="text-xs text-slate-500 mt-0.5">Tambah tayangan video resmi dari channel YouTube SMA IT Ishlahul Ummah Prabumulih.</p>
             </div>
         </div>
 
@@ -69,12 +69,12 @@
         <form action="{{ route('admin.media.video.store') }}" method="POST" class="bg-slate-50 p-5 rounded-2xl border border-slate-200/80 flex flex-col md:flex-row items-center gap-4">
             @csrf
             <div class="w-full md:w-1/3">
-                <input type="text" name="title" required placeholder="Judul Video..." class="w-full bg-white text-xs text-slate-800 rounded-xl px-4 py-2.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0d6b38]">
+                <input type="text" name="title" required placeholder="Judul Video..." class="w-full bg-white text-xs text-slate-800 rounded-xl px-4 py-2.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
             </div>
             <div class="w-full md:w-1/2">
-                <input type="url" name="youtube_url" required placeholder="https://www.youtube.com/watch?v=..." class="w-full bg-white text-xs text-slate-800 rounded-xl px-4 py-2.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0d6b38]">
+                <input type="url" name="youtube_url" required placeholder="https://www.youtube.com/watch?v=..." class="w-full bg-white text-xs text-slate-800 rounded-xl px-4 py-2.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
             </div>
-            <button type="submit" class="w-full md:w-auto bg-[#0d6b38] hover:bg-[#094d28] text-white font-bold text-xs px-6 py-2.5 rounded-xl shadow-md transition flex items-center justify-center space-x-2 flex-shrink-0 cursor-pointer">
+            <button type="submit" class="w-full md:w-auto bg-[#00913e] hover:bg-[#094d28] text-white font-bold text-xs px-6 py-2.5 rounded-xl shadow-md transition flex items-center justify-center space-x-2 flex-shrink-0 cursor-pointer">
                 <i class="fa-brands fa-youtube"></i>
                 <span>Tambah Video</span>
             </button>

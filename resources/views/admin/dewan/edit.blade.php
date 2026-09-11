@@ -33,17 +33,17 @@
 
                 <div>
                     <label for="fraction" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Bidang Studi / Tugas Tambahan</label>
-                    <input type="text" name="fraction" id="fraction" value="{{ old('fraction', $dewan->fraction) }}" class="w-full bg-slate-50 text-xs text-slate-800 rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0d6b38] transition">
+                    <input type="text" name="fraction" id="fraction" value="{{ old('fraction', $dewan->fraction) }}" class="w-full bg-slate-50 text-xs text-slate-800 rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00913e] transition">
                 </div>
             </div>
 
             <div>
                 <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Foto Tenaga Pendidik Saat Ini</label>
                 <div class="flex items-center space-x-4 mb-3">
-                    <img src="{{ $dewan->photo }}" alt="{{ $dewan->name }}" class="w-16 h-16 rounded-xl object-cover border border-slate-200 shadow-xs" onerror="this.src='/uploads/logo-robbani-emblem.svg'">
+                    <img src="{{ $dewan->photo }}" alt="{{ $dewan->name }}" class="w-16 h-16 rounded-xl object-cover border border-slate-200 shadow-xs" onerror="this.src='/uploads/logo-ishum-square.png'">
                     <span class="text-xs text-slate-400 font-mono">{{ $dewan->photo }}</span>
                 </div>
-                <input type="file" name="photo" id="photo" accept="image/*" class="w-full text-xs text-slate-600 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-[#0d6b38] file:text-white hover:file:bg-[#094d28]">
+                <input type="file" name="photo" id="photo" accept="image/*" class="w-full text-xs text-slate-600 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-[#00913e] file:text-white hover:file:bg-[#094d28]">
                 <p class="text-[11px] text-slate-400 mt-1">Unggah file baru jika ingin mengganti foto.</p>
                 @error('photo') <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span> @enderror
             </div>

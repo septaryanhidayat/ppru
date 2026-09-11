@@ -1,32 +1,32 @@
 @extends('layouts.frontend')
 
-@section('title', 'Infaq Pembangunan & Beasiswa Pendidikan - SMA IT Plus Robbani')
-@section('meta_description', 'Salurkan infaq pembangunan sarana laboratorium sains, asrama santri, dan beasiswa pendidikan dhuafa berprestasi melalui rekening resmi SMA IT Plus Robbani.')
+@section('title', 'Infaq Pembangunan & Beasiswa Pendidikan - SMA IT Ishlahul Ummah Prabumulih')
+@section('meta_description', 'Salurkan infaq pembangunan sarana laboratorium sains, asrama santri, dan beasiswa pendidikan dhuafa berprestasi melalui rekening resmi SMA IT Ishlahul Ummah Prabumulih.')
 
 @section('content')
 @php
     $bank1Name = $siteSettings['donation_bank_1_name'] ?? 'Bank Sumsel Babel Syariah';
     $bank1Code = $siteSettings['donation_bank_1_code'] ?? '120';
     $bank1Rek = trim($siteSettings['donation_bank_1_rekening'] ?? '');
-    $bank1Holder = $siteSettings['donation_bank_1_holder'] ?? 'YAYASAN ROBBANI OGAN ILIR';
+    $bank1Holder = $siteSettings['donation_bank_1_holder'] ?? 'YAYASAN ISHLAHUL UMMAH PRABUMULIH';
 
     $bank2Name = $siteSettings['donation_bank_2_name'] ?? 'Bank Syariah Indonesia (BSI)';
     $bank2Code = $siteSettings['donation_bank_2_code'] ?? '451';
     $bank2Rek = trim($siteSettings['donation_bank_2_rekening'] ?? '');
-    $bank2Holder = $siteSettings['donation_bank_2_holder'] ?? 'SMA IT PLUS ROBBANI INDRALAYA';
+    $bank2Holder = $siteSettings['donation_bank_2_holder'] ?? 'SMA IT ISHLAHUL UMMAH PRABUMULIH';
 
-    $confirmPhone = !empty($siteSettings['donation_confirm_phone']) ? $siteSettings['donation_confirm_phone'] : ($siteSettings['contact_phone'] ?? '082177889900');
+    $confirmPhone = !empty($siteSettings['donation_confirm_phone']) ? $siteSettings['donation_confirm_phone'] : ($siteSettings['contact_phone'] ?? '082182680647');
     $cleanWa = preg_replace('/[^0-9]/', '', $confirmPhone);
     if (str_starts_with($cleanWa, '0')) {
         $cleanWa = '62' . substr($cleanWa, 1);
     }
-    $confirmText = urlencode("Assalamu'alaikum Bendahara SMA IT Plus Robbani, saya telah menyalurkan infaq / donasi pendidikan untuk kemaslahatan sekolah.");
+    $confirmText = urlencode("Assalamu'alaikum Bendahara SMA IT Ishlahul Ummah Prabumulih, saya telah menyalurkan infaq / donasi pendidikan untuk kemaslahatan sekolah.");
 @endphp
 
 {{-- HERO HEADER ELEGAN --}}
-<div class="relative bg-gradient-to-br from-emerald-950 via-[#0d6b38] to-emerald-900 text-white py-14 sm:py-20 overflow-hidden">
+<div class="relative bg-gradient-to-br from-emerald-950 via-[#00913e] to-emerald-900 text-white py-14 sm:py-20 overflow-hidden">
     {{-- Background Pattern --}}
-    <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#f97316_1px,transparent_1px)] [background-size:20px_20px] pointer-events-none"></div>
+    <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#da251c_1px,transparent_1px)] [background-size:20px_20px] pointer-events-none"></div>
     <div class="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-orange-500/20 blur-3xl pointer-events-none"></div>
     <div class="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-amber-500/15 blur-3xl pointer-events-none"></div>
 
@@ -41,10 +41,10 @@
                 <i class="fa-solid fa-hand-holding-heart mr-2"></i> Infaq & Shadaqah Jariyah
             </span>
             <h1 class="text-3xl sm:text-5xl font-black tracking-tight leading-tight">
-                Infaq Pembangunan & <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-orange-300 to-amber-200">Beasiswa Robbani</span>
+                Infaq Pembangunan & <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-orange-300 to-amber-200">Beasiswa Ishum</span>
             </h1>
             <p class="text-sm sm:text-base text-emerald-100 mt-4 leading-relaxed font-light">
-                Mari bergotong royong membangun sarana laboratorium riset modern, masjid kampus, fasilitas asrama tahfidz, dan program beasiswa bagi santri berprestasi di SMA IT Plus Robbani Indralaya Ogan Ilir.
+                Mari bergotong royong membangun sarana laboratorium riset modern, masjid kampus, fasilitas asrama tahfidz, dan program beasiswa bagi santri berprestasi di SMA Islam Terpadu Ishlahul Ummah Prabumulih.
             </p>
         </div>
     </div>
@@ -57,7 +57,7 @@
         <p class="text-sm sm:text-base text-gray-800 italic font-medium leading-relaxed max-w-4xl mx-auto">
             "Perumpamaan orang-orang yang menafkahkan hartanya di jalan Allah adalah serupa dengan sebutir benih yang menumbuhkan tujuh bulir, pada tiap-tiap bulir seratus biji. Allah melipatgandakan bagi siapa yang Dia kehendaki."
         </p>
-        <span class="block text-xs font-bold text-[#0d6b38] tracking-wider uppercase mt-3">— QS. Al-Baqarah: 261 —</span>
+        <span class="block text-xs font-bold text-[#00913e] tracking-wider uppercase mt-3">— QS. Al-Baqarah: 261 —</span>
     </div>
 
     {{-- KARTU REKENING BANK & KONFIRMASI --}}
@@ -70,7 +70,7 @@
             <p class="text-xs sm:text-sm text-gray-500 mt-1.5">
                 Silakan salurkan infaq dan sedekah jariyah Anda melalui rekening perbankan resmi berikut:
             </p>
-            <div class="w-16 h-1 bg-[#0d6b38] mx-auto rounded-full mt-3"></div>
+            <div class="w-16 h-1 bg-[#00913e] mx-auto rounded-full mt-3"></div>
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -81,7 +81,7 @@
                 
                 <div>
                     <div class="flex items-center justify-between mb-4">
-                        <span class="inline-flex items-center px-3 py-1 rounded-full text-[11px] font-black tracking-wide uppercase bg-[#0d6b38] text-white shadow-sm">
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-[11px] font-black tracking-wide uppercase bg-[#00913e] text-white shadow-sm">
                             <i class="fa-solid fa-crown mr-1.5 text-xs"></i> Bank Utama Wilayah
                         </span>
                         <span class="text-xs font-mono font-bold text-emerald-800 bg-emerald-100/80 px-2.5 py-1 rounded-lg">
@@ -95,7 +95,7 @@
                         </div>
                         <div>
                             <h3 class="text-xl font-black text-gray-900 leading-tight">{{ $bank1Name }}</h3>
-                            <p class="text-xs text-emerald-800 font-semibold mt-0.5">Mitra Resmi Yayasan Robbani Ogan Ilir</p>
+                            <p class="text-xs text-emerald-800 font-semibold mt-0.5">Mitra Resmi Yayasan Ishum Prabumulih</p>
                         </div>
                     </div>
 
@@ -121,7 +121,7 @@
 
                 <div class="pt-2">
                     @if(!empty($bank1Rek))
-                        <button onclick="copyToClipboard('{{ $bank1Rek }}', '{{ $bank1Name }}')" class="w-full bg-gradient-to-r from-emerald-600 to-[#0d6b38] hover:from-emerald-700 hover:to-emerald-800 text-white py-3.5 px-4 rounded-xl text-xs sm:text-sm font-bold shadow-lg shadow-emerald-600/20 transition flex items-center justify-center space-x-2 cursor-pointer">
+                        <button onclick="copyToClipboard('{{ $bank1Rek }}', '{{ $bank1Name }}')" class="w-full bg-gradient-to-r from-emerald-600 to-[#00913e] hover:from-emerald-700 hover:to-emerald-800 text-white py-3.5 px-4 rounded-xl text-xs sm:text-sm font-bold shadow-lg shadow-emerald-600/20 transition flex items-center justify-center space-x-2 cursor-pointer">
                             <i class="fa-regular fa-copy text-sm"></i>
                             <span>Salin Nomor Rekening</span>
                         </button>
@@ -181,7 +181,7 @@
     </div>
 
     {{-- KARTU KONFIRMASI WHATSAPP & PANDUAN --}}
-    <div class="bg-gradient-to-br from-emerald-700 via-[#0d6b38] to-emerald-800 text-white rounded-3xl p-8 sm:p-10 shadow-2xl relative overflow-hidden reveal-fade-up">
+    <div class="bg-gradient-to-br from-emerald-700 via-[#00913e] to-emerald-800 text-white rounded-3xl p-8 sm:p-10 shadow-2xl relative overflow-hidden reveal-fade-up">
         <div class="absolute -bottom-16 -right-16 w-64 h-64 rounded-full bg-white/10 blur-2xl pointer-events-none"></div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center relative z-10">
             <div class="md:col-span-2 space-y-3">
@@ -196,11 +196,11 @@
                 </p>
             </div>
             <div class="flex flex-col space-y-3">
-                <a href="https://wa.me/{{ $cleanWa }}?text={{ $confirmText }}" target="_blank" class="w-full bg-white hover:bg-gray-100 text-[#0d6b38] font-extrabold text-xs sm:text-sm py-4 px-6 rounded-2xl shadow-xl transition transform hover:scale-105 flex items-center justify-center space-x-2 text-center">
+                <a href="https://wa.me/{{ $cleanWa }}?text={{ $confirmText }}" target="_blank" class="w-full bg-white hover:bg-gray-100 text-[#00913e] font-extrabold text-xs sm:text-sm py-4 px-6 rounded-2xl shadow-xl transition transform hover:scale-105 flex items-center justify-center space-x-2 text-center">
                     <i class="fa-brands fa-whatsapp text-lg text-emerald-600"></i>
                     <span>Kirim Bukti Transfer ({{ $confirmPhone }})</span>
                 </a>
-                <span class="text-[11px] text-emerald-200 text-center font-medium">Layanan Bendahara SMA IT Plus Robbani</span>
+                <span class="text-[11px] text-emerald-200 text-center font-medium">Layanan Bendahara SMA IT Ishlahul Ummah Prabumulih</span>
             </div>
         </div>
     </div>
@@ -214,7 +214,7 @@
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div class="p-6 rounded-2xl bg-gray-50 border border-gray-100 text-center space-y-3 hover:bg-emerald-50/50 hover:border-emerald-200 transition">
-                <div class="w-12 h-12 rounded-xl bg-emerald-100 text-[#0d6b38] font-black text-lg flex items-center justify-center mx-auto shadow-sm">
+                <div class="w-12 h-12 rounded-xl bg-emerald-100 text-[#00913e] font-black text-lg flex items-center justify-center mx-auto shadow-sm">
                     1
                 </div>
                 <h4 class="font-extrabold text-sm text-gray-900">Transfer Dana Infaq</h4>
@@ -224,7 +224,7 @@
             </div>
 
             <div class="p-6 rounded-2xl bg-gray-50 border border-gray-100 text-center space-y-3 hover:bg-emerald-50/50 hover:border-emerald-200 transition">
-                <div class="w-12 h-12 rounded-xl bg-emerald-100 text-[#0d6b38] font-black text-lg flex items-center justify-center mx-auto shadow-sm">
+                <div class="w-12 h-12 rounded-xl bg-emerald-100 text-[#00913e] font-black text-lg flex items-center justify-center mx-auto shadow-sm">
                     2
                 </div>
                 <h4 class="font-extrabold text-sm text-gray-900">Simpan Bukti Mutasi</h4>
@@ -234,7 +234,7 @@
             </div>
 
             <div class="p-6 rounded-2xl bg-gray-50 border border-gray-100 text-center space-y-3 hover:bg-emerald-50/50 hover:border-emerald-200 transition">
-                <div class="w-12 h-12 rounded-xl bg-emerald-100 text-[#0d6b38] font-black text-lg flex items-center justify-center mx-auto shadow-sm">
+                <div class="w-12 h-12 rounded-xl bg-emerald-100 text-[#00913e] font-black text-lg flex items-center justify-center mx-auto shadow-sm">
                     3
                 </div>
                 <h4 class="font-extrabold text-sm text-gray-900">Konfirmasi via WA</h4>
@@ -246,13 +246,13 @@
     </div>
 
     {{-- TRANSPARANSI PENGELOLAAN DANA PENDIDIKAN --}}
-    <div class="bg-emerald-50/80 border-l-4 border-[#0d6b38] p-6 sm:p-8 rounded-3xl shadow-sm text-xs sm:text-sm text-gray-700 space-y-3 reveal-fade-up">
+    <div class="bg-emerald-50/80 border-l-4 border-[#00913e] p-6 sm:p-8 rounded-3xl shadow-sm text-xs sm:text-sm text-gray-700 space-y-3 reveal-fade-up">
         <h4 class="font-extrabold text-gray-900 flex items-center text-sm sm:text-base">
-            <i class="fa-solid fa-scale-balanced mr-2.5 text-[#0d6b38] text-lg"></i>
+            <i class="fa-solid fa-scale-balanced mr-2.5 text-[#00913e] text-lg"></i>
             <span>Akuntabilitas & Tata Kelola Infaq Yayasan</span>
         </h4>
         <p class="leading-relaxed text-gray-600">
-            Pengelolaan infaq pembangunan dan beasiswa pendidikan santri diatur secara profesional oleh Yayasan Robbani Ogan Ilir dengan prinsip amanah, transparan, dan dapat dipertanggungjawabkan secara berkala.
+            Pengelolaan infaq pembangunan dan beasiswa pendidikan santri diatur secara profesional oleh Yayasan Ishum Prabumulih dengan prinsip amanah, transparan, dan dapat dipertanggungjawabkan secara berkala.
         </p>
         <ul class="list-disc list-inside space-y-1 text-gray-600 text-xs">
             <li>100% dana infaq pembangunan dialokasikan langsung untuk sarana belajar, laboratorium, dan masjid kampus.</li>

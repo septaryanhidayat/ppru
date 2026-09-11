@@ -6,13 +6,16 @@
 
 @theme {
     --font-sans: 'Poppins', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    --color-school-green: #0d6b38;
-    --color-school-green-dark: #094725;
-    --color-school-green-light: #15803d;
-    --color-school-green-accent: #22c55e;
-    --color-school-orange: #f97316;
-    --color-school-orange-dark: #ea580c;
-    --color-school-orange-light: #fb923c;
+    --color-school-green: #00913e;
+    --color-school-green-dark: #007532;
+    --color-school-green-light: #05a849;
+    --color-school-green-accent: #10b981;
+    --color-school-red: #da251c;
+    --color-school-red-dark: #b91c1c;
+    --color-school-red-light: #ef4444;
+    --color-school-orange: #da251c;
+    --color-school-orange-dark: #b91c1c;
+    --color-school-orange-light: #ef4444;
     --color-school-gold: #f59e0b;
     --color-school-dark: #111827;
     --color-school-gray: #f8f9fa;
@@ -33,11 +36,11 @@ body {
     background: #f1f1f1;
 }
 ::-webkit-scrollbar-thumb {
-    background: #0d6b38;
+    background: #00913e;
     border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-    background: #094725;
+    background: #007532;
 }
 
 /* Typography styles for article content */

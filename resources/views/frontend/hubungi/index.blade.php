@@ -1,18 +1,18 @@
 @extends('layouts.frontend')
 
-@section('title', 'Hubungi Kami & Informasi PPDB - SMA IT Plus Robbani')
-@section('meta_description', 'Kontak resmi SMA IT Plus Robbani Indralaya Ogan Ilir: Nomor telepon, WhatsApp humas PPDB, email resmi, alamat kampus, dan formulir pesan.')
+@section('title', 'Hubungi Kami & Informasi PPDB - SMA IT Ishlahul Ummah Prabumulih')
+@section('meta_description', 'Kontak resmi SMA Islam Terpadu Ishlahul Ummah Prabumulih: Nomor telepon, WhatsApp humas PPDB, email resmi, alamat kampus, dan formulir pesan.')
 
 @section('content')
 {{-- HERO HEADER --}}
-<div class="bg-gradient-to-r from-emerald-950 via-[#0d6b38] to-emerald-900 text-white py-12">
+<div class="bg-gradient-to-r from-emerald-950 via-[#00913e] to-emerald-900 text-white py-12">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <nav class="text-xs text-emerald-200 mb-3 flex items-center space-x-2">
             <a href="{{ route('home') }}" class="hover:text-white transition">Beranda</a>
             <span>/</span>
             <span class="text-amber-300 font-semibold">Hubungi Kami</span>
         </nav>
-        <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Hubungi SMA IT Plus Robbani</h1>
+        <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Hubungi SMA IT Ishlahul Ummah Prabumulih</h1>
         <p class="text-sm text-emerald-100 mt-2 font-light max-w-2xl">
             Kami siap melayani pertanyaan seputar PPDB, kurikulum tahfidz & sains, program asrama, maupun kunjungan ke kampus.
         </p>
@@ -23,7 +23,7 @@
     
     {{-- GOOGLE MAPS EMBED ATAS --}}
     <div class="rounded-3xl overflow-hidden shadow-xl border border-gray-100 h-80 sm:h-96 reveal-fade-up">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15935.918903337965!2d104.642145!3d-3.232491!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e3b9991cb45aaab%3A0x28dfaa3303668f80!2sIndralaya%20Mulya%2C%20Indralaya%2C%20Ogan%20Ilir%20Regency%2C%20South%20Sumatra!5e0!3m2!1sen!2sid!4v1700000000000!5m2!1sen!2sid" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15935.918903337965!2d104.642145!3d-3.232491!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e3b9991cb45aaab%3A0x28dfaa3303668f80!2sPrabumulih%20Mulya%2C%20Prabumulih%2C%20Ogan%20Ilir%20Regency%2C%20South%20Sumatra!5e0!3m2!1sen!2sid!4v1700000000000!5m2!1sen!2sid" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
 
     {{-- SUBTITLE --}}
@@ -32,20 +32,20 @@
         <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight mt-1">
             Silakan Hubungi Tim Humas & Layanan Sekolah Kami
         </h2>
-        <div class="w-16 h-1 bg-[#0d6b38] mx-auto rounded-full mt-3"></div>
+        <div class="w-16 h-1 bg-[#00913e] mx-auto rounded-full mt-3"></div>
     </div>
 
     {{-- 4 ICON BOXES --}}
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {{-- Box 1: Phone --}}
         <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-md border border-gray-100 hover:shadow-xl transition transform hover:-translate-y-1 space-y-4 reveal-fade-up">
-            <div class="w-14 h-14 rounded-2xl bg-emerald-100 text-[#0d6b38] flex items-center justify-center text-2xl shadow-inner">
+            <div class="w-14 h-14 rounded-2xl bg-emerald-100 text-[#00913e] flex items-center justify-center text-2xl shadow-inner">
                 <i class="fa-solid fa-phone"></i>
             </div>
             <div>
                 <span class="text-xs font-bold text-gray-400 uppercase tracking-wider block">Telepon Kantor :</span>
-                <a href="tel:{{ $siteSettings['contact_phone'] ?? '0821-7788-9900' }}" class="text-base font-extrabold text-gray-900 hover:text-[#0d6b38] transition mt-1 block">
-                    {{ $siteSettings['contact_phone'] ?? '0821-7788-9900' }}
+                <a href="tel:{{ $siteSettings['contact_phone'] ?? '0821-8268-0647' }}" class="text-base font-extrabold text-gray-900 hover:text-[#00913e] transition mt-1 block">
+                    {{ $siteSettings['contact_phone'] ?? '0821-8268-0647' }}
                 </a>
                 <p class="text-xs text-gray-500 mt-1">Layanan administrasi tata usaha pada jam kerja (07.30 - 16.00 WIB).</p>
             </div>
@@ -58,8 +58,8 @@
             </div>
             <div>
                 <span class="text-xs font-bold text-gray-400 uppercase tracking-wider block">Email Resmi :</span>
-                <a href="mailto:{{ $siteSettings['contact_email'] ?? 'info@smaitplusrobbani.sch.id' }}" class="text-sm font-extrabold text-gray-900 hover:text-[#0d6b38] transition mt-1 block break-all">
-                    {{ $siteSettings['contact_email'] ?? 'info@smaitplusrobbani.sch.id' }}
+                <a href="mailto:{{ $siteSettings['contact_email'] ?? 'info@smaitplusishum.sch.id' }}" class="text-sm font-extrabold text-gray-900 hover:text-[#00913e] transition mt-1 block break-all">
+                    {{ $siteSettings['contact_email'] ?? 'info@smaitplusishum.sch.id' }}
                 </a>
                 <p class="text-xs text-gray-500 mt-1">Surat-menyurat dan permohonan informasi akademik resmi.</p>
             </div>
@@ -67,7 +67,7 @@
 
         {{-- Box 3: WhatsApp --}}
         @php
-            $rawPhone = $siteSettings['contact_phone'] ?? '0821-7788-9900';
+            $rawPhone = $siteSettings['contact_phone'] ?? '0821-8268-0647';
             $cleanWa = preg_replace('/[^0-9]/', '', $rawPhone);
             if (str_starts_with($cleanWa, '0')) {
                 $cleanWa = '62' . substr($cleanWa, 1);
@@ -79,7 +79,7 @@
             </div>
             <div>
                 <span class="text-xs font-bold text-gray-400 uppercase tracking-wider block">WhatsApp PPDB :</span>
-                <a href="https://wa.me/{{ $cleanWa }}" target="_blank" class="text-base font-extrabold text-gray-900 hover:text-[#0d6b38] transition mt-1 block">
+                <a href="https://wa.me/{{ $cleanWa }}" target="_blank" class="text-base font-extrabold text-gray-900 hover:text-[#00913e] transition mt-1 block">
                     {{ $rawPhone }}
                 </a>
                 <p class="text-xs text-gray-500 mt-1">Konsultasi cepat PPDB dan beasiswa santri via chat.</p>
@@ -94,7 +94,7 @@
             <div>
                 <span class="text-xs font-bold text-gray-400 uppercase tracking-wider block">Alamat Kampus :</span>
                 <p class="text-xs font-bold text-gray-900 mt-1 leading-relaxed">
-                    {{ $siteSettings['contact_address'] ?? 'Jl. Lintas Timur Palembang-Prabumulih KM 35, Indralaya, Ogan Ilir, Sumatera Selatan' }}
+                    {{ $siteSettings['contact_address'] ?? 'Jl. Lintas Timur Palembang-Prabumulih KM 35, Prabumulih, Sumatera Selatan' }}
                 </p>
             </div>
         </div>
@@ -127,30 +127,30 @@
 
             <div>
                 <label for="nama" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5">Nama Lengkap Orang Tua / Siswa *</label>
-                <input type="text" name="nama" id="nama" required value="{{ old('nama') }}" placeholder="Tuliskan nama lengkap Anda..." class="w-full bg-gray-50 text-xs text-gray-800 rounded-xl px-4 py-3.5 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#0d6b38] transition">
+                <input type="text" name="nama" id="nama" required value="{{ old('nama') }}" placeholder="Tuliskan nama lengkap Anda..." class="w-full bg-gray-50 text-xs text-gray-800 rounded-xl px-4 py-3.5 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#00913e] transition">
                 @error('nama') <p class="text-red-500 text-[11px] mt-1">{{ $message }}</p> @enderror
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div>
                     <label for="email" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5">Alamat Email</label>
-                    <input type="email" name="email" id="email" value="{{ old('email') }}" placeholder="nama@email.com" class="w-full bg-gray-50 text-xs text-gray-800 rounded-xl px-4 py-3.5 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#0d6b38] transition">
+                    <input type="email" name="email" id="email" value="{{ old('email') }}" placeholder="nama@email.com" class="w-full bg-gray-50 text-xs text-gray-800 rounded-xl px-4 py-3.5 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#00913e] transition">
                     @error('email') <p class="text-red-500 text-[11px] mt-1">{{ $message }}</p> @enderror
                 </div>
                 <div>
                     <label for="whatsapp" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5">Nomor WhatsApp / HP</label>
-                    <input type="text" name="whatsapp" id="whatsapp" value="{{ old('whatsapp') }}" placeholder="08xxxxxxxxxx" class="w-full bg-gray-50 text-xs text-gray-800 rounded-xl px-4 py-3.5 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#0d6b38] transition">
+                    <input type="text" name="whatsapp" id="whatsapp" value="{{ old('whatsapp') }}" placeholder="08xxxxxxxxxx" class="w-full bg-gray-50 text-xs text-gray-800 rounded-xl px-4 py-3.5 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#00913e] transition">
                     @error('whatsapp') <p class="text-red-500 text-[11px] mt-1">{{ $message }}</p> @enderror
                 </div>
             </div>
 
             <div>
                 <label for="saran_kritik" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5">Pesan / Pertanyaan PPDB *</label>
-                <textarea name="saran_kritik" id="saran_kritik" rows="5" required placeholder="Tuliskan pertanyaan atau pesan Anda dengan jelas..." class="w-full bg-gray-50 text-xs text-gray-800 rounded-xl px-4 py-3.5 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#0d6b38] transition">{{ old('saran_kritik') }}</textarea>
+                <textarea name="saran_kritik" id="saran_kritik" rows="5" required placeholder="Tuliskan pertanyaan atau pesan Anda dengan jelas..." class="w-full bg-gray-50 text-xs text-gray-800 rounded-xl px-4 py-3.5 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#00913e] transition">{{ old('saran_kritik') }}</textarea>
                 @error('saran_kritik') <p class="text-red-500 text-[11px] mt-1">{{ $message }}</p> @enderror
             </div>
 
-            <button type="submit" class="w-full bg-[#0d6b38] hover:bg-emerald-800 text-white py-4 rounded-xl font-bold text-xs uppercase tracking-wider shadow-lg hover:shadow-xl transition flex items-center justify-center space-x-2">
+            <button type="submit" class="w-full bg-[#00913e] hover:bg-emerald-800 text-white py-4 rounded-xl font-bold text-xs uppercase tracking-wider shadow-lg hover:shadow-xl transition flex items-center justify-center space-x-2">
                 <i class="fa-solid fa-paper-plane text-sm"></i>
                 <span>Kirimkan Pesan Pertanyaan</span>
             </button>
