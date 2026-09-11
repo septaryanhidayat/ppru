@@ -1,0 +1,7 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/berandad/pksoganilir.com/public/
+    - /bin/cp -a public/. $DEPLOYPATH
+
+

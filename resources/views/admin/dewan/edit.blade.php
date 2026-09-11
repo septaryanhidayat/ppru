@@ -1,0 +1,82 @@
+@extends('layouts.admin')
+
+@section('title', 'Edit Anggota Dewan: ' . $dewan->name)
+@section('header_title', 'Edit Anggota DPRD: ' . $dewan->name)
+
+@section('content')
+<div class="max-w-3xl mx-auto space-y-6">
+    <div class="flex items-center justify-between">
+        <a href="{{ route('admin.dewan.index') }}" class="text-xs font-semibold text-slate-500 hover:text-slate-800 flex items-center space-x-2">
+            <i class="fa-solid fa-arrow-left"></i>
+            <span>Kembali ke Daftar Dewan</span>
+        </a>
+    </div>
+
+    <form action="{{ route('admin.dewan.update', $dewan) }}" method="POST" enctype="multipart/form-data" class="space-y-6">
+        @csrf
+        @method('PUT')
+
+        <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-xs border border-slate-200/80 space-y-5">
+            
+            <div>
+                <label for="name" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Nama Lengkap & Gelar *</label>
+                <input type="text" name="name" id="name" required value="{{ old('name', $dewan->name) }}" class="w-full bg-slate-50 text-xs text-slate-800 rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#ff5001] transition">
+                @error('name') <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span> @enderror
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                    <label for="position" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Jabatan di Dewan *</label>
+                    <input type="text" name="position" id="position" required value="{{ old('position', $dewan->position) }}" class="w-full bg-slate-50 text-xs text-slate-800 rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#ff5001] transition">
+                    @error('position') <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span> @enderror
+                </div>
+
+                <div>
+                    <label for="fraction" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Bidang Studi / Tugas Tambahan</label>
+                    <input type="text" name="fraction" id="fraction" value="{{ old('fraction', $dewan->fraction) }}" class="w-full bg-slate-50 text-xs text-slate-800 rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0d6b38] transition">
+                </div>
+            </div>
+
+            <div>
+                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Foto Tenaga Pendidik Saat Ini</label>
+                <div class="flex items-center space-x-4 mb-3">
+                    <img src="{{ $dewan->photo }}" alt="{{ $dewan->name }}" class="w-16 h-16 rounded-xl object-cover border border-slate-200 shadow-xs" onerror="this.src='/uploads/logo-robbani-emblem.svg'">
+                    <span class="text-xs text-slate-400 font-mono">{{ $dewan->photo }}</span>
+                </div>
+                <input type="file" name="photo" id="photo" accept="image/*" class="w-full text-xs text-slate-600 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-[#0d6b38] file:text-white hover:file:bg-[#094d28]">
+                <p class="text-[11px] text-slate-400 mt-1">Unggah file baru jika ingin mengganti foto.</p>
+                @error('photo') <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span> @enderror
+            </div>
+
+            <div>
+                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
+                    Profil Singkat & Biografi (Toolbox: Bold, Italic, Rata Penuh/Kiri/Kanan, List, Link)
+                </label>
+                <input type="hidden" name="profile_summary" id="dewan_profile" value="{{ old('profile_summary', $dewan->profile_summary) }}">
+                <div id="dewan_editor" data-quill="dewan_profile" class="bg-white"></div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                    <label for="education" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Riwayat Pendidikan</label>
+                    <input type="text" name="education" id="education" value="{{ old('education', $dewan->education) }}" class="w-full bg-slate-50 text-xs text-slate-800 rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#ff5001]">
+                </div>
+
+                <div>
+                    <label for="order" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Urutan Tampil</label>
+                    <input type="number" name="order" id="order" value="{{ old('order', $dewan->order) }}" class="w-full bg-slate-50 text-xs text-slate-800 rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#ff5001]">
+                </div>
+            </div>
+
+            <div class="pt-6 border-t border-slate-100 flex items-center justify-end space-x-3">
+                <a href="{{ route('admin.dewan.index') }}" class="px-5 py-2.5 rounded-xl border border-slate-200 text-slate-600 hover:bg-slate-50 text-xs font-bold transition">Batal</a>
+                <button type="submit" class="bg-[#ff5001] hover:bg-[#e04500] text-white font-bold text-xs px-6 py-2.5 rounded-xl shadow-md transition flex items-center space-x-2 cursor-pointer">
+                    <i class="fa-solid fa-floppy-disk"></i>
+                    <span>Simpan Perubahan</span>
+                </button>
+            </div>
+
+        </div>
+    </form>
+</div>
+@endsection

@@ -1,0 +1,124 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../views/**/*.blade.php';
+
+@theme {
+    --font-sans: 'Poppins', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --color-school-green: #0d6b38;
+    --color-school-green-dark: #094725;
+    --color-school-green-light: #15803d;
+    --color-school-green-accent: #22c55e;
+    --color-school-orange: #f97316;
+    --color-school-orange-dark: #ea580c;
+    --color-school-orange-light: #fb923c;
+    --color-school-gold: #f59e0b;
+    --color-school-dark: #111827;
+    --color-school-gray: #f8f9fa;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    color: #333333;
+    background-color: #ffffff;
+    overflow-x: hidden;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+    background: #0d6b38;
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #094725;
+}
+
+/* Typography styles for article content */
+.prose-content {
+    line-height: 1.8;
+    color: #374151;
+}
+.prose-content p {
+    margin-bottom: 1.25rem;
+}
+.prose-content h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #111827;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+.prose-content h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #111827;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+}
+.prose-content img {
+    border-radius: 0.5rem;
+    margin: 1.5rem auto;
+    max-width: 100%;
+    height: auto;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+.prose-content a {
+    color: #0d6b38;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+.prose-content a:hover {
+    color: #ea580c;
+}
+.prose-content ul {
+    list-style-type: disc;
+    margin-left: 1.5rem;
+    margin-bottom: 1.25rem;
+}
+.prose-content ol {
+    list-style-type: decimal;
+    margin-left: 1.5rem;
+    margin-bottom: 1.25rem;
+}
+.prose-content blockquote {
+    border-left: 4px solid #0d6b38;
+    padding-left: 1rem;
+    font-style: italic;
+    color: #4b5563;
+    margin: 1.5rem 0;
+    background-color: #f0fdf4;
+    padding: 1rem;
+    border-radius: 0 0.375rem 0.375rem 0;
+}
+
+/* ========================================================
+   SNAPPY FAST FADE-UP ANIMATIONS (SCROLL TRIGGERED)
+   ======================================================== */
+.reveal-fade-up {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+}
+
+.reveal-fade-up.is-revealed {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
+/* Stagger delay utilities */
+.delay-1 { transition-delay: 60ms; }
+.delay-2 { transition-delay: 120ms; }
+.delay-3 { transition-delay: 180ms; }
+.delay-4 { transition-delay: 240ms; }
+.delay-5 { transition-delay: 300ms; }
+.delay-6 { transition-delay: 360ms; }
+.delay-7 { transition-delay: 420ms; }
+.delay-8 { transition-delay: 480ms; }

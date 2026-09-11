@@ -1,0 +1,49 @@
+name: CI & cPanel Sync
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  test_and_build:
+    name: Test & Build Production Assets
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: Setup PHP 8.4
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.4'
+        extensions: mbstring, xml, ctype, iconv, intl, pdo_sqlite, gd
+        coverage: none
+
+    - name: Install Composer Dependencies
+      run: composer install --no-progress --prefer-dist --optimize-autoloader
+
+    - name: Setup Node.js & Build Vite Assets
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20
+        cache: 'npm'
+
+    - name: Install NPM & Build
+      run: |
+        npm ci
+        npm run build
+
+    - name: Run Pest / PHPUnit Security Tests
+      env:
+        APP_KEY: base64:tfdlAwa5qi0eMQooptnBfMClNPkQ20oCj3U2UWKUSPc=
+      run: php artisan test
+
+    # (Opsional) Trigger cPanel Git Webhook Otomatis saat push berhasil
+    # Untuk mengaktifkan, tambahkan secret CPANEL_WEBHOOK_URL di GitHub Settings > Secrets
+    - name: Trigger cPanel Git Deploy Webhook (Optional)
+      if: env.CPANEL_WEBHOOK_URL != ''
+      env:
+        CPANEL_WEBHOOK_URL: ${{ secrets.CPANEL_WEBHOOK_URL }}
+      run: |
+        curl -X GET "$CPANEL_WEBHOOK_URL"
