@@ -152,3 +152,98 @@ test('admin can view and manage ppdb registrations', function () {
     $deleteResponse->assertRedirect(route('admin.ppdb.index'));
     $this->assertDatabaseMissing('ppdb_registrations', ['id' => $applicant->id]);
 });
+
+test('admin can manage ppdb content and form flexibility settings', function () {
+    $admin = User::create([
+        'name' => 'Admin PPDB',
+        'email' => 'admin_content@ishum.sch.id',
+        'password' => Hash::make('Password123!'),
+        'role' => 'admin',
+    ]);
+
+    // 1. View content settings page
+    $contentView = $this->actingAs($admin)->get('/admin/ppdb/content');
+    $contentView->assertStatus(200);
+    $contentView->assertSee('Konten &amp; 10 Menu PPDB', false);
+    $contentView->assertSee('Kustomisasi Formulir Online');
+
+    // 2. Update content & 10 menus
+    $postData = [
+        'ppdb_status' => '1',
+        'ppdb_year' => '2026/2027',
+        'ppdb_wave' => 'Gelombang 1 Unggulan',
+        'ppdb_promo' => 'Diskon 50% Khusus Pendaftar Awal',
+        'ppdb_tagline' => 'Sekolah Islam Terpadu Pilihan Utama.',
+        'ppdb_youtube_id' => 'IrPVG8CYjRc',
+        'ppdb_video_title' => 'Video Profil Kampus SMA IT Ishum',
+        'ppdb_operational_weekday' => 'Senin - Jumat: 08.00 - 15.00 WIB',
+        'ppdb_operational_weekend' => 'Sabtu: 08.00 - 12.00 WIB',
+        'ppdb_secretariat' => 'Gedung SMA IT Ishum Karang Raja',
+        'ppdb_registration_fee' => 'Rp 250.000,-',
+        'ppdb_bank_name' => 'Bank Syariah Indonesia (BSI)',
+        'ppdb_bank_code' => '451',
+        'ppdb_bank_account' => '7011304251',
+        'ppdb_bank_holder' => 'YL. Fatmawati',
+        'ppdb_hotline_phone' => '0821-8268-0647',
+        'ppdb_hotline_name' => 'Admin Hotline PPDB',
+        'ppdb_hotline_2_phone' => '0822-8157-3615',
+        'ppdb_hotline_2_name' => 'Ust. Agi',
+        'ppdb_alur' => "Langkah 1: Transfer biaya pendaftaran\nLangkah 2: Isi formulir online\nLangkah 3: Konfirmasi via WA",
+        'ppdb_syarat' => "Syarat 1: Akta kelahiran\nSyarat 2: Kartu Keluarga\nSyarat 3: Foto 3x4",
+        'ppdb_prestasi' => 'Jalur Juara 1-3 OSN dan Tahfidz',
+        'ppdb_tahfidz' => 'Jalur minimal 3 Juz',
+        'ppdb_alumni' => 'Keringanan khusus lulusan SMPIT Ishum',
+        'ppdb_mandiri' => 'Jalur tes akademik dan tahsin',
+        'ppdb_jadwal_gelombang' => "Gelombang 1: Oktober - Desember\nGelombang 2: Januari - April",
+        'ppdb_biaya' => 'Biaya formulir Rp 250.000 dan seragam lengkap',
+        'ppdb_boarding' => 'Pilihan Boarding Asrama dan Full Day School',
+        'ppdb_kelulusan' => 'Pengumuman via website dan WA',
+        'ppdb_closing_title' => 'Terima Kasih Atas Kepercayaan Anda',
+        'ppdb_closing_desc' => 'Semoga barokah dan sukses dunia akhirat.',
+        'ppdb_form_status' => '1',
+        'ppdb_form_closed_message' => 'Pendaftaran gelombang ini telah ditutup.',
+        'ppdb_form_announcement' => 'Simpan nomor WhatsApp panitia.',
+        'ppdb_form_waves' => "Gelombang 1\nGelombang 2",
+        'ppdb_form_tracks' => "Reguler\nTahfidz\nPrestasi",
+        'ppdb_form_programs' => "Boarding School\nFull Day School",
+        'ppdb_form_require_payment' => '1',
+        'ppdb_form_require_birth_cert' => '1',
+        'ppdb_form_nisn_rule' => 'optional',
+        'ppdb_form_show_achievements' => '1',
+        'ppdb_form_show_hobbies' => '1',
+        'ppdb_form_require_parent_income' => '1',
+        'ppdb_form_wa_confirm' => '1',
+    ];
+
+    $updateResponse = $this->actingAs($admin)->post('/admin/ppdb/content', $postData);
+    $updateResponse->assertRedirect();
+
+    // Verify public page reflects updated content
+    $publicResponse = $this->get('/ppdb');
+    $publicResponse->assertStatus(200);
+    $publicResponse->assertSee('Gelombang 1 Unggulan');
+    $publicResponse->assertSee('Diskon 50% Khusus Pendaftar Awal');
+    $publicResponse->assertSee('Langkah 1: Transfer biaya pendaftaran');
+    $publicResponse->assertSee('Keringanan khusus lulusan SMPIT Ishum');
+    $publicResponse->assertSee('Jalur Juara 1-3 OSN dan Tahfidz');
+
+    // Verify exports
+    $excelResponse = $this->actingAs($admin)->get('/admin/ppdb/export/excel');
+    $excelResponse->assertStatus(200);
+    $excelResponse->assertHeader('content-type', 'text/csv; charset=UTF-8');
+
+    $pdfResponse = $this->actingAs($admin)->get('/admin/ppdb/export/pdf');
+    $pdfResponse->assertStatus(200);
+    $pdfResponse->assertSee('REKAPITULASI PENDAFTARAN PESERTA DIDIK BARU');
+});
+
+test('public logo page renders properly', function () {
+    $response = $this->get('/logo');
+    $response->assertStatus(200);
+    $response->assertSee('Filosofi Lambang Sekolah');
+    $response->assertSee('Palet Warna Resmi');
+    $response->assertSee('Varian Logo Sekolah Lainnya');
+
+    $redirectResponse = $this->get('/download/logo');
+    $redirectResponse->assertRedirect(route('download.logo'));
+});

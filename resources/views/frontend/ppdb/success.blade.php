@@ -51,18 +51,16 @@
                 </div>
             </div>
 
-            {{-- ACTION BUTTONS --}}
-            <div class="space-y-3 pt-2">
-                @php
-                    $waText = "Assalamu'alaikum Admin PPDB SMA IT Ishlahul Ummah. Saya telah mengisi formulir pendaftaran online atas nama:\n\n" .
-                              "Nomor Registrasi: {$registration->registration_number}\n" .
-                              "Nama Siswa: {$registration->full_name}\n" .
-                              "Asal Sekolah: {$registration->previous_school}\n\n" .
-                              "Mohon konfirmasi dan verifikasi pendaftaran kami. Terima kasih.";
-                @endphp
-                <a href="https://wa.me/6282281896792?text={{ urlencode($waText) }}" target="_blank" class="w-full inline-flex items-center justify-center space-x-2 bg-[#25D366] hover:bg-[#1EBE5D] text-white font-bold text-xs py-3.5 px-6 rounded-xl shadow-md transition">
-                    <i class="fa-brands fa-whatsapp text-base"></i>
-                    <span>Konfirmasi ke WhatsApp Panitia</span>
+            {{-- ACTION BUTTONS: AUTO FORWARD TO WHATSAPP --}}
+            <div class="space-y-4 pt-2">
+                <div class="p-3 bg-emerald-50 border border-emerald-300 rounded-2xl text-emerald-900 text-xs font-semibold flex items-center justify-center space-x-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping"></span>
+                    <span>Mengalihkan otomatis ke WhatsApp Admin dalam <strong id="countdown-sec" class="text-emerald-700 font-black text-sm">2</strong> detik...</span>
+                </div>
+
+                <a href="{{ $waUrl }}" id="wa-btn" class="w-full inline-flex items-center justify-center space-x-3 bg-[#25D366] hover:bg-[#1EBE5D] text-white font-black text-sm sm:text-base py-4 px-6 rounded-2xl shadow-xl shadow-green-500/25 transition transform hover:-translate-y-0.5">
+                    <i class="fa-brands fa-whatsapp text-2xl"></i>
+                    <span>FORWARD SEMUA DATA KE WHATSAPP ADMIN</span>
                 </a>
 
                 <div class="flex items-center justify-center space-x-3 pt-1">
@@ -76,11 +74,26 @@
             </div>
 
             {{-- NOTE --}}
-            <div class="p-4 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 text-[11px] leading-relaxed">
-                <p><strong>Catatan:</strong> Simpan atau tangkap layar (screenshot) halaman ini sebagai bukti pendaftaran awal Anda. Tim panitia PPDB akan memverifikasi berkas dan menghubungi Anda.</p>
+            <div class="p-4 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 text-[11px] leading-relaxed text-left">
+                <p><strong>Penting:</strong> Pastikan Anda telah menekan tombol kirim pesan di WhatsApp agar seluruh formulir diterima oleh panitia. Data Anda juga telah tersimpan aman di database sekolah.</p>
             </div>
 
         </div>
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        let count = 2;
+        const countEl = document.getElementById('countdown-sec');
+        const interval = setInterval(() => {
+            count--;
+            if (countEl) countEl.textContent = count;
+            if (count <= 0) {
+                clearInterval(interval);
+                window.location.href = @json($waUrl);
+            }
+        }, 1000);
+    });
+</script>
 @endsection

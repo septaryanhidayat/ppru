@@ -6,6 +6,30 @@
 @section('content')
 <div class="space-y-6">
 
+    {{-- TOP NAVIGATION TABS & EXPORT BUTTONS --}}
+    <div class="flex flex-wrap items-center gap-2 border-b border-slate-200 pb-4">
+        <a href="{{ route('admin.ppdb.index') }}" class="px-5 py-2.5 rounded-xl font-bold text-xs bg-[#00913e] text-white shadow-md transition">
+            <i class="fa-solid fa-users mr-1.5"></i> Data Calon Santri (Pendaftar)
+        </a>
+        <a href="{{ route('admin.ppdb.content') }}" class="px-5 py-2.5 rounded-xl font-bold text-xs bg-white text-slate-600 hover:bg-slate-100 border border-slate-200 transition">
+            <i class="fa-solid fa-sliders mr-1.5"></i> Pengaturan &amp; Konten Halaman PPDB
+        </a>
+        <div class="ml-auto flex flex-wrap items-center gap-2">
+            <a href="{{ route('admin.ppdb.export.excel') }}" class="px-4 py-2.5 rounded-xl font-bold text-xs bg-emerald-700 hover:bg-emerald-800 text-white shadow-sm transition flex items-center space-x-1.5">
+                <i class="fa-solid fa-file-excel"></i>
+                <span>Export Excel</span>
+            </a>
+            <a href="{{ route('admin.ppdb.export.pdf') }}" target="_blank" class="px-4 py-2.5 rounded-xl font-bold text-xs bg-red-700 hover:bg-red-800 text-white shadow-sm transition flex items-center space-x-1.5">
+                <i class="fa-solid fa-file-pdf"></i>
+                <span>Export PDF</span>
+            </a>
+            <a href="{{ route('ppdb.index') }}" target="_blank" class="px-4 py-2.5 rounded-xl font-bold text-xs bg-slate-800 hover:bg-slate-900 text-white shadow-sm transition flex items-center space-x-1.5">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                <span>Lihat Halaman PPDB</span>
+            </a>
+        </div>
+    </div>
+
     {{-- STATS CARDS --}}
     <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
         <a href="{{ route('admin.ppdb.index') }}" class="p-4 rounded-2xl bg-white border border-slate-200 shadow-xs hover:border-[#00913e] transition">
@@ -65,6 +89,10 @@
                             <td class="py-3.5 px-4">
                                 <span class="font-bold text-slate-900 block">{{ $reg->full_name }}</span>
                                 <span class="text-[11px] text-slate-400">{{ $reg->gender }} &bull; {{ $reg->birth_place }}</span>
+                                <div class="mt-1 flex items-center gap-1.5 flex-wrap">
+                                    <span class="text-[10px] bg-emerald-50 text-[#00913e] font-bold px-2 py-0.5 rounded-md border border-emerald-200">{{ $reg->track ?: 'Reguler' }}</span>
+                                    <span class="text-[10px] bg-slate-100 text-slate-600 font-bold px-2 py-0.5 rounded-md border border-slate-200">{{ $reg->program_type ?: 'Boarding' }}</span>
+                                </div>
                             </td>
                             <td class="py-3.5 px-4 text-slate-600 font-medium">{{ $reg->previous_school }}</td>
                             <td class="py-3.5 px-4">

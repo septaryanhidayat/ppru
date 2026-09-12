@@ -133,7 +133,33 @@
                     </div>
                 </div>
 
-                {{-- 5. Kontak --}}
+                {{-- 5. Layanan Publik Dropdown --}}
+                <div class="relative group py-2" id="nav-dropdown-layanan">
+                    <button type="button" aria-haspopup="true" aria-expanded="false" aria-label="Buka Menu Layanan Publik" class="px-3.5 py-2 rounded-xl inline-flex items-center hover:bg-black/15 transition {{ request()->is('layanan*', 'izin-sekolah*', 'permohonan-kerja-sama*', 'sewa-barang*') ? 'bg-black/20 text-white font-bold' : '' }}">
+                        <span>Layanan Publik</span>
+                        <i class="fa-solid fa-chevron-down text-[10px] ml-1.5 transition-transform duration-200 group-hover:rotate-180" aria-hidden="true"></i>
+                    </button>
+                    {{-- Safe Hover Bridge Container --}}
+                    <div class="absolute left-0 top-full pt-1 w-64 hidden group-hover:block transition-all duration-150 z-50">
+                        <div class="bg-white rounded-2xl shadow-2xl border border-gray-100 py-2.5 text-gray-800 animate-fadeIn">
+                            <a href="{{ route('layanan.index') }}" class="block px-4 py-2.5 text-xs font-semibold text-gray-700 hover:bg-green-50 hover:text-[#00913e] transition flex items-center">
+                                <i class="fa-solid fa-handshake-angle w-5 text-[#00913e] mr-2 text-sm" aria-hidden="true"></i> Portal Layanan Terpadu
+                            </a>
+                            <div class="border-t border-gray-100 my-1"></div>
+                            <a href="{{ route('layanan.izin') }}" class="block px-4 py-2.5 text-xs font-semibold text-gray-700 hover:bg-green-50 hover:text-[#00913e] transition flex items-center">
+                                <i class="fa-solid fa-id-card-clip w-5 text-[#00913e] mr-2 text-sm" aria-hidden="true"></i> Permohonan Izin Kunjungan
+                            </a>
+                            <a href="{{ route('layanan.kerjasama') }}" class="block px-4 py-2.5 text-xs font-semibold text-gray-700 hover:bg-green-50 hover:text-[#00913e] transition flex items-center">
+                                <i class="fa-solid fa-handshake w-5 text-[#00913e] mr-2 text-sm" aria-hidden="true"></i> Permohonan Kerja Sama
+                            </a>
+                            <a href="{{ route('layanan.sewa') }}" class="block px-4 py-2.5 text-xs font-semibold text-gray-700 hover:bg-green-50 hover:text-[#00913e] transition flex items-center">
+                                <i class="fa-solid fa-building-user w-5 text-[#00913e] mr-2 text-sm" aria-hidden="true"></i> Permohonan Sewa Barang
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                {{-- 6. Kontak --}}
                 <a href="{{ route('hubungi') }}" class="px-3.5 py-2 rounded-xl hover:bg-black/15 transition {{ request()->routeIs('hubungi') ? 'bg-black/20 text-white' : '' }}">
                     Kontak
                 </a>
@@ -211,6 +237,17 @@
             <a href="{{ route('download.ebook') }}" class="block px-4 py-1.5 text-xs text-gray-700 hover:text-[#00913e]">E-Library &amp; Modul Siswa</a>
             <a href="{{ route('download.hymne-mars') }}" class="block px-4 py-1.5 text-xs text-gray-700 hover:text-[#00913e]">Mars JSIT Indonesia</a>
             <a href="{{ route('download.logo') }}" class="block px-4 py-1.5 text-xs text-gray-700 hover:text-[#00913e]">Logo Resmi Sekolah</a>
+        </div>
+
+        {{-- Mobile Layanan Publik Submenu --}}
+        <div class="border-t border-gray-100 pt-2">
+            <div class="font-extrabold text-xs text-[#00913e] uppercase tracking-wider px-3 mb-1 flex items-center">
+                <i class="fa-solid fa-handshake-angle mr-2 text-[#da251c]"></i> Layanan Publik
+            </div>
+            <a href="{{ route('layanan.index') }}" class="block px-4 py-1.5 text-xs text-gray-700 hover:text-[#00913e]">Portal Layanan Terpadu</a>
+            <a href="{{ route('layanan.izin') }}" class="block px-4 py-1.5 text-xs text-gray-700 hover:text-[#00913e]">Permohonan Izin Kunjungan</a>
+            <a href="{{ route('layanan.kerjasama') }}" class="block px-4 py-1.5 text-xs text-gray-700 hover:text-[#00913e]">Permohonan Kerja Sama</a>
+            <a href="{{ route('layanan.sewa') }}" class="block px-4 py-1.5 text-xs text-gray-700 hover:text-[#00913e]">Permohonan Sewa Barang</a>
         </div>
 
         <div class="border-t border-gray-100 pt-2 space-y-1">

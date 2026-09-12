@@ -38,6 +38,22 @@
             </div>
         </div>
 
+        {{-- INFO JALUR & PROGRAM PILIHAN --}}
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 p-3.5 bg-emerald-50/70 rounded-2xl border border-emerald-200 text-xs">
+            <div>
+                <span class="text-slate-400 block text-[10px] font-bold uppercase">Gelombang</span>
+                <span class="font-black text-[#00913e]">{{ $ppdb->wave ?: 'Gelombang 1' }}</span>
+            </div>
+            <div>
+                <span class="text-slate-400 block text-[10px] font-bold uppercase">Jalur Pendaftaran</span>
+                <span class="font-black text-slate-800">{{ $ppdb->track ?: 'Reguler' }}</span>
+            </div>
+            <div>
+                <span class="text-slate-400 block text-[10px] font-bold uppercase">Program Pilihan</span>
+                <span class="font-black text-[#da251c]">{{ $ppdb->program_type ?: 'Boarding School' }}</span>
+            </div>
+        </div>
+
         {{-- Form Ubah Status --}}
         <form action="{{ route('admin.ppdb.status', $ppdb) }}" method="POST" class="bg-slate-50 p-4 rounded-2xl border border-slate-200 flex flex-col sm:flex-row items-end gap-3">
             @csrf
@@ -205,6 +221,37 @@
         </div>
 
     </div>
+
+    {{-- DATA TAMBAHAN / ISIAN KUSTOM --}}
+    @if(!empty($ppdb->extra_fields) && is_array($ppdb->extra_fields))
+    <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-xs border border-slate-200/80 space-y-4">
+        <div class="pb-3 border-b border-slate-100 flex items-center space-x-2">
+            <i class="fa-solid fa-folder-plus text-purple-600 text-base"></i>
+            <h3 class="text-sm font-black text-slate-800 uppercase tracking-wider">Data Isian Tambahan / Kustom</h3>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 text-xs">
+            @foreach($ppdb->extra_fields as $extKey => $extItem)
+                @php
+                    $label = is_array($extItem) ? ($extItem['label'] ?? ucfirst(str_replace('_', ' ', $extKey))) : ucfirst(str_replace('_', ' ', $extKey));
+                    $val = is_array($extItem) ? ($extItem['value'] ?? '-') : $extItem;
+                    $type = is_array($extItem) ? ($extItem['type'] ?? 'text') : 'text';
+                @endphp
+                <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-1">
+                    <span class="text-slate-400 block font-semibold">{{ $label }}</span>
+                    @if($type === 'file' && !empty($val) && $val !== '-')
+                        <a href="{{ $val }}" target="_blank" class="inline-flex items-center gap-1.5 text-[#00913e] font-bold hover:underline">
+                            <i class="fa-solid fa-file-arrow-down"></i>
+                            <span>Buka / Unduh Berkas</span>
+                        </a>
+                    @else
+                        <span class="font-bold text-slate-800 text-sm block">{{ $val ?: '-' }}</span>
+                    @endif
+                </div>
+            @endforeach
+        </div>
+    </div>
+    @endif
 
     {{-- BERKAS LAMPIRAN --}}
     <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-xs border border-slate-200/80 space-y-4">

@@ -871,24 +871,25 @@
 {{-- ========================================================
      SECTION #14: CALL TO ACTION BANNER (PPDB ONLINE)
      ======================================================== --}}
-<section class="relative bg-gradient-to-r from-[#00913e] via-[#05a849] to-[#b91c1c] text-white py-12 px-4 sm:px-6 overflow-hidden reveal-fade-up">
-    <div class="max-w-6xl mx-auto relative z-10 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
-        <div>
+<section class="relative bg-gradient-to-r from-[#00913e] via-[#05a849] to-[#b91c1c] text-white py-12 px-4 sm:px-6 lg:px-8 overflow-hidden reveal-fade-up">
+    <div class="max-w-6xl mx-auto relative z-10 flex flex-col lg:flex-row items-center justify-between gap-6 text-center lg:text-left">
+        <div class="flex-1 min-w-0">
             <span class="inline-block bg-white/20 text-white text-xs font-bold px-3.5 py-1 rounded-full uppercase tracking-wider mb-2">
                 Penerimaan Peserta Didik Baru (PPDB)
             </span>
-            <h2 class="text-2xl sm:text-3xl font-black tracking-tight text-white">
+            <h2 class="text-2xl sm:text-3xl font-black tracking-tight text-white leading-tight">
                 Daftar Sekarang di SMA IT Ishlahul Ummah Prabumulih
             </h2>
-            <p class="text-xs sm:text-sm text-green-50 mt-1 max-w-xl">
+            <p class="text-xs sm:text-sm text-green-50 mt-1 max-w-2xl">
                 Wujudkan cita-cita putra-putri Anda menjadi generasi berakhlak Qur'ani, berdaya saing global, dan berprestasi tinggi. Kuota terbatas setiap tahunnya!
             </p>
         </div>
-        <div class="flex flex-col sm:flex-row items-center gap-3">
-            <a href="{{ route('ppdb.index') }}" aria-label="Daftar Sekarang PPDB Online" class="bg-white text-[#00913e] hover:bg-red-50 font-black text-xs sm:text-sm px-7 py-3 rounded-full shadow-lg hover:shadow-xl transition flex-shrink-0 min-h-[44px] flex items-center">
-                Daftar PPDB Online <i class="fa-solid fa-graduation-cap ml-2 text-[#da251c]"></i>
+        <div class="flex flex-wrap sm:flex-nowrap items-center justify-center lg:justify-end gap-3 flex-shrink-0">
+            <a href="{{ route('ppdb.index') }}" aria-label="Daftar Sekarang PPDB Online" class="bg-white text-[#00913e] hover:bg-red-50 font-black text-xs sm:text-sm px-6 py-3 rounded-full shadow-lg hover:shadow-xl transition flex-shrink-0 whitespace-nowrap min-h-[44px] flex items-center justify-center">
+                <span>Daftar PPDB Online</span>
+                <i class="fa-solid fa-graduation-cap ml-2 text-[#da251c]"></i>
             </a>
-            <a href="{{ route('download.index') }}" aria-label="Unduh Brosur Informasi" class="bg-black/30 hover:bg-black/50 text-white font-bold text-xs sm:text-sm px-5 py-3 rounded-full border border-white/40 transition">
+            <a href="{{ route('download.index') }}" aria-label="Unduh Brosur Informasi" class="bg-black/30 hover:bg-black/50 text-white font-bold text-xs sm:text-sm px-6 py-3 rounded-full border border-white/40 transition flex-shrink-0 whitespace-nowrap min-h-[44px] flex items-center justify-center">
                 Unduh Brosur
             </a>
         </div>

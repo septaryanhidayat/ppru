@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\ActivityLog;
 use App\Models\PpdbRegistration;
+use App\Models\Setting;
+use App\Services\PpdbFormService;
 use App\Services\WebpService;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class PpdbController extends Controller
@@ -12,19 +15,90 @@ class PpdbController extends Controller
     public function __construct(protected WebpService $webpService) {}
 
     /**
-     * Display the SPMB / PPDB Info Page matching Screenshot 2.
+     * Display the SPMB / PPDB Info Page.
      */
     public function index()
     {
-        return view('frontend.ppdb.index');
+        $settings = [
+            'status' => Setting::get('ppdb_status', '1'),
+            'year' => Setting::get('ppdb_year', '2026/2027'),
+            'wave' => Setting::get('ppdb_wave', 'Gelombang 1 (Aktif)'),
+            'promo' => Setting::get('ppdb_promo', 'Potongan Biaya Masuk Up to 50% OFF (*S&K berlaku)'),
+            'tagline' => Setting::get('ppdb_tagline', "Mendidik Sepenuh Cinta. Mewujudkan generasi Qur'ani berkarakter tangguh, cerdas sains, mandiri, dan berwawasan global di bawah naungan JSIT Indonesia."),
+            'youtube_id' => Setting::get('ppdb_youtube_id', 'IrPVG8CYjRc'),
+            'video_title' => Setting::get('ppdb_video_title', 'Video Profil & Dokumentasi SMA IT Ishum'),
+            'operational_weekday' => Setting::get('ppdb_operational_weekday', "Senin – Jum'at: Pukul 08.00 – 15.00 WIB"),
+            'operational_weekend' => Setting::get('ppdb_operational_weekend', 'Sabtu: Pukul 08.00 – 12.00 WIB'),
+            'secretariat' => Setting::get('ppdb_secretariat', 'Kompleks SMA IT Ishum, Jl. Sadewa RT 01 RW 04 Karang Raja'),
+            'registration_fee' => Setting::get('ppdb_registration_fee', 'Rp 250.000,-'),
+            'bank_name' => Setting::get('ppdb_bank_name', 'Bank Syariah Indonesia (BSI)'),
+            'bank_code' => Setting::get('ppdb_bank_code', '451'),
+            'bank_account' => Setting::get('ppdb_bank_account', '7011304251'),
+            'bank_holder' => Setting::get('ppdb_bank_holder', 'YL. Fatmawati'),
+            'hotline_phone' => Setting::get('ppdb_hotline_phone', '0821-8268-0647'),
+            'hotline_name' => Setting::get('ppdb_hotline_name', 'Admin Hotline PPDB'),
+            'hotline_2_phone' => Setting::get('ppdb_hotline_2_phone', '0822-8157-3615'),
+            'hotline_2_name' => Setting::get('ppdb_hotline_2_name', 'Ust. Agi (Kepala Sekolah)'),
+            'alur' => Setting::get('ppdb_alur', "Siapkan berkas foto/scan bukti transfer biaya pendaftaran melalui Bank Syariah Indonesia (BSI) nomor rekening 7011304251 a.n. YL. Fatmawati.\nSiapkan berkas foto/scan akta kelahiran dan kartu keluarga.\nMengisi formulir PPDB secara online pada website resmi.\nKonfirmasi pengisian formulir kepada panitia melalui WhatsApp (0821-8268-0647).\nPendaftaran selesai dan berkas diverifikasi tim panitia untuk tahapan tes wawancara dan tahfidz."),
+            'syarat' => Setting::get('ppdb_syarat', "Mengisi Formulir Pendaftaran online dengan data yang benar dan lengkap.\nMelampirkan bukti transfer biaya pendaftaran.\nMelampirkan scan/fotokopi Akta Kelahiran dan Kartu Keluarga (KK).\nMelampirkan fotokopi rapor SMP/MTs semester 1-5.\nPas foto terbaru calon santri ukuran 3x4 berwarna."),
+            'prestasi' => Setting::get('ppdb_prestasi', "Bebas tes tulis akademik bagi Juara 1, 2, atau 3 tingkat Kota/Kabupaten, Provinsi, maupun Nasional.\nDiskon khusus biaya pendaftaran dan prioritas penerimaan."),
+            'tahfidz' => Setting::get('ppdb_tahfidz', "Tahfidz minimal 3 Juz: Beasiswa potongan biaya pendaftaran & SPP.\nTahfidz 5 Juz atau lebih: Beasiswa SPP berkala dan pembinaan khusus Sanad/Mutqin.\nMengikuti tes sima'an tahfidz bersama dewan musyrif Al-Qur'an Ishum."),
+            'alumni' => Setting::get('ppdb_alumni', 'Keringanan istimewa bagi lulusan SMPIT Ishlahul Ummah Prabumulih yang melanjutkan ke SMA IT Ishlahul Ummah Prabumulih berupa potongan biaya uang pangkal & pendaftaran langsung tanpa biaya seleksi.'),
+            'mandiri' => Setting::get('ppdb_mandiri', "Jalur seleksi reguler melalui tahapan:\nTes Potensi Akademik (Matematika, Bahasa Indonesia, PAI).\nTes Kemampuan Membaca Al-Qur'an (Tahsin & Tajwid).\nWawancara Komitmen Orang Tua & Santri."),
+            'jadwal_gelombang' => Setting::get('ppdb_jadwal_gelombang', "Gelombang 1: Oktober s/d Desember (Diskon Biaya Masuk s/d 50%)\nGelombang 2: Januari s/d April\nGelombang 3: Mei s/d Juli (Khusus sisa kuota)\n* Pendaftaran akan ditutup otomatis apabila kuota per kelas telah terpenuhi."),
+            'biaya' => Setting::get('ppdb_biaya', "Biaya Formulir Pendaftaran: Ditransfer ke rekening BSI sekolah 7011304251.\nPaket Seragam Sekolah (4 stel seragam lengkap + atribut dan jilbab/peci).\nBiaya Orientasi Santri (MPLS) & Baitul Maqdis Leadership Camp.\nUntuk rincian lengkap uang pangkal dan SPP bulanan, hubungi langsung panitia PPDB."),
+            'boarding' => Setting::get('ppdb_boarding', "Program Boarding (Asrama): Fasilitas asrama bersih, ber-AC/ventilasi sehat, makan 3x sehari, pendampingan tahfidz 24 jam bersama musyrif.\nProgram Full Day School: Pembelajaran terpadu hingga sore hari, shalat berjamaah, makan siang sehat, dan ekstrakurikuler."),
+            'kelulusan' => Setting::get('ppdb_kelulusan', 'Hasil seleksi diumumkan melalui website resmi dan notifikasi WhatsApp kepada orang tua calon santri. Calon santri yang dinyatakan lulus wajib melakukan daftar ulang sesuai jadwal yang ditentukan panitia.'),
+            'closing_title' => Setting::get('ppdb_closing_title', 'Terima Kasih Sudah Mendaftar di SMA Islam Terpadu Ishlahul Ummah Prabumulih'),
+            'closing_desc' => Setting::get('ppdb_closing_desc', 'Semoga Ananda kelak bisa menjadi anak yang cerdas, sholeh/ah, berbakti kepada orang tua dan menjadi kebanggaan bagi agama, bangsa dan negara. Aamiin'),
+        ];
+
+        return view('frontend.ppdb.index', compact('settings'));
     }
 
     /**
-     * Display the PPDB Registration Form matching Screenshot 1.
+     * Display the PPDB Registration Form.
+     */
+    /**
+     * Display the PPDB Registration Form.
      */
     public function form()
     {
-        return view('frontend.ppdb.form');
+        $rawWaves = Setting::get('ppdb_form_waves', "Gelombang 1 (Early Bird)\nGelombang 2 (Reguler)\nGelombang 3 (Prestasi)");
+        $rawTracks = Setting::get('ppdb_form_tracks', "Jalur Reguler / Tes Mandiri\nJalur Prestasi Akademik & Non-Akademik\nJalur Hafizh Al-Qur'an (Tahfidz)\nJalur Alumni SMPIT Ishum\nJalur Beasiswa / Afirmasi");
+        $rawPrograms = Setting::get('ppdb_form_programs', "Boarding School (Asrama Santri)\nFull Day School (Sekolah Terpadu)");
+
+        $waves = array_values(array_filter(array_map('trim', explode("\n", (string) $rawWaves))));
+        $tracks = array_values(array_filter(array_map('trim', explode("\n", (string) $rawTracks))));
+        $programs = array_values(array_filter(array_map('trim', explode("\n", (string) $rawPrograms))));
+
+        $formSettings = [
+            'status' => Setting::get('ppdb_form_status', '1'),
+            'year' => Setting::get('ppdb_year', '2026/2027'),
+            'closed_message' => Setting::get('ppdb_form_closed_message', 'Pendaftaran PPDB online saat ini sedang ditutup sementara atau kuota telah terpenuhi. Silakan hubungi panitia melalui WhatsApp untuk informasi gelombang berikutnya.'),
+            'announcement' => Setting::get('ppdb_form_announcement', 'Pastikan nomor WhatsApp yang diisi aktif untuk pengiriman kartu peserta ujian dan informasi jadwal seleksi.'),
+            'waves' => $waves,
+            'tracks' => $tracks,
+            'programs' => $programs,
+            'require_payment' => Setting::get('ppdb_form_require_payment', '1') === '1',
+            'require_birth_cert' => Setting::get('ppdb_form_require_birth_cert', '1') === '1',
+            'nisn_rule' => Setting::get('ppdb_form_nisn_rule', 'optional'),
+            'show_achievements' => Setting::get('ppdb_form_show_achievements', '1') === '1',
+            'show_hobbies' => Setting::get('ppdb_form_show_hobbies', '1') === '1',
+            'require_parent_income' => Setting::get('ppdb_form_require_parent_income', '1') === '1',
+            'wa_confirm' => Setting::get('ppdb_form_wa_confirm', '1') === '1',
+            'bank_name' => Setting::get('ppdb_bank_name', 'Bank Syariah Indonesia (BSI)'),
+            'bank_code' => Setting::get('ppdb_bank_code', '451'),
+            'bank_account' => Setting::get('ppdb_bank_account', '7011304251'),
+            'bank_holder' => Setting::get('ppdb_bank_holder', 'YL. Fatmawati'),
+            'registration_fee' => Setting::get('ppdb_registration_fee', 'Rp 250.000,-'),
+            'hotline_phone' => Setting::get('ppdb_hotline_phone', '0821-8268-0647'),
+        ];
+
+        $groupedFields = PpdbFormService::getActiveFieldsGrouped();
+        $sections = PpdbFormService::getSections();
+
+        return view('frontend.ppdb.form', compact('formSettings', 'groupedFields', 'sections'));
     }
 
     /**
@@ -32,50 +106,62 @@ class PpdbController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            // Data Calon Siswa
-            'full_name' => 'required|string|max:255',
-            'birth_place' => 'required|string|max:100',
-            'birth_date' => 'required|date',
-            'gender' => 'required|in:Laki-laki,Perempuan',
-            'address' => 'required|string|max:1000',
-            'living_with' => 'required|string|max:100',
-            'child_order' => 'required|integer|min:1|max:30',
-            'siblings_count' => 'required|integer|min:0|max:30',
-            'previous_school' => 'required|string|max:255',
-            'nisn' => 'nullable|string|max:50',
-            'hobby' => 'required|string|max:255',
-            'favorite_subject' => 'nullable|string|max:255',
-            'ambition' => 'required|string|max:255',
-            'achievements' => 'nullable|string|max:1000',
-            'phone' => 'required|string|max:50',
+        $formStatus = Setting::get('ppdb_form_status', '1');
+        if ($formStatus === '0') {
+            return back()->with('error', Setting::get('ppdb_form_closed_message', 'Pendaftaran PPDB online saat ini sedang ditutup.'));
+        }
 
-            // Data Ayah / Wali
-            'father_name' => 'required|string|max:255',
-            'father_birth_place' => 'required|string|max:100',
-            'father_birth_date' => 'required|date',
-            'father_address' => 'required|string|max:1000',
-            'father_education' => 'required|string|max:100',
-            'father_job' => 'required|string|max:100',
-            'father_income' => 'required|string|max:100',
-            'father_phone' => 'nullable|string|max:50',
+        $activeFields = PpdbFormService::getActiveFields();
+        $rules = [];
+        $customAttributes = [];
 
-            // Data Ibu / Wali
-            'mother_name' => 'required|string|max:255',
-            'mother_birth_place' => 'required|string|max:100',
-            'mother_birth_date' => 'required|date',
-            'mother_address' => 'required|string|max:1000',
-            'mother_education' => 'required|string|max:100',
-            'mother_job' => 'required|string|max:100',
-            'mother_income' => 'required|string|max:100',
-            'mother_phone' => 'nullable|string|max:50',
+        // Known standard column keys in ppdb_registrations table
+        $standardKeys = [
+            'wave', 'track', 'program_type',
+            'full_name', 'birth_place', 'birth_date', 'gender', 'address', 'living_with',
+            'child_order', 'siblings_count', 'previous_school', 'nisn', 'hobby', 'favorite_subject',
+            'ambition', 'achievements', 'phone',
+            'father_name', 'father_birth_place', 'father_birth_date', 'father_address',
+            'father_education', 'father_job', 'father_income', 'father_phone',
+            'mother_name', 'mother_birth_place', 'mother_birth_date', 'mother_address',
+            'mother_education', 'mother_job', 'mother_income', 'mother_phone',
+            'birth_certificate', 'payment_proof',
+        ];
 
-            // Berkas Pendaftaran
-            'birth_certificate' => 'required|file|mimes:jpeg,png,jpg,webp,pdf|max:5120',
-            'payment_proof' => 'required|file|mimes:jpeg,png,jpg,webp,pdf|max:5120',
-        ]);
+        foreach ($activeFields as $field) {
+            $key = $field['key'];
+            $req = ! empty($field['required']) ? 'required' : 'nullable';
+            $type = $field['type'] ?? 'text';
+            $customAttributes[$key] = $field['label'] ?? $key;
 
-        // Process Birth Certificate File
+            switch ($type) {
+                case 'file':
+                    $rules[$key] = "{$req}|file|mimes:jpeg,png,jpg,webp,pdf|max:5120";
+                    break;
+                case 'number':
+                    $rules[$key] = "{$req}|numeric";
+                    break;
+                case 'date':
+                    $rules[$key] = "{$req}|date";
+                    break;
+                case 'select':
+                    $rules[$key] = "{$req}|string|max:255";
+                    break;
+                case 'textarea':
+                    $rules[$key] = "{$req}|string|max:2000";
+                    break;
+                case 'tel':
+                    $rules[$key] = "{$req}|string|max:50";
+                    break;
+                default: // text
+                    $rules[$key] = "{$req}|string|max:255";
+                    break;
+            }
+        }
+
+        $validated = $request->validate($rules, [], $customAttributes);
+
+        // Process Standard Birth Certificate File
         $birthCertPath = null;
         if ($request->hasFile('birth_certificate')) {
             $file = $request->file('birth_certificate');
@@ -90,7 +176,7 @@ class PpdbController extends Controller
             }
         }
 
-        // Process Payment Proof File
+        // Process Standard Payment Proof File
         $paymentProofPath = null;
         if ($request->hasFile('payment_proof')) {
             $file = $request->file('payment_proof');
@@ -105,55 +191,94 @@ class PpdbController extends Controller
             }
         }
 
-        $regNumber = PpdbRegistration::generateRegistrationNumber();
+        // Collect extra fields (custom fields added dynamically)
+        $extraFields = [];
+        foreach ($activeFields as $field) {
+            $key = $field['key'];
+            if (! in_array($key, $standardKeys, true)) {
+                if ($field['type'] === 'file') {
+                    if ($request->hasFile($key)) {
+                        $file = $request->file($key);
+                        $ext = strtolower($file->getClientOriginalExtension());
+                        if ($ext === 'pdf') {
+                            $filename = $key.'_'.time().'_'.uniqid().'.pdf';
+                            $file->move(public_path('uploads/ppdb/extra'), $filename);
+                            $filePath = '/uploads/ppdb/extra/'.$filename;
+                        } else {
+                            $converted = $this->webpService->processUploadedFile($file, 'ppdb/extra', 82, 1600);
+                            $filePath = $converted['success'] ? $converted['url'] : null;
+                        }
+                        $extraFields[$key] = [
+                            'label' => $field['label'],
+                            'value' => $filePath,
+                            'type' => 'file',
+                        ];
+                    }
+                } else {
+                    $extraFields[$key] = [
+                        'label' => $field['label'],
+                        'value' => $validated[$key] ?? null,
+                        'type' => $field['type'],
+                    ];
+                }
+            }
+        }
 
+        $regNumber = PpdbRegistration::generateRegistrationNumber();
+        $academicYear = Setting::get('ppdb_year', '2026/2027');
+
+        // Safe registration attributes with defaults for non-nullable columns
         $registration = PpdbRegistration::create([
             'registration_number' => $regNumber,
-            'full_name' => $validated['full_name'],
-            'birth_place' => $validated['birth_place'],
-            'birth_date' => $validated['birth_date'],
-            'gender' => $validated['gender'],
-            'address' => $validated['address'],
-            'living_with' => $validated['living_with'],
-            'child_order' => $validated['child_order'],
-            'siblings_count' => $validated['siblings_count'],
-            'previous_school' => $validated['previous_school'],
+            'wave' => $validated['wave'] ?? Setting::get('ppdb_wave', 'Gelombang 1'),
+            'track' => $validated['track'] ?? 'Reguler',
+            'program_type' => $validated['program_type'] ?? 'Boarding School',
+            'full_name' => $validated['full_name'] ?? 'Calon Santri',
+            'birth_place' => $validated['birth_place'] ?? '-',
+            'birth_date' => $validated['birth_date'] ?? '2008-01-01',
+            'gender' => $validated['gender'] ?? 'Laki-laki',
+            'address' => $validated['address'] ?? '-',
+            'living_with' => $validated['living_with'] ?? 'Orang Tua',
+            'child_order' => isset($validated['child_order']) ? (int) $validated['child_order'] : 1,
+            'siblings_count' => isset($validated['siblings_count']) ? (int) $validated['siblings_count'] : 1,
+            'previous_school' => $validated['previous_school'] ?? '-',
             'nisn' => $validated['nisn'] ?? null,
-            'hobby' => $validated['hobby'],
+            'hobby' => $validated['hobby'] ?? '-',
             'favorite_subject' => $validated['favorite_subject'] ?? null,
-            'ambition' => $validated['ambition'],
+            'ambition' => $validated['ambition'] ?? '-',
             'achievements' => $validated['achievements'] ?? null,
-            'phone' => $validated['phone'],
+            'phone' => $validated['phone'] ?? '-',
 
-            'father_name' => $validated['father_name'],
-            'father_birth_place' => $validated['father_birth_place'],
-            'father_birth_date' => $validated['father_birth_date'],
-            'father_address' => $validated['father_address'],
-            'father_education' => $validated['father_education'],
-            'father_job' => $validated['father_job'],
-            'father_income' => $validated['father_income'],
+            'father_name' => $validated['father_name'] ?? '-',
+            'father_birth_place' => $validated['father_birth_place'] ?? null,
+            'father_birth_date' => $validated['father_birth_date'] ?? null,
+            'father_address' => $validated['father_address'] ?? null,
+            'father_education' => $validated['father_education'] ?? null,
+            'father_job' => $validated['father_job'] ?? null,
+            'father_income' => $validated['father_income'] ?? null,
             'father_phone' => $validated['father_phone'] ?? null,
 
-            'mother_name' => $validated['mother_name'],
-            'mother_birth_place' => $validated['mother_birth_place'],
-            'mother_birth_date' => $validated['mother_birth_date'],
-            'mother_address' => $validated['mother_address'],
-            'mother_education' => $validated['mother_education'],
-            'mother_job' => $validated['mother_job'],
-            'mother_income' => $validated['mother_income'],
+            'mother_name' => $validated['mother_name'] ?? '-',
+            'mother_birth_place' => $validated['mother_birth_place'] ?? null,
+            'mother_birth_date' => $validated['mother_birth_date'] ?? null,
+            'mother_address' => $validated['mother_address'] ?? null,
+            'mother_education' => $validated['mother_education'] ?? null,
+            'mother_job' => $validated['mother_job'] ?? null,
+            'mother_income' => $validated['mother_income'] ?? null,
             'mother_phone' => $validated['mother_phone'] ?? null,
 
             'birth_certificate_path' => $birthCertPath,
             'payment_proof_path' => $paymentProofPath,
+            'extra_fields' => ! empty($extraFields) ? $extraFields : null,
             'status' => 'pending',
-            'academic_year' => '2026/2027',
+            'academic_year' => $academicYear,
         ]);
 
         ActivityLog::create([
             'user_id' => null,
             'user_name' => 'Calon Santri: '.$registration->full_name,
             'action' => 'ppdb_registration',
-            'description' => "Pendaftaran PPDB Baru: {$registration->full_name} ({$registration->registration_number}) dari {$registration->previous_school}",
+            'description' => "Pendaftaran PPDB Baru: {$registration->full_name} ({$registration->registration_number}) - {$registration->track} / {$registration->program_type}",
             'ip_address' => $request->ip(),
             'user_agent' => $request->userAgent(),
             'status' => 'info',
@@ -186,6 +311,91 @@ class PpdbController extends Controller
             abort(404, 'Data pendaftaran tidak ditemukan.');
         }
 
-        return view('frontend.ppdb.success', compact('registration'));
+        $waUrl = $this->buildWhatsAppUrl($registration);
+
+        return view('frontend.ppdb.success', compact('registration', 'waUrl'));
+    }
+
+    /**
+     * Build comprehensive WhatsApp forward URL containing all form data.
+     */
+    public function buildWhatsAppUrl(PpdbRegistration $registration): string
+    {
+        $adminPhone = Setting::get('ppdb_hotline_phone', Setting::get('contact_whatsapp', Setting::get('contact_phone', '082182680647')));
+        $cleanPhone = preg_replace('/[^0-9]/', '', (string) $adminPhone);
+        if (str_starts_with($cleanPhone, '0')) {
+            $cleanPhone = '62'.substr($cleanPhone, 1);
+        }
+        if (empty($cleanPhone)) {
+            $cleanPhone = '6282182680647';
+        }
+
+        $text = "*FORMULIR PENDAFTARAN SANTRI BARU (PPDB)*\n";
+        $text .= "*SMA IT ISHLAHUL UMMAH PRABUMULIH*\n";
+        $text .= "----------------------------------------\n";
+        $text .= '📋 *No. Registrasi:* '.$registration->registration_number."\n";
+        $text .= '📅 *Tanggal Daftar:* '.$registration->created_at->translatedFormat('d F Y, H:i')." WIB\n";
+        $text .= '🌊 *Gelombang:* '.($registration->wave ?: 'Gelombang 1')."\n";
+        $text .= '🎯 *Jalur Pendaftaran:* '.($registration->track ?: 'Reguler')."\n";
+        $text .= '🏫 *Program Pilihan:* '.($registration->program_type ?: 'Boarding School')."\n\n";
+
+        $text .= "👤 *1. DATA CALON SISWA*\n";
+        $text .= '• *Nama Lengkap:* '.$registration->full_name."\n";
+        $birthDateStr = $registration->birth_date ? Carbon::parse($registration->birth_date)->translatedFormat('d F Y') : '-';
+        $text .= '• *Tempat, Tgl Lahir:* '.$registration->birth_place.', '.$birthDateStr."\n";
+        $text .= '• *Jenis Kelamin:* '.$registration->gender."\n";
+        $text .= '• *Alamat Lengkap:* '.$registration->address."\n";
+        $text .= '• *Tinggal Bersama:* '.$registration->living_with."\n";
+        $text .= '• *Anak Ke:* '.$registration->child_order.' dari '.$registration->siblings_count." bersaudara\n";
+        $text .= '• *Asal Sekolah:* '.$registration->previous_school."\n";
+        $text .= '• *NISN:* '.($registration->nisn ?: '-')."\n";
+        $text .= '• *Hobi:* '.$registration->hobby."\n";
+        $text .= '• *Bidang Disukai:* '.($registration->favorite_subject ?: '-')."\n";
+        $text .= '• *Cita-cita:* '.$registration->ambition."\n";
+        $text .= '• *Prestasi:* '.($registration->achievements ?: '-')."\n";
+        $text .= '• *No. HP/WA Siswa:* '.$registration->phone."\n\n";
+
+        $text .= "👨 *2. DATA AYAH / WALI*\n";
+        $text .= '• *Nama Ayah:* '.$registration->father_name."\n";
+        $fatherBirthDateStr = $registration->father_birth_date ? Carbon::parse($registration->father_birth_date)->translatedFormat('d F Y') : '-';
+        $text .= '• *TTL Ayah:* '.$registration->father_birth_place.', '.$fatherBirthDateStr."\n";
+        $text .= '• *Alamat Ayah:* '.$registration->father_address."\n";
+        $text .= '• *Pendidikan Terakhir:* '.$registration->father_education."\n";
+        $text .= '• *Pekerjaan:* '.$registration->father_job."\n";
+        $text .= '• *Penghasilan:* '.$registration->father_income."\n";
+        $text .= '• *No. HP/WA Ayah:* '.($registration->father_phone ?: '-')."\n\n";
+
+        $text .= "👩 *3. DATA IBU / WALI*\n";
+        $text .= '• *Nama Ibu:* '.$registration->mother_name."\n";
+        $motherBirthDateStr = $registration->mother_birth_date ? Carbon::parse($registration->mother_birth_date)->translatedFormat('d F Y') : '-';
+        $text .= '• *TTL Ibu:* '.$registration->mother_birth_place.', '.$motherBirthDateStr."\n";
+        $text .= '• *Alamat Ibu:* '.$registration->mother_address."\n";
+        $text .= '• *Pendidikan Terakhir:* '.$registration->mother_education."\n";
+        $text .= '• *Pekerjaan:* '.$registration->mother_job."\n";
+        $text .= '• *Penghasilan:* '.$registration->mother_income."\n";
+        $text .= '• *No. HP/WA Ibu:* '.($registration->mother_phone ?: '-')."\n\n";
+
+        $text .= "📎 *4. BERKAS TERUNGGAH*\n";
+        $text .= '• *Scan Akta Kelahiran:* '.($registration->birth_certificate_path ? url($registration->birth_certificate_path) : 'Tersimpan di sistem')."\n";
+        $text .= '• *Bukti Pembayaran:* '.($registration->payment_proof_path ? url($registration->payment_proof_path) : 'Tersimpan di sistem')."\n\n";
+
+        if (! empty($registration->extra_fields) && is_array($registration->extra_fields)) {
+            $text .= "📝 *5. DATA TAMBAHAN LAINNYA*\n";
+            foreach ($registration->extra_fields as $key => $item) {
+                $lbl = is_array($item) ? ($item['label'] ?? ucfirst(str_replace('_', ' ', $key))) : ucfirst(str_replace('_', ' ', $key));
+                $val = is_array($item) ? ($item['value'] ?? '-') : $item;
+                $fType = is_array($item) ? ($item['type'] ?? 'text') : 'text';
+                if ($fType === 'file' && $val && $val !== '-') {
+                    $text .= "• *{$lbl}:* ".url($val)."\n";
+                } else {
+                    $text .= "• *{$lbl}:* ".($val ?: '-')."\n";
+                }
+            }
+            $text .= "\n";
+        }
+
+        $text .= "Mohon untuk memverifikasi pendaftaran calon santri baru kami. Terima kasih.\nWassalamu'alaikum Wr. Wb.";
+
+        return 'https://api.whatsapp.com/send?phone='.$cleanPhone.'&text='.rawurlencode($text);
     }
 }

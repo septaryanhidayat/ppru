@@ -27,10 +27,10 @@
                 </div>
             </div>
 
-            {{-- KOLOM 2: ALAMAT KAMPUS & KONTAK --}}
+            {{-- KOLOM 2: ALAMAT SEKOLAH & KONTAK --}}
             <div class="lg:col-span-4 space-y-3 text-center md:text-left">
                 <h3 class="font-bold text-[#da251c] text-base sm:text-lg tracking-wide uppercase">
-                    Alamat Kampus
+                    Alamat Sekolah
                 </h3>
                 <p class="text-sm sm:text-[15px] text-gray-200 font-normal leading-relaxed pr-0 md:pr-2">
                     {{ $siteSettings['contact_address'] ?? 'Jalan Sadewa RT 01 RW 03 Kelurahan Karang Raja, Kecamatan Prabumulih Timur, Kota Prabumulih, Sumatera Selatan 31111' }}
@@ -81,20 +81,25 @@
                 </div>
             </div>
 
-            {{-- KOLOM 4: PENGUNJUNG --}}
-            <div class="lg:col-span-2 space-y-2 text-center md:text-left">
-                <h3 class="font-bold text-[#da251c] text-base sm:text-lg tracking-wide uppercase flex items-center justify-center md:justify-start gap-2">
+            {{-- KOLOM 4: PENGUNJUNG (RATA TENGAH) --}}
+            <div class="lg:col-span-2 space-y-2 text-center flex flex-col items-center justify-center">
+                <h3 class="font-bold text-[#da251c] text-base sm:text-lg tracking-wide uppercase flex items-center justify-center gap-2">
                     <span>Pengunjung</span>
                     <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#00913e] text-white border border-green-500">
                         <span class="w-1.5 h-1.5 rounded-full bg-[#da251c] animate-ping mr-1"></span> Live
                     </span>
                 </h3>
-                <div class="text-3xl sm:text-4xl lg:text-4xl font-bold text-white tracking-normal font-sans leading-tight pt-1 flex items-center justify-center md:justify-start" style="font-family: Arial, sans-serif;">
+                <div class="text-3xl sm:text-4xl lg:text-4xl font-bold text-white tracking-normal font-sans leading-tight pt-1 flex items-center justify-center" style="font-family: Arial, sans-serif;">
                     <span id="footer-visitor-counter" data-target="{{ $rawVisitorHits ?? (int) str_replace(['.', ','], '', $visitorHits ?? '53512') }}">
                         {{ $visitorHits ?? '53.512' }}
                     </span>
                 </div>
-                <p class="text-xs text-gray-400 font-light">Kunjungan ke website resmi sekolah</p>
+                <p class="text-xs text-gray-400 font-light text-center">Kunjungan ke website resmi sekolah</p>
+                <div class="pt-2 flex items-center justify-center gap-2 text-xs text-gray-400 text-center">
+                    <a href="{{ route('page.privacy-policy') }}" class="hover:text-white transition">Kebijakan Privasi</a>
+                    <span>&bull;</span>
+                    <a href="{{ route('hubungi') }}" class="hover:text-white transition">Kontak</a>
+                </div>
             </div>
 
         </div>
@@ -111,12 +116,8 @@
                 Copyright &copy; {{ date('Y') }} SMA Islam Terpadu Ishlahul Ummah Prabumulih. All Rights Reserved.
             </div>
 
-            <div class="flex flex-wrap items-center justify-center sm:justify-end gap-x-4 gap-y-1 text-[11px] text-gray-400">
-                <a href="{{ route('page.privacy-policy') }}" class="hover:text-white transition">Kebijakan Privasi</a>
-                <span>&bull;</span>
-                <a href="{{ route('hubungi') }}" class="hover:text-white transition">Kontak</a>
-                <span>&bull;</span>
-                <a href="https://berandadigital.net" target="_blank" rel="noopener" class="text-gray-500 hover:text-gray-300 transition text-[11px]">
+            <div class="text-[11px] text-gray-500">
+                <a href="https://berandadigital.net" target="_blank" rel="noopener" class="hover:text-gray-300 transition">
                     Beranda Teknologi Digital
                 </a>
             </div>

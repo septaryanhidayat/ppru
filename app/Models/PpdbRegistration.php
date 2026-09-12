@@ -26,6 +26,9 @@ class PpdbRegistration extends Model
         'ambition',
         'achievements',
         'phone',
+        'track',
+        'program_type',
+        'wave',
         'father_name',
         'father_birth_place',
         'father_birth_date',
@@ -47,6 +50,7 @@ class PpdbRegistration extends Model
         'status',
         'academic_year',
         'notes',
+        'extra_fields',
     ];
 
     protected $casts = [
@@ -55,6 +59,7 @@ class PpdbRegistration extends Model
         'mother_birth_date' => 'date',
         'child_order' => 'integer',
         'siblings_count' => 'integer',
+        'extra_fields' => 'array',
     ];
 
     public static function generateRegistrationNumber(): string

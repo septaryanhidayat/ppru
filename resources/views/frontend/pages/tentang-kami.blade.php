@@ -102,10 +102,10 @@
                 <div class="w-16 h-16 rounded-2xl bg-green-100 text-[#00913e] flex items-center justify-center text-2xl shadow-inner">
                     <i class="fa-solid fa-layer-group"></i>
                 </div>
-                <span class="text-xs font-bold text-[#00913e] uppercase tracking-wider block">Sarana Kampus</span>
+                <span class="text-xs font-bold text-[#00913e] uppercase tracking-wider block">Sarana Sekolah</span>
                 <h3 class="text-xl font-extrabold text-gray-900">Fasilitas &amp; Laboratorium</h3>
                 <p class="text-xs text-gray-500 leading-relaxed">
-                    Laboratorium sains, lab komputer multimedia, perpustakaan digital, masjid kampus, sarana olahraga, dan asrama representatif.
+                    Laboratorium sains, lab komputer multimedia, perpustakaan digital, masjid sekolah, sarana olahraga, dan asrama representatif.
                 </p>
             </div>
             <div class="pt-4 border-t border-gray-100">
@@ -261,7 +261,7 @@
     <section class="bg-white rounded-3xl p-8 sm:p-10 shadow-xl border border-gray-100 reveal-fade-up space-y-6">
         <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
             <div>
-                <span class="text-xs font-bold text-[#00913e] uppercase tracking-wider block">Lokasi Kampus</span>
+                <span class="text-xs font-bold text-[#00913e] uppercase tracking-wider block">Lokasi Sekolah</span>
                 <h2 class="text-xl sm:text-2xl font-extrabold text-gray-900 mt-1">Alamat SMA IT Ishlahul Ummah Prabumulih</h2>
                 <p class="text-xs text-gray-500 mt-1">Jl. Lintas Timur KM 35, Kel. Prabumulih Indah, Kec. Kota Prabumulih, Sumatera Selatan 30662</p>
             </div>

@@ -48,6 +48,15 @@
     {{-- Vite CSS & JS --}}
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
+    <style>
+        .ql-align-center, [style*="text-align: center"], .text-center { text-align: center !important; }
+        .ql-align-right, [style*="text-align: right"], .text-right { text-align: right !important; }
+        .ql-align-justify, [style*="text-align: justify"], .prose-content, .prose-content p { text-align: justify !important; text-justify: inter-word; }
+        .prose-content { text-align: justify; text-justify: inter-word; }
+        .prose-content p { margin-bottom: 1.25rem; line-height: 1.85; text-align: justify; text-justify: inter-word; }
+        .prose-content img { margin-left: auto !important; margin-right: auto !important; display: block; border-radius: 1rem; max-width: 100%; height: auto; }
+    </style>
+
     @stack('styles')
 </head>
 <body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen">

@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ActivityLog;
 use App\Models\Agenda;
+use App\Models\Feedback;
 use App\Models\Pengumuman;
 use App\Models\Post;
 use App\Models\Testimonial;
 use App\Models\Video;
+use Illuminate\Http\Request;
 
 class InformationController extends Controller
 {
@@ -135,11 +138,75 @@ class InformationController extends Controller
         return view('frontend.layanan.index', compact('page'));
     }
 
+    public function layananTerpadu()
+    {
+        return $this->layanan();
+    }
+
     public function izinSekolah()
     {
         $page = Post::pages()->where('slug', 'izin-sekolah')->first();
 
         return view('frontend.layanan.izin', compact('page'));
+    }
+
+    public function submitIzin(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'agency' => 'required|string|max:255',
+            'whatsapp' => 'required|string|max:30',
+            'purpose' => 'required|string',
+            'letter_file' => 'nullable|file|mimes:pdf,doc,docx,jpg,jpeg,png,webp|max:5120',
+            'ktp_file' => 'nullable|file|mimes:pdf,jpg,jpeg,png,webp|max:5120',
+        ]);
+
+        $letterPath = null;
+        if ($request->hasFile('letter_file')) {
+            $file = $request->file('letter_file');
+            $filename = 'surat_izin_'.time().'_'.uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path('uploads/layanan'), $filename);
+            $letterPath = '/uploads/layanan/'.$filename;
+        }
+
+        $ktpPath = null;
+        if ($request->hasFile('ktp_file')) {
+            $file = $request->file('ktp_file');
+            $filename = 'ktp_izin_'.time().'_'.uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path('uploads/layanan'), $filename);
+            $ktpPath = '/uploads/layanan/'.$filename;
+        }
+
+        $messageContent = "PERMOHONAN IZIN KUNJUNGAN KE SEKOLAH\n".
+            "Nama: {$validated['name']}\n".
+            "Instansi: {$validated['agency']}\n".
+            "WhatsApp: {$validated['whatsapp']}\n".
+            "Keperluan: {$validated['purpose']}\n".
+            ($letterPath ? "Surat: {$letterPath}\n" : '').
+            ($ktpPath ? "KTP: {$ktpPath}\n" : '');
+
+        Feedback::create([
+            'name' => $validated['name'],
+            'email' => $validated['whatsapp'].'@wa.layanan',
+            'whatsapp' => $validated['whatsapp'],
+            'message' => $messageContent,
+            'status' => 'unread',
+        ]);
+
+        ActivityLog::create([
+            'user_id' => null,
+            'user_name' => $validated['name'].' ('.$validated['agency'].')',
+            'action' => 'layanan_izin',
+            'description' => "Permohonan Izin Kunjungan dari {$validated['name']} ({$validated['agency']})",
+            'ip_address' => $request->ip(),
+            'user_agent' => $request->userAgent(),
+            'status' => 'info',
+        ]);
+
+        $waText = urlencode("Assalamu'alaikum Humas SMA IT Ishlahul Ummah Prabumulih,\n\nSaya telah mengajukan Permohonan Izin Kunjungan ke Sekolah:\n- Nama: {$validated['name']}\n- Instansi: {$validated['agency']}\n- Keperluan: {$validated['purpose']}\n\nMohon konfirmasi dan tindak lanjutnya. Terima kasih.");
+        $waUrl = "https://wa.me/6282182680647?text={$waText}";
+
+        return redirect()->route('layanan.izin')->with('success', 'Permohonan izin kunjungan Anda berhasil dikirim! Silakan konfirmasi via WhatsApp untuk respon cepat.')->with('wa_url', $waUrl);
     }
 
     public function kerjasama()
@@ -149,10 +216,138 @@ class InformationController extends Controller
         return view('frontend.layanan.kerjasama', compact('page'));
     }
 
+    public function submitKerjasama(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'agency' => 'required|string|max:255',
+            'whatsapp' => 'required|string|max:30',
+            'purpose' => 'required|string',
+            'letter_file' => 'nullable|file|mimes:pdf,doc,docx,jpg,jpeg,png,webp|max:5120',
+            'ktp_file' => 'nullable|file|mimes:pdf,jpg,jpeg,png,webp|max:5120',
+        ]);
+
+        $letterPath = null;
+        if ($request->hasFile('letter_file')) {
+            $file = $request->file('letter_file');
+            $filename = 'proposal_'.time().'_'.uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path('uploads/layanan'), $filename);
+            $letterPath = '/uploads/layanan/'.$filename;
+        }
+
+        $ktpPath = null;
+        if ($request->hasFile('ktp_file')) {
+            $file = $request->file('ktp_file');
+            $filename = 'ktp_kerjasama_'.time().'_'.uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path('uploads/layanan'), $filename);
+            $ktpPath = '/uploads/layanan/'.$filename;
+        }
+
+        $messageContent = "PERMOHONAN KERJA SAMA LEMBAGA\n".
+            "Nama Penanggung Jawab: {$validated['name']}\n".
+            "Lembaga / Perusahaan: {$validated['agency']}\n".
+            "WhatsApp: {$validated['whatsapp']}\n".
+            "Bentuk Kerja Sama: {$validated['purpose']}\n".
+            ($letterPath ? "Proposal/Surat: {$letterPath}\n" : '').
+            ($ktpPath ? "KTP: {$ktpPath}\n" : '');
+
+        Feedback::create([
+            'name' => $validated['name'],
+            'email' => $validated['whatsapp'].'@wa.layanan',
+            'whatsapp' => $validated['whatsapp'],
+            'message' => $messageContent,
+            'status' => 'unread',
+        ]);
+
+        ActivityLog::create([
+            'user_id' => null,
+            'user_name' => $validated['name'].' ('.$validated['agency'].')',
+            'action' => 'layanan_kerjasama',
+            'description' => "Permohonan Kerja Sama dari {$validated['name']} ({$validated['agency']})",
+            'ip_address' => $request->ip(),
+            'user_agent' => $request->userAgent(),
+            'status' => 'info',
+        ]);
+
+        $waText = urlencode("Assalamu'alaikum Pimpinan SMA IT Ishlahul Ummah Prabumulih,\n\nKami telah mengajukan Permohonan Kerja Sama Lembaga:\n- Nama: {$validated['name']}\n- Lembaga/Perusahaan: {$validated['agency']}\n- Bentuk Kerjasama: {$validated['purpose']}\n\nMohon informasi dan jadwal tindak lanjutnya. Terima kasih.");
+        $waUrl = "https://wa.me/6282182680647?text={$waText}";
+
+        return redirect()->route('layanan.kerjasama')->with('success', 'Permohonan kerja sama berhasil dikirim! Silakan konfirmasi via WhatsApp untuk respon cepat.')->with('wa_url', $waUrl);
+    }
+
     public function sewaBarang()
     {
         $page = Post::pages()->where('slug', 'sewa-barang')->first();
 
         return view('frontend.layanan.sewa', compact('page'));
+    }
+
+    public function submitSewa(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'agency' => 'required|string|max:255',
+            'whatsapp' => 'required|string|max:30',
+            'purpose' => 'required|string',
+            'letter_file' => 'nullable|file|mimes:pdf,doc,docx,jpg,jpeg,png,webp|max:5120',
+            'ktp_file' => 'nullable|file|mimes:pdf,jpg,jpeg,png,webp|max:5120',
+            'npwp_file' => 'nullable|file|mimes:pdf,jpg,jpeg,png,webp|max:5120',
+        ]);
+
+        $letterPath = null;
+        if ($request->hasFile('letter_file')) {
+            $file = $request->file('letter_file');
+            $filename = 'sewa_surat_'.time().'_'.uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path('uploads/layanan'), $filename);
+            $letterPath = '/uploads/layanan/'.$filename;
+        }
+
+        $ktpPath = null;
+        if ($request->hasFile('ktp_file')) {
+            $file = $request->file('ktp_file');
+            $filename = 'sewa_ktp_'.time().'_'.uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path('uploads/layanan'), $filename);
+            $ktpPath = '/uploads/layanan/'.$filename;
+        }
+
+        $npwpPath = null;
+        if ($request->hasFile('npwp_file')) {
+            $file = $request->file('npwp_file');
+            $filename = 'sewa_npwp_'.time().'_'.uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path('uploads/layanan'), $filename);
+            $npwpPath = '/uploads/layanan/'.$filename;
+        }
+
+        $messageContent = "PERMOHONAN SEWA MENYEWA BARANG / FASILITAS SEKOLAH\n".
+            "Nama Pemohon: {$validated['name']}\n".
+            "Instansi / Komunitas: {$validated['agency']}\n".
+            "WhatsApp: {$validated['whatsapp']}\n".
+            "Barang/Fasilitas yang Ingin Disewa: {$validated['purpose']}\n".
+            ($letterPath ? "Surat: {$letterPath}\n" : '').
+            ($ktpPath ? "KTP: {$ktpPath}\n" : '').
+            ($npwpPath ? "NPWP: {$npwpPath}\n" : '');
+
+        Feedback::create([
+            'name' => $validated['name'],
+            'email' => $validated['whatsapp'].'@wa.layanan',
+            'whatsapp' => $validated['whatsapp'],
+            'message' => $messageContent,
+            'status' => 'unread',
+        ]);
+
+        ActivityLog::create([
+            'user_id' => null,
+            'user_name' => $validated['name'].' ('.$validated['agency'].')',
+            'action' => 'layanan_sewa',
+            'description' => "Permohonan Sewa Barang/Sarana dari {$validated['name']} ({$validated['agency']})",
+            'ip_address' => $request->ip(),
+            'user_agent' => $request->userAgent(),
+            'status' => 'info',
+        ]);
+
+        $waText = urlencode("Assalamu'alaikum Humas Sarpras SMA IT Ishlahul Ummah Prabumulih,\n\nSaya telah mengajukan Permohonan Sewa Fasilitas/Barang Sekolah:\n- Nama: {$validated['name']}\n- Instansi/Komunitas: {$validated['agency']}\n- Fasilitas/Barang: {$validated['purpose']}\n\nMohon konfirmasi ketersediaan jadwal dan syarat sewanya. Terima kasih.");
+        $waUrl = "https://wa.me/6282182680647?text={$waText}";
+
+        return redirect()->route('layanan.sewa')->with('success', 'Permohonan sewa barang/fasilitas berhasil dikirim! Silakan konfirmasi via WhatsApp untuk respon cepat.')->with('wa_url', $waUrl);
     }
 }

@@ -92,7 +92,7 @@
                 <i class="fa-solid fa-location-dot"></i>
             </div>
             <div>
-                <span class="text-xs font-bold text-gray-400 uppercase tracking-wider block">Alamat Kampus :</span>
+                <span class="text-xs font-bold text-gray-400 uppercase tracking-wider block">Alamat Sekolah :</span>
                 <p class="text-xs font-bold text-gray-900 mt-1 leading-relaxed">
                     {{ $siteSettings['contact_address'] ?? 'Jl. Lintas Timur Palembang-Prabumulih KM 35, Prabumulih, Sumatera Selatan' }}
                 </p>

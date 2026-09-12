@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\AdminDpcController;
 use App\Http\Controllers\Admin\AdminFeedbackController;
 use App\Http\Controllers\Admin\AdminMediaController;
 use App\Http\Controllers\Admin\AdminPageController;
+use App\Http\Controllers\Admin\AdminPopupController;
 use App\Http\Controllers\Admin\AdminPostController;
 use App\Http\Controllers\Admin\AdminPpdbController;
 use App\Http\Controllers\Admin\AdminQuickMenuController;
@@ -83,10 +84,23 @@ Route::prefix('admin')->middleware('auth')->name('admin.')->group(function () {
 
     // PPDB Online Management
     Route::get('/ppdb', [AdminPpdbController::class, 'index'])->name('ppdb.index');
+    Route::get('/ppdb/content', [AdminPpdbController::class, 'content'])->name('ppdb.content');
+    Route::post('/ppdb/content', [AdminPpdbController::class, 'updateContent'])->name('ppdb.content.update');
+    Route::match(['POST'], '/ppdb/fields/add', [AdminPpdbController::class, 'addField'])->name('ppdb.fields.add');
+    Route::post('/ppdb/fields', [AdminPpdbController::class, 'addField']);
+    Route::post('/ppdb/fields/reset', [AdminPpdbController::class, 'resetFields'])->name('ppdb.fields.reset');
+    Route::match(['POST', 'DELETE'], '/ppdb/fields/{key}', [AdminPpdbController::class, 'deleteField'])->name('ppdb.fields.delete');
+    Route::match(['POST', 'DELETE'], '/ppdb/fields/{key}/delete', [AdminPpdbController::class, 'deleteField']);
+    Route::get('/ppdb/export/excel', [AdminPpdbController::class, 'exportExcel'])->name('ppdb.export.excel');
+    Route::get('/ppdb/export/pdf', [AdminPpdbController::class, 'exportPdf'])->name('ppdb.export.pdf');
     Route::get('/ppdb/{ppdb}', [AdminPpdbController::class, 'show'])->name('ppdb.show');
     Route::match(['POST', 'PUT'], '/ppdb/{ppdb}/status', [AdminPpdbController::class, 'updateStatus'])->name('ppdb.status');
     Route::delete('/ppdb/{ppdb}', [AdminPpdbController::class, 'destroy'])->name('ppdb.destroy');
     Route::get('/ppdb/{ppdb}/print', [AdminPpdbController::class, 'print'])->name('ppdb.print');
+
+    // Popup Banner Beranda
+    Route::get('/popup', [AdminPopupController::class, 'index'])->name('popup.index');
+    Route::post('/popup', [AdminPopupController::class, 'update'])->name('popup.update');
 
     // Testimonials Management
     Route::resource('testimonials', AdminTestimonialController::class);
@@ -159,8 +173,11 @@ Route::get('/data-alumni', [InformationController::class, 'alumni'])->name('alum
 Route::get('/layanan-terpadu', [InformationController::class, 'layanan'])->name('layanan.index');
 Route::get('/layanan-terpadu-2', fn () => redirect()->route('layanan.index'));
 Route::get('/izin-sekolah', [InformationController::class, 'izinSekolah'])->name('layanan.izin');
+Route::post('/izin-sekolah', [InformationController::class, 'submitIzin'])->name('layanan.izin.submit');
 Route::get('/permohonan-kerja-sama', [InformationController::class, 'kerjasama'])->name('layanan.kerjasama');
+Route::post('/permohonan-kerja-sama', [InformationController::class, 'submitKerjasama'])->name('layanan.kerjasama.submit');
 Route::get('/sewa-barang', [InformationController::class, 'sewaBarang'])->name('layanan.sewa');
+Route::post('/sewa-barang', [InformationController::class, 'submitSewa'])->name('layanan.sewa.submit');
 Route::get('/testimonial', [InformationController::class, 'testimonial'])->name('testimonial.index');
 Route::get('/video', [InformationController::class, 'video'])->name('video.index');
 Route::get('/galeri-video', fn () => redirect()->route('video.index'));
@@ -198,6 +215,16 @@ Route::get('/dpc', [PageController::class, 'dpc']);
 
 // Dewan Guru & GTK Alias
 Route::get('/guru', fn () => redirect()->route('dewan.index'));
+
+// Layanan Publik & Terpadu SMA IT Ishlahul Ummah
+Route::get('/layanan-terpadu-2', [InformationController::class, 'layananTerpadu'])->name('layanan.index');
+Route::get('/layanan-terpadu', fn () => redirect()->route('layanan.index'));
+Route::get('/izin-sekolah', [InformationController::class, 'izinSekolah'])->name('layanan.izin');
+Route::post('/izin-sekolah', [InformationController::class, 'submitIzin'])->name('layanan.izin.submit');
+Route::get('/permohonan-kerja-sama', [InformationController::class, 'kerjasama'])->name('layanan.kerjasama');
+Route::post('/permohonan-kerja-sama', [InformationController::class, 'submitKerjasama'])->name('layanan.kerjasama.submit');
+Route::get('/sewa-barang', [InformationController::class, 'sewaBarang'])->name('layanan.sewa');
+Route::post('/sewa-barang', [InformationController::class, 'submitSewa'])->name('layanan.sewa.submit');
 
 // Hubungi & Donasi
 Route::get('/hubungi', [ContactController::class, 'hubungi'])->name('hubungi');

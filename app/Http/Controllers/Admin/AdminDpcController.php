@@ -5,12 +5,20 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\ActivityLog;
 use App\Models\Dpc;
+use App\Services\WebpService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class AdminDpcController extends Controller
 {
+    protected WebpService $webpService;
+
+    public function __construct(WebpService $webpService)
+    {
+        $this->webpService = $webpService;
+    }
+
     public function index()
     {
         $dpcs = Dpc::orderBy('order', 'asc')->get();
@@ -28,10 +36,20 @@ class AdminDpcController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'head_name' => 'nullable|string|max:255',
-            'address' => 'nullable|string',
+            'address' => 'nullable|string|max:255',
             'description' => 'nullable|string',
+            'thumbnail' => 'nullable|string',
+            'thumbnail_file' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
             'order' => 'nullable|integer',
         ]);
+
+        $thumbnailPath = $validated['thumbnail'] ?? null;
+        if ($request->hasFile('thumbnail_file')) {
+            $converted = $this->webpService->processUploadedFile($request->file('thumbnail_file'), 'dpc', 85, 1200);
+            if ($converted['success']) {
+                $thumbnailPath = $converted['url'];
+            }
+        }
 
         $dpc = Dpc::create([
             'name' => $validated['name'],
@@ -39,6 +57,7 @@ class AdminDpcController extends Controller
             'head_name' => $validated['head_name'] ?? '',
             'address' => $validated['address'] ?? '',
             'description' => $validated['description'] ?? '',
+            'thumbnail' => $thumbnailPath,
             'order' => $validated['order'] ?? 0,
         ]);
 
@@ -46,13 +65,13 @@ class AdminDpcController extends Controller
             'user_id' => Auth::id(),
             'user_name' => Auth::user()->name,
             'action' => 'dpc_create',
-            'description' => "Menambahkan DPC Kecamatan: {$dpc->name}",
+            'description' => "Menambahkan Program Unggulan Sekolah: {$dpc->name}",
             'ip_address' => $request->ip(),
             'user_agent' => $request->userAgent(),
             'status' => 'info',
         ]);
 
-        return redirect()->route('admin.dpc.index')->with('success', 'DPC Kecamatan berhasil ditambahkan.');
+        return redirect()->route('admin.dpc.index')->with('success', 'Program Unggulan berhasil ditambahkan.');
     }
 
     public function edit(Dpc $dpc)
@@ -65,16 +84,29 @@ class AdminDpcController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'head_name' => 'nullable|string|max:255',
-            'address' => 'nullable|string',
+            'address' => 'nullable|string|max:255',
             'description' => 'nullable|string',
+            'thumbnail' => 'nullable|string',
+            'thumbnail_file' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
             'order' => 'nullable|integer',
         ]);
+
+        $thumbnailPath = $dpc->thumbnail;
+        if ($request->hasFile('thumbnail_file')) {
+            $converted = $this->webpService->processUploadedFile($request->file('thumbnail_file'), 'dpc', 85, 1200);
+            if ($converted['success']) {
+                $thumbnailPath = $converted['url'];
+            }
+        } elseif ($request->filled('thumbnail')) {
+            $thumbnailPath = $validated['thumbnail'];
+        }
 
         $dpc->update([
             'name' => $validated['name'],
             'head_name' => $validated['head_name'] ?? '',
             'address' => $validated['address'] ?? '',
             'description' => $validated['description'] ?? '',
+            'thumbnail' => $thumbnailPath,
             'order' => $validated['order'] ?? 0,
         ]);
 
@@ -82,13 +114,13 @@ class AdminDpcController extends Controller
             'user_id' => Auth::id(),
             'user_name' => Auth::user()->name,
             'action' => 'dpc_update',
-            'description' => "Memperbarui DPC Kecamatan: {$dpc->name}",
+            'description' => "Memperbarui Program Unggulan Sekolah: {$dpc->name}",
             'ip_address' => $request->ip(),
             'user_agent' => $request->userAgent(),
             'status' => 'info',
         ]);
 
-        return redirect()->route('admin.dpc.index')->with('success', 'DPC Kecamatan berhasil diperbarui.');
+        return redirect()->route('admin.dpc.index')->with('success', 'Program Unggulan berhasil diperbarui.');
     }
 
     public function destroy(Request $request, Dpc $dpc)
@@ -100,12 +132,12 @@ class AdminDpcController extends Controller
             'user_id' => Auth::id(),
             'user_name' => Auth::user()->name,
             'action' => 'dpc_delete',
-            'description' => "Menghapus DPC Kecamatan: {$name}",
+            'description' => "Menghapus Program Unggulan Sekolah: {$name}",
             'ip_address' => $request->ip(),
             'user_agent' => $request->userAgent(),
             'status' => 'warning',
         ]);
 
-        return redirect()->route('admin.dpc.index')->with('success', 'DPC Kecamatan berhasil dihapus.');
+        return redirect()->route('admin.dpc.index')->with('success', 'Program Unggulan berhasil dihapus.');
     }
 }

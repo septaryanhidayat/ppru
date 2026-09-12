@@ -155,6 +155,12 @@
             </div>
         </div>
 
+        <div style="background: #f0fdf4; border: 1px solid #bbf7d0; padding: 8px 12px; border-radius: 6px; margin-bottom: 15px; display: flex; justify-content: space-between; font-size: 11px;">
+            <div><span style="color: #555;">Gelombang:</span> <strong style="color: #00913e;">{{ $ppdb->wave ?: 'Gelombang 1' }}</strong></div>
+            <div><span style="color: #555;">Jalur Pendaftaran:</span> <strong>{{ $ppdb->track ?: 'Reguler' }}</strong></div>
+            <div><span style="color: #555;">Program Pilihan:</span> <strong style="color: #da251c;">{{ $ppdb->program_type ?: 'Boarding School' }}</strong></div>
+        </div>
+
         <div class="section-title">A. Data Calon Siswa</div>
         <table>
             <tr>
@@ -211,7 +217,24 @@
             </tr>
         </table>
 
-        <div class="section-title">C. Berkas Kelengkapan</div>
+        @if(!empty($ppdb->extra_fields) && is_array($ppdb->extra_fields))
+        <div class="section-title">C. Data Tambahan / Kustom</div>
+        <table>
+            @foreach($ppdb->extra_fields as $extKey => $extItem)
+                @php
+                    $label = is_array($extItem) ? ($extItem['label'] ?? ucfirst(str_replace('_', ' ', $extKey))) : ucfirst(str_replace('_', ' ', $extKey));
+                    $val = is_array($extItem) ? ($extItem['value'] ?? '-') : $extItem;
+                    $type = is_array($extItem) ? ($extItem['type'] ?? 'text') : 'text';
+                @endphp
+                <tr>
+                    <th>{{ $label }}</th>
+                    <td>: {{ $type === 'file' && $val && $val !== '-' ? 'Sudah Dilampirkan' : ($val ?: '-') }}</td>
+                </tr>
+            @endforeach
+        </table>
+        @endif
+
+        <div class="section-title">{{ !empty($ppdb->extra_fields) ? 'D' : 'C' }}. Berkas Kelengkapan</div>
         <table>
             <tr>
                 <th>Scan Akta Kelahiran</th>

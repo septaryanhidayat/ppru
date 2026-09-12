@@ -69,7 +69,7 @@
                         <strong class="text-gray-900 font-bold block">Perisai Segi Lima:</strong>
                         Melambangkan benteng keimanan yang kokoh, rukun Islam, serta kesetiaan pada dasar negara Pancasila.
                     </div>
-                </div>
+                </li>
                 <li class="flex items-start space-x-3">
                     <div class="w-6 h-6 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">
                         <i class="fa-solid fa-book-quran"></i>
@@ -78,7 +78,7 @@
                         <strong class="text-gray-900 font-bold block">Mushaf Al-Qur'an Terbuka:</strong>
                         Sumber mata air ilmu pengetahuan, pedoman adab, dan lentera pembimbing setiap langkah santri.
                     </div>
-                </div>
+                </li>
                 <li class="flex items-start space-x-3">
                     <div class="w-6 h-6 rounded-full bg-orange-100 text-orange-600 flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">
                         <i class="fa-solid fa-fire-flame-curved"></i>
@@ -87,7 +87,7 @@
                         <strong class="text-gray-900 font-bold block">Obor Sains & Inovasi:</strong>
                         Semangat pantang padam dalam mempelajari sains, matematika, teknologi modern, dan riset ilmiah.
                     </div>
-                </div>
+                </li>
                 <li class="flex items-start space-x-3">
                     <div class="w-6 h-6 rounded-full bg-yellow-100 text-yellow-700 flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">
                         <i class="fa-solid fa-star"></i>
@@ -96,7 +96,7 @@
                         <strong class="text-gray-900 font-bold block">Bintang Emas:</strong>
                         Cita-cita prestasi puncak, kemuliaan budi pekerti, dan kepemimpinan Ishum masa depan.
                     </div>
-                </div>
+                </li>
             </ul>
         </div>
 

@@ -23,25 +23,31 @@
 
 <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
     <div class="bg-white rounded-3xl p-8 sm:p-12 shadow-xl border border-gray-100 reveal-fade-up">
+        @php
+            $kepsekPhoto = $kepsek?->photo ?: '/uploads/2022/11/img-20240928-220852-scaled.webp';
+            $kepsekName = $kepsek?->name ?: 'Agi Gustiawan, S. Pd';
+            $kepsekPos = $kepsek?->position ?: 'Kepala Sekolah SMA IT Ishlahul Ummah Prabumulih';
+        @endphp
+
         {{-- PROFIL PIMPINAN HEADER --}}
-        <div class="flex flex-col md:flex-row items-center gap-8 mb-8 pb-8 border-b border-gray-100">
-            <div class="w-48 h-56 sm:w-52 sm:h-60 rounded-2xl overflow-hidden shadow-lg border-4 border-white ring-4 ring-green-100 flex-shrink-0 bg-green-50">
-                <img src="/uploads/kepsek-agi-gustiawan.webp" alt="Agi Gustiawan, S. Pd - Kepala Sekolah SMA IT Ishlahul Ummah Prabumulih" class="w-full h-full object-cover object-top" onerror="this.src='/uploads/logo-ishum-square.png'">
+        <div class="flex flex-col md:flex-row items-center gap-8 mb-8 pb-8 border-b border-gray-100 text-center md:text-left">
+            <div class="w-48 h-56 sm:w-52 sm:h-60 rounded-2xl overflow-hidden shadow-lg border-4 border-white ring-4 ring-green-100 flex-shrink-0 bg-green-50 mx-auto md:mx-0">
+                <img src="{{ asset($kepsekPhoto) }}" alt="{{ $kepsekName }} - {{ $kepsekPos }}" class="w-full h-full object-cover object-top" onerror="this.src='/uploads/logo-ishum-square.png'">
             </div>
             <div class="space-y-2 text-center md:text-left">
                 <span class="inline-block bg-green-100 text-[#00913e] text-xs font-bold px-3.5 py-1.5 rounded-full uppercase tracking-wider">
-                    Kepala Sekolah SMA IT Ishlahul Ummah Prabumulih
+                    {{ $kepsekPos }}
                 </span>
                 <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight">
-                    Agi Gustiawan, S. Pd
+                    {{ $kepsekName }}
                 </h2>
                 <p class="text-xs sm:text-sm text-[#00913e] font-semibold">Pendidik Berpengalaman &amp; Praktisi Pendidikan Karakter Islami</p>
                 <p class="text-xs sm:text-sm text-gray-600 italic pt-1">"Membina Generasi Qur'ani, Berakhlak Mulia, Cerdas, dan Siap Memimpin Peradaban Masa Depan."</p>
             </div>
         </div>
 
-        {{-- KONTEN PIDATO RESMI --}}
-        <div class="prose-content text-gray-700 text-sm sm:text-base leading-relaxed space-y-5">
+        {{-- KONTEN PIDATO RESMI (RATA PENUH & RAPI) --}}
+        <div class="prose-content text-gray-800 text-sm sm:text-base leading-relaxed space-y-5 text-justify max-w-4xl mx-auto">
             @if(!empty($page->content) && strlen(trim(strip_tags($page->content))) > 30)
                 {!! $page->content !!}
             @else
@@ -61,8 +67,8 @@
 
                 <div class="pt-6 border-t border-gray-100 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                     <div>
-                        <h3 class="font-bold text-gray-900 text-base">DRS. H. AHMAD HUSEN, M.Pd.I</h3>
-                        <p class="text-xs text-gray-500">Kepala SMA Islam Terpadu Ishlahul Ummah Prabumulih</p>
+                        <h3 class="font-bold text-gray-900 text-base">{{ strtoupper($kepsekName) }}</h3>
+                        <p class="text-xs text-gray-500">{{ $kepsekPos }}</p>
                     </div>
                     <div class="inline-flex items-center space-x-2 bg-green-50 px-4 py-2 rounded-xl text-xs text-[#00913e] border border-green-200">
                         <i class="fa-solid fa-certificate text-[#da251c]"></i>

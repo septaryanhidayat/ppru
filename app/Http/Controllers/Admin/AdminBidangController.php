@@ -41,14 +41,24 @@ class AdminBidangController extends Controller
             'email' => 'nullable|email',
             'icon' => 'nullable|string',
             'icon_file' => 'nullable|image|mimes:jpeg,png,jpg,webp,svg|max:2048',
+            'thumbnail' => 'nullable|string',
+            'thumbnail_file' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
             'order' => 'nullable|integer',
         ]);
 
-        $iconPath = $validated['icon'] ?? 'fa-solid fa-users';
+        $iconPath = $validated['icon'] ?? 'fa-solid fa-school';
         if ($request->hasFile('icon_file')) {
             $converted = $this->webpService->processUploadedFile($request->file('icon_file'), 'bidang', 90, 512);
             if ($converted['success']) {
                 $iconPath = $converted['url'];
+            }
+        }
+
+        $thumbnailPath = $validated['thumbnail'] ?? null;
+        if ($request->hasFile('thumbnail_file')) {
+            $converted = $this->webpService->processUploadedFile($request->file('thumbnail_file'), 'bidang', 85, 1200);
+            if ($converted['success']) {
+                $thumbnailPath = $converted['url'];
             }
         }
 
@@ -60,6 +70,7 @@ class AdminBidangController extends Controller
             'phone' => $validated['phone'] ?? '',
             'email' => $validated['email'] ?? '',
             'icon' => $iconPath,
+            'thumbnail' => $thumbnailPath,
             'order' => $validated['order'] ?? 0,
         ]);
 
@@ -67,13 +78,13 @@ class AdminBidangController extends Controller
             'user_id' => Auth::id(),
             'user_name' => Auth::user()->name,
             'action' => 'bidang_create',
-            'description' => "Menambahkan Bidang DPD: {$bidang->name}",
+            'description' => "Menambahkan Fasilitas & Sarana Sekolah: {$bidang->name}",
             'ip_address' => $request->ip(),
             'user_agent' => $request->userAgent(),
             'status' => 'info',
         ]);
 
-        return redirect()->route('admin.bidang.index')->with('success', 'Bidang DPD berhasil ditambahkan.');
+        return redirect()->route('admin.bidang.index')->with('success', 'Fasilitas & Sarana Sekolah berhasil ditambahkan.');
     }
 
     public function edit(Bidang $bidang)
@@ -91,6 +102,8 @@ class AdminBidangController extends Controller
             'email' => 'nullable|email',
             'icon' => 'nullable|string',
             'icon_file' => 'nullable|image|mimes:jpeg,png,jpg,webp,svg|max:2048',
+            'thumbnail' => 'nullable|string',
+            'thumbnail_file' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
             'order' => 'nullable|integer',
         ]);
 
@@ -104,6 +117,16 @@ class AdminBidangController extends Controller
             $iconPath = $validated['icon'];
         }
 
+        $thumbnailPath = $bidang->thumbnail;
+        if ($request->hasFile('thumbnail_file')) {
+            $converted = $this->webpService->processUploadedFile($request->file('thumbnail_file'), 'bidang', 85, 1200);
+            if ($converted['success']) {
+                $thumbnailPath = $converted['url'];
+            }
+        } elseif ($request->filled('thumbnail')) {
+            $thumbnailPath = $validated['thumbnail'];
+        }
+
         $bidang->update([
             'name' => $validated['name'],
             'description' => $validated['description'] ?? '',
@@ -111,6 +134,7 @@ class AdminBidangController extends Controller
             'phone' => $validated['phone'] ?? '',
             'email' => $validated['email'] ?? '',
             'icon' => $iconPath,
+            'thumbnail' => $thumbnailPath,
             'order' => $validated['order'] ?? 0,
         ]);
 
@@ -118,13 +142,13 @@ class AdminBidangController extends Controller
             'user_id' => Auth::id(),
             'user_name' => Auth::user()->name,
             'action' => 'bidang_update',
-            'description' => "Memperbarui Bidang DPD: {$bidang->name}",
+            'description' => "Memperbarui Fasilitas & Sarana Sekolah: {$bidang->name}",
             'ip_address' => $request->ip(),
             'user_agent' => $request->userAgent(),
             'status' => 'info',
         ]);
 
-        return redirect()->route('admin.bidang.index')->with('success', 'Bidang DPD berhasil diperbarui.');
+        return redirect()->route('admin.bidang.index')->with('success', 'Fasilitas & Sarana Sekolah berhasil diperbarui.');
     }
 
     public function destroy(Request $request, Bidang $bidang)
@@ -136,12 +160,12 @@ class AdminBidangController extends Controller
             'user_id' => Auth::id(),
             'user_name' => Auth::user()->name,
             'action' => 'bidang_delete',
-            'description' => "Menghapus Bidang DPD: {$name}",
+            'description' => "Menghapus Fasilitas & Sarana Sekolah: {$name}",
             'ip_address' => $request->ip(),
             'user_agent' => $request->userAgent(),
             'status' => 'warning',
         ]);
 
-        return redirect()->route('admin.bidang.index')->with('success', 'Bidang DPD berhasil dihapus.');
+        return redirect()->route('admin.bidang.index')->with('success', 'Fasilitas & Sarana Sekolah berhasil dihapus.');
     }
 }

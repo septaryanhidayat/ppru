@@ -21,13 +21,18 @@
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
         
         {{-- Detail Bidang / Fasilitas (2/3) --}}
-        <div class="lg:col-span-2 bg-white p-6 sm:p-10 rounded-3xl shadow-sm border border-gray-100 space-y-6">
+        <div class="lg:col-span-2 space-y-6">
+            {{-- Foto Fasilitas --}}
+            <div class="rounded-2xl overflow-hidden bg-slate-100 shadow-md">
+                <img src="{{ $bidang->thumbnail_url }}" alt="{{ $bidang->name }}" class="w-full h-64 sm:h-80 object-cover" onerror="this.src='/uploads/campus-ishum.webp'">
+            </div>
+
             <div class="flex items-center space-x-4 pb-6 border-b border-gray-100">
-                <div class="w-16 h-16 rounded-2xl bg-emerald-100 text-[#00913e] flex items-center justify-center text-3xl flex-shrink-0 overflow-hidden border border-emerald-200">
-                    @if(!empty($bidang->icon) && (str_starts_with($bidang->icon, 'http') || str_starts_with($bidang->icon, '/')))
-                        <img src="{{ $bidang->icon }}" alt="{{ $bidang->name }}" class="w-full h-full object-contain p-2" onerror="this.src='/uploads/campus-ishum.webp'">
+                <div class="w-14 h-14 rounded-2xl bg-emerald-100 text-[#00913e] flex items-center justify-center text-2xl flex-shrink-0 overflow-hidden border border-emerald-200">
+                    @if(!empty($bidang->icon) && !str_starts_with($bidang->icon, 'http') && !str_starts_with($bidang->icon, '/'))
+                        <i class="{{ $bidang->icon }}"></i>
                     @else
-                        <i class="{{ $bidang->icon ?: 'fa-solid fa-school' }}"></i>
+                        <i class="fa-solid fa-school"></i>
                     @endif
                 </div>
                 <div>
@@ -42,9 +47,9 @@
 
             <div class="mt-8 p-6 bg-emerald-50/60 rounded-2xl border border-emerald-100 space-y-3 text-xs sm:text-sm">
                 <h3 class="font-bold text-gray-900 text-sm uppercase tracking-wider mb-2">Informasi Layanan Fasilitas</h3>
-                <p class="flex items-start"><i class="fa-solid fa-location-dot text-[#00913e] mt-1 mr-3 w-4"></i><span>{{ $bidang->address ?: 'Kampus SMA IT Ishlahul Ummah Prabumulih, Prabumulih, Sumatera Selatan' }}</span></p>
+                <p class="flex items-start"><i class="fa-solid fa-location-dot text-[#00913e] mt-1 mr-3 w-4"></i><span>{{ $bidang->address ?: 'Kompleks Sekolah SMA IT Ishlahul Ummah Prabumulih, Prabumulih, Sumatera Selatan' }}</span></p>
                 <p class="flex items-center"><i class="fa-solid fa-phone text-[#00913e] mr-3 w-4"></i><span>{{ $bidang->phone ?: '0821-8268-0647' }}</span></p>
-                <p class="flex items-center"><i class="fa-solid fa-envelope text-[#00913e] mr-3 w-4"></i><span>{{ $bidang->email ?: 'info@smaitplusishum.sch.id' }}</span></p>
+                <p class="flex items-center"><i class="fa-solid fa-envelope text-[#00913e] mr-3 w-4"></i><span>{{ $bidang->email ?: 'smaitishlahulummah2019@gmail.com' }}</span></p>
             </div>
         </div>
 
