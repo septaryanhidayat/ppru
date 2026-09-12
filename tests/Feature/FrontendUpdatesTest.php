@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Category;
+use App\Models\Download;
 use App\Models\Dpc;
 use App\Models\Post;
 
@@ -65,6 +66,17 @@ test('counter pengunjung bertambah pada setiap request get web', function () {
 });
 
 test('halaman download ebook memuat tombol unduh modul', function () {
+    Download::create([
+        'title' => 'Panduan Mutqin Tahfidz & Ziyadah Qur\'an',
+        'category_type' => 'E-Book',
+        'file_path' => '/uploads/downloads/panduan-mutqin-tahfidz-ishum.pdf',
+        'file_type' => 'PDF',
+        'file_size' => '2.4 MB',
+        'download_count' => 120,
+        'cover_image' => '/uploads/covers/cover-tahfidz-mutqin.webp',
+        'description' => 'Buku panduan kurikulum tahfidz mutqin.',
+    ]);
+
     $response = $this->get(route('download.ebook'));
 
     $response->assertStatus(200);

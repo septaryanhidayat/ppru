@@ -20,7 +20,7 @@
                 </thead>
                 <tbody class="divide-y divide-gray-100">
                     @forelse($feedbacks as $fb)
-                        <tr class="hover:bg-gray-50 transition {{ $fb->status === 'unread' ? 'bg-orange-50/40 font-semibold' : '' }}">
+                        <tr class="hover:bg-gray-50 transition {{ $fb->status === 'unread' ? 'bg-red-50/40 font-semibold' : '' }}">
                             <td class="py-3 px-4">
                                 @if($fb->status === 'unread')
                                     <span class="bg-red-100 text-red-700 text-[10px] font-extrabold px-2 py-0.5 rounded-full">BARU</span>

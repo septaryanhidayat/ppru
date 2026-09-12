@@ -42,9 +42,9 @@
                 </div>
             @endif
 
-            <div class="bg-orange-50/70 border border-dashed border-orange-200 rounded-2xl p-5 text-center">
-                <input type="file" name="featured_image" id="featured_image" accept="image/*" class="w-full text-xs text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-[#f37023] file:text-white hover:file:bg-[#d85c14]">
-                <p class="text-[11px] text-[#f37023] font-medium mt-2 flex items-center justify-center">
+            <div class="bg-red-50/70 border border-dashed border-red-200 rounded-2xl p-5 text-center">
+                <input type="file" name="featured_image" id="featured_image" accept="image/*" class="w-full text-xs text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-[#da251c] file:text-white hover:file:bg-[#d85c14]">
+                <p class="text-[11px] text-[#da251c] font-medium mt-2 flex items-center justify-center">
                     <i class="fa-solid fa-wand-magic-sparkles mr-1.5"></i>
                     Bila mengunggah gambar baru, sistem akan otomatis mengonversinya ke format <strong>WebP</strong>.
                 </p>
@@ -59,7 +59,7 @@
                 <div class="bg-gray-50 p-4 rounded-xl border border-gray-200 max-h-44 overflow-y-auto space-y-2 text-xs">
                     @foreach($categories as $cat)
                         <label class="flex items-center space-x-2 text-gray-700 cursor-pointer">
-                            <input type="checkbox" name="categories[]" value="{{ $cat->id }}" {{ in_array($cat->id, $selectedCategories) ? 'checked' : '' }} class="rounded border-gray-300 text-[#f37023] focus:ring-[#f37023]">
+                            <input type="checkbox" name="categories[]" value="{{ $cat->id }}" {{ in_array($cat->id, $selectedCategories) ? 'checked' : '' }} class="rounded border-gray-300 text-[#da251c] focus:ring-[#da251c]">
                             <span>{{ $cat->name }}</span>
                         </label>
                     @endforeach
@@ -69,7 +69,7 @@
             <div class="space-y-4">
                 <div>
                     <label for="status" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Status Publikasi</label>
-                    <select name="status" id="status" class="w-full bg-gray-50 text-xs text-gray-800 rounded-xl px-4 py-3 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#f37023]">
+                    <select name="status" id="status" class="w-full bg-gray-50 text-xs text-gray-800 rounded-xl px-4 py-3 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#da251c]">
                         <option value="publish" {{ $post->status === 'publish' ? 'selected' : '' }}>Publikasikan</option>
                         <option value="draft" {{ $post->status === 'draft' ? 'selected' : '' }}>Draft</option>
                     </select>
@@ -77,7 +77,7 @@
 
                 <div>
                     <label for="tags" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Tag (Pisahkan dengan koma)</label>
-                    <input type="text" name="tags" id="tags" value="{{ old('tags', $selectedTags) }}" placeholder="kegiatan, baksos" class="w-full bg-gray-50 text-xs text-gray-800 rounded-xl px-4 py-3 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#f37023]">
+                    <input type="text" name="tags" id="tags" value="{{ old('tags', $selectedTags) }}" placeholder="kegiatan, baksos" class="w-full bg-gray-50 text-xs text-gray-800 rounded-xl px-4 py-3 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#da251c]">
                 </div>
             </div>
         </div>
@@ -95,12 +95,12 @@
         {{-- Excerpt --}}
         <div>
             <label for="excerpt" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Ringkasan (Excerpt)</label>
-            <textarea name="excerpt" id="excerpt" rows="2" class="w-full bg-gray-50 text-xs text-gray-800 rounded-xl p-3 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#f37023]">{{ old('excerpt', $post->excerpt) }}</textarea>
+            <textarea name="excerpt" id="excerpt" rows="2" class="w-full bg-gray-50 text-xs text-gray-800 rounded-xl p-3 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#da251c]">{{ old('excerpt', $post->excerpt) }}</textarea>
         </div>
 
         {{-- Submit Buttons --}}
         <div class="flex items-center space-x-3 pt-4 border-t border-gray-100">
-            <button type="submit" class="bg-[#f37023] hover:bg-[#d85c14] text-white px-6 py-3 rounded-xl font-bold text-xs uppercase tracking-wider shadow-lg transition flex items-center space-x-2">
+            <button type="submit" class="bg-[#da251c] hover:bg-[#d85c14] text-white px-6 py-3 rounded-xl font-bold text-xs uppercase tracking-wider shadow-lg transition flex items-center space-x-2">
                 <i class="fa-solid fa-floppy-disk"></i>
                 <span>Perbarui Artikel</span>
             </button>

@@ -19,7 +19,7 @@
             
             <div>
                 <label for="name" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Nama Lengkap & Gelar *</label>
-                <input type="text" name="name" id="name" required value="{{ old('name') }}" placeholder="Contoh: H. M. Ali Akbar, Lc" class="w-full bg-slate-50 text-xs text-slate-800 rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#ff5001] transition">
+                <input type="text" name="name" id="name" required value="{{ old('name') }}" placeholder="Contoh: H. M. Ali Akbar, Lc" class="w-full bg-slate-50 text-xs text-slate-800 rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#da251c] transition">
                 @error('name') <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span> @enderror
             </div>
 
@@ -54,18 +54,18 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                     <label for="education" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Riwayat Pendidikan</label>
-                    <input type="text" name="education" id="education" value="{{ old('education') }}" placeholder="Contoh: S1 Syariah LIPIA Jakarta" class="w-full bg-slate-50 text-xs text-slate-800 rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#ff5001]">
+                    <input type="text" name="education" id="education" value="{{ old('education') }}" placeholder="Contoh: S1 Syariah LIPIA Jakarta" class="w-full bg-slate-50 text-xs text-slate-800 rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#da251c]">
                 </div>
 
                 <div>
                     <label for="order" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Urutan Tampil (Urutan Nomor)</label>
-                    <input type="number" name="order" id="order" value="{{ old('order', 1) }}" class="w-full bg-slate-50 text-xs text-slate-800 rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#ff5001]">
+                    <input type="number" name="order" id="order" value="{{ old('order', 1) }}" class="w-full bg-slate-50 text-xs text-slate-800 rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#da251c]">
                 </div>
             </div>
 
             <div class="pt-6 border-t border-slate-100 flex items-center justify-end space-x-3">
                 <a href="{{ route('admin.dewan.index') }}" class="px-5 py-2.5 rounded-xl border border-slate-200 text-slate-600 hover:bg-slate-50 text-xs font-bold transition">Batal</a>
-                <button type="submit" class="bg-[#ff5001] hover:bg-[#e04500] text-white font-bold text-xs px-6 py-2.5 rounded-xl shadow-md transition flex items-center space-x-2 cursor-pointer">
+                <button type="submit" class="bg-[#da251c] hover:bg-[#b91c1c] text-white font-bold text-xs px-6 py-2.5 rounded-xl shadow-md transition flex items-center space-x-2 cursor-pointer">
                     <i class="fa-solid fa-floppy-disk"></i>
                     <span>Simpan Anggota Dewan</span>
                 </button>

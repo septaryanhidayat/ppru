@@ -69,7 +69,7 @@
             @if(request('status'))
                 <input type="hidden" name="status" value="{{ request('status') }}">
             @endif
-            <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari berdasarkan aksi, deskripsi, user, atau alamat IP..." class="w-full bg-slate-50 text-xs text-slate-800 rounded-xl px-4 py-2.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#ff5001]">
+            <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari berdasarkan aksi, deskripsi, user, atau alamat IP..." class="w-full bg-slate-50 text-xs text-slate-800 rounded-xl px-4 py-2.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#da251c]">
             <button type="submit" class="bg-slate-800 text-white px-5 py-2.5 rounded-xl text-xs font-bold hover:bg-slate-900 transition flex items-center space-x-1 flex-shrink-0">
                 <i class="fa-solid fa-magnifying-glass"></i>
                 <span>Cari</span>

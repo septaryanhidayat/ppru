@@ -28,7 +28,7 @@
                         <tr class="hover:bg-slate-50/80 transition">
                             <td class="py-4 px-4 font-bold text-slate-900 text-sm">
                                 <div class="flex items-center space-x-3">
-                                    <div class="w-8 h-8 rounded-lg bg-orange-100 text-[#ff5001] flex items-center justify-center text-xs">
+                                    <div class="w-8 h-8 rounded-lg bg-red-100 text-[#da251c] flex items-center justify-center text-xs">
                                         <i class="fa-solid fa-file-lines"></i>
                                     </div>
                                     <span>{{ $page->title }}</span>
@@ -41,7 +41,7 @@
                                 {{ $page->updated_at ? $page->updated_at->format('d M Y H:i') : '-' }}
                             </td>
                             <td class="py-4 px-4 text-center">
-                                <a href="{{ route('admin.pages.edit', $page) }}" class="inline-flex items-center space-x-1.5 bg-[#ff5001] hover:bg-[#e04500] text-white font-bold px-3.5 py-1.5 rounded-xl shadow-xs transition">
+                                <a href="{{ route('admin.pages.edit', $page) }}" class="inline-flex items-center space-x-1.5 bg-[#da251c] hover:bg-[#b91c1c] text-white font-bold px-3.5 py-1.5 rounded-xl shadow-xs transition">
                                     <i class="fa-solid fa-pen-to-square text-xs"></i>
                                     <span>Edit Konten</span>
                                 </a>

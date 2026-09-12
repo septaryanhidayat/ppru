@@ -235,3 +235,41 @@ test('dewan guru page dynamically reflects updated name and photo from database'
     $res2->assertSee('/uploads/dewan/foto-terbaru.webp');
     $res2->assertDontSee('Nama Guru Lama');
 });
+
+test('home page renders pksoganilir style gallery slider with 2 rows and ishum photos', function () {
+    $response = $this->get('/');
+
+    $response->assertStatus(200);
+    $response->assertSee('Galeri');
+    $response->assertSee('Dokumentasi Kegiatan Santri &amp; Kampus SMA IT Ishlahul Ummah', false);
+    $response->assertSee(route('galeri.index'));
+    $response->assertSee('Selengkapnya');
+});
+
+test('mars jsit page renders authentic mars jsit lyrics and audio', function () {
+    Download::create([
+        'title' => 'Mars Jaringan Sekolah Islam Terpadu (JSIT) Indonesia',
+        'category_type' => 'Audio',
+        'file_path' => '/uploads/mars-ishum.mp3',
+        'file_type' => 'MP3',
+        'file_size' => '3.5 MB',
+    ]);
+
+    $response = $this->get(route('download.hymne-mars'));
+
+    $response->assertStatus(200);
+    $response->assertSee('MARS JSIT INDONESIA');
+    $response->assertSee('LIRIK MARS JSIT INDONESIA');
+    $response->assertSee('Harum semerbak semerbak mewangi', false);
+    $response->assertSee('10 Karakter Santri JSIT (Muwashofat)', false);
+});
+
+test('ppdb page renders redesigned layout with youtube video and bsi account', function () {
+    $response = $this->get(route('ppdb.index'));
+
+    $response->assertStatus(200);
+    $response->assertSee('IrPVG8CYjRc');
+    $response->assertSee('7011304251');
+    $response->assertSee('YL. Fatmawati');
+    $response->assertSee(route('ppdb.form'));
+});

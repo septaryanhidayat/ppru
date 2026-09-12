@@ -11,8 +11,10 @@ class Download extends Model
 
     protected $fillable = [
         'title',
+        'description',
         'category_type',
         'file_path',
+        'cover_image',
         'file_type',
         'file_size',
         'download_count',

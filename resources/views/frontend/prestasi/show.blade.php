@@ -96,7 +96,7 @@
                 <p class="text-xs text-emerald-100 leading-relaxed">
                     Daftarkan putra-putri Anda di SMA IT Ishlahul Ummah Prabumulih dan wujudkan potensi terbaiknya.
                 </p>
-                <a href="https://ppdb.smaitishumpbm.sch.id/" target="_blank" class="inline-block w-full text-center bg-white text-[#00913e] font-bold py-2.5 px-4 rounded-xl text-xs hover:bg-emerald-50 transition shadow-md">
+                <a href="{{ route('ppdb.index') }}" class="inline-block w-full text-center bg-white text-[#00913e] font-bold py-2.5 px-4 rounded-xl text-xs hover:bg-emerald-50 transition shadow-md">
                     Daftar PPDB Online Sekarang
                 </a>
             </div>

@@ -34,7 +34,7 @@
                         <tr class="hover:bg-slate-50/80 transition">
                             <td class="py-4 px-4 font-bold text-slate-900 text-sm">
                                 <div class="flex items-center space-x-3">
-                                    <div class="w-9 h-9 rounded-xl bg-orange-100 text-[#ff5001] flex items-center justify-center text-sm shadow-xs flex-shrink-0">
+                                    <div class="w-9 h-9 rounded-xl bg-red-100 text-[#da251c] flex items-center justify-center text-sm shadow-xs flex-shrink-0">
                                         <i class="fa-solid fa-file-arrow-down"></i>
                                     </div>
                                     <div class="min-w-0">
@@ -62,7 +62,7 @@
                                     <a href="{{ $file->file_path }}" target="_blank" class="p-2 text-slate-500 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition" title="Unduh / Buka File">
                                         <i class="fa-solid fa-arrow-down"></i>
                                     </a>
-                                    <a href="{{ route('admin.downloads.edit', $file) }}" class="p-2 text-slate-500 hover:text-[#ff5001] hover:bg-orange-50 rounded-lg transition" title="Edit">
+                                    <a href="{{ route('admin.downloads.edit', $file) }}" class="p-2 text-slate-500 hover:text-[#da251c] hover:bg-red-50 rounded-lg transition" title="Edit">
                                         <i class="fa-solid fa-pen-to-square"></i>
                                     </a>
                                     <form action="{{ route('admin.downloads.destroy', $file) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus file ini?');" class="inline">

@@ -21,13 +21,13 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                     <label for="name" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Nama Menu *</label>
-                    <input type="text" name="name" id="name" required value="{{ old('name', $quickMenu->name) }}" class="w-full bg-slate-50 text-xs text-slate-800 rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#ff5001]">
+                    <input type="text" name="name" id="name" required value="{{ old('name', $quickMenu->name) }}" class="w-full bg-slate-50 text-xs text-slate-800 rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#da251c]">
                     @error('name') <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span> @enderror
                 </div>
 
                 <div>
                     <label for="url" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Tautan / Link URL *</label>
-                    <input type="text" name="url" id="url" required value="{{ old('url', $quickMenu->url) }}" class="w-full bg-slate-50 text-xs text-slate-800 rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#ff5001] font-mono">
+                    <input type="text" name="url" id="url" required value="{{ old('url', $quickMenu->url) }}" class="w-full bg-slate-50 text-xs text-slate-800 rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#da251c] font-mono">
                     @error('url') <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span> @enderror
                 </div>
             </div>
@@ -38,7 +38,7 @@
                     @if($quickMenu->is_image)
                         <img src="{{ $quickMenu->icon }}" alt="{{ $quickMenu->name }}" class="max-h-full max-w-full object-contain">
                     @else
-                        <i class="{{ $quickMenu->icon }} text-2xl text-[#ff5001]"></i>
+                        <i class="{{ $quickMenu->icon }} text-2xl text-[#da251c]"></i>
                     @endif
                 </div>
                 <div>
@@ -50,7 +50,7 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                     <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Ganti File Icon (WebP / PNG / SVG)</label>
-                    <input type="file" name="icon_file" accept="image/*" class="w-full text-xs text-slate-500 file:mr-3 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-orange-50 file:text-[#ff5001] hover:file:bg-orange-100 bg-slate-50 rounded-xl border border-slate-200">
+                    <input type="file" name="icon_file" accept="image/*" class="w-full text-xs text-slate-500 file:mr-3 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-red-50 file:text-[#da251c] hover:file:bg-red-100 bg-slate-50 rounded-xl border border-slate-200">
                 </div>
 
                 <div>
@@ -83,7 +83,7 @@
                 <div class="flex items-center space-x-3 pt-6">
                     <label class="relative inline-flex items-center cursor-pointer">
                         <input type="checkbox" name="is_active" value="1" class="sr-only peer" {{ old('is_active', $quickMenu->is_active) ? 'checked' : '' }}>
-                        <div class="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#ff5001]"></div>
+                        <div class="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#da251c]"></div>
                         <span class="ml-3 text-xs font-bold text-slate-700">Tampilkan di Beranda (Aktif)</span>
                     </label>
                 </div>
@@ -91,7 +91,7 @@
 
             <div class="pt-6 border-t border-slate-100 flex items-center justify-end space-x-3">
                 <a href="{{ route('admin.quick-menus.index') }}" class="px-5 py-2.5 rounded-xl border border-slate-200 text-slate-600 hover:bg-slate-50 text-xs font-bold transition">Batal</a>
-                <button type="submit" class="bg-[#ff5001] hover:bg-[#e04500] text-white font-bold text-xs px-6 py-2.5 rounded-xl shadow-md transition flex items-center space-x-2 cursor-pointer">
+                <button type="submit" class="bg-[#da251c] hover:bg-[#b91c1c] text-white font-bold text-xs px-6 py-2.5 rounded-xl shadow-md transition flex items-center space-x-2 cursor-pointer">
                     <i class="fa-solid fa-floppy-disk"></i>
                     <span>Simpan Perubahan</span>
                 </button>

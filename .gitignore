@@ -41,6 +41,7 @@ Thumbs.db
 /public/uploads/2024/*
 /public/uploads/2025/*
 /public/uploads/2026/*
+/public/uploads/ppdb/*
 !/public/uploads/*/.gitkeep
 # WordPress Raw Backups (Exceeds GitHub file limits)
 /BACKUP WEb LAMA/

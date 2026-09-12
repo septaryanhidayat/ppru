@@ -11,7 +11,7 @@
                 <h2 class="text-lg font-black text-slate-800">Daftar Pengguna Administrator</h2>
                 <p class="text-xs text-slate-500 mt-0.5">Kelola akun staf, kontributor berita, dan hak akses multi-role sistem.</p>
             </div>
-            <a href="{{ route('admin.users.create') }}" class="inline-flex items-center space-x-2 bg-[#ff5001] hover:bg-[#e04500] text-white font-bold text-xs px-5 py-2.5 rounded-xl shadow-md transition self-start sm:self-auto">
+            <a href="{{ route('admin.users.create') }}" class="inline-flex items-center space-x-2 bg-[#da251c] hover:bg-[#b91c1c] text-white font-bold text-xs px-5 py-2.5 rounded-xl shadow-md transition self-start sm:self-auto">
                 <i class="fa-solid fa-user-plus"></i>
                 <span>Tambah Pengguna Baru</span>
             </a>
@@ -33,7 +33,7 @@
                         <tr class="hover:bg-slate-50/80 transition">
                             <td class="py-4 px-4 font-bold text-slate-900 text-sm">
                                 <div class="flex items-center space-x-3">
-                                    <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-[#ff5001] to-amber-500 text-white flex items-center justify-center font-bold text-xs shadow-xs">
+                                    <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-[#da251c] to-rose-600 text-white flex items-center justify-center font-bold text-xs shadow-xs">
                                         {{ strtoupper(substr($user->name, 0, 1)) }}
                                     </div>
                                     <div>
@@ -51,7 +51,7 @@
                                 @if($user->role === 'super_admin')
                                     <span class="bg-purple-100 text-purple-800 text-[11px] px-2.5 py-1 rounded-full font-bold">Super Admin</span>
                                 @elseif($user->role === 'admin')
-                                    <span class="bg-orange-100 text-[#ff5001] text-[11px] px-2.5 py-1 rounded-full font-bold">Administrator</span>
+                                    <span class="bg-red-100 text-[#da251c] text-[11px] px-2.5 py-1 rounded-full font-bold">Administrator</span>
                                 @elseif($user->role === 'editor')
                                     <span class="bg-blue-100 text-blue-800 text-[11px] px-2.5 py-1 rounded-full font-bold">Editor Berita</span>
                                 @else
@@ -63,7 +63,7 @@
                             </td>
                             <td class="py-4 px-4 text-center">
                                 <div class="inline-flex items-center space-x-2">
-                                    <a href="{{ route('admin.users.edit', $user) }}" class="p-2 text-slate-500 hover:text-[#ff5001] hover:bg-orange-50 rounded-lg transition" title="Edit Akun">
+                                    <a href="{{ route('admin.users.edit', $user) }}" class="p-2 text-slate-500 hover:text-[#da251c] hover:bg-red-50 rounded-lg transition" title="Edit Akun">
                                         <i class="fa-solid fa-pen-to-square"></i>
                                     </a>
                                     @if($user->id !== auth()->id())

@@ -20,7 +20,7 @@
         </div>
 
         <div class="flex-shrink-0">
-            <a href="{{ route('admin.backup.download') }}" class="bg-gradient-to-r from-[#ff5001] to-[#ff7300] hover:from-[#e04500] hover:to-[#e06500] text-white font-extrabold text-sm px-6 py-3.5 rounded-2xl shadow-xl transition flex items-center space-x-3 transform hover:scale-105 cursor-pointer">
+            <a href="{{ route('admin.backup.download') }}" class="bg-gradient-to-r from-[#da251c] to-[#ff7300] hover:from-[#b91c1c] hover:to-[#e06500] text-white font-extrabold text-sm px-6 py-3.5 rounded-2xl shadow-xl transition flex items-center space-x-3 transform hover:scale-105 cursor-pointer">
                 <i class="fa-solid fa-cloud-arrow-down text-lg"></i>
                 <span>Download File Backup (.sql)</span>
             </a>
@@ -51,7 +51,7 @@
     {{-- TABLE DETAILS --}}
     <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-xs border border-slate-200/80 space-y-4">
         <h3 class="font-extrabold text-sm text-slate-800 uppercase tracking-wider flex items-center space-x-2">
-            <i class="fa-solid fa-table-list text-[#ff5001]"></i>
+            <i class="fa-solid fa-table-list text-[#da251c]"></i>
             <span>Rincian Seluruh Tabel Database</span>
         </h3>
 
@@ -59,7 +59,7 @@
             @foreach($tableDetails as $td)
                 <div class="p-3 bg-slate-50 rounded-xl border border-slate-200/70 text-center">
                     <span class="font-mono text-xs font-bold text-slate-800 block truncate" title="{{ $td['name'] }}">{{ $td['name'] }}</span>
-                    <span class="text-[11px] text-[#ff5001] font-semibold block mt-0.5">{{ number_format($td['records']) }} data</span>
+                    <span class="text-[11px] text-[#da251c] font-semibold block mt-0.5">{{ number_format($td['records']) }} data</span>
                 </div>
             @endforeach
         </div>

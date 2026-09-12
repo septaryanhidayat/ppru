@@ -20,19 +20,19 @@
         {{-- Period Pills --}}
         <div class="inline-flex bg-slate-100 p-1.5 rounded-2xl text-xs font-bold">
             <a href="{{ route('admin.analytics.index', ['period' => 'today']) }}" 
-               class="px-3.5 py-1.5 rounded-xl transition {{ $period === 'today' ? 'bg-[#ff5001] text-white shadow-sm' : 'text-slate-600 hover:text-slate-900' }}">
+               class="px-3.5 py-1.5 rounded-xl transition {{ $period === 'today' ? 'bg-[#da251c] text-white shadow-sm' : 'text-slate-600 hover:text-slate-900' }}">
                 Hari Ini
             </a>
             <a href="{{ route('admin.analytics.index', ['period' => '7days']) }}" 
-               class="px-3.5 py-1.5 rounded-xl transition {{ $period === '7days' ? 'bg-[#ff5001] text-white shadow-sm' : 'text-slate-600 hover:text-slate-900' }}">
+               class="px-3.5 py-1.5 rounded-xl transition {{ $period === '7days' ? 'bg-[#da251c] text-white shadow-sm' : 'text-slate-600 hover:text-slate-900' }}">
                 7 Hari
             </a>
             <a href="{{ route('admin.analytics.index', ['period' => '30days']) }}" 
-               class="px-3.5 py-1.5 rounded-xl transition {{ $period === '30days' ? 'bg-[#ff5001] text-white shadow-sm' : 'text-slate-600 hover:text-slate-900' }}">
+               class="px-3.5 py-1.5 rounded-xl transition {{ $period === '30days' ? 'bg-[#da251c] text-white shadow-sm' : 'text-slate-600 hover:text-slate-900' }}">
                 30 Hari
             </a>
             <a href="{{ route('admin.analytics.index', ['period' => 'all']) }}" 
-               class="px-3.5 py-1.5 rounded-xl transition {{ $period === 'all' ? 'bg-[#ff5001] text-white shadow-sm' : 'text-slate-600 hover:text-slate-900' }}">
+               class="px-3.5 py-1.5 rounded-xl transition {{ $period === 'all' ? 'bg-[#da251c] text-white shadow-sm' : 'text-slate-600 hover:text-slate-900' }}">
                 Semua
             </a>
         </div>
@@ -73,7 +73,7 @@
                     <h4 class="font-bold text-xs text-slate-800">Via Terminal atau phpMyAdmin</h4>
                     <p class="text-xs text-slate-500">Di Terminal cPanel / SSH jalankan: <code class="bg-slate-100 px-1.5 py-0.5 rounded text-[11px] font-mono font-bold text-slate-900">php artisan migrate</code></p>
                     <details class="text-xs group">
-                        <summary class="font-bold text-[#ff5001] cursor-pointer hover:underline list-none flex items-center space-x-1">
+                        <summary class="font-bold text-[#da251c] cursor-pointer hover:underline list-none flex items-center space-x-1">
                             <i class="fa-solid fa-code text-[11px]"></i>
                             <span>Klik untuk melihat Query SQL (phpMyAdmin)</span>
                         </summary>
@@ -120,9 +120,9 @@ CREATE TABLE IF NOT EXISTS `visitor_logs` (
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
         
         {{-- Card 1: Total Kunjungan (Pageviews) --}}
-        <div class="bg-gradient-to-br from-[#ff5001] via-[#da251c] to-[#b91c1c] text-white rounded-3xl p-6 shadow-lg shadow-orange-500/20 border border-orange-300/30 relative overflow-hidden group">
+        <div class="bg-gradient-to-br from-[#da251c] via-[#da251c] to-[#b91c1c] text-white rounded-3xl p-6 shadow-lg shadow-red-500/20 border border-red-300/30 relative overflow-hidden group">
             <div class="flex items-center justify-between mb-4">
-                <span class="text-xs font-bold text-orange-100 uppercase tracking-wider">Total Tayangan Halaman</span>
+                <span class="text-xs font-bold text-red-100 uppercase tracking-wider">Total Tayangan Halaman</span>
                 <div class="w-10 h-10 rounded-2xl bg-white/20 backdrop-blur-md text-white flex items-center justify-center text-lg">
                     <i class="fa-solid fa-eye"></i>
                 </div>
@@ -130,7 +130,7 @@ CREATE TABLE IF NOT EXISTS `visitor_logs` (
             <div class="text-3xl sm:text-4xl font-black text-white tracking-tight">
                 {{ number_format($totalPageviews) }}
             </div>
-            <div class="text-xs text-orange-100 mt-2 font-medium">
+            <div class="text-xs text-red-100 mt-2 font-medium">
                 Periode: {{ $period === 'today' ? 'Hari ini' : ($period === '7days' ? '7 hari terakhir' : ($period === '30days' ? '30 hari terakhir' : 'Semua riwayat')) }}
             </div>
         </div>
@@ -195,8 +195,8 @@ CREATE TABLE IF NOT EXISTS `visitor_logs` (
                 </p>
             </div>
             <div class="flex items-center space-x-4 text-xs font-semibold">
-                <span class="flex items-center space-x-1.5 text-[#ff5001]">
-                    <span class="w-3 h-3 rounded-full bg-[#ff5001] inline-block"></span>
+                <span class="flex items-center space-x-1.5 text-[#da251c]">
+                    <span class="w-3 h-3 rounded-full bg-[#da251c] inline-block"></span>
                     <span>Tayangan (Pageviews)</span>
                 </span>
                 <span class="flex items-center space-x-1.5 text-sky-500">
@@ -221,7 +221,7 @@ CREATE TABLE IF NOT EXISTS `visitor_logs` (
                     <h3 class="font-extrabold text-slate-800 text-base">Top 10 Halaman & Artikel Terpopuler</h3>
                     <p class="text-xs text-slate-400">Halaman yang paling banyak dibaca pada periode ini</p>
                 </div>
-                <div class="w-8 h-8 rounded-xl bg-orange-50 text-[#ff5001] flex items-center justify-center text-sm">
+                <div class="w-8 h-8 rounded-xl bg-red-50 text-[#da251c] flex items-center justify-center text-sm">
                     <i class="fa-solid fa-fire"></i>
                 </div>
             </div>
@@ -234,7 +234,7 @@ CREATE TABLE IF NOT EXISTS `visitor_logs` (
                                 {{ $idx + 1 }}
                             </span>
                             <div class="min-w-0">
-                                <a href="{{ $p->path }}" target="_blank" class="font-bold text-xs text-slate-800 hover:text-[#ff5001] transition truncate block">
+                                <a href="{{ $p->path }}" target="_blank" class="font-bold text-xs text-slate-800 hover:text-[#da251c] transition truncate block">
                                     {{ $p->title ?: $p->path }}
                                 </a>
                                 <span class="text-[10px] text-slate-400 font-mono block truncate">{{ $p->path }}</span>
@@ -291,7 +291,7 @@ CREATE TABLE IF NOT EXISTS `visitor_logs` (
                             <span class="text-slate-500">{{ number_format($src->total) }} ({{ $pct }}%)</span>
                         </div>
                         <div class="w-full bg-slate-100 rounded-full h-2 overflow-hidden">
-                            <div class="bg-gradient-to-r from-[#ff5001] to-amber-400 h-2 rounded-full" style="width: {{ $pct }}%"></div>
+                            <div class="bg-gradient-to-r from-[#da251c] to-amber-400 h-2 rounded-full" style="width: {{ $pct }}%"></div>
                         </div>
                     </div>
                 @empty
@@ -364,7 +364,7 @@ CREATE TABLE IF NOT EXISTS `visitor_logs` (
                         $devMap = $devices->pluck('total', 'device_type')->toArray();
                     @endphp
                     <div class="bg-slate-50 p-3 rounded-2xl text-center border border-slate-200/60">
-                        <i class="fa-solid fa-mobile-screen text-xl text-[#ff5001] mb-1"></i>
+                        <i class="fa-solid fa-mobile-screen text-xl text-[#da251c] mb-1"></i>
                         <span class="text-[11px] text-slate-500 block">Mobile (HP)</span>
                         <span class="font-extrabold text-sm text-slate-800">{{ number_format($devMap['Mobile'] ?? 0) }}</span>
                     </div>
@@ -436,7 +436,7 @@ CREATE TABLE IF NOT EXISTS `visitor_logs` (
                                 <span class="text-[9px] text-slate-400 block">{{ $visit->created_at->format('d/m/Y H:i:s') }}</span>
                             </td>
                             <td class="py-3.5 px-6 max-w-xs">
-                                <a href="{{ $visit->path }}" target="_blank" class="font-bold text-slate-800 hover:text-[#ff5001] transition truncate block">
+                                <a href="{{ $visit->path }}" target="_blank" class="font-bold text-slate-800 hover:text-[#da251c] transition truncate block">
                                     {{ $visit->page_title ?: $visit->path }}
                                 </a>
                                 <span class="text-[10px] text-slate-400 font-mono truncate block">{{ $visit->path }}</span>
@@ -509,12 +509,12 @@ CREATE TABLE IF NOT EXISTS `visitor_logs` (
                     {
                         label: 'Tayangan (Pageviews)',
                         data: pageviews,
-                        borderColor: '#ff5001',
+                        borderColor: '#da251c',
                         backgroundColor: 'rgba(255, 80, 1, 0.08)',
                         fill: true,
                         tension: 0.35,
                         borderWidth: 2.5,
-                        pointBackgroundColor: '#ff5001',
+                        pointBackgroundColor: '#da251c',
                         pointRadius: 3,
                         pointHoverRadius: 6,
                     },

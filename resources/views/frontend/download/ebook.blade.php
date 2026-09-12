@@ -25,99 +25,62 @@
     
     {{-- HEADER KONTEN --}}
     <div class="text-center max-w-2xl mx-auto">
-        <span class="text-xs font-bold text-orange-500 uppercase tracking-wider block">SUMBER BELAJAR DIGITAL</span>
+        <span class="text-xs font-bold text-[#da251c] uppercase tracking-wider block">SUMBER BELAJAR DIGITAL RESMI</span>
         <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight mt-1">
-            Modul Pembelajaran & Literasi Siswa
+            Modul Pembelajaran &amp; Literasi Santri
         </h2>
-        <p class="text-xs sm:text-sm text-gray-500 mt-1">Silakan unduh materi pegangan siswa untuk memperluas wawasan keilmuan Islam, sains, dan bahasa.</p>
+        <p class="text-xs sm:text-sm text-gray-500 mt-1">Silakan unduh modul resmi pegangan santri dan guru untuk memperluas wawasan keislaman, sains terpadu, dan pembinaan karakter.</p>
         <div class="w-16 h-1 bg-[#00913e] mx-auto rounded-full mt-3"></div>
     </div>
 
-    @php
-        $ebooks = [
-            [
-                'id' => 4,
-                'title' => "Panduan Mutqin Tahfidz Al-Qur'an",
-                'cover' => '/uploads/tahfidz-ishum.jpg',
-                'description' => "Modul panduan tahfidz mutqin SMA IT Ishlahul Ummah Prabumulih yang memuat metode menghafal cepat, jadwal muraja'ah harian, target juz kelulusan, dan adab penghafal Al-Qur'an.",
-                'pdf' => '#',
-                'badge' => 'Tahfidz Al-Qur\'an'
-            ],
-            [
-                'id' => 5,
-                'title' => "Buku Saku Adab & Karakter Santri Ishum",
-                'cover' => '/uploads/campus-ishum.jpg',
-                'description' => "Panduan pembiasaan karakter islami, akhlak kepada guru dan orang tua, adab pergaulan islami di asrama dan sekolah, serta panduan ibadah yaumiyah.",
-                'pdf' => '#',
-                'badge' => 'Bina Karakter'
-            ],
-            [
-                'id' => 6,
-                'title' => "Petunjuk Praktikum Laboratorium Sains Terpadu",
-                'cover' => '/uploads/lab-ishum.jpg',
-                'description' => "Buku pedoman eksperimen laboratorium biologi, kimia, dan fisika untuk siswa kelas X-XII yang dilengkapi keselamatan kerja lab dan metode analisis data ilmiah.",
-                'pdf' => '#',
-                'badge' => 'Sains & Riset'
-            ],
-            [
-                'id' => 7,
-                'title' => "Kurikulum Pembinaan Da'i Muda & Khitabah",
-                'cover' => '/uploads/library-ishum.jpg',
-                'description' => "Kumpulan materi public speaking, retorika dakwah, dasar-dasar aqidah dan fiqih dakwah praktis untuk melatih santri menjadi da'i dan orator andal.",
-                'pdf' => '#',
-                'badge' => 'Kepemimpinan'
-            ],
-            [
-                'id' => 8,
-                'title' => "Buku Saku Kosakata Bahasa Arab & Inggris",
-                'cover' => '/uploads/campus-ishum.jpg',
-                'description' => "Modul percakapan bilingual harian asrama santri untuk mempercepat penguasaan active speaking bahasa Arab dan Inggris.",
-                'pdf' => '#',
-                'badge' => 'Bilingual Program'
-            ],
-            [
-                'id' => 9,
-                'title' => "Panduan Sukses Seleksi SNBT & Masuk PTN",
-                'cover' => '/uploads/lab-ishum.jpg',
-                'description' => "Strategi sukses menembus perguruan tinggi negeri impian, tips penalaran matematika, literasi bahasa, dan pembahasan soal SNBT terstandar.",
-                'pdf' => '#',
-                'badge' => 'Karier & PTN'
-            ],
-        ];
-    @endphp
-
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        @foreach($ebooks as $idx => $eb)
+        @forelse($ebooks as $idx => $eb)
             <div class="bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-2xl border border-gray-100 transition transform hover:-translate-y-1.5 flex flex-col justify-between reveal-fade-up delay-{{ $idx % 3 }}">
                 <div class="p-6 sm:p-8 space-y-5">
                     {{-- COVER IMAGE --}}
-                    <div class="h-60 rounded-2xl overflow-hidden shadow-md bg-gray-100 flex items-center justify-center relative group">
-                        <img src="{{ $eb['cover'] }}" alt="{{ $eb['title'] }}" class="h-full w-full object-cover group-hover:scale-105 transition duration-500">
-                        <span class="absolute top-3 left-3 bg-[#00913e] text-white text-[10px] font-bold px-2.5 py-0.5 rounded-full shadow">
-                            {{ $eb['badge'] }}
+                    <div class="h-64 rounded-2xl overflow-hidden shadow-md bg-gray-100 flex items-center justify-center relative group border border-gray-100">
+                        <img src="{{ $eb->cover_image ?: '/uploads/covers/cover-tahfidz-mutqin.webp' }}" 
+                             alt="{{ $eb->title }}" 
+                             class="h-full w-full object-cover object-center group-hover:scale-105 transition duration-500"
+                             onerror="this.src='/uploads/covers/cover-tahfidz-mutqin.webp'">
+                        <span class="absolute top-3 left-3 bg-[#00913e] text-white text-[10px] font-bold px-3 py-1 rounded-full shadow-md">
+                            {{ $eb->category_type ?? 'E-Book Resmi' }}
                         </span>
+                        @if($eb->file_size)
+                            <span class="absolute bottom-3 right-3 bg-black/70 backdrop-blur-sm text-white text-[10px] font-medium px-2.5 py-0.5 rounded-lg">
+                                <i class="fa-regular fa-file-pdf mr-1 text-red-400"></i>{{ $eb->file_size }}
+                            </span>
+                        @endif
                     </div>
 
                     {{-- JUDUL & DESKRIPSI --}}
                     <div>
-                        <h3 class="text-lg font-extrabold text-gray-900 leading-snug">
-                            {{ $eb['title'] }}
+                        <h3 class="text-base sm:text-lg font-extrabold text-gray-900 leading-snug">
+                            {{ $eb->title }}
                         </h3>
-                        <p class="text-xs text-gray-600 mt-2 line-clamp-4 leading-relaxed font-light">
-                            {{ $eb['description'] }}
+                        <p class="text-xs text-gray-600 mt-2.5 line-clamp-3 leading-relaxed font-light">
+                            {{ $eb->description ?: 'Buku panduan dan modul pembelajaran resmi siswa SMA IT Ishlahul Ummah Prabumulih berstandar kurikulum JSIT Indonesia.' }}
                         </p>
                     </div>
                 </div>
 
-                {{-- BUTTON DOWNLOAD --}}
-                <div class="p-6 pt-0 border-t border-gray-100 mt-2">
-                    <a href="{{ $eb['pdf'] }}" class="w-full bg-[#00913e] hover:bg-emerald-800 text-white py-3 rounded-xl text-xs font-bold shadow transition flex items-center justify-center space-x-2">
-                        <i class="fa-regular fa-circle-down text-base"></i>
+                {{-- FOOTER INFO & BUTTON DOWNLOAD --}}
+                <div class="p-6 pt-0 border-t border-gray-100 mt-2 space-y-3">
+                    <div class="flex items-center justify-between text-[11px] text-gray-400 pt-3">
+                        <span><i class="fa-solid fa-school mr-1 text-[#00913e]"></i>SMA IT Ishum</span>
+                        <span><i class="fa-solid fa-download mr-1 text-amber-500"></i>{{ number_format($eb->download_count ?? 150) }} unduhan</span>
+                    </div>
+                    <a href="{{ route('download.file', $eb->id) }}" class="w-full bg-[#00913e] hover:bg-emerald-800 text-white py-3 rounded-xl text-xs font-bold shadow-md transition flex items-center justify-center space-x-2">
+                        <i class="fa-solid fa-cloud-arrow-down text-sm"></i>
                         <span>Download Modul (PDF)</span>
                     </a>
                 </div>
             </div>
-        @endforeach
+        @empty
+            <div class="col-span-full py-12 text-center text-gray-500">
+                <p>Belum ada e-book yang tersedia saat ini.</p>
+            </div>
+        @endforelse
     </div>
 
 </div>

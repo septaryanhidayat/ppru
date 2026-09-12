@@ -22,7 +22,7 @@
                 <div class="bg-slate-50 rounded-2xl p-5 border border-slate-200/80 flex flex-col justify-between space-y-4 hover:shadow-md transition">
                     <div class="space-y-3">
                         <div class="flex items-center space-x-3">
-                            <div class="w-12 h-12 rounded-xl bg-orange-100 text-[#ff5001] flex items-center justify-center text-lg shrink-0 overflow-hidden border border-orange-200">
+                            <div class="w-12 h-12 rounded-xl bg-red-100 text-[#da251c] flex items-center justify-center text-lg shrink-0 overflow-hidden border border-red-200">
                                 @if($b->is_image_icon)
                                     <img src="{{ $b->icon }}" alt="{{ $b->name }}" class="w-full h-full object-contain p-1.5" onerror="this.src='/uploads/2025/09/logo-thumbnail.webp'">
                                 @else
@@ -40,7 +40,7 @@
                     <div class="pt-3 border-t border-slate-200 flex items-center justify-between text-xs">
                         <span class="text-slate-400 text-[10px]">Urutan: #{{ $b->order }}</span>
                         <div class="flex items-center space-x-2">
-                            <a href="{{ route('admin.bidang.edit', $b) }}" class="p-2 text-slate-600 hover:text-[#ff5001] hover:bg-orange-100 rounded-lg transition" title="Edit">
+                            <a href="{{ route('admin.bidang.edit', $b) }}" class="p-2 text-slate-600 hover:text-[#da251c] hover:bg-red-100 rounded-lg transition" title="Edit">
                                 <i class="fa-solid fa-pen-to-square"></i>
                             </a>
                             <form action="{{ route('admin.bidang.destroy', $b) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus bidang ini?');" class="inline">

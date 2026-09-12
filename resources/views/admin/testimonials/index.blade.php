@@ -11,7 +11,7 @@
                 <h2 class="text-lg font-black text-slate-800">Daftar Testimonial & Kesan Masyarakat</h2>
                 <p class="text-xs text-slate-500 mt-0.5">Kelola komentar, apresiasi, foto profil, dan status publikasi di website.</p>
             </div>
-            <a href="{{ route('admin.testimonials.create') }}" class="inline-flex items-center space-x-2 bg-[#ff5001] hover:bg-[#e04500] text-white font-bold text-xs px-5 py-2.5 rounded-xl shadow-md transition self-start sm:self-auto">
+            <a href="{{ route('admin.testimonials.create') }}" class="inline-flex items-center space-x-2 bg-[#da251c] hover:bg-[#b91c1c] text-white font-bold text-xs px-5 py-2.5 rounded-xl shadow-md transition self-start sm:self-auto">
                 <i class="fa-solid fa-plus"></i>
                 <span>Tambah Testimonial Baru</span>
             </a>
@@ -33,7 +33,7 @@
                         </p>
 
                         <div class="flex items-center space-x-3 pt-3 border-t border-slate-200/60">
-                            <div class="w-10 h-10 rounded-full bg-orange-100 text-[#ff5001] font-bold flex items-center justify-center flex-shrink-0 overflow-hidden text-xs shadow-xs">
+                            <div class="w-10 h-10 rounded-full bg-red-100 text-[#da251c] font-bold flex items-center justify-center flex-shrink-0 overflow-hidden text-xs shadow-xs">
                                 @if($t->photo)
                                     <img src="{{ $t->photo_url }}" alt="{{ $t->name }}" class="w-full h-full object-cover" onerror="this.src='/uploads/2023/08/user-2.webp'">
                                 @else
@@ -48,7 +48,7 @@
                     </div>
 
                     <div class="pt-3 border-t border-slate-200 flex items-center justify-end space-x-2 text-xs">
-                        <a href="{{ route('admin.testimonials.edit', $t) }}" class="p-2 text-slate-600 hover:text-[#ff5001] hover:bg-orange-100 rounded-lg transition" title="Edit">
+                        <a href="{{ route('admin.testimonials.edit', $t) }}" class="p-2 text-slate-600 hover:text-[#da251c] hover:bg-red-100 rounded-lg transition" title="Edit">
                             <i class="fa-solid fa-pen-to-square"></i>
                         </a>
                         <form action="{{ route('admin.testimonials.destroy', $t) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus testimonial dari {{ $t->name }}?');" class="inline">

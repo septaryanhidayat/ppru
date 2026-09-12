@@ -79,7 +79,7 @@
                 <p class="text-xs sm:text-sm text-green-100 mt-1">Mari bergabung bersama keluarga besar SMA IT Ishlahul Ummah Prabumulih. Gelombang pendaftaran siswa baru telah dibuka.</p>
             </div>
             <div class="flex flex-wrap gap-3 flex-shrink-0">
-                <a href="{{ route('hubungi') }}?type=ppdb" class="bg-white text-[#00913e] hover:bg-orange-50 px-5 py-2.5 rounded-xl font-bold text-xs shadow transition flex items-center">
+                <a href="{{ route('ppdb.index') }}" class="bg-white text-[#00913e] hover:bg-red-50 px-5 py-2.5 rounded-xl font-bold text-xs shadow transition flex items-center">
                     <i class="fa-solid fa-graduation-cap mr-1.5 text-[#da251c]"></i> Daftar PPDB Online
                 </a>
                 <a href="{{ route('hubungi') }}" class="bg-black/30 hover:bg-black/40 text-white px-5 py-2.5 rounded-xl font-bold text-xs shadow transition flex items-center">

@@ -242,23 +242,68 @@ class SchoolDataSeeder extends Seeder
         Download::truncate();
         $localDownloads = [
             [
-                'title' => 'Buku Panduan & Kurikulum Tahfidz Al-Qur\'an SMA IT Ishlahul Ummah',
+                'title' => "Panduan Mutqin Tahfidz Al-Qur'an 30 Juz SMA IT Ishlahul Ummah",
+                'description' => 'Modul resmi kurikulum tahfidz mutqin SMA IT Ishlahul Ummah Prabumulih berbasis standar JSIT Indonesia.',
                 'category_type' => 'E-Book',
-                'file_path' => '/uploads/panduan-tahfidz-ishum.pdf',
+                'file_path' => '/uploads/downloads/panduan-mutqin-tahfidz-ishum.pdf',
+                'cover_image' => '/uploads/covers/cover-tahfidz-mutqin.webp',
                 'file_type' => 'PDF',
-                'file_size' => '2.4 MB',
+                'file_size' => '9.0 KB',
                 'download_count' => 342,
             ],
             [
-                'title' => 'Brosur & Panduan Pendaftaran Peserta Didik Baru (PPDB) SMA IT Ishum',
+                'title' => 'Buku Saku Adab & 10 Karakter (Muwashofat) Santri JSIT',
+                'description' => 'Pedoman pembiasaan akhlak islami, adab kepada guru dan orang tua, tata tertib santri asrama dan sekolah.',
                 'category_type' => 'E-Book',
-                'file_path' => '/uploads/panduan-ppdb-ishum.pdf',
+                'file_path' => '/uploads/downloads/buku-saku-adab-karakter-santri.pdf',
+                'cover_image' => '/uploads/covers/cover-karakter-santri.webp',
                 'file_type' => 'PDF',
-                'file_size' => '1.8 MB',
-                'download_count' => 512,
+                'file_size' => '6.9 KB',
+                'download_count' => 284,
+            ],
+            [
+                'title' => 'Petunjuk Praktikum Laboratorium Sains Terpadu SMA IT Ishum',
+                'description' => 'Pedoman eksperimen laboratorium biologi, kimia, dan fisika untuk siswa kelas X-XII SMA IT Ishlahul Ummah.',
+                'category_type' => 'E-Book',
+                'file_path' => '/uploads/downloads/petunjuk-praktikum-sains-terpadu.pdf',
+                'cover_image' => '/uploads/covers/cover-praktikum-sains.webp',
+                'file_type' => 'PDF',
+                'file_size' => '6.6 KB',
+                'download_count' => 195,
+            ],
+            [
+                'title' => "Kurikulum Pembinaan Da'i Muda, Khitabah & Public Speaking",
+                'description' => 'Kumpulan materi public speaking, retorika dakwah 3 bahasa (Indonesia, Arab, Inggris), dan sistematika kultum.',
+                'category_type' => 'E-Book',
+                'file_path' => '/uploads/downloads/kurikulum-pembinaan-dai-muda.pdf',
+                'cover_image' => '/uploads/covers/cover-dai-muda.webp',
+                'file_type' => 'PDF',
+                'file_size' => '6.5 KB',
+                'download_count' => 210,
+            ],
+            [
+                'title' => 'Buku Saku Kosakata Harian Bilingual Bahasa Arab & Inggris Santri',
+                'description' => 'Modul percakapan bilingual harian asrama dan lingkungan sekolah untuk mempercepat penguasaan active speaking.',
+                'category_type' => 'E-Book',
+                'file_path' => '/uploads/downloads/buku-saku-kosakata-bilingual.pdf',
+                'cover_image' => '/uploads/covers/cover-bilingual-arab-inggris.webp',
+                'file_type' => 'PDF',
+                'file_size' => '6.6 KB',
+                'download_count' => 312,
+            ],
+            [
+                'title' => 'Panduan Sukses Seleksi Masuk PTN (SNBP, SNBT & Kedinasan)',
+                'description' => 'Strategi sukses menembus perguruan tinggi negeri impian, pembedahan materi Tes Potensi Skolastik (TPS).',
+                'category_type' => 'E-Book',
+                'file_path' => '/uploads/downloads/panduan-sukses-snbt-ptn.pdf',
+                'cover_image' => '/uploads/covers/cover-sukses-snbt.webp',
+                'file_type' => 'PDF',
+                'file_size' => '6.6 KB',
+                'download_count' => 450,
             ],
             [
                 'title' => 'Mars Jaringan Sekolah Islam Terpadu (JSIT) Indonesia',
+                'description' => 'Lagu Mars Resmi JSIT Indonesia Pengobar Semangat Pendidik dan Santri Terpadu.',
                 'category_type' => 'Audio',
                 'file_path' => '/uploads/mars-ishum.mp3',
                 'file_type' => 'MP3',
@@ -266,15 +311,8 @@ class SchoolDataSeeder extends Seeder
                 'download_count' => 420,
             ],
             [
-                'title' => 'Hymne Sekolah Islam Terpadu Ishlahul Ummah',
-                'category_type' => 'Audio',
-                'file_path' => '/uploads/hymne-ishum.mp3',
-                'file_type' => 'MP3',
-                'file_size' => '4.1 MB',
-                'download_count' => 298,
-            ],
-            [
                 'title' => 'Logo Resmi SMA IT Ishlahul Ummah Prabumulih (High Resolution)',
+                'description' => 'File logo resmi SMA IT Ishlahul Ummah Prabumulih format PNG transparan.',
                 'category_type' => 'Logo',
                 'file_path' => '/uploads/logo-ishum.png',
                 'file_type' => 'PNG',
@@ -283,6 +321,7 @@ class SchoolDataSeeder extends Seeder
             ],
             [
                 'title' => 'Logo Lambang Ishlahul Ummah Square HD',
+                'description' => 'Logo lambang persegi SMA IT Ishlahul Ummah Prabumulih format PNG.',
                 'category_type' => 'Logo',
                 'file_path' => '/uploads/logo-ishum-square.png',
                 'file_type' => 'PNG',
@@ -291,8 +330,7 @@ class SchoolDataSeeder extends Seeder
             ],
         ];
 
-        $downloads = array_merge($localDownloads, $data['downloads'] ?? []);
-        foreach ($downloads as $dw) {
+        foreach ($localDownloads as $dw) {
             Download::create($dw);
         }
 

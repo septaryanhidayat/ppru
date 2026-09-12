@@ -27,7 +27,7 @@
                             </div>
                             <div class="min-w-0">
                                 <h3 class="font-extrabold text-sm text-slate-900 truncate">{{ $d->name }}</h3>
-                                <p class="text-xs text-[#ff5001] font-semibold mt-0.5"><i class="fa-solid fa-user-check text-[10px] mr-1"></i>{{ $d->head_name ?: 'Belum ditentukan' }}</p>
+                                <p class="text-xs text-[#da251c] font-semibold mt-0.5"><i class="fa-solid fa-user-check text-[10px] mr-1"></i>{{ $d->head_name ?: 'Belum ditentukan' }}</p>
                             </div>
                         </div>
                         <p class="text-xs text-slate-500 mt-2 line-clamp-2"><i class="fa-solid fa-location-dot text-slate-400 mr-1.5"></i>{{ $d->address ?: 'Alamat belum diatur' }}</p>
@@ -36,7 +36,7 @@
                     <div class="pt-3 border-t border-slate-200 flex items-center justify-between text-xs">
                         <span class="text-slate-400 text-[10px]">Urutan: #{{ $d->order }}</span>
                         <div class="flex items-center space-x-2">
-                            <a href="{{ route('admin.dpc.edit', $d) }}" class="p-2 text-slate-600 hover:text-[#ff5001] hover:bg-orange-100 rounded-lg transition" title="Edit">
+                            <a href="{{ route('admin.dpc.edit', $d) }}" class="p-2 text-slate-600 hover:text-[#da251c] hover:bg-red-100 rounded-lg transition" title="Edit">
                                 <i class="fa-solid fa-pen-to-square"></i>
                             </a>
                             <form action="{{ route('admin.dpc.destroy', $d) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data DPC ini?');" class="inline">

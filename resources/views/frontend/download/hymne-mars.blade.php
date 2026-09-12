@@ -1,7 +1,7 @@
 @extends('layouts.frontend')
 
-@section('title', 'Mars dan Hymne - SMA IT Ishlahul Ummah Prabumulih')
-@section('meta_description', 'Lagu resmi Mars dan Hymne SMA IT Ishlahul Ummah Prabumulih, pembangkit semangat belajar, hafalan Qur\'an, dan keunggulan sains bagi seluruh santri.')
+@section('title', 'Mars JSIT Indonesia - SMA IT Ishlahul Ummah Prabumulih')
+@section('meta_description', 'Lagu resmi Mars Jaringan Sekolah Islam Terpadu (JSIT) Indonesia di SMA IT Ishlahul Ummah Prabumulih, membina generasi beriman, cerdas, berakhlak mulia, dan mandiri.')
 
 @section('content')
 {{-- HERO HEADER --}}
@@ -12,108 +12,139 @@
             <span>/</span>
             <a href="{{ route('download.index') }}" class="hover:text-white transition">Download</a>
             <span>/</span>
-            <span class="text-amber-300 font-semibold">Hymne & Mars Ishum</span>
+            <span class="text-emerald-200 font-semibold">Mars JSIT Indonesia</span>
         </nav>
-        <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Mars dan Hymne SMA IT Ishlahul Ummah Prabumulih</h1>
+        <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Mars Jaringan Sekolah Islam Terpadu (JSIT) Indonesia</h1>
         <p class="text-sm text-emerald-100 mt-2 font-light max-w-2xl">
-            Lagu resmi pembangkit semangat menuntut ilmu, integritas moral, kecintaan pada Al-Qur'an, dan dedikasi santri bagi peradaban bangsa.
+            Lagu kebanggaan civitas akademika SMA IT Ishlahul Ummah Prabumulih sebagai bagian dari Jaringan Sekolah Islam Terpadu (JSIT) Indonesia dalam membina generasi Rabbani yang unggul dan berdaya saing global.
         </p>
     </div>
 </div>
 
 <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-14 space-y-12">
     
-    {{-- MARS SEKOLAH --}}
-    <article class="bg-white rounded-3xl p-8 sm:p-12 shadow-xl border border-gray-100 space-y-6 reveal-fade-up">
+    {{-- MARS JSIT INDONESIA --}}
+    <article class="bg-white rounded-3xl p-8 sm:p-12 shadow-xl border border-gray-100 space-y-8 reveal-fade-up">
         <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-6 border-b border-gray-100">
             <div>
-                <span class="text-xs font-bold text-orange-500 uppercase tracking-wider block">Lagu Semangat Santri</span>
-                <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900 mt-1">MARS SMA IT ISHLAHUL UMMAH</h2>
-                <p class="text-xs sm:text-sm text-gray-500 italic mt-1">
-                    Gubahan: <strong>Keluarga Besar SMA IT Ishlahul Ummah Prabumulih</strong>
+                <span class="text-xs font-bold text-[#da251c] uppercase tracking-wider block">Lagu Resmi Sekolah Islam Terpadu</span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900 mt-1">MARS JSIT INDONESIA</h2>
+                <p class="text-xs sm:text-sm text-gray-500 mt-1">
+                    Pedoman semangat santri & pendidik Jaringan Sekolah Islam Terpadu
                 </p>
             </div>
-            <a href="#" class="inline-flex items-center bg-[#00913e] hover:bg-emerald-800 text-white px-5 py-2.5 rounded-xl text-xs font-bold shadow-md hover:shadow-lg transition flex-shrink-0">
-                <i class="fa-solid fa-download mr-2"></i> Unduh Audio Mars
+            @php
+                $marsDownload = $audioFiles->firstWhere('file_path', '/uploads/mars-ishum.mp3') ?? $audioFiles->first();
+            @endphp
+            @if($marsDownload)
+            <a href="{{ route('download.file', $marsDownload->id) }}" class="inline-flex items-center bg-[#da251c] hover:bg-[#b91c1c] text-white px-5 py-2.5 rounded-xl text-xs font-bold shadow-md hover:shadow-lg transition flex-shrink-0">
+                <i class="fa-solid fa-download mr-2"></i> Unduh Audio Mars ({{ $marsDownload->file_size }})
             </a>
+            @endif
         </div>
 
-        {{-- Lirik Mars Lengkap --}}
-        <div class="bg-emerald-50/50 p-8 rounded-2xl border border-emerald-100 text-center space-y-4 text-sm sm:text-base text-gray-800 leading-relaxed font-serif">
-            <h3 class="font-sans text-xs font-extrabold text-emerald-800 uppercase tracking-widest mb-6">LIRIK MARS SMA IT ISHLAHUL UMMAH</h3>
+        {{-- Audio Player --}}
+        <div class="bg-gray-50 rounded-2xl p-5 border border-gray-200 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-full bg-emerald-100 text-[#00913e] flex items-center justify-center text-lg flex-shrink-0">
+                    <i class="fa-solid fa-music"></i>
+                </div>
+                <div>
+                    <h4 class="text-sm font-bold text-gray-900">Audio Mars JSIT Indonesia</h4>
+                    <p class="text-xs text-gray-500">Format MP3 • Kualitas Studio</p>
+                </div>
+            </div>
+            <audio controls class="w-full sm:w-80">
+                <source src="{{ asset('uploads/mars-ishum.mp3') }}" type="audio/mpeg">
+                Browser Anda tidak mendukung pemutar audio HTML5.
+            </audio>
+        </div>
+
+        {{-- Lirik Mars Resmi --}}
+        <div class="bg-emerald-50/50 p-8 rounded-2xl border border-emerald-100 text-center space-y-5 text-sm sm:text-base text-gray-800 leading-relaxed font-serif">
+            <h3 class="font-sans text-xs font-extrabold text-emerald-800 uppercase tracking-widest mb-6">LIRIK MARS JSIT INDONESIA</h3>
 
             <p>
-                Di bumi persada Nusantara nan megah<br>
-                Tegak berdiri bahtera peradaban mulia<br>
-                SMA IT Ishlahul Ummah Prabumulih harapan bangsa<br>
-                Menempa insan beriman dan bertaqwa
+                Harum semerbak semerbak mewangi<br>
+                Kuntum-kuntum melati di taman<br>
+                Merekah mekar berseri-seri<br>
+                Menyambut mentari pagi
             </p>
 
             <p>
-                Al-Qur'an dan Sunnah lentera penerang jiwa<br>
-                Sains dan teknologi kami kuasai bersama<br>
-                Dengan tekad bulat melangkah ke depan<br>
-                Menyongsong fajar kejayaan peradaban
+                Kami generasi dambaan umat<br>
+                Tunas harapan bumi pertiwi<br>
+                Bersama JSIT kita melangkah<br>
+                Menuju ridho Ilahi
             </p>
 
-            <div class="py-2">
-                <span class="inline-block text-xs font-bold text-white bg-orange-500 px-3 py-1 rounded-full uppercase tracking-wider mb-2 font-sans">Reff</span>
-                <p class="font-bold text-gray-900">
-                    Maju bersama SMA IT Ishlahul Ummah Prabumulih<br>
-                    Generasi tangguh, cerdas, dan mandiri<br>
-                    Hafizh Qur'an, pemimpin berakhlak terpuji<br>
-                    Membangun negeri demi ridho Ilahi
+            <div class="py-3">
+                <span class="inline-block text-xs font-bold text-white bg-[#da251c] px-4 py-1 rounded-full uppercase tracking-wider mb-3 font-sans">Reff</span>
+                <p class="font-bold text-gray-900 text-base sm:text-lg">
+                    Bangkitlah putra-putri Indonesia<br>
+                    Gelorakan semangat membaja<br>
+                    Tegakkan nilai-nilai Islam mulia<br>
+                    Raih prestasi jayakan dunia
                 </p>
             </div>
 
-            <p>
-                Kibarkan panji prestasi di kancah dunia<br>
-                Bakti kami persembahkan untuk Indonesia tercinta
+            <p class="font-semibold text-emerald-950">
+                Dengan iman, ilmu, dan amal<br>
+                Berpadu dalam dada<br>
+                Jaringan Sekolah Islam Terpadu<br>
+                Untuk Indonesia gemilang!
             </p>
         </div>
-    </article>
 
-    {{-- HYMNE SEKOLAH --}}
-    <article class="bg-white rounded-3xl p-8 sm:p-12 shadow-xl border border-gray-100 space-y-6 reveal-fade-up delay-1">
-        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-6 border-b border-gray-100">
-            <div>
-                <span class="text-xs font-bold text-amber-600 uppercase tracking-wider block">Lagu Keheningan & Doa</span>
-                <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900 mt-1">HYMNE SMA IT ISHLAHUL UMMAH</h2>
-                <p class="text-xs sm:text-sm text-gray-500 italic mt-1">
-                    Dedikasi & Syukur Santri Ishum
-                </p>
-            </div>
-            <a href="#" class="inline-flex items-center bg-gray-900 hover:bg-black text-white px-5 py-2.5 rounded-xl text-xs font-bold shadow-md hover:shadow-lg transition flex-shrink-0">
-                <i class="fa-solid fa-download mr-2"></i> Unduh Audio Hymne
-            </a>
-        </div>
-
-        {{-- Lirik Hymne Lengkap --}}
-        <div class="bg-amber-50/50 p-8 rounded-2xl border border-amber-100 text-center space-y-4 text-sm sm:text-base text-gray-800 leading-relaxed font-serif">
-            <h3 class="font-sans text-xs font-extrabold text-amber-800 uppercase tracking-widest mb-6">LIRIK HYMNE ISHLAHUL UMMAH</h3>
-
-            <p>
-                Dalam sujud syukur kami tengadahkan doa<br>
-                Atas rahmat dan karunia-Mu yang tiada terkira<br>
-                Engkau bimbing kami dalam naungan cahaya<br>
-                Di taman ilmu Ishum penuh berkah
+        {{-- Profil JSIT Indonesia --}}
+        <div class="bg-gradient-to-br from-emerald-50 to-green-50 rounded-2xl p-6 border border-emerald-200/70">
+            <h4 class="text-base font-bold text-emerald-900 flex items-center mb-3">
+                <i class="fa-solid fa-shield-halved text-[#00913e] mr-2"></i> 10 Karakter Santri JSIT (Muwashofat)
+            </h4>
+            <p class="text-xs text-gray-600 mb-4 leading-relaxed">
+                SMA IT Ishlahul Ummah Prabumulih mendidik santri berlandaskan 10 standar kompetensi lulusan Sekolah Islam Terpadu:
             </p>
-
-            <p>
-                Wahai guru-guru kami tercinta<br>
-                Ikhlasmu mengalir bagai telaga jernih<br>
-                Membimbing langkah kami meniti jalan kebenaran<br>
-                Menjadi hamba yang sholeh dan bermanfaat
-            </p>
-
-            <div class="py-2">
-                <span class="inline-block text-xs font-bold text-white bg-emerald-700 px-3 py-1 rounded-full uppercase tracking-wider mb-2 font-sans">Reff</span>
-                <p class="font-bold text-gray-900">
-                    Ishum... Ishum... Almamater kebanggaan kami<br>
-                    Kan kami jaga amanah luhur ini<br>
-                    Mengharumkan asmamu di persada bumi<br>
-                    Hingga akhir hayat kami nanti
-                </p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-gray-700">
+                <div class="flex items-center space-x-2 bg-white/80 p-2.5 rounded-xl border border-emerald-100">
+                    <span class="w-5 h-5 rounded-full bg-emerald-600 text-white font-bold text-[10px] flex items-center justify-center">1</span>
+                    <span><strong>Salimul Aqidah</strong> (Aqidah yang Lurus)</span>
+                </div>
+                <div class="flex items-center space-x-2 bg-white/80 p-2.5 rounded-xl border border-emerald-100">
+                    <span class="w-5 h-5 rounded-full bg-emerald-600 text-white font-bold text-[10px] flex items-center justify-center">2</span>
+                    <span><strong>Shahihul Ibadah</strong> (Ibadah yang Benar)</span>
+                </div>
+                <div class="flex items-center space-x-2 bg-white/80 p-2.5 rounded-xl border border-emerald-100">
+                    <span class="w-5 h-5 rounded-full bg-emerald-600 text-white font-bold text-[10px] flex items-center justify-center">3</span>
+                    <span><strong>Matinul Khuluq</strong> (Akhlak yang Kokoh)</span>
+                </div>
+                <div class="flex items-center space-x-2 bg-white/80 p-2.5 rounded-xl border border-emerald-100">
+                    <span class="w-5 h-5 rounded-full bg-emerald-600 text-white font-bold text-[10px] flex items-center justify-center">4</span>
+                    <span><strong>Qadirun 'alal Kasbi</strong> (Mandiri & Berjiwa Usaha)</span>
+                </div>
+                <div class="flex items-center space-x-2 bg-white/80 p-2.5 rounded-xl border border-emerald-100">
+                    <span class="w-5 h-5 rounded-full bg-emerald-600 text-white font-bold text-[10px] flex items-center justify-center">5</span>
+                    <span><strong>Mutsaqqaful Fikri</strong> (Berwawasan Luas)</span>
+                </div>
+                <div class="flex items-center space-x-2 bg-white/80 p-2.5 rounded-xl border border-emerald-100">
+                    <span class="w-5 h-5 rounded-full bg-emerald-600 text-white font-bold text-[10px] flex items-center justify-center">6</span>
+                    <span><strong>Qawiyyul Jismi</strong> (Jasmani yang Sehat & Tangguh)</span>
+                </div>
+                <div class="flex items-center space-x-2 bg-white/80 p-2.5 rounded-xl border border-emerald-100">
+                    <span class="w-5 h-5 rounded-full bg-emerald-600 text-white font-bold text-[10px] flex items-center justify-center">7</span>
+                    <span><strong>Mujahidun Linafsihi</strong> (Mampu Mengendalikan Diri)</span>
+                </div>
+                <div class="flex items-center space-x-2 bg-white/80 p-2.5 rounded-xl border border-emerald-100">
+                    <span class="w-5 h-5 rounded-full bg-emerald-600 text-white font-bold text-[10px] flex items-center justify-center">8</span>
+                    <span><strong>Munazzhamun fi Syu'unihi</strong> (Tertib dalam Urusan)</span>
+                </div>
+                <div class="flex items-center space-x-2 bg-white/80 p-2.5 rounded-xl border border-emerald-100">
+                    <span class="w-5 h-5 rounded-full bg-emerald-600 text-white font-bold text-[10px] flex items-center justify-center">9</span>
+                    <span><strong>Haritsun 'ala Waqtihi</strong> (Disiplin Waktu)</span>
+                </div>
+                <div class="flex items-center space-x-2 bg-white/80 p-2.5 rounded-xl border border-emerald-100">
+                    <span class="w-5 h-5 rounded-full bg-emerald-600 text-white font-bold text-[10px] flex items-center justify-center">10</span>
+                    <span><strong>Nafi'un Lighairihi</strong> (Bermanfaat bagi Sesama)</span>
+                </div>
             </div>
         </div>
     </article>

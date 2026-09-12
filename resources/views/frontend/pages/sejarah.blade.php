@@ -140,7 +140,7 @@
 
             {{-- CTA BANNER --}}
             <div class="bg-gradient-to-br from-emerald-950 via-[#00913e] to-emerald-900 text-white p-6 sm:p-8 rounded-3xl shadow-xl space-y-4 text-center reveal-fade-up delay-2">
-                <div class="w-14 h-14 rounded-2xl bg-orange-500/20 text-orange-400 flex items-center justify-center text-2xl mx-auto border border-orange-500/30">
+                <div class="w-14 h-14 rounded-2xl bg-red-500/20 text-red-400 flex items-center justify-center text-2xl mx-auto border border-red-500/30">
                     <i class="fa-solid fa-handshake-angle"></i>
                 </div>
                 <h3 class="text-xl font-extrabold">Bergabung Bersama Kami!</h3>
@@ -148,7 +148,7 @@
                     Daftarkan putra-putri tercinta sekarang dan jadilah bagian dari keluarga besar SMA IT Ishlahul Ummah Prabumulih.
                 </p>
                 <div class="pt-2">
-                    <a href="{{ route('hubungi') }}" class="block w-full bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white py-3 rounded-xl font-bold text-xs shadow-lg transition">
+                    <a href="{{ route('ppdb.index') }}" class="block w-full bg-[#da251c] hover:bg-[#b91c1c] text-white py-3 rounded-xl font-bold text-xs shadow-lg transition">
                         Daftar PPDB Sekarang
                     </a>
                 </div>

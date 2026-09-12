@@ -41,8 +41,8 @@
                 </div>
             </div>
             <div class="flex items-center justify-between pt-2">
-                <input type="text" name="content" placeholder="Keterangan tambahan atau catatan kegiatan (opsional)..." class="w-3/4 bg-white text-xs text-slate-800 rounded-xl px-4 py-2 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#ff5001]">
-                <button type="submit" class="bg-[#ff5001] hover:bg-[#e04500] text-white font-bold text-xs px-5 py-2.5 rounded-xl shadow-md transition flex items-center space-x-2 cursor-pointer">
+                <input type="text" name="content" placeholder="Keterangan tambahan atau catatan kegiatan (opsional)..." class="w-3/4 bg-white text-xs text-slate-800 rounded-xl px-4 py-2 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#da251c]">
+                <button type="submit" class="bg-[#da251c] hover:bg-[#b91c1c] text-white font-bold text-xs px-5 py-2.5 rounded-xl shadow-md transition flex items-center space-x-2 cursor-pointer">
                     <i class="fa-solid fa-calendar-plus"></i>
                     <span>Tambah Agenda</span>
                 </button>
@@ -68,7 +68,7 @@
                             <td class="py-3.5 px-4 text-slate-600">{{ $agenda->event_date }}</td>
                             <td class="py-3.5 px-4 text-slate-500">{{ $agenda->location }}</td>
                             <td class="py-3.5 px-4">
-                                <span class="px-2 py-0.5 rounded-full text-[10px] font-bold {{ $agenda->status === 'completed' ? 'bg-slate-100 text-slate-600' : ($agenda->status === 'ongoing' ? 'bg-amber-100 text-amber-800' : 'bg-orange-100 text-[#ff5001]') }}">
+                                <span class="px-2 py-0.5 rounded-full text-[10px] font-bold {{ $agenda->status === 'completed' ? 'bg-slate-100 text-slate-600' : ($agenda->status === 'ongoing' ? 'bg-amber-100 text-amber-800' : 'bg-red-100 text-[#da251c]') }}">
                                     {{ ucfirst($agenda->status) }}
                                 </span>
                             </td>

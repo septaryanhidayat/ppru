@@ -32,10 +32,10 @@ class HomeController extends Controller
             ],
             [
                 'title' => 'Penerimaan Peserta Didik Baru (PPDB)',
-                'subtitle' => 'Mari Bergabung Bersama Keluarga Besar SMA IT Ishlahul Ummah Prabumulih (SMA IT Ishum). Mendidik Sepenuh Cinta.',
+                'subtitle' => 'Mari Bergabung dengan Keluarga Besar SMA IT Ishlahul Ummah Prabumulih.',
                 'image' => '/uploads/ishum/fasilitas_1377_IMG-20240528-WA0094-scaled.jpg',
                 'btn_text' => 'Daftar PPDB Online',
-                'btn_link' => route('hubungi', ['type' => 'ppdb'], false),
+                'btn_link' => route('ppdb.index', [], false),
             ],
         ];
 
@@ -140,21 +140,23 @@ class HomeController extends Controller
             ->toArray();
 
         $fallbackRow1 = [
-            ['url' => '/uploads/ishum/fasilitas_3427_IMG-20240528-WA0106-scaled.jpg', 'title' => 'Gedung Kampus SMA IT Ishlahul Ummah Prabumulih'],
-            ['url' => '/uploads/ishum/fasilitas_1274_Ruang-Lab-Komputer1.jpg', 'title' => 'Laboratorium Komputer & Digital Siswa'],
-            ['url' => '/uploads/ishum/fasilitas_1275_R.-Lab-IPA.jpg', 'title' => 'Laboratorium IPA & Eksperimen Sains Terpadu'],
-            ['url' => '/uploads/ishum/fasilitas_1278_HALL-SIT-Ishlahul-Ummah_.jpg', 'title' => 'Aula & Hall Pertemuan SIT Ishlahul Ummah'],
-            ['url' => '/uploads/ishum/fasilitas_1277_Ruang-Belajar.jpg', 'title' => 'Ruang Belajar Interaktif Berkarakter Islami'],
-            ['url' => '/uploads/ishum/fasilitas_1377_IMG-20240528-WA0094-scaled.jpg', 'title' => 'Gerbang Utama Kampus SMA IT Ishlahul Ummah'],
+            ['url' => '/uploads/ishum/fasilitas_3427_IMG-20240528-WA0106-scaled.webp', 'title' => 'Gedung Kampus SMA IT Ishlahul Ummah Prabumulih'],
+            ['url' => '/uploads/ishum/post_3442_IMG-20241020-WA0006-scaled.webp', 'title' => 'Aktivitas Belajar & Karakter Santri Terpadu'],
+            ['url' => '/uploads/ishum/fasilitas_1274_Ruang-Lab-Komputer1.webp', 'title' => 'Laboratorium Komputer & Digital Santri'],
+            ['url' => '/uploads/ishum/post_3460_IMG-20241020-WA0007-scaled.webp', 'title' => 'Pembinaan Disiplin & Kesiswaan Santri Ishum'],
+            ['url' => '/uploads/ishum/fasilitas_1278_HALL-SIT-Ishlahul-Ummah_.webp', 'title' => 'Aula Pertemuan & Munaqosah Qur\'an SIT'],
+            ['url' => '/uploads/ishum/post_3464_IMG-20241020-WA0005-scaled.webp', 'title' => 'Halaqah Tahfidz & Tartil Qur\'an Santri'],
         ];
 
         $fallbackRow2 = [
-            ['url' => '/uploads/ishum/fasilitas_2059_IMG-20221101-WA0010.jpg', 'title' => 'Mushola & Lapangan Olahraga Siswa'],
-            ['url' => '/uploads/ishum/fasilitas_3431_IMG-20241014-WA0013-scaled.jpg', 'title' => 'Ruang UKS 3T Terpadu'],
-            ['url' => '/uploads/ishum/fasilitas_3427_IMG-20240528-WA0106-scaled.jpg', 'title' => 'Suasana Lingkungan Sekolah Islami & Nyaman'],
-            ['url' => '/uploads/ishum/fasilitas_1278_HALL-SIT-Ishlahul-Ummah_.jpg', 'title' => 'Kegiatan Wisuda & Munaqosah Qur\'an di Hall SIT'],
-            ['url' => '/uploads/ishum/fasilitas_1274_Ruang-Lab-Komputer1.jpg', 'title' => 'Asesmen & Simulasi Komputer Siswa'],
-            ['url' => '/uploads/ishum/fasilitas_1275_R.-Lab-IPA.jpg', 'title' => 'Praktikum & Eksplorasi Sains Santri'],
+            ['url' => '/uploads/ishum/fasilitas_1275_R.-Lab-IPA.webp', 'title' => 'Laboratorium IPA & Eksperimen Sains Terpadu'],
+            ['url' => '/uploads/ishum/post_3467_IMG-20241020-WA0004-scaled.webp', 'title' => 'Ibadah Yaumiyah & Pembiasaan Akhlakul Karimah'],
+            ['url' => '/uploads/ishum/fasilitas_1377_IMG-20240528-WA0094-scaled.webp', 'title' => 'Gerbang Utama Kampus SMA IT Ishlahul Ummah'],
+            ['url' => '/uploads/ishum/post_3472_IMG-20241020-WA0003-scaled.webp', 'title' => 'Muhadharah & Pembinaan Da\'i Muda Santri'],
+            ['url' => '/uploads/ishum/fasilitas_2059_IMG-20221101-WA0010.webp', 'title' => 'Sarana Olahraga & Mushola Kampus Ishum'],
+            ['url' => '/uploads/ishum/post_3478_IMG-20241020-WA0008-scaled.webp', 'title' => 'Ukhuwah Islamiyah & Kebersamaan Santri'],
+            ['url' => '/uploads/ishum/prestasi_3513_IMG-20240928-WA0038.webp', 'title' => 'Apresiasi & Penganugerahan Prestasi Santri'],
+            ['url' => '/uploads/ishum/fasilitas_3431_IMG-20241014-WA0013-scaled.webp', 'title' => 'Ruang UKS & Pelayanan Kesehatan Sekolah'],
         ];
 
         if (! empty($dbGallery)) {
@@ -172,69 +174,20 @@ class HomeController extends Controller
         $galleryPhotos = array_merge($galleryRow1, $galleryRow2);
 
         // 12. E-Library & Modul Pembelajaran Siswa (Section 15)
-        $ebookDownloads = Download::where('category_type', 'E-Book')->get();
-        $ebookCovers = [
-            'Tahfidz' => '/uploads/tahfidz-robbani.jpg',
-            'Kurikulum' => '/uploads/campus-robbani.jpg',
-            'Sains' => '/uploads/lab-robbani.jpg',
-            'Qur\'an' => '/uploads/tahfidz-robbani.jpg',
-            'Olahraga' => '/uploads/activities-robbani.jpg',
-            'Karakter' => '/uploads/library-robbani.jpg',
-            'Robotika' => '/uploads/robotics-robbani.jpg',
-            'PPDB' => '/uploads/campus-robbani.jpg',
-        ];
+        $ebookDownloads = Download::where('category_type', 'E-Book')->orderBy('id', 'asc')->get();
 
         if ($ebookDownloads->isNotEmpty()) {
-            $ebooks = $ebookDownloads->map(function ($dl) use ($ebookCovers) {
-                $cover = '/uploads/campus-robbani.jpg';
-                foreach ($ebookCovers as $key => $img) {
-                    if (stripos($dl->title, $key) !== false) {
-                        $cover = $img;
-                        break;
-                    }
-                }
-
+            $ebooks = $ebookDownloads->map(function ($dl) {
                 return [
                     'id' => $dl->id,
                     'title' => $dl->title,
-                    'cover' => $cover,
+                    'cover' => $dl->cover_image ?: '/uploads/covers/cover-tahfidz-mutqin.webp',
                     'pdf' => route('download.file', $dl->id, false),
                     'direct_file' => $dl->file_path,
                 ];
             })->toArray();
         } else {
-            $ebooks = [
-                [
-                    'id' => 1,
-                    'title' => 'Buku Panduan Akademik & Kurikulum SMA IT Plus Robbani',
-                    'cover' => '/uploads/campus-robbani.jpg',
-                    'pdf' => '#',
-                ],
-                [
-                    'id' => 2,
-                    'title' => "Modul Tahsin & Tahfidzul Qur'an Bersanad",
-                    'cover' => '/uploads/tahfidz-robbani.jpg',
-                    'pdf' => '#',
-                ],
-                [
-                    'id' => 3,
-                    'title' => 'Panduan Riset Ilmiah Remaja & Inovasi Teknologi Robotika',
-                    'cover' => '/uploads/robotics-robbani.jpg',
-                    'pdf' => '#',
-                ],
-                [
-                    'id' => 4,
-                    'title' => "Buku Saku Adab & Karakter Generasi Qur'ani",
-                    'cover' => '/uploads/library-robbani.jpg',
-                    'pdf' => '#',
-                ],
-                [
-                    'id' => 5,
-                    'title' => 'Panduan Sukses Seleksi Nasional Masuk PTN (SNBT/UTBK)',
-                    'cover' => '/uploads/activities-robbani.jpg',
-                    'pdf' => '#',
-                ],
-            ];
+            $ebooks = [];
         }
 
         // 13. Testimonials (Section 16)

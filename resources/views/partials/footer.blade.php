@@ -113,7 +113,7 @@
 
             {{-- Privacy Policy, PPDB, & Kontak --}}
             <div class="flex items-center justify-center sm:justify-end space-x-6 text-xs sm:text-[13px] text-gray-300 font-normal flex-shrink-0">
-                <a href="{{ route('hubungi') }}?type=ppdb" class="text-[#da251c] font-semibold hover:underline transition py-2 inline-block">Info PPDB</a>
+                <a href="{{ route('ppdb.index') }}" class="text-[#da251c] font-semibold hover:underline transition py-2 inline-block">Info PPDB</a>
                 <a href="{{ route('page.privacy-policy') }}" class="text-gray-300 hover:text-[#da251c] transition py-2 inline-block">Kebijakan Privasi</a>
                 <a href="{{ route('hubungi') }}" class="text-gray-300 hover:text-[#da251c] transition py-2 inline-block">Kontak</a>
             </div>

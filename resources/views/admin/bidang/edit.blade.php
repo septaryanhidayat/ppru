@@ -20,7 +20,7 @@
             
             <div>
                 <label for="name" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Nama Bidang *</label>
-                <input type="text" name="name" id="name" required value="{{ old('name', $bidang->name) }}" class="w-full bg-slate-50 text-xs text-slate-800 rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#ff5001] transition">
+                <input type="text" name="name" id="name" required value="{{ old('name', $bidang->name) }}" class="w-full bg-slate-50 text-xs text-slate-800 rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#da251c] transition">
                 @error('name') <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span> @enderror
             </div>
 
@@ -34,7 +34,7 @@
 
             {{-- Preview Icon Saat Ini --}}
             <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200 flex items-center space-x-4">
-                <div class="w-14 h-14 rounded-2xl bg-orange-100 text-[#ff5001] flex items-center justify-center text-xl shrink-0 overflow-hidden border border-orange-200">
+                <div class="w-14 h-14 rounded-2xl bg-red-100 text-[#da251c] flex items-center justify-center text-xl shrink-0 overflow-hidden border border-red-200">
                     @if($bidang->is_image_icon)
                         <img src="{{ $bidang->icon }}" alt="{{ $bidang->name }}" class="w-full h-full object-contain p-1.5" onerror="this.src='/uploads/2025/09/logo-thumbnail.webp'">
                     @else
@@ -50,7 +50,7 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                     <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Ganti File Icon (WebP / PNG / SVG)</label>
-                    <input type="file" name="icon_file" accept="image/*" class="w-full text-xs text-slate-500 file:mr-3 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-orange-50 file:text-[#ff5001] hover:file:bg-orange-100 bg-slate-50 rounded-xl border border-slate-200">
+                    <input type="file" name="icon_file" accept="image/*" class="w-full text-xs text-slate-500 file:mr-3 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-red-50 file:text-[#da251c] hover:file:bg-red-100 bg-slate-50 rounded-xl border border-slate-200">
                 </div>
 
                 <div>

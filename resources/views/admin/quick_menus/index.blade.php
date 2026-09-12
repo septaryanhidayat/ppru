@@ -11,7 +11,7 @@
                 <h2 class="text-lg font-black text-slate-800">Daftar Menu Cepat (Quick Action)</h2>
                 <p class="text-xs text-slate-500 mt-0.5">Kelola kartu icon, judul, tautan (link), dan urutan menu utama yang tampil di bawah Hero Beranda.</p>
             </div>
-            <a href="{{ route('admin.quick-menus.create') }}" class="inline-flex items-center space-x-2 bg-[#ff5001] hover:bg-[#e04500] text-white font-bold text-xs px-5 py-2.5 rounded-xl shadow-md transition self-start sm:self-auto">
+            <a href="{{ route('admin.quick-menus.create') }}" class="inline-flex items-center space-x-2 bg-[#da251c] hover:bg-[#b91c1c] text-white font-bold text-xs px-5 py-2.5 rounded-xl shadow-md transition self-start sm:self-auto">
                 <i class="fa-solid fa-plus"></i>
                 <span>Tambah Menu Cepat</span>
             </a>
@@ -28,18 +28,18 @@
                         @if($qm->is_image)
                             <img src="{{ $qm->icon }}" alt="{{ $qm->name }}" class="max-h-full max-w-full object-contain" onerror="this.src='/uploads/logo-ishum-square.png'">
                         @else
-                            <i class="{{ $qm->icon }} text-2xl text-[#ff5001]"></i>
+                            <i class="{{ $qm->icon }} text-2xl text-[#da251c]"></i>
                         @endif
                     </div>
 
                     <div class="min-w-0 w-full">
                         <h3 class="font-extrabold text-xs text-slate-900 truncate">{{ $qm->name }}</h3>
                         <span class="text-[10px] text-slate-400 font-mono block truncate mt-0.5" title="{{ $qm->url }}">{{ $qm->url }}</span>
-                        <span class="text-[10px] text-[#ff5001] font-bold block mt-1">Urutan: #{{ $qm->order }}</span>
+                        <span class="text-[10px] text-[#da251c] font-bold block mt-1">Urutan: #{{ $qm->order }}</span>
                     </div>
 
                     <div class="pt-2 border-t border-slate-200 w-full flex items-center justify-center space-x-2 text-xs">
-                        <a href="{{ route('admin.quick-menus.edit', $qm) }}" class="p-1.5 text-slate-600 hover:text-[#ff5001] hover:bg-orange-100 rounded-lg transition" title="Edit">
+                        <a href="{{ route('admin.quick-menus.edit', $qm) }}" class="p-1.5 text-slate-600 hover:text-[#da251c] hover:bg-red-100 rounded-lg transition" title="Edit">
                             <i class="fa-solid fa-pen-to-square"></i>
                         </a>
                         <form action="{{ route('admin.quick-menus.destroy', $qm) }}" method="POST" class="inline">

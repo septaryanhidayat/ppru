@@ -187,7 +187,7 @@
                 </a>
 
                 <a href="{{ route('download.ebook') }}" class="flex items-center p-4 rounded-2xl border border-gray-200 hover:border-[#00913e] hover:bg-green-50/50 transition group shadow-xs">
-                    <div class="w-11 h-11 rounded-xl bg-orange-100 text-[#da251c] flex items-center justify-center text-lg mr-3.5 flex-shrink-0 group-hover:scale-105 transition">
+                    <div class="w-11 h-11 rounded-xl bg-red-100 text-[#da251c] flex items-center justify-center text-lg mr-3.5 flex-shrink-0 group-hover:scale-105 transition">
                         <i class="fa-solid fa-book-open"></i>
                     </div>
                     <div>
@@ -207,7 +207,7 @@
                 </a>
 
                 <a href="{{ route('download.logo') }}" class="flex items-center p-4 rounded-2xl border border-gray-200 hover:border-[#00913e] hover:bg-green-50/50 transition group shadow-xs">
-                    <div class="w-11 h-11 rounded-xl bg-orange-100 text-[#da251c] flex items-center justify-center text-lg mr-3.5 flex-shrink-0 group-hover:scale-105 transition">
+                    <div class="w-11 h-11 rounded-xl bg-red-100 text-[#da251c] flex items-center justify-center text-lg mr-3.5 flex-shrink-0 group-hover:scale-105 transition">
                         <i class="fa-solid fa-image"></i>
                     </div>
                     <div>
@@ -696,7 +696,7 @@
                     <div class="space-y-3">
                         @forelse($agendas as $ag)
                         <div class="bg-white p-3.5 rounded-xl border border-gray-100 hover:border-[#da251c] transition flex items-start space-x-3">
-                            <div class="bg-orange-100 text-[#da251c] rounded-lg p-2 text-center flex-shrink-0 w-12">
+                            <div class="bg-red-100 text-[#da251c] rounded-lg p-2 text-center flex-shrink-0 w-12">
                                 <span class="block text-xs font-black">{{ $ag->event_date ? $ag->event_date->format('d') : '-' }}</span>
                                 <span class="block text-[9px] uppercase font-bold">{{ $ag->event_date ? $ag->event_date->format('M') : '-' }}</span>
                             </div>
@@ -721,50 +721,150 @@
 </section>
 
 {{-- ========================================================
-     SECTION #13: GALERI FOTO KEGIATAN SISWA (2 Baris Slider)
+     SECTION #13: GALERI FOTO KEGIATAN SISWA (2 Baris Slider Seperti pksoganilir.com)
      ======================================================== --}}
-<section class="py-14 bg-gray-100 overflow-hidden">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 mb-8 text-center reveal-fade-up">
-        <span class="text-xs uppercase tracking-widest text-[#00913e] font-bold block mb-1">Dokumentasi Sekolah</span>
-        <h2 class="text-2xl sm:text-3xl font-black text-gray-900 tracking-tight">
-            Galeri Foto Kegiatan Siswa
-        </h2>
-        <p class="text-xs sm:text-sm text-gray-600 mt-1">
-            Merekam momen berharga dalam proses belajar, tahfidz, laboratorium, dan ekstrakurikuler
-        </p>
-        <div class="w-16 h-1 bg-[#00913e] mx-auto mt-3 rounded-full"></div>
-    </div>
-
-    {{-- Slider Baris 1 --}}
-    <div class="space-y-4">
-        <div class="flex overflow-x-auto space-x-4 pb-2 scrollbar-none px-4 max-w-7xl mx-auto">
-            @foreach($galleryRow1 as $item)
-            <div class="flex-shrink-0 w-64 sm:w-72 h-44 sm:h-48 rounded-2xl overflow-hidden shadow-md relative group">
-                <img src="{{ $item['url'] }}" alt="{{ $item['title'] }}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" onerror="this.src='/uploads/campus-ishum.jpg'">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition p-3 flex items-end">
-                    <span class="text-xs font-bold text-white leading-tight">{{ $item['title'] }}</span>
-                </div>
-            </div>
-            @endforeach
+<section class="py-16 bg-black text-white overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {{-- Section Title --}}
+        <div class="text-center mb-10 reveal-fade-up">
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight">
+                Galeri
+            </h2>
+            <p class="text-xs sm:text-sm text-[#da251c] font-bold tracking-wide mt-2">
+                Dokumentasi Kegiatan Santri &amp; Kampus SMA IT Ishlahul Ummah
+            </p>
+            <div class="w-12 h-1 bg-[#da251c] mx-auto mt-2.5 rounded-full"></div>
         </div>
 
-        {{-- Slider Baris 2 --}}
-        <div class="flex overflow-x-auto space-x-4 pb-2 scrollbar-none px-4 max-w-7xl mx-auto">
-            @foreach($galleryRow2 as $item)
-            <div class="flex-shrink-0 w-64 sm:w-72 h-44 sm:h-48 rounded-2xl overflow-hidden shadow-md relative group">
-                <img src="{{ $item['url'] }}" alt="{{ $item['title'] }}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" onerror="this.src='/uploads/lab-ishum.jpg'">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition p-3 flex items-end">
-                    <span class="text-xs font-bold text-white leading-tight">{{ $item['title'] }}</span>
+        <div class="space-y-6 sm:space-y-8">
+            {{-- ROW 1: SLIDER BARIS ATAS (3 items per view di desktop) --}}
+            <div x-data="{
+                current: 0,
+                items: {{ Js::from($galleryRow1) }},
+                perView: 3,
+                timer: null,
+                updatePerView() {
+                    if (window.innerWidth < 640) {
+                        this.perView = 1;
+                    } else if (window.innerWidth < 1024) {
+                        this.perView = 2;
+                    } else {
+                        this.perView = 3;
+                    }
+                },
+                maxIndex() {
+                    return Math.max(0, this.items.length - this.perView);
+                },
+                next() {
+                    this.current = (this.current >= this.maxIndex()) ? 0 : this.current + 1;
+                },
+                prev() {
+                    this.current = (this.current <= 0) ? this.maxIndex() : this.current - 1;
+                },
+                start() {
+                    this.timer = setInterval(() => this.next(), 4000);
+                },
+                stop() {
+                    clearInterval(this.timer);
+                }
+            }" x-init="updatePerView(); window.addEventListener('resize', () => updatePerView()); start()" @mouseenter="stop()" @mouseleave="start()" class="relative group/row1">
+                
+                {{-- Track --}}
+                <div class="overflow-hidden py-2 px-1">
+                    <div class="flex transition-transform duration-700 ease-out" :style="'transform: translateX(-' + (current * (100 / perView)) + '%)'">
+                        <template x-for="(item, idx) in items" :key="idx">
+                            <div class="flex-shrink-0 px-2 sm:px-3" :style="'width: ' + (100 / perView) + '%'">
+                                <div class="relative h-64 sm:h-80 md:h-96 lg:h-[380px] rounded-3xl overflow-hidden shadow-2xl bg-neutral-900 border border-neutral-800/80 group">
+                                    <img :src="item.url" :alt="item.title" class="w-full h-full object-cover group-hover:scale-105 transition duration-700 ease-out" onerror="this.src='/uploads/ishum/fasilitas_3427_IMG-20240528-WA0106-scaled.webp'">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-5">
+                                        <span class="text-xs sm:text-sm font-bold text-white leading-snug drop-shadow-md" x-text="item.title"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
                 </div>
-            </div>
-            @endforeach
-        </div>
-    </div>
 
-    <div class="text-center mt-8">
-        <a href="{{ route('galeri.index') }}" class="inline-flex items-center bg-gray-900 hover:bg-black text-white text-xs sm:text-sm font-bold px-7 py-2.5 rounded-full shadow transition">
-            Lihat Semua Foto Galeri <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
-        </a>
+                {{-- Left Arrow --}}
+                <button @click="prev()" class="absolute left-1 sm:left-2 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-black/70 hover:bg-[#da251c] text-white flex items-center justify-center border border-white/20 shadow-2xl z-20 backdrop-blur-sm transition duration-200" aria-label="Foto sebelumnya">
+                    <i class="fa-solid fa-chevron-left text-sm"></i>
+                </button>
+                {{-- Right Arrow --}}
+                <button @click="next()" class="absolute right-1 sm:right-2 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-black/70 hover:bg-[#da251c] text-white flex items-center justify-center border border-white/20 shadow-2xl z-20 backdrop-blur-sm transition duration-200" aria-label="Foto berikutnya">
+                    <i class="fa-solid fa-chevron-right text-sm"></i>
+                </button>
+            </div>
+
+            {{-- ROW 2: SLIDER BARIS BAWAH (4 items per view di desktop) --}}
+            <div x-data="{
+                current: 0,
+                items: {{ Js::from($galleryRow2) }},
+                perView: 4,
+                timer: null,
+                updatePerView() {
+                    if (window.innerWidth < 640) {
+                        this.perView = 1;
+                    } else if (window.innerWidth < 768) {
+                        this.perView = 2;
+                    } else if (window.innerWidth < 1024) {
+                        this.perView = 3;
+                    } else {
+                        this.perView = 4;
+                    }
+                },
+                maxIndex() {
+                    return Math.max(0, this.items.length - this.perView);
+                },
+                next() {
+                    this.current = (this.current >= this.maxIndex()) ? 0 : this.current + 1;
+                },
+                prev() {
+                    this.current = (this.current <= 0) ? this.maxIndex() : this.current - 1;
+                },
+                start() {
+                    this.timer = setInterval(() => this.next(), 4800);
+                },
+                stop() {
+                    clearInterval(this.timer);
+                }
+            }" x-init="updatePerView(); window.addEventListener('resize', () => updatePerView()); start()" @mouseenter="stop()" @mouseleave="start()" class="relative group/row2">
+                
+                {{-- Track --}}
+                <div class="overflow-hidden py-2 px-1">
+                    <div class="flex transition-transform duration-700 ease-out" :style="'transform: translateX(-' + (current * (100 / perView)) + '%)'">
+                        <template x-for="(item, idx) in items" :key="idx">
+                            <div class="flex-shrink-0 px-2 sm:px-2.5" :style="'width: ' + (100 / perView) + '%'">
+                                <div class="relative h-52 sm:h-64 md:h-72 lg:h-80 rounded-2xl overflow-hidden shadow-xl bg-neutral-900 border border-neutral-800/80 group">
+                                    <img :src="item.url" :alt="item.title" class="w-full h-full object-cover group-hover:scale-105 transition duration-700 ease-out" onerror="this.src='/uploads/ishum/fasilitas_1275_R.-Lab-IPA.webp'">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-4">
+                                        <span class="text-xs font-bold text-white leading-snug drop-shadow-md" x-text="item.title"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+
+                {{-- Left Arrow --}}
+                <button @click="prev()" class="absolute left-1 sm:left-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/70 hover:bg-[#da251c] text-white flex items-center justify-center border border-white/20 shadow-2xl z-20 backdrop-blur-sm transition duration-200" aria-label="Foto sebelumnya">
+                    <i class="fa-solid fa-chevron-left text-xs"></i>
+                </button>
+                {{-- Right Arrow --}}
+                <button @click="next()" class="absolute right-1 sm:right-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/70 hover:bg-[#da251c] text-white flex items-center justify-center border border-white/20 shadow-2xl z-20 backdrop-blur-sm transition duration-200" aria-label="Foto berikutnya">
+                    <i class="fa-solid fa-chevron-right text-xs"></i>
+                </button>
+            </div>
+        </div>
+
+        {{-- Centered Pill Button: Selengkapnya --}}
+        <div class="text-center mt-10">
+            <a href="{{ route('galeri.index') }}" class="inline-flex items-center space-x-2.5 bg-[#da251c] hover:bg-[#b91c1c] text-white text-xs sm:text-sm font-black px-8 py-3.5 rounded-2xl shadow-xl transition transform hover:scale-105">
+                <i class="fa-regular fa-images text-base"></i>
+                <span>Selengkapnya</span>
+            </a>
+        </div>
+
     </div>
 </section>
 
@@ -785,7 +885,7 @@
             </p>
         </div>
         <div class="flex flex-col sm:flex-row items-center gap-3">
-            <a href="{{ route('hubungi') }}?type=ppdb" aria-label="Daftar Sekarang PPDB Online" class="bg-white text-[#00913e] hover:bg-orange-50 font-black text-xs sm:text-sm px-7 py-3 rounded-full shadow-lg hover:shadow-xl transition flex-shrink-0 min-h-[44px] flex items-center">
+            <a href="{{ route('ppdb.index') }}" aria-label="Daftar Sekarang PPDB Online" class="bg-white text-[#00913e] hover:bg-red-50 font-black text-xs sm:text-sm px-7 py-3 rounded-full shadow-lg hover:shadow-xl transition flex-shrink-0 min-h-[44px] flex items-center">
                 Daftar PPDB Online <i class="fa-solid fa-graduation-cap ml-2 text-[#da251c]"></i>
             </a>
             <a href="{{ route('download.index') }}" aria-label="Unduh Brosur Informasi" class="bg-black/30 hover:bg-black/50 text-white font-bold text-xs sm:text-sm px-5 py-3 rounded-full border border-white/40 transition">
@@ -948,7 +1048,7 @@
         <h2 class="sr-only">Aksi dan Layanan Cepat</h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
             
-            <a href="{{ route('hubungi') }}?type=ppdb" class="bg-white p-4 rounded-xl border-t-4 border-[#00913e] shadow-sm hover:shadow-md transition flex items-center space-x-3.5 group reveal-fade-up delay-1" aria-label="Pendaftaran PPDB Online SMA IT Ishlahul Ummah Prabumulih">
+            <a href="{{ route('ppdb.index') }}" class="bg-white p-4 rounded-xl border-t-4 border-[#00913e] shadow-sm hover:shadow-md transition flex items-center space-x-3.5 group reveal-fade-up delay-1" aria-label="Pendaftaran PPDB Online SMA IT Ishlahul Ummah Prabumulih">
                 <div class="w-12 h-12 rounded-full bg-green-50 text-[#00913e] flex items-center justify-center text-xl flex-shrink-0 group-hover:bg-[#00913e] group-hover:text-white transition" aria-hidden="true">
                     <i class="fa-solid fa-graduation-cap"></i>
                 </div>
@@ -959,7 +1059,7 @@
             </a>
 
             <a href="https://wa.me/6282177889900" target="_blank" class="bg-white p-4 rounded-xl border-t-4 border-[#da251c] shadow-sm hover:shadow-md transition flex items-center space-x-3.5 group reveal-fade-up delay-2" aria-label="Hubungi Hotline Sekolah via WhatsApp">
-                <div class="w-12 h-12 rounded-full bg-orange-50 text-[#da251c] flex items-center justify-center text-xl flex-shrink-0 group-hover:bg-[#da251c] group-hover:text-white transition" aria-hidden="true">
+                <div class="w-12 h-12 rounded-full bg-red-50 text-[#da251c] flex items-center justify-center text-xl flex-shrink-0 group-hover:bg-[#da251c] group-hover:text-white transition" aria-hidden="true">
                     <i class="fa-brands fa-whatsapp"></i>
                 </div>
                 <div>

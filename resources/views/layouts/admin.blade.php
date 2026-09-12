@@ -135,27 +135,27 @@
                 <div class="space-y-1">
                     <span class="px-4 text-[10px] font-bold tracking-wider text-slate-400 uppercase">Utama</span>
                     
-                    <a href="{{ route('admin.dashboard') }}" class="flex items-center space-x-3 px-4 py-2.5 rounded-xl transition {{ request()->routeIs('admin.dashboard') ? 'bg-gradient-to-r from-[#ff5001] to-[#ff6a00] text-white font-bold shadow-md shadow-orange-500/20' : 'hover:bg-slate-800/70 text-slate-300 hover:text-white' }}">
+                    <a href="{{ route('admin.dashboard') }}" class="flex items-center space-x-3 px-4 py-2.5 rounded-xl transition {{ request()->routeIs('admin.dashboard') ? 'bg-gradient-to-r from-[#da251c] to-[#ef4444] text-white font-bold shadow-md shadow-red-500/20' : 'hover:bg-slate-800/70 text-slate-300 hover:text-white' }}">
                         <i class="fa-solid fa-gauge-high text-sm w-4 text-center"></i>
                         <span>Dashboard Utama</span>
                     </a>
 
-                    <a href="{{ route('admin.analytics.index') }}" class="flex items-center space-x-3 px-4 py-2.5 rounded-xl transition {{ request()->routeIs('admin.analytics*') ? 'bg-gradient-to-r from-[#ff5001] to-[#ff6a00] text-white font-bold shadow-md shadow-orange-500/20' : 'hover:bg-slate-800/70 text-slate-300 hover:text-white' }}">
+                    <a href="{{ route('admin.analytics.index') }}" class="flex items-center space-x-3 px-4 py-2.5 rounded-xl transition {{ request()->routeIs('admin.analytics*') ? 'bg-gradient-to-r from-[#da251c] to-[#ef4444] text-white font-bold shadow-md shadow-red-500/20' : 'hover:bg-slate-800/70 text-slate-300 hover:text-white' }}">
                         <i class="fa-solid fa-chart-line text-sm w-4 text-center text-cyan-400"></i>
                         <span>Analitik Pengunjung</span>
                     </a>
 
-                    <a href="{{ route('admin.posts.index') }}" class="flex items-center space-x-3 px-4 py-2.5 rounded-xl transition {{ request()->routeIs('admin.posts*') ? 'bg-gradient-to-r from-[#ff5001] to-[#ff6a00] text-white font-bold shadow-md shadow-orange-500/20' : 'hover:bg-slate-800/70 text-slate-300 hover:text-white' }}">
+                    <a href="{{ route('admin.posts.index') }}" class="flex items-center space-x-3 px-4 py-2.5 rounded-xl transition {{ request()->routeIs('admin.posts*') ? 'bg-gradient-to-r from-[#da251c] to-[#ef4444] text-white font-bold shadow-md shadow-red-500/20' : 'hover:bg-slate-800/70 text-slate-300 hover:text-white' }}">
                         <i class="fa-solid fa-newspaper text-sm w-4 text-center"></i>
                         <span>Berita & Artikel</span>
                     </a>
 
-                    <a href="{{ route('admin.pages.index') }}" class="flex items-center space-x-3 px-4 py-2.5 rounded-xl transition {{ request()->routeIs('admin.pages*') ? 'bg-gradient-to-r from-[#ff5001] to-[#ff6a00] text-white font-bold shadow-md shadow-orange-500/20' : 'hover:bg-slate-800/70 text-slate-300 hover:text-white' }}">
+                    <a href="{{ route('admin.pages.index') }}" class="flex items-center space-x-3 px-4 py-2.5 rounded-xl transition {{ request()->routeIs('admin.pages*') ? 'bg-gradient-to-r from-[#da251c] to-[#ef4444] text-white font-bold shadow-md shadow-red-500/20' : 'hover:bg-slate-800/70 text-slate-300 hover:text-white' }}">
                         <i class="fa-solid fa-file-lines text-sm w-4 text-center"></i>
                         <span>Halaman Profil Statis</span>
                     </a>
 
-                    <a href="{{ route('admin.quick-menus.index') }}" class="flex items-center space-x-3 px-4 py-2.5 rounded-xl transition {{ request()->routeIs('admin.quick-menus*') ? 'bg-gradient-to-r from-[#ff5001] to-[#ff6a00] text-white font-bold shadow-md shadow-orange-500/20' : 'hover:bg-slate-800/70 text-slate-300 hover:text-white' }}">
+                    <a href="{{ route('admin.quick-menus.index') }}" class="flex items-center space-x-3 px-4 py-2.5 rounded-xl transition {{ request()->routeIs('admin.quick-menus*') ? 'bg-gradient-to-r from-[#da251c] to-[#ef4444] text-white font-bold shadow-md shadow-red-500/20' : 'hover:bg-slate-800/70 text-slate-300 hover:text-white' }}">
                         <i class="fa-solid fa-compass text-sm w-4 text-center"></i>
                         <span>Menu Cepat Beranda</span>
                     </a>
@@ -185,12 +185,12 @@
                 <div class="space-y-1">
                     <span class="px-4 text-[10px] font-bold tracking-wider text-slate-400 uppercase">Publikasi & Media</span>
                     
-                    <a href="{{ route('admin.media.index') }}" class="flex items-center space-x-3 px-4 py-2.5 rounded-xl transition {{ request()->routeIs('admin.media*') ? 'bg-gradient-to-r from-[#ff5001] to-[#ff6a00] text-white font-bold shadow-md shadow-orange-500/20' : 'hover:bg-slate-800/70 text-slate-300 hover:text-white' }}">
+                    <a href="{{ route('admin.media.index') }}" class="flex items-center space-x-3 px-4 py-2.5 rounded-xl transition {{ request()->routeIs('admin.media*') ? 'bg-gradient-to-r from-[#da251c] to-[#ef4444] text-white font-bold shadow-md shadow-red-500/20' : 'hover:bg-slate-800/70 text-slate-300 hover:text-white' }}">
                         <i class="fa-solid fa-photo-film text-sm w-4 text-center"></i>
                         <span>Galeri Foto & Video</span>
                     </a>
 
-                    <a href="{{ route('admin.agenda.index') }}" class="flex items-center space-x-3 px-4 py-2.5 rounded-xl transition {{ request()->routeIs('admin.agenda*') ? 'bg-gradient-to-r from-[#ff5001] to-[#ff6a00] text-white font-bold shadow-md shadow-orange-500/20' : 'hover:bg-slate-800/70 text-slate-300 hover:text-white' }}">
+                    <a href="{{ route('admin.agenda.index') }}" class="flex items-center space-x-3 px-4 py-2.5 rounded-xl transition {{ request()->routeIs('admin.agenda*') ? 'bg-gradient-to-r from-[#da251c] to-[#ef4444] text-white font-bold shadow-md shadow-red-500/20' : 'hover:bg-slate-800/70 text-slate-300 hover:text-white' }}">
                         <i class="fa-solid fa-calendar-days text-sm w-4 text-center"></i>
                         <span>Agenda & Pengumuman</span>
                     </a>
@@ -210,7 +210,7 @@
                         <span>Data Alumni</span>
                     </a>
 
-                    <a href="{{ route('admin.downloads.index') }}" class="flex items-center space-x-3 px-4 py-2.5 rounded-xl transition {{ request()->routeIs('admin.downloads*') ? 'bg-gradient-to-r from-[#ff5001] to-[#ff6a00] text-white font-bold shadow-md shadow-orange-500/20' : 'hover:bg-slate-800/70 text-slate-300 hover:text-white' }}">
+                    <a href="{{ route('admin.downloads.index') }}" class="flex items-center space-x-3 px-4 py-2.5 rounded-xl transition {{ request()->routeIs('admin.downloads*') ? 'bg-gradient-to-r from-[#da251c] to-[#ef4444] text-white font-bold shadow-md shadow-red-500/20' : 'hover:bg-slate-800/70 text-slate-300 hover:text-white' }}">
                         <i class="fa-solid fa-download text-sm w-4 text-center"></i>
                         <span>Download Center</span>
                     </a>
@@ -233,12 +233,12 @@
                         @endif
                     </a>
 
-                    <a href="{{ route('admin.testimonials.index') }}" class="flex items-center space-x-3 px-4 py-2.5 rounded-xl transition {{ request()->routeIs('admin.testimonials*') ? 'bg-gradient-to-r from-[#ff5001] to-[#ff6a00] text-white font-bold shadow-md shadow-orange-500/20' : 'hover:bg-slate-800/70 text-slate-300 hover:text-white' }}">
+                    <a href="{{ route('admin.testimonials.index') }}" class="flex items-center space-x-3 px-4 py-2.5 rounded-xl transition {{ request()->routeIs('admin.testimonials*') ? 'bg-gradient-to-r from-[#da251c] to-[#ef4444] text-white font-bold shadow-md shadow-red-500/20' : 'hover:bg-slate-800/70 text-slate-300 hover:text-white' }}">
                         <i class="fa-solid fa-comments text-sm w-4 text-center"></i>
                         <span>Testimonial Masyarakat</span>
                     </a>
 
-                    <a href="{{ route('admin.feedbacks.index') }}" class="flex items-center justify-between px-4 py-2.5 rounded-xl transition {{ request()->routeIs('admin.feedbacks*') ? 'bg-gradient-to-r from-[#ff5001] to-[#ff6a00] text-white font-bold shadow-md shadow-orange-500/20' : 'hover:bg-slate-800/70 text-slate-300 hover:text-white' }}">
+                    <a href="{{ route('admin.feedbacks.index') }}" class="flex items-center justify-between px-4 py-2.5 rounded-xl transition {{ request()->routeIs('admin.feedbacks*') ? 'bg-gradient-to-r from-[#da251c] to-[#ef4444] text-white font-bold shadow-md shadow-red-500/20' : 'hover:bg-slate-800/70 text-slate-300 hover:text-white' }}">
                         <div class="flex items-center space-x-3">
                             <i class="fa-solid fa-inbox text-sm w-4 text-center"></i>
                             <span>Kotak Aspirasi / Kritik</span>
@@ -256,17 +256,17 @@
                 <div class="space-y-1">
                     <span class="px-4 text-[10px] font-bold tracking-wider text-slate-400 uppercase">Sistem & Keamanan</span>
                     
-                    <a href="{{ route('admin.settings.index') }}" class="flex items-center space-x-3 px-4 py-2.5 rounded-xl transition {{ request()->routeIs('admin.settings*') ? 'bg-gradient-to-r from-[#ff5001] to-[#ff6a00] text-white font-bold shadow-md shadow-orange-500/20' : 'hover:bg-slate-800/70 text-slate-300 hover:text-white' }}">
+                    <a href="{{ route('admin.settings.index') }}" class="flex items-center space-x-3 px-4 py-2.5 rounded-xl transition {{ request()->routeIs('admin.settings*') ? 'bg-gradient-to-r from-[#da251c] to-[#ef4444] text-white font-bold shadow-md shadow-red-500/20' : 'hover:bg-slate-800/70 text-slate-300 hover:text-white' }}">
                         <i class="fa-solid fa-sliders text-sm w-4 text-center"></i>
                         <span>Pengaturan & SEO</span>
                     </a>
 
-                    <a href="{{ route('admin.users.index') }}" class="flex items-center space-x-3 px-4 py-2.5 rounded-xl transition {{ request()->routeIs('admin.users*') ? 'bg-gradient-to-r from-[#ff5001] to-[#ff6a00] text-white font-bold shadow-md shadow-orange-500/20' : 'hover:bg-slate-800/70 text-slate-300 hover:text-white' }}">
+                    <a href="{{ route('admin.users.index') }}" class="flex items-center space-x-3 px-4 py-2.5 rounded-xl transition {{ request()->routeIs('admin.users*') ? 'bg-gradient-to-r from-[#da251c] to-[#ef4444] text-white font-bold shadow-md shadow-red-500/20' : 'hover:bg-slate-800/70 text-slate-300 hover:text-white' }}">
                         <i class="fa-solid fa-users-gear text-sm w-4 text-center"></i>
                         <span>Pengguna & Role</span>
                     </a>
 
-                    <a href="{{ route('admin.security.index') }}" class="flex items-center justify-between px-4 py-2.5 rounded-xl transition {{ request()->routeIs('admin.security*') ? 'bg-gradient-to-r from-[#ff5001] to-[#ff6a00] text-white font-bold shadow-md shadow-orange-500/20' : 'hover:bg-slate-800/70 text-slate-300 hover:text-white' }}">
+                    <a href="{{ route('admin.security.index') }}" class="flex items-center justify-between px-4 py-2.5 rounded-xl transition {{ request()->routeIs('admin.security*') ? 'bg-gradient-to-r from-[#da251c] to-[#ef4444] text-white font-bold shadow-md shadow-red-500/20' : 'hover:bg-slate-800/70 text-slate-300 hover:text-white' }}">
                         <div class="flex items-center space-x-3">
                             <i class="fa-solid fa-shield-halved text-sm w-4 text-center"></i>
                             <span>Log & Keamanan</span>
@@ -279,7 +279,7 @@
                         @endif
                     </a>
 
-                    <a href="{{ route('admin.backup.index') }}" class="flex items-center space-x-3 px-4 py-2.5 rounded-xl transition {{ request()->routeIs('admin.backup*') ? 'bg-gradient-to-r from-[#ff5001] to-[#ff6a00] text-white font-bold shadow-md shadow-orange-500/20' : 'hover:bg-slate-800/70 text-slate-300 hover:text-white' }}">
+                    <a href="{{ route('admin.backup.index') }}" class="flex items-center space-x-3 px-4 py-2.5 rounded-xl transition {{ request()->routeIs('admin.backup*') ? 'bg-gradient-to-r from-[#da251c] to-[#ef4444] text-white font-bold shadow-md shadow-red-500/20' : 'hover:bg-slate-800/70 text-slate-300 hover:text-white' }}">
                         <i class="fa-solid fa-database text-sm w-4 text-center"></i>
                         <span>Backup Database</span>
                     </a>
@@ -292,7 +292,7 @@
         <div class="p-4 border-t border-slate-800/80 bg-[#070b14]/50 flex-shrink-0">
             <div class="flex items-center justify-between">
                 <div class="flex items-center space-x-3 min-w-0">
-                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#ff5001] to-amber-500 text-white flex items-center justify-center font-bold text-sm shadow flex-shrink-0">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#da251c] to-rose-600 text-white flex items-center justify-center font-bold text-sm shadow flex-shrink-0">
                         {{ strtoupper(substr(auth()->user()->name ?? 'A', 0, 1)) }}
                     </div>
                     <div class="min-w-0">
@@ -328,7 +328,7 @@
             </div>
 
             <div class="flex items-center space-x-3 sm:space-x-4">
-                <a href="{{ route('admin.posts.create') }}" class="hidden sm:inline-flex items-center space-x-2 bg-[#ff5001] hover:bg-[#e04500] text-white text-xs font-bold px-4 py-2 rounded-xl shadow-md transition">
+                <a href="{{ route('admin.posts.create') }}" class="hidden sm:inline-flex items-center space-x-2 bg-[#da251c] hover:bg-[#b91c1c] text-white text-xs font-bold px-4 py-2 rounded-xl shadow-md transition">
                     <i class="fa-solid fa-pen-nib text-xs"></i>
                     <span>Tulis Berita</span>
                 </a>
@@ -338,8 +338,8 @@
                     <span>Backup SQL</span>
                 </a>
 
-                <a href="{{ route('home') }}" target="_blank" class="text-xs text-slate-600 hover:text-[#ff5001] bg-slate-100 hover:bg-orange-50 px-3.5 py-2 rounded-xl transition flex items-center space-x-1.5 font-medium border border-slate-200">
-                    <i class="fa-solid fa-arrow-up-right-from-square text-xs text-[#ff5001]"></i>
+                <a href="{{ route('home') }}" target="_blank" class="text-xs text-slate-600 hover:text-[#da251c] bg-slate-100 hover:bg-red-50 px-3.5 py-2 rounded-xl transition flex items-center space-x-1.5 font-medium border border-slate-200">
+                    <i class="fa-solid fa-arrow-up-right-from-square text-xs text-[#da251c]"></i>
                     <span>Kunjungi Situs</span>
                 </a>
             </div>

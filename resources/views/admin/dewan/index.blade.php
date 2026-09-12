@@ -36,7 +36,7 @@
                     <div class="pt-3 border-t border-slate-200 flex items-center justify-between text-xs">
                         <span class="text-slate-400 text-[10px]">Urutan: #{{ $d->order }}</span>
                         <div class="flex items-center space-x-2">
-                            <a href="{{ route('admin.dewan.edit', $d) }}" class="p-2 text-slate-600 hover:text-[#ff5001] hover:bg-orange-100 rounded-lg transition" title="Edit Profil">
+                            <a href="{{ route('admin.dewan.edit', $d) }}" class="p-2 text-slate-600 hover:text-[#da251c] hover:bg-red-100 rounded-lg transition" title="Edit Profil">
                                 <i class="fa-solid fa-pen-to-square"></i>
                             </a>
                             <form action="{{ route('admin.dewan.destroy', $d) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data anggota dewan ini?');" class="inline">

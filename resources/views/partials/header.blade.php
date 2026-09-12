@@ -142,7 +142,7 @@
                 <a href="{{ route('hubungi') }}" class="bg-gray-950 hover:bg-black text-white px-5 py-2 rounded-full text-xs font-extrabold shadow-md hover:shadow-lg transition flex items-center space-x-2 transform hover:scale-105">
                     <span>Kontak</span>
                 </a>
-                <a href="{{ route('hubungi') }}?type=ppdb" class="bg-[#da251c] hover:bg-[#b91c1c] text-white px-5 py-2 rounded-full text-xs font-extrabold shadow-md transition flex items-center space-x-1.5 transform hover:scale-105" aria-label="Pendaftaran PPDB Online SMA IT Ishlahul Ummah">
+                <a href="{{ route('ppdb.index') }}" class="bg-[#da251c] hover:bg-[#b91c1c] text-white px-5 py-2 rounded-full text-xs font-extrabold shadow-md transition flex items-center space-x-1.5 transform hover:scale-105" aria-label="Pendaftaran PPDB Online SMA IT Ishlahul Ummah">
                     <i class="fa-solid fa-graduation-cap text-xs" aria-hidden="true"></i>
                     <span>Daftar PPDB</span>
                 </a>
@@ -154,7 +154,7 @@
 
             {{-- MOBILE TOP RIGHT: Tombol PPDB & Hamburger --}}
             <div class="flex lg:hidden items-center space-x-2">
-                <a href="{{ route('hubungi') }}?type=ppdb" class="bg-[#da251c] hover:bg-[#b91c1c] text-white px-3.5 py-2 rounded-full text-xs font-extrabold shadow transition min-h-[44px] flex items-center">
+                <a href="{{ route('ppdb.index') }}" class="bg-[#da251c] hover:bg-[#b91c1c] text-white px-3.5 py-2 rounded-full text-xs font-extrabold shadow transition min-h-[44px] flex items-center">
                     PPDB
                 </a>
                 <button id="mobile-menu-toggle" type="button" class="text-white hover:text-green-100 p-2 rounded-lg focus:outline-none min-w-[44px] min-h-[44px] flex items-center justify-center" aria-label="Buka Menu Navigasi">
@@ -217,7 +217,7 @@
         <a href="{{ route('donasi') }}" class="block px-3 py-2 rounded-lg font-extrabold text-[#00913e] hover:bg-green-50">Infaq Ishlahul Ummah</a>
 
         <div class="pt-3 space-y-2">
-            <a href="{{ route('hubungi') }}?type=ppdb" class="block w-full text-center bg-[#da251c] hover:bg-[#b91c1c] text-white py-3 rounded-xl text-xs font-extrabold shadow-md transition">
+            <a href="{{ route('ppdb.index') }}" class="block w-full text-center bg-[#da251c] hover:bg-[#b91c1c] text-white py-3 rounded-xl text-xs font-extrabold shadow-md transition">
                 <i class="fa-solid fa-graduation-cap mr-1.5" aria-hidden="true"></i> Pendaftaran PPDB Online
             </a>
             <a href="/login" class="block w-full text-center bg-gray-900 hover:bg-black text-white py-2.5 rounded-xl text-xs font-bold transition shadow-sm">
