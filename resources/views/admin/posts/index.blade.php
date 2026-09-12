@@ -1,19 +1,44 @@
 @extends('layouts.admin')
 
-@section('title', 'Kelola Artikel')
-@section('header_title', 'Kelola Berita & Artikel')
+@php
+    $typeLabels = [
+        'post' => ['title' => 'Artikel & Berita', 'singular' => 'Artikel', 'icon' => 'fa-newspaper'],
+        'prestasi' => ['title' => 'Prestasi Siswa', 'singular' => 'Prestasi', 'icon' => 'fa-trophy'],
+        'ekskul' => ['title' => 'Ekstrakurikuler', 'singular' => 'Ekstrakurikuler', 'icon' => 'fa-people-group'],
+        'alumni' => ['title' => 'Data Alumni', 'singular' => 'Alumni', 'icon' => 'fa-user-graduate'],
+    ];
+    $currentMeta = $typeLabels[$type ?? 'post'] ?? $typeLabels['post'];
+@endphp
+
+@section('title', 'Kelola ' . $currentMeta['title'])
+@section('header_title', 'Kelola ' . $currentMeta['title'])
 
 @section('content')
 <div class="space-y-6">
-    
+    {{-- Type Tabs Navigation --}}
+    <div class="flex flex-wrap items-center gap-2 border-b border-slate-200 pb-3">
+        @foreach($typeLabels as $tKey => $tInfo)
+            <a href="{{ route('admin.posts.index', ['type' => $tKey]) }}" 
+               class="inline-flex items-center space-x-2 px-4 py-2.5 rounded-xl font-bold text-xs transition {{ ($type ?? 'post') === $tKey ? 'bg-[#00913e] text-white shadow-sm' : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200' }}">
+                <i class="fa-solid {{ $tInfo['icon'] }}"></i>
+                <span>{{ $tInfo['title'] }}</span>
+                <span class="ml-1.5 px-2 py-0.5 rounded-full text-[10px] {{ ($type ?? 'post') === $tKey ? 'bg-white/20 text-white' : 'bg-slate-100 text-slate-600' }}">
+                    {{ number_format($counts[$tKey] ?? 0) }}
+                </span>
+            </a>
+        @endforeach
+    </div>
+
+    {{-- Search & Add Button --}}
     <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <form action="{{ route('admin.posts.index') }}" method="GET" class="relative w-full sm:w-80">
-            <input type="text" name="q" placeholder="Cari judul artikel..." value="{{ request('q') }}" class="w-full bg-white text-xs text-gray-800 rounded-xl pl-9 pr-4 py-2.5 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#f37023]">
+            <input type="hidden" name="type" value="{{ $type ?? 'post' }}">
+            <input type="text" name="q" placeholder="Cari {{ strtolower($currentMeta['singular']) }}..." value="{{ request('q') }}" class="w-full bg-white text-xs text-gray-800 rounded-xl pl-9 pr-4 py-2.5 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
             <i class="fa-solid fa-magnifying-glass absolute left-3 top-3 text-gray-400 text-xs"></i>
         </form>
-        <a href="{{ route('admin.posts.create') }}" class="bg-[#f37023] hover:bg-[#d85c14] text-white px-5 py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider shadow transition flex items-center space-x-2">
+        <a href="{{ route('admin.posts.create', ['type' => $type ?? 'post']) }}" class="bg-[#00913e] hover:bg-[#007532] text-white px-5 py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider shadow transition flex items-center space-x-2">
             <i class="fa-solid fa-plus"></i>
-            <span>Tambah Artikel Baru</span>
+            <span>Tambah {{ $currentMeta['singular'] }} Baru</span>
         </a>
     </div>
 
@@ -23,7 +48,7 @@
                 <thead class="bg-gray-50 text-gray-500 uppercase font-bold border-b border-gray-100 text-[11px]">
                     <tr>
                         <th class="py-3.5 px-4">Gambar</th>
-                        <th class="py-3.5 px-4">Judul Artikel</th>
+                        <th class="py-3.5 px-4">Judul {{ $currentMeta['singular'] }}</th>
                         <th class="py-3.5 px-4">Kategori</th>
                         <th class="py-3.5 px-4">Status</th>
                         <th class="py-3.5 px-4">Views</th>
@@ -37,7 +62,7 @@
                             <td class="py-3 px-4">
                                 <div class="w-12 h-12 rounded-lg bg-gray-100 overflow-hidden flex-shrink-0">
                                     @if($p->featured_image)
-                                        <img src="{{ $p->featured_image }}" alt="" class="w-full h-full object-cover" onerror="this.src='/uploads/logo-ishum-square.png'">
+                                        <img src="{{ $p->featured_image }}" alt="" class="w-full h-full object-cover" onerror="this.src='/uploads/logo-ishum-square.webp'">
                                     @else
                                         <div class="w-full h-full flex items-center justify-center text-gray-300">
                                             <i class="fa-solid fa-image"></i>
@@ -46,13 +71,13 @@
                                 </div>
                             </td>
                             <td class="py-3 px-4 font-bold text-gray-900 max-w-xs">
-                                <a href="{{ route('artikel.show', $p->slug) }}" target="_blank" class="hover:text-[#f37023] transition line-clamp-2">
+                                <a href="{{ route('artikel.show', $p->slug) }}" target="_blank" class="hover:text-[#00913e] transition line-clamp-2">
                                     {{ $p->title }}
                                 </a>
                             </td>
                             <td class="py-3 px-4">
                                 @if($p->categories->isNotEmpty())
-                                    <span class="bg-orange-50 text-[#f37023] font-semibold px-2 py-0.5 rounded-full text-[10px]">
+                                    <span class="bg-emerald-50 text-[#00913e] font-semibold px-2 py-0.5 rounded-full text-[10px]">
                                         {{ $p->categories->first()->name }}
                                     </span>
                                 @else
@@ -75,10 +100,10 @@
                                     <a href="{{ route('admin.posts.edit', $p->id) }}" class="w-7 h-7 rounded-lg bg-blue-50 text-blue-600 hover:bg-blue-600 hover:text-white flex items-center justify-center transition" title="Edit">
                                         <i class="fa-solid fa-pen-to-square text-xs"></i>
                                     </a>
-                                    <form action="{{ route('admin.posts.destroy', $p->id) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus artikel ini?');">
+                                    <form action="{{ route('admin.posts.destroy', $p->id) }}" method="POST" class="inline">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="w-7 h-7 rounded-lg bg-red-50 text-red-600 hover:bg-red-600 hover:text-white flex items-center justify-center transition" title="Hapus">
+                                        <button type="button" data-name="{{ $p->title }}" class="btn-delete w-7 h-7 rounded-lg bg-red-50 text-red-600 hover:bg-red-600 hover:text-white flex items-center justify-center transition cursor-pointer" title="Hapus">
                                             <i class="fa-solid fa-trash text-xs"></i>
                                         </button>
                                     </form>
@@ -87,7 +112,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="7" class="text-center py-10 text-gray-400">Belum ada artikel.</td>
+                            <td colspan="7" class="text-center py-10 text-gray-400">Belum ada {{ strtolower($currentMeta['singular']) }}.</td>
                         </tr>
                     @endforelse
                 </tbody>

@@ -19,8 +19,8 @@ class SecurityHeaders
         $response = $next($request);
 
         // Remove server signature headers if present
-        if (function_exists('header_remove')) {
-            header_remove('X-Powered-By');
+        if (function_exists('header_remove') && ! headers_sent()) {
+            @header_remove('X-Powered-By');
         }
 
         // Apply security headers

@@ -1,18 +1,29 @@
 @extends('layouts.admin')
 
-@section('title', 'Edit Artikel')
-@section('header_title', 'Edit Artikel: ' . Str::limit($post->title, 40))
+@php
+    $typeTitles = [
+        'post' => 'Artikel & Berita',
+        'prestasi' => 'Prestasi Siswa',
+        'ekskul' => 'Ekstrakurikuler',
+        'alumni' => 'Data Alumni',
+    ];
+    $currentTypeTitle = $typeTitles[$type ?? $post->type ?? 'post'] ?? 'Artikel & Berita';
+@endphp
+
+@section('title', 'Edit ' . $currentTypeTitle)
+@section('header_title', 'Edit ' . $currentTypeTitle . ': ' . Str::limit($post->title, 40))
 
 @section('content')
 <div class="max-w-4xl bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
     <form action="{{ route('admin.posts.update', $post->id) }}" method="POST" enctype="multipart/form-data" class="space-y-6">
         @csrf
         @method('PUT')
+        <input type="hidden" name="type" value="{{ $type ?? $post->type ?? 'post' }}">
 
         {{-- Judul --}}
         <div>
-            <label for="title" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Judul Artikel *</label>
-            <input type="text" name="title" id="title" required value="{{ old('title', $post->title) }}" class="w-full bg-gray-50 text-xs text-gray-800 rounded-xl px-4 py-3 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#f37023]">
+            <label for="title" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Judul {{ $currentTypeTitle }} *</label>
+            <input type="text" name="title" id="title" required value="{{ old('title', $post->title) }}" class="w-full bg-gray-50 text-xs text-gray-800 rounded-xl px-4 py-3 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
             @error('title') <p class="text-red-500 text-[11px] mt-1">{{ $message }}</p> @enderror
         </div>
 

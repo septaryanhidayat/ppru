@@ -81,4 +81,78 @@ class InformationController extends Controller
 
         return view('frontend.galeri.index', compact('page', 'galleryImages'));
     }
+
+    public function prestasi()
+    {
+        $prestasi = Post::where('type', 'prestasi')
+            ->where('status', 'publish')
+            ->latest('published_at')
+            ->paginate(9);
+
+        return view('frontend.prestasi.index', compact('prestasi'));
+    }
+
+    public function prestasiShow(string $slug)
+    {
+        $item = Post::where('type', 'prestasi')
+            ->where('slug', $slug)
+            ->firstOrFail();
+
+        $related = Post::where('type', 'prestasi')
+            ->where('id', '!=', $item->id)
+            ->where('status', 'publish')
+            ->latest('published_at')
+            ->take(4)
+            ->get();
+
+        return view('frontend.prestasi.show', compact('item', 'related'));
+    }
+
+    public function ekskul()
+    {
+        $ekskul = Post::where('type', 'ekskul')
+            ->where('status', 'publish')
+            ->latest('created_at')
+            ->get();
+
+        return view('frontend.ekskul.index', compact('ekskul'));
+    }
+
+    public function alumni()
+    {
+        $alumni = Post::where('type', 'alumni')
+            ->where('status', 'publish')
+            ->latest('created_at')
+            ->paginate(16);
+
+        return view('frontend.alumni.index', compact('alumni'));
+    }
+
+    public function layanan()
+    {
+        $page = Post::pages()->whereIn('slug', ['layanan-terpadu-2', 'layanan-terpadu'])->first();
+
+        return view('frontend.layanan.index', compact('page'));
+    }
+
+    public function izinSekolah()
+    {
+        $page = Post::pages()->where('slug', 'izin-sekolah')->first();
+
+        return view('frontend.layanan.izin', compact('page'));
+    }
+
+    public function kerjasama()
+    {
+        $page = Post::pages()->where('slug', 'permohonan-kerja-sama')->first();
+
+        return view('frontend.layanan.kerjasama', compact('page'));
+    }
+
+    public function sewaBarang()
+    {
+        $page = Post::pages()->where('slug', 'sewa-barang')->first();
+
+        return view('frontend.layanan.sewa', compact('page'));
+    }
 }

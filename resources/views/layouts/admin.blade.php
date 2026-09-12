@@ -14,48 +14,98 @@
     <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
 
+    {{-- SweetAlert2 Assets --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <style>
+        /* Word-like Ribbon Toolbar Styling */
         .ql-toolbar.ql-snow {
-            border-top-left-radius: 0.75rem;
-            border-top-right-radius: 0.75rem;
-            border-color: #e2e8f0;
-            background-color: #f8fafc;
+            border-top-left-radius: 1rem;
+            border-top-right-radius: 1rem;
+            border-color: #cbd5e1;
+            background: linear-gradient(to bottom, #f8fafc, #f1f5f9);
+            padding: 10px 14px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 4px;
+            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.03);
+        }
+        .ql-toolbar.ql-snow .ql-formats {
+            margin-right: 12px;
+            padding-right: 12px;
+            border-right: 1px solid #e2e8f0;
+            display: inline-flex;
+            align-items: center;
+            gap: 2px;
+        }
+        .ql-toolbar.ql-snow .ql-formats:last-child {
+            border-right: none;
+        }
+        .ql-toolbar.ql-snow button {
+            border-radius: 6px;
+            transition: all 0.15s ease;
+            width: 28px;
+            height: 28px;
+        }
+        .ql-toolbar.ql-snow button:hover {
+            background-color: #e2e8f0;
+        }
+        .ql-toolbar.ql-snow button.ql-active {
+            background-color: #00913e !important;
+            color: white !important;
+        }
+        .ql-toolbar.ql-snow button.ql-active svg .ql-stroke {
+            stroke: #ffffff !important;
+        }
+        .ql-toolbar.ql-snow button.ql-active svg .ql-fill {
+            fill: #ffffff !important;
+        }
+        .ql-toolbar.ql-snow .ql-picker-label {
+            border-radius: 6px;
+        }
+        .ql-toolbar.ql-snow .ql-picker-label:hover {
+            background-color: #e2e8f0;
         }
         .ql-container.ql-snow {
-            border-bottom-left-radius: 0.75rem;
-            border-bottom-right-radius: 0.75rem;
-            border-color: #e2e8f0;
+            border-bottom-left-radius: 1rem;
+            border-bottom-right-radius: 1rem;
+            border-color: #cbd5e1;
             font-family: 'Poppins', sans-serif;
             font-size: 0.875rem;
             background-color: #ffffff;
-            min-height: 200px;
-            max-height: 480px;
+            min-height: 280px;
+            max-height: 580px;
             overflow-y: auto;
         }
         .ql-editor {
-            min-height: 200px;
-            max-height: 480px;
+            min-height: 280px;
+            max-height: 580px;
             overflow-y: auto;
-            line-height: 1.65 !important;
-            padding: 16px 20px !important;
+            line-height: 1.8 !important;
+            padding: 20px 24px !important;
+            color: #1e293b;
         }
+        .ql-editor .ql-align-center { text-align: center; }
+        .ql-editor .ql-align-right { text-align: right; }
+        .ql-editor .ql-align-justify { text-align: justify; }
         .ql-editor p {
-            margin-bottom: 0.75rem !important;
+            margin-bottom: 1rem !important;
         }
         .ql-editor h1, .ql-editor h2, .ql-editor h3, .ql-editor h4 {
-            margin-top: 1.25rem !important;
-            margin-bottom: 0.5rem !important;
+            margin-top: 1.5rem !important;
+            margin-bottom: 0.75rem !important;
             font-weight: 700 !important;
             color: #0f172a !important;
         }
         .ql-editor ul, .ql-editor ol {
-            padding-left: 1.25rem !important;
-            margin-bottom: 0.75rem !important;
+            padding-left: 1.5rem !important;
+            margin-bottom: 1rem !important;
         }
         .ql-editor li {
-            margin-bottom: 0.25rem !important;
+            margin-bottom: 0.35rem !important;
         }
     </style>
 </head>
@@ -145,6 +195,21 @@
                         <span>Agenda & Pengumuman</span>
                     </a>
 
+                    <a href="{{ route('admin.posts.index', ['type' => 'prestasi']) }}" class="flex items-center space-x-3 px-4 py-2.5 rounded-xl transition {{ request('type') === 'prestasi' ? 'bg-gradient-to-r from-[#00913e] to-[#05a849] text-white font-bold shadow-md' : 'hover:bg-slate-800/70 text-slate-300 hover:text-white' }}">
+                        <i class="fa-solid fa-trophy text-sm w-4 text-center text-amber-400"></i>
+                        <span>Prestasi Siswa</span>
+                    </a>
+
+                    <a href="{{ route('admin.posts.index', ['type' => 'ekskul']) }}" class="flex items-center space-x-3 px-4 py-2.5 rounded-xl transition {{ request('type') === 'ekskul' ? 'bg-gradient-to-r from-[#00913e] to-[#05a849] text-white font-bold shadow-md' : 'hover:bg-slate-800/70 text-slate-300 hover:text-white' }}">
+                        <i class="fa-solid fa-people-group text-sm w-4 text-center text-emerald-400"></i>
+                        <span>Ekstrakurikuler</span>
+                    </a>
+
+                    <a href="{{ route('admin.posts.index', ['type' => 'alumni']) }}" class="flex items-center space-x-3 px-4 py-2.5 rounded-xl transition {{ request('type') === 'alumni' ? 'bg-gradient-to-r from-[#00913e] to-[#05a849] text-white font-bold shadow-md' : 'hover:bg-slate-800/70 text-slate-300 hover:text-white' }}">
+                        <i class="fa-solid fa-user-graduate text-sm w-4 text-center text-cyan-400"></i>
+                        <span>Data Alumni</span>
+                    </a>
+
                     <a href="{{ route('admin.downloads.index') }}" class="flex items-center space-x-3 px-4 py-2.5 rounded-xl transition {{ request()->routeIs('admin.downloads*') ? 'bg-gradient-to-r from-[#ff5001] to-[#ff6a00] text-white font-bold shadow-md shadow-orange-500/20' : 'hover:bg-slate-800/70 text-slate-300 hover:text-white' }}">
                         <i class="fa-solid fa-download text-sm w-4 text-center"></i>
                         <span>Download Center</span>
@@ -154,7 +219,20 @@
                 {{-- SECTION 4: INTERAKSI --}}
                 <div class="space-y-1">
                     <span class="px-4 text-[10px] font-bold tracking-wider text-slate-400 uppercase">Interaksi</span>
-                    
+
+                    <a href="{{ route('admin.ppdb.index') }}" class="flex items-center justify-between px-4 py-2.5 rounded-xl transition {{ request()->routeIs('admin.ppdb*') ? 'bg-gradient-to-r from-[#00913e] to-[#05a849] text-white font-bold shadow-md' : 'hover:bg-slate-800/70 text-slate-300 hover:text-white' }}">
+                        <div class="flex items-center space-x-3">
+                            <i class="fa-solid fa-graduation-cap text-sm w-4 text-center text-amber-300"></i>
+                            <span class="font-bold">Pendaftar PPDB</span>
+                        </div>
+                        @php $pendingPpdb = \App\Models\PpdbRegistration::where('status', 'pending')->count(); @endphp
+                        @if($pendingPpdb > 0)
+                            <span class="bg-amber-400 text-slate-900 text-[10px] px-2 py-0.5 rounded-full font-bold">
+                                {{ $pendingPpdb }}
+                            </span>
+                        @endif
+                    </a>
+
                     <a href="{{ route('admin.testimonials.index') }}" class="flex items-center space-x-3 px-4 py-2.5 rounded-xl transition {{ request()->routeIs('admin.testimonials*') ? 'bg-gradient-to-r from-[#ff5001] to-[#ff6a00] text-white font-bold shadow-md shadow-orange-500/20' : 'hover:bg-slate-800/70 text-slate-300 hover:text-white' }}">
                         <i class="fa-solid fa-comments text-sm w-4 text-center"></i>
                         <span>Testimonial Masyarakat</span>
@@ -322,13 +400,15 @@
                         theme: 'snow',
                         modules: {
                             toolbar: [
-                                [{ 'header': [1, 2, 3, 4, false] }],
+                                [{ 'font': [] }, { 'size': ['small', false, 'large', 'huge'] }],
+                                [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
                                 ['bold', 'italic', 'underline', 'strike'],
-                                [{ 'align': [] }, { 'align': 'center' }, { 'align': 'right' }, { 'align': 'justify' }],
-                                [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                                [{ 'color': [] }, { 'background': [] }],
+                                [{ 'script': 'sub'}, { 'script': 'super' }],
+                                [{ 'align': '' }, { 'align': 'center' }, { 'align': 'right' }, { 'align': 'justify' }],
+                                [{ 'list': 'ordered'}, { 'list': 'bullet' }, { 'indent': '-1'}, { 'indent': '+1' }],
                                 ['blockquote', 'code-block'],
                                 ['link', 'image', 'video'],
-                                [{ 'color': [] }, { 'background': [] }],
                                 ['clean']
                             ]
                         }
@@ -362,6 +442,127 @@
                     sidebar.classList.toggle('hidden');
                     sidebar.classList.toggle('fixed');
                     sidebar.classList.toggle('inset-0');
+                });
+            }
+        });
+
+        // === SWEETALERT2 NOTIFICATIONS & CONFIRMATIONS ===
+        const IshumToast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 4000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer);
+                toast.addEventListener('mouseleave', Swal.resumeTimer);
+            }
+        });
+
+        @if(session('success'))
+            IshumToast.fire({
+                icon: 'success',
+                title: "{{ addslashes(session('success')) }}"
+            });
+        @endif
+
+        @if(session('error'))
+            IshumToast.fire({
+                icon: 'error',
+                title: "{{ addslashes(session('error')) }}"
+            });
+        @endif
+
+        @if(session('info'))
+            IshumToast.fire({
+                icon: 'info',
+                title: "{{ addslashes(session('info')) }}"
+            });
+        @endif
+
+        @if(session('warning'))
+            IshumToast.fire({
+                icon: 'warning',
+                title: "{{ addslashes(session('warning')) }}"
+            });
+        @endif
+
+        @if($errors->any())
+            Swal.fire({
+                icon: 'error',
+                title: 'Perhatian! Terdapat Kesalahan Input',
+                html: '<div class="text-left text-xs sm:text-sm text-slate-700 bg-red-50 p-4 rounded-xl border border-red-200 mt-2 space-y-1"><ul class="list-disc pl-5">@foreach($errors->all() as $err)<li>{{ addslashes($err) }}</li>@endforeach</ul></div>',
+                confirmButtonColor: '#00913e',
+                confirmButtonText: '<i class="fa-solid fa-check mr-1"></i> Mengerti, Saya Perbaiki',
+                customClass: {
+                    popup: 'rounded-2xl shadow-2xl p-6',
+                    confirmButton: 'px-5 py-2.5 rounded-xl font-bold text-sm shadow-md'
+                }
+            });
+        @endif
+
+        // Global Interceptor for Delete Actions
+        document.addEventListener('click', function(e) {
+            const deleteTrigger = e.target.closest('.btn-delete, button[data-confirm-delete], a[data-confirm-delete], button[title="Hapus"]');
+            if (deleteTrigger) {
+                e.preventDefault();
+                const form = deleteTrigger.closest('form');
+                const targetUrl = deleteTrigger.getAttribute('href');
+                const itemName = deleteTrigger.getAttribute('data-name') || deleteTrigger.getAttribute('data-title') || 'data ini';
+
+                Swal.fire({
+                    title: 'Konfirmasi Penghapusan',
+                    html: `Apakah Anda yakin ingin menghapus <strong class="text-red-600">${itemName}</strong>?<br><span class="text-xs text-slate-500">Tindakan ini permanen dan tidak dapat dibatalkan.</span>`,
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#da251c',
+                    cancelButtonColor: '#64748b',
+                    confirmButtonText: '<i class="fa-solid fa-trash-can mr-1.5"></i> Ya, Hapus Sekarang!',
+                    cancelButtonText: 'Batal',
+                    reverseButtons: true,
+                    customClass: {
+                        popup: 'rounded-2xl shadow-2xl p-6',
+                        confirmButton: 'px-5 py-2.5 rounded-xl font-bold text-sm shadow-lg shadow-red-500/30',
+                        cancelButton: 'px-5 py-2.5 rounded-xl font-medium text-sm'
+                    }
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        if (form) {
+                            form.submit();
+                        } else if (targetUrl && targetUrl !== '#') {
+                            window.location.href = targetUrl;
+                        }
+                    }
+                });
+            }
+        });
+
+        // Intercept standard DELETE form submissions
+        document.addEventListener('submit', function(e) {
+            const form = e.target;
+            const methodInput = form.querySelector('input[name="_method"][value="DELETE"]');
+            if (methodInput && !form.dataset.confirmed) {
+                e.preventDefault();
+                Swal.fire({
+                    title: 'Hapus Data?',
+                    text: 'Data yang dihapus tidak dapat dipulihkan kembali!',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#da251c',
+                    cancelButtonColor: '#64748b',
+                    confirmButtonText: '<i class="fa-solid fa-trash-can mr-1.5"></i> Ya, Hapus!',
+                    cancelButtonText: 'Batal',
+                    reverseButtons: true,
+                    customClass: {
+                        popup: 'rounded-2xl shadow-2xl p-6',
+                        confirmButton: 'px-5 py-2.5 rounded-xl font-bold text-sm shadow-lg shadow-red-500/30',
+                        cancelButton: 'px-5 py-2.5 rounded-xl font-medium text-sm'
+                    }
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.dataset.confirmed = 'true';
+                        form.submit();
+                    }
                 });
             }
         });

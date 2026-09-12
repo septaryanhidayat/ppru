@@ -72,66 +72,57 @@
      SECTION: FLOATING QUICK ICONS / MENU UTAMA (8 Kartu Sekolah)
      ======================================================== --}}
 <div x-data="{ showDownloadModal: false }" class="max-w-6xl mx-auto px-4 sm:px-6 relative z-30 -mt-8 sm:-mt-10 reveal-fade-up">
-    <div class="bg-white rounded-3xl shadow-2xl border border-gray-100 p-5 sm:p-7">
-        <div class="flex items-center justify-between pb-4 mb-4 border-b border-gray-100">
-            <div>
-                <h2 class="text-base sm:text-lg font-black text-gray-900 tracking-tight">
-                    Menu Utama Sekolah
+    <div class="bg-white rounded-3xl shadow-2xl border border-gray-100 p-4 sm:p-6 md:p-7">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 mb-4 sm:mb-5 border-b border-gray-100">
+            <div class="text-center sm:text-left">
+                <h2 class="text-base sm:text-lg font-black text-gray-900 tracking-tight flex items-center justify-center sm:justify-start gap-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-[#00913e] inline-block animate-pulse"></span>
+                    <span>Menu Utama Sekolah</span>
                 </h2>
-                <p class="text-xs text-gray-500 font-light">Akses cepat informasi dan layanan SMA IT Ishlahul Ummah Prabumulih</p>
+                <p class="text-xs text-gray-500 font-light mt-0.5">Akses cepat informasi dan layanan unggulan SMA IT Ishlahul Ummah Prabumulih</p>
             </div>
-            <button @click="showDownloadModal = true" type="button" aria-label="Buka Pilihan Download" class="bg-[#00913e] hover:bg-[#007532] text-white text-xs font-black px-4 py-2 rounded-full transition shadow flex items-center space-x-1.5 cursor-pointer transform hover:scale-105 min-h-[44px]">
-                <span>Download</span>
-                <i class="fa-solid fa-download text-[11px]" aria-hidden="true"></i>
-            </button>
+            <div class="flex items-center justify-center sm:justify-end">
+                <button @click="showDownloadModal = true" type="button" aria-label="Buka Pilihan Download" class="bg-[#00913e] hover:bg-[#007532] text-white text-xs font-black px-4 py-2 rounded-full transition shadow flex items-center space-x-1.5 cursor-pointer transform hover:scale-105 min-h-[40px]">
+                    <i class="fa-solid fa-download text-[11px]" aria-hidden="true"></i>
+                    <span>Download Brosur</span>
+                </button>
+            </div>
         </div>
 
         @php
-            $dbQuickMenus = \App\Models\QuickMenu::active()->orderBy('order', 'asc')->get();
+            $dbQuickMenus = \App\Models\QuickMenu::active()->orderBy('order', 'asc')->take(8)->get();
             if ($dbQuickMenus->isEmpty()) {
                 $quickMenus = collect([
-                    (object)['name' => 'Sambutan', 'icon' => 'fa-solid fa-user-tie', 'url' => route('page.sambutan'), 'is_image' => false],
-                    (object)['name' => 'Profil', 'icon' => 'fa-solid fa-school', 'url' => route('page.tentang-kami'), 'is_image' => false],
+                    (object)['name' => 'PPDB Online', 'icon' => 'fa-solid fa-graduation-cap', 'url' => route('ppdb.index'), 'is_image' => false],
+                    (object)['name' => 'Profil', 'icon' => 'fa-solid fa-school', 'url' => url('/tentang-kami'), 'is_image' => false],
                     (object)['name' => 'Dewan Guru', 'icon' => 'fa-solid fa-chalkboard-user', 'url' => route('dewan.index'), 'is_image' => false],
                     (object)['name' => 'Fasilitas', 'icon' => 'fa-solid fa-layer-group', 'url' => route('bidang.index'), 'is_image' => false],
-                    (object)['name' => 'Berita', 'icon' => 'fa-solid fa-newspaper', 'url' => route('artikel.index'), 'is_image' => false],
-                    (object)['name' => 'Pengumuman', 'icon' => 'fa-solid fa-bullhorn', 'url' => route('pengumuman.index'), 'is_image' => false],
-                    (object)['name' => 'Video', 'icon' => 'fa-brands fa-youtube', 'url' => route('video.index'), 'is_image' => false],
-                    (object)['name' => 'Agenda', 'icon' => 'fa-solid fa-calendar-days', 'url' => route('agenda.index'), 'is_image' => false],
+                    (object)['name' => 'Unggulan', 'icon' => 'fa-solid fa-award', 'url' => route('dpc.index'), 'is_image' => false],
+                    (object)['name' => 'Prestasi', 'icon' => 'fa-solid fa-trophy', 'url' => url('/prestasi'), 'is_image' => false],
+                    (object)['name' => 'Ekskul', 'icon' => 'fa-solid fa-people-group', 'url' => url('/ekstrakurikuler'), 'is_image' => false],
+                    (object)['name' => 'Kabar Sekolah', 'icon' => 'fa-solid fa-newspaper', 'url' => route('artikel.index'), 'is_image' => false],
                 ]);
             } else {
                 $quickMenus = $dbQuickMenus;
             }
         @endphp
 
-        {{-- DESKTOP VIEW: 8 Kolom Kartu Berbingkai --}}
-        <div class="hidden md:grid md:grid-cols-8 gap-3 text-center" style="grid-template-columns: repeat(8, minmax(0, 1fr));">
+        {{-- GRID QUICK MENUS: 4 Kolom di Mobile (2 baris x 4 item), 8 Kolom di Desktop (1 baris x 8 item) --}}
+        <div class="grid grid-cols-4 md:grid-cols-8 gap-2 sm:gap-3 md:gap-3.5 text-center justify-items-center">
             @foreach($quickMenus as $qm)
-            <a href="{{ $qm->url }}" class="group flex flex-col items-center justify-center py-3 px-1.5 rounded-2xl border border-gray-200 hover:border-[#00913e] hover:shadow-lg transition bg-white transform hover:-translate-y-1" aria-label="Menu {{ $qm->name }}">
-                <div class="h-10 md:h-11 w-full flex items-center justify-center mb-1.5">
+            <a href="{{ $qm->url }}" 
+               class="group w-full flex flex-col items-center justify-between text-center p-2 sm:p-2.5 md:py-3.5 md:px-1 rounded-2xl border border-slate-100 hover:border-[#00913e] bg-white hover:bg-emerald-50/30 shadow-xs hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 min-h-[88px] sm:min-h-[98px] md:min-h-[105px]" 
+               aria-label="Menu {{ $qm->name }}">
+                <div class="w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 rounded-2xl bg-emerald-50 text-[#00913e] flex items-center justify-center mx-auto mb-1.5 sm:mb-2 shadow-xs border border-emerald-100/70 group-hover:bg-[#00913e] group-hover:text-white group-hover:scale-110 transition-all duration-300">
                     @if(!empty($qm->is_image) && $qm->is_image)
-                        <img src="{{ $qm->icon }}" alt="Ikon {{ $qm->name }}" class="h-9 md:h-10 w-auto max-w-full object-contain group-hover:scale-105 transition duration-300" onerror="this.src='/uploads/logo-ishum-square.png'">
+                        <img src="{{ $qm->icon }}" alt="Ikon {{ $qm->name }}" class="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 object-contain group-hover:scale-105 transition" onerror="this.src='/uploads/logo-ishum-square.webp'">
                     @else
-                        <i class="{{ $qm->icon }} text-2xl md:text-3xl text-[#00913e] group-hover:text-[#da251c] transition" aria-hidden="true"></i>
+                        <i class="{{ $qm->icon }} text-lg sm:text-xl md:text-2xl transition-colors duration-300" aria-hidden="true"></i>
                     @endif
                 </div>
-                <span class="text-xs sm:text-[13px] font-bold text-gray-800 group-hover:text-[#00913e] block whitespace-nowrap tracking-tight leading-tight">{{ $qm->name }}</span>
-            </a>
-            @endforeach
-        </div>
-
-        {{-- MOBILE VIEW: 4 Kolom x 2 Baris Kartu Berbingkai --}}
-        <div class="grid md:hidden grid-cols-4 gap-2 sm:gap-2.5 text-center" style="grid-template-columns: repeat(4, minmax(0, 1fr));">
-            @foreach($quickMenus as $qm)
-            <a href="{{ $qm->url }}" class="group flex flex-col items-center justify-center py-2.5 px-0.5 sm:px-1 rounded-2xl border border-gray-200 hover:border-[#00913e] hover:shadow-md transition bg-white" aria-label="Menu {{ $qm->name }}">
-                <div class="h-8 sm:h-9 w-full flex items-center justify-center mb-1">
-                    @if(!empty($qm->is_image) && $qm->is_image)
-                        <img src="{{ $qm->icon }}" alt="Ikon {{ $qm->name }}" class="h-7 sm:h-8 w-auto max-w-full object-contain" onerror="this.src='/uploads/logo-ishum-square.png'">
-                    @else
-                        <i class="{{ $qm->icon }} text-xl sm:text-2xl text-[#00913e] group-hover:text-[#da251c] transition" aria-hidden="true"></i>
-                    @endif
-                </div>
-                <span class="text-[10px] sm:text-[11px] font-bold text-gray-800 group-hover:text-[#00913e] block whitespace-nowrap tracking-tight leading-tight">{{ $qm->name }}</span>
+                <span class="text-[10px] sm:text-[11px] md:text-xs font-bold text-slate-800 group-hover:text-[#00913e] text-center leading-tight line-clamp-2 w-full break-words tracking-tight px-0.5">
+                    {{ $qm->name }}
+                </span>
             </a>
             @endforeach
         </div>

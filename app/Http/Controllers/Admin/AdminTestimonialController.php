@@ -5,11 +5,14 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\ActivityLog;
 use App\Models\Testimonial;
+use App\Services\WebpService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class AdminTestimonialController extends Controller
 {
+    public function __construct(protected WebpService $webpService) {}
+
     public function index()
     {
         $testimonials = Testimonial::orderBy('id', 'desc')->paginate(15);
@@ -29,16 +32,21 @@ class AdminTestimonialController extends Controller
             'profession' => 'nullable|string|max:255',
             'content' => 'required|string|max:2000',
             'photo' => 'nullable|string|max:255',
-            'photo_file' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
+            'photo_file' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
             'status' => 'required|in:publish,draft',
         ]);
 
         $photoPath = $validated['photo'] ?? null;
         if ($request->hasFile('photo_file')) {
-            $file = $request->file('photo_file');
-            $filename = 'testimonial_'.time().'_'.uniqid().'.'.$file->getClientOriginalExtension();
-            $file->move(public_path('uploads/testimonials'), $filename);
-            $photoPath = '/uploads/testimonials/'.$filename;
+            $converted = $this->webpService->processUploadedFile(
+                $request->file('photo_file'),
+                'testimonials',
+                82,
+                800
+            );
+            if ($converted['success']) {
+                $photoPath = $converted['url'];
+            }
         }
 
         $testimonial = Testimonial::create([

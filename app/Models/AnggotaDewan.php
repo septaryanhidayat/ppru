@@ -28,6 +28,6 @@ class AnggotaDewan extends Model
             return '/'.ltrim($path, '/');
         }
 
-        return '/uploads/kepala-sekolah-robbani.jpg';
+        return '/uploads/kepsek-agi-gustiawan.webp';
     }
 }

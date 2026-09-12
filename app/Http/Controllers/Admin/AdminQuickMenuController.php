@@ -5,11 +5,16 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\ActivityLog;
 use App\Models\QuickMenu;
+use App\Services\WebpService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class AdminQuickMenuController extends Controller
 {
+    public function __construct(
+        protected WebpService $webpService
+    ) {}
+
     public function index()
     {
         $quickMenus = QuickMenu::orderBy('order', 'asc')->get();
@@ -36,9 +41,15 @@ class AdminQuickMenuController extends Controller
         $iconPath = $validated['icon'] ?? 'fa-solid fa-link';
         if ($request->hasFile('icon_file')) {
             $file = $request->file('icon_file');
-            $filename = 'icon_'.time().'_'.uniqid().'.'.$file->getClientOriginalExtension();
-            $file->move(public_path('uploads/icons'), $filename);
-            $iconPath = '/uploads/icons/'.$filename;
+            $ext = strtolower($file->getClientOriginalExtension());
+            if ($ext === 'svg') {
+                $filename = 'icon_'.time().'_'.uniqid().'.svg';
+                $file->move(public_path('uploads/icons'), $filename);
+                $iconPath = '/uploads/icons/'.$filename;
+            } else {
+                $converted = $this->webpService->processUploadedFile($file, 'icons', 85, 400);
+                $iconPath = $converted['url'];
+            }
         }
 
         $menu = QuickMenu::create([
@@ -81,9 +92,15 @@ class AdminQuickMenuController extends Controller
         $iconPath = $quickMenu->icon;
         if ($request->hasFile('icon_file')) {
             $file = $request->file('icon_file');
-            $filename = 'icon_'.time().'_'.uniqid().'.'.$file->getClientOriginalExtension();
-            $file->move(public_path('uploads/icons'), $filename);
-            $iconPath = '/uploads/icons/'.$filename;
+            $ext = strtolower($file->getClientOriginalExtension());
+            if ($ext === 'svg') {
+                $filename = 'icon_'.time().'_'.uniqid().'.svg';
+                $file->move(public_path('uploads/icons'), $filename);
+                $iconPath = '/uploads/icons/'.$filename;
+            } else {
+                $converted = $this->webpService->processUploadedFile($file, 'icons', 85, 400);
+                $iconPath = $converted['url'];
+            }
         } elseif ($request->filled('icon')) {
             $iconPath = $validated['icon'];
         }

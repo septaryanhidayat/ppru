@@ -69,16 +69,16 @@ class SchoolDataSeeder extends Seeder
             Setting::updateOrCreate(['key' => $key], ['value' => $value]);
         }
 
-        // 2. Quick Menus
+        // 2. Quick Menus (8 Menu Utama)
         $quickMenus = [
-            ['name' => 'Sambutan', 'url' => '/sambutan-kepala-sekolah', 'icon' => 'fa-solid fa-user-tie', 'order' => 1],
+            ['name' => 'PPDB Online', 'url' => '/ppdb', 'icon' => 'fa-solid fa-graduation-cap', 'order' => 1],
             ['name' => 'Profil', 'url' => '/tentang-kami', 'icon' => 'fa-solid fa-school', 'order' => 2],
             ['name' => 'Dewan Guru', 'url' => '/dewan-guru', 'icon' => 'fa-solid fa-chalkboard-user', 'order' => 3],
             ['name' => 'Fasilitas', 'url' => '/fasilitas', 'icon' => 'fa-solid fa-layer-group', 'order' => 4],
-            ['name' => 'Kabar Sekolah', 'url' => '/artikel', 'icon' => 'fa-solid fa-newspaper', 'order' => 5],
-            ['name' => 'Pengumuman', 'url' => '/pengumuman', 'icon' => 'fa-solid fa-bullhorn', 'order' => 6],
-            ['name' => 'Galeri Video', 'url' => '/video', 'icon' => 'fa-brands fa-youtube', 'order' => 7],
-            ['name' => 'Agenda', 'url' => '/agenda', 'icon' => 'fa-solid fa-calendar-days', 'order' => 8],
+            ['name' => 'Unggulan', 'url' => '/unggulan', 'icon' => 'fa-solid fa-award', 'order' => 5],
+            ['name' => 'Prestasi', 'url' => '/prestasi', 'icon' => 'fa-solid fa-trophy', 'order' => 6],
+            ['name' => 'Ekskul', 'url' => '/ekstrakurikuler', 'icon' => 'fa-solid fa-people-group', 'order' => 7],
+            ['name' => 'Kabar Sekolah', 'url' => '/artikel', 'icon' => 'fa-solid fa-newspaper', 'order' => 8],
         ];
 
         QuickMenu::truncate();

@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\AdminFeedbackController;
 use App\Http\Controllers\Admin\AdminMediaController;
 use App\Http\Controllers\Admin\AdminPageController;
 use App\Http\Controllers\Admin\AdminPostController;
+use App\Http\Controllers\Admin\AdminPpdbController;
 use App\Http\Controllers\Admin\AdminQuickMenuController;
 use App\Http\Controllers\Admin\AdminSecurityController;
 use App\Http\Controllers\Admin\AdminSettingController;
@@ -26,6 +27,7 @@ use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InformationController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\PpdbController;
 use Illuminate\Support\Facades\Route;
 
 // === AUTHENTICATION ROUTES ===
@@ -77,6 +79,13 @@ Route::prefix('admin')->middleware('auth')->name('admin.')->group(function () {
 
     // Quick Menus (Menu Utama Beranda)
     Route::resource('quick-menus', AdminQuickMenuController::class);
+
+    // PPDB Online Management
+    Route::get('/ppdb', [AdminPpdbController::class, 'index'])->name('ppdb.index');
+    Route::get('/ppdb/{ppdb}', [AdminPpdbController::class, 'show'])->name('ppdb.show');
+    Route::match(['POST', 'PUT'], '/ppdb/{ppdb}/status', [AdminPpdbController::class, 'updateStatus'])->name('ppdb.status');
+    Route::delete('/ppdb/{ppdb}', [AdminPpdbController::class, 'destroy'])->name('ppdb.destroy');
+    Route::get('/ppdb/{ppdb}/print', [AdminPpdbController::class, 'print'])->name('ppdb.print');
 
     // Testimonials Management
     Route::resource('testimonials', AdminTestimonialController::class);
@@ -136,14 +145,36 @@ Route::get('/fasilitas', [BidangController::class, 'index'])->name('bidang.index
 Route::get('/bidang', [BidangController::class, 'index']);
 Route::get('/bidang/{slug}', [BidangController::class, 'show'])->name('bidang.show');
 
-// Informasi (Agenda, Pengumuman, Testimonial, Video, Galeri)
+// Informasi (Agenda, Pengumuman, Testimonial, Video, Galeri, Prestasi, Ekskul, Alumni, Layanan)
 Route::get('/agenda', [InformationController::class, 'agenda'])->name('agenda.index');
 Route::get('/agenda/{slug}', [InformationController::class, 'agendaShow'])->name('agenda.show');
 Route::get('/pengumuman', [InformationController::class, 'pengumuman'])->name('pengumuman.index');
 Route::get('/pengumuman/{slug}', [InformationController::class, 'pengumumanShow'])->name('pengumuman.show');
+Route::get('/prestasi', [InformationController::class, 'prestasi'])->name('prestasi.index');
+Route::get('/prestasi/{slug}', [InformationController::class, 'prestasiShow'])->name('prestasi.show');
+Route::get('/ekstrakurikuler', [InformationController::class, 'ekskul'])->name('ekskul.index');
+Route::get('/ekskul', fn () => redirect()->route('ekskul.index'));
+Route::get('/data-alumni', [InformationController::class, 'alumni'])->name('alumni.index');
+Route::get('/layanan-terpadu', [InformationController::class, 'layanan'])->name('layanan.index');
+Route::get('/layanan-terpadu-2', fn () => redirect()->route('layanan.index'));
+Route::get('/izin-sekolah', [InformationController::class, 'izinSekolah'])->name('layanan.izin');
+Route::get('/permohonan-kerja-sama', [InformationController::class, 'kerjasama'])->name('layanan.kerjasama');
+Route::get('/sewa-barang', [InformationController::class, 'sewaBarang'])->name('layanan.sewa');
 Route::get('/testimonial', [InformationController::class, 'testimonial'])->name('testimonial.index');
 Route::get('/video', [InformationController::class, 'video'])->name('video.index');
+Route::get('/galeri-video', fn () => redirect()->route('video.index'));
 Route::get('/galeri', [InformationController::class, 'galeri'])->name('galeri.index');
+Route::get('/galeri-kegiatan', fn () => redirect()->route('galeri.index'));
+
+// SPMB & PPDB Online (Landing Page, Form Pendaftaran & Sukses)
+Route::get('/ppdb', [PpdbController::class, 'index'])->name('ppdb.index');
+Route::get('/spmb', fn () => redirect()->route('ppdb.index'));
+Route::get('/form_ppdb', [PpdbController::class, 'form'])->name('ppdb.form');
+Route::get('/form-ppdb', fn () => redirect()->route('ppdb.form'));
+Route::get('/ppdb/form', fn () => redirect()->route('ppdb.form'));
+Route::post('/form_ppdb', [PpdbController::class, 'store'])->name('ppdb.store');
+Route::post('/ppdb/form', [PpdbController::class, 'store']);
+Route::get('/ppdb/sukses', [PpdbController::class, 'success'])->name('ppdb.success');
 
 // Download & Media
 Route::get('/download', [DownloadController::class, 'index'])->name('download.index');
@@ -156,10 +187,15 @@ Route::get('/download-file/{id}', [DownloadController::class, 'downloadFile']);
 
 // Program Unggulan
 Route::get('/program-unggulan', [PageController::class, 'dpc'])->name('dpc.index');
+Route::get('/unggulan', fn () => redirect()->route('dpc.index'));
 Route::get('/dpc', [PageController::class, 'dpc']);
+
+// Dewan Guru & GTK Alias
+Route::get('/guru', fn () => redirect()->route('dewan.index'));
 
 // Hubungi & Donasi
 Route::get('/hubungi', [ContactController::class, 'hubungi'])->name('hubungi');
+Route::get('/kontak', fn () => redirect()->route('hubungi'));
 Route::post('/hubungi', [ContactController::class, 'submitFeedback'])->name('feedback.store');
 Route::post('/hubungi-store', [ContactController::class, 'submitFeedback'])->name('hubungi.store');
 Route::get('/donasi', [ContactController::class, 'donasi'])->name('donasi');

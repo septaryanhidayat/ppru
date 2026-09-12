@@ -13,7 +13,7 @@ class PageController extends Controller
 {
     public function sambutan()
     {
-        $page = Post::pages()->where('slug', 'sambutan-ketua-dpd')->first();
+        $page = Post::pages()->whereIn('slug', ['sambutan-kepala-sekolah', 'sambutan-ketua-dpd'])->first();
 
         return view('frontend.pages.sambutan', compact('page'));
     }

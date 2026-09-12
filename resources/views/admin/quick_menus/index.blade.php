@@ -42,10 +42,10 @@
                         <a href="{{ route('admin.quick-menus.edit', $qm) }}" class="p-1.5 text-slate-600 hover:text-[#ff5001] hover:bg-orange-100 rounded-lg transition" title="Edit">
                             <i class="fa-solid fa-pen-to-square"></i>
                         </a>
-                        <form action="{{ route('admin.quick-menus.destroy', $qm) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus menu {{ $qm->name }}?');" class="inline">
+                        <form action="{{ route('admin.quick-menus.destroy', $qm) }}" method="POST" class="inline">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="p-1.5 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition cursor-pointer" title="Hapus">
+                            <button type="button" data-name="{{ $qm->name }}" class="btn-delete p-1.5 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition cursor-pointer" title="Hapus">
                                 <i class="fa-solid fa-trash"></i>
                             </button>
                         </form>
