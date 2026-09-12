@@ -169,6 +169,7 @@
             document.documentElement.classList.add('sidebar-init-collapsed');
         }
     </script>
+    @stack('styles')
 </head>
 <body class="bg-[#f8fafc] font-['Poppins',sans-serif] text-slate-800 flex min-h-screen antialiased">
 
@@ -729,5 +730,6 @@
             }
         });
     </script>
+    @stack('scripts')
 </body>
 </html>
