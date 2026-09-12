@@ -28,31 +28,31 @@
             </div>
 
             {{-- KOLOM 2: ALAMAT SEKOLAH & KONTAK --}}
-            <div class="lg:col-span-4 space-y-3 text-center md:text-left">
-                <h3 class="font-bold text-[#da251c] text-base sm:text-lg tracking-wide uppercase">
+            <div class="lg:col-span-4 space-y-3 text-center md:text-left flex flex-col items-center md:items-start">
+                <h3 class="font-bold text-[#da251c] text-base sm:text-lg tracking-wide uppercase text-center md:text-left">
                     Alamat Sekolah
                 </h3>
-                <p class="text-sm sm:text-[15px] text-gray-200 font-normal leading-relaxed pr-0 md:pr-2">
+                <p class="text-sm sm:text-[15px] text-gray-200 font-normal leading-relaxed text-center md:text-left pr-0 md:pr-4">
                     {{ $siteSettings['contact_address'] ?? 'Jalan Sadewa RT 01 RW 03 Kelurahan Karang Raja, Kecamatan Prabumulih Timur, Kota Prabumulih, Sumatera Selatan 31111' }}
                 </p>
-                <div class="space-y-2 pt-1 text-sm sm:text-[15px] text-gray-200">
+                <div class="w-full space-y-2 pt-1 text-sm sm:text-[15px] text-gray-200 flex flex-col items-center md:items-start">
                     <div class="flex items-center justify-center md:justify-start space-x-3">
-                        <i class="fa-solid fa-phone text-[#10b981] w-4 text-center text-sm" aria-hidden="true"></i>
-                        <a href="tel:{{ $siteSettings['contact_phone'] ?? '082182680647' }}" class="text-gray-200 hover:text-[#da251c] transition py-1" aria-label="Telepon Sekolah">{{ $siteSettings['contact_phone'] ?? '0821-8268-0647' }}</a>
+                        <i class="fa-solid fa-phone text-[#10b981] w-4 text-center text-sm flex-shrink-0" aria-hidden="true"></i>
+                        <a href="tel:{{ $siteSettings['contact_phone'] ?? '082182680647' }}" class="text-gray-200 hover:text-[#da251c] transition py-0.5" aria-label="Telepon Sekolah">{{ $siteSettings['contact_phone'] ?? '0821-8268-0647' }}</a>
                     </div>
                     <div class="flex items-center justify-center md:justify-start space-x-3">
-                        <i class="fa-solid fa-envelope text-[#10b981] w-4 text-center text-sm" aria-hidden="true"></i>
-                        <a href="mailto:{{ $siteSettings['contact_email'] ?? 'smaitishlahulummah2019@gmail.com' }}" class="text-gray-200 hover:text-[#da251c] transition py-1" aria-label="Email Sekolah">{{ $siteSettings['contact_email'] ?? 'smaitishlahulummah2019@gmail.com' }}</a>
+                        <i class="fa-solid fa-envelope text-[#10b981] w-4 text-center text-sm flex-shrink-0" aria-hidden="true"></i>
+                        <a href="mailto:{{ $siteSettings['contact_email'] ?? 'smaitishlahulummah2019@gmail.com' }}" class="text-gray-200 hover:text-[#da251c] transition py-0.5" aria-label="Email Sekolah">{{ $siteSettings['contact_email'] ?? 'smaitishlahulummah2019@gmail.com' }}</a>
                     </div>
                 </div>
             </div>
 
             {{-- KOLOM 3: SOSIAL MEDIA & TAUTAN WEB RESMI --}}
-            <div class="lg:col-span-3 space-y-2 text-center md:text-left">
-                <h3 class="font-bold text-[#da251c] text-base sm:text-lg tracking-wide uppercase">
+            <div class="lg:col-span-3 space-y-2 text-center md:text-left flex flex-col items-center md:items-start">
+                <h3 class="font-bold text-[#da251c] text-base sm:text-lg tracking-wide uppercase text-center md:text-left">
                     Media Sosial
                 </h3>
-                <p class="text-base sm:text-[16px] font-bold text-white mb-3">
+                <p class="text-base sm:text-[16px] font-bold text-white mb-2 text-center md:text-left">
                     SMA IT Ishlahul Ummah
                 </p>
                 
@@ -73,29 +73,29 @@
                 </div>
 
                 {{-- Tautan Web Resmi dengan Ikon Globe Hijau --}}
-                <div class="space-y-1.5 text-sm sm:text-[15px] text-gray-200 pt-1">
+                <div class="w-full space-y-1.5 text-sm sm:text-[15px] text-gray-200 pt-1 flex flex-col items-center md:items-start">
                     <div class="flex items-center justify-center md:justify-start space-x-3">
-                        <i class="fa-solid fa-globe text-[#10b981] w-4 text-center text-sm" aria-hidden="true"></i>
-                        <a href="https://smaitishumpbm.sch.id" target="_blank" class="text-gray-200 hover:text-[#da251c] transition py-1">smaitishumpbm.sch.id</a>
+                        <i class="fa-solid fa-globe text-[#10b981] w-4 text-center text-sm flex-shrink-0" aria-hidden="true"></i>
+                        <a href="https://smaitishumpbm.sch.id" target="_blank" class="text-gray-200 hover:text-[#da251c] transition py-0.5">smaitishumpbm.sch.id</a>
                     </div>
                 </div>
             </div>
 
-            {{-- KOLOM 4: PENGUNJUNG (RATA TENGAH) --}}
-            <div class="lg:col-span-2 space-y-2 text-center flex flex-col items-center justify-center">
-                <h3 class="font-bold text-[#da251c] text-base sm:text-lg tracking-wide uppercase flex items-center justify-center gap-2">
+            {{-- KOLOM 4: PENGUNJUNG (RATA KIRI DI DESKTOP) --}}
+            <div class="lg:col-span-2 space-y-2 text-center md:text-left flex flex-col items-center md:items-start justify-start">
+                <h3 class="font-bold text-[#da251c] text-base sm:text-lg tracking-wide uppercase flex items-center justify-center md:justify-start gap-2">
                     <span>Pengunjung</span>
                     <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#00913e] text-white border border-green-500">
                         <span class="w-1.5 h-1.5 rounded-full bg-[#da251c] animate-ping mr-1"></span> Live
                     </span>
                 </h3>
-                <div class="text-3xl sm:text-4xl lg:text-4xl font-bold text-white tracking-normal font-sans leading-tight pt-1 flex items-center justify-center" style="font-family: Arial, sans-serif;">
+                <div class="text-3xl sm:text-4xl lg:text-4xl font-bold text-white tracking-normal font-sans leading-tight pt-1 flex items-center justify-center md:justify-start" style="font-family: Arial, sans-serif;">
                     <span id="footer-visitor-counter" data-target="{{ $rawVisitorHits ?? (int) str_replace(['.', ','], '', $visitorHits ?? '53512') }}">
                         {{ $visitorHits ?? '53.512' }}
                     </span>
                 </div>
-                <p class="text-xs text-gray-400 font-light text-center">Kunjungan ke website resmi sekolah</p>
-                <div class="pt-2 flex items-center justify-center gap-2 text-xs text-gray-400 text-center">
+                <p class="text-xs text-gray-400 font-light text-center md:text-left">Kunjungan ke website resmi sekolah</p>
+                <div class="pt-2 flex items-center justify-center md:justify-start gap-2 text-xs text-gray-400 text-center md:text-left">
                     <a href="{{ route('page.privacy-policy') }}" class="hover:text-white transition">Kebijakan Privasi</a>
                     <span>&bull;</span>
                     <a href="{{ route('hubungi') }}" class="hover:text-white transition">Kontak</a>
