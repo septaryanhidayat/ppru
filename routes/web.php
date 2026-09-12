@@ -171,13 +171,13 @@ Route::get('/ekstrakurikuler', [InformationController::class, 'ekskul'])->name('
 Route::get('/ekskul', fn () => redirect()->route('ekskul.index'));
 Route::get('/data-alumni', [InformationController::class, 'alumni'])->name('alumni.index');
 Route::get('/layanan-terpadu', [InformationController::class, 'layanan'])->name('layanan.index');
-Route::get('/layanan-terpadu-2', fn () => redirect()->route('layanan.index'));
+Route::get('/layanan-terpadu-2', [InformationController::class, 'layananTerpadu'])->name('layanan.terpadu');
 Route::get('/izin-sekolah', [InformationController::class, 'izinSekolah'])->name('layanan.izin');
-Route::post('/izin-sekolah', [InformationController::class, 'submitIzin'])->name('layanan.izin.submit');
+Route::post('/izin-sekolah', [InformationController::class, 'submitIzin'])->middleware('throttle:15,1')->name('layanan.izin.submit');
 Route::get('/permohonan-kerja-sama', [InformationController::class, 'kerjasama'])->name('layanan.kerjasama');
-Route::post('/permohonan-kerja-sama', [InformationController::class, 'submitKerjasama'])->name('layanan.kerjasama.submit');
+Route::post('/permohonan-kerja-sama', [InformationController::class, 'submitKerjasama'])->middleware('throttle:15,1')->name('layanan.kerjasama.submit');
 Route::get('/sewa-barang', [InformationController::class, 'sewaBarang'])->name('layanan.sewa');
-Route::post('/sewa-barang', [InformationController::class, 'submitSewa'])->name('layanan.sewa.submit');
+Route::post('/sewa-barang', [InformationController::class, 'submitSewa'])->middleware('throttle:15,1')->name('layanan.sewa.submit');
 Route::get('/testimonial', [InformationController::class, 'testimonial'])->name('testimonial.index');
 Route::get('/video', [InformationController::class, 'video'])->name('video.index');
 Route::get('/galeri-video', fn () => redirect()->route('video.index'));
@@ -190,8 +190,8 @@ Route::get('/spmb', fn () => redirect()->route('ppdb.index'));
 Route::get('/form_ppdb', [PpdbController::class, 'form'])->name('ppdb.form');
 Route::get('/form-ppdb', fn () => redirect()->route('ppdb.form'));
 Route::get('/ppdb/form', fn () => redirect()->route('ppdb.form'));
-Route::post('/form_ppdb', [PpdbController::class, 'store'])->name('ppdb.store');
-Route::post('/ppdb/form', [PpdbController::class, 'store']);
+Route::post('/form_ppdb', [PpdbController::class, 'store'])->middleware('throttle:15,1')->name('ppdb.store');
+Route::post('/ppdb/form', [PpdbController::class, 'store'])->middleware('throttle:15,1');
 Route::get('/ppdb/sukses', [PpdbController::class, 'success'])->name('ppdb.success');
 
 // Download & Media
@@ -216,21 +216,11 @@ Route::get('/dpc', [PageController::class, 'dpc']);
 // Dewan Guru & GTK Alias
 Route::get('/guru', fn () => redirect()->route('dewan.index'));
 
-// Layanan Publik & Terpadu SMA IT Ishlahul Ummah
-Route::get('/layanan-terpadu-2', [InformationController::class, 'layananTerpadu'])->name('layanan.index');
-Route::get('/layanan-terpadu', fn () => redirect()->route('layanan.index'));
-Route::get('/izin-sekolah', [InformationController::class, 'izinSekolah'])->name('layanan.izin');
-Route::post('/izin-sekolah', [InformationController::class, 'submitIzin'])->name('layanan.izin.submit');
-Route::get('/permohonan-kerja-sama', [InformationController::class, 'kerjasama'])->name('layanan.kerjasama');
-Route::post('/permohonan-kerja-sama', [InformationController::class, 'submitKerjasama'])->name('layanan.kerjasama.submit');
-Route::get('/sewa-barang', [InformationController::class, 'sewaBarang'])->name('layanan.sewa');
-Route::post('/sewa-barang', [InformationController::class, 'submitSewa'])->name('layanan.sewa.submit');
-
 // Hubungi & Donasi
 Route::get('/hubungi', [ContactController::class, 'hubungi'])->name('hubungi');
 Route::get('/kontak', fn () => redirect()->route('hubungi'));
-Route::post('/hubungi', [ContactController::class, 'submitFeedback'])->name('feedback.store');
-Route::post('/hubungi-store', [ContactController::class, 'submitFeedback'])->name('hubungi.store');
+Route::post('/hubungi', [ContactController::class, 'submitFeedback'])->middleware('throttle:15,1')->name('feedback.store');
+Route::post('/hubungi-store', [ContactController::class, 'submitFeedback'])->middleware('throttle:15,1')->name('hubungi.store');
 Route::get('/donasi', [ContactController::class, 'donasi'])->name('donasi');
 
 // Legacy URL 301 Redirect for WordPress images to clean Laravel /uploads/ path

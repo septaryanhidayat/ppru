@@ -1,16 +1,29 @@
-# ----------------------------------------------------------------------
-# CPANEL LITESPEED PHP 8.4 OVERRIDE (Bypass MultiPHP Manager Lock)
-# ----------------------------------------------------------------------
+# ==============================================================================
+# SMA IT ISHLAHUL UMMAH - PUBLIC DIRECTORY .HTACCESS (LARAVEL FRONT CONTROLLER)
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# 1. CPANEL / LITESPEED PHP 8.4 & 8.3 HANDLER OVERRIDE
+# ------------------------------------------------------------------------------
 <IfModule mime_module>
-  AddHandler application/x-httpd-ea-php84___lsphp .php .php8 .phtml
-  AddHandler application/x-httpd-ea-php84 .php .php8 .phtml
-  AddHandler application/x-httpd-alt-php84___lsphp .php .php8 .phtml
+    AddHandler application/x-httpd-ea-php84___lsphp .php .php8 .phtml
+    AddHandler application/x-httpd-ea-php84 .php .php8 .phtml
+    AddHandler application/x-httpd-alt-php84___lsphp .php .php8 .phtml
+    AddHandler application/x-httpd-alt-php84 .php .php8 .phtml
+    AddHandler application/x-httpd-php84 .php .php8 .phtml
+
+    # Fallback to PHP 8.3
+    AddHandler application/x-httpd-ea-php83___lsphp .php .php8 .phtml
+    AddHandler application/x-httpd-ea-php83 .php .php8 .phtml
+    AddHandler application/x-httpd-alt-php83___lsphp .php .php8 .phtml
+    AddHandler application/x-httpd-alt-php83 .php .php8 .phtml
+    AddHandler application/x-httpd-php83 .php .php8 .phtml
 </IfModule>
 
 <IfModule LiteSpeed>
-  <FilesMatch "\.(php|phtml)$">
-    SetHandler application/x-httpd-ea-php84___lsphp
-  </FilesMatch>
+    <FilesMatch "\.(php|phtml)$">
+        SetHandler application/x-httpd-ea-php84___lsphp
+    </FilesMatch>
 </IfModule>
 
 <IfModule mod_rewrite.c>
@@ -23,57 +36,47 @@
     # 1. Block access to hidden files and dotfiles (.env, .git, etc.)
     RewriteRule ^\.(.*)$ - [F,L]
 
-    # 2. Dual Domain Support: pksoganilir.com & oganilir.pks.id (and ogan.ilir.pks.id)
-    # Redirect www to bare domain respectively without cross-domain redirecting
-    RewriteCond %{HTTP_HOST} ^www\.pksoganilir\.com$ [NC]
-    RewriteRule ^(.*)$ https://pksoganilir.com/$1 [L,R=301]
+    # 2. Universal www to non-www redirection
+    RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+    RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
 
-    RewriteCond %{HTTP_HOST} ^www\.oganilir\.pks\.id$ [NC]
-    RewriteRule ^(.*)$ https://oganilir.pks.id/$1 [L,R=301]
-
-    RewriteCond %{HTTP_HOST} ^www\.ogan\.ilir\.pks\.id$ [NC]
-    RewriteRule ^(.*)$ https://ogan.ilir.pks.id/$1 [L,R=301]
-
-    # 2b. Legacy WordPress uploads redirect to clean Laravel /uploads/ (HTTP 301)
+    # 3. Legacy WordPress uploads redirect to clean Laravel /uploads/ (HTTP 301)
     RewriteRule ^wp-content/uploads/(.*)$ /uploads/$1 [R=301,L,NC]
 
-    # 2c. Block legacy WordPress paths from scanner bots
+    # 4. Block legacy WordPress paths from scanner bots
     RewriteRule ^wp-content/(themes|plugins|cache|languages)(/.*)?$ - [F,L,NC]
     RewriteRule ^wp-includes(/.*)?$ - [F,L,NC]
     RewriteRule ^wp-admin(/.*)?$ - [F,L,NC]
     RewriteRule ^wp-login\.php$ - [F,L,NC]
 
-    # 3. Enforce HTTPS (preserves the current host: pksoganilir.com or oganilir.pks.id)
+    # 5. Enforce HTTPS
     RewriteCond %{HTTPS} off
     RewriteCond %{HTTP:X-Forwarded-Proto} !https
     RewriteCond %{HTTP_HOST} !^(localhost|127\.0\.0\.1)(:\d+)?$ [NC]
     RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-    # 4. Handle Authorization Header
+    # 6. Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 
-    # 5. Handle X-XSRF-Token Header
+    # 7. Handle X-XSRF-Token Header
     RewriteCond %{HTTP:x-xsrf-token} .
     RewriteRule .* - [E=HTTP_X_XSRF_TOKEN:%{HTTP:X-XSRF-Token}]
 
-    # 6. Redirect Trailing Slashes If Not A Folder...
+    # 8. Redirect Trailing Slashes If Not A Folder...
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_URI} (.+)/$
     RewriteRule ^ %1 [L,R=301]
 
-    # 6b. Static Asset Fallback for Dual Domain (*.pks.id -> pksoganilir.com)
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteCond %{HTTP_HOST} (pks\.id)$ [NC]
-    RewriteRule ^(build|uploads|storage)/(.*)$ https://pksoganilir.com/$1/$2 [L,R=302]
-
-    # 7. Send Requests To Front Controller...
+    # 9. Send Requests To Front Controller...
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
 </IfModule>
 
-# Security Headers (Defense in Depth)
+# ------------------------------------------------------------------------------
+# 2. SECURITY HEADERS (DEFENSE IN DEPTH)
+# ------------------------------------------------------------------------------
 <IfModule mod_headers.c>
     Header always set X-Content-Type-Options "nosniff"
     Header always set X-Frame-Options "SAMEORIGIN"
@@ -81,16 +84,15 @@
     Header always set Referrer-Policy "strict-origin-when-cross-origin"
     Header always unset X-Powered-By
 
-    # CORS Headers: Izinkan resource fonts/gambar/css/js diakses lintas domain (pksoganilir.com & oganilir.pks.id)
+    # CORS Headers for Web Fonts and Static Assets
     <FilesMatch "\.(ttf|ttc|otf|eot|woff|woff2|font\.css|css|js|webp|png|jpg|jpeg|svg|ico)$">
         Header set Access-Control-Allow-Origin "*"
     </FilesMatch>
 </IfModule>
 
-# ----------------------------------------------------------------------
-# BROWSER CACHING (LiteSpeed / Apache Performance Optimization)
-# Diadopsi dari konfigurasi backup web lama
-# ----------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+# 3. BROWSER CACHING (LiteSpeed / Apache Performance Optimization)
+# ------------------------------------------------------------------------------
 <IfModule mod_expires.c>
     ExpiresActive on
     ExpiresByType application/pdf A31557600
@@ -111,4 +113,3 @@
     ExpiresByType font/woff A31557600
     ExpiresByType font/woff2 A31557600
 </IfModule>
-

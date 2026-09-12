@@ -10,6 +10,7 @@ use App\Models\Post;
 use App\Models\Testimonial;
 use App\Models\Video;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class InformationController extends Controller
 {
@@ -161,10 +162,16 @@ class InformationController extends Controller
             'ktp_file' => 'nullable|file|mimes:pdf,jpg,jpeg,png,webp|max:5120',
         ]);
 
+        $safeExtensions = ['pdf', 'doc', 'docx', 'jpg', 'jpeg', 'png', 'webp'];
+
         $letterPath = null;
         if ($request->hasFile('letter_file')) {
             $file = $request->file('letter_file');
-            $filename = 'surat_izin_'.time().'_'.uniqid().'.'.$file->getClientOriginalExtension();
+            $ext = strtolower($file->guessExtension() ?: pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION));
+            if (! in_array($ext, $safeExtensions, true)) {
+                $ext = 'pdf';
+            }
+            $filename = 'surat_izin_'.time().'_'.Str::random(12).'.'.$ext;
             $file->move(public_path('uploads/layanan'), $filename);
             $letterPath = '/uploads/layanan/'.$filename;
         }
@@ -172,7 +179,11 @@ class InformationController extends Controller
         $ktpPath = null;
         if ($request->hasFile('ktp_file')) {
             $file = $request->file('ktp_file');
-            $filename = 'ktp_izin_'.time().'_'.uniqid().'.'.$file->getClientOriginalExtension();
+            $ext = strtolower($file->guessExtension() ?: pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION));
+            if (! in_array($ext, $safeExtensions, true)) {
+                $ext = 'pdf';
+            }
+            $filename = 'ktp_izin_'.time().'_'.Str::random(12).'.'.$ext;
             $file->move(public_path('uploads/layanan'), $filename);
             $ktpPath = '/uploads/layanan/'.$filename;
         }
@@ -227,10 +238,16 @@ class InformationController extends Controller
             'ktp_file' => 'nullable|file|mimes:pdf,jpg,jpeg,png,webp|max:5120',
         ]);
 
+        $safeExtensions = ['pdf', 'doc', 'docx', 'jpg', 'jpeg', 'png', 'webp'];
+
         $letterPath = null;
         if ($request->hasFile('letter_file')) {
             $file = $request->file('letter_file');
-            $filename = 'proposal_'.time().'_'.uniqid().'.'.$file->getClientOriginalExtension();
+            $ext = strtolower($file->guessExtension() ?: pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION));
+            if (! in_array($ext, $safeExtensions, true)) {
+                $ext = 'pdf';
+            }
+            $filename = 'proposal_'.time().'_'.Str::random(12).'.'.$ext;
             $file->move(public_path('uploads/layanan'), $filename);
             $letterPath = '/uploads/layanan/'.$filename;
         }
@@ -238,7 +255,11 @@ class InformationController extends Controller
         $ktpPath = null;
         if ($request->hasFile('ktp_file')) {
             $file = $request->file('ktp_file');
-            $filename = 'ktp_kerjasama_'.time().'_'.uniqid().'.'.$file->getClientOriginalExtension();
+            $ext = strtolower($file->guessExtension() ?: pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION));
+            if (! in_array($ext, $safeExtensions, true)) {
+                $ext = 'pdf';
+            }
+            $filename = 'ktp_kerjasama_'.time().'_'.Str::random(12).'.'.$ext;
             $file->move(public_path('uploads/layanan'), $filename);
             $ktpPath = '/uploads/layanan/'.$filename;
         }
@@ -294,10 +315,16 @@ class InformationController extends Controller
             'npwp_file' => 'nullable|file|mimes:pdf,jpg,jpeg,png,webp|max:5120',
         ]);
 
+        $safeExtensions = ['pdf', 'doc', 'docx', 'jpg', 'jpeg', 'png', 'webp'];
+
         $letterPath = null;
         if ($request->hasFile('letter_file')) {
             $file = $request->file('letter_file');
-            $filename = 'sewa_surat_'.time().'_'.uniqid().'.'.$file->getClientOriginalExtension();
+            $ext = strtolower($file->guessExtension() ?: pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION));
+            if (! in_array($ext, $safeExtensions, true)) {
+                $ext = 'pdf';
+            }
+            $filename = 'sewa_surat_'.time().'_'.Str::random(12).'.'.$ext;
             $file->move(public_path('uploads/layanan'), $filename);
             $letterPath = '/uploads/layanan/'.$filename;
         }
@@ -305,7 +332,11 @@ class InformationController extends Controller
         $ktpPath = null;
         if ($request->hasFile('ktp_file')) {
             $file = $request->file('ktp_file');
-            $filename = 'sewa_ktp_'.time().'_'.uniqid().'.'.$file->getClientOriginalExtension();
+            $ext = strtolower($file->guessExtension() ?: pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION));
+            if (! in_array($ext, $safeExtensions, true)) {
+                $ext = 'pdf';
+            }
+            $filename = 'sewa_ktp_'.time().'_'.Str::random(12).'.'.$ext;
             $file->move(public_path('uploads/layanan'), $filename);
             $ktpPath = '/uploads/layanan/'.$filename;
         }
@@ -313,7 +344,11 @@ class InformationController extends Controller
         $npwpPath = null;
         if ($request->hasFile('npwp_file')) {
             $file = $request->file('npwp_file');
-            $filename = 'sewa_npwp_'.time().'_'.uniqid().'.'.$file->getClientOriginalExtension();
+            $ext = strtolower($file->guessExtension() ?: pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION));
+            if (! in_array($ext, $safeExtensions, true)) {
+                $ext = 'pdf';
+            }
+            $filename = 'sewa_npwp_'.time().'_'.Str::random(12).'.'.$ext;
             $file->move(public_path('uploads/layanan'), $filename);
             $npwpPath = '/uploads/layanan/'.$filename;
         }

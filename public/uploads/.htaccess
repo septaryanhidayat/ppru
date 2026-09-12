@@ -1,13 +1,13 @@
 # ==============================================================================
-# SECURITY HARDENING: DISABLE SCRIPT EXECUTION IN UPLOADS DIRECTORY
-# DPD PKS OGAN ILIR - PRODUCTION SECURITY LAYER
+# SMA IT ISHLAHUL UMMAH - UPLOADS DIRECTORY SECURITY LAYER
+# PREVENT ARBITRARY CODE EXECUTION IN USER-ACCESSIBLE UPLOADS
 # ==============================================================================
 
-# Disable directory browsing
+# 1. Disable directory browsing and CGI execution
 Options -Indexes -ExecCGI
 
-# Deny direct execution and access to script files
-<FilesMatch "(?i)\.(php|phtml|php[0-9]|phps|pht|cgi|pl|py|sh|bash|exe|bat|cmd|suspected|ico\.php|jpg\.php)$">
+# 2. Deny direct access and execution for all script and executable file types
+<FilesMatch "(?i)\.(php|phtml|php[0-9]|phps|pht|phar|cgi|pl|py|sh|bash|exe|bat|cmd|suspected|htaccess|htpasswd|env|ini|inc|config|sql)$">
     <IfModule mod_authz_core.c>
         Require all denied
     </IfModule>
@@ -17,7 +17,7 @@ Options -Indexes -ExecCGI
     </IfModule>
 </FilesMatch>
 
-# Disable PHP engine in this directory (Apache mod_php)
+# 3. Disable PHP engine execution inside uploads directory
 <IfModule mod_php.c>
     php_flag engine off
 </IfModule>
@@ -26,4 +26,9 @@ Options -Indexes -ExecCGI
 </IfModule>
 <IfModule mod_php8.c>
     php_flag engine off
+</IfModule>
+
+# 4. Enforce nosniff so browsers don't execute disguised files
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
 </IfModule>

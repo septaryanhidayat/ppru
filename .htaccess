@@ -1,72 +1,79 @@
-# ----------------------------------------------------------------------
-# CPANEL LITESPEED PHP 8.4 OVERRIDE (Bypass MultiPHP Manager Lock)
-# ----------------------------------------------------------------------
+# ==============================================================================
+# SMA IT ISHLAHUL UMMAH - ROOT .HTACCESS (CPANEL PRODUCTION DEPLOYMENT)
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# 1. CPANEL / LITESPEED PHP 8.4 & 8.3 HANDLER OVERRIDE
+# (Overrides server default PHP 8.1 when MultiPHP Manager is not accessible)
+# ------------------------------------------------------------------------------
 <IfModule mime_module>
-  AddHandler application/x-httpd-ea-php84___lsphp .php .php8 .phtml
-  AddHandler application/x-httpd-ea-php84 .php .php8 .phtml
-  AddHandler application/x-httpd-alt-php84___lsphp .php .php8 .phtml
+    # Priority 1: PHP 8.4 Handlers (EasyApache 4, CloudLinux alt-php, LiteSpeed)
+    AddHandler application/x-httpd-ea-php84___lsphp .php .php8 .phtml
+    AddHandler application/x-httpd-ea-php84 .php .php8 .phtml
+    AddHandler application/x-httpd-alt-php84___lsphp .php .php8 .phtml
+    AddHandler application/x-httpd-alt-php84 .php .php8 .phtml
+    AddHandler application/x-httpd-php84 .php .php8 .phtml
+
+    # Priority 2: Fallback to PHP 8.3 if host has not provisioned PHP 8.4
+    AddHandler application/x-httpd-ea-php83___lsphp .php .php8 .phtml
+    AddHandler application/x-httpd-ea-php83 .php .php8 .phtml
+    AddHandler application/x-httpd-alt-php83___lsphp .php .php8 .phtml
+    AddHandler application/x-httpd-alt-php83 .php .php8 .phtml
+    AddHandler application/x-httpd-php83 .php .php8 .phtml
 </IfModule>
 
 <IfModule LiteSpeed>
-  <FilesMatch "\.(php|phtml)$">
-    SetHandler application/x-httpd-ea-php84___lsphp
-  </FilesMatch>
+    <FilesMatch "\.(php|phtml)$">
+        SetHandler application/x-httpd-ea-php84___lsphp
+    </FilesMatch>
 </IfModule>
 
 # Disable directory indexing
-Options -Indexes
+Options -Indexes -MultiViews
 
+# ------------------------------------------------------------------------------
+# 2. SECURITY & REDIRECTION RULES
+# ------------------------------------------------------------------------------
 <IfModule mod_rewrite.c>
     RewriteEngine On
 
-    # 1. Prevent access to hidden files and directories (like .env, .git)
+    # A. Prevent direct access to hidden files (.env, .git, etc.)
     RewriteRule ^\.(.*)$ - [F,L]
     RewriteRule ^\.env.*$ - [F,L]
 
-    # 2. Block direct access to internal Laravel directories
-    RewriteRule ^(app|bootstrap|config|database|resources|routes|storage|tests|vendor|BACKUP|Desain)(\/.*)?$ - [F,L,NC]
+    # B. Block direct access to internal Laravel directories
+    RewriteRule ^(app|bootstrap|config|database|resources|routes|storage|tests|vendor|scratch)(\/.*)?$ - [F,L,NC]
 
-    # 3. Block sensitive files and scripts in root
-    RewriteRule ^(artisan|composer\.(json|lock)|package\.(json|lock)|phpunit\.xml|vite\.config\.js|boost\.json)$ - [F,L,NC]
-    RewriteRule \.(sql|sqlite|sqlite3|log|key|md|bak|swp|xml)$ - [F,L,NC]
+    # C. Block sensitive configuration files and source scripts in root
+    RewriteRule ^(artisan|composer\.(json|lock)|package\.(json|lock)|phpunit\.xml|vite\.config\.js|boost\.json|\.cpanel\.yml)$ - [F,L,NC]
+    RewriteRule \.(sql|sqlite|sqlite3|log|key|md|bak|swp|sh|yaml|yml)$ - [F,L,NC]
 
-    # 4. Dual Domain Support: Normalize www to bare domain per host
-    RewriteCond %{HTTP_HOST} ^www\.pksoganilir\.com$ [NC]
-    RewriteRule ^(.*)$ https://pksoganilir.com/$1 [L,R=301]
+    # D. Universal www to non-www redirection
+    RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+    RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
 
-    RewriteCond %{HTTP_HOST} ^www\.oganilir\.pks\.id$ [NC]
-    RewriteRule ^(.*)$ https://oganilir.pks.id/$1 [L,R=301]
-
-    RewriteCond %{HTTP_HOST} ^www\.ogan\.ilir\.pks\.id$ [NC]
-    RewriteRule ^(.*)$ https://ogan.ilir.pks.id/$1 [L,R=301]
-
-    # 4b. Legacy WordPress uploads redirect to clean Laravel /uploads/ (HTTP 301)
-    RewriteRule ^wp-content/uploads/(.*)$ /uploads/$1 [R=301,L,NC]
-
-    # 4c. Block legacy WordPress paths from scanner bots
-    RewriteRule ^wp-content/(themes|plugins|cache|languages)(/.*)?$ - [F,L,NC]
-    RewriteRule ^wp-includes(/.*)?$ - [F,L,NC]
-    RewriteRule ^wp-admin(/.*)?$ - [F,L,NC]
-    RewriteRule ^wp-login\.php$ - [F,L,NC]
-
-    # 5. Enforce HTTPS (preserves whichever domain the user requested)
+    # E. Enforce HTTPS across all pages
     RewriteCond %{HTTPS} off
     RewriteCond %{HTTP:X-Forwarded-Proto} !https
     RewriteCond %{HTTP_HOST} !^(localhost|127\.0\.0\.1)(:\d+)?$ [NC]
     RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-    # 6. Redirect all legitimate requests to public folder
+    # F. Redirect all incoming web traffic into the Laravel public folder
     RewriteCond %{REQUEST_URI} !^/public/
     RewriteRule ^(.*)$ /public/$1 [L,QSA]
 </IfModule>
 
-# ----------------------------------------------------------------------
-# CORS & STATIC ASSET HEADERS
-# ----------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+# 3. HTTP DEFENSE-IN-DEPTH SECURITY HEADERS
+# ------------------------------------------------------------------------------
 <IfModule mod_headers.c>
-    <FilesMatch "\.(ttf|ttc|otf|eot|woff|woff2|font\.css|css|js|webp|png|jpg|jpeg|svg|ico)$">
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always unset X-Powered-By
+
+    <FilesMatch "\.(ttf|ttc|otf|eot|woff|woff2|css|js|webp|png|jpg|jpeg|svg|ico)$">
         Header set Access-Control-Allow-Origin "*"
     </FilesMatch>
 </IfModule>
-
-

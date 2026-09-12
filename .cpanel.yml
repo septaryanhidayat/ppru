@@ -1,7 +1,12 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/berandad/pksoganilir.com/public/
-    - /bin/cp -a public/. $DEPLOYPATH
-
-
+    # ------------------------------------------------------------------------
+    # cPanel Automatic Deployment Configuration
+    # Sesuaikan DEPLOYPATH dengan direktori tujuan di cPanel Anda
+    # Default domain utama biasanya: /home/$USER/public_html/
+    # ------------------------------------------------------------------------
+    - export DEPLOYPATH=${DEPLOYPATH:-/home/$USER/public_html/}
+    - /bin/cp -R * $DEPLOYPATH
+    - /bin/cp -f .htaccess $DEPLOYPATH
+    - /bin/chmod -R 755 $DEPLOYPATH/storage $DEPLOYPATH/bootstrap/cache
