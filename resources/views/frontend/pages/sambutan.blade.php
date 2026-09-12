@@ -26,7 +26,7 @@
         {{-- PROFIL PIMPINAN HEADER --}}
         <div class="flex flex-col md:flex-row items-center gap-8 mb-8 pb-8 border-b border-gray-100">
             <div class="w-48 h-56 sm:w-52 sm:h-60 rounded-2xl overflow-hidden shadow-lg border-4 border-white ring-4 ring-green-100 flex-shrink-0 bg-green-50">
-                <img src="/uploads/kepsek-agi-gustiawan.jpg" alt="Agi Gustiawan, S. Pd - Kepala Sekolah SMA IT Ishlahul Ummah Prabumulih" class="w-full h-full object-cover object-top" onerror="this.src='/uploads/logo-ishum-square.png'">
+                <img src="/uploads/kepsek-agi-gustiawan.webp" alt="Agi Gustiawan, S. Pd - Kepala Sekolah SMA IT Ishlahul Ummah Prabumulih" class="w-full h-full object-cover object-top" onerror="this.src='/uploads/logo-ishum-square.png'">
             </div>
             <div class="space-y-2 text-center md:text-left">
                 <span class="inline-block bg-green-100 text-[#00913e] text-xs font-bold px-3.5 py-1.5 rounded-full uppercase tracking-wider">

@@ -43,7 +43,7 @@
                 <div class="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left space-y-3 sm:space-y-0 sm:space-x-3 pt-4 border-t border-gray-50">
                     <div class="w-12 h-12 rounded-full bg-emerald-100 text-[#00913e] font-bold flex items-center justify-center flex-shrink-0 overflow-hidden text-base shadow-sm mx-auto sm:mx-0">
                         @if($testi->photo)
-                            <img src="{{ $testi->photo }}" alt="{{ $testi->name }}" class="w-full h-full object-cover" onerror="this.src='/uploads/campus-ishum.jpg'">
+                            <img src="{{ $testi->photo }}" alt="{{ $testi->name }}" class="w-full h-full object-cover" onerror="this.src='/uploads/campus-ishum.webp'">
                         @else
                             {{ substr($testi->name, 0, 1) }}
                         @endif

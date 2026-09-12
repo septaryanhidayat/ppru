@@ -17,6 +17,7 @@ use App\Models\Testimonial;
 use App\Models\Video;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class SchoolDataSeeder extends Seeder
 {
@@ -301,15 +302,7 @@ class SchoolDataSeeder extends Seeder
                 'file_size' => '6.6 KB',
                 'download_count' => 450,
             ],
-            [
-                'title' => 'Mars Jaringan Sekolah Islam Terpadu (JSIT) Indonesia',
-                'description' => 'Lagu Mars Resmi JSIT Indonesia Pengobar Semangat Pendidik dan Santri Terpadu.',
-                'category_type' => 'Audio',
-                'file_path' => '/uploads/mars-ishum.mp3',
-                'file_type' => 'MP3',
-                'file_size' => '3.5 MB',
-                'download_count' => 420,
-            ],
+
             [
                 'title' => 'Logo Resmi SMA IT Ishlahul Ummah Prabumulih (High Resolution)',
                 'description' => 'File logo resmi SMA IT Ishlahul Ummah Prabumulih format PNG transparan.',
@@ -520,6 +513,39 @@ HTML,
                     'meta_title' => $p['title'],
                     'meta_description' => $p['excerpt'],
                 ])
+            );
+        }
+
+        // Galeri Foto Dokumentasi Sekolah Ishum
+        $galleryItems = [
+            ['url' => '/uploads/ishum/fasilitas_3427_IMG-20240528-WA0106-scaled.webp', 'title' => 'Gedung Kampus SMA IT Ishlahul Ummah Prabumulih'],
+            ['url' => '/uploads/ishum/post_3442_IMG-20241020-WA0006-scaled.webp', 'title' => 'Aktivitas Belajar & Karakter Santri Terpadu'],
+            ['url' => '/uploads/ishum/fasilitas_1274_Ruang-Lab-Komputer1.webp', 'title' => 'Laboratorium Komputer & Digital Santri'],
+            ['url' => '/uploads/ishum/post_3460_IMG-20241020-WA0007-scaled.webp', 'title' => 'Pembinaan Disiplin & Kesiswaan Santri Ishum'],
+            ['url' => '/uploads/ishum/fasilitas_1278_HALL-SIT-Ishlahul-Ummah_.webp', 'title' => 'Aula Pertemuan & Munaqosah Qur\'an SIT'],
+            ['url' => '/uploads/ishum/post_3464_IMG-20241020-WA0005-scaled.webp', 'title' => 'Halaqah Tahfidz & Tartil Qur\'an Santri'],
+            ['url' => '/uploads/ishum/fasilitas_1275_R.-Lab-IPA.webp', 'title' => 'Laboratorium IPA & Eksperimen Sains Terpadu'],
+            ['url' => '/uploads/ishum/post_3467_IMG-20241020-WA0004-scaled.webp', 'title' => 'Ibadah Yaumiyah & Pembiasaan Akhlakul Karimah'],
+            ['url' => '/uploads/ishum/fasilitas_1377_IMG-20240528-WA0094-scaled.webp', 'title' => 'Gerbang Utama Kampus SMA IT Ishlahul Ummah'],
+            ['url' => '/uploads/ishum/post_3472_IMG-20241020-WA0003-scaled.webp', 'title' => 'Muhadharah & Pembinaan Da\'i Muda Santri'],
+            ['url' => '/uploads/ishum/fasilitas_2059_IMG-20221101-WA0010.webp', 'title' => 'Sarana Olahraga & Mushola Kampus Ishum'],
+            ['url' => '/uploads/ishum/post_3478_IMG-20241020-WA0008-scaled.webp', 'title' => 'Ukhuwah Islamiyah & Kebersamaan Santri'],
+            ['url' => '/uploads/ishum/prestasi_3513_IMG-20240928-WA0038.webp', 'title' => 'Apresiasi & Penganugerahan Prestasi Santri'],
+            ['url' => '/uploads/ishum/fasilitas_3431_IMG-20241014-WA0013-scaled.webp', 'title' => 'Ruang UKS & Pelayanan Kesehatan Sekolah'],
+        ];
+
+        foreach ($galleryItems as $idx => $g) {
+            Post::firstOrCreate(
+                ['featured_image' => $g['url']],
+                [
+                    'title' => $g['title'],
+                    'slug' => Str::slug($g['title']).'-'.($idx + 1),
+                    'type' => 'gallery',
+                    'status' => 'publish',
+                    'content' => $g['title'],
+                    'author_id' => 1,
+                    'published_at' => now()->subMinutes(14 - $idx),
+                ]
             );
         }
     }

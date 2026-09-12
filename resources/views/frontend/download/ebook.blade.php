@@ -38,7 +38,7 @@
             <div class="bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-2xl border border-gray-100 transition transform hover:-translate-y-1.5 flex flex-col justify-between reveal-fade-up delay-{{ $idx % 3 }}">
                 <div class="p-6 sm:p-8 space-y-5">
                     {{-- COVER IMAGE --}}
-                    <div class="h-64 rounded-2xl overflow-hidden shadow-md bg-gray-100 flex items-center justify-center relative group border border-gray-100">
+                    <div class="aspect-[3/4] w-full max-h-80 rounded-2xl overflow-hidden shadow-md bg-slate-100 flex items-center justify-center relative group border border-gray-100">
                         <img src="{{ $eb->cover_image ?: '/uploads/covers/cover-tahfidz-mutqin.webp' }}" 
                              alt="{{ $eb->title }}" 
                              class="h-full w-full object-cover object-center group-hover:scale-105 transition duration-500"

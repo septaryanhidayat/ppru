@@ -25,7 +25,7 @@
             <div class="flex items-center space-x-4 pb-6 border-b border-gray-100">
                 <div class="w-16 h-16 rounded-2xl bg-emerald-100 text-[#00913e] flex items-center justify-center text-3xl flex-shrink-0 overflow-hidden border border-emerald-200">
                     @if(!empty($bidang->icon) && (str_starts_with($bidang->icon, 'http') || str_starts_with($bidang->icon, '/')))
-                        <img src="{{ $bidang->icon }}" alt="{{ $bidang->name }}" class="w-full h-full object-contain p-2" onerror="this.src='/uploads/campus-ishum.jpg'">
+                        <img src="{{ $bidang->icon }}" alt="{{ $bidang->name }}" class="w-full h-full object-contain p-2" onerror="this.src='/uploads/campus-ishum.webp'">
                     @else
                         <i class="{{ $bidang->icon ?: 'fa-solid fa-school' }}"></i>
                     @endif

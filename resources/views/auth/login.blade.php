@@ -18,7 +18,7 @@
         <div class="text-center mb-8">
             <a href="{{ route('home') }}" class="inline-block group">
                 <div class="w-24 h-24 mx-auto p-2 bg-white rounded-2xl border border-emerald-100 flex items-center justify-center shadow-md group-hover:scale-105 transition duration-300">
-                    <img src="/uploads/logo-ishum.svg" alt="Logo SMA IT Ishlahul Ummah Prabumulih" class="max-h-full max-w-full object-contain">
+                    <img src="/uploads/logo-ishum.png" alt="Logo SMA IT Ishlahul Ummah Prabumulih" class="max-h-full max-w-full object-contain">
                 </div>
             </a>
             <h1 class="text-2xl font-extrabold text-gray-900 mt-4 tracking-tight">Panel Administrator</h1>

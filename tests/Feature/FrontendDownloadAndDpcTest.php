@@ -1,7 +1,6 @@
 <?php
 
 use App\Models\Download;
-use App\Models\Dpc;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 uses(RefreshDatabase::class);
@@ -33,15 +32,24 @@ test('download ebook returns real file attachment', function () {
     expect($response->headers->get('content-disposition'))->toContain('attachment');
 });
 
-test('download audio returns mp3 attachment', function () {
-    $this->seed();
-    $audio = Download::where('file_path', 'like', '%.mp3')->first();
-    expect($audio)->not->toBeNull();
+test('download audio returns mp3 attachment when file exists', function () {
+    $tempPath = public_path('uploads/test-audio.mp3');
+    @file_put_contents($tempPath, 'fake-mp3-binary-content');
+
+    $audio = Download::create([
+        'title' => 'Sample Audio',
+        'category_type' => 'Audio',
+        'file_path' => '/uploads/test-audio.mp3',
+        'file_type' => 'MP3',
+        'file_size' => '1.0 MB',
+    ]);
 
     $response = $this->get(route('download.file', $audio->id));
     $response->assertStatus(200);
     $response->assertHeader('content-type', 'audio/mpeg');
     expect($response->headers->get('content-disposition'))->toContain('attachment');
+
+    @unlink($tempPath);
 });
 
 test('download logo and filename fallbacks return attachment', function () {

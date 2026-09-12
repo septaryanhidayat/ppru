@@ -41,56 +41,56 @@
                     'role' => 'Kepala Sekolah',
                     'title' => 'Penanggung Jawab Utama',
                     'desc' => 'Memimpin seluruh tata kelola pendidikan terpadu, penjaminan mutu kurikulum, dan sinergi kemitraan yayasan serta masyarakat.',
-                    'photo' => '/uploads/kepsek-agi-gustiawan.jpg',
+                    'photo' => '/uploads/kepsek-agi-gustiawan.webp',
                     'badge_bg' => 'bg-emerald-100 text-[#00913e]'
                 ],
                 [
                     'name' => 'Ustadz H. Salman Al-Farisi, Lc., M.Ag',
                     'role' => 'Waka Bidang Keislaman & Tahfidz',
                     'desc' => 'Program Diniyah',
-                    'photo' => '/uploads/tahfidz-ishum.jpg',
+                    'photo' => '/uploads/tahfidz-ishum.webp',
                     'badge_bg' => 'bg-amber-100 text-amber-800'
                 ],
                 [
                     'name' => 'Dra. Hj. Nurul Hidayah, M.Pd',
                     'role' => 'Waka Bidang Kurikulum & Akademik',
                     'desc' => 'Kurikulum Merdeka',
-                    'photo' => '/uploads/lab-ishum.jpg',
+                    'photo' => '/uploads/lab-ishum.webp',
                     'badge_bg' => 'bg-orange-100 text-orange-700'
                 ],
                 [
                     'name' => 'Muhammad Ridwan, S.Pd., Gr',
                     'role' => 'Waka Bidang Kesiswaan & Kedisiplinan',
                     'desc' => 'Bina Karakter Siswa',
-                    'photo' => '/uploads/campus-ishum.jpg',
+                    'photo' => '/uploads/campus-ishum.webp',
                     'badge_bg' => 'bg-blue-100 text-blue-800'
                 ],
                 [
                     'name' => 'Ir. Hendra Kusuma, S.T',
                     'role' => 'Waka Bidang Sarana, Prasarana & Lab',
                     'desc' => 'Fasilitas & IT',
-                    'photo' => '/uploads/lab-ishum.jpg',
+                    'photo' => '/uploads/lab-ishum.webp',
                     'badge_bg' => 'bg-purple-100 text-purple-800'
                 ],
                 [
                     'name' => 'Siti Khadijah, S.E',
                     'role' => 'Kepala Tata Usaha & Keuangan',
                     'desc' => 'Administrasi & Layanan',
-                    'photo' => '/uploads/campus-ishum.jpg',
+                    'photo' => '/uploads/campus-ishum.webp',
                     'badge_bg' => 'bg-rose-100 text-rose-800'
                 ],
                 [
                     'name' => 'Ustadz Abdullah Faqih, S.Sos.I',
                     'role' => 'Direktur Asrama / Mudir Boarding',
                     'desc' => 'Islamic Boarding',
-                    'photo' => '/uploads/tahfidz-ishum.jpg',
+                    'photo' => '/uploads/tahfidz-ishum.webp',
                     'badge_bg' => 'bg-teal-100 text-teal-800'
                 ],
                 [
                     'name' => 'Fathur Rahman, S.Kom',
                     'role' => 'Koordinator IT & Laboratorium Multimedia',
                     'desc' => 'Riset & Sistem Informasi',
-                    'photo' => '/uploads/lab-ishum.jpg',
+                    'photo' => '/uploads/lab-ishum.webp',
                     'badge_bg' => 'bg-cyan-100 text-cyan-800'
                 ],
             ];
@@ -101,7 +101,7 @@
                 <div class="bg-gray-50/80 rounded-2xl p-6 border border-gray-200/80 hover:border-emerald-300 hover:shadow-lg transition transform hover:-translate-y-1 text-center flex flex-col justify-between space-y-4 group">
                     <div class="space-y-3">
                         <div class="w-24 h-24 sm:w-28 sm:h-28 mx-auto rounded-full overflow-hidden border-4 border-white shadow-md bg-white">
-                            <img src="{{ $leader['photo'] }}" alt="{{ $leader['name'] }}" class="w-full h-full object-cover group-hover:scale-105 transition" onerror="this.src='/uploads/kepsek-agi-gustiawan.jpg'">
+                            <img src="{{ $leader['photo'] }}" alt="{{ $leader['name'] }}" class="w-full h-full object-cover group-hover:scale-105 transition" onerror="this.src='/uploads/kepsek-agi-gustiawan.webp'">
                         </div>
                         <div>
                             <span class="inline-block {{ $leader['badge_bg'] }} text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider mb-1.5">

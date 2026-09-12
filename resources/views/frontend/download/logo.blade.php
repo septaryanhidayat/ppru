@@ -156,14 +156,14 @@
             <div class="p-6 rounded-2xl bg-gray-50/80 border border-gray-200 flex flex-col justify-between gap-4">
                 <div class="flex items-center space-x-4">
                     <div class="w-20 h-14 rounded-xl bg-white p-2 border border-gray-200 flex items-center justify-center flex-shrink-0 shadow-sm">
-                        <img src="/uploads/logo-ishum.svg" alt="Logo Horizontal" class="max-h-full max-w-full object-contain">
+                        <img src="/uploads/logo-ishum.png" alt="Logo Horizontal" class="max-h-full max-w-full object-contain">
                     </div>
                     <div>
                         <h4 class="font-bold text-xs sm:text-sm text-gray-900">Logo Horizontal (Header & Surat)</h4>
                         <span class="text-[11px] text-gray-400">Vektor SVG Transparan</span>
                     </div>
                 </div>
-                <a href="/uploads/logo-ishum.svg" download="logo-ishum-horizontal.svg" class="w-full text-center bg-[#00913e] hover:bg-emerald-800 text-white px-4 py-2.5 rounded-xl text-xs font-bold transition flex items-center justify-center space-x-1.5 shadow">
+                <a href="/uploads/logo-ishum.png" download="logo-ishum-horizontal.svg" class="w-full text-center bg-[#00913e] hover:bg-emerald-800 text-white px-4 py-2.5 rounded-xl text-xs font-bold transition flex items-center justify-center space-x-1.5 shadow">
                     <i class="fa-solid fa-download text-[11px]"></i>
                     <span>Unduh Logo Horizontal</span>
                 </a>

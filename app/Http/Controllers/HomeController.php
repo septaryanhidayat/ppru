@@ -7,6 +7,7 @@ use App\Models\AnggotaDewan;
 use App\Models\Download;
 use App\Models\Pengumuman;
 use App\Models\Post;
+use App\Models\Setting;
 use App\Models\Testimonial;
 use App\Models\Video;
 
@@ -19,21 +20,21 @@ class HomeController extends Controller
             [
                 'title' => 'Selamat Datang di Website Resmi',
                 'subtitle' => 'SMA Islam Terpadu Ishlahul Ummah Prabumulih',
-                'image' => '/uploads/ishum/fasilitas_3427_IMG-20240528-WA0106-scaled.jpg',
+                'image' => '/uploads/ishum/fasilitas_3427_IMG-20240528-WA0106-scaled.webp',
                 'btn_text' => 'Sambutan Kepala Sekolah',
                 'btn_link' => route('page.sambutan', [], false),
             ],
             [
                 'title' => 'Tanggap, Tangkas dan Tangguh Menuju Indonesia Emas',
                 'subtitle' => 'Sekolah Islam Terpadu Pertama di Prabumulih Tergabung dalam JSIT dengan Kurikulum Terpadu & Tahfidzul Qur\'an.',
-                'image' => '/uploads/ishum/fasilitas_1278_HALL-SIT-Ishlahul-Ummah_.jpg',
+                'image' => '/uploads/ishum/fasilitas_1278_HALL-SIT-Ishlahul-Ummah_.webp',
                 'btn_text' => 'Profil Singkat Sekolah',
                 'btn_link' => route('page.tentang-kami', [], false),
             ],
             [
                 'title' => 'Penerimaan Peserta Didik Baru (PPDB)',
                 'subtitle' => 'Mari Bergabung dengan Keluarga Besar SMA IT Ishlahul Ummah Prabumulih.',
-                'image' => '/uploads/ishum/fasilitas_1377_IMG-20240528-WA0094-scaled.jpg',
+                'image' => '/uploads/ishum/fasilitas_1377_IMG-20240528-WA0094-scaled.webp',
                 'btn_text' => 'Daftar PPDB Online',
                 'btn_link' => route('ppdb.index', [], false),
             ],
@@ -161,11 +162,8 @@ class HomeController extends Controller
 
         if (! empty($dbGallery)) {
             $half = (int) ceil(count($dbGallery) / 2);
-            $dbRow1 = array_slice($dbGallery, 0, $half);
-            $dbRow2 = array_slice($dbGallery, $half);
-
-            $galleryRow1 = array_merge($dbRow1, $fallbackRow1);
-            $galleryRow2 = array_merge($dbRow2, $fallbackRow2);
+            $galleryRow1 = array_slice($dbGallery, 0, $half);
+            $galleryRow2 = array_slice($dbGallery, $half);
         } else {
             $galleryRow1 = $fallbackRow1;
             $galleryRow2 = $fallbackRow2;
@@ -196,6 +194,17 @@ class HomeController extends Controller
         // 14. Visitor counter hits
         $visitorHits = view()->shared('visitorHits') ?? '53.512';
 
+        // 15. Popup Banner Settings
+        $popupSettings = [
+            'active' => Setting::get('popup_active', '1'),
+            'image' => Setting::get('popup_image', '/uploads/popup/popup-ppdb.webp'),
+            'title' => Setting::get('popup_title', 'Penerimaan Peserta Didik Baru (PPDB) TP 2025/2026'),
+            'subtitle' => Setting::get('popup_subtitle', 'Potongan Biaya Masuk s.d 50% - Kuota Terbatas!'),
+            'link' => Setting::get('popup_link', '/ppdb'),
+            'target' => Setting::get('popup_target', '_self'),
+            'button_text' => Setting::get('popup_button_text', 'Daftar PPDB Sekarang'),
+        ];
+
         return view('frontend.home', compact(
             'heroSlides',
             'sambutan',
@@ -214,7 +223,8 @@ class HomeController extends Controller
             'galleryRow2',
             'ebooks',
             'testimonials',
-            'visitorHits'
+            'visitorHits',
+            'popupSettings'
         ));
     }
 }

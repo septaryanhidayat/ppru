@@ -105,17 +105,20 @@
             <div class="border-t border-neutral-800"></div>
         </div>
 
-        {{-- 4. BOTTOM COPYRIGHT & LINKS --}}
-        <div class="flex flex-col sm:flex-row justify-between items-center text-xs sm:text-[13px] text-gray-400 gap-4 text-center sm:text-left">
+        {{-- 4. BOTTOM COPYRIGHT & WATERMARK --}}
+        <div class="flex flex-col sm:flex-row justify-between items-center text-xs text-gray-400 gap-3 text-center sm:text-left">
             <div>
                 Copyright &copy; {{ date('Y') }} SMA Islam Terpadu Ishlahul Ummah Prabumulih. All Rights Reserved.
             </div>
 
-            {{-- Privacy Policy, PPDB, & Kontak --}}
-            <div class="flex items-center justify-center sm:justify-end space-x-6 text-xs sm:text-[13px] text-gray-300 font-normal flex-shrink-0">
-                <a href="{{ route('ppdb.index') }}" class="text-[#da251c] font-semibold hover:underline transition py-2 inline-block">Info PPDB</a>
-                <a href="{{ route('page.privacy-policy') }}" class="text-gray-300 hover:text-[#da251c] transition py-2 inline-block">Kebijakan Privasi</a>
-                <a href="{{ route('hubungi') }}" class="text-gray-300 hover:text-[#da251c] transition py-2 inline-block">Kontak</a>
+            <div class="flex flex-wrap items-center justify-center sm:justify-end gap-x-4 gap-y-1 text-[11px] text-gray-400">
+                <a href="{{ route('page.privacy-policy') }}" class="hover:text-white transition">Kebijakan Privasi</a>
+                <span>&bull;</span>
+                <a href="{{ route('hubungi') }}" class="hover:text-white transition">Kontak</a>
+                <span>&bull;</span>
+                <a href="https://berandadigital.net" target="_blank" rel="noopener" class="text-gray-500 hover:text-gray-300 transition text-[11px]">
+                    Beranda Teknologi Digital
+                </a>
             </div>
         </div>
 

@@ -239,7 +239,7 @@
             <div class="lg:col-span-6 reveal-fade-up delay-1">
                 <div class="max-w-sm sm:max-w-md mx-auto">
                     <div class="rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl border border-gray-100 bg-gradient-to-b from-green-50 to-emerald-100 aspect-[4/3] max-h-[340px]">
-                        <img src="/uploads/kepsek-agi-gustiawan.jpg" alt="Agi Gustiawan, S. Pd - Kepala SMA IT Ishlahul Ummah Prabumulih" class="w-full h-full object-cover object-center transform hover:scale-105 transition duration-500">
+                        <img src="/uploads/kepsek-agi-gustiawan.webp" alt="Agi Gustiawan, S. Pd - Kepala SMA IT Ishlahul Ummah Prabumulih" class="w-full h-full object-cover object-center transform hover:scale-105 transition duration-500">
                     </div>
                     <p class="font-extrabold text-gray-900 text-lg sm:text-xl text-center mt-3 tracking-tight">
                         Agi Gustiawan, S. Pd
@@ -308,7 +308,7 @@
             <div class="lg:col-span-7 reveal-fade-up delay-1">
                 <article class="bg-white rounded-2xl shadow-md overflow-hidden border border-gray-100 h-full flex flex-col group">
                     <div class="relative h-60 sm:h-80 overflow-hidden bg-gray-100">
-                        <img src="{{ $featuredPost->featured_image_url }}" alt="{{ $featuredPost->title }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='/uploads/campus-ishum.jpg'">
+                        <img src="{{ $featuredPost->featured_image_url }}" alt="{{ $featuredPost->title }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='/uploads/campus-ishum.webp'">
                         @if($featuredPost->categories->isNotEmpty())
                         <span class="absolute top-3 left-3 bg-[#00913e] text-white text-[11px] font-bold px-3 py-1 rounded-full shadow">
                             {{ $featuredPost->categories->first()->name }}
@@ -346,7 +346,7 @@
                 @foreach($sidePosts as $index => $sp)
                 <article class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 hover:shadow-md transition flex items-center space-x-4 group reveal-fade-up delay-{{ $index + 2 }}">
                     <div class="w-24 h-24 sm:w-28 sm:h-24 rounded-xl overflow-hidden bg-gray-100 flex-shrink-0">
-                        <img src="{{ $sp->featured_image_url }}" alt="{{ $sp->title }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" onerror="this.src='/uploads/lab-ishum.jpg'">
+                        <img src="{{ $sp->featured_image_url }}" alt="{{ $sp->title }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" onerror="this.src='/uploads/lab-ishum.webp'">
                     </div>
                     <div class="flex-1 min-w-0 space-y-1">
                         <div class="text-[11px] text-gray-500 flex items-center space-x-2">
@@ -391,7 +391,7 @@
             <article class="flex flex-col group reveal-fade-up delay-{{ ($index % 4) + 1 }}">
                 <div class="aspect-[16/10] overflow-hidden rounded-2xl bg-gray-100 shadow-sm relative">
                     <a href="{{ route('artikel.show', $post->slug) }}" class="block w-full h-full" aria-label="Baca berita: {{ $post->title }}">
-                        <img src="{{ $post->featured_image_url }}" alt="{{ $post->title }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" onerror="this.src='/uploads/lab-ishum.jpg'">
+                        <img src="{{ $post->featured_image_url }}" alt="{{ $post->title }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" onerror="this.src='/uploads/lab-ishum.webp'">
                     </a>
                     <span class="absolute bottom-2.5 left-2.5 bg-black/70 backdrop-blur-xs text-white text-[10px] font-bold px-2.5 py-0.5 rounded-md">
                         <i class="fa-solid fa-trophy text-amber-400 mr-1"></i> Prestasi
@@ -441,7 +441,7 @@
                         @foreach($nasionalPosts as $post)
                         <div class="flex items-start space-x-3 group">
                             <div class="w-16 h-16 rounded-lg overflow-hidden bg-gray-100 flex-shrink-0 mt-0.5">
-                                <img src="{{ $post->featured_image_url }}" alt="{{ $post->title }}" class="w-full h-full object-cover group-hover:scale-105 transition" onerror="this.src='/uploads/lab-ishum.jpg'">
+                                <img src="{{ $post->featured_image_url }}" alt="{{ $post->title }}" class="w-full h-full object-cover group-hover:scale-105 transition" onerror="this.src='/uploads/lab-ishum.webp'">
                             </div>
                             <div class="flex-1 min-w-0">
                                 <h4 class="text-xs sm:text-sm font-bold text-gray-900 group-hover:text-[#00913e] transition line-clamp-2 leading-snug">
@@ -478,7 +478,7 @@
                         @foreach($daerahPosts as $post)
                         <div class="flex items-start space-x-3 group">
                             <div class="w-16 h-16 rounded-lg overflow-hidden bg-gray-100 flex-shrink-0 mt-0.5">
-                                <img src="{{ $post->featured_image_url }}" alt="{{ $post->title }}" class="w-full h-full object-cover group-hover:scale-105 transition" onerror="this.src='/uploads/tahfidz-ishum.jpg'">
+                                <img src="{{ $post->featured_image_url }}" alt="{{ $post->title }}" class="w-full h-full object-cover group-hover:scale-105 transition" onerror="this.src='/uploads/tahfidz-ishum.webp'">
                             </div>
                             <div class="flex-1 min-w-0">
                                 <h4 class="text-xs sm:text-sm font-bold text-gray-900 group-hover:text-[#da251c] transition line-clamp-2 leading-snug">
@@ -526,7 +526,7 @@
             <article class="flex flex-col group reveal-fade-up delay-{{ ($index % 4) + 1 }}">
                 <div class="aspect-[16/10] overflow-hidden rounded-2xl bg-gray-100 shadow-sm relative">
                     <a href="{{ route('artikel.show', $post->slug) }}" class="block w-full h-full" aria-label="Baca program: {{ $post->title }}">
-                        <img src="{{ $post->featured_image_url }}" alt="{{ $post->title }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" onerror="this.src='/uploads/tahfidz-ishum.jpg'">
+                        <img src="{{ $post->featured_image_url }}" alt="{{ $post->title }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" onerror="this.src='/uploads/tahfidz-ishum.webp'">
                     </a>
                 </div>
                 <div class="pt-3 flex-1 flex flex-col justify-between">
@@ -572,7 +572,7 @@
             @foreach($dewan as $index => $d)
             <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 text-center group hover:shadow-lg transition transform hover:-translate-y-1 reveal-fade-up delay-{{ $index + 1 }}">
                 <div class="h-64 rounded-xl overflow-hidden mb-3 bg-gray-100">
-                    <img src="{{ $d->photo_url }}" alt="Foto {{ $d->name }} - {{ $d->position }}" class="w-full h-full object-cover object-top group-hover:scale-105 transition duration-300" onerror="this.src='/uploads/kepsek-agi-gustiawan.jpg'">
+                    <img src="{{ $d->photo_url }}" alt="Foto {{ $d->name }} - {{ $d->position }}" class="w-full h-full object-cover object-top group-hover:scale-105 transition duration-300" onerror="this.src='/uploads/kepsek-agi-gustiawan.webp'">
                 </div>
                 <h3 class="font-extrabold text-sm text-gray-900 group-hover:text-[#00913e] transition">
                     {{ $d->name }}
@@ -589,7 +589,7 @@
             @foreach($dewan as $index => $d)
             <div class="bg-white rounded-xl p-2.5 shadow-sm border border-gray-100 text-center reveal-fade-up delay-{{ $index + 1 }}">
                 <div class="h-44 rounded-lg overflow-hidden mb-2 bg-gray-100">
-                    <img src="{{ $d->photo_url }}" alt="Foto {{ $d->name }} - {{ $d->position }}" class="w-full h-full object-cover object-top" onerror="this.src='/uploads/kepsek-agi-gustiawan.jpg'">
+                    <img src="{{ $d->photo_url }}" alt="Foto {{ $d->name }} - {{ $d->position }}" class="w-full h-full object-cover object-top" onerror="this.src='/uploads/kepsek-agi-gustiawan.webp'">
                 </div>
                 <h3 class="font-extrabold text-xs text-gray-900 leading-tight">
                     {{ $d->name }}
@@ -959,7 +959,7 @@
                         <template x-for="(eb, idx) in items" :key="idx">
                             <div class="flex-shrink-0 px-2.5 sm:px-3" :style="'width: ' + (100 / perView) + '%'">
                                 <a href="{{ route('download.ebook') }}" class="group block relative rounded-2xl overflow-hidden shadow-2xl bg-neutral-900 border border-neutral-800 transform hover:scale-104 transition duration-300 cursor-pointer h-72 sm:h-80 lg:h-96 w-full" :aria-label="'Unduh modul: ' + eb.title">
-                                    <img :src="eb.cover" :alt="eb.title" class="w-full h-full object-cover object-center group-hover:scale-106 transition duration-500" onerror="this.src='/uploads/campus-ishum.jpg'">
+                                    <img :src="eb.cover" :alt="eb.title" class="w-full h-full object-cover object-center group-hover:scale-106 transition duration-500" onerror="this.src='/uploads/campus-ishum.webp'">
                                     <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end justify-center p-3 text-center" aria-hidden="true">
                                         <span class="text-xs font-bold text-white truncate max-w-full" x-text="eb.title"></span>
                                     </div>
@@ -1081,5 +1081,84 @@
         </div>
     </div>
 </section>
+
+@if(($popupSettings['active'] ?? '0') === '1' && !empty($popupSettings['image']))
+{{-- ========================================================
+     HOMEPAGE PROMO POPUP BANNER MODAL
+     ======================================================== --}}
+<div id="ishumHomePopupModal" class="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/80 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300">
+    <div id="ishumHomePopupCard" class="relative bg-white rounded-3xl shadow-2xl overflow-hidden max-w-sm sm:max-w-md w-full transform scale-95 transition-transform duration-300 border border-white/20">
+        {{-- Close Button --}}
+        <button id="closeIshumHomePopupBtn" type="button" aria-label="Tutup Banner Promosi" class="absolute top-3 right-3 z-10 w-9 h-9 bg-black/60 hover:bg-black text-white rounded-full flex items-center justify-center backdrop-blur-md transition shadow-lg cursor-pointer">
+            <i class="fa-solid fa-xmark text-base"></i>
+        </button>
+
+        {{-- Banner Image Clickable --}}
+        <a href="{{ $popupSettings['link'] ?? '/ppdb' }}" target="{{ $popupSettings['target'] ?? '_self' }}" class="block overflow-hidden group">
+            <img src="{{ asset($popupSettings['image']) }}" alt="{{ $popupSettings['title'] ?? 'PPDB SMA IT Ishlahul Ummah' }}" class="w-full h-auto max-h-[70vh] object-contain sm:object-cover group-hover:scale-102 transition duration-500">
+        </a>
+
+        {{-- Action Bar --}}
+        <div class="p-3.5 sm:p-4 bg-gradient-to-r from-emerald-900 to-[#00913e] text-white flex items-center justify-between gap-3">
+            <div class="min-w-0">
+                <p class="text-[11px] text-amber-300 font-bold uppercase tracking-wider truncate">
+                    {{ $popupSettings['title'] ?? 'Pendaftaran Santri Baru (PPDB)' }}
+                </p>
+                <p class="text-xs text-white/90 font-medium truncate">
+                    {{ $popupSettings['subtitle'] ?? 'Kuota Terbatas! Dapatkan Potongan Biaya Masuk' }}
+                </p>
+            </div>
+            <a href="{{ $popupSettings['link'] ?? '/ppdb' }}" target="{{ $popupSettings['target'] ?? '_self' }}" class="shrink-0 bg-[#da251c] hover:bg-red-700 text-white font-bold text-xs px-4 py-2.5 rounded-xl shadow-md transition flex items-center space-x-1.5">
+                <span>{{ $popupSettings['button_text'] ?? 'Daftar' }}</span>
+                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+            </a>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const modal = document.getElementById('ishumHomePopupModal');
+        const card = document.getElementById('ishumHomePopupCard');
+        const closeBtn = document.getElementById('closeIshumHomePopupBtn');
+
+        if (!modal) return;
+
+        // Check if user already dismissed it in this browser session
+        if (!sessionStorage.getItem('ishum_home_popup_closed')) {
+            setTimeout(function () {
+                modal.classList.remove('opacity-0', 'pointer-events-none');
+                modal.classList.add('opacity-100');
+                card.classList.remove('scale-95');
+                card.classList.add('scale-100');
+            }, 600);
+        }
+
+        function closePopup() {
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            modal.classList.remove('opacity-100');
+            card.classList.add('scale-95');
+            card.classList.remove('scale-100');
+            sessionStorage.setItem('ishum_home_popup_closed', '1');
+        }
+
+        if (closeBtn) {
+            closeBtn.addEventListener('click', closePopup);
+        }
+
+        modal.addEventListener('click', function (e) {
+            if (e.target === modal) {
+                closePopup();
+            }
+        });
+
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' && !modal.classList.contains('pointer-events-none')) {
+                closePopup();
+            }
+        });
+    });
+</script>
+@endif
 
 @endsection

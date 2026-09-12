@@ -41,7 +41,7 @@
                         </span>
                         <div class="w-14 h-14 rounded-2xl bg-emerald-50/80 p-2.5 flex items-center justify-center flex-shrink-0 shadow-inner group-hover:scale-110 transition duration-300 text-[#00913e]">
                             @if(!empty($b->icon) && (str_starts_with($b->icon, 'http') || str_starts_with($b->icon, '/')))
-                                <img src="{{ $b->icon }}" alt="{{ $b->name }}" class="w-full h-full object-contain" onerror="this.src='/uploads/campus-ishum.jpg'">
+                                <img src="{{ $b->icon }}" alt="{{ $b->name }}" class="w-full h-full object-contain" onerror="this.src='/uploads/campus-ishum.webp'">
                             @else
                                 <i class="{{ $b->icon ?: 'fa-solid fa-school' }} text-2xl text-[#00913e]"></i>
                             @endif

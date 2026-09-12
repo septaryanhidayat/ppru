@@ -22,7 +22,7 @@ class AdminMediaController extends Controller
 
     public function index()
     {
-        $photos = Post::where('type', 'attachment')->orWhere('type', 'gallery')->latest()->paginate(16, ['*'], 'photos_page');
+        $photos = Post::where('type', 'gallery')->latest('created_at')->paginate(18, ['*'], 'photos_page');
         $videos = Video::latest()->paginate(10, ['*'], 'videos_page');
 
         return view('admin.media.index', compact('photos', 'videos'));
@@ -67,6 +67,37 @@ class AdminMediaController extends Controller
         ]);
 
         return back()->with('success', 'Foto berhasil ditambahkan ke Galeri.');
+    }
+
+    public function updatePhoto(Request $request, Post $photo)
+    {
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'image' => 'nullable|image|max:5120',
+        ]);
+
+        $data = ['title' => $request->input('title')];
+
+        if ($request->hasFile('image')) {
+            $converted = $this->webpService->processUploadedFile($request->file('image'), 'galeri', 85, 1920);
+            if ($converted['success']) {
+                $data['featured_image'] = $converted['url'];
+            }
+        }
+
+        $photo->update($data);
+
+        ActivityLog::create([
+            'user_id' => Auth::id(),
+            'user_name' => Auth::user()->name,
+            'action' => 'gallery_update',
+            'description' => "Memperbarui foto Galeri: {$photo->title}",
+            'ip_address' => $request->ip(),
+            'user_agent' => $request->userAgent(),
+            'status' => 'info',
+        ]);
+
+        return back()->with('success', 'Foto galeri berhasil diperbarui.');
     }
 
     public function destroyPhoto(Request $request, Post $photo)

@@ -374,6 +374,16 @@
         <main class="p-6 sm:p-8 flex-grow">
             @yield('content')
         </main>
+
+        {{-- Admin Footer & Watermark --}}
+        <footer class="px-6 sm:px-8 py-4 border-t border-slate-200/80 bg-white/70 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-500">
+            <div>
+                &copy; {{ date('Y') }} SMA IT Ishlahul Ummah Prabumulih &bull; Panel Administrasi
+            </div>
+            <div class="text-[11px] text-slate-400">
+                Developed by <a href="https://berandadigital.net" target="_blank" rel="noopener" class="text-slate-500 hover:text-slate-800 hover:underline font-medium">Beranda Teknologi Digital</a>
+            </div>
+        </footer>
     </div>
 
     {{-- Quill.js Automatic Initializer Script for Elements with [data-quill] --}}

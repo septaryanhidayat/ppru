@@ -63,6 +63,7 @@ Route::prefix('admin')->middleware('auth')->name('admin.')->group(function () {
     // Galeri Foto & Video YouTube
     Route::get('/media', [AdminMediaController::class, 'index'])->name('media.index');
     Route::post('/media/photo', [AdminMediaController::class, 'storePhoto'])->name('media.photo.store');
+    Route::put('/media/photo/{photo}', [AdminMediaController::class, 'updatePhoto'])->name('media.photo.update');
     Route::delete('/media/photo/{photo}', [AdminMediaController::class, 'destroyPhoto'])->name('media.photo.destroy');
     Route::post('/media/video', [AdminMediaController::class, 'storeVideo'])->name('media.video.store');
     Route::delete('/media/video/{video}', [AdminMediaController::class, 'destroyVideo'])->name('media.video.destroy');
@@ -179,8 +180,13 @@ Route::get('/ppdb/sukses', [PpdbController::class, 'success'])->name('ppdb.succe
 // Download & Media
 Route::get('/download', [DownloadController::class, 'index'])->name('download.index');
 Route::get('/e-book', [DownloadController::class, 'ebook'])->name('download.ebook');
+Route::get('/download/ebook', fn () => redirect()->route('download.ebook'));
+Route::get('/download/e-book', fn () => redirect()->route('download.ebook'));
 Route::get('/hymne-mars', [DownloadController::class, 'hymneMars'])->name('download.hymne-mars');
+Route::get('/download/hymne-mars', fn () => redirect()->route('download.hymne-mars'));
+Route::get('/download/mars', fn () => redirect()->route('download.hymne-mars'));
 Route::get('/logo', [DownloadController::class, 'logo'])->name('download.logo');
+Route::get('/download/logo', fn () => redirect()->route('download.logo'));
 Route::get('/unduh/{id}', [DownloadController::class, 'downloadFile'])->name('download.file');
 Route::get('/download/file/{id}', [DownloadController::class, 'downloadFile'])->name('download.file.alt');
 Route::get('/download-file/{id}', [DownloadController::class, 'downloadFile']);

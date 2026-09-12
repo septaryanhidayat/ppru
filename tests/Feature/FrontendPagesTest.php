@@ -246,21 +246,14 @@ test('home page renders pksoganilir style gallery slider with 2 rows and ishum p
     $response->assertSee('Selengkapnya');
 });
 
-test('mars jsit page renders authentic mars jsit lyrics and audio', function () {
-    Download::create([
-        'title' => 'Mars Jaringan Sekolah Islam Terpadu (JSIT) Indonesia',
-        'category_type' => 'Audio',
-        'file_path' => '/uploads/mars-ishum.mp3',
-        'file_type' => 'MP3',
-        'file_size' => '3.5 MB',
-    ]);
-
+test('mars jsit page renders authentic mars jsit lyrics and video', function () {
     $response = $this->get(route('download.hymne-mars'));
 
     $response->assertStatus(200);
     $response->assertSee('MARS JSIT INDONESIA');
-    $response->assertSee('LIRIK MARS JSIT INDONESIA');
-    $response->assertSee('Harum semerbak semerbak mewangi', false);
+    $response->assertSee('LIRIK MARS RESMI JSIT INDONESIA');
+    $response->assertSee('Dengan berbekal semangat kami melangkah', false);
+    $response->assertSee('Kami Jaringan Sekolah Islam Terpadu', false);
     $response->assertSee('10 Karakter Santri JSIT (Muwashofat)', false);
 });
 

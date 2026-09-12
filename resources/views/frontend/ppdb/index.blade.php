@@ -13,18 +13,21 @@
                 <img src="/uploads/logo-ishum-square.png" alt="Logo SMA IT Ishlahul Ummah" class="h-24 sm:h-28 w-auto object-contain mx-auto">
             </div>
             <div>
-                <div class="inline-flex items-center space-x-2 bg-emerald-100 text-[#00913e] px-4 py-1 rounded-full text-xs font-bold mb-2">
-                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                <div class="inline-flex items-center space-x-2 bg-emerald-100 text-[#00913e] px-4 py-1.5 rounded-full text-xs font-black mb-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-600 animate-pulse"></span>
                     <span>Pendaftaran Santri Baru Telah Dibuka</span>
                 </div>
-                <h1 class="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight uppercase">
+                <h1 class="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-950 tracking-tight uppercase">
                     SPMB SMA IT ISHLAHUL UMMAH <br class="hidden sm:inline">PRABUMULIH
                 </h1>
-                <p class="text-sm sm:text-base font-bold text-[#da251c] mt-1.5">
-                    Tahun Pelajaran 2026/2027 &bull; Gelombang Aktif
+                <p class="text-sm sm:text-base font-extrabold text-[#da251c] mt-1.5">
+                    Tahun Pelajaran 2025/2026 &amp; 2026/2027 &bull; Gelombang Aktif
                 </p>
-                <p class="text-xs sm:text-sm text-slate-500 max-w-2xl mx-auto mt-2 font-light leading-relaxed">
-                    Mewujudkan generasi Qur'ani berkarakter tangguh, cerdas sains, mandiri, dan berwawasan global di bawah naungan JSIT Indonesia.
+                <div class="inline-block mt-2 bg-amber-500 text-slate-950 font-black text-xs sm:text-sm px-4 py-1.5 rounded-xl shadow-xs border border-amber-600">
+                    <i class="fa-solid fa-tag mr-1.5 text-red-700"></i> Potongan Biaya Masuk Up to 50% OFF (*S&amp;K berlaku)
+                </div>
+                <p class="text-xs sm:text-sm text-slate-800 max-w-2xl mx-auto mt-2.5 font-medium leading-relaxed">
+                    Mendidik Sepenuh Cinta. Mewujudkan generasi Qur'ani berkarakter tangguh, cerdas sains, mandiri, dan berwawasan global di bawah naungan JSIT Indonesia.
                 </p>
             </div>
 
@@ -38,9 +41,9 @@
                     <i class="fa-solid fa-house text-xs"></i>
                     <span>Beranda Sekolah</span>
                 </a>
-                <a href="https://wa.me/6282182880628?text={{ urlencode('Assalamu\'alaikum Panitia PPDB SMA IT Ishlahul Ummah Prabumulih, saya ingin konsultasi pendaftaran santri baru.') }}" target="_blank" class="inline-flex items-center space-x-2 bg-[#00913e] hover:bg-[#007532] text-white px-6 py-3 rounded-2xl text-xs sm:text-sm font-bold transition shadow-md">
+                <a href="https://wa.me/6282182680647?text={{ urlencode('Assalamu\'alaikum Panitia PPDB SMA IT Ishlahul Ummah Prabumulih, saya ingin konsultasi pendaftaran santri baru.') }}" target="_blank" class="inline-flex items-center space-x-2 bg-[#00913e] hover:bg-[#007532] text-white px-6 py-3 rounded-2xl text-xs sm:text-sm font-bold transition shadow-md">
                     <i class="fa-brands fa-whatsapp text-sm"></i>
-                    <span>Hotline WhatsApp</span>
+                    <span>Hotline WhatsApp (0821-8268-0647)</span>
                 </a>
             </div>
         </div>
@@ -63,8 +66,8 @@
                         <i class="fa-brands fa-youtube"></i>
                     </div>
                     <div>
-                        <h4 class="text-xs sm:text-sm font-bold text-slate-800">Video Profil &amp; Dokumentasi Kampus SMA IT Ishum</h4>
-                        <p class="text-[11px] text-slate-500">Saksikan suasana pembelajaran, asrama, laboratorium, dan tahfidz Al-Qur'an.</p>
+                        <h4 class="text-xs sm:text-sm font-extrabold text-slate-900">Video Profil &amp; Dokumentasi Kampus SMA IT Ishum</h4>
+                        <p class="text-xs text-slate-700 font-medium">Saksikan suasana pembelajaran, asrama, laboratorium, dan tahfidz Al-Qur'an.</p>
                     </div>
                 </div>
                 <a href="https://www.youtube.com/watch?v=IrPVG8CYjRc" target="_blank" class="inline-flex items-center space-x-1.5 text-xs font-bold text-red-600 hover:text-red-700 bg-red-50 hover:bg-red-100 px-4 py-2 rounded-xl transition flex-shrink-0">
@@ -78,34 +81,34 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             
             {{-- Jam Operasional --}}
-            <div class="bg-emerald-50/70 border border-emerald-200/80 rounded-3xl p-6 sm:p-7 shadow-xs flex flex-col justify-between">
+            <div class="bg-white border-2 border-emerald-300 rounded-3xl p-6 sm:p-7 shadow-sm flex flex-col justify-between">
                 <div class="space-y-2">
-                    <span class="inline-block bg-emerald-600 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                    <span class="inline-block bg-emerald-700 text-white text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-wider">
                         Layanan Terpadu
                     </span>
-                    <h3 class="text-lg sm:text-xl font-black text-slate-900 tracking-tight uppercase">
+                    <h3 class="text-lg sm:text-xl font-black text-slate-950 tracking-tight uppercase">
                         JAM OPERASIONAL SPMB
                     </h3>
-                    <p class="text-xs font-semibold text-[#00913e]">
+                    <p class="text-xs font-bold text-[#00913e]">
                         Tersedia Layanan Konsultasi Offline &amp; Online
                     </p>
-                    <ul class="text-xs text-slate-600 space-y-1.5 pt-2">
+                    <ul class="text-xs text-slate-900 font-medium space-y-2 pt-2">
                         <li class="flex items-center space-x-2">
-                            <i class="fa-regular fa-clock text-[#00913e]"></i>
+                            <i class="fa-regular fa-clock text-[#00913e] font-bold"></i>
                             <span><strong>Senin – Jum'at:</strong> Pukul 08.00 – 15.00 WIB</span>
                         </li>
                         <li class="flex items-center space-x-2">
-                            <i class="fa-regular fa-clock text-[#00913e]"></i>
+                            <i class="fa-regular fa-clock text-[#00913e] font-bold"></i>
                             <span><strong>Sabtu:</strong> Pukul 08.00 – 12.00 WIB</span>
                         </li>
                         <li class="flex items-center space-x-2">
-                            <i class="fa-solid fa-location-dot text-[#da251c]"></i>
-                            <span>Sekretariat SPMB: Gedung Kampus SMA IT Ishlahul Ummah</span>
+                            <i class="fa-solid fa-location-dot text-[#da251c] font-bold"></i>
+                            <span><strong>Sekretariat:</strong> Kampus SMA IT Ishum, Jl. Sadewa RT 01 RW 04 Karang Raja</span>
                         </li>
                     </ul>
                 </div>
-                <div class="pt-4 mt-4 border-t border-emerald-200/60">
-                    <p class="text-[11px] text-slate-500 italic">* Hari Ahad / Libur Nasional dapat berkonsultasi secara online via WhatsApp.</p>
+                <div class="pt-4 mt-4 border-t border-slate-200">
+                    <p class="text-xs text-slate-700 font-bold">* Hari Ahad / Libur Nasional dapat berkonsultasi secara online via WhatsApp.</p>
                 </div>
             </div>
 
@@ -161,8 +164,8 @@
                         <span>1. Alur Pendaftaran</span>
                         <i class="fa-solid" :class="activeLeft === 1 ? 'fa-minus' : 'fa-plus'"></i>
                     </button>
-                    <div x-show="activeLeft === 1" x-collapse class="p-5 text-xs text-slate-700 space-y-2.5 bg-emerald-50/20 leading-relaxed">
-                        <ul class="list-disc list-inside space-y-2">
+                    <div x-show="activeLeft === 1" x-collapse class="p-5 text-xs text-slate-900 font-medium space-y-2.5 bg-white border-t border-emerald-100 leading-relaxed">
+                        <ul class="list-disc list-inside space-y-2 text-slate-800">
                             <li>
                                 Siapkan berkas foto atau scan bukti transfer biaya pendaftaran melalui <strong>Bank Syariah Indonesia (BSI)</strong> nomor rekening <strong>7011304251</strong> a.n. <strong>YL. Fatmawati</strong>.
                             </li>
@@ -170,11 +173,11 @@
                                 Siapkan berkas foto atau hasil scan dalam bentuk format gambar/PDF akta kelahiran dan kartu keluarga.
                             </li>
                             <li>
-                                Mengisi formulir PPDB 2026/2027 secara online pada website resmi: 
-                                <a href="{{ route('ppdb.form') }}" class="text-[#00913e] font-bold underline">{{ url('/form_ppdb') }}</a>.
+                                Mengisi formulir PPDB secara online pada website resmi: 
+                                <a href="{{ route('ppdb.form') }}" class="text-[#00913e] font-black underline">{{ url('/form_ppdb') }}</a>.
                             </li>
                             <li>
-                                Konfirmasi pengisian formulir kepada panitia melalui WhatsApp.
+                                Konfirmasi pengisian formulir kepada panitia melalui WhatsApp (0821-8268-0647).
                             </li>
                             <li>
                                 Pendaftaran selesai dan berkas diverifikasi tim panitia untuk tahapan tes wawancara dan tahfidz.
@@ -189,8 +192,8 @@
                         <span>2. Syarat Pendaftaran</span>
                         <i class="fa-solid" :class="activeLeft === 2 ? 'fa-minus' : 'fa-plus'"></i>
                     </button>
-                    <div x-show="activeLeft === 2" x-collapse class="p-5 text-xs text-slate-700 space-y-2 bg-emerald-50/20 leading-relaxed">
-                        <ul class="list-disc list-inside space-y-1.5">
+                    <div x-show="activeLeft === 2" x-collapse class="p-5 text-xs text-slate-900 font-medium space-y-2 bg-white border-t border-emerald-100 leading-relaxed">
+                        <ul class="list-disc list-inside space-y-1.5 text-slate-800">
                             <li>Mengisi Formulir Pendaftaran online dengan data yang benar dan lengkap.</li>
                             <li>Melampirkan bukti transfer biaya pendaftaran.</li>
                             <li>Melampirkan scan/fotokopi Akta Kelahiran dan Kartu Keluarga (KK).</li>
@@ -206,9 +209,9 @@
                         <span>3. Jalur Prestasi</span>
                         <i class="fa-solid" :class="activeLeft === 3 ? 'fa-minus' : 'fa-plus'"></i>
                     </button>
-                    <div x-show="activeLeft === 3" x-collapse class="p-5 text-xs text-slate-700 space-y-2 bg-emerald-50/20 leading-relaxed">
-                        <p>Jalur khusus bagi santri berprestasi akademik maupun non-akademik (OSN, FLS2N, O2SN, Popda, MHQ, MTQ, Robotika):</p>
-                        <ul class="list-disc list-inside space-y-1">
+                    <div x-show="activeLeft === 3" x-collapse class="p-5 text-xs text-slate-900 font-medium space-y-2 bg-white border-t border-emerald-100 leading-relaxed">
+                        <p class="font-bold text-slate-950">Jalur khusus bagi santri berprestasi akademik maupun non-akademik (OSN, FLS2N, O2SN, Popda, MHQ, MTQ, Robotika):</p>
+                        <ul class="list-disc list-inside space-y-1 text-slate-800">
                             <li>Bebas tes tulis akademik bagi Juara 1, 2, atau 3 tingkat Kota/Kabupaten, Provinsi, maupun Nasional.</li>
                             <li>Diskon khusus biaya pendaftaran dan prioritas penerimaan.</li>
                         </ul>
@@ -221,9 +224,9 @@
                         <span>4. Jalur Hafizh Al-Qur'an</span>
                         <i class="fa-solid" :class="activeLeft === 4 ? 'fa-minus' : 'fa-plus'"></i>
                     </button>
-                    <div x-show="activeLeft === 4" x-collapse class="p-5 text-xs text-slate-700 space-y-2 bg-emerald-50/20 leading-relaxed">
-                        <p>Apresiasi istimewa bagi para penghafal Kitab Suci Al-Qur'an:</p>
-                        <ul class="list-disc list-inside space-y-1">
+                    <div x-show="activeLeft === 4" x-collapse class="p-5 text-xs text-slate-900 font-medium space-y-2 bg-white border-t border-emerald-100 leading-relaxed">
+                        <p class="font-bold text-slate-950">Apresiasi istimewa bagi para penghafal Kitab Suci Al-Qur'an:</p>
+                        <ul class="list-disc list-inside space-y-1 text-slate-800">
                             <li>Tahfidz minimal 3 Juz: Beasiswa potongan biaya pendaftaran &amp; SPP.</li>
                             <li>Tahfidz 5 Juz atau lebih: Beasiswa SPP berkala dan pembinaan khusus Sanad/Mutqin.</li>
                             <li>Mengikuti tes sima'an tahfidz bersama dewan musyrif Al-Qur'an Ishum.</li>
@@ -237,8 +240,8 @@
                         <span>5. Jalur Alumni SMPIT Ishum</span>
                         <i class="fa-solid" :class="activeLeft === 5 ? 'fa-minus' : 'fa-plus'"></i>
                     </button>
-                    <div x-show="activeLeft === 5" x-collapse class="p-5 text-xs text-slate-700 space-y-2 bg-emerald-50/20 leading-relaxed">
-                        <p>Keringanan istimewa bagi lulusan SMPIT Ishlahul Ummah Prabumulih yang melanjutkan ke SMA IT Ishlahul Ummah Prabumulih berupa potongan biaya uang pangkal &amp; pendaftaran langsung tanpa biaya seleksi.</p>
+                    <div x-show="activeLeft === 5" x-collapse class="p-5 text-xs text-slate-900 font-medium space-y-2 bg-white border-t border-emerald-100 leading-relaxed">
+                        <p class="text-slate-800">Keringanan istimewa bagi lulusan SMPIT Ishlahul Ummah Prabumulih yang melanjutkan ke SMA IT Ishlahul Ummah Prabumulih berupa potongan biaya uang pangkal &amp; pendaftaran langsung tanpa biaya seleksi.</p>
                     </div>
                 </div>
 
@@ -248,9 +251,9 @@
                         <span>6. Jalur Tes Mandiri</span>
                         <i class="fa-solid" :class="activeLeft === 6 ? 'fa-minus' : 'fa-plus'"></i>
                     </button>
-                    <div x-show="activeLeft === 6" x-collapse class="p-5 text-xs text-slate-700 space-y-2 bg-emerald-50/20 leading-relaxed">
-                        <p>Jalur seleksi reguler melalui tahapan:</p>
-                        <ul class="list-disc list-inside space-y-1">
+                    <div x-show="activeLeft === 6" x-collapse class="p-5 text-xs text-slate-900 font-medium space-y-2 bg-white border-t border-emerald-100 leading-relaxed">
+                        <p class="font-bold text-slate-950">Jalur seleksi reguler melalui tahapan:</p>
+                        <ul class="list-disc list-inside space-y-1 text-slate-800">
                             <li>Tes Potensi Akademik (Matematika, Bahasa Indonesia, PAI).</li>
                             <li>Tes Kemampuan Membaca Al-Qur'an (Tahsin &amp; Tajwid).</li>
                             <li>Wawancara Komitmen Orang Tua &amp; Santri.</li>
@@ -269,28 +272,28 @@
                         <span>1. Jadwal Gelombang PPDB</span>
                         <i class="fa-solid" :class="activeRight === 1 ? 'fa-minus' : 'fa-plus'"></i>
                     </button>
-                    <div x-show="activeRight === 1" x-collapse class="p-5 text-xs text-slate-700 space-y-2.5 bg-emerald-50/20 leading-relaxed">
-                        <div class="p-3.5 bg-white rounded-xl border border-emerald-200 font-medium space-y-1">
-                            <span class="font-bold text-slate-900 block text-sm">GELOMBANG 3 (SEKARANG BUKA)</span>
-                            <p class="text-slate-600">Masa Pendaftaran: <strong>Maret – Juni 2026</strong></p>
-                            <p class="text-emerald-700 font-bold">PENGUMUMAN GELOMBANG 3: 25 JUNI 2026</p>
+                    <div x-show="activeRight === 1" x-collapse class="p-5 text-xs text-slate-900 font-medium space-y-2.5 bg-white border-t border-emerald-100 leading-relaxed">
+                        <div class="p-3.5 bg-emerald-50 rounded-xl border border-emerald-300 font-medium space-y-1">
+                            <span class="font-black text-slate-950 block text-sm">GELOMBANG AKTIF DIBUKA</span>
+                            <p class="text-slate-800">Masa Pendaftaran: <strong>Oktober 2024 s/d Juni 2025/2026</strong></p>
+                            <p class="text-emerald-800 font-extrabold">Potongan Biaya Masuk Up to 50% (*S&amp;K berlaku)</p>
                         </div>
-                        <p class="text-[11px] text-slate-500 italic">* Kuota terbatas setiap gelombang, pendaftaran akan ditutup otomatis apabila kuota kelas telah terpenuhi.</p>
+                        <p class="text-xs text-slate-700 font-bold italic">* Kuota terbatas setiap kelas, pendaftaran akan ditutup otomatis apabila kuota terpenuhi.</p>
                     </div>
                 </div>
 
                 {{-- 2. Rincian Biaya --}}
                 <div class="rounded-2xl border border-emerald-200 overflow-hidden bg-white shadow-xs">
                     <button @click="activeRight = (activeRight === 2 ? null : 2)" class="w-full bg-[#00913e] text-white px-5 py-3.5 flex items-center justify-between font-bold text-xs sm:text-sm text-left transition">
-                        <span>2. Rincian Biaya &amp; Seragam</span>
+                        <span>2. Rincian Biaya &amp; Fasilitas Seragam</span>
                         <i class="fa-solid" :class="activeRight === 2 ? 'fa-minus' : 'fa-plus'"></i>
                     </button>
-                    <div x-show="activeRight === 2" x-collapse class="p-5 text-xs text-slate-700 space-y-2 bg-emerald-50/20 leading-relaxed">
-                        <ul class="list-disc list-inside space-y-1">
-                            <li>Biaya Formulir Pendaftaran: Ditransfer ke rekening BSI sekolah.</li>
+                    <div x-show="activeRight === 2" x-collapse class="p-5 text-xs text-slate-900 font-medium space-y-2 bg-white border-t border-emerald-100 leading-relaxed">
+                        <ul class="list-disc list-inside space-y-1.5 text-slate-800">
+                            <li>Biaya Formulir Pendaftaran: Ditransfer ke rekening BSI sekolah <strong>7011304251</strong>.</li>
                             <li>Paket Seragam Sekolah (4 stel seragam lengkap + atribut dan jilbab/peci).</li>
                             <li>Biaya Orientasi Santri (MPLS) &amp; Baitul Maqdis Leadership Camp.</li>
-                            <li>Untuk tabel rincian lengkap uang pangkal dan SPP bulanan, hubungi panitia PPDB.</li>
+                            <li>Untuk tabel rincian lengkap uang pangkal dan SPP bulanan, hubungi langsung panitia PPDB.</li>
                         </ul>
                     </div>
                 </div>
@@ -301,9 +304,9 @@
                         <span>3. Pilihan Program: Boarding &amp; Full Day</span>
                         <i class="fa-solid" :class="activeRight === 3 ? 'fa-minus' : 'fa-plus'"></i>
                     </button>
-                    <div x-show="activeRight === 3" x-collapse class="p-5 text-xs text-slate-700 space-y-2 bg-emerald-50/20 leading-relaxed">
-                        <p>Pilihan program fleksibel sesuai kebutuhan santri:</p>
-                        <ul class="list-disc list-inside space-y-1">
+                    <div x-show="activeRight === 3" x-collapse class="p-5 text-xs text-slate-900 font-medium space-y-2 bg-white border-t border-emerald-100 leading-relaxed">
+                        <p class="font-bold text-slate-950">Pilihan program fleksibel sesuai kebutuhan santri:</p>
+                        <ul class="list-disc list-inside space-y-1 text-slate-800">
                             <li><strong>Program Boarding (Asrama):</strong> Fasilitas asrama bersih, ber-AC/ventilasi sehat, makan 3x sehari, pendampingan tahfidz 24 jam bersama musyrif.</li>
                             <li><strong>Program Full Day School:</strong> Pembelajaran terpadu hingga sore hari, shalat berjamaah, makan siang sehat, dan ekstrakurikuler.</li>
                         </ul>
@@ -316,8 +319,8 @@
                         <span>4. Pengumuman Kelulusan &amp; Daftar Ulang</span>
                         <i class="fa-solid" :class="activeRight === 4 ? 'fa-minus' : 'fa-plus'"></i>
                     </button>
-                    <div x-show="activeRight === 4" x-collapse class="p-5 text-xs text-slate-700 space-y-2 bg-emerald-50/20 leading-relaxed">
-                        <p>Hasil seleksi diumumkan melalui website resmi dan WhatsApp kepada nomor kontak orang tua calon santri. Bagi yang dinyatakan diterima wajib melakukan daftar ulang sesuai jadwal yang ditentukan panitia.</p>
+                    <div x-show="activeRight === 4" x-collapse class="p-5 text-xs text-slate-900 font-medium space-y-2 bg-white border-t border-emerald-100 leading-relaxed">
+                        <p class="text-slate-800">Hasil seleksi diumumkan melalui website resmi dan WhatsApp kepada orang tua calon santri. Calon santri yang dinyatakan lulus wajib melakukan daftar ulang sesuai jadwal panitia.</p>
                     </div>
                 </div>
 
@@ -329,16 +332,16 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4">
             
             {{-- Card 1: Formulir Pendaftaran --}}
-            <a href="{{ route('ppdb.form') }}" class="group bg-white p-8 rounded-3xl border-2 border-emerald-100 hover:border-[#00913e] shadow-md hover:shadow-2xl transition duration-300 text-center flex flex-col items-center justify-between">
+            <a href="{{ route('ppdb.form') }}" class="group bg-white p-8 rounded-3xl border-2 border-emerald-200 hover:border-[#00913e] shadow-md hover:shadow-2xl transition duration-300 text-center flex flex-col items-center justify-between">
                 <div class="space-y-4">
                     <div class="w-20 h-20 mx-auto rounded-3xl bg-red-50 text-[#da251c] flex items-center justify-center text-4xl shadow-xs group-hover:scale-110 transition duration-300">
                         <i class="fa-solid fa-clipboard-list"></i>
                     </div>
                     <div>
-                        <h3 class="text-xl font-black text-slate-900 group-hover:text-[#00913e] transition">
+                        <h3 class="text-xl font-black text-slate-950 group-hover:text-[#00913e] transition">
                             Formulir Pendaftaran Online
                         </h3>
-                        <p class="text-xs text-slate-500 mt-2 leading-relaxed">
+                        <p class="text-xs text-slate-700 font-medium mt-2 leading-relaxed">
                             Silakan Bapak/Ibu mengisi formulir pendaftaran online ini sebagai syarat pendaftaran di SMA IT Ishlahul Ummah dengan data yang valid dan benar.
                         </p>
                     </div>
@@ -350,23 +353,23 @@
             </a>
 
             {{-- Card 2: Hubungi Admin via WhatsApp --}}
-            <a href="https://wa.me/6282182880628?text={{ urlencode('Halo Panitia PPDB SMA IT Ishlahul Ummah Prabumulih, saya ingin berkonsultasi mengenai pendaftaran santri baru TP 2026/2027.') }}" target="_blank" class="group bg-white p-8 rounded-3xl border-2 border-emerald-100 hover:border-[#00913e] shadow-md hover:shadow-2xl transition duration-300 text-center flex flex-col items-center justify-between">
+            <a href="https://wa.me/6282182680647?text={{ urlencode('Halo Panitia PPDB SMA IT Ishlahul Ummah Prabumulih, saya ingin berkonsultasi mengenai pendaftaran santri baru.') }}" target="_blank" class="group bg-white p-8 rounded-3xl border-2 border-emerald-200 hover:border-[#00913e] shadow-md hover:shadow-2xl transition duration-300 text-center flex flex-col items-center justify-between">
                 <div class="space-y-4">
                     <div class="w-20 h-20 mx-auto rounded-3xl bg-green-50 text-[#00913e] flex items-center justify-center text-4xl shadow-xs group-hover:scale-110 transition duration-300">
                         <i class="fa-brands fa-whatsapp text-4xl"></i>
                     </div>
                     <div>
-                        <h3 class="text-xl font-black text-slate-900 group-hover:text-[#00913e] transition">
+                        <h3 class="text-xl font-black text-slate-950 group-hover:text-[#00913e] transition">
                             Konsultasi via WhatsApp
                         </h3>
-                        <p class="text-xs text-slate-500 mt-2 leading-relaxed">
-                            Silakan konfirmasi jika sudah berhasil mengisi formulir pendaftaran, mengirim bukti transfer, atau butuh panduan langsung dari panitia SPMB.
+                        <p class="text-xs text-slate-700 font-medium mt-2 leading-relaxed">
+                            Konfirmasi pendaftaran, pengiriman bukti transfer formulir, atau konsultasi langsung dengan panitia PPDB: <strong>0821-8268-0647 (Admin)</strong> atau <strong>0822-8157-3615 (Ust. Agi)</strong>.
                         </p>
                     </div>
                 </div>
-                <span class="mt-6 inline-flex items-center space-x-2 bg-[#00913e] hover:bg-[#007532] text-white text-xs font-bold px-7 py-3.5 rounded-2xl shadow-md transition">
+                <span class="mt-6 inline-flex items-center space-x-2 bg-[#00913e] hover:bg-[#007532] text-white text-xs font-black px-7 py-3.5 rounded-2xl shadow-md transition">
                     <i class="fa-brands fa-whatsapp text-base"></i>
-                    <span>Chat WhatsApp Panitia PPDB</span>
+                    <span>Chat WhatsApp Panitia (0821-8268-0647)</span>
                 </span>
             </a>
 
@@ -396,11 +399,11 @@
                 </div>
             </div>
 
-            <div class="pt-4 border-t border-slate-100">
-                <p class="text-xs font-bold text-slate-500 uppercase tracking-widest">
+            <div class="pt-4 border-t border-slate-200">
+                <p class="text-xs font-black text-slate-800 uppercase tracking-widest">
                     Mendidik Sepenuh Cinta
                 </p>
-                <div class="mt-2 text-xs font-semibold text-[#00913e] tracking-wider uppercase">
+                <div class="mt-2 text-xs font-extrabold text-[#00913e] tracking-wider uppercase">
                     SMA IT Ishlahul Ummah Prabumulih &bull; Anggota JSIT Indonesia
                 </div>
             </div>

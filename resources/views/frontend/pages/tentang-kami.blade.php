@@ -28,7 +28,7 @@
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
             <div class="lg:col-span-4 flex justify-center">
                 <div class="w-56 h-72 sm:w-64 sm:h-80 rounded-2xl overflow-hidden shadow-xl border-4 border-white ring-4 ring-green-100 bg-green-50 relative group">
-                    <img src="/uploads/kepsek-agi-gustiawan.jpg" alt="Agi Gustiawan, S. Pd - Kepala Sekolah" class="w-full h-full object-cover object-top group-hover:scale-105 transition duration-500">
+                    <img src="/uploads/kepsek-agi-gustiawan.webp" alt="Agi Gustiawan, S. Pd - Kepala Sekolah" class="w-full h-full object-cover object-top group-hover:scale-105 transition duration-500">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
                     <div class="absolute bottom-3 left-3 text-white">
                         <span class="block text-sm font-extrabold">Agi Gustiawan, S. Pd</span>
@@ -88,7 +88,7 @@
             </div>
             <div class="lg:col-span-5 order-1 lg:order-2 flex justify-center">
                 <div class="rounded-2xl overflow-hidden shadow-lg border border-gray-100 max-h-80 bg-gray-50">
-                    <img src="/uploads/campus-ishum.jpg" alt="Kampus SMA IT Ishlahul Ummah Prabumulih" class="w-full h-full object-cover object-center">
+                    <img src="/uploads/campus-ishum.webp" alt="Kampus SMA IT Ishlahul Ummah Prabumulih" class="w-full h-full object-cover object-center">
                 </div>
             </div>
         </div>

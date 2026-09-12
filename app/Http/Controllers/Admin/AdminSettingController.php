@@ -27,7 +27,7 @@ class AdminSettingController extends Controller
 
     public function update(Request $request)
     {
-        $data = $request->except(['_token', 'og_image_file', 'site_logo_file']);
+        $data = $request->except(['_token', 'og_image_file', 'site_logo_file', 'popup_image_file']);
 
         // Handle OG Image file upload
         if ($request->hasFile('og_image_file')) {
@@ -43,6 +43,18 @@ class AdminSettingController extends Controller
             if ($converted['success']) {
                 $data['site_logo'] = $converted['url'];
             }
+        }
+
+        // Handle Popup Banner file upload
+        if ($request->hasFile('popup_image_file')) {
+            $converted = $this->webpService->processUploadedFile($request->file('popup_image_file'), 'popup', 90, 1000);
+            if ($converted['success']) {
+                $data['popup_image'] = $converted['url'];
+            }
+        }
+
+        if ($request->has('popup_active')) {
+            $data['popup_active'] = $request->input('popup_active', '0');
         }
 
         foreach ($data as $key => $val) {
