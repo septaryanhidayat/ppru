@@ -1,6 +1,6 @@
 -- ==========================================================
 -- SMA IT ISHLAHUL UMMAH PRABUMULIH - DATABASE MYSQL EXPORT
--- Export Date: 2026-09-12 11:37:49
+-- Export Date: 2026-09-12 11:58:14
 -- Compatible: MySQL 5.7+, MySQL 8.0+, MariaDB 10.3+
 -- For cPanel phpMyAdmin Import & Git Deployments
 -- ==========================================================
@@ -1323,7 +1323,7 @@ CREATE TABLE `sessions` (
 
 -- Dumping data for table `sessions`
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-  ('xlzrBZUL0mflQi1QqP51QKSuerqKvSztkC665R4D', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36', 'eyJfdG9rZW4iOiJ2ZEFhcm1RaVhFclJpdmJlTzJ2eTc0bDFIQW00b1EwOEZ6UUF2OG5HIiwibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiOjEsIl9wcmV2aW91cyI6eyJ1cmwiOiJodHRwOlwvXC9zY2hvb2wudGVzdFwvYWRtaW5cL2JhY2t1cFwvZG93bmxvYWQiLCJyb3V0ZSI6ImFkbWluLmJhY2t1cC5kb3dubG9hZCJ9LCJfZmxhc2giOnsib2xkIjpbXSwibmV3IjpbXX19', 1789212301),
+  ('xlzrBZUL0mflQi1QqP51QKSuerqKvSztkC665R4D', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36', 'eyJfdG9rZW4iOiJ2ZEFhcm1RaVhFclJpdmJlTzJ2eTc0bDFIQW00b1EwOEZ6UUF2OG5HIiwibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiOjEsIl9wcmV2aW91cyI6eyJ1cmwiOiJodHRwOlwvXC9zY2hvb2wudGVzdFwvYWRtaW5cL2xheWFuYW5cL2NvbnRlbnQiLCJyb3V0ZSI6ImFkbWluLmxheWFuYW4uY29udGVudCJ9LCJfZmxhc2giOnsib2xkIjpbXSwibmV3IjpbXX19', 1789214028),
   ('RjsFHqqoPJknZGtUbO4S3mARpOXTYbTx86vDthYW', NULL, '127.0.0.1', '', 'eyJfdG9rZW4iOiJFeTV1SVpIVjJCZkJzbUNYZEZieTJjYXJOY0g5Q2N3RzNkSGtVdjI2IiwiX3ByZXZpb3VzIjp7InVybCI6Imh0dHA6XC9cL3NjaG9vbC50ZXN0Iiwicm91dGUiOiJob21lIn0sIl9mbGFzaCI6eyJvbGQiOltdLCJuZXciOltdfX0=', 1789197667),
   ('7XX110lYiCGAOWtogO0tknTnuW6cLTZB0r3EFaHw', NULL, '127.0.0.1', '', 'eyJfdG9rZW4iOiJyOXNibjRzS3pRdlpMQlVJRDE4V2dqblQzVXhPekd4STFIRDVpSVdXIiwiX3ByZXZpb3VzIjp7InVybCI6Imh0dHA6XC9cL3NjaG9vbC50ZXN0Iiwicm91dGUiOiJob21lIn0sIl9mbGFzaCI6eyJvbGQiOltdLCJuZXciOltdfX0=', 1789197823),
   ('PEAaoZU8W8JwYXNzJODaJFAVA5Yhi7nSFd50aaID', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36', 'eyJfdG9rZW4iOiI1elo1RTFoQUY5eWNCcG01dFB4VVpXeVBkY01rZ2ZKMHNkc2JTWWc5IiwiX3ByZXZpb3VzIjp7InVybCI6Imh0dHA6XC9cL3NjaG9vbC50ZXN0XC9hcnRpa2VsP3BhZ2U9MTAiLCJyb3V0ZSI6ImFydGlrZWwuaW5kZXgifSwiX2ZsYXNoIjp7Im9sZCI6W10sIm5ldyI6W119fQ==', 1789200517),
@@ -1515,9 +1515,9 @@ CREATE TABLE `users` (
 
 -- Dumping data for table `users`
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `role`, `avatar`) VALUES
-  (1, 'Master Admin', 'berfikirmerdeka@gmail.com', NULL, '$2y$12$lW5IBCt42g40EiJ.GGLV2.H0KeW.QlYFKA4/rA4TT/jN1/ocF68k2', 'zK9zUgVklsvlZ4cs4rba4X8o8Nu37u8ZTomg2luDjTHHN1SFIgFcnF1zRd2j', '2026-09-05 09:49:41', '2026-09-12 08:48:01', 'admin', NULL),
-  (2, 'admin', 'desain.praktisi@gmail.com', NULL, '$2y$12$uFHqDQ9DpgOjQXEoby9kqeesCjPuvjPEbW8NoDGekJsUovn0hbDEG', NULL, '2026-09-05 09:49:41', '2026-09-11 14:51:50', 'admin', NULL),
-  (4, 'Administrator ISHUM', 'admin@smaitishumpbm.sch.id', NULL, '$2y$12$w0Hiz61EhEssL1kT.6gSzOONSEAc.WfHE4XSuimCiQTLNqqBMUHYe', NULL, '2026-09-12 06:59:19', '2026-09-12 07:03:45', 'admin', NULL);
+  (1, 'Master Admin', 'berfikirmerdeka@gmail.com', NULL, '$2y$12$Refsb8pgACK0080xMHy1VuOzGuW06/aFboYPH04GnUgjQfDolKdwi', 'zK9zUgVklsvlZ4cs4rba4X8o8Nu37u8ZTomg2luDjTHHN1SFIgFcnF1zRd2j', '2026-09-05 09:49:41', '2026-09-12 11:58:09', 'admin', NULL),
+  (2, 'admin', 'desain.praktisi@gmail.com', NULL, '$2y$12$TsQJpSMlOqYyvMMgJT.W/.vOL24YUZv6Fxd2WNItPUPICTspc5Mbi', NULL, '2026-09-05 09:49:41', '2026-09-12 11:58:10', 'admin', NULL),
+  (4, 'Administrator ISHUM', 'admin@smaitishumpbm.sch.id', NULL, '$2y$12$xmLcnkYyGqVjGtnwXDGLN.7xNY1u4HfowCDiTI9B4YC0e5K3Nb8aK', NULL, '2026-09-12 06:59:19', '2026-09-12 11:58:10', 'admin', NULL);
 
 -- --------------------------------------------------------
 -- Table structure for table `videos`
@@ -1830,7 +1830,8 @@ INSERT INTO `visitor_logs` (`id`, `ip_address`, `session_id`, `user_agent`, `dev
   (235, '127.0.0.1', 'xlzrBZUL0mflQi1QqP51QKSuerqKvSztkC665R4D', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36', 'Desktop', 'Chrome', 'Windows 10/11', 'http://school.test/izin-sekolah', 'Direct / Langsung', 'http://school.test/sewa-barang', '/sewa-barang', 'Sewa Barang', 'Indonesia', 'ID', 'Lokal / Server', 'Sumatera Selatan', '0', '2026-09-12 11:22:59', '2026-09-12 11:22:59'),
   (236, '127.0.0.1', 'xlzrBZUL0mflQi1QqP51QKSuerqKvSztkC665R4D', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36', 'Desktop', 'Chrome', 'Windows 10/11', 'http://school.test/sewa-barang', 'Direct / Langsung', 'http://school.test/izin-sekolah', '/izin-sekolah', 'Izin Sekolah', 'Indonesia', 'ID', 'Lokal / Server', 'Sumatera Selatan', '0', '2026-09-12 11:23:57', '2026-09-12 11:23:57'),
   (237, '127.0.0.1', 'xlzrBZUL0mflQi1QqP51QKSuerqKvSztkC665R4D', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36', 'Desktop', 'Chrome', 'Windows 10/11', 'http://school.test/admin/analytics', 'Direct / Langsung', 'http://school.test/admin', '/admin', 'Admin', 'Indonesia', 'ID', 'Lokal / Server', 'Sumatera Selatan', '0', '2026-09-12 11:24:26', '2026-09-12 11:24:26'),
-  (238, '127.0.0.1', 'xlzrBZUL0mflQi1QqP51QKSuerqKvSztkC665R4D', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36', 'Desktop', 'Chrome', 'Windows 10/11', 'http://school.test/admin/security', 'Direct / Langsung', 'http://school.test/admin', '/admin', 'Admin', 'Indonesia', 'ID', 'Lokal / Server', 'Sumatera Selatan', '0', '2026-09-12 11:24:52', '2026-09-12 11:24:52');
+  (238, '127.0.0.1', 'xlzrBZUL0mflQi1QqP51QKSuerqKvSztkC665R4D', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36', 'Desktop', 'Chrome', 'Windows 10/11', 'http://school.test/admin/security', 'Direct / Langsung', 'http://school.test/admin', '/admin', 'Admin', 'Indonesia', 'ID', 'Lokal / Server', 'Sumatera Selatan', '0', '2026-09-12 11:24:52', '2026-09-12 11:24:52'),
+  (239, '127.0.0.1', 'xlzrBZUL0mflQi1QqP51QKSuerqKvSztkC665R4D', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36', 'Desktop', 'Chrome', 'Windows 10/11', 'http://school.test/admin/security', 'Direct / Langsung', 'http://school.test/admin', '/admin', 'Admin', 'Indonesia', 'ID', 'Lokal / Server', 'Sumatera Selatan', '0', '2026-09-12 11:48:31', '2026-09-12 11:48:31');
 
 SET FOREIGN_KEY_CHECKS=1;
 -- ==========================================================
