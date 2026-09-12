@@ -1,6 +1,6 @@
 -- ==========================================================
 -- SMA IT ISHLAHUL UMMAH PRABUMULIH - DATABASE MYSQL EXPORT
--- Export Date: 2026-09-12 09:58:39
+-- Export Date: 2026-09-12 10:24:35
 -- Compatible: MySQL 5.7+, MySQL 8.0+, MariaDB 10.3+
 -- For cPanel phpMyAdmin Import & Git Deployments
 -- ==========================================================
@@ -16,7 +16,7 @@ SET time_zone = '+07:00';
 DROP TABLE IF EXISTS `activity_logs`;
 CREATE TABLE `activity_logs` (
   `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) NULL DEFAULT NULL,
+  `user_id` bigint(20) UNSIGNED NULL DEFAULT NULL,
   `user_name` varchar(255) NULL DEFAULT NULL,
   `action` varchar(255) NOT NULL,
   `description` longtext NOT NULL,
@@ -25,7 +25,10 @@ CREATE TABLE `activity_logs` (
   `status` varchar(255) NOT NULL DEFAULT 'info',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `activity_logs_created_at_index` (`created_at`),
+  KEY `activity_logs_status_index` (`status`),
+  KEY `activity_logs_action_index` (`action`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table `activity_logs`
@@ -63,7 +66,8 @@ CREATE TABLE `agendas` (
   `featured_image` varchar(255) NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `agendas_slug_unique` (`slug`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table `agendas`
@@ -141,7 +145,8 @@ CREATE TABLE `anggota_dewans` (
   `order` int(11) NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `anggota_dewans_slug_unique` (`slug`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table `anggota_dewans`
@@ -174,7 +179,8 @@ CREATE TABLE `bidangs` (
   `order` int(11) NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `bidangs_slug_unique` (`slug`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table `bidangs`
@@ -197,7 +203,8 @@ CREATE TABLE `cache` (
   `key` varchar(255) NOT NULL,
   `value` longtext NOT NULL,
   `expiration` int(11) NOT NULL,
-  PRIMARY KEY (`key`)
+  PRIMARY KEY (`key`),
+  KEY `cache_expiration_index` (`expiration`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table `cache`
@@ -216,7 +223,8 @@ CREATE TABLE `cache_locks` (
   `key` varchar(255) NOT NULL,
   `owner` varchar(255) NOT NULL,
   `expiration` int(11) NOT NULL,
-  PRIMARY KEY (`key`)
+  PRIMARY KEY (`key`),
+  KEY `cache_locks_expiration_index` (`expiration`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -228,10 +236,11 @@ CREATE TABLE `categories` (
   `name` varchar(255) NOT NULL,
   `slug` varchar(255) NOT NULL,
   `description` longtext NULL DEFAULT NULL,
-  `parent_id` int(11) NULL DEFAULT NULL,
+  `parent_id` bigint(20) UNSIGNED NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `categories_slug_unique` (`slug`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table `categories`
@@ -290,7 +299,8 @@ CREATE TABLE `dpcs` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `thumbnail` varchar(255) NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `dpcs_slug_unique` (`slug`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table `dpcs`
@@ -322,7 +332,9 @@ CREATE TABLE `failed_jobs` (
   `payload` longtext NOT NULL,
   `exception` longtext NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`),
+  KEY `failed_jobs_connection_queue_failed_at_index` (`connection`, `queue`, `failed_at`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -371,7 +383,8 @@ CREATE TABLE `jobs` (
   `reserved_at` int(11) NULL DEFAULT NULL,
   `available_at` int(11) NOT NULL,
   `created_at` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `jobs_queue_index` (`queue`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -418,7 +431,9 @@ CREATE TABLE `pages` (
   `meta_description` longtext NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `pages_slug_unique` (`slug`),
+  KEY `pages_slug_index` (`slug`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -446,7 +461,8 @@ CREATE TABLE `pengumumen` (
   `featured_image` varchar(255) NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `pengumumen_slug_unique` (`slug`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table `pengumumen`
@@ -528,8 +544,8 @@ INSERT INTO `pengumumen` (`id`, `title`, `slug`, `content`, `file_attachment`, `
 -- --------------------------------------------------------
 DROP TABLE IF EXISTS `post_category`;
 CREATE TABLE `post_category` (
-  `post_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `category_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `post_id` bigint(20) UNSIGNED NOT NULL,
+  `category_id` bigint(20) UNSIGNED NOT NULL,
   PRIMARY KEY (`post_id`, `category_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -646,8 +662,8 @@ INSERT INTO `post_category` (`post_id`, `category_id`) VALUES
 -- --------------------------------------------------------
 DROP TABLE IF EXISTS `post_tag`;
 CREATE TABLE `post_tag` (
-  `post_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `tag_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `post_id` bigint(20) UNSIGNED NOT NULL,
+  `tag_id` bigint(20) UNSIGNED NOT NULL,
   PRIMARY KEY (`post_id`, `tag_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -983,14 +999,15 @@ CREATE TABLE `posts` (
   `type` varchar(255) NOT NULL DEFAULT 'post',
   `featured_image` varchar(255) NULL DEFAULT NULL,
   `views_count` int(11) NOT NULL DEFAULT 0,
-  `author_id` int(11) NULL DEFAULT NULL,
+  `author_id` bigint(20) UNSIGNED NULL DEFAULT NULL,
   `published_at` timestamp NULL DEFAULT NULL,
   `meta_title` varchar(255) NULL DEFAULT NULL,
   `meta_description` longtext NULL DEFAULT NULL,
   `meta_keywords` varchar(255) NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `posts_slug_unique` (`slug`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table `posts`
@@ -1218,7 +1235,8 @@ CREATE TABLE `ppdb_registrations` (
   `program_type` varchar(255) NULL DEFAULT NULL,
   `wave` varchar(255) NULL DEFAULT NULL,
   `extra_fields` longtext NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `ppdb_registrations_registration_number_unique` (`registration_number`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table `ppdb_registrations`
@@ -1266,12 +1284,14 @@ INSERT INTO `quick_menus` (`id`, `name`, `icon`, `url`, `order`, `is_active`, `c
 DROP TABLE IF EXISTS `sessions`;
 CREATE TABLE `sessions` (
   `id` varchar(255) NOT NULL,
-  `user_id` int(11) NULL DEFAULT NULL,
+  `user_id` bigint(20) UNSIGNED NULL DEFAULT NULL,
   `ip_address` varchar(255) NULL DEFAULT NULL,
   `user_agent` longtext NULL DEFAULT NULL,
   `payload` longtext NOT NULL,
   `last_activity` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `sessions_last_activity_index` (`last_activity`),
+  KEY `sessions_user_id_index` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table `sessions`
@@ -1298,7 +1318,9 @@ INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, 
   ('01LKoRJZMQ8TAEI7LFxfqeEwogw7RJh14B240aOA', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT; Windows NT 10.0; en-US) WindowsPowerShell/5.1.22621.6133', 'eyJfdG9rZW4iOiJCMVRUWHV4aHNzVTRBblBsT3dFa3g1TURCbGNHV1BhMHJ6ZThLQ1V6IiwiX3ByZXZpb3VzIjp7InVybCI6Imh0dHA6XC9cL3NjaG9vbC50ZXN0XC9sb2dvIiwicm91dGUiOiJkb3dubG9hZC5sb2dvIn0sIl9mbGFzaCI6eyJvbGQiOltdLCJuZXciOltdfX0=', 1789204711),
   ('FYmemdHOAoP404ja7X0VY4kwPgMAuTzqg2jykOTC', NULL, '127.0.0.1', '', 'eyJfdG9rZW4iOiJJMm9MdDlJM0tWaGlTRlo3bjVhYVRBMU5lNndLTkdndmdNMGhxZTFPIiwiX3ByZXZpb3VzIjp7InVybCI6Imh0dHA6XC9cL3NjaG9vbC50ZXN0XC9sb2dvIiwicm91dGUiOiJkb3dubG9hZC5sb2dvIn0sIl9mbGFzaCI6eyJvbGQiOltdLCJuZXciOltdfX0=', 1789204714),
   ('C6XZn0bQ21zB5TVj7FW44Bzi8gRN4H7NiZbg2yof', NULL, '127.0.0.1', '', 'eyJfdG9rZW4iOiJ6U3htNExWTDdtNk4wSG1VVWFpUkFhdmlYaTVjOU1HdnI2elpqZ3FoIiwiX3ByZXZpb3VzIjp7InVybCI6Imh0dHA6XC9cL3NjaG9vbC50ZXN0XC9sb2dvIiwicm91dGUiOiJkb3dubG9hZC5sb2dvIn0sIl9mbGFzaCI6eyJvbGQiOltdLCJuZXciOltdfX0=', 1789204728),
-  ('tHNRqvWIBBIeqmb1MRs9xFWYQfoNoawUSxOpd823', NULL, '127.0.0.1', '', 'eyJfdG9rZW4iOiJOcVM3MFo3bHoweWNkRURSV1JHdU9GclhsZGdaNjVzckI3RmdhMjJxIiwiX3ByZXZpb3VzIjp7InVybCI6Imh0dHA6XC9cL3NjaG9vbC50ZXN0XC9sb2dvIiwicm91dGUiOiJkb3dubG9hZC5sb2dvIn0sIl9mbGFzaCI6eyJvbGQiOltdLCJuZXciOltdfX0=', 1789204747);
+  ('tHNRqvWIBBIeqmb1MRs9xFWYQfoNoawUSxOpd823', NULL, '127.0.0.1', '', 'eyJfdG9rZW4iOiJOcVM3MFo3bHoweWNkRURSV1JHdU9GclhsZGdaNjVzckI3RmdhMjJxIiwiX3ByZXZpb3VzIjp7InVybCI6Imh0dHA6XC9cL3NjaG9vbC50ZXN0XC9sb2dvIiwicm91dGUiOiJkb3dubG9hZC5sb2dvIn0sIl9mbGFzaCI6eyJvbGQiOltdLCJuZXciOltdfX0=', 1789204747),
+  ('tpB4rECt6G9EFSJbOY48elZyw37gzB34hUBPABMs', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36', 'eyJfdG9rZW4iOiJyTmg2UVBqSnRmeDg4M20wbjlreUpMd1UyQmc0RDR3SDN6QktiQUM3IiwiX3ByZXZpb3VzIjp7InVybCI6Imh0dHA6XC9cL3NjaG9vbC50ZXN0XC9iaWRhbmdcL2xhYm9yYXRvcml1bS1pcGEiLCJyb3V0ZSI6ImJpZGFuZy5zaG93In0sIl9mbGFzaCI6eyJvbGQiOltdLCJuZXciOltdfX0=', 1789207601),
+  ('pp0Dqgen4IF1FCMAMsOIZOUoHWiEfoz0psSXTFVw', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36', 'eyJfdG9rZW4iOiJzWjBqUlhxbkVtUVowREhDSDV4MzE0c0pqWmtaZzY2TGR3VGFVNXJCIiwiX3ByZXZpb3VzIjp7InVybCI6Imh0dHA6XC9cL3NjaG9vbC50ZXN0XC9mYXNpbGl0YXMiLCJyb3V0ZSI6ImJpZGFuZy5pbmRleCJ9LCJfZmxhc2giOnsib2xkIjpbXSwibmV3IjpbXX19', 1789207601);
 
 -- --------------------------------------------------------
 -- Table structure for table `settings`
@@ -1311,7 +1333,8 @@ CREATE TABLE `settings` (
   `group` varchar(255) NOT NULL DEFAULT 'general',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `settings_key_unique` (`key`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table `settings`
@@ -1382,7 +1405,8 @@ CREATE TABLE `tags` (
   `slug` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `tags_slug_unique` (`slug`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table `tags`
@@ -1451,7 +1475,8 @@ CREATE TABLE `users` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `role` varchar(255) NOT NULL DEFAULT 'admin',
   `avatar` varchar(255) NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `users_email_unique` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table `users`
@@ -1469,11 +1494,12 @@ CREATE TABLE `videos` (
   `title` varchar(255) NOT NULL,
   `slug` varchar(255) NOT NULL,
   `youtube_url` varchar(255) NOT NULL,
-  `youtube_id` varchar(255) NULL DEFAULT NULL,
+  `youtube_id` bigint(20) UNSIGNED NULL DEFAULT NULL,
   `description` longtext NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `videos_slug_unique` (`slug`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table `videos`
@@ -1500,7 +1526,7 @@ DROP TABLE IF EXISTS `visitor_logs`;
 CREATE TABLE `visitor_logs` (
   `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ip_address` varchar(255) NULL DEFAULT NULL,
-  `session_id` varchar(255) NULL DEFAULT NULL,
+  `session_id` bigint(20) UNSIGNED NULL DEFAULT NULL,
   `user_agent` longtext NULL DEFAULT NULL,
   `device_type` varchar(255) NOT NULL DEFAULT 'Desktop',
   `browser` varchar(255) NULL DEFAULT NULL,
@@ -1517,7 +1543,16 @@ CREATE TABLE `visitor_logs` (
   `is_bot` int(11) NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `visitor_logs_is_bot_index` (`is_bot`),
+  KEY `visitor_logs_city_index` (`city`),
+  KEY `visitor_logs_country_index` (`country`),
+  KEY `visitor_logs_path_index` (`path`),
+  KEY `visitor_logs_referer_source_index` (`referer_source`),
+  KEY `visitor_logs_device_type_index` (`device_type`),
+  KEY `visitor_logs_session_id_index` (`session_id`),
+  KEY `visitor_logs_ip_address_index` (`ip_address`),
+  KEY `visitor_logs_created_at_is_bot_index` (`created_at`, `is_bot`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table `visitor_logs`
@@ -1745,7 +1780,9 @@ INSERT INTO `visitor_logs` (`id`, `ip_address`, `session_id`, `user_agent`, `dev
   (219, '127.0.0.1', 'xlzrBZUL0mflQi1QqP51QKSuerqKvSztkC665R4D', 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.5 Mobile/15E148 Safari/604.1', 'Mobile', 'Safari', 'iOS', 'http://school.test/', 'Direct / Langsung', 'http://school.test', '/', 'Beranda', 'Indonesia', 'ID', 'Lokal / Server', 'Sumatera Selatan', '0', '2026-09-12 09:39:33', '2026-09-12 09:39:33'),
   (220, '127.0.0.1', 'xlzrBZUL0mflQi1QqP51QKSuerqKvSztkC665R4D', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36', 'Desktop', 'Chrome', 'Windows 10/11', 'http://school.test/admin/ppdb/content', 'Direct / Langsung', 'http://school.test/admin', '/admin', 'Admin', 'Indonesia', 'ID', 'Lokal / Server', 'Sumatera Selatan', '0', '2026-09-12 09:44:51', '2026-09-12 09:44:51'),
   (221, '127.0.0.1', 'xlzrBZUL0mflQi1QqP51QKSuerqKvSztkC665R4D', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36', 'Desktop', 'Chrome', 'Windows 10/11', 'http://school.test/admin/backup', 'Direct / Langsung', 'http://school.test/admin', '/admin', 'Admin', 'Indonesia', 'ID', 'Lokal / Server', 'Sumatera Selatan', '0', '2026-09-12 09:46:00', '2026-09-12 09:46:00'),
-  (222, '127.0.0.1', 'xlzrBZUL0mflQi1QqP51QKSuerqKvSztkC665R4D', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36', 'Desktop', 'Chrome', 'Windows 10/11', 'http://school.test/admin/backup', 'Direct / Langsung', 'http://school.test/admin', '/admin', 'Admin', 'Indonesia', 'ID', 'Lokal / Server', 'Sumatera Selatan', '0', '2026-09-12 09:48:52', '2026-09-12 09:48:52');
+  (222, '127.0.0.1', 'xlzrBZUL0mflQi1QqP51QKSuerqKvSztkC665R4D', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36', 'Desktop', 'Chrome', 'Windows 10/11', 'http://school.test/admin/backup', 'Direct / Langsung', 'http://school.test/admin', '/admin', 'Admin', 'Indonesia', 'ID', 'Lokal / Server', 'Sumatera Selatan', '0', '2026-09-12 09:48:52', '2026-09-12 09:48:52'),
+  (223, '127.0.0.1', 'tpB4rECt6G9EFSJbOY48elZyw37gzB34hUBPABMs', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36', 'Desktop', 'Chrome', 'Windows 10/11', '', 'Direct / Langsung', 'http://school.test/bidang/laboratorium-ipa', '/bidang/laboratorium-ipa', 'Bidang: Laboratorium Ipa', 'Indonesia', 'ID', 'Lokal / Server', 'Sumatera Selatan', '0', '2026-09-12 10:06:41', '2026-09-12 10:06:41'),
+  (224, '127.0.0.1', 'pp0Dqgen4IF1FCMAMsOIZOUoHWiEfoz0psSXTFVw', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36', 'Desktop', 'Chrome', 'Windows 10/11', '', 'Direct / Langsung', 'http://school.test/fasilitas', '/fasilitas', 'Fasilitas & Sarana Kampus', 'Indonesia', 'ID', 'Lokal / Server', 'Sumatera Selatan', '0', '2026-09-12 10:06:41', '2026-09-12 10:06:41');
 
 SET FOREIGN_KEY_CHECKS=1;
 -- ==========================================================

@@ -1,13 +1,13 @@
 <?php
 
+use Illuminate\Contracts\Console\Kernel;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
+
 require __DIR__.'/../vendor/autoload.php';
 $app = require_once __DIR__.'/../bootstrap/app.php';
 $kernel = $app->make(Kernel::class);
 $kernel->bootstrap();
-
-use Illuminate\Contracts\Console\Kernel;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Schema;
 
 $dumpFile = __DIR__.'/cpanel_school_mysql_dump.sql';
 $fp = fopen($dumpFile, 'w');
@@ -52,6 +52,9 @@ foreach ($tables as $table) {
 
     $colLines = [];
     $primaryKeys = [];
+    $pkCols = array_values(array_filter($columnsInfo, fn ($c) => (int) $c->pk > 0));
+    $isSinglePk = count($pkCols) === 1;
+    $singlePkName = $isSinglePk ? $pkCols[0]->name : null;
 
     foreach ($columnsInfo as $col) {
         $cName = $col->name;
@@ -62,16 +65,18 @@ foreach ($tables as $table) {
         // Map sqlite type to MySQL
         if ($col->pk) {
             $primaryKeys[] = "`{$cName}`";
+            $notNull = 'NOT NULL';
         }
 
         $myType = 'varchar(255)';
         $extra = '';
+        $isAutoIncrement = ($isSinglePk && $cName === $singlePkName && $cName === 'id' && str_contains($cType, 'int'));
 
-        if ($col->pk && str_contains($cType, 'int')) {
+        if ($isAutoIncrement) {
             $myType = 'bigint(20) UNSIGNED';
             $extra = 'AUTO_INCREMENT';
             $notNull = 'NOT NULL';
-        } elseif (str_contains($cType, 'bigint')) {
+        } elseif (str_contains($cType, 'bigint') || str_ends_with($cName, '_id')) {
             $myType = 'bigint(20) UNSIGNED';
         } elseif (str_contains($cType, 'int')) {
             $myType = 'int(11)';
@@ -122,6 +127,20 @@ foreach ($tables as $table) {
 
     if (! empty($primaryKeys)) {
         $colLines[] = '  PRIMARY KEY ('.implode(', ', $primaryKeys).')';
+    }
+
+    $indices = DB::select("PRAGMA index_list('{$table}')");
+    foreach ($indices as $idx) {
+        if (str_starts_with($idx->name, 'sqlite_autoindex_')) {
+            continue;
+        }
+        $info = DB::select("PRAGMA index_info('{$idx->name}')");
+        if (empty($info)) {
+            continue;
+        }
+        $cols = array_map(fn ($c) => "`{$c->name}`", $info);
+        $idxType = $idx->unique ? 'UNIQUE KEY' : 'KEY';
+        $colLines[] = "  {$idxType} `{$idx->name}` (".implode(', ', $cols).')';
     }
 
     fwrite($fp, implode(",\n", $colLines)."\n");
