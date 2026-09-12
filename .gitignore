@@ -29,20 +29,12 @@ Thumbs.db
 *.sqlite-journal
 *.zip
 
-# Dynamic User Uploads (Keeps git clean on production cPanel)
-/public/uploads/dewan/*
-/public/uploads/bidang/*
-/public/uploads/settings/*
-/public/uploads/galeri/*
-/public/uploads/posts/*
-/public/uploads/berita/*
+# Large media files
+*.mp4
+*.mp3
 /public/uploads/tmp/*
-/public/uploads/2023/*
-/public/uploads/2024/*
-/public/uploads/2025/*
-/public/uploads/2026/*
 /public/uploads/ppdb/*
-!/public/uploads/*/.gitkeep
+!/public/uploads/ppdb/.gitkeep
 # WordPress Raw Backups (Exceeds GitHub file limits)
 /BACKUP WEb LAMA/
 /database/berandad_wppksoi.sql
