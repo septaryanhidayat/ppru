@@ -72,14 +72,14 @@ class SchoolDataSeeder extends Seeder
 
         // 2. Quick Menus (8 Menu Utama)
         $quickMenus = [
-            ['name' => 'PPDB Online', 'url' => '/ppdb', 'icon' => 'fa-solid fa-graduation-cap', 'order' => 1],
+            ['name' => 'PPDB', 'url' => '/ppdb', 'icon' => 'fa-solid fa-graduation-cap', 'order' => 1],
             ['name' => 'Profil', 'url' => '/tentang-kami', 'icon' => 'fa-solid fa-school', 'order' => 2],
-            ['name' => 'Dewan Guru', 'url' => '/dewan-guru', 'icon' => 'fa-solid fa-chalkboard-user', 'order' => 3],
+            ['name' => 'Guru', 'url' => '/dewan-guru', 'icon' => 'fa-solid fa-chalkboard-user', 'order' => 3],
             ['name' => 'Fasilitas', 'url' => '/fasilitas', 'icon' => 'fa-solid fa-layer-group', 'order' => 4],
             ['name' => 'Unggulan', 'url' => '/unggulan', 'icon' => 'fa-solid fa-award', 'order' => 5],
             ['name' => 'Prestasi', 'url' => '/prestasi', 'icon' => 'fa-solid fa-trophy', 'order' => 6],
             ['name' => 'Ekskul', 'url' => '/ekstrakurikuler', 'icon' => 'fa-solid fa-people-group', 'order' => 7],
-            ['name' => 'Kabar Sekolah', 'url' => '/artikel', 'icon' => 'fa-solid fa-newspaper', 'order' => 8],
+            ['name' => 'Berita', 'url' => '/artikel', 'icon' => 'fa-solid fa-newspaper', 'order' => 8],
         ];
 
         QuickMenu::truncate();

@@ -55,6 +55,12 @@
         .prose-content { text-align: justify; text-justify: inter-word; }
         .prose-content p { margin-bottom: 1.25rem; line-height: 1.85; text-align: justify; text-justify: inter-word; }
         .prose-content img { margin-left: auto !important; margin-right: auto !important; display: block; border-radius: 1rem; max-width: 100%; height: auto; }
+        @media (min-width: 768px) {
+            .footer-address-col, .footer-address-col * { text-align: left !important; }
+            .footer-address-col { align-items: flex-start !important; }
+            .footer-address-col div { justify-content: flex-start !important; align-items: flex-start !important; }
+            .footer-address-col .flex { justify-content: flex-start !important; }
+        }
     </style>
 
     @stack('styles')

@@ -16,7 +16,7 @@
     }
 }" x-init="autoSlide()">
     {{-- Banner Images & Content --}}
-    <div class="relative h-[380px] sm:h-[440px] lg:h-[490px] w-full overflow-hidden">
+    <div class="relative h-[430px] sm:h-[460px] lg:h-[490px] w-full overflow-hidden">
         <template x-for="(slide, index) in slides" :key="index">
             <div x-show="activeSlide === index" 
                  x-transition:enter="transition ease-out duration-700" 
@@ -31,15 +31,15 @@
                 <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/45 to-black/30"></div>
 
                 {{-- Konten Rata Tengah --}}
-                <div class="absolute inset-0 flex items-center justify-center">
-                    <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center text-white space-y-3">
-                        <span class="inline-block px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest bg-[#da251c] text-white shadow-md">
+                <div class="absolute inset-0 flex items-center justify-center pt-2 pb-16 sm:pb-14">
+                    <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center text-white space-y-2.5 sm:space-y-3">
+                        <span class="inline-block px-3.5 py-1 sm:px-4 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-bold uppercase tracking-widest bg-[#da251c] text-white shadow-md">
                             SMA Islam Terpadu Unggulan
                         </span>
-                        <h1 class="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight drop-shadow-lg leading-tight" x-text="slide.title"></h1>
-                        <p class="text-sm sm:text-base md:text-lg text-gray-100 font-medium max-w-2xl mx-auto drop-shadow" x-text="slide.subtitle"></p>
-                        <div class="pt-3 flex justify-center">
-                            <a :href="slide.btn_link" class="inline-flex items-center justify-center bg-[#da251c] hover:bg-[#b91c1c] text-white px-8 py-3 rounded-full font-extrabold text-xs sm:text-sm shadow-xl transition transform hover:scale-105">
+                        <h1 class="text-2xl sm:text-4xl md:text-5xl font-black tracking-tight drop-shadow-lg leading-tight" x-text="slide.title"></h1>
+                        <p class="text-xs sm:text-base md:text-lg text-gray-100 font-medium max-w-2xl mx-auto drop-shadow line-clamp-3 sm:line-clamp-none" x-text="slide.subtitle"></p>
+                        <div class="pt-2 sm:pt-3 flex justify-center">
+                            <a :href="slide.btn_link" class="inline-flex items-center justify-center bg-[#da251c] hover:bg-[#b91c1c] text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-full font-extrabold text-xs sm:text-sm shadow-xl transition transform hover:scale-105">
                                 <span x-text="slide.btn_text"></span>
                                 <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
                             </a>
@@ -51,18 +51,18 @@
     </div>
 
     {{-- Carousel Controls (Panah Samping) --}}
-    <button @click="activeSlide = (activeSlide - 1 + slides.length) % slides.length" class="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-[#00913e] text-white w-11 h-11 rounded-full flex items-center justify-center transition backdrop-blur z-20 shadow-lg" aria-label="Slide sebelumnya">
+    <button @click="activeSlide = (activeSlide - 1 + slides.length) % slides.length" class="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-[#00913e] text-white w-9 h-9 sm:w-11 sm:h-11 rounded-full flex items-center justify-center transition backdrop-blur z-20 shadow-lg" aria-label="Slide sebelumnya">
         <i class="fa-solid fa-chevron-left text-xs sm:text-sm" aria-hidden="true"></i>
     </button>
-    <button @click="activeSlide = (activeSlide + 1) % slides.length" class="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-[#00913e] text-white w-11 h-11 rounded-full flex items-center justify-center transition backdrop-blur z-20 shadow-lg" aria-label="Slide berikutnya">
+    <button @click="activeSlide = (activeSlide + 1) % slides.length" class="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-[#00913e] text-white w-9 h-9 sm:w-11 sm:h-11 rounded-full flex items-center justify-center transition backdrop-blur z-20 shadow-lg" aria-label="Slide berikutnya">
         <i class="fa-solid fa-chevron-right text-xs sm:text-sm" aria-hidden="true"></i>
     </button>
 
-    {{-- Dots Pagination di Tengah --}}
-    <div class="absolute bottom-12 sm:bottom-16 left-1/2 -translate-x-1/2 flex space-x-1 z-20">
+    {{-- Dots Pagination di Tengah (Berada rapi di bawah tombol) --}}
+    <div class="absolute bottom-8 sm:bottom-11 left-1/2 -translate-x-1/2 flex space-x-1 z-20">
         <template x-for="(slide, idx) in slides" :key="idx">
-            <button @click="activeSlide = idx" class="w-8 h-8 flex items-center justify-center cursor-pointer" :aria-label="'Pilih slide ' + (idx + 1)">
-                <span class="h-2.5 rounded-full transition-all duration-300" :class="activeSlide === idx ? 'w-6 bg-[#da251c]' : 'w-2.5 bg-white/70 hover:bg-white'"></span>
+            <button @click="activeSlide = idx" class="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center cursor-pointer" :aria-label="'Pilih slide ' + (idx + 1)">
+                <span class="h-2 sm:h-2.5 rounded-full transition-all duration-300" :class="activeSlide === idx ? 'w-5 sm:w-6 bg-[#da251c]' : 'w-2 sm:w-2.5 bg-white/70 hover:bg-white'"></span>
             </button>
         </template>
     </div>
@@ -71,7 +71,7 @@
 {{-- ========================================================
      SECTION: FLOATING QUICK ICONS / MENU UTAMA (8 Kartu Sekolah)
      ======================================================== --}}
-<div x-data="{ showDownloadModal: false }" class="max-w-6xl mx-auto px-4 sm:px-6 relative z-30 -mt-8 sm:-mt-10 reveal-fade-up">
+<div x-data="{ showDownloadModal: false }" class="max-w-6xl mx-auto px-4 sm:px-6 relative z-30 -mt-7 sm:-mt-9 reveal-fade-up">
     <div class="bg-white rounded-3xl shadow-2xl border border-gray-100 p-4 sm:p-6 md:p-7">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 mb-4 sm:mb-5 border-b border-gray-100">
             <div class="text-center sm:text-left">
@@ -93,14 +93,14 @@
             $dbQuickMenus = \App\Models\QuickMenu::active()->orderBy('order', 'asc')->take(8)->get();
             if ($dbQuickMenus->isEmpty()) {
                 $quickMenus = collect([
-                    (object)['name' => 'PPDB Online', 'icon' => 'fa-solid fa-graduation-cap', 'url' => route('ppdb.index'), 'is_image' => false],
+                    (object)['name' => 'PPDB', 'icon' => 'fa-solid fa-graduation-cap', 'url' => route('ppdb.index'), 'is_image' => false],
                     (object)['name' => 'Profil', 'icon' => 'fa-solid fa-school', 'url' => url('/tentang-kami'), 'is_image' => false],
-                    (object)['name' => 'Dewan Guru', 'icon' => 'fa-solid fa-chalkboard-user', 'url' => route('dewan.index'), 'is_image' => false],
+                    (object)['name' => 'Guru', 'icon' => 'fa-solid fa-chalkboard-user', 'url' => route('dewan.index'), 'is_image' => false],
                     (object)['name' => 'Fasilitas', 'icon' => 'fa-solid fa-layer-group', 'url' => route('bidang.index'), 'is_image' => false],
                     (object)['name' => 'Unggulan', 'icon' => 'fa-solid fa-award', 'url' => route('dpc.index'), 'is_image' => false],
                     (object)['name' => 'Prestasi', 'icon' => 'fa-solid fa-trophy', 'url' => url('/prestasi'), 'is_image' => false],
                     (object)['name' => 'Ekskul', 'icon' => 'fa-solid fa-people-group', 'url' => url('/ekstrakurikuler'), 'is_image' => false],
-                    (object)['name' => 'Kabar Sekolah', 'icon' => 'fa-solid fa-newspaper', 'url' => route('artikel.index'), 'is_image' => false],
+                    (object)['name' => 'Berita', 'icon' => 'fa-solid fa-newspaper', 'url' => route('artikel.index'), 'is_image' => false],
                 ]);
             } else {
                 $quickMenus = $dbQuickMenus;
@@ -120,7 +120,7 @@
                         <i class="{{ $qm->icon }} text-lg sm:text-xl md:text-2xl transition-colors duration-300" aria-hidden="true"></i>
                     @endif
                 </div>
-                <span class="text-[10px] sm:text-[11px] md:text-xs font-bold text-slate-800 group-hover:text-[#00913e] text-center leading-tight line-clamp-2 w-full break-words tracking-tight px-0.5">
+                <span class="text-[11px] sm:text-[11px] md:text-xs font-bold text-slate-800 group-hover:text-[#00913e] text-center leading-tight truncate w-full tracking-tight px-0.5">
                     {{ $qm->name }}
                 </span>
             </a>

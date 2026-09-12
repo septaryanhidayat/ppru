@@ -28,19 +28,19 @@
             </div>
 
             {{-- KOLOM 2: ALAMAT SEKOLAH & KONTAK --}}
-            <div class="lg:col-span-4 space-y-3 text-center md:text-left flex flex-col items-center md:items-start">
-                <h3 class="font-bold text-[#da251c] text-base sm:text-lg tracking-wide uppercase text-center md:text-left">
+            <div class="lg:col-span-4 space-y-3 footer-address-col text-center md:text-left flex flex-col items-center md:items-start">
+                <h3 class="w-full font-bold text-[#da251c] text-base sm:text-lg tracking-wide uppercase text-center md:text-left">
                     Alamat Sekolah
                 </h3>
-                <p class="text-sm sm:text-[15px] text-gray-200 font-normal leading-relaxed text-center md:text-left pr-0 md:pr-4">
+                <p class="w-full text-sm sm:text-[15px] text-gray-200 font-normal leading-relaxed text-center md:text-left pr-0 md:pr-4">
                     {{ $siteSettings['contact_address'] ?? 'Jalan Sadewa RT 01 RW 03 Kelurahan Karang Raja, Kecamatan Prabumulih Timur, Kota Prabumulih, Sumatera Selatan 31111' }}
                 </p>
                 <div class="w-full space-y-2 pt-1 text-sm sm:text-[15px] text-gray-200 flex flex-col items-center md:items-start">
-                    <div class="flex items-center justify-center md:justify-start space-x-3">
+                    <div class="w-full flex items-center justify-center md:justify-start space-x-3">
                         <i class="fa-solid fa-phone text-[#10b981] w-4 text-center text-sm flex-shrink-0" aria-hidden="true"></i>
                         <a href="tel:{{ $siteSettings['contact_phone'] ?? '082182680647' }}" class="text-gray-200 hover:text-[#da251c] transition py-0.5" aria-label="Telepon Sekolah">{{ $siteSettings['contact_phone'] ?? '0821-8268-0647' }}</a>
                     </div>
-                    <div class="flex items-center justify-center md:justify-start space-x-3">
+                    <div class="w-full flex items-center justify-center md:justify-start space-x-3">
                         <i class="fa-solid fa-envelope text-[#10b981] w-4 text-center text-sm flex-shrink-0" aria-hidden="true"></i>
                         <a href="mailto:{{ $siteSettings['contact_email'] ?? 'smaitishlahulummah2019@gmail.com' }}" class="text-gray-200 hover:text-[#da251c] transition py-0.5" aria-label="Email Sekolah">{{ $siteSettings['contact_email'] ?? 'smaitishlahulummah2019@gmail.com' }}</a>
                     </div>

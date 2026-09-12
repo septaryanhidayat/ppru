@@ -1265,9 +1265,9 @@ CREATE TABLE `quick_menus` (
 INSERT INTO `quick_menus` (`id`, `name`, `icon`, `url`, `order`, `is_active`, `created_at`, `updated_at`) VALUES
   (1, 'Sambutan', 'fa-solid fa-user-tie', '/sambutan-kepala-sekolah', 9, '0', '2026-09-11 15:07:22', '2026-09-12 08:44:04'),
   (2, 'Profil', 'fa-solid fa-school', '/tentang-kami', 2, 1, '2026-09-11 15:07:22', '2026-09-11 15:07:22'),
-  (3, 'Dewan Guru', 'fa-solid fa-chalkboard-user', '/dewan-guru', 3, 1, '2026-09-11 15:07:22', '2026-09-11 15:07:22'),
+  (3, 'Guru', 'fa-solid fa-chalkboard-user', '/dewan-guru', 3, 1, '2026-09-11 15:07:22', '2026-09-11 15:07:22'),
   (4, 'Fasilitas', 'fa-solid fa-layer-group', '/fasilitas', 4, 1, '2026-09-11 15:07:22', '2026-09-11 15:07:22'),
-  (5, 'Kabar Sekolah', 'fa-solid fa-newspaper', '/artikel', 8, 1, '2026-09-11 15:07:22', '2026-09-12 07:18:51'),
+  (5, 'Berita', 'fa-solid fa-newspaper', '/artikel', 8, 1, '2026-09-11 15:07:22', '2026-09-12 07:18:51'),
   (6, 'Pengumuman', 'fa-solid fa-bullhorn', '/pengumuman', 11, '0', '2026-09-11 15:07:22', '2026-09-12 08:44:04'),
   (7, 'Galeri Video', 'fa-brands fa-youtube', '/video', 12, '0', '2026-09-11 15:07:22', '2026-09-12 08:44:04'),
   (8, 'Agenda', 'fa-solid fa-calendar-days', '/agenda', 10, '0', '2026-09-11 15:07:22', '2026-09-12 08:44:04'),
@@ -1278,7 +1278,7 @@ INSERT INTO `quick_menus` (`id`, `name`, `icon`, `url`, `order`, `is_active`, `c
   (13, 'Unggulan', 'fa-solid fa-award', '/unggulan', 5, 1, '2026-09-12 07:03:45', '2026-09-12 07:18:51'),
   (14, 'Layanan Terpadu', 'fa-solid fa-handshake-angle', '/layanan-terpadu-2', 14, '0', '2026-09-12 07:03:45', '2026-09-12 08:44:04'),
   (15, 'Data Alumni', 'fa-solid fa-user-graduate', '/data-alumni', 13, '0', '2026-09-12 07:03:45', '2026-09-12 08:44:04'),
-  (16, 'PPDB Online', 'fa-solid fa-graduation-cap', '/ppdb', 1, 1, '2026-09-12 07:03:45', '2026-09-12 07:18:51');
+  (16, 'PPDB', 'fa-solid fa-graduation-cap', '/ppdb', 1, 1, '2026-09-12 07:03:45', '2026-09-12 07:18:51');
 
 -- --------------------------------------------------------
 -- Table structure for table `service_submissions`
