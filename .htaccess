@@ -3,24 +3,14 @@
 # ==============================================================================
 
 # ------------------------------------------------------------------------------
-# 1. CPANEL / LITESPEED PHP 8.4 & 8.3 HANDLER OVERRIDE
-# (Overrides server default PHP 8.1 when MultiPHP Manager is not accessible)
+# 1. CPANEL / LITESPEED PHP 8.4 HANDLER
 # ------------------------------------------------------------------------------
+# php -- BEGIN cPanel-generated handler, do not edit
+# Set the “ea-php84” package as the default “PHP” programming language.
 <IfModule mime_module>
-    # Priority 1: PHP 8.4 Handlers (EasyApache 4, CloudLinux alt-php, LiteSpeed)
-    AddHandler application/x-httpd-ea-php84___lsphp .php .php8 .phtml
-    AddHandler application/x-httpd-ea-php84 .php .php8 .phtml
-    AddHandler application/x-httpd-alt-php84___lsphp .php .php8 .phtml
-    AddHandler application/x-httpd-alt-php84 .php .php8 .phtml
-    AddHandler application/x-httpd-php84 .php .php8 .phtml
-
-    # Priority 2: Fallback to PHP 8.3 if host has not provisioned PHP 8.4
-    AddHandler application/x-httpd-ea-php83___lsphp .php .php8 .phtml
-    AddHandler application/x-httpd-ea-php83 .php .php8 .phtml
-    AddHandler application/x-httpd-alt-php83___lsphp .php .php8 .phtml
-    AddHandler application/x-httpd-alt-php83 .php .php8 .phtml
-    AddHandler application/x-httpd-php83 .php .php8 .phtml
+  AddHandler application/x-httpd-ea-php84 .php .php8 .phtml
 </IfModule>
+# php -- END cPanel-generated handler, do not edit
 
 # Disable directory indexing
 Options -Indexes -MultiViews
