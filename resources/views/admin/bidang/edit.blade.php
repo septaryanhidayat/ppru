@@ -28,7 +28,7 @@
             <div class="p-5 bg-emerald-50/40 rounded-2xl border border-emerald-100 space-y-4">
                 <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
                     <div class="w-28 h-20 rounded-xl overflow-hidden bg-slate-200 border border-slate-300 shrink-0 shadow-sm">
-                        <img src="{{ $bidang->thumbnail_url }}" alt="{{ $bidang->name }}" class="w-full h-full object-cover" onerror="this.src='/uploads/campus-ishum.webp'">
+                        <img src="{{ $bidang->thumbnail_url }}" alt="{{ $bidang->name }}" class="w-full h-full object-cover" onerror="this.src='/uploads/gedung-smait-ishum.webp'">
                     </div>
                     <div class="flex-1">
                         <label class="block text-xs font-bold text-[#00913e] uppercase tracking-wider mb-1">

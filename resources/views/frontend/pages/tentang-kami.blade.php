@@ -88,7 +88,7 @@
             </div>
             <div class="lg:col-span-5 order-1 lg:order-2 flex justify-center">
                 <div class="rounded-2xl overflow-hidden shadow-lg border border-gray-100 max-h-80 bg-gray-50">
-                    <img src="/uploads/campus-ishum.webp" alt="Kampus SMA IT Ishlahul Ummah Prabumulih" class="w-full h-full object-cover object-center">
+                    <img src="/uploads/gedung-smait-ishum.webp" alt="Kampus SMA IT Ishlahul Ummah Prabumulih" class="w-full h-full object-cover object-center">
                 </div>
             </div>
         </div>

@@ -24,7 +24,7 @@
         <div class="lg:col-span-2 space-y-6">
             {{-- Foto Fasilitas --}}
             <div class="rounded-2xl overflow-hidden bg-slate-100 shadow-md">
-                <img src="{{ $bidang->thumbnail_url }}" alt="{{ $bidang->name }}" class="w-full h-64 sm:h-80 object-cover" onerror="this.src='/uploads/campus-ishum.webp'">
+                <img src="{{ $bidang->thumbnail_url }}" alt="{{ $bidang->name }}" class="w-full h-64 sm:h-80 object-cover" onerror="this.src='/uploads/gedung-smait-ishum.webp'">
             </div>
 
             <div class="flex items-center space-x-4 pb-6 border-b border-gray-100">

@@ -80,7 +80,7 @@ class Post extends Model
             return '/'.ltrim($path, '/');
         }
 
-        return '/uploads/campus-robbani.webp';
+        return '/uploads/gedung-smait-ishum.webp';
     }
 
     public function getPostDateAttribute()

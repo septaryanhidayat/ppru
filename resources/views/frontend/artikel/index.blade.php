@@ -57,9 +57,9 @@
                     <article class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col group reveal-fade-up delay-{{ $idx % 4 }}">
                         <a href="{{ route('artikel.show', $post->slug) }}" class="block relative h-48 overflow-hidden bg-gray-100">
                             @if($post->featured_image)
-                                <img src="{{ $post->featured_image }}" alt="{{ $post->title }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='/uploads/campus-ishum.webp'">
+                                <img src="{{ $post->featured_image }}" alt="{{ $post->title }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='/uploads/gedung-smait-ishum.webp'">
                             @else
-                                <img src="/uploads/campus-ishum.webp" alt="{{ $post->title }}" class="w-full h-full object-cover">
+                                <img src="/uploads/gedung-smait-ishum.webp" alt="{{ $post->title }}" class="w-full h-full object-cover">
                             @endif
                             @if($post->categories->isNotEmpty())
                                 <span class="absolute top-3 left-3 bg-[#00913e] text-white text-[10px] font-bold px-2 py-0.5 rounded-full shadow-sm">
@@ -147,9 +147,9 @@
                         <div class="flex items-start space-x-3 group">
                             <a href="{{ route('artikel.show', $rPost->slug) }}" class="w-16 h-16 rounded-xl overflow-hidden bg-gray-100 flex-shrink-0">
                                 @if($rPost->featured_image)
-                                    <img src="{{ $rPost->featured_image }}" alt="{{ $rPost->title }}" class="w-full h-full object-cover group-hover:scale-105 transition" onerror="this.src='/uploads/campus-ishum.webp'">
+                                    <img src="{{ $rPost->featured_image }}" alt="{{ $rPost->title }}" class="w-full h-full object-cover group-hover:scale-105 transition" onerror="this.src='/uploads/gedung-smait-ishum.webp'">
                                 @else
-                                    <img src="/uploads/campus-ishum.webp" alt="{{ $rPost->title }}" class="w-full h-full object-cover">
+                                    <img src="/uploads/gedung-smait-ishum.webp" alt="{{ $rPost->title }}" class="w-full h-full object-cover">
                                 @endif
                             </a>
                             <div class="flex-grow">
