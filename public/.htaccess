@@ -20,12 +20,6 @@
     AddHandler application/x-httpd-php83 .php .php8 .phtml
 </IfModule>
 
-<IfModule LiteSpeed>
-    <FilesMatch "\.(php|phtml)$">
-        SetHandler application/x-httpd-ea-php84___lsphp
-    </FilesMatch>
-</IfModule>
-
 <IfModule mod_rewrite.c>
     <IfModule mod_negotiation.c>
         Options -MultiViews -Indexes
