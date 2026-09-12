@@ -2,11 +2,11 @@
 deployment:
   tasks:
     # ------------------------------------------------------------------------
-    # cPanel Automatic Deployment Configuration
-    # Sesuaikan DEPLOYPATH dengan direktori tujuan di cPanel Anda
-    # Default domain utama biasanya: /home/$USER/public_html/
+    # cPanel Git Version Control Deployment for smaitishumpbm.sch.id
+    # Document Root: /home/berandad/repositories/smaitishum/public
     # ------------------------------------------------------------------------
-    - export DEPLOYPATH=${DEPLOYPATH:-/home/$USER/public_html/}
-    - /bin/cp -R * $DEPLOYPATH
-    - /bin/cp -f .htaccess $DEPLOYPATH
-    - /bin/chmod -R 755 $DEPLOYPATH/storage $DEPLOYPATH/bootstrap/cache
+    - export DEPLOYPATH=/home/berandad/repositories/smaitishum
+    - /bin/chmod -R 775 $DEPLOYPATH/storage $DEPLOYPATH/bootstrap/cache || true
+    - /bin/chmod -R 755 $DEPLOYPATH/public/uploads || true
+    - /bin/touch $DEPLOYPATH/public/index.php $DEPLOYPATH/public/.htaccess || true
+    - killall -9 lsphp 2>/dev/null || true

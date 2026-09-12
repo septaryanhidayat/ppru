@@ -170,7 +170,7 @@
                 <label class="block text-xs font-bold text-gray-700 mb-1">
                     Sertakan Surat <span class="text-red-500">*</span>
                 </label>
-                <input type="file" name="letter_file" required accept=".pdf,.doc,.docx,image/*" class="w-full text-xs text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border file:border-gray-300 file:text-xs file:font-medium file:bg-gray-100 file:text-gray-700 hover:file:bg-gray-200 cursor-pointer">
+                <input type="file" name="letter_file" required accept=".pdf,.doc,.docx,image/*" class="w-full text-xs text-slate-700 font-medium file:mr-4 file:py-2.5 file:px-5 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-[#00913e] file:text-white hover:file:bg-[#007a34] file:cursor-pointer file:shadow-md transition bg-slate-50 rounded-xl border border-slate-200 p-2">
                 @error('letter_file') <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span> @enderror
             </div>
 
@@ -179,7 +179,7 @@
                 <label class="block text-xs font-bold text-gray-700 mb-1">
                     Sertakan KTP <span class="text-red-500">*</span>
                 </label>
-                <input type="file" name="ktp_file" required accept="image/*,.pdf" class="w-full text-xs text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border file:border-gray-300 file:text-xs file:font-medium file:bg-gray-100 file:text-gray-700 hover:file:bg-gray-200 cursor-pointer">
+                <input type="file" name="ktp_file" required accept="image/*,.pdf" class="w-full text-xs text-slate-700 font-medium file:mr-4 file:py-2.5 file:px-5 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-[#00913e] file:text-white hover:file:bg-[#007a34] file:cursor-pointer file:shadow-md transition bg-slate-50 rounded-xl border border-slate-200 p-2">
                 @error('ktp_file') <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span> @enderror
             </div>
 
@@ -188,7 +188,7 @@
                 <label class="block text-xs font-bold text-gray-700 mb-1">
                     Sertakan NPWP (Opsional)
                 </label>
-                <input type="file" name="npwp_file" accept="image/*,.pdf" class="w-full text-xs text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border file:border-gray-300 file:text-xs file:font-medium file:bg-gray-100 file:text-gray-700 hover:file:bg-gray-200 cursor-pointer">
+                <input type="file" name="npwp_file" accept="image/*,.pdf" class="w-full text-xs text-slate-700 font-medium file:mr-4 file:py-2.5 file:px-5 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-[#00913e] file:text-white hover:file:bg-[#007a34] file:cursor-pointer file:shadow-md transition bg-slate-50 rounded-xl border border-slate-200 p-2">
                 @error('npwp_file') <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span> @enderror
             </div>
 
