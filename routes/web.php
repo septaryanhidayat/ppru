@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\AdminDewanController;
 use App\Http\Controllers\Admin\AdminDownloadController;
 use App\Http\Controllers\Admin\AdminDpcController;
 use App\Http\Controllers\Admin\AdminFeedbackController;
+use App\Http\Controllers\Admin\AdminLayananController;
 use App\Http\Controllers\Admin\AdminMediaController;
 use App\Http\Controllers\Admin\AdminPageController;
 use App\Http\Controllers\Admin\AdminPopupController;
@@ -112,6 +113,14 @@ Route::prefix('admin')->middleware('auth')->name('admin.')->group(function () {
     Route::get('/feedbacks', [AdminFeedbackController::class, 'index'])->name('feedbacks.index');
     Route::post('/feedbacks/{feedback}/read', [AdminFeedbackController::class, 'markAsRead'])->name('feedbacks.read');
     Route::delete('/feedbacks/{feedback}', [AdminFeedbackController::class, 'destroy'])->name('feedbacks.destroy');
+
+    // Layanan Terpadu (Izin Sekolah, Kerja Sama, Sewa Barang)
+    Route::get('/layanan', [AdminLayananController::class, 'index'])->name('layanan.index');
+    Route::get('/layanan/content', [AdminLayananController::class, 'content'])->name('layanan.content');
+    Route::post('/layanan/content', [AdminLayananController::class, 'updateContent'])->name('layanan.content.update');
+    Route::get('/layanan/{submission}', [AdminLayananController::class, 'show'])->name('layanan.show');
+    Route::match(['POST', 'PUT'], '/layanan/{submission}/status', [AdminLayananController::class, 'updateStatus'])->name('layanan.status');
+    Route::delete('/layanan/{submission}', [AdminLayananController::class, 'destroy'])->name('layanan.destroy');
 
     // Security & Activity Logs
     Route::get('/security', [AdminSecurityController::class, 'index'])->name('security.index');

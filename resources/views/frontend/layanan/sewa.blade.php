@@ -1,39 +1,39 @@
 @extends('layouts.frontend')
 
-@section('title', 'Permohonan Sewa Menyewa Barang Sekolah - SMA IT Ishlahul Ummah Prabumulih')
-@section('meta_description', 'Formulir permohonan sewa sarana dan fasilitas SMA IT Ishlahul Ummah Prabumulih: Hall Ishum, laboratorium komputer, lapangan olahraga, sound system, dan tenda.')
+@section('title', 'Permohonan Sewa Menyewa Barang Milik Sekolah - SMA IT Ishlahul Ummah Prabumulih')
+@section('meta_description', 'Layanan dan ketentuan permohonan sewa menyewa sarana, prasarana, gedung, aula, dan perlengkapan milik SMA IT Ishlahul Ummah Prabumulih.')
 
 @section('content')
 {{-- HERO HEADER --}}
-<div class="bg-gradient-to-r from-emerald-950 via-[#00913e] to-emerald-900 text-white py-12">
+<div class="bg-gradient-to-r from-emerald-950 via-[#00913e] to-emerald-900 text-white py-10 sm:py-12">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <nav class="text-xs text-emerald-200 mb-3 flex items-center space-x-2">
             <a href="{{ route('home') }}" class="hover:text-white transition">Beranda</a>
             <span>/</span>
             <a href="{{ route('layanan.index') }}" class="hover:text-white transition">Layanan Publik</a>
             <span>/</span>
-            <span class="text-amber-300 font-semibold">Sewa Barang &amp; Fasilitas</span>
+            <span class="text-amber-300 font-semibold">Sewa Fasilitas</span>
         </nav>
         <div class="flex items-center space-x-3">
-            <div class="w-10 h-10 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center font-bold text-xl shadow-md">
-                <i class="fa-solid fa-building-user"></i>
+            <div class="w-10 h-10 rounded-xl bg-purple-500 text-white flex items-center justify-center font-bold text-xl shadow-md">
+                <i class="fa-solid fa-boxes-packing"></i>
             </div>
             <div>
-                <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight">Permohonan Sewa Fasilitas &amp; Barang</h1>
+                <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight">Sewa Menyewa Barang Milik Sekolah</h1>
                 <p class="text-sm text-emerald-100 mt-1 font-light">
-                    Penyewaan fasilitas Hall Ishum, sarana olahraga, ruang multimedia, dan sarana penunjang kegiatan.
+                    Penyewaan fasilitas gedung, laboratorium, ruang serbaguna, dan inventaris sekolah.
                 </p>
             </div>
         </div>
     </div>
 </div>
 
-<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-14 space-y-10">
 
-    {{-- JUDUL RESMI TAMPILAN --}}
-    <div class="text-center max-w-2xl mx-auto mb-10">
-        <h2 class="text-2xl sm:text-3xl font-black text-[#00913e] tracking-tight uppercase">
-            PERMOHONAN SEWA MENYEWA BARANG SEKOLAH
+    {{-- JUDUL RESMI HALAMAN (SESUAI ELEMENTOR ORIGINAL) --}}
+    <div class="text-center max-w-2xl mx-auto">
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-[#00913e] tracking-tight uppercase">
+            PERMOHONAN SEWA MENYEWA BARANG MILIK SEKOLAH
         </h2>
         <p class="text-sm sm:text-base font-bold text-[#da251c] mt-1">
             SMA Islam Terpadu Ishlahul Ummah Prabumulih
@@ -43,105 +43,159 @@
 
     {{-- NOTIFIKASI SUKSES --}}
     @if(session('success'))
-        <div class="bg-emerald-50 border-2 border-[#00913e] rounded-3xl p-6 sm:p-8 mb-8 text-center space-y-4 shadow-lg animate-fadeIn">
+        <div class="bg-emerald-50 border-2 border-[#00913e] rounded-3xl p-6 sm:p-8 text-center space-y-4 shadow-lg animate-fadeIn">
             <div class="w-16 h-16 rounded-full bg-[#00913e] text-white flex items-center justify-center text-2xl mx-auto shadow-md">
                 <i class="fa-solid fa-circle-check"></i>
             </div>
-            <h3 class="font-extrabold text-xl text-emerald-950">Permohonan Sewa Berhasil Dikirim!</h3>
-            <p class="text-xs sm:text-sm text-emerald-800 max-w-lg mx-auto">
+            <h3 class="font-extrabold text-xl text-emerald-950">Permohonan Sewa Terkirim!</h3>
+            <p class="text-xs sm:text-sm text-emerald-800 max-w-lg mx-auto leading-relaxed">
                 {{ session('success') }}
             </p>
             @if(session('wa_url'))
                 <div class="pt-2">
                     <a href="{{ session('wa_url') }}" target="_blank" class="inline-flex items-center space-x-2 bg-[#00913e] hover:bg-emerald-700 text-white font-extrabold text-xs sm:text-sm px-6 py-3 rounded-full shadow-lg transition">
                         <i class="fa-brands fa-whatsapp text-lg"></i>
-                        <span>Konfirmasi WhatsApp Bagian Sarpras</span>
+                        <span>Konfirmasi WhatsApp Pengelola Sarpras</span>
                     </a>
                 </div>
             @endif
         </div>
     @endif
 
-    {{-- FORM CONTAINER --}}
-    <div class="bg-white rounded-3xl p-8 sm:p-12 border border-gray-100 shadow-xl space-y-8">
-        <div class="border-b border-gray-100 pb-4">
-            <h3 class="text-lg font-bold text-gray-900 flex items-center space-x-2">
-                <i class="fa-solid fa-pen-clip text-[#00913e]"></i>
-                <span>Silahkan isi Form dibawah ini</span>
-            </h3>
-            <p class="text-xs text-gray-500 mt-1 font-light">Lengkapi informasi fasilitas atau barang yang ingin disewa beserta waktu pemakaian.</p>
-        </div>
+    {{-- DETAIL PERSYARATAN & INFORMASI PELAYANAN (ACCORDION RESMI) --}}
+    <div class="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm" x-data="{ activeTab: 0 }">
+        @php
+            $defaultSewaTabs = [
+                [
+                    'title' => 'Persyaratan Pelayanan',
+                    'content' => '<ul><li>Individu (perorangan):<ul class="ml-4 mt-1 space-y-0.5"><li>Surat Permohonan</li><li>Fotokopi KTP</li><li>Fotokopi NPWP (jika ada)</li></ul></li><li class="mt-2">Lembaga Organisasi:<ul class="ml-4 mt-1 space-y-0.5"><li>Surat Permohonan</li><li>Fotokopi NPWP</li></ul></li></ul>'
+                ],
+                [
+                    'title' => 'Sistem Mekanisme dan Prosedur',
+                    'content' => '<ul><li>Penyewa mengajukan surat permohonan ditujukan kepada kepala sekolah</li><li>Jika permohonan disetujui akan disampaikan penawaran harga kepada Mitra, jika tidak disetujui akan diberitahukan melalui surat pemberitahuan kepada Mitra.</li><li>Melakukan negosiasi harga jika setuju dilanjutkan dengan membuat draf perjanjian sewa menyewa jika tidak setuju akan terjadi pembatalan sewa</li><li>Setelah perjanjian pembayaran sewa ditandatangani Mitra melakukan pembayaran sewa.</li></ul>'
+                ],
+                [
+                    'title' => 'Jangka Waktu Penyelesaian',
+                    'content' => '<p>Waktu respon atas permohonan paling lambat 10 (sepuluh) hari kerja</p>'
+                ],
+                [
+                    'title' => 'Biaya dan Tarif',
+                    'content' => '<p>Biaya administrasi pelayanan gratis, kecuali biaya pengganti meterai jika penyewa secara individu dan dilakukan secara kolektif.</p>'
+                ],
+                [
+                    'title' => 'Produk Layanan',
+                    'content' => '<p>Perjanjian sewa asset</p>'
+                ],
+                [
+                    'title' => 'Pengaduan, Saran dan Masukan',
+                    'content' => '<p>Pengaduan, saran dan masukan dapat disampaikan ke bagian humas dan media layanan terpadu SMA IT Ishlahul Ummah Prabumulih</p><p class="mt-2"><strong>Alamat :</strong> Jln. Sadewa RT 01 RW 03 Kel. Krg Raja Prabumulih Timur</p><p><strong>No. HP (WA) :</strong> <a href="https://wa.me/6282182680647" target="_blank" class="text-emerald-600 font-bold hover:underline">0821-8268-0647</a></p><p><strong>Website :</strong> smaitishumpbm.sch.id</p><p><strong>Email :</strong> <a href="mailto:smaitishlahulummah2019@gmail.com" class="text-emerald-600 font-bold hover:underline">smaitishlahulummah2019@gmail.com</a></p>'
+                ]
+            ];
+            $tabs = !empty($accordions) ? $accordions : $defaultSewaTabs;
+        @endphp
 
-        <form action="{{ route('layanan.sewa.submit') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
+        <div class="divide-y divide-gray-200">
+            @foreach($tabs as $idx => $tab)
+                <div class="transition">
+                    <button type="button" @click="activeTab = (activeTab === {{ $idx }} ? -1 : {{ $idx }})" class="w-full py-4 px-6 text-left flex items-center justify-between hover:bg-gray-50 focus:outline-none transition select-none">
+                        <span class="flex items-center space-x-3">
+                            <span class="text-[#00913e] font-extrabold text-lg leading-none" x-text="activeTab === {{ $idx }} ? '−' : '+'"></span>
+                            <span class="font-extrabold text-sm sm:text-base text-[#00913e] tracking-tight">{{ $tab['title'] }}</span>
+                        </span>
+                        <i class="fa-solid fa-chevron-down text-xs text-gray-400 transform transition-transform duration-200" :class="activeTab === {{ $idx }} ? 'rotate-180 text-[#00913e]' : ''"></i>
+                    </button>
+                    <div x-show="activeTab === {{ $idx }}" x-collapse class="px-6 pb-5 pt-1 text-xs sm:text-sm text-gray-700 leading-relaxed border-t border-gray-100 bg-gray-50/50">
+                        <div class="prose prose-sm max-w-none text-gray-700 [&>ul]:list-disc [&>ul]:pl-5 [&>ul]:space-y-1 [&>p]:mb-2">
+                            {!! $tab['content'] !!}
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
+
+    {{-- JUDUL FORMULIR --}}
+    <div class="text-center pt-2">
+        <h3 class="text-xl sm:text-2xl font-bold text-[#00913e]">
+            Silahkan isi Form dibawah ini
+        </h3>
+    </div>
+
+    {{-- FORM CONTAINER --}}
+    <div class="bg-white rounded-3xl p-6 sm:p-10 border border-gray-200/80 shadow-md space-y-6">
+        <form action="{{ route('layanan.sewa.submit') }}" method="POST" enctype="multipart/form-data" class="space-y-5">
             @csrf
+
+            {{-- Honeypot anti-spam protection --}}
+            <input type="hidden" name="_hp_security_check" value="">
 
             {{-- 1. Nama Lengkap --}}
             <div>
-                <label for="name" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Nama Lengkap Pemohon *</label>
-                <input type="text" name="name" id="name" required value="{{ old('name') }}" placeholder="Masukkan nama lengkap pemohon atau perwakilan penyewa" class="w-full bg-gray-50 text-xs sm:text-sm text-gray-800 rounded-xl px-4 py-3 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#00913e] focus:bg-white transition">
+                <label for="name" class="block text-xs font-bold text-gray-700 mb-1">
+                    Nama Lengkap <span class="text-red-500">*</span>
+                </label>
+                <input type="text" name="name" id="name" required value="{{ old('name') }}" placeholder="Nama Lengkap" class="w-full bg-white text-xs sm:text-sm text-gray-800 rounded-lg px-4 py-2.5 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#00913e] focus:border-transparent transition">
                 @error('name') <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span> @enderror
             </div>
 
-            {{-- 2. Asal Instansi / Komunitas --}}
+            {{-- 2. Asal Instansi --}}
             <div>
-                <label for="agency" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Asal Instansi / Komunitas / Pribadi *</label>
-                <input type="text" name="agency" id="agency" required value="{{ old('agency') }}" placeholder="Contoh: Komunitas Olahraga Prabumulih / Yayasan Bina Insan / Pribadi" class="w-full bg-gray-50 text-xs sm:text-sm text-gray-800 rounded-xl px-4 py-3 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#00913e] focus:bg-white transition">
+                <label for="agency" class="block text-xs font-bold text-gray-700 mb-1">
+                    Asal Instansi <span class="text-red-500">*</span>
+                </label>
+                <input type="text" name="agency" id="agency" required value="{{ old('agency') }}" placeholder="Asal Instansi" class="w-full bg-white text-xs sm:text-sm text-gray-800 rounded-lg px-4 py-2.5 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#00913e] focus:border-transparent transition">
                 @error('agency') <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span> @enderror
             </div>
 
             {{-- 3. Nomor WhatsApp --}}
             <div>
-                <label for="whatsapp" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Nomor WhatsApp Aktif *</label>
-                <input type="text" name="whatsapp" id="whatsapp" required value="{{ old('whatsapp') }}" placeholder="Contoh: 081234567890 (untuk pengecekan jadwal dan biaya)" class="w-full bg-gray-50 text-xs sm:text-sm text-gray-800 rounded-xl px-4 py-3 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#00913e] focus:bg-white transition">
+                <label for="whatsapp" class="block text-xs font-bold text-gray-700 mb-1">
+                    Nomor WhatsApp <span class="text-red-500">*</span>
+                </label>
+                <input type="text" name="whatsapp" id="whatsapp" required value="{{ old('whatsapp') }}" placeholder="Contoh: 082182680647" class="w-full bg-white text-xs sm:text-sm text-gray-800 rounded-lg px-4 py-2.5 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#00913e] focus:border-transparent transition">
                 @error('whatsapp') <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span> @enderror
             </div>
 
-            {{-- 4. Fasilitas / Barang yang Ingin Disewa --}}
+            {{-- 4. Keperluan --}}
             <div>
-                <label for="purpose" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Fasilitas / Barang yang Ingin Disewa &amp; Tanggal Pemakaian *</label>
-                <textarea name="purpose" id="purpose" rows="4" required placeholder="Sebutkan sarana yang dibutuhkan (misal: Hall Ishum untuk acara seminar, lapangan futsal, proyektor sound system, tenda), beserta tanggal dan estimasi durasi pemakaian..." class="w-full bg-gray-50 text-xs sm:text-sm text-gray-800 rounded-xl p-4 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#00913e] focus:bg-white transition leading-relaxed">{{ old('purpose') }}</textarea>
+                <label for="purpose" class="block text-xs font-bold text-gray-700 mb-1">
+                    Keperluan <span class="text-red-500">*</span>
+                </label>
+                <textarea name="purpose" id="purpose" rows="3" required placeholder="Keperluan" class="w-full bg-white text-xs sm:text-sm text-gray-800 rounded-lg p-3 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#00913e] focus:border-transparent transition leading-relaxed">{{ old('purpose') }}</textarea>
                 @error('purpose') <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span> @enderror
             </div>
 
-            {{-- 5. Sertakan Surat Permohonan --}}
-            <div class="p-4 sm:p-5 rounded-2xl bg-gray-50 border border-gray-200 space-y-2">
-                <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider">
-                    Sertakan Surat Permohonan Sewa (PDF / DOC / JPG) *
+            {{-- 5. Sertakan Surat --}}
+            <div>
+                <label class="block text-xs font-bold text-gray-700 mb-1">
+                    Sertakan Surat <span class="text-red-500">*</span>
                 </label>
-                <p class="text-[11px] text-gray-500">Surat pengajuan sewa fasilitas / sarana resmi (Maksimal 5MB).</p>
-                <input type="file" name="letter_file" required accept=".pdf,.doc,.docx,image/*" class="w-full text-xs text-gray-600 file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-[#00913e] file:text-white hover:file:bg-emerald-700 cursor-pointer">
+                <input type="file" name="letter_file" required accept=".pdf,.doc,.docx,image/*" class="w-full text-xs text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border file:border-gray-300 file:text-xs file:font-medium file:bg-gray-100 file:text-gray-700 hover:file:bg-gray-200 cursor-pointer">
                 @error('letter_file') <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span> @enderror
             </div>
 
             {{-- 6. Sertakan KTP --}}
-            <div class="p-4 sm:p-5 rounded-2xl bg-gray-50 border border-gray-200 space-y-2">
-                <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider">
-                    Sertakan KTP Pemohon (Foto / PDF) *
+            <div>
+                <label class="block text-xs font-bold text-gray-700 mb-1">
+                    Sertakan KTP <span class="text-red-500">*</span>
                 </label>
-                <p class="text-[11px] text-gray-500">Foto KTP penanggung jawab sewa (Maksimal 5MB).</p>
-                <input type="file" name="ktp_file" required accept="image/*,.pdf" class="w-full text-xs text-gray-600 file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-[#da251c] file:text-white hover:file:bg-[#b91c1c] cursor-pointer">
+                <input type="file" name="ktp_file" required accept="image/*,.pdf" class="w-full text-xs text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border file:border-gray-300 file:text-xs file:font-medium file:bg-gray-100 file:text-gray-700 hover:file:bg-gray-200 cursor-pointer">
                 @error('ktp_file') <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span> @enderror
             </div>
 
             {{-- 7. Sertakan NPWP (Opsional) --}}
-            <div class="p-4 sm:p-5 rounded-2xl bg-gray-50 border border-gray-200 space-y-2">
-                <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider">
-                    Sertakan NPWP (Opsional untuk Lembaga/Perusahaan)
+            <div>
+                <label class="block text-xs font-bold text-gray-700 mb-1">
+                    Sertakan NPWP (Opsional)
                 </label>
-                <p class="text-[11px] text-gray-500">Lampirkan foto/file NPWP instansi jika diperlukan administrasi perpajakan resmi.</p>
-                <input type="file" name="npwp_file" accept="image/*,.pdf" class="w-full text-xs text-gray-600 file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-slate-600 file:text-white hover:file:bg-slate-700 cursor-pointer">
+                <input type="file" name="npwp_file" accept="image/*,.pdf" class="w-full text-xs text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border file:border-gray-300 file:text-xs file:font-medium file:bg-gray-100 file:text-gray-700 hover:file:bg-gray-200 cursor-pointer">
                 @error('npwp_file') <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span> @enderror
             </div>
 
             {{-- SUBMIT BUTTON --}}
-            <div class="pt-4 flex flex-col sm:flex-row items-center justify-between gap-4">
-                <a href="{{ route('layanan.index') }}" class="text-xs font-bold text-gray-500 hover:text-gray-800 flex items-center space-x-2">
-                    <i class="fa-solid fa-arrow-left"></i>
-                    <span>Kembali ke Portal Layanan</span>
-                </a>
-                <button type="submit" class="w-full sm:w-auto bg-[#00913e] hover:bg-emerald-700 text-white font-extrabold text-sm px-8 py-3.5 rounded-full shadow-lg hover:shadow-xl transition flex items-center justify-center space-x-2 cursor-pointer">
-                    <i class="fa-solid fa-paper-plane"></i>
-                    <span>KIRIM PERMOHONAN SEWA</span>
+            <div class="pt-2">
+                <button type="submit" class="w-full bg-[#00913e] hover:bg-emerald-700 text-white font-extrabold text-sm py-3 rounded-md shadow-md hover:shadow-lg transition cursor-pointer tracking-wider">
+                    Send
                 </button>
             </div>
 

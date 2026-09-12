@@ -333,6 +333,24 @@
                             </span>
                         @endif
                     </a>
+
+                    <a href="{{ route('admin.layanan.index') }}" class="sidebar-item flex items-center justify-between px-3 py-1.5 rounded-lg transition {{ request()->routeIs('admin.layanan.index') || request()->routeIs('admin.layanan.show') ? 'bg-gradient-to-r from-[#00913e] to-[#05a849] text-white font-bold shadow-md' : 'hover:bg-slate-800/70 text-slate-300 hover:text-white' }}" title="Permohonan Layanan Terpadu">
+                        <div class="flex items-center space-x-3">
+                            <i class="fa-solid fa-handshake-angle text-xs w-4 text-center text-teal-300"></i>
+                            <span class="sidebar-label font-bold">Layanan Terpadu</span>
+                        </div>
+                        @php $pendingLayanan = \App\Models\ServiceSubmission::where('status', 'pending')->count(); @endphp
+                        @if($pendingLayanan > 0)
+                            <span class="sidebar-badge bg-amber-400 text-slate-900 text-[10px] px-1.5 py-0.2 rounded-full font-bold">
+                                {{ $pendingLayanan }}
+                            </span>
+                        @endif
+                    </a>
+
+                    <a href="{{ route('admin.layanan.content') }}" class="sidebar-item flex items-center space-x-3 px-3 py-1.5 rounded-lg transition {{ request()->routeIs('admin.layanan.content*') ? 'bg-gradient-to-r from-[#00913e] to-[#05a849] text-white font-bold shadow-md' : 'hover:bg-slate-800/70 text-slate-300 hover:text-white' }}" title="Kelola Konten Layanan">
+                        <i class="fa-solid fa-file-shield text-xs w-4 text-center text-emerald-400"></i>
+                        <span class="sidebar-label">Konten Layanan &amp; Syarat</span>
+                    </a>
                 </div>
 
                 {{-- SECTION 5: SISTEM, KEAMANAN & SEO --}}

@@ -7,6 +7,8 @@ use App\Models\Agenda;
 use App\Models\Feedback;
 use App\Models\Pengumuman;
 use App\Models\Post;
+use App\Models\ServiceSubmission;
+use App\Models\Setting;
 use App\Models\Testimonial;
 use App\Models\Video;
 use Illuminate\Http\Request;
@@ -147,8 +149,10 @@ class InformationController extends Controller
     public function izinSekolah()
     {
         $page = Post::pages()->where('slug', 'izin-sekolah')->first();
+        $stored = json_decode(Setting::get('layanan_izin_accordions', '[]'), true) ?: [];
+        $accordions = ! empty($stored) ? $stored : self::getDefaultAccordions('izin');
 
-        return view('frontend.layanan.izin', compact('page'));
+        return view('frontend.layanan.izin', compact('page', 'accordions'));
     }
 
     public function submitIzin(Request $request)
@@ -162,30 +166,14 @@ class InformationController extends Controller
             'ktp_file' => 'nullable|file|mimes:pdf,jpg,jpeg,png,webp|max:5120',
         ]);
 
-        $safeExtensions = ['pdf', 'doc', 'docx', 'jpg', 'jpeg', 'png', 'webp'];
-
         $letterPath = null;
         if ($request->hasFile('letter_file')) {
-            $file = $request->file('letter_file');
-            $ext = strtolower($file->guessExtension() ?: pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION));
-            if (! in_array($ext, $safeExtensions, true)) {
-                $ext = 'pdf';
-            }
-            $filename = 'surat_izin_'.time().'_'.Str::random(12).'.'.$ext;
-            $file->move(public_path('uploads/layanan'), $filename);
-            $letterPath = '/uploads/layanan/'.$filename;
+            $letterPath = $this->handleSecureUpload($request->file('letter_file'), 'surat_izin');
         }
 
         $ktpPath = null;
         if ($request->hasFile('ktp_file')) {
-            $file = $request->file('ktp_file');
-            $ext = strtolower($file->guessExtension() ?: pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION));
-            if (! in_array($ext, $safeExtensions, true)) {
-                $ext = 'pdf';
-            }
-            $filename = 'ktp_izin_'.time().'_'.Str::random(12).'.'.$ext;
-            $file->move(public_path('uploads/layanan'), $filename);
-            $ktpPath = '/uploads/layanan/'.$filename;
+            $ktpPath = $this->handleSecureUpload($request->file('ktp_file'), 'ktp_izin');
         }
 
         $messageContent = "PERMOHONAN IZIN KUNJUNGAN KE SEKOLAH\n".
@@ -195,6 +183,19 @@ class InformationController extends Controller
             "Keperluan: {$validated['purpose']}\n".
             ($letterPath ? "Surat: {$letterPath}\n" : '').
             ($ktpPath ? "KTP: {$ktpPath}\n" : '');
+
+        ServiceSubmission::create([
+            'service_type' => 'izin_kunjungan',
+            'name' => $validated['name'],
+            'agency' => $validated['agency'],
+            'whatsapp' => $validated['whatsapp'],
+            'purpose' => $validated['purpose'],
+            'letter_path' => $letterPath,
+            'ktp_path' => $ktpPath,
+            'status' => 'pending',
+            'ip_address' => $request->ip(),
+            'user_agent' => $request->userAgent(),
+        ]);
 
         Feedback::create([
             'name' => $validated['name'],
@@ -223,8 +224,10 @@ class InformationController extends Controller
     public function kerjasama()
     {
         $page = Post::pages()->where('slug', 'permohonan-kerja-sama')->first();
+        $stored = json_decode(Setting::get('layanan_kerjasama_accordions', '[]'), true) ?: [];
+        $accordions = ! empty($stored) ? $stored : self::getDefaultAccordions('kerjasama');
 
-        return view('frontend.layanan.kerjasama', compact('page'));
+        return view('frontend.layanan.kerjasama', compact('page', 'accordions'));
     }
 
     public function submitKerjasama(Request $request)
@@ -238,39 +241,36 @@ class InformationController extends Controller
             'ktp_file' => 'nullable|file|mimes:pdf,jpg,jpeg,png,webp|max:5120',
         ]);
 
-        $safeExtensions = ['pdf', 'doc', 'docx', 'jpg', 'jpeg', 'png', 'webp'];
-
         $letterPath = null;
         if ($request->hasFile('letter_file')) {
-            $file = $request->file('letter_file');
-            $ext = strtolower($file->guessExtension() ?: pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION));
-            if (! in_array($ext, $safeExtensions, true)) {
-                $ext = 'pdf';
-            }
-            $filename = 'proposal_'.time().'_'.Str::random(12).'.'.$ext;
-            $file->move(public_path('uploads/layanan'), $filename);
-            $letterPath = '/uploads/layanan/'.$filename;
+            $letterPath = $this->handleSecureUpload($request->file('letter_file'), 'proposal');
         }
 
         $ktpPath = null;
         if ($request->hasFile('ktp_file')) {
-            $file = $request->file('ktp_file');
-            $ext = strtolower($file->guessExtension() ?: pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION));
-            if (! in_array($ext, $safeExtensions, true)) {
-                $ext = 'pdf';
-            }
-            $filename = 'ktp_kerjasama_'.time().'_'.Str::random(12).'.'.$ext;
-            $file->move(public_path('uploads/layanan'), $filename);
-            $ktpPath = '/uploads/layanan/'.$filename;
+            $ktpPath = $this->handleSecureUpload($request->file('ktp_file'), 'ktp_kerjasama');
         }
 
-        $messageContent = "PERMOHONAN KERJA SAMA LEMBAGA\n".
-            "Nama Penanggung Jawab: {$validated['name']}\n".
-            "Lembaga / Perusahaan: {$validated['agency']}\n".
+        $messageContent = "PERMOHONAN KERJA SAMA / KEMITRAAN\n".
+            "Nama: {$validated['name']}\n".
+            "Instansi: {$validated['agency']}\n".
             "WhatsApp: {$validated['whatsapp']}\n".
-            "Bentuk Kerja Sama: {$validated['purpose']}\n".
-            ($letterPath ? "Proposal/Surat: {$letterPath}\n" : '').
+            "Keperluan: {$validated['purpose']}\n".
+            ($letterPath ? "Surat: {$letterPath}\n" : '').
             ($ktpPath ? "KTP: {$ktpPath}\n" : '');
+
+        ServiceSubmission::create([
+            'service_type' => 'kerja_sama',
+            'name' => $validated['name'],
+            'agency' => $validated['agency'],
+            'whatsapp' => $validated['whatsapp'],
+            'purpose' => $validated['purpose'],
+            'letter_path' => $letterPath,
+            'ktp_path' => $ktpPath,
+            'status' => 'pending',
+            'ip_address' => $request->ip(),
+            'user_agent' => $request->userAgent(),
+        ]);
 
         Feedback::create([
             'name' => $validated['name'],
@@ -290,7 +290,7 @@ class InformationController extends Controller
             'status' => 'info',
         ]);
 
-        $waText = urlencode("Assalamu'alaikum Pimpinan SMA IT Ishlahul Ummah Prabumulih,\n\nKami telah mengajukan Permohonan Kerja Sama Lembaga:\n- Nama: {$validated['name']}\n- Lembaga/Perusahaan: {$validated['agency']}\n- Bentuk Kerjasama: {$validated['purpose']}\n\nMohon informasi dan jadwal tindak lanjutnya. Terima kasih.");
+        $waText = urlencode("Assalamu'alaikum Humas SMA IT Ishlahul Ummah Prabumulih,\n\nSaya telah mengajukan Permohonan Kerja Sama / Kemitraan:\n- Nama: {$validated['name']}\n- Lembaga/Instansi: {$validated['agency']}\n- Rencana Kemitraan: {$validated['purpose']}\n\nMohon informasi waktu koordinasi dan tindak lanjutnya. Terima kasih.");
         $waUrl = "https://wa.me/6282182680647?text={$waText}";
 
         return redirect()->route('layanan.kerjasama')->with('success', 'Permohonan kerja sama berhasil dikirim! Silakan konfirmasi via WhatsApp untuk respon cepat.')->with('wa_url', $waUrl);
@@ -299,8 +299,10 @@ class InformationController extends Controller
     public function sewaBarang()
     {
         $page = Post::pages()->where('slug', 'sewa-barang')->first();
+        $stored = json_decode(Setting::get('layanan_sewa_accordions', '[]'), true) ?: [];
+        $accordions = ! empty($stored) ? $stored : self::getDefaultAccordions('sewa');
 
-        return view('frontend.layanan.sewa', compact('page'));
+        return view('frontend.layanan.sewa', compact('page', 'accordions'));
     }
 
     public function submitSewa(Request $request)
@@ -315,42 +317,19 @@ class InformationController extends Controller
             'npwp_file' => 'nullable|file|mimes:pdf,jpg,jpeg,png,webp|max:5120',
         ]);
 
-        $safeExtensions = ['pdf', 'doc', 'docx', 'jpg', 'jpeg', 'png', 'webp'];
-
         $letterPath = null;
         if ($request->hasFile('letter_file')) {
-            $file = $request->file('letter_file');
-            $ext = strtolower($file->guessExtension() ?: pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION));
-            if (! in_array($ext, $safeExtensions, true)) {
-                $ext = 'pdf';
-            }
-            $filename = 'sewa_surat_'.time().'_'.Str::random(12).'.'.$ext;
-            $file->move(public_path('uploads/layanan'), $filename);
-            $letterPath = '/uploads/layanan/'.$filename;
+            $letterPath = $this->handleSecureUpload($request->file('letter_file'), 'sewa_surat');
         }
 
         $ktpPath = null;
         if ($request->hasFile('ktp_file')) {
-            $file = $request->file('ktp_file');
-            $ext = strtolower($file->guessExtension() ?: pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION));
-            if (! in_array($ext, $safeExtensions, true)) {
-                $ext = 'pdf';
-            }
-            $filename = 'sewa_ktp_'.time().'_'.Str::random(12).'.'.$ext;
-            $file->move(public_path('uploads/layanan'), $filename);
-            $ktpPath = '/uploads/layanan/'.$filename;
+            $ktpPath = $this->handleSecureUpload($request->file('ktp_file'), 'sewa_ktp');
         }
 
         $npwpPath = null;
         if ($request->hasFile('npwp_file')) {
-            $file = $request->file('npwp_file');
-            $ext = strtolower($file->guessExtension() ?: pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION));
-            if (! in_array($ext, $safeExtensions, true)) {
-                $ext = 'pdf';
-            }
-            $filename = 'sewa_npwp_'.time().'_'.Str::random(12).'.'.$ext;
-            $file->move(public_path('uploads/layanan'), $filename);
-            $npwpPath = '/uploads/layanan/'.$filename;
+            $npwpPath = $this->handleSecureUpload($request->file('npwp_file'), 'sewa_npwp');
         }
 
         $messageContent = "PERMOHONAN SEWA MENYEWA BARANG / FASILITAS SEKOLAH\n".
@@ -361,6 +340,20 @@ class InformationController extends Controller
             ($letterPath ? "Surat: {$letterPath}\n" : '').
             ($ktpPath ? "KTP: {$ktpPath}\n" : '').
             ($npwpPath ? "NPWP: {$npwpPath}\n" : '');
+
+        ServiceSubmission::create([
+            'service_type' => 'sewa_barang',
+            'name' => $validated['name'],
+            'agency' => $validated['agency'],
+            'whatsapp' => $validated['whatsapp'],
+            'purpose' => $validated['purpose'],
+            'letter_path' => $letterPath,
+            'ktp_path' => $ktpPath,
+            'npwp_path' => $npwpPath,
+            'status' => 'pending',
+            'ip_address' => $request->ip(),
+            'user_agent' => $request->userAgent(),
+        ]);
 
         Feedback::create([
             'name' => $validated['name'],
@@ -384,5 +377,110 @@ class InformationController extends Controller
         $waUrl = "https://wa.me/6282182680647?text={$waText}";
 
         return redirect()->route('layanan.sewa')->with('success', 'Permohonan sewa barang/fasilitas berhasil dikirim! Silakan konfirmasi via WhatsApp untuk respon cepat.')->with('wa_url', $waUrl);
+    }
+
+    /**
+     * High Security Upload Validator & Mover
+     */
+    private function handleSecureUpload($file, string $prefix): string
+    {
+        $safeExtensions = ['pdf', 'doc', 'docx', 'jpg', 'jpeg', 'png', 'webp'];
+        $ext = strtolower($file->guessExtension() ?: pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION));
+        if (! in_array($ext, $safeExtensions, true)) {
+            $ext = 'pdf';
+        }
+
+        $filename = $prefix.'_'.time().'_'.Str::random(16).'.'.$ext;
+        $targetDir = public_path('uploads/layanan');
+        if (! is_dir($targetDir)) {
+            mkdir($targetDir, 0755, true);
+        }
+        $file->move($targetDir, $filename);
+
+        return '/uploads/layanan/'.$filename;
+    }
+
+    /**
+     * Default detailed accordions from original Elementor SMAIT ISHUM portal
+     */
+    public static function getDefaultAccordions(string $type): array
+    {
+        return match ($type) {
+            'izin' => [
+                [
+                    'title' => 'Persyaratan Pelayanan',
+                    'content' => '<ul><li>Pemohon memiliki akun pada system untuk melakukan permohonan kunjungan</li><li>Pemohon melakukan pengajuan melalui system</li><li>Bukti permohonan kunjungan sudah di tandatangani oleh yang berwenang dan cap serta dibawa ketika hari kunjungan</li><li>Maksimal pengunjung 100 orang</li><li>Hari kunjungan adalah hari senin dan kamis</li><li>Waktu kunjungan adalah pukul 09.00-11.00 wib</li><li>Pengunjung menggunakan pakaian yang sopan dan rapi</li><li>Wajib menerapkan protkes ketat</li></ul>',
+                ],
+                [
+                    'title' => 'Jangka Waktu Penyelesaian',
+                    'content' => '<p>1 Hari kerja</p>',
+                ],
+                [
+                    'title' => 'Biaya dan Tarif',
+                    'content' => '<p>Gratis (Tidak dipungut biaya apapun)</p>',
+                ],
+                [
+                    'title' => 'Produk Layanan',
+                    'content' => '<p>Surat Persetujuan Kunjungan ke SMA IT Ishlahul Ummah Prabumulih</p>',
+                ],
+                [
+                    'title' => 'Pengaduan, Saran dan Masukan',
+                    'content' => '<p>Pengaduan, saran, dan masukan dapat disampaikan secara tertulis melalui kotak saran di kantor sekolah atau melalui email: smaitishlahulummah2019@gmail.com dan WhatsApp: 082182680647</p>',
+                ],
+            ],
+            'kerjasama' => [
+                [
+                    'title' => 'Persyaratan Pelayanan',
+                    'content' => '<ul><li>Surat permohonan dari Pemerintah/Swasta/Industri/Yayasan/Organisasi/Instansi lainnya.</li><li>Surat permohonan dari Individu (perorangan)</li></ul>',
+                ],
+                [
+                    'title' => 'Sistem Mekanisme dan Prosedur',
+                    'content' => '<ul><li>Pemohon mengajukan surat permohonan kerja sama melalui form online atau langsung ke kantor sekolah.</li><li>Pihak sekolah meneliti dan memverifikasi kelayakan serta kesesuaian program kemitraan.</li><li>Sekolah mengonfirmasi kesepakatan dan menyusun MoU / Perjanjian Kerja Sama.</li></ul>',
+                ],
+                [
+                    'title' => 'Jangka Waktu Penyelesaian',
+                    'content' => '<p>3 - 7 Hari kerja tergantung kompleksitas kemitraan</p>',
+                ],
+                [
+                    'title' => 'Biaya dan Tarif',
+                    'content' => '<p>Gratis (Tidak dipungut biaya apapun)</p>',
+                ],
+                [
+                    'title' => 'Produk Layanan',
+                    'content' => '<p>Surat Perjanjian Kerja Sama / MoU (Memorandum of Understanding)</p>',
+                ],
+                [
+                    'title' => 'Pengaduan, Saran dan Masukan',
+                    'content' => '<p>Pengaduan, saran, dan masukan dapat disampaikan melalui email: smaitishlahulummah2019@gmail.com atau WhatsApp Humas: 082182680647</p>',
+                ],
+            ],
+            'sewa' => [
+                [
+                    'title' => 'Persyaratan Pelayanan',
+                    'content' => '<ul><li>Individu (perorangan):<ul><li>Surat Permohonan</li><li>Fotokopi KTP</li><li>Fotokopi NPWP (jika ada)</li></ul></li><li>Lembaga Organisasi<ul><li>Surat Permohonan</li><li>Fotokopi NPWP</li></ul></li></ul>',
+                ],
+                [
+                    'title' => 'Sistem Mekanisme dan Prosedur',
+                    'content' => '<ul><li>Pemohon mengajukan formulir permohonan sewa menyewa barang milik sekolah.</li><li>Pemeriksaan ketersediaan barang dan jadwal pemakaian oleh bagian sarana & prasarana.</li><li>Penerbitan surat izin pemakaian/sewa dan berita acara serah terima barang.</li></ul>',
+                ],
+                [
+                    'title' => 'Jangka Waktu Penyelesaian',
+                    'content' => '<p>1 - 2 Hari kerja</p>',
+                ],
+                [
+                    'title' => 'Biaya dan Tarif',
+                    'content' => '<p>Sesuai dengan ketentuan tarif retribusi / sewa sarana prasarana sekolah yang berlaku</p>',
+                ],
+                [
+                    'title' => 'Produk Layanan',
+                    'content' => '<p>Surat Izin Pemakaian / Sewa Barang dan Berita Acara Peminjaman</p>',
+                ],
+                [
+                    'title' => 'Pengaduan, Saran dan Masukan',
+                    'content' => '<p>Pengaduan, saran, dan masukan dapat disampaikan secara langsung atau melalui WhatsApp Humas: 082182680647</p>',
+                ],
+            ],
+            default => [],
+        };
     }
 }
