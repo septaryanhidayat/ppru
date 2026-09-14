@@ -29,19 +29,31 @@
             </span>
         </div>
 
-        <h1 class="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight leading-tight text-white drop-shadow-sm max-w-4xl">
-            {{ $unit->name }}
-        </h1>
-
-        @if($unit->curriculum)
-            <p class="text-sm sm:text-base text-emerald-100 font-medium flex items-center max-w-3xl">
-                <i class="fa-solid fa-book-quran mr-2.5 text-[#f59e0b] text-lg shrink-0"></i>
-                <span>{{ $unit->curriculum }}</span>
-            </p>
-        @endif
+        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-5">
+            <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-3xl bg-white/95 p-3 shadow-2xl border-2 border-emerald-400/40 flex items-center justify-center shrink-0">
+                @if(!empty($unit->logo))
+                    <img src="{{ $unit->logo_url }}" alt="Logo {{ $unit->name }}" class="max-w-full max-h-full object-contain">
+                @elseif(!empty($unit->thumbnail) && (str_contains($unit->thumbnail, 'logo') || str_contains($unit->thumbnail, 'emblem')))
+                    <img src="{{ $unit->thumbnail_url }}" alt="Logo {{ $unit->name }}" class="max-w-full max-h-full object-contain">
+                @else
+                    <img src="/uploads/logo-ppru-emblem.png" alt="Logo {{ $unit->name }}" class="max-w-full max-h-full object-contain">
+                @endif
+            </div>
+            <div>
+                <h1 class="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight leading-tight text-white drop-shadow-sm max-w-4xl">
+                    {{ $unit->name }}
+                </h1>
+                @if($unit->curriculum)
+                    <p class="text-xs sm:text-sm text-emerald-100 font-medium flex items-center mt-2">
+                        <i class="fa-solid fa-book-quran mr-2 text-[#f59e0b] text-base shrink-0"></i>
+                        <span>{{ $unit->curriculum }}</span>
+                    </p>
+                @endif
+            </div>
+        </div>
 
         {{-- Top Action Buttons --}}
-        <div class="pt-3 flex flex-wrap items-center gap-3">
+        <div class="pt-2 flex flex-wrap items-center gap-3">
             <a href="{{ route('ppdb.index') }}" class="bg-[#f59e0b] hover:bg-[#d97706] text-slate-950 font-black text-xs sm:text-sm px-6 py-3 rounded-full shadow-lg hover:shadow-xl transition flex items-center space-x-2 transform hover:scale-105">
                 <i class="fa-solid fa-graduation-cap"></i>
                 <span>Daftar PSB Online {{ $unit->short_name ?: $unit->name }}</span>
@@ -71,52 +83,76 @@
     </div>
 </div>
 
-{{-- 2. INTEGRATED UNIT INFO STRIP (Merger dari Sidebar Kanan Lama ke Tata Letak Relevan) --}}
-<section class="py-8 bg-slate-50 border-b border-gray-200/70">
+{{-- 2. INTEGRATED UNIT METADATA BANNER (Spacious, Elegant, No Text Truncation) --}}
+<section class="py-6 sm:py-8 bg-slate-100/70 border-b border-gray-200/80">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4 text-center sm:text-left">
-            <div class="bg-white p-4 rounded-2xl border border-gray-200/80 shadow-xs hover:border-emerald-300 transition">
-                <span class="text-[10px] font-bold text-gray-400 uppercase tracking-wider block">Jenjang / Tipe</span>
-                <p class="font-extrabold text-xs sm:text-sm text-gray-900 mt-1 flex items-center justify-center sm:justify-start gap-1.5">
-                    <i class="fa-solid fa-school text-[#00843d]"></i>
-                    <span>{{ $unit->category_type }}</span>
-                </p>
+        <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-gray-200/90 grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 divide-y md:divide-y-0 md:divide-x divide-gray-100">
+            
+            {{-- Kolom 1: Jenjang, Tipe & Akreditasi --}}
+            <div class="space-y-3 pt-2 md:pt-0">
+                <span class="text-[11px] font-black uppercase tracking-wider text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full inline-block border border-emerald-100">
+                    Jenjang &amp; Akreditasi Resmi
+                </span>
+                <div class="space-y-1.5">
+                    <p class="text-base sm:text-lg font-black text-gray-900 flex items-center gap-2">
+                        <i class="fa-solid fa-school text-[#00843d]"></i>
+                        <span>{{ $unit->category_type }}</span>
+                    </p>
+                    <p class="text-xs sm:text-sm font-bold text-amber-600 flex items-center gap-2">
+                        <i class="fa-solid fa-certificate text-amber-500"></i>
+                        <span>Status: {{ $unit->badge ?: 'Terakreditasi A (Unggul)' }}</span>
+                    </p>
+                    <p class="text-xs text-gray-500 flex items-center gap-2">
+                        <i class="fa-solid fa-mosque text-emerald-700"></i>
+                        <span>Sistem: Boarding School (Asrama Terpadu 24 Jam)</span>
+                    </p>
+                </div>
             </div>
-            <div class="bg-white p-4 rounded-2xl border border-gray-200/80 shadow-xs hover:border-emerald-300 transition">
-                <span class="text-[10px] font-bold text-gray-400 uppercase tracking-wider block">Akreditasi Resmi</span>
-                <p class="font-extrabold text-xs sm:text-sm text-amber-600 mt-1 flex items-center justify-center sm:justify-start gap-1.5">
-                    <i class="fa-solid fa-certificate"></i>
-                    <span>{{ $unit->badge ?: 'A (Unggul)' }}</span>
-                </p>
+
+            {{-- Kolom 2: Pimpinan Unit & Yayasan Pembina --}}
+            <div class="space-y-3 pt-4 md:pt-0 md:pl-8">
+                <span class="text-[11px] font-black uppercase tracking-wider text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full inline-block border border-emerald-100">
+                    Kepemimpinan &amp; Yayasan
+                </span>
+                <div class="space-y-1.5">
+                    <div>
+                        <span class="text-[10px] text-gray-400 font-bold uppercase block">Kepala / Mudir Unit:</span>
+                        <p class="text-sm sm:text-base font-black text-gray-900 leading-snug">
+                            {{ $unit->head_name ?? 'Ustadz H. M. Said, S.Ag., M.Pd.I' }}
+                        </p>
+                    </div>
+                    <div>
+                        <span class="text-[10px] text-gray-400 font-bold uppercase block">Yayasan Pembina:</span>
+                        <p class="text-xs sm:text-sm font-bold text-gray-700 flex items-center gap-1.5">
+                            <i class="fa-solid fa-building-flag text-[#00843d]"></i>
+                            <span>Yayasan Perguruan Islam Raudhatul Ulum (YAPIRUS)</span>
+                        </p>
+                    </div>
+                </div>
             </div>
-            <div class="bg-white p-4 rounded-2xl border border-gray-200/80 shadow-xs hover:border-emerald-300 transition">
-                <span class="text-[10px] font-bold text-gray-400 uppercase tracking-wider block">Kepala / Pimpinan</span>
-                <p class="font-extrabold text-xs sm:text-sm text-gray-900 mt-1 truncate" title="{{ $unit->head_name ?? 'Ustadz Pimpinan Unit' }}">
-                    <i class="fa-solid fa-user-tie text-[#00843d] mr-1"></i>
-                    <span>{{ $unit->head_name ?? 'Ustadz Pimpinan Unit' }}</span>
-                </p>
+
+            {{-- Kolom 3: Kontak & Layanan Informasi --}}
+            <div class="space-y-3 pt-4 md:pt-0 md:pl-8">
+                <span class="text-[11px] font-black uppercase tracking-wider text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full inline-block border border-emerald-100">
+                    Layanan &amp; Konsultasi PSB
+                </span>
+                <div class="space-y-2">
+                    <div>
+                        <span class="text-[10px] text-gray-400 font-bold uppercase block">Telepon / WhatsApp Panitia:</span>
+                        <a href="tel:{{ $unit->phone ?? '081278901950' }}" class="text-sm sm:text-base font-black text-emerald-700 hover:text-emerald-800 hover:underline flex items-center gap-2 mt-0.5">
+                            <i class="fa-solid fa-phone text-emerald-600"></i>
+                            <span>{{ $unit->phone ?? '0812-7890-1950' }}</span>
+                        </a>
+                    </div>
+                    <div class="pt-1">
+                        <a href="{{ route('ppdb.index') }}" class="inline-flex items-center space-x-2 bg-[#00843d] hover:bg-emerald-800 text-white font-bold text-xs px-4 py-2 rounded-xl shadow-xs transition">
+                            <i class="fa-solid fa-clipboard-check"></i>
+                            <span>Informasi Pendaftaran Santri Baru</span>
+                        </a>
+                    </div>
+                </div>
             </div>
-            <div class="bg-white p-4 rounded-2xl border border-gray-200/80 shadow-xs hover:border-emerald-300 transition">
-                <span class="text-[10px] font-bold text-gray-400 uppercase tracking-wider block">Sistem Pembelajaran</span>
-                <p class="font-extrabold text-xs sm:text-sm text-emerald-800 mt-1 flex items-center justify-center sm:justify-start gap-1.5">
-                    <i class="fa-solid fa-mosque text-[#00843d]"></i>
-                    <span>Boarding &amp; Terpadu</span>
-                </p>
-            </div>
-            <div class="bg-white p-4 rounded-2xl border border-gray-200/80 shadow-xs hover:border-emerald-300 transition">
-                <span class="text-[10px] font-bold text-gray-400 uppercase tracking-wider block">Kontak Layanan</span>
-                <a href="tel:{{ $unit->phone ?? '081278901950' }}" class="font-extrabold text-xs sm:text-sm text-emerald-700 hover:underline mt-1 block truncate">
-                    <i class="fa-solid fa-phone mr-1"></i>
-                    <span>{{ $unit->phone ?? '0812-7890-1950' }}</span>
-                </a>
-            </div>
-            <div class="bg-white p-4 rounded-2xl border border-gray-200/80 shadow-xs hover:border-emerald-300 transition">
-                <span class="text-[10px] font-bold text-gray-400 uppercase tracking-wider block">Yayasan Pembina</span>
-                <p class="font-extrabold text-xs sm:text-sm text-gray-900 mt-1 truncate">
-                    <i class="fa-solid fa-building-flag text-[#00843d] mr-1"></i>
-                    <span>YAPIRUS Sakatiga</span>
-                </p>
-            </div>
+
         </div>
     </div>
 </section>
@@ -347,84 +383,7 @@
             </div>
         </section>
 
-        {{-- 7. JADWAL RUTINITAS 24 JAM SANTRI (Boarding Schedule) --}}
-        <section class="bg-white rounded-3xl p-6 sm:p-10 shadow-sm border border-gray-100 space-y-6 reveal-fade-up">
-            <div class="border-b border-gray-100 pb-4">
-                <span class="text-xs font-bold uppercase tracking-wider text-[#00843d] bg-emerald-50 px-3 py-1 rounded-full">
-                    Sistem Asrama Penuh (Boarding)
-                </span>
-                <h2 class="text-2xl sm:text-3xl font-black text-gray-900 mt-2 tracking-tight">
-                    Jadwal Rutinitas 24 Jam Santri
-                </h2>
-                <p class="text-xs text-gray-500 mt-1">Pembinaan terpadu jasmani, ruhani, dan fikriyah santri sepanjang hari di lingkungan asrama pesantren</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
-                <div class="space-y-3">
-                    <div class="flex items-start space-x-3 p-3.5 rounded-2xl bg-slate-50 border border-gray-100">
-                        <span class="px-2.5 py-1 bg-[#00843d] text-white rounded-lg font-mono font-bold text-[11px] shrink-0">04.00 - 05.30</span>
-                        <div>
-                            <h4 class="font-bold text-gray-900">Qiyamul Lail &amp; Shubuh Berjamaah</h4>
-                            <p class="text-gray-500 text-[11px] mt-0.5">Shalat tahajjud, shalat shubuh berjamaah, dzikir ma'tsurat, dan pemberian mufrodat / vocabulary harian.</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start space-x-3 p-3.5 rounded-2xl bg-slate-50 border border-gray-100">
-                        <span class="px-2.5 py-1 bg-[#00843d] text-white rounded-lg font-mono font-bold text-[11px] shrink-0">05.30 - 06.45</span>
-                        <div>
-                            <h4 class="font-bold text-gray-900">Mandi, Sarapan &amp; Piket Asrama</h4>
-                            <p class="text-gray-500 text-[11px] mt-0.5">Penanaman kemandirian dan kebersihan kamar asrama serta persiapan KBM formal.</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start space-x-3 p-3.5 rounded-2xl bg-slate-50 border border-gray-100">
-                        <span class="px-2.5 py-1 bg-[#00843d] text-white rounded-lg font-mono font-bold text-[11px] shrink-0">07.00 - 12.15</span>
-                        <div>
-                            <h4 class="font-bold text-gray-900">KBM Pagi (Dirasah Islamiyyah &amp; Sains)</h4>
-                            <p class="text-gray-500 text-[11px] mt-0.5">Pembelajaran kurikulum terpadu: ilmu-ilmu syar'i, kitab turats, sains teknologi, matematika, dan bahasa.</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start space-x-3 p-3.5 rounded-2xl bg-slate-50 border border-gray-100">
-                        <span class="px-2.5 py-1 bg-[#00843d] text-white rounded-lg font-mono font-bold text-[11px] shrink-0">12.15 - 13.30</span>
-                        <div>
-                            <h4 class="font-bold text-gray-900">Shalat Dzuhur &amp; Makan Siang</h4>
-                            <p class="text-gray-500 text-[11px] mt-0.5">Shalat dzuhur berjamaah di masjid utama dilanjutkan makan siang bersama di ruang makan santri.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="space-y-3">
-                    <div class="flex items-start space-x-3 p-3.5 rounded-2xl bg-slate-50 border border-gray-100">
-                        <span class="px-2.5 py-1 bg-[#00843d] text-white rounded-lg font-mono font-bold text-[11px] shrink-0">13.30 - 15.00</span>
-                        <div>
-                            <h4 class="font-bold text-gray-900">KBM Siang / Praktikum Laboratorium</h4>
-                            <p class="text-gray-500 text-[11px] mt-0.5">Praktikum sains IPA, laboratorium komputer digital, dan bimbingan belajar tambahan.</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start space-x-3 p-3.5 rounded-2xl bg-slate-50 border border-gray-100">
-                        <span class="px-2.5 py-1 bg-[#00843d] text-white rounded-lg font-mono font-bold text-[11px] shrink-0">15.00 - 17.30</span>
-                        <div>
-                            <h4 class="font-bold text-gray-900">Ashar, Muhadatsah, Olahraga &amp; Ekskul</h4>
-                            <p class="text-gray-500 text-[11px] mt-0.5">Latihan percakapan dwi-bahasa (Arab &amp; Inggris), panahan, kepanduan pramuka, silat tapak suci, dan seni kaligrafi.</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start space-x-3 p-3.5 rounded-2xl bg-slate-50 border border-gray-100">
-                        <span class="px-2.5 py-1 bg-[#00843d] text-white rounded-lg font-mono font-bold text-[11px] shrink-0">18.00 - 20.30</span>
-                        <div>
-                            <h4 class="font-bold text-gray-900">Maghrib, Halaqah Tahfidz &amp; Isya</h4>
-                            <p class="text-gray-500 text-[11px] mt-0.5">Setoran hafalan Al-Qur'an (ziyadah) dan muraja'ah bersama musyrif tahfidz di masjid.</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start space-x-3 p-3.5 rounded-2xl bg-slate-50 border border-gray-100">
-                        <span class="px-2.5 py-1 bg-[#00843d] text-white rounded-lg font-mono font-bold text-[11px] shrink-0">20.30 - 22.00</span>
-                        <div>
-                            <h4 class="font-bold text-gray-900">Belajar Terbimbing (Muwajjah) &amp; Istirahat</h4>
-                            <p class="text-gray-500 text-[11px] mt-0.5">Muhadharah pidato 3 bahasa, pengulangan pelajaran esok hari, dan istirahat malam tepat pukul 22.00 WIB.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        {{-- 8. DEWAN ASATIDZ & GURU PENGAJAR UNIT --}}
+        {{-- 7. DEWAN ASATIDZ & GURU PENGAJAR UNIT --}}
         <section class="bg-white rounded-3xl p-6 sm:p-10 shadow-sm border border-gray-100 space-y-6 reveal-fade-up">
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-gray-100 pb-4">
                 <div>

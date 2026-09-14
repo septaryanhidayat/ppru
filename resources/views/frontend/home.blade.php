@@ -1191,8 +1191,8 @@
                     </p>
                 </div>
                 <div class="pt-4 mt-4 border-t border-gray-100 flex items-center space-x-3">
-                    <div class="w-10 h-10 rounded-full overflow-hidden bg-emerald-100 flex items-center justify-center text-school-green font-bold text-xs flex-shrink-0">
-                        <img src="{{ $t->photo_url }}" alt="Foto {{ $t->name }}" class="w-full h-full object-cover" onerror="this.src='https://ui-avatars.com/api/?name={{ urlencode($t->name) }}&background=00843d&color=fff'">
+                    <div class="w-10 h-10 rounded-full overflow-hidden bg-slate-100 border border-slate-200 flex items-center justify-center flex-shrink-0 shadow-inner">
+                        <img src="{{ $t->photo_url }}" alt="Foto {{ $t->name }}" class="w-full h-full object-cover" onerror="this.src='/uploads/avatar-neutral-gray.svg'">
                     </div>
                     <div class="min-w-0">
                         <h3 class="font-bold text-xs text-gray-900 truncate">{{ $t->name }}</h3>

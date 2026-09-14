@@ -25,6 +25,6 @@ class Testimonial extends Model
             return '/'.ltrim($path, '/');
         }
 
-        return '/uploads/logo-robbani-emblem.svg';
+        return '/uploads/avatar-neutral-gray.svg';
     }
 }

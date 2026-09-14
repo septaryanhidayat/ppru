@@ -223,10 +223,10 @@
                     </div>
                 </div>
 
-                {{-- 6. Download / Brosur --}}
+                {{-- 6. Download --}}
                 <div class="relative group py-2">
                     <button type="button" aria-haspopup="true" aria-expanded="false" class="px-2.5 xl:px-3 py-1.5 rounded-lg inline-flex items-center hover:bg-black/15 transition {{ request()->is('download*', 'e-book*', 'hymne*', 'logo*') ? 'bg-black/20 text-[#fcd116]' : '' }}">
-                        <span>Brosur</span>
+                        <span>Download</span>
                         <i class="fa-solid fa-chevron-down text-[10px] ml-1 transition-transform duration-200 group-hover:rotate-180"></i>
                     </button>
                     <div class="absolute left-0 top-full pt-1 w-56 hidden group-hover:block transition-all duration-150 z-50">
@@ -290,11 +290,8 @@
                 </a>
             </div>
 
-            {{-- MOBILE TOP RIGHT: Tombol PSB & Hamburger --}}
-            <div class="flex lg:hidden items-center space-x-2">
-                <a href="{{ route('ppdb.index') }}" class="bg-[#f59e0b] hover:bg-[#d97706] text-slate-900 px-3.5 py-2 rounded-full text-xs font-extrabold shadow transition min-h-[40px] flex items-center">
-                    PSB
-                </a>
+            {{-- MOBILE TOP RIGHT: Hamburger Menu --}}
+            <div class="flex lg:hidden items-center">
                 <button id="mobile-menu-toggle" type="button" class="text-white hover:text-emerald-100 p-2 rounded-lg focus:outline-none min-w-[44px] min-h-[44px] flex items-center justify-center cursor-pointer" aria-label="Buka Menu Navigasi">
                     <i class="fa-solid fa-bars text-2xl"></i>
                 </button>
@@ -374,7 +371,7 @@
         </details>
 
         <a href="{{ route('download.index') }}" class="block px-3 py-2 rounded-lg font-bold text-gray-900 hover:bg-emerald-50 hover:text-[#00843d] transition">
-            <i class="fa-solid fa-download mr-2 text-[#00843d]"></i> Unduh Brosur &amp; Dokumen
+            <i class="fa-solid fa-download mr-2 text-[#00843d]"></i> Download &amp; Berkas Resmi
         </a>
 
         <a href="{{ route('layanan.index') }}" class="block px-3 py-2 rounded-lg font-bold text-gray-900 hover:bg-emerald-50 hover:text-[#00843d] transition">
