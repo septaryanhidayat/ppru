@@ -24,33 +24,33 @@ class PpdbController extends Controller
             'year' => Setting::get('ppdb_year', '2026/2027'),
             'wave' => Setting::get('ppdb_wave', 'Gelombang 1 (Aktif)'),
             'promo' => Setting::get('ppdb_promo', 'Potongan Biaya Masuk Up to 50% OFF (*S&K berlaku)'),
-            'tagline' => Setting::get('ppdb_tagline', "Mendidik Sepenuh Cinta. Mewujudkan generasi Qur'ani berkarakter tangguh, cerdas sains, mandiri, dan berwawasan global di bawah naungan JSIT Indonesia."),
+            'tagline' => Setting::get('ppdb_tagline', 'Mendidik Sepenuh Cinta. Membina Generasi Khairu Ummah yang Beraqidah Lurus, Berakhlak Mulia, Cerdas Sains, dan Berwawasan Global dengan Muadalah Al-Azhar Kairo.'),
             'youtube_id' => Setting::get('ppdb_youtube_id', 'IrPVG8CYjRc'),
-            'video_title' => Setting::get('ppdb_video_title', 'Video Profil & Dokumentasi SMA IT Ishum'),
+            'video_title' => Setting::get('ppdb_video_title', 'Video Profil & Dokumentasi Pondok Pesantren Raudhatul Ulum Sakatiga'),
             'operational_weekday' => Setting::get('ppdb_operational_weekday', "Senin – Jum'at: Pukul 08.00 – 15.00 WIB"),
             'operational_weekend' => Setting::get('ppdb_operational_weekend', 'Sabtu: Pukul 08.00 – 12.00 WIB'),
-            'secretariat' => Setting::get('ppdb_secretariat', 'Kompleks SMA IT Ishum, Jl. Sadewa RT 01 RW 04 Karang Raja'),
+            'secretariat' => Setting::get('ppdb_secretariat', 'Kompleks Sekretariat SPMB Pondok Pesantren Raudhatul Ulum, Sakatiga, Ogan Ilir'),
             'registration_fee' => Setting::get('ppdb_registration_fee', 'Rp 250.000,-'),
             'bank_name' => Setting::get('ppdb_bank_name', 'Bank Syariah Indonesia (BSI)'),
             'bank_code' => Setting::get('ppdb_bank_code', '451'),
             'bank_account' => Setting::get('ppdb_bank_account', '7011304251'),
             'bank_holder' => Setting::get('ppdb_bank_holder', 'YL. Fatmawati'),
-            'hotline_phone' => Setting::get('ppdb_hotline_phone', '0821-8268-0647'),
-            'hotline_name' => Setting::get('ppdb_hotline_name', 'Admin Hotline PPDB'),
-            'hotline_2_phone' => Setting::get('ppdb_hotline_2_phone', '0822-8157-3615'),
-            'hotline_2_name' => Setting::get('ppdb_hotline_2_name', 'Ust. Agi (Kepala Sekolah)'),
-            'alur' => Setting::get('ppdb_alur', "Siapkan berkas foto/scan bukti transfer biaya pendaftaran melalui Bank Syariah Indonesia (BSI) nomor rekening 7011304251 a.n. YL. Fatmawati.\nSiapkan berkas foto/scan akta kelahiran dan kartu keluarga.\nMengisi formulir PPDB secara online pada website resmi.\nKonfirmasi pengisian formulir kepada panitia melalui WhatsApp (0821-8268-0647).\nPendaftaran selesai dan berkas diverifikasi tim panitia untuk tahapan tes wawancara dan tahfidz."),
-            'syarat' => Setting::get('ppdb_syarat', "Mengisi Formulir Pendaftaran online dengan data yang benar dan lengkap.\nMelampirkan bukti transfer biaya pendaftaran.\nMelampirkan scan/fotokopi Akta Kelahiran dan Kartu Keluarga (KK).\nMelampirkan fotokopi rapor SMP/MTs semester 1-5.\nPas foto terbaru calon santri ukuran 3x4 berwarna."),
+            'hotline_phone' => Setting::get('ppdb_hotline_phone', '0812-7890-1950'),
+            'hotline_name' => Setting::get('ppdb_hotline_name', 'Panitia SPMB PPRU'),
+            'hotline_2_phone' => Setting::get('ppdb_hotline_2_phone', '0812-7890-1950'),
+            'hotline_2_name' => Setting::get('ppdb_hotline_2_name', 'Sekretariat Pesantren'),
+            'alur' => Setting::get('ppdb_alur', "Siapkan berkas foto/scan bukti transfer biaya pendaftaran melalui Bank Syariah Indonesia (BSI) nomor rekening 7011304251 a.n. YL. Fatmawati.\nSiapkan berkas foto/scan akta kelahiran dan kartu keluarga.\nMengisi formulir PPDB secara online pada website resmi.\nKonfirmasi pengisian formulir kepada panitia melalui WhatsApp (0812-7890-1950).\nPendaftaran selesai dan berkas diverifikasi tim panitia untuk tahapan tes wawancara dan tahfidz."),
+            'syarat' => Setting::get('ppdb_syarat', "Mengisi Formulir Pendaftaran online dengan data yang benar dan lengkap.\nMelampirkan bukti transfer biaya pendaftaran.\nMelampirkan scan/fotokopi Akta Kelahiran dan Kartu Keluarga (KK).\nMelampirkan fotokopi rapor sekolah/madrasah asal semester 1-5.\nPas foto terbaru calon santri ukuran 3x4 berwarna."),
             'prestasi' => Setting::get('ppdb_prestasi', "Bebas tes tulis akademik bagi Juara 1, 2, atau 3 tingkat Kota/Kabupaten, Provinsi, maupun Nasional.\nDiskon khusus biaya pendaftaran dan prioritas penerimaan."),
-            'tahfidz' => Setting::get('ppdb_tahfidz', "Tahfidz minimal 3 Juz: Beasiswa potongan biaya pendaftaran & SPP.\nTahfidz 5 Juz atau lebih: Beasiswa SPP berkala dan pembinaan khusus Sanad/Mutqin.\nMengikuti tes sima'an tahfidz bersama dewan musyrif Al-Qur'an Ishum."),
-            'alumni' => Setting::get('ppdb_alumni', 'Keringanan istimewa bagi lulusan SMPIT Ishlahul Ummah Prabumulih yang melanjutkan ke SMA IT Ishlahul Ummah Prabumulih berupa potongan biaya uang pangkal & pendaftaran langsung tanpa biaya seleksi.'),
+            'tahfidz' => Setting::get('ppdb_tahfidz', "Tahfidz minimal 3 Juz: Beasiswa potongan biaya pendaftaran & SPP.\nTahfidz 10 Juz atau lebih: Beasiswa SPP berkala dan pembinaan khusus Sanad/Mutqin di MATQULARU.\nMengikuti tes sima'an tahfidz bersama dewan musyrif Al-Qur'an PPRU Sakatiga."),
+            'alumni' => Setting::get('ppdb_alumni', 'Keringanan istimewa bagi lulusan MTs / SMPIT Raudhatul Ulum yang melanjutkan ke MA / SMAIT Raudhatul Ulum Sakatiga berupa potongan biaya uang pangkal & pendaftaran prioritas.'),
             'mandiri' => Setting::get('ppdb_mandiri', "Jalur seleksi reguler melalui tahapan:\nTes Potensi Akademik (Matematika, Bahasa Indonesia, PAI).\nTes Kemampuan Membaca Al-Qur'an (Tahsin & Tajwid).\nWawancara Komitmen Orang Tua & Santri."),
             'jadwal_gelombang' => Setting::get('ppdb_jadwal_gelombang', "Gelombang 1: Oktober s/d Desember (Diskon Biaya Masuk s/d 50%)\nGelombang 2: Januari s/d April\nGelombang 3: Mei s/d Juli (Khusus sisa kuota)\n* Pendaftaran akan ditutup otomatis apabila kuota per kelas telah terpenuhi."),
-            'biaya' => Setting::get('ppdb_biaya', "Biaya Formulir Pendaftaran: Ditransfer ke rekening BSI sekolah 7011304251.\nPaket Seragam Sekolah (4 stel seragam lengkap + atribut dan jilbab/peci).\nBiaya Orientasi Santri (MPLS) & Baitul Maqdis Leadership Camp.\nUntuk rincian lengkap uang pangkal dan SPP bulanan, hubungi langsung panitia PPDB."),
-            'boarding' => Setting::get('ppdb_boarding', "Program Boarding (Asrama): Fasilitas asrama bersih, ber-AC/ventilasi sehat, makan 3x sehari, pendampingan tahfidz 24 jam bersama musyrif.\nProgram Full Day School: Pembelajaran terpadu hingga sore hari, shalat berjamaah, makan siang sehat, dan ekstrakurikuler."),
+            'biaya' => Setting::get('ppdb_biaya', "Biaya Formulir Pendaftaran: Ditransfer ke rekening BSI sekolah 7011304251 a.n. YL. Fatmawati.\nPaket Seragam Pesantren (4 stel seragam lengkap + atribut dan jilbab/peci).\nBiaya Orientasi Santri (Khutbatul Arsy) & Kepesantrenan.\nUntuk rincian lengkap uang pangkal dan SPP asrama bulanan, hubungi langsung panitia SPMB."),
+            'boarding' => Setting::get('ppdb_boarding', "Program Boarding (Asrama Santri): Fasilitas asrama representatif, makan 3x sehari, pendampingan ibadah & tahfidz 24 jam bersama musyrif/musyrifah asrama.\nProgram Fullday: Khusus jenjang tertentu sesuai ketentuan pesantren."),
             'kelulusan' => Setting::get('ppdb_kelulusan', 'Hasil seleksi diumumkan melalui website resmi dan notifikasi WhatsApp kepada orang tua calon santri. Calon santri yang dinyatakan lulus wajib melakukan daftar ulang sesuai jadwal yang ditentukan panitia.'),
-            'closing_title' => Setting::get('ppdb_closing_title', 'Terima Kasih Sudah Mendaftar di SMA Islam Terpadu Ishlahul Ummah Prabumulih'),
-            'closing_desc' => Setting::get('ppdb_closing_desc', 'Semoga Ananda kelak bisa menjadi anak yang cerdas, sholeh/ah, berbakti kepada orang tua dan menjadi kebanggaan bagi agama, bangsa dan negara. Aamiin'),
+            'closing_title' => Setting::get('ppdb_closing_title', 'Terima Kasih Sudah Mendaftar di Pondok Pesantren Raudhatul Ulum Sakatiga'),
+            'closing_desc' => Setting::get('ppdb_closing_desc', 'Semoga Ananda kelak bisa menjadi santri berilmu, beramal, berakhlak mulia, dan berbakti kepada orang tua serta umat. Aamiin'),
         ];
 
         return view('frontend.ppdb.index', compact('settings'));
@@ -65,7 +65,7 @@ class PpdbController extends Controller
     public function form()
     {
         $rawWaves = Setting::get('ppdb_form_waves', "Gelombang 1 (Early Bird)\nGelombang 2 (Reguler)\nGelombang 3 (Prestasi)");
-        $rawTracks = Setting::get('ppdb_form_tracks', "Jalur Reguler / Tes Mandiri\nJalur Prestasi Akademik & Non-Akademik\nJalur Hafizh Al-Qur'an (Tahfidz)\nJalur Alumni SMPIT Ishum\nJalur Beasiswa / Afirmasi");
+        $rawTracks = Setting::get('ppdb_form_tracks', "Jalur Reguler / Tes Mandiri\nJalur Prestasi Akademik & Non-Akademik\nJalur Hafizh Al-Qur'an (Tahfidz)\nJalur Alumni MTs/SMPIT Raudhatul Ulum\nJalur Beasiswa / Afirmasi");
         $rawPrograms = Setting::get('ppdb_form_programs', "Boarding School (Asrama Santri)\nFull Day School (Sekolah Terpadu)");
 
         $waves = array_values(array_filter(array_map('trim', explode("\n", (string) $rawWaves))));
@@ -321,17 +321,17 @@ class PpdbController extends Controller
      */
     public function buildWhatsAppUrl(PpdbRegistration $registration): string
     {
-        $adminPhone = Setting::get('ppdb_hotline_phone', Setting::get('contact_whatsapp', Setting::get('contact_phone', '082182680647')));
+        $adminPhone = Setting::get('ppdb_hotline_phone', Setting::get('contact_whatsapp', Setting::get('contact_phone', '081278901950')));
         $cleanPhone = preg_replace('/[^0-9]/', '', (string) $adminPhone);
         if (str_starts_with($cleanPhone, '0')) {
             $cleanPhone = '62'.substr($cleanPhone, 1);
         }
         if (empty($cleanPhone)) {
-            $cleanPhone = '6282182680647';
+            $cleanPhone = '6281278901950';
         }
 
-        $text = "*FORMULIR PENDAFTARAN SANTRI BARU (PPDB)*\n";
-        $text .= "*SMA IT ISHLAHUL UMMAH PRABUMULIH*\n";
+        $text = "*FORMULIR PENDAFTARAN SANTRI BARU (PSB)*\n";
+        $text .= "*PONDOK PESANTREN RAUDHATUL ULUM SAKATIGA*\n";
         $text .= "----------------------------------------\n";
         $text .= '📋 *No. Registrasi:* '.$registration->registration_number."\n";
         $text .= '📅 *Tanggal Daftar:* '.$registration->created_at->translatedFormat('d F Y, H:i')." WIB\n";

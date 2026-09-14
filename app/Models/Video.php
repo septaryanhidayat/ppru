@@ -46,6 +46,6 @@ class Video extends Model
             return "https://i.ytimg.com/vi/{$id}/hqdefault.jpg";
         }
 
-        return '/uploads/gedung-smait-ishum.webp';
+        return '/uploads/campus-ppru-sakatiga.webp';
     }
 }

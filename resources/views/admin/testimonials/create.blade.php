@@ -25,14 +25,14 @@
                 </div>
 
                 <div>
-                    <label for="profession" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Profesi / Asal Kecamatan</label>
-                    <input type="text" name="profession" id="profession" value="{{ old('profession') }}" placeholder="Contoh: Tokoh Pemuda Prabumulih" class="w-full bg-slate-50 text-xs text-slate-800 rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#da251c]">
+                    <label for="profession" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Profesi / Asal Daerah</label>
+                    <input type="text" name="profession" id="profession" value="{{ old('profession') }}" placeholder="Contoh: Wali Santri Ogan Ilir" class="w-full bg-slate-50 text-xs text-slate-800 rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00843d]">
                 </div>
             </div>
 
             <div>
                 <label for="content" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Isi Testimoni / Pernyataan *</label>
-                <textarea name="content" id="content" rows="4" required placeholder="Tuliskan testimoni atau pesan dari masyarakat..." class="w-full bg-slate-50 text-xs text-slate-800 rounded-xl p-4 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#da251c] leading-relaxed">{{ old('content') }}</textarea>
+                <textarea name="content" id="content" rows="4" required placeholder="Tuliskan testimoni atau kesan dari wali santri / alumni..." class="w-full bg-slate-50 text-xs text-slate-800 rounded-xl p-4 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00843d] leading-relaxed">{{ old('content') }}</textarea>
                 @error('content') <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span> @enderror
             </div>
 

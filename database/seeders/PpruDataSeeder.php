@@ -10,6 +10,7 @@ use App\Models\Page;
 use App\Models\Post;
 use App\Models\QuickMenu;
 use App\Models\Setting;
+use App\Models\Testimonial;
 use App\Models\UnitPendidikan;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -651,6 +652,104 @@ class PpruDataSeeder extends Seeder
                 'phone' => '0812-7890-1950',
                 'email' => 'sekretariat@ppru.ac.id',
             ]));
+        }
+
+        // 9. Testimoni Santri & Wali Santri PPRU
+        Testimonial::truncate();
+        $testimonials = [
+            [
+                'name' => 'Eva Astuti',
+                'profession' => 'Wali Santri Pondok Pesantren Raudhatul Ulum',
+                'content' => 'Anakku bernama Abdurrosyad Fadlillah saat ini duduk di kelas XI. Alhamdulillah sekarang sudah mulai berani tampil dan mandiri, sopan santun semakin baik. Semoga dengan bimbingan dari asatidz dan ustadzah di pondok, ananda semakin percaya diri, berakhlakul karimah, dan disiplin dalam ibadah maupun belajar. Aamiin ya Rabbal \'alamin.',
+                'status' => 'publish',
+            ],
+            [
+                'name' => 'Ayu Putri',
+                'profession' => 'Wali Santri Pondok Pesantren Raudhatul Ulum',
+                'content' => 'Toby Aldinata Timothy anakku santri baru tahun ini di Pondok Pesantren Raudhatul Ulum. Pembinaan karakternya sangat terasa sejak awal masuk. Semoga yang baik menjadi semakin baik lagi dan istiqomah.',
+                'status' => 'publish',
+            ],
+            [
+                'name' => 'Evi Riani',
+                'profession' => 'Wali Santri Pondok Pesantren Raudhatul Ulum',
+                'content' => 'Putri sulungku Seren Rahmadani saat ini duduk di kelas akhir. Alhamdulillah ada perubahan yang terus positif dan signifikan, hafalannya bertambah, mandiri, dan beradab sesuai nilai-nilai santri Raudhatul Ulum.',
+                'status' => 'publish',
+            ],
+            [
+                'name' => 'Penny Cahyani',
+                'profession' => 'Wali Santri Pondok Pesantren Raudhatul Ulum',
+                'content' => 'Najwa Rizkiya Ramadhani nama putriku yang saat ini duduk di kelas akhir. Kami sangat bersyukur menyekolahkannya di Pondok Pesantren Raudhatul Ulum Sakatiga. Semoga setelah lulus ananda bisa menjadi generasi berakhlak mulia yang bermanfaat bagi umat.',
+                'status' => 'publish',
+            ],
+            [
+                'name' => 'Yulianti Widiastuti',
+                'profession' => 'Wali Santri Pondok Pesantren Raudhatul Ulum',
+                'content' => 'Anakku bernama Annisa Dhiya Abelia saat ini sudah di kelas XII. Anak semakin percaya diri, hafalan Al-Qur\'annya terus bertambah mutqin, dan selalu berhati-hati serta berpegang teguh pada nilai-nilai agama dalam kesehariannya.',
+                'status' => 'publish',
+            ],
+            [
+                'name' => 'Dora Indah',
+                'profession' => 'Wali Santri Pondok Pesantren Raudhatul Ulum',
+                'content' => 'Anakku bernama Ragil Rizgy Putra duduk di kelas XI. Saya merasa membuat pilihan yang sangat tepat menitipkan anak di Pondok Pesantren Raudhatul Ulum Sakatiga. Kekeluargaan para asatidz dan pengasuh asrama membuat kami tenang, bersama membimbing anak-anak menuju sukses dunia dan akhirat. Aamiin.',
+                'status' => 'publish',
+            ],
+            [
+                'name' => 'Suharyanti',
+                'profession' => 'Wali Santri Pondok Pesantren Raudhatul Ulum',
+                'content' => 'Abi Anggara Santriyano adalah anak laki-lakiku yang saat ini duduk di kelas XII. PPRU terus mengutamakan kualitas pendidikan agama, tahfidz, dan akhlakul karimah. Para ustadz memberikan perhatian terbaik dan mendidik sepenuh hati.',
+                'status' => 'publish',
+            ],
+            [
+                'name' => 'Sugiarti',
+                'profession' => 'Alumni Pondok Pesantren Raudhatul Ulum',
+                'content' => 'Setelah menempuh pendidikan di Pondok Pesantren Raudhatul Ulum, saya merasakan perubahan besar dalam hal kedisiplinan ibadah dan pergaulan. Ilmu agama dan wawasan yang didapat sangat mendalam, didukung lingkungan ukhuwah santri yang saling menyemangati dalam kebaikan.',
+                'status' => 'publish',
+            ],
+            [
+                'name' => 'Shella Destiani',
+                'profession' => 'Alumni Pondok Pesantren Raudhatul Ulum',
+                'content' => 'Pondok Pesantren Raudhatul Ulum memiliki lingkungan yang sangat suportif, tanpa senioritas yang merugikan. Asatidz dan dewan guru sangat peduli, membimbing kami layaknya orang tua kedua. Bekal adab, Al-Qur\'an, dan kemandirian dari pondok menjadi modal berharga bagi saya saat melanjutkan pendidikan dan berkarier.',
+                'status' => 'publish',
+            ],
+            [
+                'name' => 'Toni Siswanto dan Widyaningtyastuti',
+                'profession' => 'Wali Santri Pondok Pesantren Raudhatul Ulum',
+                'content' => 'Assalamu\'alaikum warahmatullahi wabarakatuh. Kami orang tua dari ananda Yunita Andini Amalia bersyukur ananda menuntut ilmu di Pondok Pesantren Raudhatul Ulum Sakatiga. Pondok mendidik santri dengan penuh kasih sayang, membekali dengan tahfidz, tahsin bersanad, bahasa Arab-Inggris, serta ilmu pengetahuan umum. Lingkungan asrama islami dan terjaga.',
+                'status' => 'publish',
+            ],
+        ];
+
+        foreach ($testimonials as $t) {
+            Testimonial::create($t);
+        }
+
+        // 10. Galeri Dokumentasi Foto Kegiatan Santri PPRU
+        Post::where('type', 'gallery')->delete();
+        $galleries = [
+            ['title' => 'Haflah Takhtiman & Wisuda Akbar Santri Pondok Pesantren Raudhatul Ulum', 'img' => '/uploads/ppru-haflah.webp'],
+            ['title' => 'Muhadharah 3 Bahasa: Arab, Inggris, dan Indonesia Santri PPRU', 'img' => '/uploads/ppru-muhadharah.webp'],
+            ['title' => 'Kafilah Musabaqah Tilawatil Qur\'an (MTQ) Santri Raudhatul Ulum', 'img' => '/uploads/ppru-mtq.webp'],
+            ['title' => 'Perkemahan Pramuka Santri Pondok Pesantren Raudhatul Ulum Sakatiga', 'img' => '/uploads/ppru-pramuka.webp'],
+            ['title' => 'Kunjungan Delegasi Muadalah Universitas Al-Azhar Kairo Mesir di PPRU', 'img' => '/uploads/ppru-alazhar.webp'],
+            ['title' => 'Halaqah Tahfizhul Qur\'an 30 Juz Santri MATQULARU', 'img' => '/uploads/ppru-tahfidz.webp'],
+            ['title' => 'Sarasehan Asatidz & Halaqah Keilmuan Ulama Pesantren Raudhatul Ulum', 'img' => '/uploads/ppru-sarasehan.webp'],
+            ['title' => 'Debat Ilmiah Bahasa Arab & Bahasa Inggris Santri PPRU', 'img' => '/uploads/ppru-debat.webp'],
+            ['title' => 'Kompetisi Sains Madrasah (KSM) Santri MARU & MTs RU', 'img' => '/uploads/ppru-ksm.webp'],
+            ['title' => 'Kontingen Perkemahan Pramuka Santri Nusantara (PPSN) PPRU', 'img' => '/uploads/ppru-ppsn.webp'],
+            ['title' => 'Pembinaan 10 Jati Diri Santri Pondok Pesantren Raudhatul Ulum', 'img' => '/uploads/ppru-jatidiri.webp'],
+            ['title' => 'Kampus Terpadu & Masjid Utama Pondok Pesantren Raudhatul Ulum Sakatiga', 'img' => '/uploads/campus-ppru-sakatiga.webp'],
+            ['title' => 'Latihan Memanah & Olahraga Sunnah Santri Raudhatul Ulum', 'img' => '/uploads/activities-ppru-sakatiga.webp'],
+        ];
+
+        foreach ($galleries as $g) {
+            Post::create([
+                'title' => $g['title'],
+                'slug' => \Illuminate\Support\Str::slug($g['title']),
+                'content' => 'Dokumentasi kegiatan santri dan lingkungan Pondok Pesantren Raudhatul Ulum Sakatiga.',
+                'featured_image' => $g['img'],
+                'type' => 'gallery',
+                'status' => 'publish',
+            ]);
         }
     }
 }

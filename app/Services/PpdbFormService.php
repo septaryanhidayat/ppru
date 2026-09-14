@@ -75,7 +75,7 @@ class PpdbFormService
                     'Jalur Reguler / Tes Mandiri',
                     'Jalur Prestasi Akademik & Non-Akademik',
                     "Jalur Hafizh Al-Qur'an (Tahfidz)",
-                    'Jalur Alumni SMPIT Ishum',
+                    'Jalur Alumni MTs / SMPIT Raudhatul Ulum',
                     'Jalur Beasiswa / Afirmasi',
                 ],
                 'placeholder' => 'Pilih Jalur Masuk...',

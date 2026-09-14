@@ -47,7 +47,7 @@
 
             <div class="mt-8 p-6 bg-emerald-50/60 rounded-2xl border border-emerald-100 space-y-3 text-xs sm:text-sm">
                 <h3 class="font-bold text-gray-900 text-sm uppercase tracking-wider mb-2">Informasi Layanan Fasilitas</h3>
-                <p class="flex items-start"><i class="fa-solid fa-location-dot text-[#00913e] mt-1 mr-3 w-4"></i><span>{{ $bidang->address ?: 'Kompleks Sekolah Pondok Pesantren Raudhatul Ulum Sakatiga, Prabumulih, Sumatera Selatan' }}</span></p>
+                <p class="flex items-start"><i class="fa-solid fa-location-dot text-[#00913e] mt-1 mr-3 w-4"></i><span>{{ $bidang->address ?: 'Kompleks Pondok Pesantren Raudhatul Ulum, Desa Sakatiga, Indralaya, Ogan Ilir, Sumatera Selatan' }}</span></p>
                 <p class="flex items-center"><i class="fa-solid fa-phone text-[#00913e] mr-3 w-4"></i><span>{{ $bidang->phone ?: '0812-7890-1950' }}</span></p>
                 <p class="flex items-center"><i class="fa-solid fa-envelope text-[#00913e] mr-3 w-4"></i><span>{{ $bidang->email ?: 'sekretariat@ppru.ac.id' }}</span></p>
             </div>
@@ -57,7 +57,7 @@
         <div class="space-y-6">
             <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
                 <h3 class="font-bold text-sm text-gray-900 mb-4 uppercase tracking-wider pb-2 border-b border-gray-100">
-                    Fasilitas Sekolah Lainnya
+                    Fasilitas Pesantren Lainnya
                 </h3>
                 <ul class="space-y-3 text-xs">
                     @foreach($otherBidangs as $oB)

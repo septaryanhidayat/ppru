@@ -182,17 +182,17 @@
             </div>
         </div>
 
-        {{-- Floating Button Launcher --}}
-        <div class="flex items-center space-x-2">
+        {{-- Floating Button Launcher (Bulat, Tidak Terlalu Besar) --}}
+        <div class="flex items-center">
             <button @click="openHelpdesk = !openHelpdesk"
-                    class="group flex items-center bg-[#25D366] hover:bg-[#1EBE5D] text-white pl-3.5 pr-4 py-2.5 rounded-full shadow-2xl transition duration-300 transform hover:scale-105 cursor-pointer relative"
-                    aria-label="Buka Bantuan WhatsApp">
-                <span class="relative flex h-3 w-3 mr-2">
+                    class="group flex items-center justify-center bg-[#25D366] hover:bg-[#1EBE5D] text-white w-12 h-12 rounded-full shadow-2xl transition duration-300 transform hover:scale-110 cursor-pointer relative"
+                    aria-label="Buka Bantuan WhatsApp"
+                    title="Konsultasi WhatsApp">
+                <span class="absolute top-0.5 right-0.5 flex h-3 w-3">
                     <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
                     <span class="relative inline-flex rounded-full h-3 w-3 bg-white"></span>
                 </span>
-                <i class="fa-brands fa-whatsapp text-xl mr-2"></i>
-                <span class="text-xs font-bold tracking-tight hidden sm:inline">Tanya Pesantren</span>
+                <i class="fa-brands fa-whatsapp text-2xl"></i>
             </button>
         </div>
     </div>

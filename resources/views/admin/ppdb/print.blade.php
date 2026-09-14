@@ -254,7 +254,7 @@
                 <p>( {{ $ppdb->full_name }} )</p>
             </div>
             <div class="sig-box">
-                <p>Prabumulih, {{ date('d F Y') }}<br>Panitia SPMB PPRU,</p>
+                <p>Sakatiga, {{ date('d F Y') }}<br>Panitia SPMB PPRU,</p>
                 <div class="sig-space"></div>
                 <p>( Panitia SPMB TP 2026/2027 )</p>
             </div>

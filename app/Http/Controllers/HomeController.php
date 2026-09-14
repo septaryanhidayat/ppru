@@ -21,21 +21,21 @@ class HomeController extends Controller
             [
                 'title' => 'Pondok Pesantren Raudhatul Ulum',
                 'subtitle' => 'Basis Kaderisasi Generasi Terbaik (Khoiru Ummah) yang Bermanfaat Luas dan Berdaya Saing Global di Sakatiga Ogan Ilir.',
-                'image' => '/uploads/campus-ishum.jpg',
+                'image' => '/uploads/campus-ppru-sakatiga.webp',
                 'btn_text' => 'Profil Singkat Pesantren',
                 'btn_link' => route('page.tentang-kami', [], false),
             ],
             [
                 'title' => 'Penerimaan Santri Baru (PSB) 2026/2027',
                 'subtitle' => 'Mari Bergabung dengan Pesantren Modern Terpadu Berasrama: Al-Qur\'an, Dwi-Bahasa, dan Dirasah Islamiyah.',
-                'image' => '/uploads/activities-robbani.webp',
+                'image' => '/uploads/activities-ppru-sakatiga.webp',
                 'btn_text' => 'Daftar PSB Online',
                 'btn_link' => route('ppdb.index', [], false),
             ],
             [
                 'title' => 'Kurikulum Terpadu & Muadalah Al-Azhar',
                 'subtitle' => 'Memadukan Kurikulum Pondok Modern Gontor, Kementerian Agama, dan Dinas Pendidikan Nasional.',
-                'image' => '/uploads/campus-ishum.jpg',
+                'image' => '/uploads/campus-ppru-sakatiga.webp',
                 'btn_text' => 'Sambutan Mudir PPRU',
                 'btn_link' => route('page.sambutan', [], false),
             ],
@@ -149,23 +149,22 @@ class HomeController extends Controller
             ->toArray();
 
         $fallbackRow1 = [
-            ['url' => '/uploads/ishum/fasilitas_3427_IMG-20240528-WA0106-scaled.webp', 'title' => 'Kampus Terpadu Pondok Pesantren Raudhatul Ulum Sakatiga'],
-            ['url' => '/uploads/ishum/post_3442_IMG-20241020-WA0006-scaled.webp', 'title' => 'Aktivitas Belajar & Karakter Santri Raudhatul Ulum'],
-            ['url' => '/uploads/ishum/fasilitas_1274_Ruang-Lab-Komputer1.webp', 'title' => 'Laboratorium Komputer & Digital Santri PPRU'],
-            ['url' => '/uploads/ishum/post_3460_IMG-20241020-WA0007-scaled.webp', 'title' => 'Pembinaan Disiplin & Kepengasuhan Santri Sakatiga'],
-            ['url' => '/uploads/ishum/fasilitas_1278_HALL-SIT-Ishlahul-Ummah_.webp', 'title' => 'Masjid Utama & Aula Pertemuan Kampus A PPRU'],
-            ['url' => '/uploads/ishum/post_3464_IMG-20241020-WA0005-scaled.webp', 'title' => 'Halaqah Tahfidz & Tartil Qur\'an Santri Sakatiga'],
+            ['url' => '/uploads/ppru-haflah.webp', 'title' => 'Haflah Takhtiman & Wisuda Akbar Santri Pondok Pesantren Raudhatul Ulum'],
+            ['url' => '/uploads/ppru-muhadharah.webp', 'title' => 'Muhadharah 3 Bahasa: Arab, Inggris & Indonesia Santri PPRU'],
+            ['url' => '/uploads/ppru-mtq.webp', 'title' => 'Kafilah Musabaqah Tilawatil Qur\'an (MTQ) Santri Raudhatul Ulum'],
+            ['url' => '/uploads/ppru-pramuka.webp', 'title' => 'Perkemahan Pramuka Santri Pondok Pesantren Raudhatul Ulum Sakatiga'],
+            ['url' => '/uploads/ppru-alazhar.webp', 'title' => 'Kunjungan Delegasi Muadalah Universitas Al-Azhar Kairo Mesir'],
+            ['url' => '/uploads/ppru-tahfidz.webp', 'title' => 'Halaqah Tahfizhul Qur\'an 30 Juz Santri MATQULARU'],
         ];
 
         $fallbackRow2 = [
-            ['url' => '/uploads/ishum/fasilitas_1275_R.-Lab-IPA.webp', 'title' => 'Laboratorium Sains & Eksperimen Santri PPRU'],
-            ['url' => '/uploads/ishum/post_3467_IMG-20241020-WA0004-scaled.webp', 'title' => 'Ibadah Yaumiyah & Pembiasaan Akhlakul Karimah Santri'],
-            ['url' => '/uploads/ishum/fasilitas_1377_IMG-20240528-WA0094-scaled.webp', 'title' => 'Gerbang Utama Kampus Pondok Pesantren Raudhatul Ulum'],
-            ['url' => '/uploads/ishum/post_3472_IMG-20241020-WA0003-scaled.webp', 'title' => 'Muhadharah 3 Bahasa & Pembinaan Da\'i Santri RU'],
-            ['url' => '/uploads/ishum/fasilitas_2059_IMG-20221101-WA0010.webp', 'title' => 'Sarana Olahraga & Lingkungan Asri Pesantren PPRU'],
-            ['url' => '/uploads/ishum/post_3478_IMG-20241020-WA0008-scaled.webp', 'title' => 'Ukhuwah Islamiyah & Kebersamaan Santri di Asrama'],
-            ['url' => '/uploads/ishum/prestasi_3513_IMG-20240928-WA0038.webp', 'title' => 'Apresiasi & Penganugerahan Prestasi Santri PPRU'],
-            ['url' => '/uploads/ishum/fasilitas_3431_IMG-20241014-WA0013-scaled.webp', 'title' => 'Poskestren & Pelayanan Kesehatan Santri Sakatiga'],
+            ['url' => '/uploads/ppru-sarasehan.webp', 'title' => 'Sarasehan Asatidz & Halaqah Keilmuan Ulama Pesantren Raudhatul Ulum'],
+            ['url' => '/uploads/ppru-debat.webp', 'title' => 'Debat Ilmiah Bahasa Arab & Bahasa Inggris Santri PPRU'],
+            ['url' => '/uploads/ppru-ksm.webp', 'title' => 'Kompetisi Sains Madrasah (KSM) Santri MARU & MTs RU'],
+            ['url' => '/uploads/ppru-ppsn.webp', 'title' => 'Kontingen Perkemahan Pramuka Santri Nusantara (PPSN) PPRU'],
+            ['url' => '/uploads/ppru-jatidiri.webp', 'title' => 'Pembinaan 10 Jati Diri Santri Pondok Pesantren Raudhatul Ulum'],
+            ['url' => '/uploads/campus-ppru-sakatiga.webp', 'title' => 'Kampus Terpadu & Masjid Utama Pondok Pesantren Raudhatul Ulum Sakatiga'],
+            ['url' => '/uploads/activities-ppru-sakatiga.webp', 'title' => 'Latihan Memanah & Olahraga Sunnah Santri Raudhatul Ulum'],
         ];
 
         if (! empty($dbGallery)) {

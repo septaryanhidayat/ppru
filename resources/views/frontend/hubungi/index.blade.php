@@ -23,14 +23,14 @@
     
     {{-- GOOGLE MAPS EMBED ATAS --}}
     <div class="rounded-3xl overflow-hidden shadow-xl border border-gray-100 h-80 sm:h-96 reveal-fade-up">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15935.918903337965!2d104.642145!3d-3.232491!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e3b9991cb45aaab%3A0x28dfaa3303668f80!2sPrabumulih%20Mulya%2C%20Prabumulih%2C%20Ogan%20Ilir%20Regency%2C%20South%20Sumatra!5e0!3m2!1sen!2sid!4v1700000000000!5m2!1sen!2sid" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <iframe src="https://maps.google.com/maps?q=Pondok+Pesantren+Raudhatul+Ulum+Sakatiga+Ogan+Ilir&t=&z=15&ie=UTF8&iwloc=&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
 
     {{-- SUBTITLE --}}
     <div class="text-center max-w-2xl mx-auto reveal-fade-up">
         <span class="text-xs font-bold text-orange-500 uppercase tracking-wider block">Layanan Informasi & Konsultasi</span>
         <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight mt-1">
-            Silakan Hubungi Tim Humas & Layanan Sekolah Kami
+            Silakan Hubungi Tim Humas & Layanan Pesantren Kami
         </h2>
         <div class="w-16 h-1 bg-[#00913e] mx-auto rounded-full mt-3"></div>
     </div>
@@ -78,11 +78,11 @@
                 <i class="fa-brands fa-whatsapp"></i>
             </div>
             <div>
-                <span class="text-xs font-bold text-gray-400 uppercase tracking-wider block">WhatsApp PPDB :</span>
+                <span class="text-xs font-bold text-gray-400 uppercase tracking-wider block">WhatsApp PSB :</span>
                 <a href="https://wa.me/{{ $cleanWa }}" target="_blank" class="text-base font-extrabold text-gray-900 hover:text-[#00913e] transition mt-1 block">
                     {{ $rawPhone }}
                 </a>
-                <p class="text-xs text-gray-500 mt-1">Konsultasi cepat PPDB dan beasiswa santri via chat.</p>
+                <p class="text-xs text-gray-500 mt-1">Konsultasi cepat PSB dan beasiswa santri via chat.</p>
             </div>
         </div>
 
@@ -92,9 +92,9 @@
                 <i class="fa-solid fa-location-dot"></i>
             </div>
             <div>
-                <span class="text-xs font-bold text-gray-400 uppercase tracking-wider block">Alamat Sekolah :</span>
+                <span class="text-xs font-bold text-gray-400 uppercase tracking-wider block">Alamat Pesantren :</span>
                 <p class="text-xs font-bold text-gray-900 mt-1 leading-relaxed">
-                    {{ $siteSettings['contact_address'] ?? 'Jl. Lintas Timur Palembang-Prabumulih KM 35, Prabumulih, Sumatera Selatan' }}
+                    {{ $siteSettings['contact_address'] ?? 'Desa Sakatiga, Kecamatan Indralaya, Kabupaten Ogan Ilir, Sumatera Selatan 30816' }}
                 </p>
             </div>
         </div>

@@ -421,11 +421,11 @@ class InformationController extends Controller
                 ],
                 [
                     'title' => 'Produk Layanan',
-                    'content' => '<p>Surat Persetujuan Kunjungan ke SMA IT Ishlahul Ummah Prabumulih</p>',
+                    'content' => '<p>Surat Persetujuan Kunjungan ke Pondok Pesantren Raudhatul Ulum Sakatiga</p>',
                 ],
                 [
                     'title' => 'Pengaduan, Saran dan Masukan',
-                    'content' => '<p>Pengaduan, saran, dan masukan dapat disampaikan secara tertulis melalui kotak saran di kantor sekolah atau melalui email: smaitishlahulummah2019@gmail.com dan WhatsApp: 082182680647</p>',
+                    'content' => '<p>Pengaduan, saran, dan masukan dapat disampaikan secara tertulis melalui kotak saran di kantor pesantren atau melalui email: sekretariat@ppru.ac.id dan WhatsApp: 0812-7890-1950</p>',
                 ],
             ],
             'kerjasama' => [
@@ -435,7 +435,7 @@ class InformationController extends Controller
                 ],
                 [
                     'title' => 'Sistem Mekanisme dan Prosedur',
-                    'content' => '<ul><li>Pemohon mengajukan surat permohonan kerja sama melalui form online atau langsung ke kantor sekolah.</li><li>Pihak sekolah meneliti dan memverifikasi kelayakan serta kesesuaian program kemitraan.</li><li>Sekolah mengonfirmasi kesepakatan dan menyusun MoU / Perjanjian Kerja Sama.</li></ul>',
+                    'content' => '<ul><li>Pemohon mengajukan surat permohonan kerja sama melalui form online atau langsung ke kantor pesantren.</li><li>Pihak pesantren meneliti dan memverifikasi kelayakan serta kesesuaian program kemitraan.</li><li>Pesantren mengonfirmasi kesepakatan dan menyusun MoU / Perjanjian Kerja Sama.</li></ul>',
                 ],
                 [
                     'title' => 'Jangka Waktu Penyelesaian',
@@ -451,7 +451,7 @@ class InformationController extends Controller
                 ],
                 [
                     'title' => 'Pengaduan, Saran dan Masukan',
-                    'content' => '<p>Pengaduan, saran, dan masukan dapat disampaikan melalui email: smaitishlahulummah2019@gmail.com atau WhatsApp Humas: 082182680647</p>',
+                    'content' => '<p>Pengaduan, saran, dan masukan dapat disampaikan melalui email: sekretariat@ppru.ac.id atau WhatsApp Humas: 0812-7890-1950</p>',
                 ],
             ],
             'sewa' => [
@@ -461,7 +461,7 @@ class InformationController extends Controller
                 ],
                 [
                     'title' => 'Sistem Mekanisme dan Prosedur',
-                    'content' => '<ul><li>Pemohon mengajukan formulir permohonan sewa menyewa barang milik sekolah.</li><li>Pemeriksaan ketersediaan barang dan jadwal pemakaian oleh bagian sarana & prasarana.</li><li>Penerbitan surat izin pemakaian/sewa dan berita acara serah terima barang.</li></ul>',
+                    'content' => '<ul><li>Pemohon mengajukan formulir permohonan sewa menyewa fasilitas milik pesantren.</li><li>Pemeriksaan ketersediaan sarana dan jadwal pemakaian oleh bagian sarana & prasarana.</li><li>Penerbitan surat izin pemakaian/sewa dan berita acara serah terima fasilitas.</li></ul>',
                 ],
                 [
                     'title' => 'Jangka Waktu Penyelesaian',
@@ -469,15 +469,15 @@ class InformationController extends Controller
                 ],
                 [
                     'title' => 'Biaya dan Tarif',
-                    'content' => '<p>Sesuai dengan ketentuan tarif retribusi / sewa sarana prasarana sekolah yang berlaku</p>',
+                    'content' => '<p>Sesuai dengan ketentuan tarif infaq / sewa sarana prasarana pesantren yang berlaku</p>',
                 ],
                 [
                     'title' => 'Produk Layanan',
-                    'content' => '<p>Surat Izin Pemakaian / Sewa Barang dan Berita Acara Peminjaman</p>',
+                    'content' => '<p>Surat Izin Pemakaian / Sewa Fasilitas dan Berita Acara Peminjaman</p>',
                 ],
                 [
                     'title' => 'Pengaduan, Saran dan Masukan',
-                    'content' => '<p>Pengaduan, saran, dan masukan dapat disampaikan secara langsung atau melalui WhatsApp Humas: 082182680647</p>',
+                    'content' => '<p>Pengaduan, saran, dan masukan dapat disampaikan secara langsung atau melalui WhatsApp Humas: 0812-7890-1950</p>',
                 ],
             ],
             default => [],

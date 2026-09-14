@@ -131,13 +131,13 @@
                 <section class="space-y-2 bg-emerald-50/50 p-6 rounded-2xl border border-emerald-100">
                     <h3 class="text-lg sm:text-xl font-bold text-gray-900 flex items-center space-x-2">
                         <span class="w-7 h-7 rounded-lg bg-[#00913e] text-white inline-flex items-center justify-center text-xs font-bold mr-2">9</span>
-                        <span>Kontak Sekolah</span>
+                        <span>Kontak Pesantren</span>
                     </h3>
                     <p>Jika Anda memiliki pertanyaan mengenai Kebijakan Privasi ini, silakan hubungi kami:</p>
                     <div class="text-xs sm:text-sm space-y-1 text-gray-600 mt-2">
                         <p>📧 Email: <strong>{{ $siteSettings['contact_email'] ?? 'sekretariat@ppru.ac.id' }}</strong></p>
                         <p>📞 Telepon: <strong>{{ $siteSettings['contact_phone'] ?? '0812-7890-1950' }}</strong></p>
-                        <p>📍 Alamat: {{ $siteSettings['contact_address'] ?? 'Jl. Lintas Timur Palembang-Prabumulih KM 35, Prabumulih, Sumatera Selatan' }}</p>
+                        <p>📍 Alamat: {{ $siteSettings['contact_address'] ?? 'Desa Sakatiga, Kecamatan Indralaya, Kabupaten Ogan Ilir, Sumatera Selatan 30816' }}</p>
                     </div>
                 </section>
             @endif

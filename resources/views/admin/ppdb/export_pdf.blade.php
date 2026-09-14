@@ -269,7 +269,7 @@
             <p>NIY. 20190701001</p>
         </div>
         <div class="sig-box">
-            <p>Prabumulih, {{ \Carbon\Carbon::now()->translatedFormat('d F Y') }}</p>
+            <p>Sakatiga, {{ \Carbon\Carbon::now()->translatedFormat('d F Y') }}</p>
             <p><strong>Ketua Panitia PPDB</strong></p>
             <div class="sig-space"></div>
             <p><strong><u>Panitia SPMB PPRU</u></strong></p>

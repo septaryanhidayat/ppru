@@ -68,13 +68,13 @@
                         <span>Rincian Fasilitas</span>
                         <i class="fa-solid fa-arrow-right ml-1.5 text-[10px] group-hover:translate-x-1 transition"></i>
                     </a>
-                    <span class="text-[11px] text-gray-400 font-medium">PPRU Prabumulih</span>
+                    <span class="text-[11px] text-gray-400 font-medium">PPRU Sakatiga</span>
                 </div>
             </div>
         @empty
             <div class="col-span-full text-center py-12 text-gray-400 bg-white rounded-3xl border border-gray-100">
                 <i class="fa-solid fa-school text-4xl text-gray-300 mb-3 block"></i>
-                <span>Belum ada data fasilitas sekolah.</span>
+                <span>Belum ada data fasilitas pesantren.</span>
             </div>
         @endforelse
     </div>

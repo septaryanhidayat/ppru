@@ -95,7 +95,7 @@
                         </div>
                         <div>
                             <h3 class="text-xl font-black text-gray-900 leading-tight">{{ $bank1Name }}</h3>
-                            <p class="text-xs text-emerald-800 font-semibold mt-0.5">Mitra Resmi Yayasan PPRU Prabumulih</p>
+                            <p class="text-xs text-emerald-800 font-semibold mt-0.5">Mitra Resmi Yayasan Perguruan Islam Raudhatul Ulum (YAPIRUS)</p>
                         </div>
                     </div>
 
@@ -252,7 +252,7 @@
             <span>Akuntabilitas & Tata Kelola Infaq Yayasan</span>
         </h4>
         <p class="leading-relaxed text-gray-600">
-            Pengelolaan infaq pembangunan dan beasiswa pendidikan santri diatur secara profesional oleh Yayasan PPRU Prabumulih dengan prinsip amanah, transparan, dan dapat dipertanggungjawabkan secara berkala.
+            Pengelolaan infaq pembangunan dan beasiswa pendidikan santri diatur secara profesional oleh Yayasan Perguruan Islam Raudhatul Ulum Sakatiga (YAPIRUS) dengan prinsip amanah, transparan, dan dapat dipertanggungjawabkan secara berkala.
         </p>
         <ul class="list-disc list-inside space-y-1 text-gray-600 text-xs">
             <li>100% dana infaq pembangunan dialokasikan langsung untuk sarana belajar, laboratorium, dan masjid kampus.</li>

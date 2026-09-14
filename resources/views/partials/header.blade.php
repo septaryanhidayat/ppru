@@ -67,18 +67,18 @@
             </a>
 
             {{-- DESKTOP NAVIGATION --}}
-            <nav class="hidden lg:flex items-center space-x-1 font-bold text-xs xl:text-sm text-white" aria-label="Navigasi Utama">
+            <nav class="hidden lg:flex items-center space-x-0.5 xl:space-x-1 font-semibold text-[13px] xl:text-[14px] text-white" aria-label="Navigasi Utama">
                 
                 {{-- 1. Beranda --}}
-                <a href="{{ route('home') }}" class="px-3 py-2 rounded-xl hover:bg-black/15 transition {{ request()->routeIs('home') ? 'bg-black/20 text-[#fcd116]' : '' }}">
+                <a href="{{ route('home') }}" class="px-2.5 xl:px-3 py-1.5 rounded-lg hover:bg-black/15 transition {{ request()->routeIs('home') ? 'bg-black/20 text-[#fcd116]' : '' }}">
                     Beranda
                 </a>
 
                 {{-- 2. Profil Dropdown --}}
                 <div class="relative group py-2">
-                    <button type="button" aria-haspopup="true" aria-expanded="false" class="px-3 py-2 rounded-xl inline-flex items-center hover:bg-black/15 transition {{ request()->is('sambutan*', 'tentang*', 'visi*', 'sejarah*', 'anggota*', 'struktur*', 'bidang*', 'dpc*', 'dewan*') ? 'bg-black/20 text-[#fcd116]' : '' }}">
+                    <button type="button" aria-haspopup="true" aria-expanded="false" class="px-2.5 xl:px-3 py-1.5 rounded-lg inline-flex items-center hover:bg-black/15 transition {{ request()->is('sambutan*', 'tentang*', 'visi*', 'sejarah*', 'anggota*', 'struktur*', 'bidang*', 'dpc*', 'dewan*') ? 'bg-black/20 text-[#fcd116]' : '' }}">
                         <span>Profil</span>
-                        <i class="fa-solid fa-chevron-down text-[10px] ml-1.5 transition-transform duration-200 group-hover:rotate-180"></i>
+                        <i class="fa-solid fa-chevron-down text-[10px] ml-1 transition-transform duration-200 group-hover:rotate-180"></i>
                     </button>
                     <div class="absolute left-0 top-full pt-1 w-64 hidden group-hover:block transition-all duration-150 z-50">
                         <div class="bg-white rounded-2xl shadow-2xl border border-gray-100 py-2.5 text-gray-800 animate-fadeIn">
@@ -113,9 +113,9 @@
 
                 {{-- 3. Pendidikan Dropdown (Menyerupai Referensi baitussalam.sch.id) --}}
                 <div class="relative group py-2">
-                    <button type="button" aria-haspopup="true" aria-expanded="false" class="px-3 py-2 rounded-xl inline-flex items-center hover:bg-black/15 transition {{ request()->is('pendidikan*') ? 'bg-black/20 text-[#fcd116]' : '' }}">
+                    <button type="button" aria-haspopup="true" aria-expanded="false" class="px-2.5 xl:px-3 py-1.5 rounded-lg inline-flex items-center hover:bg-black/15 transition {{ request()->is('pendidikan*') ? 'bg-black/20 text-[#fcd116]' : '' }}">
                         <span>Pendidikan</span>
-                        <i class="fa-solid fa-chevron-down text-[10px] ml-1.5 transition-transform duration-200 group-hover:rotate-180"></i>
+                        <i class="fa-solid fa-chevron-down text-[10px] ml-1 transition-transform duration-200 group-hover:rotate-180"></i>
                     </button>
                     <div class="absolute left-0 top-full pt-1 w-80 hidden group-hover:block transition-all duration-150 z-50">
                         <div class="bg-white rounded-2xl shadow-2xl border border-gray-100 py-2.5 text-gray-800 animate-fadeIn max-h-[75vh] overflow-y-auto">
@@ -175,9 +175,9 @@
 
                 {{-- 4. Galeri Dropdown --}}
                 <div class="relative group py-2">
-                    <button type="button" aria-haspopup="true" aria-expanded="false" class="px-3 py-2 rounded-xl inline-flex items-center hover:bg-black/15 transition {{ request()->is('galeri*', 'video*') ? 'bg-black/20 text-[#fcd116]' : '' }}">
+                    <button type="button" aria-haspopup="true" aria-expanded="false" class="px-2.5 xl:px-3 py-1.5 rounded-lg inline-flex items-center hover:bg-black/15 transition {{ request()->is('galeri*', 'video*') ? 'bg-black/20 text-[#fcd116]' : '' }}">
                         <span>Galeri</span>
-                        <i class="fa-solid fa-chevron-down text-[10px] ml-1.5 transition-transform duration-200 group-hover:rotate-180"></i>
+                        <i class="fa-solid fa-chevron-down text-[10px] ml-1 transition-transform duration-200 group-hover:rotate-180"></i>
                     </button>
                     <div class="absolute left-0 top-full pt-1 w-56 hidden group-hover:block transition-all duration-150 z-50">
                         <div class="bg-white rounded-2xl shadow-2xl border border-gray-100 py-2.5 text-gray-800 animate-fadeIn">
@@ -193,9 +193,9 @@
 
                 {{-- 5. Artikel & Kabar Dropdown (Taujih, Berita, Kegiatan, Prestasi) --}}
                 <div class="relative group py-2">
-                    <button type="button" aria-haspopup="true" aria-expanded="false" class="px-3 py-2 rounded-xl inline-flex items-center hover:bg-black/15 transition {{ request()->is('artikel*', 'agenda*', 'pengumuman*', 'kategori*', 'prestasi*') ? 'bg-black/20 text-[#fcd116]' : '' }}">
+                    <button type="button" aria-haspopup="true" aria-expanded="false" class="px-2.5 xl:px-3 py-1.5 rounded-lg inline-flex items-center hover:bg-black/15 transition {{ request()->is('artikel*', 'agenda*', 'pengumuman*', 'kategori*', 'prestasi*') ? 'bg-black/20 text-[#fcd116]' : '' }}">
                         <span>Artikel</span>
-                        <i class="fa-solid fa-chevron-down text-[10px] ml-1.5 transition-transform duration-200 group-hover:rotate-180"></i>
+                        <i class="fa-solid fa-chevron-down text-[10px] ml-1 transition-transform duration-200 group-hover:rotate-180"></i>
                     </button>
                     <div class="absolute left-0 top-full pt-1 w-60 hidden group-hover:block transition-all duration-150 z-50">
                         <div class="bg-white rounded-2xl shadow-2xl border border-gray-100 py-2.5 text-gray-800 animate-fadeIn">
@@ -224,9 +224,9 @@
 
                 {{-- 6. Download / Brosur --}}
                 <div class="relative group py-2">
-                    <button type="button" aria-haspopup="true" aria-expanded="false" class="px-3 py-2 rounded-xl inline-flex items-center hover:bg-black/15 transition {{ request()->is('download*', 'e-book*', 'hymne*', 'logo*') ? 'bg-black/20 text-[#fcd116]' : '' }}">
+                    <button type="button" aria-haspopup="true" aria-expanded="false" class="px-2.5 xl:px-3 py-1.5 rounded-lg inline-flex items-center hover:bg-black/15 transition {{ request()->is('download*', 'e-book*', 'hymne*', 'logo*') ? 'bg-black/20 text-[#fcd116]' : '' }}">
                         <span>Brosur</span>
-                        <i class="fa-solid fa-chevron-down text-[10px] ml-1.5 transition-transform duration-200 group-hover:rotate-180"></i>
+                        <i class="fa-solid fa-chevron-down text-[10px] ml-1 transition-transform duration-200 group-hover:rotate-180"></i>
                     </button>
                     <div class="absolute left-0 top-full pt-1 w-56 hidden group-hover:block transition-all duration-150 z-50">
                         <div class="bg-white rounded-2xl shadow-2xl border border-gray-100 py-2.5 text-gray-800 animate-fadeIn">
@@ -248,9 +248,9 @@
 
                 {{-- 7. Layanan & Kontak --}}
                 <div class="relative group py-2">
-                    <button type="button" aria-haspopup="true" aria-expanded="false" class="px-3 py-2 rounded-xl inline-flex items-center hover:bg-black/15 transition {{ request()->is('layanan*') ? 'bg-black/20 text-[#fcd116]' : '' }}">
+                    <button type="button" aria-haspopup="true" aria-expanded="false" class="px-2.5 xl:px-3 py-1.5 rounded-lg inline-flex items-center hover:bg-black/15 transition {{ request()->is('layanan*') ? 'bg-black/20 text-[#fcd116]' : '' }}">
                         <span>Layanan</span>
-                        <i class="fa-solid fa-chevron-down text-[10px] ml-1.5 transition-transform duration-200 group-hover:rotate-180"></i>
+                        <i class="fa-solid fa-chevron-down text-[10px] ml-1 transition-transform duration-200 group-hover:rotate-180"></i>
                     </button>
                     <div class="absolute left-0 top-full pt-1 w-64 hidden group-hover:block transition-all duration-150 z-50">
                         <div class="bg-white rounded-2xl shadow-2xl border border-gray-100 py-2.5 text-gray-800 animate-fadeIn">
@@ -272,18 +272,18 @@
                 </div>
 
                 {{-- 8. Kontak --}}
-                <a href="{{ route('hubungi') }}" class="px-3 py-2 rounded-xl hover:bg-black/15 transition {{ request()->routeIs('hubungi') ? 'bg-black/20 text-[#fcd116]' : '' }}">
+                <a href="{{ route('hubungi') }}" class="px-2.5 xl:px-3 py-1.5 rounded-lg hover:bg-black/15 transition {{ request()->routeIs('hubungi') ? 'bg-black/20 text-[#fcd116]' : '' }}">
                     Kontak
                 </a>
             </nav>
 
             {{-- TOMBOL AKSI: DAFTAR PSB (EMAS/KUNING MENCOLOK KHAS LOGO) & LOGIN --}}
-            <div class="hidden lg:flex items-center space-x-2.5">
-                <a href="{{ route('ppdb.index') }}" class="bg-[#f59e0b] hover:bg-[#d97706] text-slate-900 px-5 py-2.5 rounded-full text-xs font-black shadow-md hover:shadow-lg transition flex items-center space-x-2 transform hover:scale-105" aria-label="Penerimaan Santri Baru Pondok Pesantren Raudhatul Ulum">
+            <div class="hidden lg:flex items-center space-x-2 xl:space-x-3 ml-2 flex-shrink-0">
+                <a href="{{ route('ppdb.index') }}" class="bg-[#f59e0b] hover:bg-[#d97706] text-slate-950 px-4 xl:px-5 py-2 rounded-full text-xs font-black shadow-md hover:shadow-lg transition flex items-center space-x-1.5 transform hover:scale-105" aria-label="Penerimaan Santri Baru Pondok Pesantren Raudhatul Ulum">
                     <i class="fa-solid fa-graduation-cap text-xs"></i>
                     <span>Daftar PSB</span>
                 </a>
-                <a href="/login" class="text-white hover:text-white/80 px-3 py-2 text-xs font-bold transition flex items-center space-x-1 rounded-xl hover:bg-black/15" aria-label="Login Admin">
+                <a href="/login" class="text-white/90 hover:text-white px-2.5 py-1.5 text-xs font-bold transition flex items-center space-x-1 rounded-lg hover:bg-black/15" aria-label="Login Admin">
                     <i class="fa-solid fa-lock text-[11px]"></i>
                     <span>Login</span>
                 </a>

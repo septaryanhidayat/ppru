@@ -174,10 +174,10 @@
 <body class="bg-[#f8fafc] font-['Poppins',sans-serif] text-slate-800 flex min-h-screen antialiased">
 
     {{-- SIDEBAR DESKTOP --}}
-    <aside id="sidebar" class="w-64 bg-[#0b1120] text-slate-300 flex flex-col flex-shrink-0 border-r border-slate-800 z-30 hidden md:flex sticky top-0 h-screen">
+    <aside id="sidebar" class="w-64 bg-[#072418] text-slate-300 flex flex-col flex-shrink-0 border-r border-emerald-900/50 z-30 hidden md:flex sticky top-0 h-screen">
         
         {{-- Brand Logo Header with Minimize Toggle --}}
-        <div class="sidebar-header h-16 flex items-center justify-between px-4 border-b border-slate-800/80 bg-[#070b14]/50 flex-shrink-0">
+        <div class="sidebar-header h-16 flex items-center justify-between px-4 border-b border-emerald-900/60 bg-[#041910] flex-shrink-0">
             <a href="{{ route('admin.dashboard') }}" class="flex items-center space-x-2.5 group min-w-0" title="Admin PPRU Control Center">
                 <div class="w-9 h-9 flex items-center justify-center group-hover:scale-105 transition flex-shrink-0">
                     <img src="/uploads/logo-ppru-transparent.png" alt="Logo PPRU" class="h-9 w-auto object-contain" onerror="this.src='/uploads/logo-ppru-square.png'">
@@ -187,7 +187,7 @@
                     <span class="text-[9px] text-[#f59e0b] font-semibold tracking-wider uppercase block">Raudhatul Ulum</span>
                 </div>
             </a>
-            <button id="sidebar-collapse-btn" class="text-slate-400 hover:text-white p-1.5 rounded-lg hover:bg-slate-800 transition cursor-pointer flex-shrink-0" title="Perkecil / Perbesar Sidebar">
+            <button id="sidebar-collapse-btn" class="text-slate-400 hover:text-white p-1.5 rounded-lg hover:bg-emerald-900/50 transition cursor-pointer flex-shrink-0" title="Perkecil / Perbesar Sidebar">
                 <i id="sidebar-collapse-icon" class="fa-solid fa-angles-left text-xs"></i>
             </button>
         </div>
@@ -198,7 +198,7 @@
                 
                 {{-- SECTION 1: UTAMA --}}
                 <div class="space-y-0.5">
-                    <span class="sidebar-section-title px-3 text-[10px] font-bold tracking-wider text-slate-400 uppercase block py-0.5">Utama</span>
+                    <span class="sidebar-section-title px-3 text-[10px] font-bold tracking-wider text-emerald-400/90 uppercase block py-0.5">Utama</span>
                     <div class="sidebar-section-divider hidden"></div>
 
                     <a href="{{ route('admin.dashboard') }}" class="sidebar-item flex items-center space-x-3 px-3 py-1.5 rounded-lg transition {{ request()->routeIs('admin.dashboard') ? 'bg-gradient-to-r from-[#00843d] to-[#05a849] text-white font-bold shadow-md' : 'hover:bg-slate-800/70 text-slate-300 hover:text-white' }}" title="Dashboard">
@@ -387,7 +387,7 @@
                         @endif
                     </a>
 
-                    <a href="{{ route('admin.backup.index') }}" class="sidebar-item flex items-center space-x-3 px-3 py-1.5 rounded-lg transition {{ request()->routeIs('admin.backup*') ? 'bg-gradient-to-r from-[#da251c] to-[#ef4444] text-white font-bold shadow-md shadow-red-500/20' : 'hover:bg-slate-800/70 text-slate-300 hover:text-white' }}" title="Backup Database">
+                    <a href="{{ route('admin.backup.index') }}" class="sidebar-item flex items-center space-x-3 px-3 py-1.5 rounded-lg transition {{ request()->routeIs('admin.backup*') ? 'bg-gradient-to-r from-[#00843d] to-[#05a849] text-white font-bold shadow-md shadow-emerald-500/20' : 'hover:bg-emerald-900/40 text-slate-300 hover:text-white' }}" title="Backup Database">
                         <i class="fa-solid fa-database text-xs w-4 text-center"></i>
                         <span class="sidebar-label">Backup Database</span>
                     </a>
@@ -396,22 +396,22 @@
             </nav>
 
             {{-- USER INFO & LOGOUT: Tepat di bawah menu terakhir, tanpa jarak kosong berlebih --}}
-            <div class="sidebar-user-card mt-3 pt-3 border-t border-slate-800/80 bg-[#070b14]/70 rounded-xl p-2.5">
+            <div class="sidebar-user-card mt-3 pt-3 border-t border-emerald-900/60 bg-[#041910] rounded-xl p-2.5">
                 <div class="flex items-center justify-between">
                     <div class="flex items-center space-x-2.5 min-w-0">
-                        <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-[#da251c] to-rose-600 text-white flex items-center justify-center font-bold text-xs shadow flex-shrink-0" title="{{ auth()->user()->name ?? 'Administrator' }}">
+                        <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-[#00843d] to-[#05a849] text-white flex items-center justify-center font-bold text-xs shadow flex-shrink-0" title="{{ auth()->user()->name ?? 'Administrator' }}">
                             {{ strtoupper(substr(auth()->user()->name ?? 'A', 0, 1)) }}
                         </div>
                         <div class="sidebar-user-text min-w-0">
                             <span class="block text-xs font-bold text-white truncate">{{ auth()->user()->name ?? 'Administrator' }}</span>
-                            <span class="inline-block text-[9px] px-1.5 py-0.2 font-semibold rounded bg-slate-800 text-amber-400">
+                            <span class="inline-block text-[9px] px-1.5 py-0.2 font-semibold rounded bg-emerald-950 text-amber-400 border border-emerald-800/60">
                                 {{ auth()->user()->role_label ?? 'Administrator' }}
                             </span>
                         </div>
                     </div>
                     <form action="{{ route('logout') }}" method="POST" class="sidebar-logout-form">
                         @csrf
-                        <button type="submit" class="text-slate-400 hover:text-red-400 p-1.5 text-xs rounded-lg hover:bg-slate-800/80 transition cursor-pointer" title="Keluar dari Akun">
+                        <button type="submit" class="text-slate-400 hover:text-red-400 p-1.5 text-xs rounded-lg hover:bg-emerald-900/60 transition cursor-pointer" title="Keluar dari Akun">
                             <i class="fa-solid fa-power-off"></i>
                         </button>
                     </form>
@@ -429,7 +429,7 @@
                 <button id="mobile-toggle" class="md:hidden text-slate-600 hover:text-slate-900 p-2 text-lg">
                     <i class="fa-solid fa-bars"></i>
                 </button>
-                <button id="desktop-sidebar-toggle" class="hidden md:inline-flex items-center justify-center text-slate-500 hover:text-[#da251c] p-2 rounded-xl hover:bg-slate-100 transition cursor-pointer" title="Perkecil / Perbesar Sidebar">
+                <button id="desktop-sidebar-toggle" class="hidden md:inline-flex items-center justify-center text-slate-500 hover:text-[#00843d] p-2 rounded-xl hover:bg-slate-100 transition cursor-pointer" title="Perkecil / Perbesar Sidebar">
                     <i class="fa-solid fa-bars-staggered text-base"></i>
                 </button>
                 <div>
@@ -439,7 +439,7 @@
             </div>
 
             <div class="flex items-center space-x-3 sm:space-x-4">
-                <a href="{{ route('admin.posts.create') }}" class="hidden sm:inline-flex items-center space-x-2 bg-[#da251c] hover:bg-[#b91c1c] text-white text-xs font-bold px-4 py-2 rounded-xl shadow-md transition">
+                <a href="{{ route('admin.posts.create') }}" class="hidden sm:inline-flex items-center space-x-2 bg-[#00843d] hover:bg-[#00632e] text-white text-xs font-bold px-4 py-2 rounded-xl shadow-md transition shadow-emerald-700/20">
                     <i class="fa-solid fa-pen-nib text-xs"></i>
                     <span>Tulis Berita</span>
                 </a>
@@ -449,8 +449,8 @@
                     <span>Backup SQL</span>
                 </a>
 
-                <a href="{{ route('home') }}" target="_blank" class="text-xs text-slate-600 hover:text-[#da251c] bg-slate-100 hover:bg-red-50 px-3.5 py-2 rounded-xl transition flex items-center space-x-1.5 font-medium border border-slate-200">
-                    <i class="fa-solid fa-arrow-up-right-from-square text-xs text-[#da251c]"></i>
+                <a href="{{ route('home') }}" target="_blank" class="text-xs text-slate-600 hover:text-[#00843d] bg-slate-100 hover:bg-emerald-50 px-3.5 py-2 rounded-xl transition flex items-center space-x-1.5 font-medium border border-slate-200">
+                    <i class="fa-solid fa-arrow-up-right-from-square text-xs text-[#00843d]"></i>
                     <span>Kunjungi Situs</span>
                 </a>
             </div>
