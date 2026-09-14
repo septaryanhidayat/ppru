@@ -486,31 +486,18 @@
             @yield('content')
         </main>
 
-        {{-- Admin Footer & Watermark Beranda Teknologi Digital --}}
-        <footer class="px-6 sm:px-8 py-4 border-t border-slate-200/80 bg-white/70 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-500 relative">
+        {{-- Admin Footer & Watermark Beranda Teknologi Digital (Hanya Satu & Statis) --}}
+        <footer class="px-6 sm:px-8 py-4 border-t border-slate-200/80 bg-white/70 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-500">
             <div>
                 &copy; {{ date('Y') }} Pondok Pesantren Raudhatul Ulum Sakatiga &bull; Panel Administrasi
             </div>
             <div class="text-[11px] text-slate-400 flex items-center gap-1.5">
-                <span>Developed by</span>
-                <a href="https://berandadigital.net" target="_blank" rel="noopener" class="text-slate-600 hover:text-emerald-700 font-semibold hover:underline flex items-center gap-1">
+                <a href="https://berandadigital.net" target="_blank" rel="noopener" class="text-slate-600 hover:text-emerald-700 font-semibold hover:underline flex items-center gap-1.5" title="Beranda Teknologi Digital">
                     <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block"></span>
                     <span>Beranda Teknologi Digital</span>
                 </a>
             </div>
         </footer>
-
-        {{-- WATERMARK BERANDA TEKNOLOGI DIGITAL (Kanan Bawah Admin Dashboard) --}}
-        <div class="fixed bottom-1 right-2 z-20 pointer-events-auto">
-            <a href="https://berandadigital.net" 
-               target="_blank" 
-               rel="noopener noreferrer" 
-               class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-white/80 hover:bg-white text-[9px] sm:text-[10px] text-slate-400 hover:text-emerald-600 shadow-2xs border border-slate-200/70 backdrop-blur-xs transition duration-200" 
-               title="Beranda Teknologi Digital">
-                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500/80"></span>
-                <span class="font-normal tracking-tight">Beranda Teknologi Digital</span>
-            </a>
-        </div>
     </div>
 
     {{-- Quill.js Automatic Initializer Script for Elements with [data-quill] --}}

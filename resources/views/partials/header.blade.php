@@ -41,27 +41,25 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-20">
             
-            {{-- LOGO RESMI PONDOK PESANTREN RAUDHATUL ULUM (Tanpa Background Putih & Teks Kontras Tinggi) --}}
+            {{-- LOGO RESMI PONDOK PESANTREN RAUDHATUL ULUM --}}
             <a href="{{ route('home') }}" class="flex items-center space-x-3 group flex-shrink-0" aria-label="Beranda Pondok Pesantren Raudhatul Ulum">
                 <div class="flex items-center">
                     <img src="/uploads/logo-ppru-transparent.png" 
                          alt="Emblem Pondok Pesantren Raudhatul Ulum Sakatiga" 
-                         class="h-12 sm:h-14 w-auto object-contain transform group-hover:scale-105 transition duration-300 drop-shadow-[0_2px_8px_rgba(0,0,0,0.25)]" 
+                         class="h-12 sm:h-13.5 w-auto object-contain transform group-hover:scale-105 transition duration-300 drop-shadow-[0_2px_8px_rgba(0,0,0,0.25)]" 
                          onerror="this.src='/uploads/logo-ppru-square.png'">
                 </div>
-                <div class="flex flex-col text-left justify-center">
-                    <span class="text-[10px] sm:text-[11px] font-extrabold uppercase tracking-[0.16em] text-emerald-100 leading-tight drop-shadow-xs">
+                <div class="flex flex-col text-left justify-center space-y-0.5">
+                    <span class="text-[10px] sm:text-[11px] font-extrabold uppercase tracking-[0.15em] text-emerald-100 leading-none drop-shadow-xs">
                         Pondok Pesantren
                     </span>
-                    <span class="text-base sm:text-lg lg:text-xl font-black tracking-tight text-white group-hover:text-[#fcd116] transition-colors duration-200 leading-tight drop-shadow-sm">
+                    <span class="text-base sm:text-lg lg:text-xl font-black tracking-tight text-white group-hover:text-[#fcd116] transition-colors duration-200 leading-tight drop-shadow-sm my-0.5">
                         Raudhatul Ulum
                     </span>
-                    <span class="text-[9px] sm:text-[10px] font-black uppercase tracking-[0.18em] text-[#fcd116] leading-tight mt-0.5 drop-shadow-xs flex items-center gap-1">
+                    <span class="text-[9.5px] sm:text-[10.5px] font-extrabold uppercase tracking-[0.15em] text-[#fcd116] leading-none drop-shadow-xs flex items-center gap-1.5">
                         <span>Sakatiga</span>
-                        <span class="text-white/60">•</span>
+                        <span class="text-white/60">&bull;</span>
                         <span>Ogan Ilir</span>
-                        <span class="text-white/60">•</span>
-                        <span>Sumsel</span>
                     </span>
                 </div>
             </a>

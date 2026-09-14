@@ -110,6 +110,8 @@
                     <li><a href="{{ route('ppdb.index') }}" class="hover:text-[#fcd116] transition font-bold text-emerald-400 block">Pendaftaran PSB Online</a></li>
                     <li><a href="{{ route('download.index') }}" class="hover:text-[#fcd116] transition block">Unduh Brosur PSB</a></li>
                     <li><a href="{{ route('donasi') }}" class="hover:text-[#fcd116] transition text-amber-300 block">Wakaf &amp; Infaq Sarana</a></li>
+                    <li><a href="{{ route('page.privacy-policy') }}" class="hover:text-[#fcd116] transition block">Kebijakan Privasi</a></li>
+                    <li><a href="{{ route('hubungi') }}" class="hover:text-[#fcd116] transition block">Hubungi Kami</a></li>
                 </ul>
             </div>
 
@@ -153,38 +155,15 @@
 
         </div>
 
-        {{-- 3. LINK INFORMASI HUKUM & PORTAL (Diletakkan rapi di atas baris copyright) --}}
-        <div class="mt-12 pt-6 border-t border-gray-800/80 flex flex-wrap items-center justify-center sm:justify-between gap-4 text-xs text-gray-400">
-            <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
-                <a href="{{ route('page.privacy-policy') }}" class="hover:text-[#fcd116] transition inline-flex items-center gap-1.5">
-                    <i class="fa-solid fa-shield-halved text-[11px] text-emerald-400"></i>
-                    <span>Kebijakan Privasi</span>
-                </a>
-                <span class="text-gray-700 hidden sm:inline">&bull;</span>
-                <a href="{{ route('hubungi') }}" class="hover:text-[#fcd116] transition inline-flex items-center gap-1.5">
-                    <i class="fa-solid fa-headset text-[11px] text-emerald-400"></i>
-                    <span>Hubungi Kami</span>
-                </a>
-                <span class="text-gray-700 hidden sm:inline">&bull;</span>
-                <a href="/login" class="hover:text-[#fcd116] transition inline-flex items-center gap-1.5 font-semibold text-gray-300">
-                    <i class="fa-solid fa-lock text-[11px] text-[#f59e0b]"></i>
-                    <span>Portal Admin</span>
-                </a>
-            </div>
-            <div class="text-[11px] text-gray-400">
-                Pondok Pesantren Raudhatul Ulum Sakatiga &bull; Ogan Ilir, Sumatera Selatan
-            </div>
-        </div>
-
-        {{-- 4. BARIS PALING BAWAH (Copyright Kiri, Watermark Statis Paling Bawah Kanan) --}}
-        <div class="mt-4 pt-4 border-t border-gray-900 flex flex-col sm:flex-row justify-between items-center text-xs text-gray-400 gap-3 text-center sm:text-left pr-0 sm:pr-20 pb-4">
+        {{-- 3. BARIS PALING BAWAH (Copyright Kiri, Watermark Statis Paling Bawah Kanan) --}}
+        <div class="mt-12 pt-6 border-t border-gray-800/80 flex flex-col sm:flex-row justify-between items-center text-xs text-gray-400 gap-3 text-center sm:text-left pr-0 sm:pr-20 pb-4">
             <div>
                 &copy; {{ date('Y') }} <strong>Pondok Pesantren Raudhatul Ulum Sakatiga</strong>. All Rights Reserved.
             </div>
             <div class="text-[11px] shrink-0">
-                <a href="https://berandadigital.net" target="_blank" rel="noopener noreferrer" class="hover:text-white transition text-gray-400 inline-flex items-center gap-1.5" title="Beranda Teknologi Digital">
+                <a href="https://berandadigital.net" target="_blank" rel="noopener noreferrer" class="hover:text-emerald-400 transition text-gray-400 inline-flex items-center gap-1.5 font-medium" title="Beranda Teknologi Digital">
                     <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                    <span>Dev by <span class="text-gray-300 hover:underline">Beranda Teknologi Digital</span></span>
+                    <span class="text-gray-300 hover:text-white hover:underline">Beranda Teknologi Digital</span>
                 </a>
             </div>
         </div>
