@@ -1,7 +1,7 @@
 @extends('layouts.frontend')
 
-@section('title', 'Pusat Unduhan & Dokumen Siswa - SMA IT Ishlahul Ummah Prabumulih')
-@section('meta_description', 'Pusat unduhan formulir PPDB, kalender akademik, modul pembelajaran siswa, buku panduan kurikulum, dan logo resmi SMA IT Ishlahul Ummah Prabumulih.')
+@section('title', 'Pusat Unduhan & Dokumen Siswa - Pondok Pesantren Raudhatul Ulum Sakatiga')
+@section('meta_description', 'Pusat unduhan formulir PPDB, kalender akademik, modul pembelajaran siswa, buku panduan kurikulum, dan logo resmi Pondok Pesantren Raudhatul Ulum Sakatiga.')
 
 @section('content')
 {{-- HERO HEADER --}}
@@ -14,7 +14,7 @@
         </nav>
         <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Pusat Download Dokumen & Modul</h1>
         <p class="text-sm text-emerald-100 mt-2 font-light max-w-2xl">
-            Unduh formulir pendaftaran PPDB, modul pembelajaran tahfidz & sains, kalender akademik, dan aset logo resmi SMA IT Ishlahul Ummah Prabumulih.
+            Unduh formulir pendaftaran PPDB, modul pembelajaran tahfidz & sains, kalender akademik, dan aset logo resmi Pondok Pesantren Raudhatul Ulum Sakatiga.
         </p>
     </div>
 </div>

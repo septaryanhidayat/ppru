@@ -1,22 +1,22 @@
 @extends('layouts.frontend')
 
-@section('title', 'Sambutan Kepala Sekolah - SMA IT Ishlahul Ummah Prabumulih')
-@section('meta_description', 'Sambutan resmi Kepala Sekolah SMA IT Ishlahul Ummah Prabumulih, Agi Gustiawan, S. Pd.')
+@section('title', 'Kata Sambutan Mudir / Sambutan Kepala Sekolah - Pondok Pesantren Raudhatul Ulum Sakatiga')
+@section('meta_description', 'Sambutan resmi Mudir Pondok Pesantren Raudhatul Ulum Sakatiga, KH. Tol\'at Wafa Ahmad, Lc.')
 
 @section('content')
 {{-- HERO HEADER --}}
-<div class="bg-gradient-to-r from-gray-900 to-[#00913e] text-white py-12">
+<div class="bg-gradient-to-r from-gray-900 via-emerald-900 to-[#00843d] text-white py-12">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <nav class="text-xs text-gray-300 mb-3 flex items-center space-x-2">
             <a href="{{ route('home') }}" class="hover:text-white transition">Beranda</a>
             <span>/</span>
             <span>Profil</span>
             <span>/</span>
-            <span class="text-[#ef4444] font-semibold">Sambutan Kepala Sekolah</span>
+            <span class="text-[#fcd116] font-semibold">Kata Sambutan Mudir Pesantren</span>
         </nav>
-        <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Sambutan Kepala Sekolah</h1>
+        <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Kata Sambutan Mudir Pesantren</h1>
         <p class="text-sm text-gray-200 mt-2 font-light">
-            Pesan dan komitmen pembinaan karakter, iman, dan ilmu di SMA IT Ishlahul Ummah Prabumulih.
+            Amanat dan risalah pendidikan dari Pimpinan Pondok Pesantren Raudhatul Ulum Sakatiga, Ogan Ilir.
         </p>
     </div>
 </div>
@@ -24,71 +24,73 @@
 <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
     <div class="bg-white rounded-3xl p-8 sm:p-12 shadow-xl border border-gray-100 reveal-fade-up">
         @php
-            $kepsekPhoto = $kepsek?->photo ?: '/uploads/2022/11/img-20240928-220852-scaled.webp';
-            $kepsekName = $kepsek?->name ?: 'Agi Gustiawan, S. Pd';
-            $kepsekPos = $kepsek?->position ?: 'Kepala Sekolah SMA IT Ishlahul Ummah Prabumulih';
+            $kepsekPhoto = '/uploads/kh-tolat-wafa-ahmad.webp';
+            $kepsekName = 'KH. Tol\'at Wafa Ahmad, Lc.';
+            $kepsekPos = 'Mudir Pondok Pesantren Raudhatul Ulum Sakatiga';
         @endphp
 
         {{-- PROFIL PIMPINAN HEADER --}}
         <div class="flex flex-col md:flex-row items-center gap-8 mb-8 pb-8 border-b border-gray-100 text-center md:text-left">
-            <div class="w-48 h-56 sm:w-52 sm:h-60 rounded-2xl overflow-hidden shadow-lg border-4 border-white ring-4 ring-green-100 flex-shrink-0 bg-green-50 mx-auto md:mx-0">
-                <img src="{{ asset($kepsekPhoto) }}" alt="{{ $kepsekName }} - {{ $kepsekPos }}" class="w-full h-full object-cover object-top" onerror="this.src='/uploads/logo-ishum-square.png'">
+            <div class="w-48 h-56 sm:w-56 sm:h-68 rounded-3xl overflow-hidden shadow-2xl border-4 border-white ring-4 ring-emerald-100 flex-shrink-0 bg-emerald-50 mx-auto md:mx-0">
+                <img src="{{ asset($kepsekPhoto) }}" alt="{{ $kepsekName }} - {{ $kepsekPos }}" class="w-full h-full object-cover object-top" onerror="this.src='/uploads/logo-ppru-square.png'">
             </div>
             <div class="space-y-2 text-center md:text-left">
-                <span class="inline-block bg-green-100 text-[#00913e] text-xs font-bold px-3.5 py-1.5 rounded-full uppercase tracking-wider">
-                    {{ $kepsekPos }}
+                <span class="inline-block bg-emerald-100 text-school-green text-xs font-black px-3.5 py-1.5 rounded-full uppercase tracking-wider">
+                    Pimpinan Pesantren
                 </span>
                 <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight">
                     {{ $kepsekName }}
                 </h2>
-                <p class="text-xs sm:text-sm text-[#00913e] font-semibold">Pendidik Berpengalaman &amp; Praktisi Pendidikan Karakter Islami</p>
-                <p class="text-xs sm:text-sm text-gray-600 italic pt-1">"Membina Generasi Qur'ani, Berakhlak Mulia, Cerdas, dan Siap Memimpin Peradaban Masa Depan."</p>
+                <p class="text-xs sm:text-sm text-school-green font-bold">{{ $kepsekPos }}</p>
+                <p class="text-xs sm:text-sm text-gray-600 italic pt-1">"Mendidik Generasi Khairu Ummah, Berilmu Amaliah, Beramal Ilmiah, dan Berakhlak Qur'ani."</p>
             </div>
         </div>
 
-        {{-- KONTEN PIDATO RESMI (RATA PENUH & RAPI) --}}
+        {{-- KONTEN PIDATO RESMI --}}
         <div class="prose-content text-gray-800 text-sm sm:text-base leading-relaxed space-y-5 text-justify max-w-4xl mx-auto">
-            @if(!empty($page->content) && strlen(trim(strip_tags($page->content))) > 30)
+            @if(!empty($page->content) && strlen(trim(strip_tags($page->content))) > 0 && !str_contains($page->content, 'Raudhatul Ulum'))
                 {!! $page->content !!}
             @else
                 <p class="font-semibold text-gray-900 text-base sm:text-lg">Assalamu'alaikum Warahmatullahi Wabarakatuh,</p>
 
-                <p>Alhamdulillahirabbil'alamin, segala puji dan syukur senantiasa kita panjatkan ke hadirat Allah Subhanahu Wa Ta'ala atas limpahan rahmat, taufik, serta hidayah-Nya. Shalawat beriring salam semoga senantiasa tercurah kepada uswah hasanah kita, Nabi Muhammad Shallallahu 'Alaihi Wasallam, keluarga, sahabat, dan para pengikutnya hingga akhir zaman.</p>
+                <p class="font-arabic text-xl text-school-green leading-relaxed text-right py-2" dir="rtl">
+                    بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ • كُنتُمْ خَيْرَ أُمَّةٍ أُخْرِجَتْ لِلنَّاسِ تَأْمُرُونَ بِالْمَعْرُوفِ وَتَنْهَوْنَ عَنِ الْمُنكَرِ وَتُؤْمِنُونَ بِاللَّهِ
+                </p>
 
-                <p>Selamat datang di laman resmi <strong>SMA IT Ishlahul Ummah Prabumulih</strong>. Website ini kami hadirkan sebagai media keterbukaan informasi, sarana komunikasi, dan etalase karya serta prestasi seluruh civitas akademika keluarga besar Ishum.</p>
+                <p>Alhamdulillahirabbil'alamin, segala puji dan syukur senantiasa kita panjatkan ke hadirat Allah Subhanahu Wa Ta'ala atas limpahan rahmat, taufik, serta hidayah-Nya. Shalawat beriring salam semoga senantiasa tercurah kepada uswah hasanah kita, Nabi Besar Muhammad Shallallahu 'Alaihi Wasallam, keluarga, sahabat, dan para pengikutnya hingga akhir zaman.</p>
 
-                <p>Dunia pendidikan saat ini menghadapi tantangan globalisasi dan disrupsi teknologi yang sangat cepat. Oleh karena itu, SMA IT Ishlahul Ummah Prabumulih berkomitmen memadukan <strong>Kurikulum Nasional (Kurikulum Merdeka)</strong> dengan <strong>Kurikulum Khusus Keislaman Terpadu</strong>, penguatan <strong>Tahfidzul Qur'an bersanad</strong>, penguasaan sains dan teknologi modern, serta pembinaan akhlakul karimah melalui sistem <em>Bina Pribadi Islam (BPI)</em>.</p>
+                <p>Selamat datang di website resmi <strong>Pondok Pesantren Raudhatul Ulum (PPRU) Sakatiga</strong>, Ogan Ilir, Sumatera Selatan. Sejak awal dirintisnya madrasah cikal bakal pada tahun 1930 hingga resmi berdirinya pesantren pada 1 Agustus 1950 di bawah naungan Yayasan Perguruan Islam Raudhatul Ulum (YAPIRUS), lembaga ini senantiasa berkomitmen teguh mengemban amanah dakwah dan kaderisasi generasi terbaik umat (<em>Khairu Ummah</em>).</p>
 
-                <p>Kami meyakini bahwa setiap anak memiliki potensi istimewa yang dianugerahkan Allah SWT. Tugas kami bersama para ustadz dan ustadzah yang berdedikasi adalah mendampingi, memantik potensi tersebut, dan membimbing mereka agar tumbuh menjadi generasi yang kokoh akidahnya, rajin ibadahnya, berakhlak mulia, cerdas inteleknya, serta berjiwa kepemimpinan.</p>
+                <p>PPRU memadukan kurikulum terpadu kepesantrenan (Pondok Modern Gontor), Kementerian Agama RI, dan Kurikulum Nasional, serta mengantongi piagam muadalah resmi dari Universitas Al-Azhar Kairo Mesir. Dalam sistem asrama penuh (boarding school) 24 jam, santri ditempa penguasaan bahasa Arab dan Inggris aktif, hafalan dan pemahaman Al-Qur'an (Tahfidz), pengkajian kitab-kitab turats (Kuning), pembiasaan sains dan riset teknologi, serta penanaman 10 Jati Diri Santri Raudhatul Ulum.</p>
 
-                <p>Kami mengucapkan terima kasih yang sebesar-besarnya kepada seluruh orang tua/wali murid atas amanah dan kepercayaan yang diberikan kepada kami. Mari bersama-sama bersinergi melahirkan generasi khaira ummah yang membanggakan keluarga, bangsa, dan agama.</p>
+                <p>Kami menyambut gembira kehadiran para wali santri dan masyarakat luas yang mempercayakan amanah pendidikan putra-putrinya di pondok tercinta ini. Semoga Allah SWT senantiasa meridhoi setiap langkah ikhtiar kita dalam menegakkan syiar Islam.</p>
 
                 <p class="font-semibold text-gray-900 pt-2">Wassalamu'alaikum Warahmatullahi Wabarakatuh.</p>
 
                 <div class="pt-6 border-t border-gray-100 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                     <div>
-                        <h3 class="font-bold text-gray-900 text-base">{{ strtoupper($kepsekName) }}</h3>
+                        <h3 class="font-bold text-gray-900 text-base">{{ $kepsekName }}</h3>
                         <p class="text-xs text-gray-500">{{ $kepsekPos }}</p>
                     </div>
-                    <div class="inline-flex items-center space-x-2 bg-green-50 px-4 py-2 rounded-xl text-xs text-[#00913e] border border-green-200">
-                        <i class="fa-solid fa-certificate text-[#da251c]"></i>
-                        <span>Akreditasi A Unggul</span>
+                    <div class="inline-flex items-center space-x-2 bg-emerald-50 px-4 py-2 rounded-xl text-xs text-school-green border border-emerald-200">
+                        <i class="fa-solid fa-certificate text-amber-500"></i>
+                        <span>Muadalah Al-Azhar Kairo &amp; Akreditasi A</span>
                     </div>
                 </div>
             @endif
         </div>
 
-        {{-- CTA DAFTAR PPDB --}}
-        <div class="mt-10 pt-8 border-t border-gray-100 bg-gradient-to-r from-[#00913e] via-[#05a849] to-[#b91c1c] rounded-2xl p-6 sm:p-8 text-white flex flex-col sm:flex-row items-center justify-between gap-6 shadow-lg">
+        {{-- CTA DAFTAR PPDB / PSB --}}
+        <div class="mt-10 pt-8 border-t border-gray-100 bg-gradient-to-r from-school-green via-emerald-800 to-gray-900 rounded-3xl p-6 sm:p-8 text-white flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl">
             <div>
-                <h4 class="text-xl font-extrabold">Pendaftaran Peserta Didik Baru (PPDB)</h4>
-                <p class="text-xs sm:text-sm text-green-100 mt-1">Mari bergabung bersama keluarga besar SMA IT Ishlahul Ummah Prabumulih. Gelombang pendaftaran siswa baru telah dibuka.</p>
+                <h4 class="text-xl font-extrabold">Penerimaan Santri Baru (PSB Online)</h4>
+                <p class="text-xs sm:text-sm text-green-100 mt-1">Mari bergabung bersama ribuan santri dari seluruh penjuru nusantara di Pondok Pesantren Raudhatul Ulum Sakatiga.</p>
             </div>
             <div class="flex flex-wrap gap-3 flex-shrink-0">
-                <a href="{{ route('ppdb.index') }}" class="bg-white text-[#00913e] hover:bg-red-50 px-5 py-2.5 rounded-xl font-bold text-xs shadow transition flex items-center">
-                    <i class="fa-solid fa-graduation-cap mr-1.5 text-[#da251c]"></i> Daftar PPDB Online
+                <a href="{{ route('ppdb.index') }}" class="bg-[#f59e0b] hover:bg-[#d97706] text-gray-950 px-5 py-2.5 rounded-xl font-black text-xs shadow-md transition flex items-center">
+                    <i class="fa-solid fa-graduation-cap mr-1.5"></i> Daftar PPDB &amp; PSB Online
                 </a>
-                <a href="{{ route('hubungi') }}" class="bg-black/30 hover:bg-black/40 text-white px-5 py-2.5 rounded-xl font-bold text-xs shadow transition flex items-center">
+                <a href="{{ route('hubungi') }}" class="bg-white/20 hover:bg-white/30 text-white px-5 py-2.5 rounded-xl font-bold text-xs shadow transition flex items-center">
                     <i class="fa-solid fa-phone mr-1.5"></i> Hubungi Kami
                 </a>
             </div>

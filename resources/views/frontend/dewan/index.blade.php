@@ -1,7 +1,7 @@
 @extends('layouts.frontend')
 
-@section('title', 'Dewan Guru & Tenaga Kependidikan - SMA IT Ishlahul Ummah Prabumulih')
-@section('meta_description', 'Profil pendidik, ustadz, dan tenaga kependidikan berdedikasi tinggi di SMA Islam Terpadu Ishlahul Ummah Prabumulih.')
+@section('title', 'Dewan Guru & Tenaga Kependidikan - Pondok Pesantren Raudhatul Ulum Sakatiga')
+@section('meta_description', 'Profil pendidik, ustadz, dan tenaga kependidikan berdedikasi tinggi di Pondok Pesantren Raudhatul Ulum Sakatiga.')
 
 @section('content')
 {{-- HERO HEADER --}}
@@ -28,7 +28,7 @@
         <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight mt-1">
             Guru & Tenaga Kependidikan (GTK)
         </h2>
-        <p class="text-xs sm:text-sm text-gray-500 mt-1">SMA Islam Terpadu Ishlahul Ummah Prabumulih</p>
+        <p class="text-xs sm:text-sm text-gray-500 mt-1">Pondok Pesantren Raudhatul Ulum Sakatiga</p>
         <div class="w-16 h-1 bg-[#00913e] mx-auto rounded-full mt-3"></div>
     </div>
 
@@ -38,7 +38,7 @@
                 
                 {{-- FOTO GURU --}}
                 <div class="h-80 w-full overflow-hidden bg-gray-100 relative group">
-                    <img src="{{ $d->photo_url }}" alt="{{ $d->name }}" class="w-full h-full object-cover object-top group-hover:scale-105 transition duration-500" onerror="this.src='/uploads/kepsek-agi-gustiawan.webp'">
+                    <img src="{{ $d->photo_url }}" alt="{{ $d->name }}" class="w-full h-full object-cover object-top group-hover:scale-105 transition duration-500" onerror="this.src='/uploads/kh-tolat-wafa-ahmad.webp'">
                     <div class="absolute bottom-0 inset-x-0 h-24 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
                     @if($d->fraction)
                     <span class="absolute bottom-3 left-4 text-[11px] font-extrabold text-white bg-orange-500 px-3 py-1 rounded-full shadow">
@@ -62,7 +62,7 @@
                     </div>
 
                     <div class="pt-4 border-t border-gray-100 flex items-center justify-between text-xs text-gray-500">
-                        <span class="font-medium text-emerald-700">SMA IT Ishlahul Ummah Prabumulih</span>
+                        <span class="font-medium text-emerald-700">Pondok Pesantren Raudhatul Ulum Sakatiga</span>
                         <span class="inline-flex items-center text-amber-500 font-semibold">
                             <i class="fa-solid fa-award mr-1"></i> Pendidik Berdedikasi
                         </span>

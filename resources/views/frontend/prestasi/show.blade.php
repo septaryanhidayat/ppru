@@ -1,6 +1,6 @@
 @extends('layouts.frontend')
 
-@section('title', $item->title . ' - Prestasi SMA IT Ishlahul Ummah Prabumulih')
+@section('title', $item->title . ' - Prestasi Pondok Pesantren Raudhatul Ulum Sakatiga')
 @section('meta_description', Str::limit(strip_tags($item->content), 155))
 
 @section('content')
@@ -27,7 +27,7 @@
             <span>•</span>
             <span class="flex items-center space-x-1.5">
                 <i class="fa-solid fa-school"></i>
-                <span>SMA IT Ishlahul Ummah</span>
+                <span>Pondok Pesantren Raudhatul Ulum</span>
             </span>
         </div>
     </div>
@@ -40,7 +40,7 @@
             <div class="bg-white rounded-3xl p-6 sm:p-10 border border-gray-100 shadow-sm space-y-6">
                 @if($item->featured_image)
                     <div class="rounded-2xl overflow-hidden shadow-md bg-gray-100 max-h-[480px]">
-                        <img src="{{ $item->featured_image }}" alt="{{ $item->title }}" class="w-full h-full object-cover" onerror="this.src='/uploads/gedung-smait-ishum.webp'">
+                        <img src="{{ $item->featured_image }}" alt="{{ $item->title }}" class="w-full h-full object-cover" onerror="this.src='/uploads/campus-robbani.webp'">
                     </div>
                 @endif
 
@@ -74,7 +74,7 @@
                     @forelse($related as $rel)
                         <a href="{{ route('prestasi.show', $rel->slug) }}" class="flex items-center space-x-3 group">
                             <div class="w-16 h-16 rounded-xl overflow-hidden bg-gray-100 flex-shrink-0 shadow-sm">
-                                <img src="{{ $rel->featured_image ?: '/uploads/gedung-smait-ishum.webp' }}" alt="{{ $rel->title }}" class="w-full h-full object-cover group-hover:scale-105 transition" onerror="this.src='/uploads/gedung-smait-ishum.webp'">
+                                <img src="{{ $rel->featured_image ?: '/uploads/campus-robbani.webp' }}" alt="{{ $rel->title }}" class="w-full h-full object-cover group-hover:scale-105 transition" onerror="this.src='/uploads/campus-robbani.webp'">
                             </div>
                             <div class="flex-1 min-w-0">
                                 <h4 class="text-xs sm:text-sm font-semibold text-gray-800 group-hover:text-[#00913e] transition line-clamp-2 leading-snug">
@@ -94,7 +94,7 @@
             <div class="bg-gradient-to-br from-emerald-900 to-[#00913e] text-white p-6 rounded-3xl shadow-lg space-y-3">
                 <h3 class="font-black text-lg">Ingin Berprestasi Bersama Kami?</h3>
                 <p class="text-xs text-emerald-100 leading-relaxed">
-                    Daftarkan putra-putri Anda di SMA IT Ishlahul Ummah Prabumulih dan wujudkan potensi terbaiknya.
+                    Daftarkan putra-putri Anda di Pondok Pesantren Raudhatul Ulum Sakatiga dan wujudkan potensi terbaiknya.
                 </p>
                 <a href="{{ route('ppdb.index') }}" class="inline-block w-full text-center bg-white text-[#00913e] font-bold py-2.5 px-4 rounded-xl text-xs hover:bg-emerald-50 transition shadow-md">
                     Daftar PPDB Online Sekarang

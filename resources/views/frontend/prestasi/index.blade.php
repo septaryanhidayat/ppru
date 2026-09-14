@@ -1,7 +1,7 @@
 @extends('layouts.frontend')
 
-@section('title', 'Prestasi Siswa & Guru - SMA IT Ishlahul Ummah Prabumulih')
-@section('meta_description', 'Raihan prestasi membanggakan santri dan guru SMA Islam Terpadu Ishlahul Ummah Prabumulih di tingkat Kota, Provinsi, Nasional, hingga Internasional.')
+@section('title', 'Prestasi Siswa & Guru - Pondok Pesantren Raudhatul Ulum Sakatiga')
+@section('meta_description', 'Raihan prestasi membanggakan santri dan guru Pondok Pesantren Raudhatul Ulum Sakatiga di tingkat Kota, Provinsi, Nasional, hingga Internasional.')
 
 @section('content')
 {{-- HERO HEADER --}}
@@ -19,7 +19,7 @@
             <div>
                 <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Prestasi &amp; Penghargaan</h1>
                 <p class="text-sm text-emerald-100 mt-1 font-light">
-                    Bukti nyata kesungguhan pembinaan akademik, sains, tahfidz Qur'an, dan minat bakat di SMA IT Ishum.
+                    Bukti nyata kesungguhan pembinaan akademik, sains, tahfidz Qur'an, dan minat bakat di SMA IT PPRU.
                 </p>
             </div>
         </div>
@@ -52,7 +52,7 @@
         @forelse($prestasi as $idx => $item)
             <div class="bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group reveal-fade-up">
                 <a href="{{ route('prestasi.show', $item->slug) }}" class="block relative h-52 overflow-hidden bg-gray-100">
-                    <img src="{{ $item->featured_image ?: '/uploads/gedung-smait-ishum.webp' }}" alt="{{ $item->title }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='/uploads/gedung-smait-ishum.webp'">
+                    <img src="{{ $item->featured_image ?: '/uploads/campus-robbani.webp' }}" alt="{{ $item->title }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='/uploads/campus-robbani.webp'">
                     <span class="absolute top-3 left-3 bg-gradient-to-r from-amber-500 to-amber-600 text-white text-[11px] font-bold px-3 py-1 rounded-full shadow-md flex items-center space-x-1.5">
                         <i class="fa-solid fa-award text-xs"></i>
                         <span>Juara &amp; Prestasi</span>

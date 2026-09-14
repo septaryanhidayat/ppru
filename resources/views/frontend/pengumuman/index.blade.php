@@ -1,7 +1,7 @@
 @extends('layouts.frontend')
 
-@section('title', 'Papan Pengumuman Resmi - SMA IT Ishlahul Ummah Prabumulih')
-@section('meta_description', 'Kumpulan pengumuman resmi akademik, jadwal ujian, informasi PPDB, dan surat edaran SMA Islam Terpadu Ishlahul Ummah Prabumulih.')
+@section('title', 'Papan Pengumuman Resmi - Pondok Pesantren Raudhatul Ulum Sakatiga')
+@section('meta_description', 'Kumpulan pengumuman resmi akademik, jadwal ujian, informasi PPDB, dan surat edaran Pondok Pesantren Raudhatul Ulum Sakatiga.')
 
 @section('content')
 {{-- HERO HEADER --}}
@@ -16,7 +16,7 @@
         </nav>
         <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Papan Pengumuman Sekolah</h1>
         <p class="text-sm text-emerald-100 mt-2 font-light max-w-2xl">
-            Informasi penting, edaran akademik, jadwal kegiatan santri, dan pengumuman resmi SMA IT Ishlahul Ummah Prabumulih.
+            Informasi penting, edaran akademik, jadwal kegiatan santri, dan pengumuman resmi Pondok Pesantren Raudhatul Ulum Sakatiga.
         </p>
     </div>
 </div>

@@ -2,7 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\AnggotaDewan;
+use App\Models\Bidang;
 use App\Models\Category;
+use App\Models\Dpc;
 use App\Models\Page;
 use App\Models\Post;
 use App\Models\QuickMenu;
@@ -286,6 +289,368 @@ class PpruDataSeeder extends Seeder
                     'published_at' => now(),
                 ]
             );
+        }
+
+        // 6. Purge Legacy Ishlahul Ummah Posts
+        Post::where('type', 'post')->where(function ($q) {
+            $q->where('title', 'like', '%ishlahul%')
+                ->orWhere('content', 'like', '%ishlahul%')
+                ->orWhere('title', 'like', '%ishum%')
+                ->orWhere('content', 'like', '%ishum%')
+                ->orWhere('title', 'like', '%prabumulih%')
+                ->orWhere('title', 'like', '%agi gustiawan%');
+        })->delete();
+
+        // 7. Seed Pengurus Yayasan (YAPIRUS) & Pendidik Unit Sekolah
+        AnggotaDewan::truncate();
+        $dewanData = [
+            // --- PENGURUS YAYASAN (YAPIRUS) & PIMPINAN PESANTREN ---
+            [
+                'name' => 'KH. Tol\'at Wafa Ahmad, Lc.',
+                'slug' => 'kh-tolat-wafa-ahmad-lc',
+                'position' => 'Mudir Pondok Pesantren Raudhatul Ulum',
+                'fraction' => 'Yayasan',
+                'photo' => '/uploads/kh-tolat-wafa-ahmad.webp',
+                'profile_summary' => 'Mudir Pondok Pesantren Raudhatul Ulum Sakatiga sejak 1986. Alumni Universitas Al-Azhar Kairo Mesir dan perintis sistem modern muadalah pesantren.',
+                'education' => 'Universitas Al-Azhar Kairo Mesir',
+                'order' => 1,
+            ],
+            [
+                'name' => 'Drs. KH. Karim Kasim',
+                'slug' => 'drs-kh-karim-kasim',
+                'position' => 'Ketua Dewan Pembina YAPIRUS',
+                'fraction' => 'Yayasan',
+                'photo' => '/uploads/default-avatar.webp',
+                'profile_summary' => 'Ketua Dewan Pembina Yayasan Perguruan Islam Raudhatul Ulum Sakatiga (YAPIRUS).',
+                'education' => 'Sarjana Pendidikan Islam',
+                'order' => 2,
+            ],
+            [
+                'name' => 'H. Faisal Abdullah, S.T.',
+                'slug' => 'h-faisal-abdullah-st',
+                'position' => 'Ketua Umum Pengurus YAPIRUS',
+                'fraction' => 'Yayasan',
+                'photo' => '/uploads/default-avatar.webp',
+                'profile_summary' => 'Ketua Umum Badan Pengurus Yayasan Perguruan Islam Raudhatul Ulum Sakatiga.',
+                'education' => 'Sarjana Teknik',
+                'order' => 3,
+            ],
+            [
+                'name' => 'Ustadz H. Ahmad Dailami, S.Pd.I.',
+                'slug' => 'ustadz-h-ahmad-dailami-spdi',
+                'position' => 'Sekretaris Yayasan YAPIRUS',
+                'fraction' => 'Yayasan',
+                'photo' => '/uploads/default-avatar.webp',
+                'profile_summary' => 'Sekretaris Umum Yayasan Perguruan Islam Raudhatul Ulum Sakatiga.',
+                'education' => 'S1 Pendidikan Agama Islam',
+                'order' => 4,
+            ],
+            [
+                'name' => 'H. M. Husin, M.Si.',
+                'slug' => 'h-m-husin-msi',
+                'position' => 'Bendahara Yayasan YAPIRUS',
+                'fraction' => 'Yayasan',
+                'photo' => '/uploads/default-avatar.webp',
+                'profile_summary' => 'Bendahara Umum Yayasan Perguruan Islam Raudhatul Ulum Sakatiga.',
+                'education' => 'Magister Sains Manajemen',
+                'order' => 5,
+            ],
+            [
+                'name' => 'Ustadz H. Abdul Halim, Lc.',
+                'slug' => 'ustadz-h-abdul-halim-lc',
+                'position' => 'Wakil Mudir Bidang Pendidikan & Pengajaran',
+                'fraction' => 'Yayasan',
+                'photo' => '/uploads/default-avatar.webp',
+                'profile_summary' => 'Wakil Mudir PPRU membidangi kurikulum pesantren, Kemenag, dan muadalah Al-Azhar Kairo.',
+                'education' => 'Alumni Universitas Al-Azhar Kairo',
+                'order' => 6,
+            ],
+            [
+                'name' => 'Ustadz H. Syamsuddin, S.Ag.',
+                'slug' => 'ustadz-h-syamsuddin-sag',
+                'position' => 'Wakil Mudir Bidang Kepengasuhan Santri',
+                'fraction' => 'Yayasan',
+                'photo' => '/uploads/default-avatar.webp',
+                'profile_summary' => 'Wakil Mudir PPRU membidangi kedisiplinan asrama, bahasa Arab & Inggris, dan pengasuhan santri.',
+                'education' => 'Sarjana Agama',
+                'order' => 7,
+            ],
+            [
+                'name' => 'Ir. H. Ahmad Fauzi',
+                'slug' => 'ir-h-ahmad-fauzi',
+                'position' => 'Wakil Mudir Bidang Pembangunan & Sarana',
+                'fraction' => 'Yayasan',
+                'photo' => '/uploads/default-avatar.webp',
+                'profile_summary' => 'Wakil Mudir PPRU membidangi perencanaan fisik kampus A, B, C, sarana, dan unit usaha pesantren.',
+                'education' => 'Sarjana Teknik Sipil',
+                'order' => 8,
+            ],
+
+            // --- DEWAN GURU UNIT MARU ---
+            [
+                'name' => 'Ustadz H. M. Said, S.Ag.',
+                'slug' => 'ustadz-h-m-said-sag',
+                'position' => 'Kepala Madrasah Aliyah Raudhatul Ulum',
+                'fraction' => 'MARU',
+                'photo' => '/uploads/default-avatar.webp',
+                'profile_summary' => 'Kepala Madrasah Aliyah Raudhatul Ulum Sakatiga.',
+                'education' => 'S1 IAIN Raden Fatah',
+                'order' => 9,
+            ],
+            [
+                'name' => 'Ustadz Ahmad Baihaki, Lc.',
+                'slug' => 'ustadz-ahmad-baihaki-lc',
+                'position' => 'Guru Dirasah Islamiyah & Bahasa Arab',
+                'fraction' => 'MARU',
+                'photo' => '/uploads/default-avatar.webp',
+                'profile_summary' => 'Pengajar Kitab Kuning, Balaghah, dan Nahwu Sharaf MARU.',
+                'education' => 'Universitas Al-Azhar Mesir',
+                'order' => 10,
+            ],
+            [
+                'name' => 'Ustadzah Siti Rohmah, M.Pd.',
+                'slug' => 'ustadzah-siti-rohmah-mpd',
+                'position' => 'Guru Kimia & Biologi Terapan',
+                'fraction' => 'MARU',
+                'photo' => '/uploads/default-avatar.webp',
+                'profile_summary' => 'Pengajar Sains dan Koordinator Praktikum Laboratorium IPA MARU.',
+                'education' => 'Magister Pendidikan Kimia Universitas Sriwijaya',
+                'order' => 11,
+            ],
+
+            // --- DEWAN GURU UNIT SMAIT RU ---
+            [
+                'name' => 'Ustadz Ahmad Fauzi, M.Pd.',
+                'slug' => 'ustadz-ahmad-fauzi-mpd',
+                'position' => 'Kepala SMAIT Raudhatul Ulum',
+                'fraction' => 'SMAIT RU',
+                'photo' => '/uploads/default-avatar.webp',
+                'profile_summary' => 'Kepala SMA Islam Terpadu Raudhatul Ulum Sakatiga.',
+                'education' => 'Magister Pendidikan UNSRI',
+                'order' => 12,
+            ],
+            [
+                'name' => 'Ustadz Hendra Gunawan, S.Si.',
+                'slug' => 'ustadz-hendra-gunawan-ssi',
+                'position' => 'Guru Fisika & Pembimbing Robotika',
+                'fraction' => 'SMAIT RU',
+                'photo' => '/uploads/default-avatar.webp',
+                'profile_summary' => 'Pembimbing Olimpiade Sains Nasional Fisika dan Klub Robotika Santri.',
+                'education' => 'S1 Fisika MIPA',
+                'order' => 13,
+            ],
+            [
+                'name' => 'Ustadzah Nurul Hidayati, S.Pd.',
+                'slug' => 'ustadzah-nurul-hidayati-spd',
+                'position' => 'Guru Matematika & IT Terapan',
+                'fraction' => 'SMAIT RU',
+                'photo' => '/uploads/default-avatar.webp',
+                'profile_summary' => 'Pengajar Matematika Sains Terpadu SMAIT RU.',
+                'education' => 'S1 Pendidikan Matematika',
+                'order' => 14,
+            ],
+
+            // --- DEWAN GURU UNIT MATSARU ---
+            [
+                'name' => 'Ustadz Drs. H. Syamsuddin',
+                'slug' => 'ustadz-drs-h-syamsuddin',
+                'position' => 'Kepala MTs Raudhatul Ulum',
+                'fraction' => 'MATSARU',
+                'photo' => '/uploads/default-avatar.webp',
+                'profile_summary' => 'Kepala Madrasah Tsanawiyah Raudhatul Ulum Sakatiga.',
+                'education' => 'Drs. Pendidikan Islam',
+                'order' => 15,
+            ],
+            [
+                'name' => 'Ustadz Salman Al-Farisi, S.Pd.I.',
+                'slug' => 'ustadz-salman-al-farisi-spdi',
+                'position' => 'Guru Bahasa Arab & Pembina Disiplin Bahasa',
+                'fraction' => 'MATSARU',
+                'photo' => '/uploads/default-avatar.webp',
+                'profile_summary' => 'Koordinator Markaz Lughah dan Pembinaan Mufrodat MATSARU.',
+                'education' => 'S1 Bahasa Arab',
+                'order' => 16,
+            ],
+
+            // --- DEWAN GURU UNIT SMPIT RU ---
+            [
+                'name' => 'Ustadz Ridwan, S.Pd.I.',
+                'slug' => 'ustadz-ridwan-spdi',
+                'position' => 'Kepala SMPIT Raudhatul Ulum',
+                'fraction' => 'SMPIT RU',
+                'photo' => '/uploads/default-avatar.webp',
+                'profile_summary' => 'Kepala SMP Islam Terpadu Raudhatul Ulum Sakatiga.',
+                'education' => 'S1 Tarbiyah',
+                'order' => 17,
+            ],
+
+            // --- DEWAN ASATIDZ UNIT MATQULARU ---
+            [
+                'name' => 'Ustadz H. Abdul Halim, Al-Hafizh',
+                'slug' => 'ustadz-h-abdul-halim-al-hafizh',
+                'position' => 'Mudir Tahfizhul Qur\'an Lil Aulad',
+                'fraction' => 'MATQULARU',
+                'photo' => '/uploads/default-avatar.webp',
+                'profile_summary' => 'Mudir Lembaga Tahfizhul Qur\'an Lil Aulad PPRU Sakatiga, pemegang sanad Al-Qur\'an 30 juz mutqin.',
+                'education' => 'Kulliyatul Qur\'an',
+                'order' => 18,
+            ],
+            [
+                'name' => 'Ustadz Muhammad Zaki, Al-Hafizh',
+                'slug' => 'ustadz-muhammad-zaki-al-hafizh',
+                'position' => 'Muhaffizh 30 Juz & Pengajar Tajwid',
+                'fraction' => 'MATQULARU',
+                'photo' => '/uploads/default-avatar.webp',
+                'profile_summary' => 'Pembimbing halaqah tahfidz mutqin dan tasmi\' 30 juz sekali duduk.',
+                'education' => 'Tahfidzul Qur\'an Mutqin',
+                'order' => 19,
+            ],
+
+            // --- DEWAN GURU UNIT MIRU ---
+            [
+                'name' => 'Ustadzah Hj. Maryam, S.Pd.I.',
+                'slug' => 'ustadzah-hj-maryam-spdi',
+                'position' => 'Kepala Madrasah Ibtidaiyah Raudhatul Ulum',
+                'fraction' => 'MIRU',
+                'photo' => '/uploads/default-avatar.webp',
+                'profile_summary' => 'Kepala Madrasah Ibtidaiyah Raudhatul Ulum Sakatiga.',
+                'education' => 'S1 Pendidikan Guru Madrasah Ibtidaiyah',
+                'order' => 20,
+            ],
+
+            // --- DEWAN GURU UNIT TAKIRU ---
+            [
+                'name' => 'Ustadzah Fatimah, S.Pd.',
+                'slug' => 'ustadzah-fatimah-spd',
+                'position' => 'Kepala TK Islam Raudhatul Ulum',
+                'fraction' => 'TAKIRU',
+                'photo' => '/uploads/default-avatar.webp',
+                'profile_summary' => 'Kepala TK Islam Raudhatul Ulum Sakatiga.',
+                'education' => 'S1 PG-PAUD',
+                'order' => 21,
+            ],
+
+            // --- DOSEN & PIMPINAN UNIT STITRU ---
+            [
+                'name' => 'Dr. H. M. Husin, M.A.',
+                'slug' => 'dr-h-m-husin-ma',
+                'position' => 'Ketua STIT Raudhatul Ulum',
+                'fraction' => 'STITRU',
+                'photo' => '/uploads/default-avatar.webp',
+                'profile_summary' => 'Ketua Sekolah Tinggi Ilmu Tarbiyah Raudhatul Ulum Sakatiga.',
+                'education' => 'Doktor Pendidikan Islam',
+                'order' => 22,
+            ],
+        ];
+
+        foreach ($dewanData as $d) {
+            AnggotaDewan::create($d);
+        }
+
+        // 7. Program Unggulan (Dpc)
+        $programs = [
+            [
+                'name' => 'Program Tahfidz Mutqin 30 Juz',
+                'slug' => 'program-tahfidz-mutqin-30-juz',
+                'address' => 'Kurikulum Khusus Keislaman PPRU',
+                'description' => 'Bimbingan intensif membaca Al-Qur\'an dengan tartil, tahsin bersanad, dan hafalan mutqin serta program Munaqosah Tahfidz.',
+                'order' => 1,
+            ],
+            [
+                'name' => 'Bina Pribadi Islam (BPI) & Karakter Santri',
+                'slug' => 'bina-pribadi-islam-bpi',
+                'address' => 'Pembinaan Karakter Santri',
+                'description' => 'Halaqah pekanan pembinaan adab, pembiasaan ibadah yaumiyah, dzikir ma\'tsurat, serta penanaman 10 Jati Diri Santri Raudhatul Ulum.',
+                'order' => 2,
+            ],
+            [
+                'name' => 'Kurikulum Terpadu Muadalah Al-Azhar & Nasional',
+                'slug' => 'kurikulum-terpadu-muadalah-al-azhar',
+                'address' => 'Integrasi Dirasah Islamiyah & Sains',
+                'description' => 'Memadukan standar capaian Kurikulum Nasional dengan kurikulum Muadalah Universitas Al-Azhar Kairo Mesir.',
+                'order' => 3,
+            ],
+            [
+                'name' => 'Program Bahasa Arab & Inggris Aktif (Bilingual)',
+                'slug' => 'program-bahasa-arab-inggris-bilingual',
+                'address' => 'Pengembangan Bahasa Internasional',
+                'description' => 'Pembiasaan muhadatsah harian, pidato 3 bahasa (Muhadharah), dan penguasaan kitab-kitab turots berbahasa Arab.',
+                'order' => 4,
+            ],
+            [
+                'name' => 'Safar Ilmiah & Rihlah Edukatif',
+                'slug' => 'safar-ilmiah-rihlah-edukatif',
+                'address' => 'Outdoor Learning & Wawasan Global',
+                'description' => 'Pembelajaran luar kelas berbasis observasi alam, studi kampus dalam dan luar negeri, dan riset ilmiah santri.',
+                'order' => 5,
+            ],
+            [
+                'name' => 'Khidmat Dakwah & Kemasyarakatan',
+                'slug' => 'khidmat-dakwah-kemasyarakatan',
+                'address' => 'Kepedulian Sosial & Pengabdian Ummat',
+                'description' => 'Kiprah nyata santri dalam Praktik Pengabdian Masyarakat (P2S/PPM) dan dakwah ke berbagai pelosok nusantara.',
+                'order' => 6,
+            ],
+        ];
+
+        Dpc::truncate();
+        foreach ($programs as $prog) {
+            Dpc::create($prog);
+        }
+
+        // 8. Sarana & Fasilitas Pesantren (Bidang)
+        $facilities = [
+            [
+                'name' => 'Masjid Baitul Qur\'an & Pusat Ibadah',
+                'slug' => 'masjid-baitul-quran-pusat-ibadah',
+                'description' => 'Masjid representatif sebagai pusat sholat berjamaah lima waktu, halaqah tahfidz Al-Qur\'an, kajian kitab kuning, dan pembinaan ruhiyah santri.',
+                'thumbnail' => '/uploads/campus-robbani.webp',
+                'order' => 1,
+            ],
+            [
+                'name' => 'Kompleks Asrama Santri Putra & Putri',
+                'slug' => 'kompleks-asrama-santri',
+                'description' => 'Gedung asrama bertingkat dengan kamar tidur yang nyaman, ventilasi baik, pengawasan musyrif/musyrifah 24 jam, dan lingkungan asri.',
+                'thumbnail' => '/uploads/campus-robbani.webp',
+                'order' => 2,
+            ],
+            [
+                'name' => 'Laboratorium Komputer, Bahasa & IPA Terpadu',
+                'slug' => 'laboratorium-komputer-bahasa-ipa',
+                'description' => 'Fasilitas praktikum modern dengan perangkat komputer terkoneksi internet cepat, audio lab bahasa, dan peralatan eksperimen sains lengkap.',
+                'thumbnail' => '/uploads/lab-robbani.webp',
+                'order' => 3,
+            ],
+            [
+                'name' => 'Perpustakaan & Pusat Sumber Belajar',
+                'slug' => 'perpustakaan-pusat-sumber-belajar',
+                'description' => 'Koleksi ribuan kitab turots klasik, buku teks pendidikan nasional, jurnal ilmiah, e-library digital, dan ruang baca ber-AC.',
+                'thumbnail' => '/uploads/library-robbani.webp',
+                'order' => 4,
+            ],
+            [
+                'name' => 'Gedung Aula Serbaguna & Pusat Haflah',
+                'slug' => 'gedung-aula-serbaguna',
+                'description' => 'Auditorium utama tempat berlangsungnya acara resmi pesantren seperti Haflah Takhtiman, wisuda, seminar internasional, dan perlombaan.',
+                'thumbnail' => '/uploads/ppru-haflah.webp',
+                'order' => 5,
+            ],
+            [
+                'name' => 'Klinik Kesehatan Pesantren (Poskestren)',
+                'slug' => 'klinik-poskestren',
+                'description' => 'Layanan rawat jalan dan pertolongan pertama santri dengan tenaga medis perawat dan dokter jaga, serta rujukan ke RSUD.',
+                'thumbnail' => '/uploads/activities-robbani.webp',
+                'order' => 6,
+            ],
+        ];
+
+        Bidang::truncate();
+        foreach ($facilities as $fac) {
+            Bidang::create(array_merge($fac, [
+                'address' => 'Kampus Pondok Pesantren Raudhatul Ulum Sakatiga, Ogan Ilir',
+                'phone' => '0812-7890-1950',
+                'email' => 'sekretariat@ppru.ac.id',
+            ]));
         }
     }
 }

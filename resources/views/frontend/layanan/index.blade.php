@@ -1,7 +1,7 @@
 @extends('layouts.frontend')
 
-@section('title', 'Layanan Terpadu - SMA IT Ishlahul Ummah Prabumulih')
-@section('meta_description', 'Portal Layanan Terpadu SMA Islam Terpadu Ishlahul Ummah Prabumulih: Izin Kunjungan Sekolah, Permohonan Kerja Sama Lembaga, dan Sewa Menyewa Fasilitas Barang Sekolah.')
+@section('title', 'Layanan Terpadu - Pondok Pesantren Raudhatul Ulum Sakatiga')
+@section('meta_description', 'Portal Layanan Terpadu Pondok Pesantren Raudhatul Ulum Sakatiga: Izin Kunjungan Sekolah, Permohonan Kerja Sama Lembaga, dan Sewa Menyewa Fasilitas Barang Sekolah.')
 
 @section('content')
 {{-- HERO BREADCRUMB HEADER --}}
@@ -21,7 +21,7 @@
             <div>
                 <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Portal Layanan Terpadu</h1>
                 <p class="text-sm text-emerald-100 mt-1 font-light">
-                    Satu pintu pelayanan administrasi, perizinan kunjungan resmi, dan kemitraan SMA IT Ishum.
+                    Satu pintu pelayanan administrasi, perizinan kunjungan resmi, dan kemitraan SMA IT PPRU.
                 </p>
             </div>
         </div>
@@ -36,7 +36,7 @@
             LAYANAN TERPADU
         </h2>
         <p class="text-base sm:text-lg font-bold text-[#da251c] mt-1">
-            SMA Islam Terpadu Ishlahul Ummah Prabumulih
+            Pondok Pesantren Raudhatul Ulum Sakatiga
         </p>
         <div class="w-20 h-1 bg-[#00913e] mx-auto rounded-full mt-3"></div>
         <p class="text-xs sm:text-sm text-gray-500 mt-3 font-light">
@@ -157,7 +157,7 @@
                 Permohonan Sewa Menyewa Barang Sekolah
             </h3>
             <p class="text-xs text-gray-500 leading-relaxed font-light mb-6">
-                Fasilitas Hall Serbaguna Ishum, laboratorium komputer, lapangan olahraga, audio sound system, dan tenda kegiatan sekolah.
+                Fasilitas Hall Serbaguna PPRU, laboratorium komputer, lapangan olahraga, audio sound system, dan tenda kegiatan sekolah.
             </p>
             <span class="mt-auto inline-flex items-center space-x-2 text-xs font-bold text-[#00913e] group-hover:text-[#da251c] transition">
                 <span>Buka Formulir</span>
@@ -174,7 +174,7 @@
                 <i class="fa-solid fa-circle-info text-[#00913e]"></i>
                 <span>Ketentuan &amp; Prosedur Layanan Terpadu</span>
             </h3>
-            <p class="text-xs text-gray-500 mt-1">Panduan umum dalam mengajukan permohonan layanan di SMA IT Ishlahul Ummah Prabumulih.</p>
+            <p class="text-xs text-gray-500 mt-1">Panduan umum dalam mengajukan permohonan layanan di Pondok Pesantren Raudhatul Ulum Sakatiga.</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs text-gray-600 leading-relaxed">
@@ -191,7 +191,7 @@
                     <span class="w-6 h-6 rounded-full bg-amber-500 text-white flex items-center justify-center text-xs font-extrabold">2</span>
                     <span>Verifikasi Administrasi</span>
                 </div>
-                <p>Tim Humas dan Manajemen SMA IT Ishum akan memeriksa permohonan Anda dalam 1-2 hari kerja untuk penyesuaian jadwal serta ketersediaan sarana.</p>
+                <p>Tim Humas dan Manajemen SMA IT PPRU akan memeriksa permohonan Anda dalam 1-2 hari kerja untuk penyesuaian jadwal serta ketersediaan sarana.</p>
             </div>
 
             <div class="p-5 rounded-2xl bg-blue-50/70 border border-blue-100 space-y-2">
@@ -207,9 +207,9 @@
         <div class="pt-4 flex flex-col sm:flex-row items-center justify-between gap-4 p-5 rounded-2xl bg-slate-50 border border-slate-200">
             <div>
                 <span class="font-bold text-sm text-slate-800 block">Butuh bantuan cepat atau konfirmasi darurat?</span>
-                <span class="text-xs text-slate-500">Hubungi Hotline Humas &amp; Sekretariat SMA IT Ishlahul Ummah Prabumulih.</span>
+                <span class="text-xs text-slate-500">Hubungi Hotline Humas &amp; Sekretariat Pondok Pesantren Raudhatul Ulum Sakatiga.</span>
             </div>
-            <a href="https://wa.me/6282182680647?text=Assalamu'alaikum%20Humas%20SMA%20IT%20Ishum,%20saya%20ingin%20bertanya%20mengenai%20Layanan%20Terpadu%20Sekolah." target="_blank" class="inline-flex items-center space-x-2 bg-[#00913e] hover:bg-emerald-700 text-white font-bold text-xs px-5 py-2.5 rounded-xl shadow transition shrink-0">
+            <a href="https://wa.me/6282182680647?text=Assalamu'alaikum%20Humas%20SMA%20IT%20PPRU,%20saya%20ingin%20bertanya%20mengenai%20Layanan%20Terpadu%20Sekolah." target="_blank" class="inline-flex items-center space-x-2 bg-[#00913e] hover:bg-emerald-700 text-white font-bold text-xs px-5 py-2.5 rounded-xl shadow transition shrink-0">
                 <i class="fa-brands fa-whatsapp text-sm"></i>
                 <span>Chat WhatsApp Humas</span>
             </a>

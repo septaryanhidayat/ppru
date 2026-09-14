@@ -56,14 +56,14 @@
             </div>
         </div>
 
-        {{-- VIDEO PROFILE RESMI SMA IT ISHLAHUL UMMAH EMBED --}}
+        {{-- VIDEO PROFILE RESMI PESANTREN EMBED --}}
         @if(!empty($settings['youtube_id']))
             <div class="bg-white p-4 sm:p-7 rounded-3xl shadow-xl border border-slate-200/80 overflow-hidden space-y-4">
                 <div class="relative w-full aspect-video rounded-2xl overflow-hidden bg-slate-950 shadow-2xl border border-slate-800">
                     <iframe 
                         class="w-full h-full"
                         src="https://www.youtube.com/embed/{{ $settings['youtube_id'] }}?rel=0" 
-                        title="{{ $settings['video_title'] ?? 'Video Profil Resmi SPMB SMA IT Ishlahul Ummah Prabumulih' }}" 
+                        title="{{ $settings['video_title'] ?? 'Video Profil Resmi Pondok Pesantren Raudhatul Ulum Sakatiga' }}" 
                         frameborder="0" 
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                         allowfullscreen>
@@ -75,8 +75,8 @@
                             <i class="fa-brands fa-youtube"></i>
                         </div>
                         <div>
-                            <h4 class="text-xs sm:text-sm font-extrabold text-slate-900">{{ $settings['video_title'] ?? 'Video Profil & Dokumentasi SMA IT Ishum' }}</h4>
-                            <p class="text-xs text-slate-700 font-medium">Saksikan suasana pembelajaran, asrama, laboratorium, dan tahfidz Al-Qur'an.</p>
+                            <h4 class="text-xs sm:text-sm font-extrabold text-slate-900">{{ $settings['video_title'] ?? 'Video Profil & Dokumentasi Pesantren' }}</h4>
+                            <p class="text-xs text-slate-700 font-medium">Saksikan suasana pembelajaran, asrama santri, laboratorium, dan tahfidz Al-Qur'an.</p>
                         </div>
                     </div>
                     <a href="https://www.youtube.com/watch?v={{ $settings['youtube_id'] }}" target="_blank" class="inline-flex items-center space-x-1.5 text-xs font-bold text-red-600 hover:text-red-700 bg-red-50 hover:bg-red-100 px-4 py-2 rounded-xl transition flex-shrink-0">
@@ -113,7 +113,7 @@
                         </li>
                         <li class="flex items-center space-x-2">
                             <i class="fa-solid fa-location-dot text-[#da251c] font-bold"></i>
-                            <span><strong>Sekretariat:</strong> {{ $settings['secretariat'] ?? 'Kompleks SMA IT Ishum, Jl. Sadewa RT 01 RW 04 Karang Raja' }}</span>
+                            <span><strong>Sekretariat:</strong> {{ $settings['secretariat'] ?? 'Kompleks Pondok Pesantren Raudhatul Ulum, Desa Sakatiga Indralaya Ogan Ilir' }}</span>
                         </li>
                     </ul>
                 </div>
@@ -239,10 +239,10 @@
                     <div x-show="activeLeft === 4" x-collapse class="p-5 text-xs text-slate-900 font-medium space-y-2 bg-white border-t border-emerald-100 leading-relaxed whitespace-pre-line text-slate-800">{{ $settings['tahfidz'] ?? '-' }}</div>
                 </div>
 
-                {{-- 5. Jalur Alumni SMPIT Ishum --}}
+                {{-- 5. Jalur Alumni SMPIT PPRU --}}
                 <div class="rounded-2xl border border-emerald-200 overflow-hidden bg-white shadow-xs">
                     <button @click="activeLeft = (activeLeft === 5 ? null : 5)" class="w-full bg-[#00913e] text-white px-5 py-3.5 flex items-center justify-between font-bold text-xs sm:text-sm text-left transition cursor-pointer">
-                        <span>5. Jalur Alumni SMPIT Ishum</span>
+                        <span>5. Jalur Alumni SMPIT PPRU</span>
                         <i class="fa-solid" :class="activeLeft === 5 ? 'fa-minus' : 'fa-plus'"></i>
                     </button>
                     <div x-show="activeLeft === 5" x-collapse class="p-5 text-xs text-slate-900 font-medium space-y-2 bg-white border-t border-emerald-100 leading-relaxed whitespace-pre-line text-slate-800">{{ $settings['alumni'] ?? '-' }}</div>
@@ -316,7 +316,7 @@
                             Formulir Pendaftaran Online
                         </h3>
                         <p class="text-xs text-slate-700 font-medium mt-2 leading-relaxed">
-                            Silakan Bapak/Ibu mengisi formulir pendaftaran online ini sebagai syarat pendaftaran di SMA IT Ishlahul Ummah dengan data yang valid dan benar.
+                            Silakan Bapak/Ibu mengisi formulir pendaftaran online ini sebagai syarat pendaftaran di Pondok Pesantren Raudhatul Ulum Sakatiga dengan data yang valid dan benar.
                         </p>
                     </div>
                 </div>
@@ -328,12 +328,12 @@
 
             {{-- Card 2: Hubungi Admin via WhatsApp --}}
             @php
-                $cleanHotline2 = preg_replace('/[^0-9]/', '', (string) ($settings['hotline_2_phone'] ?? '082281573615'));
+                $cleanHotline2 = preg_replace('/[^0-9]/', '', (string) ($settings['hotline_2_phone'] ?? '081278901950'));
                 if (str_starts_with($cleanHotline2, '0')) {
                     $cleanHotline2 = '62' . substr($cleanHotline2, 1);
                 }
             @endphp
-            <a href="https://wa.me/{{ $cleanHotline }}?text={{ urlencode('Halo Panitia PPDB SMA IT Ishlahul Ummah Prabumulih, saya ingin berkonsultasi mengenai pendaftaran santri baru.') }}" target="_blank" class="group bg-white p-8 rounded-3xl border-2 border-emerald-200 hover:border-[#00913e] shadow-md hover:shadow-2xl transition duration-300 text-center flex flex-col items-center justify-between">
+            <a href="https://wa.me/{{ $cleanHotline }}?text={{ urlencode('Halo Panitia PSB Pondok Pesantren Raudhatul Ulum Sakatiga, saya ingin berkonsultasi mengenai pendaftaran santri baru.') }}" target="_blank" class="group bg-white p-8 rounded-3xl border-2 border-emerald-200 hover:border-[#00913e] shadow-md hover:shadow-2xl transition duration-300 text-center flex flex-col items-center justify-between">
                 <div class="space-y-4">
                     <div class="w-20 h-20 mx-auto rounded-3xl bg-green-50 text-[#00913e] flex items-center justify-center text-4xl shadow-xs group-hover:scale-110 transition duration-300">
                         <i class="fa-brands fa-whatsapp text-4xl"></i>
@@ -343,51 +343,51 @@
                             Konsultasi via WhatsApp
                         </h3>
                         <p class="text-xs text-slate-700 font-medium mt-2 leading-relaxed">
-                            Konfirmasi pendaftaran, pengiriman bukti transfer formulir, atau konsultasi langsung dengan panitia PPDB: <strong>{{ $settings['hotline_phone'] ?? '0821-8268-0647' }} ({{ $settings['hotline_name'] ?? 'Admin' }})</strong>
+                            Konfirmasi pendaftaran, pengiriman bukti transfer formulir, atau konsultasi langsung dengan panitia PSB: <strong>{{ $settings['hotline_phone'] ?? '0812-7890-1950' }} ({{ $settings['hotline_name'] ?? 'Admin PSB' }})</strong>
                             @if(!empty($settings['hotline_2_phone']))
-                                atau <strong>{{ $settings['hotline_2_phone'] }} ({{ $settings['hotline_2_name'] ?? 'Kepala Sekolah' }})</strong>.
+                                atau <strong>{{ $settings['hotline_2_phone'] }} ({{ $settings['hotline_2_name'] ?? 'Sekretariat' }})</strong>.
                             @endif
                         </p>
                     </div>
                 </div>
                 <span class="mt-6 inline-flex items-center space-x-2 bg-[#00913e] hover:bg-[#007532] text-white text-xs font-black px-7 py-3.5 rounded-2xl shadow-md transition">
                     <i class="fa-brands fa-whatsapp text-base"></i>
-                    <span>Chat WhatsApp Panitia ({{ $settings['hotline_phone'] ?? '0821-8268-0647' }})</span>
+                    <span>Chat WhatsApp Panitia ({{ $settings['hotline_phone'] ?? '0812-7890-1950' }})</span>
                 </span>
             </a>
 
         </div>
 
-        {{-- UCAPAN TERIMA KASIH & DOKUMENTASI KAMPUS ISHUM --}}
+        {{-- UCAPAN TERIMA KASIH & DOKUMENTASI KAMPUS PPRU --}}
         <div class="bg-white p-8 sm:p-10 rounded-3xl shadow-md border border-slate-200/80 text-center space-y-6">
             <div>
                 <h3 class="text-xl sm:text-2xl font-black text-[#da251c] tracking-tight">
-                    {{ $settings['closing_title'] ?? 'Terima Kasih Sudah Mendaftar di SMA Islam Terpadu Ishlahul Ummah Prabumulih' }}
+                    {{ $settings['closing_title'] ?? 'Terima Kasih Sudah Mendaftar di Pondok Pesantren Raudhatul Ulum Sakatiga' }}
                 </h3>
                 <p class="text-xs sm:text-sm font-semibold text-[#00913e] mt-2 max-w-2xl mx-auto leading-relaxed">
                     {{ $settings['closing_desc'] ?? 'Semoga Ananda kelak bisa menjadi anak yang cerdas, sholeh/ah, berbakti kepada orang tua dan menjadi kebanggaan bagi agama, bangsa dan negara. Aamiin' }}
                 </p>
             </div>
 
-            {{-- Dokumentasi Fasilitas Ishum --}}
+            {{-- Dokumentasi Fasilitas Pesantren --}}
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
                 <div class="rounded-2xl overflow-hidden border border-slate-200 shadow-xs group">
-                    <img src="/uploads/ishum/fasilitas_1377_IMG-20240528-WA0094-scaled.webp" alt="Gerbang Utama Sekolah Ishum" class="w-full h-48 object-cover group-hover:scale-105 transition duration-500">
+                    <img src="/uploads/campus-robbani.webp" alt="Kampus Pondok Pesantren Raudhatul Ulum" class="w-full h-48 object-cover group-hover:scale-105 transition duration-500">
                 </div>
                 <div class="rounded-2xl overflow-hidden border border-slate-200 shadow-xs group">
-                    <img src="/uploads/ishum/fasilitas_3427_IMG-20240528-WA0106-scaled.webp" alt="Gedung Sekolah Ishum" class="w-full h-48 object-cover group-hover:scale-105 transition duration-500">
+                    <img src="/uploads/activities-robbani.webp" alt="Aktivitas Santri Raudhatul Ulum" class="w-full h-48 object-cover group-hover:scale-105 transition duration-500">
                 </div>
                 <div class="rounded-2xl overflow-hidden border border-slate-200 shadow-xs group">
-                    <img src="/uploads/ishum/fasilitas_1278_HALL-SIT-Ishlahul-Ummah_.webp" alt="Hall Ishlahul Ummah" class="w-full h-48 object-cover group-hover:scale-105 transition duration-500">
+                    <img src="/uploads/ppru-haflah.webp" alt="Aula dan Gedung Pertemuan Pesantren" class="w-full h-48 object-cover group-hover:scale-105 transition duration-500">
                 </div>
             </div>
 
             <div class="pt-4 border-t border-slate-200">
                 <p class="text-xs font-black text-slate-800 uppercase tracking-widest">
-                    Mendidik Sepenuh Cinta
+                    Mendidik Sepenuh Cinta &bull; Menuju Khoiru Ummah
                 </p>
                 <div class="mt-2 text-xs font-extrabold text-[#00913e] tracking-wider uppercase">
-                    SMA IT Ishlahul Ummah Prabumulih &bull; Anggota JSIT Indonesia
+                    Pondok Pesantren Raudhatul Ulum Sakatiga &bull; Ogan Ilir, Sumatera Selatan
                 </div>
             </div>
         </div>

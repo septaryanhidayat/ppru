@@ -1,7 +1,7 @@
 @extends('layouts.frontend')
 
-@section('title', 'Hubungi Kami & Informasi PPDB - SMA IT Ishlahul Ummah Prabumulih')
-@section('meta_description', 'Kontak resmi SMA Islam Terpadu Ishlahul Ummah Prabumulih: Nomor telepon, WhatsApp humas PPDB, email resmi, alamat kampus, dan formulir pesan.')
+@section('title', 'Hubungi Kami & Informasi PPDB - Pondok Pesantren Raudhatul Ulum Sakatiga')
+@section('meta_description', 'Kontak resmi Pondok Pesantren Raudhatul Ulum Sakatiga: Nomor telepon, WhatsApp humas PPDB, email resmi, alamat kampus, dan formulir pesan.')
 
 @section('content')
 {{-- HERO HEADER --}}
@@ -12,7 +12,7 @@
             <span>/</span>
             <span class="text-amber-300 font-semibold">Hubungi Kami</span>
         </nav>
-        <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Hubungi SMA IT Ishlahul Ummah Prabumulih</h1>
+        <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Hubungi Pondok Pesantren Raudhatul Ulum Sakatiga</h1>
         <p class="text-sm text-emerald-100 mt-2 font-light max-w-2xl">
             Kami siap melayani pertanyaan seputar PPDB, kurikulum tahfidz & sains, program asrama, maupun kunjungan ke kampus.
         </p>
@@ -44,8 +44,8 @@
             </div>
             <div>
                 <span class="text-xs font-bold text-gray-400 uppercase tracking-wider block">Telepon Kantor :</span>
-                <a href="tel:{{ $siteSettings['contact_phone'] ?? '0821-8268-0647' }}" class="text-base font-extrabold text-gray-900 hover:text-[#00913e] transition mt-1 block">
-                    {{ $siteSettings['contact_phone'] ?? '0821-8268-0647' }}
+                <a href="tel:{{ $siteSettings['contact_phone'] ?? '0812-7890-1950' }}" class="text-base font-extrabold text-gray-900 hover:text-[#00913e] transition mt-1 block">
+                    {{ $siteSettings['contact_phone'] ?? '0812-7890-1950' }}
                 </a>
                 <p class="text-xs text-gray-500 mt-1">Layanan administrasi tata usaha pada jam kerja (07.30 - 16.00 WIB).</p>
             </div>
@@ -58,8 +58,8 @@
             </div>
             <div>
                 <span class="text-xs font-bold text-gray-400 uppercase tracking-wider block">Email Resmi :</span>
-                <a href="mailto:{{ $siteSettings['contact_email'] ?? 'info@smaitplusishum.sch.id' }}" class="text-sm font-extrabold text-gray-900 hover:text-[#00913e] transition mt-1 block break-all">
-                    {{ $siteSettings['contact_email'] ?? 'info@smaitplusishum.sch.id' }}
+                <a href="mailto:{{ $siteSettings['contact_email'] ?? 'sekretariat@ppru.ac.id' }}" class="text-sm font-extrabold text-gray-900 hover:text-[#00913e] transition mt-1 block break-all">
+                    {{ $siteSettings['contact_email'] ?? 'sekretariat@ppru.ac.id' }}
                 </a>
                 <p class="text-xs text-gray-500 mt-1">Surat-menyurat dan permohonan informasi akademik resmi.</p>
             </div>
@@ -67,7 +67,7 @@
 
         {{-- Box 3: WhatsApp --}}
         @php
-            $rawPhone = $siteSettings['contact_phone'] ?? '0821-8268-0647';
+            $rawPhone = $siteSettings['contact_phone'] ?? '0812-7890-1950';
             $cleanWa = preg_replace('/[^0-9]/', '', $rawPhone);
             if (str_starts_with($cleanWa, '0')) {
                 $cleanWa = '62' . substr($cleanWa, 1);

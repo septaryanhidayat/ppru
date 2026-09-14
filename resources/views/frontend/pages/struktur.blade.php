@@ -1,7 +1,7 @@
 @extends('layouts.frontend')
 
-@section('title', 'Struktur Organisasi - SMA IT Ishlahul Ummah Prabumulih')
-@section('meta_description', 'Bagan struktur organisasi dan manajemen SMA Islam Terpadu Ishlahul Ummah Prabumulih.')
+@section('title', 'Struktur Organisasi - Pondok Pesantren Raudhatul Ulum Sakatiga')
+@section('meta_description', 'Bagan struktur organisasi pimpinan dan kepengurusan Yayasan Perguruan Islam Raudhatul Ulum (YAPIRUS) Sakatiga.')
 
 @section('content')
 {{-- HERO HEADER --}}
@@ -14,26 +14,26 @@
             <span>/</span>
             <span class="text-amber-300 font-semibold">Struktur Organisasi</span>
         </nav>
-        <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Struktur Organisasi Sekolah</h1>
+        <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Struktur Organisasi Pesantren</h1>
         <p class="text-sm text-emerald-100 mt-2 font-light max-w-2xl">
-            Susunan manajemen kepemimpinan dan organisasi SMA IT Ishlahul Ummah Prabumulih.
+            Susunan pimpinan Pondok Pesantren Raudhatul Ulum dan kepengurusan Yayasan Perguruan Islam Raudhatul Ulum (YAPIRUS) Sakatiga.
         </p>
     </div>
 </div>
 
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 space-y-16">
     
-    {{-- SEKSI 1: STRUKTUR ORGANISASI SEKOLAH (KOSONGKAN JIKA TIDAK ADA NAMA2 RESMI / DATA DARI DB) --}}
+    {{-- SEKSI 1: STRUKTUR ORGANISASI SEKOLAH --}}
     <section class="bg-white p-8 sm:p-12 rounded-3xl shadow-xl border border-gray-100 reveal-fade-up">
         <div class="text-center max-w-2xl mx-auto mb-8">
-            <span class="text-xs font-bold text-[#da251c] uppercase tracking-wider block">Bagan Organisasi</span>
+            <span class="text-xs font-bold text-school-green uppercase tracking-wider block">Bagan Organisasi</span>
             <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight mt-1">
-                Struktur Organisasi Sekolah
+                Struktur Kepemimpinan YAPIRUS &amp; PPRU
             </h2>
             <div class="w-16 h-1 bg-[#00913e] mx-auto rounded-full mt-3"></div>
         </div>
 
-        @if(!empty($page?->content) && trim(strip_tags($page->content)) !== '')
+        @if(!empty($page?->content) && trim(strip_tags($page->content)) !== '' && !str_contains($page->content, 'Raudhatul Ulum'))
             <div class="prose-content max-w-4xl mx-auto text-gray-700 text-justify text-sm sm:text-base leading-relaxed bg-slate-50/70 p-6 sm:p-10 rounded-2xl border border-slate-100">
                 {!! $page->content !!}
             </div>
@@ -44,7 +44,7 @@
                 </div>
                 <h3 class="font-bold text-gray-800 text-base">Bagan Struktur Organisasi</h3>
                 <p class="text-xs sm:text-sm text-gray-500 leading-relaxed font-light">
-                    Susunan bagan dan formatur struktur organisasi SMA IT Ishlahul Ummah Prabumulih saat ini sedang dalam proses pembaruan data resmi.
+                    Susunan bagan dan formatur struktur organisasi Pondok Pesantren Raudhatul Ulum Sakatiga saat ini sedang dalam proses pembaruan data resmi.
                 </p>
             </div>
         @endif
@@ -54,10 +54,10 @@
     <section class="bg-white p-8 sm:p-12 rounded-3xl shadow-xl border border-gray-100 reveal-fade-up">
         <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
             <div>
-                <span class="text-xs font-bold text-[#da251c] uppercase tracking-wider block">Sarana &amp; Prasarana Sekolah</span>
-                <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight mt-1">Fasilitas Unggulan SMA IT Ishlahul Ummah Prabumulih</h2>
+                <span class="text-xs font-bold text-school-green uppercase tracking-wider block">Sarana &amp; Prasarana Kampus</span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight mt-1">Fasilitas Unggulan Pondok Pesantren Raudhatul Ulum</h2>
             </div>
-            <a href="{{ route('bidang.index') }}" class="inline-flex items-center text-xs font-bold text-[#00913e] hover:text-[#da251c] flex-shrink-0 transition">
+            <a href="{{ route('bidang.index') }}" class="inline-flex items-center text-xs font-bold text-[#00913e] hover:text-emerald-800 flex-shrink-0 transition">
                 <span>Lihat Selengkapnya</span>
                 <i class="fa-solid fa-arrow-right ml-1.5 text-[10px]"></i>
             </a>
@@ -68,9 +68,9 @@
                 <a href="{{ route('bidang.show', $b->slug) }}" class="rounded-2xl border border-gray-100 hover:border-[#00913e] hover:shadow-xl transition group bg-white overflow-hidden flex flex-col justify-between">
                     <div>
                         <div class="h-44 w-full overflow-hidden bg-slate-100 relative">
-                            <img src="{{ $b->thumbnail_url }}" alt="{{ $b->name }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='/uploads/gedung-smait-ishum.webp'">
+                            <img src="{{ $b->thumbnail_url }}" alt="{{ $b->name }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='/uploads/logo-ppru-banner.png'">
                             <span class="absolute top-3 left-3 bg-[#00913e] text-white text-[10px] font-bold px-2.5 py-0.5 rounded-full shadow">
-                                Fasilitas Sekolah
+                                Sarana Pesantren
                             </span>
                         </div>
                         <div class="p-5">
@@ -95,13 +95,13 @@
     <section class="bg-white p-8 sm:p-12 rounded-3xl shadow-xl border border-gray-100 reveal-fade-up">
         <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
             <div>
-                <span class="text-xs font-bold text-[#da251c] uppercase tracking-wider block">Kurikulum &amp; Karakter</span>
+                <span class="text-xs font-bold text-school-green uppercase tracking-wider block">Kurikulum &amp; Karakter</span>
                 <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight mt-1">
-                    Program Unggulan Siswa Ishum
+                    Program Unggulan Santri Raudhatul Ulum
                 </h2>
                 <p class="text-xs sm:text-sm text-gray-500 mt-1 font-light">Mengasah kecakapan santri menjadi pribadi cerdas, mandiri, dan berjiwa pelopor.</p>
             </div>
-            <a href="{{ route('dpc.index') }}" class="inline-flex items-center text-xs font-bold text-[#00913e] hover:text-[#da251c] flex-shrink-0 transition">
+            <a href="{{ route('dpc.index') }}" class="inline-flex items-center text-xs font-bold text-[#00913e] hover:text-emerald-800 flex-shrink-0 transition">
                 <span>Lihat Semua Program</span>
                 <i class="fa-solid fa-arrow-right ml-1.5 text-[10px]"></i>
             </a>
@@ -112,7 +112,7 @@
                 <div class="rounded-2xl border border-gray-100 bg-white hover:border-[#00913e] hover:shadow-lg transition overflow-hidden group flex flex-col justify-between">
                     <div>
                         <div class="h-32 w-full overflow-hidden bg-slate-100 relative">
-                            <img src="{{ $dpc->thumbnail_url }}" alt="{{ $dpc->name }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='/uploads/tahfidz-ishum.webp'">
+                            <img src="{{ $dpc->thumbnail_url }}" alt="{{ $dpc->name }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='/uploads/logo-ppru-banner.png'">
                         </div>
                         <div class="p-4 space-y-1">
                             <span class="text-[10px] font-bold text-[#00913e] block truncate uppercase tracking-wider">{{ $dpc->address ?: 'Program Unggulan' }}</span>

@@ -1,7 +1,7 @@
 @extends('layouts.frontend')
 
-@section('title', 'Logo Resmi & Identitas Visual - SMA IT Ishlahul Ummah Prabumulih')
-@section('meta_description', 'Aset resmi logo SMA IT Ishlahul Ummah Prabumulih, panduan identitas visual, filosofi lambang sekolah, dan unduhan logo resolusi tinggi SVG dan PNG.')
+@section('title', 'Logo Resmi & Identitas Visual - Pondok Pesantren Raudhatul Ulum Sakatiga')
+@section('meta_description', 'Aset resmi logo Pondok Pesantren Raudhatul Ulum Sakatiga, panduan identitas visual, filosofi lambang sekolah, dan unduhan logo resolusi tinggi SVG dan PNG.')
 
 @section('content')
 {{-- HERO HEADER --}}
@@ -14,9 +14,9 @@
             <span>/</span>
             <span class="text-amber-300 font-semibold">Logo</span>
         </nav>
-        <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Logo Resmi SMA IT Ishlahul Ummah Prabumulih</h1>
+        <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Logo Resmi Pondok Pesantren Raudhatul Ulum Sakatiga</h1>
         <p class="text-sm text-emerald-100 mt-2 font-light max-w-2xl">
-            Identitas visual, filosofi lambang sekolah, panduan palet warna, dan aset unduhan resmi SMA IT Ishlahul Ummah Prabumulih.
+            Identitas visual, filosofi lambang sekolah, panduan palet warna, dan aset unduhan resmi Pondok Pesantren Raudhatul Ulum Sakatiga.
         </p>
     </div>
 </div>
@@ -28,18 +28,18 @@
         <div class="max-w-2xl mx-auto">
             <span class="text-xs font-bold text-orange-500 uppercase tracking-wider block">Identitas Visual Resmi</span>
             <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight mt-1">
-                Logo & Lambang SMA IT Ishlahul Ummah Prabumulih
+                Logo & Lambang Pondok Pesantren Raudhatul Ulum Sakatiga
             </h2>
             <div class="w-16 h-1 bg-[#00913e] mx-auto rounded-full mt-3"></div>
         </div>
 
         {{-- DISPLAY EMBLEM LOGO --}}
         <div class="w-64 h-64 sm:w-80 sm:h-80 mx-auto rounded-3xl bg-emerald-50/50 p-8 shadow-inner border border-emerald-100 flex items-center justify-center relative group">
-            <img src="/uploads/logo-ishum-square.png" alt="Logo Resmi SMA IT Ishlahul Ummah Prabumulih" class="max-h-full max-w-full object-contain group-hover:scale-105 transition duration-500">
+            <img src="/uploads/logo-ppru-square.png" alt="Logo Resmi Pondok Pesantren Raudhatul Ulum Sakatiga" class="max-h-full max-w-full object-contain group-hover:scale-105 transition duration-500">
         </div>
 
         <div>
-            <a href="/uploads/logo-ishum-square.png" download="logo-ishum-square.png" class="inline-flex items-center bg-[#00913e] hover:bg-emerald-800 text-white px-8 py-3.5 rounded-2xl text-xs sm:text-sm font-bold shadow-lg hover:shadow-xl transition space-x-2 transform hover:scale-105">
+            <a href="/uploads/logo-ppru-square.png" download="logo-ppru-square.png" class="inline-flex items-center bg-[#00913e] hover:bg-emerald-800 text-white px-8 py-3.5 rounded-2xl text-xs sm:text-sm font-bold shadow-lg hover:shadow-xl transition space-x-2 transform hover:scale-105">
                 <i class="fa-solid fa-download text-sm"></i>
                 <span>Download Lambang Emblem (Format Vektor SVG)</span>
             </a>
@@ -94,7 +94,7 @@
                     </div>
                     <div>
                         <strong class="text-gray-900 font-bold block">Bintang Emas:</strong>
-                        Cita-cita prestasi puncak, kemuliaan budi pekerti, dan kepemimpinan Ishum masa depan.
+                        Cita-cita prestasi puncak, kemuliaan budi pekerti, dan kepemimpinan PPRU masa depan.
                     </div>
                 </li>
             </ul>
@@ -115,7 +115,7 @@
                 <div class="p-4 rounded-2xl bg-emerald-50 border border-emerald-200 flex items-center space-x-4">
                     <div class="w-12 h-12 rounded-xl bg-[#00913e] shadow-md flex-shrink-0"></div>
                     <div>
-                        <span class="font-extrabold text-gray-900 block text-sm">Hijau Ishum (Dominan)</span>
+                        <span class="font-extrabold text-gray-900 block text-sm">Hijau PPRU (Dominan)</span>
                         <code class="text-xs text-[#00913e] font-mono font-bold">HEX: #0D6B38</code>
                         <p class="text-[11px] text-gray-500 mt-0.5">Kedamaian spiritual, keberkahan ilmu, dan naungan Qur'ani.</p>
                     </div>
@@ -156,14 +156,14 @@
             <div class="p-6 rounded-2xl bg-gray-50/80 border border-gray-200 flex flex-col justify-between gap-4">
                 <div class="flex items-center space-x-4">
                     <div class="w-20 h-14 rounded-xl bg-white p-2 border border-gray-200 flex items-center justify-center flex-shrink-0 shadow-sm">
-                        <img src="/uploads/logo-ishum.png" alt="Logo Horizontal" class="max-h-full max-w-full object-contain">
+                        <img src="/uploads/logo-ppru.png" alt="Logo Horizontal" class="max-h-full max-w-full object-contain">
                     </div>
                     <div>
                         <h4 class="font-bold text-xs sm:text-sm text-gray-900">Logo Horizontal (Header & Surat)</h4>
                         <span class="text-[11px] text-gray-400">Vektor SVG Transparan</span>
                     </div>
                 </div>
-                <a href="/uploads/logo-ishum.png" download="logo-ishum-horizontal.svg" class="w-full text-center bg-[#00913e] hover:bg-emerald-800 text-white px-4 py-2.5 rounded-xl text-xs font-bold transition flex items-center justify-center space-x-1.5 shadow">
+                <a href="/uploads/logo-ppru.png" download="logo-ppru-banner.png" class="w-full text-center bg-[#00913e] hover:bg-emerald-800 text-white px-4 py-2.5 rounded-xl text-xs font-bold transition flex items-center justify-center space-x-1.5 shadow">
                     <i class="fa-solid fa-download text-[11px]"></i>
                     <span>Unduh Logo Horizontal</span>
                 </a>
@@ -173,14 +173,14 @@
             <div class="p-6 rounded-2xl bg-gray-50/80 border border-gray-200 flex flex-col justify-between gap-4">
                 <div class="flex items-center space-x-4">
                     <div class="w-20 h-14 rounded-xl bg-white p-2 border border-gray-200 flex items-center justify-center flex-shrink-0 shadow-sm">
-                        <img src="/uploads/logo-ishum-square.png" alt="Logo Emblem" class="max-h-full max-w-full object-contain">
+                        <img src="/uploads/logo-ppru-square.png" alt="Logo Emblem" class="max-h-full max-w-full object-contain">
                     </div>
                     <div>
                         <h4 class="font-bold text-xs sm:text-sm text-gray-900">Emblem Bulat (Badge / Stempel)</h4>
                         <span class="text-[11px] text-gray-400">Vektor SVG Transparan</span>
                     </div>
                 </div>
-                <a href="/uploads/logo-ishum-square.png" download="logo-ishum-square.png" class="w-full text-center bg-orange-600 hover:bg-orange-700 text-white px-4 py-2.5 rounded-xl text-xs font-bold transition flex items-center justify-center space-x-1.5 shadow">
+                <a href="/uploads/logo-ppru-square.png" download="logo-ppru-square.png" class="w-full text-center bg-orange-600 hover:bg-orange-700 text-white px-4 py-2.5 rounded-xl text-xs font-bold transition flex items-center justify-center space-x-1.5 shadow">
                     <i class="fa-solid fa-download text-[11px]"></i>
                     <span>Unduh Emblem Bulat</span>
                 </a>

@@ -62,7 +62,7 @@
                             <td class="py-3 px-4">
                                 <div class="w-12 h-12 rounded-lg bg-gray-100 overflow-hidden flex-shrink-0">
                                     @if($p->featured_image)
-                                        <img src="{{ $p->featured_image }}" alt="" class="w-full h-full object-cover" onerror="this.src='/uploads/logo-ishum-square.webp'">
+                                        <img src="{{ $p->featured_image }}" alt="" class="w-full h-full object-cover" onerror="this.src='/uploads/logo-ppru-square.png'">
                                     @else
                                         <div class="w-full h-full flex items-center justify-center text-gray-300">
                                             <i class="fa-solid fa-image"></i>

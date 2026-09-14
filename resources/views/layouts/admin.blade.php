@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'Admin Panel') - SMA IT Ishlahul Ummah Prabumulih</title>
-    <link rel="icon" type="image/svg+xml" href="/uploads/logo-ishum-square.png">
+    <title>@yield('title', 'Admin Panel') - Pondok Pesantren Raudhatul Ulum Sakatiga</title>
+    <link rel="icon" type="image/png" href="/uploads/logo-ppru-square.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -179,8 +179,8 @@
         {{-- Brand Logo Header with Minimize Toggle --}}
         <div class="sidebar-header h-16 flex items-center justify-between px-4 border-b border-slate-800/80 bg-[#070b14]/50 flex-shrink-0">
             <a href="{{ route('admin.dashboard') }}" class="flex items-center space-x-2.5 group min-w-0" title="Admin PPRU Control Center">
-                <div class="w-9 h-9 rounded-xl bg-white p-1 flex items-center justify-center shadow-md group-hover:scale-105 transition flex-shrink-0">
-                    <img src="/uploads/logo-ppru-square.png" alt="Logo PPRU" class="h-7 w-auto object-contain" onerror="this.src='/uploads/logo-ppru.png'">
+                <div class="w-9 h-9 flex items-center justify-center group-hover:scale-105 transition flex-shrink-0">
+                    <img src="/uploads/logo-ppru-transparent.png" alt="Logo PPRU" class="h-9 w-auto object-contain" onerror="this.src='/uploads/logo-ppru-square.png'">
                 </div>
                 <div class="sidebar-brand-text min-w-0">
                     <span class="font-black text-white text-sm tracking-tight block truncate">ADMIN PPRU</span>
@@ -434,7 +434,7 @@
                 </button>
                 <div>
                     <h1 class="font-extrabold text-lg sm:text-xl text-slate-800 tracking-tight">@yield('header_title', 'Panel Kontrol')</h1>
-                    <p class="text-[11px] text-slate-400">SMA Islam Terpadu Ishlahul Ummah Prabumulih</p>
+                    <p class="text-[11px] text-slate-400">Pondok Pesantren Raudhatul Ulum Sakatiga</p>
                 </div>
             </div>
 
@@ -486,15 +486,31 @@
             @yield('content')
         </main>
 
-        {{-- Admin Footer & Watermark --}}
-        <footer class="px-6 sm:px-8 py-4 border-t border-slate-200/80 bg-white/70 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-500">
+        {{-- Admin Footer & Watermark Beranda Teknologi Digital --}}
+        <footer class="px-6 sm:px-8 py-4 border-t border-slate-200/80 bg-white/70 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-500 relative">
             <div>
-                &copy; {{ date('Y') }} SMA IT Ishlahul Ummah Prabumulih &bull; Panel Administrasi
+                &copy; {{ date('Y') }} Pondok Pesantren Raudhatul Ulum Sakatiga &bull; Panel Administrasi
             </div>
-            <div class="text-[11px] text-slate-400">
-                Developed by <a href="https://berandadigital.net" target="_blank" rel="noopener" class="text-slate-500 hover:text-slate-800 hover:underline font-medium">Beranda Teknologi Digital</a>
+            <div class="text-[11px] text-slate-400 flex items-center gap-1.5">
+                <span>Developed by</span>
+                <a href="https://berandadigital.net" target="_blank" rel="noopener" class="text-slate-600 hover:text-emerald-700 font-semibold hover:underline flex items-center gap-1">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block"></span>
+                    <span>Beranda Teknologi Digital</span>
+                </a>
             </div>
         </footer>
+
+        {{-- WATERMARK BERANDA TEKNOLOGI DIGITAL (Kanan Bawah Admin Dashboard) --}}
+        <div class="fixed bottom-1 right-2 z-20 pointer-events-auto">
+            <a href="https://berandadigital.net" 
+               target="_blank" 
+               rel="noopener noreferrer" 
+               class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-white/80 hover:bg-white text-[9px] sm:text-[10px] text-slate-400 hover:text-emerald-600 shadow-2xs border border-slate-200/70 backdrop-blur-xs transition duration-200" 
+               title="Beranda Teknologi Digital">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500/80"></span>
+                <span class="font-normal tracking-tight">Beranda Teknologi Digital</span>
+            </a>
+        </div>
     </div>
 
     {{-- Quill.js Automatic Initializer Script for Elements with [data-quill] --}}
@@ -615,7 +631,7 @@
         });
 
         // === SWEETALERT2 NOTIFICATIONS & CONFIRMATIONS ===
-        const IshumToast = Swal.mixin({
+        const PpruToast = Swal.mixin({
             toast: true,
             position: 'top-end',
             showConfirmButton: false,
@@ -628,28 +644,28 @@
         });
 
         @if(session('success'))
-            IshumToast.fire({
+            PpruToast.fire({
                 icon: 'success',
                 title: "{{ addslashes(session('success')) }}"
             });
         @endif
 
         @if(session('error'))
-            IshumToast.fire({
+            PpruToast.fire({
                 icon: 'error',
                 title: "{{ addslashes(session('error')) }}"
             });
         @endif
 
         @if(session('info'))
-            IshumToast.fire({
+            PpruToast.fire({
                 icon: 'info',
                 title: "{{ addslashes(session('info')) }}"
             });
         @endif
 
         @if(session('warning'))
-            IshumToast.fire({
+            PpruToast.fire({
                 icon: 'warning',
                 title: "{{ addslashes(session('warning')) }}"
             });

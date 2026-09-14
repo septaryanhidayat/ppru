@@ -1,7 +1,7 @@
 @extends('layouts.frontend')
 
-@section('title', 'Mars JSIT Indonesia - SMA IT Ishlahul Ummah Prabumulih')
-@section('meta_description', 'Lagu resmi Mars Jaringan Sekolah Islam Terpadu (JSIT) Indonesia di SMA IT Ishlahul Ummah Prabumulih, membina generasi beriman, cerdas, berakhlak mulia, dan mandiri.')
+@section('title', 'Mars JSIT Indonesia - Pondok Pesantren Raudhatul Ulum Sakatiga')
+@section('meta_description', 'Lagu resmi Mars Jaringan Sekolah Islam Terpadu (JSIT) Indonesia di Pondok Pesantren Raudhatul Ulum Sakatiga, membina generasi beriman, cerdas, berakhlak mulia, dan mandiri.')
 
 @section('content')
 {{-- HERO HEADER --}}
@@ -16,7 +16,7 @@
         </nav>
         <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Mars Jaringan Sekolah Islam Terpadu (JSIT) Indonesia</h1>
         <p class="text-sm text-emerald-100 mt-2 font-light max-w-2xl">
-            Lagu kebanggaan civitas akademika SMA IT Ishlahul Ummah Prabumulih sebagai bagian dari Jaringan Sekolah Islam Terpadu (JSIT) Indonesia dalam membina generasi Rabbani yang unggul dan berdaya saing global.
+            Lagu kebanggaan civitas akademika Pondok Pesantren Raudhatul Ulum Sakatiga sebagai bagian dari Jaringan Sekolah Islam Terpadu (JSIT) Indonesia dalam membina generasi Rabbani yang unggul dan berdaya saing global.
         </p>
     </div>
 </div>
@@ -103,7 +103,7 @@
                 <i class="fa-solid fa-shield-halved text-[#00913e] mr-2"></i> 10 Karakter Santri JSIT (Muwashofat)
             </h4>
             <p class="text-xs text-gray-700 mb-4 leading-relaxed font-medium">
-                Sebagai sekolah anggota resmi Jaringan Sekolah Islam Terpadu (JSIT) Indonesia, SMA IT Ishlahul Ummah Prabumulih menanamkan 10 standar kompetensi lulusan santri:
+                Sebagai sekolah anggota resmi Jaringan Sekolah Islam Terpadu (JSIT) Indonesia, Pondok Pesantren Raudhatul Ulum Sakatiga menanamkan 10 standar kompetensi lulusan santri:
             </p>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-gray-800">
                 <div class="flex items-center space-x-2 bg-white p-3 rounded-xl border border-emerald-100 shadow-xs">

@@ -1,6 +1,6 @@
 @extends('layouts.frontend')
 
-@section('title', $agenda->title . ' - Agenda SMA IT Ishlahul Ummah Prabumulih')
+@section('title', $agenda->title . ' - Agenda Pondok Pesantren Raudhatul Ulum Sakatiga')
 
 @section('content')
 <div class="bg-gradient-to-r from-emerald-950 via-[#00913e] to-emerald-900 text-white py-12">
@@ -27,7 +27,7 @@
                 <span>&bull;</span>
                 <div class="flex items-center">
                     <i class="fa-solid fa-location-dot text-orange-500 mr-2 text-base"></i>
-                    <span>{{ $agenda->location ?: 'Kampus SMA IT Ishlahul Ummah Prabumulih' }}</span>
+                    <span>{{ $agenda->location ?: 'Kampus Pondok Pesantren Raudhatul Ulum Sakatiga' }}</span>
                 </div>
             </div>
 

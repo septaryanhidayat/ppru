@@ -60,7 +60,7 @@
                         <div class="flex items-center space-x-2 mt-0.5">
                             <span class="font-bold text-slate-900 text-sm">{{ $submission->whatsapp }}</span>
                             @if($submission->whatsapp)
-                                <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $submission->whatsapp) }}?text={{ urlencode('Halo Bapak/Ibu ' . $submission->name . ', kami dari pihak SMA IT Ishlahul Ummah Prabumulih terkait pengajuan ' . $submission->service_label . ' Anda...') }}" target="_blank" class="px-2.5 py-1 rounded-lg bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-[10px] inline-flex items-center space-x-1 shadow-xs transition">
+                                <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $submission->whatsapp) }}?text={{ urlencode('Halo Bapak/Ibu ' . $submission->name . ', kami dari pihak Pondok Pesantren Raudhatul Ulum Sakatiga terkait pengajuan ' . $submission->service_label . ' Anda...') }}" target="_blank" class="px-2.5 py-1 rounded-lg bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-[10px] inline-flex items-center space-x-1 shadow-xs transition">
                                     <i class="fa-brands fa-whatsapp"></i>
                                     <span>Chat WA</span>
                                 </a>

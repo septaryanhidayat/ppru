@@ -1,12 +1,12 @@
 @extends('layouts.frontend')
 
-@section('title', ($post->meta_title ?: $post->title) . ' - ' . ($siteSettings['site_name'] ?? 'SMA IT Ishlahul Ummah Prabumulih'))
+@section('title', ($post->meta_title ?: $post->title) . ' - ' . ($siteSettings['site_name'] ?? 'Pondok Pesantren Raudhatul Ulum Sakatiga'))
 @section('og_title', $post->meta_title ?: $post->title)
 @section('meta_description', $post->meta_description ?: Str::limit(strip_tags($post->content), 160))
 @section('og_description', $post->meta_description ?: Str::limit(strip_tags($post->content), 160))
 @section('meta_keywords', $post->meta_keywords)
 @section('og_type', 'article')
-@section('og_image', $post->featured_image ? asset($post->featured_image) : asset('/uploads/gedung-smait-ishum.webp'))
+@section('og_image', $post->featured_image ? asset($post->featured_image) : asset('/uploads/campus-robbani.webp'))
 
 @section('content')
 {{-- BREADCRUMB HEADER --}}
@@ -54,7 +54,7 @@
             <div class="flex flex-wrap items-center text-xs text-gray-500 gap-4 py-3 border-y border-gray-100 mb-6">
                 <div class="flex items-center space-x-2">
                     <i class="fa-solid fa-user text-[#00913e]"></i>
-                    <span>{{ $post->author?->name ?: 'Humas SMA IT Ishlahul Ummah Prabumulih' }}</span>
+                    <span>{{ $post->author?->name ?: 'Humas Pondok Pesantren Raudhatul Ulum Sakatiga' }}</span>
                 </div>
                 <span>&bull;</span>
                 <div class="flex items-center space-x-2">
@@ -128,9 +128,9 @@
                             <a href="{{ route('artikel.show', $rPost->slug) }}" class="group block">
                                 <div class="h-36 rounded-xl overflow-hidden bg-gray-100 mb-3 shadow-sm">
                                     @if($rPost->featured_image)
-                                        <img src="{{ $rPost->featured_image }}" alt="{{ $rPost->title }}" class="w-full h-full object-cover group-hover:scale-105 transition" onerror="this.src='/uploads/gedung-smait-ishum.webp'">
+                                        <img src="{{ $rPost->featured_image }}" alt="{{ $rPost->title }}" class="w-full h-full object-cover group-hover:scale-105 transition" onerror="this.src='/uploads/campus-robbani.webp'">
                                     @else
-                                        <img src="/uploads/gedung-smait-ishum.webp" alt="{{ $rPost->title }}" class="w-full h-full object-cover">
+                                        <img src="/uploads/campus-robbani.webp" alt="{{ $rPost->title }}" class="w-full h-full object-cover">
                                     @endif
                                 </div>
                                 <span class="text-[10px] text-gray-400 block mb-1">
@@ -186,9 +186,9 @@
                         <div class="flex items-start space-x-3 group">
                             <a href="{{ route('artikel.show', $rPost->slug) }}" class="w-16 h-16 rounded-xl overflow-hidden bg-gray-100 flex-shrink-0">
                                 @if($rPost->featured_image)
-                                    <img src="{{ $rPost->featured_image }}" alt="{{ $rPost->title }}" class="w-full h-full object-cover group-hover:scale-105 transition" onerror="this.src='/uploads/gedung-smait-ishum.webp'">
+                                    <img src="{{ $rPost->featured_image }}" alt="{{ $rPost->title }}" class="w-full h-full object-cover group-hover:scale-105 transition" onerror="this.src='/uploads/campus-robbani.webp'">
                                 @else
-                                    <img src="/uploads/gedung-smait-ishum.webp" alt="{{ $rPost->title }}" class="w-full h-full object-cover">
+                                    <img src="/uploads/campus-robbani.webp" alt="{{ $rPost->title }}" class="w-full h-full object-cover">
                                 @endif
                             </a>
                             <div class="flex-grow">
@@ -208,7 +208,7 @@
             <div class="rounded-2xl overflow-hidden shadow-lg bg-gradient-to-br from-emerald-900 to-[#00913e] p-6 text-white text-center space-y-3">
                 <span class="inline-block bg-[#da251c] text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full text-white">PPDB Online</span>
                 <h4 class="text-lg font-extrabold text-white">Penerimaan Santri Baru</h4>
-                <p class="text-xs text-emerald-100">Jadilah bagian dari generasi Qur'ani dan saintis berprestasi di SMA IT Ishlahul Ummah Prabumulih.</p>
+                <p class="text-xs text-emerald-100">Jadilah bagian dari generasi Qur'ani dan saintis berprestasi di Pondok Pesantren Raudhatul Ulum Sakatiga.</p>
                 <a href="{{ route('ppdb.index') }}" class="inline-block w-full bg-[#da251c] hover:bg-[#b91c1c] text-white font-bold py-2.5 rounded-xl text-xs transition shadow">
                     Daftar Sekarang
                 </a>

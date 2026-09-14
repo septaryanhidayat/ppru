@@ -1,6 +1,6 @@
 @extends('layouts.frontend')
 
-@section('title', $announcement->title . ' - Pengumuman SMA IT Ishlahul Ummah Prabumulih')
+@section('title', $announcement->title . ' - Pengumuman Pondok Pesantren Raudhatul Ulum Sakatiga')
 
 @section('content')
 <div class="bg-gradient-to-r from-emerald-950 via-[#00913e] to-emerald-900 text-white py-12">
@@ -21,7 +21,7 @@
         <div class="lg:col-span-2 bg-white p-6 sm:p-10 rounded-3xl shadow-sm border border-gray-100 space-y-6">
             <div class="flex items-center space-x-3 text-xs text-[#00913e] font-bold">
                 <i class="fa-solid fa-bullhorn text-base text-orange-500"></i>
-                <span>Pengumuman Resmi SMA IT Ishlahul Ummah Prabumulih</span>
+                <span>Pengumuman Resmi Pondok Pesantren Raudhatul Ulum Sakatiga</span>
             </div>
 
             @if($announcement->featured_image)

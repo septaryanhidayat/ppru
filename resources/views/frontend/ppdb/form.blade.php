@@ -1,7 +1,7 @@
 @extends('layouts.frontend')
 
-@section('title', 'Formulir Pendaftaran PPDB ' . ($formSettings['year'] ?? '2026/2027') . ' - SMA IT Ishlahul Ummah Prabumulih')
-@section('meta_description', 'Formulir Pendaftaran Peserta Didik Baru (PPDB Online) SMA Islam Terpadu Ishlahul Ummah Prabumulih Tahun Pelajaran ' . ($formSettings['year'] ?? '2026/2027') . '.')
+@section('title', 'Formulir Pendaftaran PSB ' . ($formSettings['year'] ?? '2026/2027') . ' - Pondok Pesantren Raudhatul Ulum Sakatiga')
+@section('meta_description', 'Formulir Pendaftaran Santri Baru (PSB Online) Pondok Pesantren Raudhatul Ulum Sakatiga Tahun Pelajaran ' . ($formSettings['year'] ?? '2026/2027') . '.')
 
 @section('content')
 <div class="bg-gray-50 py-10 sm:py-14 font-['Poppins',sans-serif]">
@@ -26,13 +26,13 @@
                 </div>
 
                 @php
-                    $cleanHotline = preg_replace('/[^0-9]/', '', (string) ($formSettings['hotline_phone'] ?? '082182680647'));
+                    $cleanHotline = preg_replace('/[^0-9]/', '', (string) ($formSettings['hotline_phone'] ?? '081278901950'));
                     if (str_starts_with($cleanHotline, '0')) {
                         $cleanHotline = '62' . substr($cleanHotline, 1);
                     }
                 @endphp
                 <div class="pt-4 flex flex-wrap items-center justify-center gap-3">
-                    <a href="https://wa.me/{{ $cleanHotline }}?text={{ urlencode('Assalamu\'alaikum Panitia PPDB SMA IT Ishlahul Ummah, saya ingin menanyakan jadwal pendaftaran/kuota siswa baru.') }}" target="_blank" class="inline-flex items-center space-x-2 bg-[#00913e] hover:bg-[#007532] text-white px-7 py-3.5 rounded-2xl text-xs sm:text-sm font-black transition shadow-lg shadow-emerald-500/25">
+                    <a href="https://wa.me/{{ $cleanHotline }}?text={{ urlencode('Assalamu\'alaikum Panitia PSB PPRU Sakatiga, saya ingin menanyakan jadwal pendaftaran/kuota santri baru.') }}" target="_blank" class="inline-flex items-center space-x-2 bg-[#00913e] hover:bg-[#007532] text-white px-7 py-3.5 rounded-2xl text-xs sm:text-sm font-black transition shadow-lg shadow-emerald-500/25">
                         <i class="fa-brands fa-whatsapp text-lg"></i>
                         <span>Hubungi Panitia via WhatsApp</span>
                     </a>
@@ -51,14 +51,19 @@
             {{-- HEADER LOGO & JUDUL --}}
             <div class="text-center space-y-4">
                 <div class="w-24 h-24 sm:w-28 sm:h-28 mx-auto p-1 rounded-2xl flex items-center justify-center">
-                    <img src="/uploads/logo-ishum-square.png" alt="Logo SMA IT Ishlahul Ummah" class="h-full w-auto object-contain">
+                    <img src="/uploads/logo-ppru-square.png" alt="Logo PPRU Sakatiga" class="h-full w-auto object-contain">
                 </div>
 
                 <div class="space-y-1">
                     <h1 class="text-lg sm:text-xl md:text-2xl font-black text-[#00913e] tracking-tight leading-snug">
                         Formulir Pendaftaran Peserta Didik Baru<br>
-                        SMA Islam Terpadu Ishlahul Ummah Prabumulih
+                        Pondok Pesantren Raudhatul Ulum Sakatiga
                     </h1>
+                    <p class="text-xs text-slate-500 max-w-md mx-auto">
+                        Isi formulir dengan data yang sah dan lengkap. Tanda bintang (<span class="text-red-500 font-bold">*</span>) wajib diisi.
+                    </p>
+                </div>
+            </div>
                     <p class="text-xs text-slate-500 max-w-md mx-auto">
                         Isi formulir dengan data yang sah dan lengkap. Tanda bintang (<span class="text-red-500 font-bold">*</span>) wajib diisi.
                     </p>
@@ -160,7 +165,7 @@
             {{-- FOOTER --}}
             <div class="pt-8 text-center border-t border-slate-100">
                 <div class="flex items-center justify-between text-[11px] text-slate-400">
-                    <span>PPDB SMA IT Ishlahul Ummah Prabumulih</span>
+                    <span>PSB Pondok Pesantren Raudhatul Ulum Sakatiga</span>
                     <span>Hak Cipta Dilindungi Undang-Undang</span>
                 </div>
             </div>

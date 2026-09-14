@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rekap Pendaftar PPDB - SMA IT Ishlahul Ummah Prabumulih</title>
-    <link rel="icon" type="image/png" href="/uploads/logo-ishum-square.png">
+    <title>Rekap Pendaftar PPDB - Pondok Pesantren Raudhatul Ulum Sakatiga</title>
+    <link rel="icon" type="image/png" href="/uploads/logo-ppru-square.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         @page {
@@ -181,13 +181,13 @@
 
     {{-- KOP SURAT --}}
     <div class="header">
-        <img src="/uploads/logo-ishum-square.png" alt="Logo Ishum">
+        <img src="/uploads/logo-ppru-square.png" alt="Logo PPRU">
         <div class="header-text">
-            <h2>YAYASAN ISHLAHUL UMMAH PRABUMULIH</h2>
-            <h3>SMA ISLAM TERPADU ISHLAHUL UMMAH</h3>
-            <p><strong>TERAKREDITASI BAN-SM (ANGGOTA JSIT INDONESIA)</strong> &bull; NPSN: 69990882</p>
-            <p>Jalan Sadewa RT 01 RW 04 Kelurahan Karang Raja, Kec. Prabumulih Timur, Kota Prabumulih, Sumsel 31111</p>
-            <p>Telp/WA: 0821-8268-0647 | Email: smaitishlahulummah2019@gmail.com | Web: www.ishum.sch.id</p>
+            <h2>YAYASAN PERGURUAN ISLAM RAUDHATUL ULUM (YAPIRUS)</h2>
+            <h3>PONDOK PESANTREN RAUDHATUL ULUM SAKATIGA</h3>
+            <p><strong>TERAKREDITASI A &bull; MUADALAH AL-AZHAR KAIRO</strong> &bull; NPSN: 10648831</p>
+            <p>Desa Sakatiga, Kecamatan Indralaya, Kabupaten Ogan Ilir, Sumatera Selatan 30816</p>
+            <p>Telp/WA: 0812-7890-1950 | Email: sekretariat@ppru.ac.id | Web: https://ppru.ac.id</p>
         </div>
     </div>
 
@@ -263,17 +263,17 @@
     <div class="signatures">
         <div class="sig-box">
             <p>Mengetahui,</p>
-            <p><strong>Kepala SMA IT Ishlahul Ummah</strong></p>
+            <p><strong>Kepala Pondok Pesantren Raudhatul Ulum</strong></p>
             <div class="sig-space"></div>
-            <p><strong><u>Agi Gustiawan, S. Pd</u></strong></p>
+            <p><strong><u>KH. Tol'at Wafa Ahmad, Lc.</u></strong></p>
             <p>NIY. 20190701001</p>
         </div>
         <div class="sig-box">
             <p>Prabumulih, {{ \Carbon\Carbon::now()->translatedFormat('d F Y') }}</p>
             <p><strong>Ketua Panitia PPDB</strong></p>
             <div class="sig-space"></div>
-            <p><strong><u>Panitia SPMB Ishum</u></strong></p>
-            <p>SMA IT Ishlahul Ummah</p>
+            <p><strong><u>Panitia SPMB PPRU</u></strong></p>
+            <p>Pondok Pesantren Raudhatul Ulum</p>
         </div>
     </div>
 

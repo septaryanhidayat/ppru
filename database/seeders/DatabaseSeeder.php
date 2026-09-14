@@ -18,17 +18,16 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
 
         User::updateOrCreate(
-            ['email' => 'admin@robbani.sch.id'],
+            ['email' => 'admin@ppru.ac.id'],
             [
-                'name' => 'Admin SMA IT Plus Robbani',
-                'password' => bcrypt('AdminRobbani2026!'),
+                'name' => 'Admin PPRU Sakatiga',
+                'password' => bcrypt('AdminPPRU2026!'),
                 'role' => 'admin',
             ]
         );
 
         $this->call([
             DownloadSeeder::class,
-            SchoolDataSeeder::class,
             PpruDataSeeder::class,
             PpruMediaAndNewsSeeder::class,
         ]);

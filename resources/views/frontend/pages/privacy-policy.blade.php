@@ -1,7 +1,7 @@
 @extends('layouts.frontend')
 
-@section('title', 'Kebijakan Privasi - SMA IT Ishlahul Ummah Prabumulih')
-@section('meta_description', 'Kebijakan Privasi resmi Website SMA IT Ishlahul Ummah Prabumulih yang menjelaskan pengelolaan dan perlindungan data pengunjung, siswa, dan orang tua.')
+@section('title', 'Kebijakan Privasi - Pondok Pesantren Raudhatul Ulum Sakatiga')
+@section('meta_description', 'Kebijakan Privasi resmi Website Pondok Pesantren Raudhatul Ulum Sakatiga yang menjelaskan pengelolaan dan perlindungan data pengunjung, siswa, dan orang tua.')
 
 @section('content')
 {{-- HERO HEADER --}}
@@ -14,7 +14,7 @@
         </nav>
         <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Kebijakan Privasi (Privacy Policy)</h1>
         <p class="text-sm text-emerald-100 mt-2 font-light max-w-2xl">
-            Komitmen transparansi dan perlindungan privasi data setiap pengunjung situs resmi SMA IT Ishlahul Ummah Prabumulih.
+            Komitmen transparansi dan perlindungan privasi data setiap pengunjung situs resmi Pondok Pesantren Raudhatul Ulum Sakatiga.
         </p>
     </div>
 </div>
@@ -27,7 +27,7 @@
             <div>
                 <span class="text-xs font-bold text-orange-500 uppercase tracking-wider block">Dokumen Resmi</span>
                 <h2 class="text-xl sm:text-2xl font-extrabold text-gray-900 mt-1">Kebijakan Privasi Website</h2>
-                <p class="text-xs text-gray-500 mt-1">Website Resmi SMA Islam Terpadu Ishlahul Ummah Prabumulih</p>
+                <p class="text-xs text-gray-500 mt-1">Website Resmi Pondok Pesantren Raudhatul Ulum Sakatiga</p>
             </div>
             <div class="bg-emerald-50 text-[#00913e] px-4 py-2 rounded-xl text-xs font-bold border border-emerald-200">
                 Terbit: 2026
@@ -45,7 +45,7 @@
                         <span>Pendahuluan</span>
                     </h3>
                     <p>
-                        SMA IT Ishlahul Ummah Prabumulih menghargai privasi setiap pengunjung website resmi kami. Kebijakan privasi ini menjelaskan bagaimana kami mengumpulkan, menggunakan, dan melindungi informasi pribadi Anda saat mengakses dan menggunakan layanan di website kami.
+                        Pondok Pesantren Raudhatul Ulum Sakatiga menghargai privasi setiap pengunjung website resmi kami. Kebijakan privasi ini menjelaskan bagaimana kami mengumpulkan, menggunakan, dan melindungi informasi pribadi Anda saat mengakses dan menggunakan layanan di website kami.
                     </p>
                     <p>
                         Dengan mengunjungi website ini, Anda menyetujui praktik yang dijelaskan dalam Kebijakan Privasi ini.
@@ -104,7 +104,7 @@
                         <span>Tautan ke Situs Pihak Ketiga</span>
                     </h3>
                     <p>
-                        Website kami dapat memuat tautan ke situs eksternal yang tidak dikelola langsung oleh SMA IT Ishlahul Ummah Prabumulih. Kami tidak bertanggung jawab atas isi maupun kebijakan privasi dari situs-situs pihak ketiga tersebut.
+                        Website kami dapat memuat tautan ke situs eksternal yang tidak dikelola langsung oleh Pondok Pesantren Raudhatul Ulum Sakatiga. Kami tidak bertanggung jawab atas isi maupun kebijakan privasi dari situs-situs pihak ketiga tersebut.
                     </p>
                 </section>
 
@@ -124,7 +124,7 @@
                         <span>Perubahan Kebijakan Privasi</span>
                     </h3>
                     <p>
-                        SMA IT Ishlahul Ummah Prabumulih berhak memperbarui Kebijakan Privasi ini sewaktu-waktu. Setiap perubahan akan langsung dipublikasikan di halaman ini dengan tanggal pembaruan yang jelas.
+                        Pondok Pesantren Raudhatul Ulum Sakatiga berhak memperbarui Kebijakan Privasi ini sewaktu-waktu. Setiap perubahan akan langsung dipublikasikan di halaman ini dengan tanggal pembaruan yang jelas.
                     </p>
                 </section>
 
@@ -135,8 +135,8 @@
                     </h3>
                     <p>Jika Anda memiliki pertanyaan mengenai Kebijakan Privasi ini, silakan hubungi kami:</p>
                     <div class="text-xs sm:text-sm space-y-1 text-gray-600 mt-2">
-                        <p>📧 Email: <strong>{{ $siteSettings['contact_email'] ?? 'info@smaitplusishum.sch.id' }}</strong></p>
-                        <p>📞 Telepon: <strong>{{ $siteSettings['contact_phone'] ?? '0821-8268-0647' }}</strong></p>
+                        <p>📧 Email: <strong>{{ $siteSettings['contact_email'] ?? 'sekretariat@ppru.ac.id' }}</strong></p>
+                        <p>📞 Telepon: <strong>{{ $siteSettings['contact_phone'] ?? '0812-7890-1950' }}</strong></p>
                         <p>📍 Alamat: {{ $siteSettings['contact_address'] ?? 'Jl. Lintas Timur Palembang-Prabumulih KM 35, Prabumulih, Sumatera Selatan' }}</p>
                     </div>
                 </section>

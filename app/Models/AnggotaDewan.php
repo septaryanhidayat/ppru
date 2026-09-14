@@ -28,6 +28,6 @@ class AnggotaDewan extends Model
             return '/'.ltrim($path, '/');
         }
 
-        return '/uploads/kepsek-agi-gustiawan.webp';
+        return '/uploads/default-avatar.webp';
     }
 }

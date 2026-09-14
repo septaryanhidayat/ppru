@@ -1,7 +1,7 @@
 @extends('layouts.frontend')
 
-@section('title', 'Fasilitas & Sarana Prasarana - SMA IT Ishlahul Ummah Prabumulih')
-@section('meta_description', 'Fasilitas belajar modern, laboratorium sains, ruang multimedia, perpustakaan digital, asrama santri, dan sarana olahraga SMA IT Ishlahul Ummah Prabumulih.')
+@section('title', 'Fasilitas & Sarana Prasarana - Pondok Pesantren Raudhatul Ulum Sakatiga')
+@section('meta_description', 'Fasilitas belajar modern, laboratorium sains, ruang multimedia, perpustakaan digital, asrama santri, dan sarana olahraga Pondok Pesantren Raudhatul Ulum Sakatiga.')
 
 @section('content')
 {{-- HERO HEADER --}}
@@ -37,7 +37,7 @@
                 <div>
                     {{-- FOTO DOKUMENTASI FASILITAS SEKOLAH --}}
                     <div class="h-48 sm:h-52 w-full overflow-hidden bg-slate-100 relative">
-                        <img src="{{ $b->thumbnail_url }}" alt="{{ $b->name }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='/uploads/gedung-smait-ishum.webp'">
+                        <img src="{{ $b->thumbnail_url }}" alt="{{ $b->name }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='/uploads/campus-robbani.webp'">
                         <span class="absolute top-3.5 left-3.5 bg-[#00913e] text-white text-[10px] font-bold px-3 py-1 rounded-full shadow-md uppercase tracking-wider">
                             Fasilitas Sekolah
                         </span>
@@ -50,7 +50,7 @@
                             @else
                                 <i class="fa-solid fa-school text-sm text-[#00913e]"></i>
                             @endif
-                            <span>SMA IT Ishlahul Ummah</span>
+                            <span>Pondok Pesantren Raudhatul Ulum</span>
                         </div>
 
                         <h3 class="font-extrabold text-gray-900 text-lg sm:text-xl group-hover:text-[#00913e] transition leading-snug">
@@ -68,7 +68,7 @@
                         <span>Rincian Fasilitas</span>
                         <i class="fa-solid fa-arrow-right ml-1.5 text-[10px] group-hover:translate-x-1 transition"></i>
                     </a>
-                    <span class="text-[11px] text-gray-400 font-medium">Ishum Prabumulih</span>
+                    <span class="text-[11px] text-gray-400 font-medium">PPRU Prabumulih</span>
                 </div>
             </div>
         @empty

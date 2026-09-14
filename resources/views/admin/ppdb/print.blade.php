@@ -126,13 +126,13 @@
     <div class="container">
         {{-- KOP SURAT --}}
         <div class="header">
-            <img src="/uploads/logo-ishum-square.png" alt="Logo" class="logo">
+            <img src="/uploads/logo-ppru-square.png" alt="Logo" class="logo">
             <div class="header-text">
-                <h1>Yayasan Ishlahul Ummah Prabumulih</h1>
-                <h2>SMA Islam Terpadu Ishlahul Ummah Prabumulih</h2>
-                <p>NPSN: 69990882 &bull; Status Akreditasi B (BAN-SM: 074/BAP-SM/TU/XI/2016)</p>
-                <p>Jl. Lingkar Timur, Kel. Gunung Ibul, Kec. Prabumulih Timur, Kota Prabumulih, Sumatera Selatan 31111</p>
-                <p>Email: smaitishlahulummah@gmail.com | Website: https://smaitishumpbm.sch.id | WA: 0822-8189-6792</p>
+                <h1>Yayasan Perguruan Islam Raudhatul Ulum (YAPIRUS)</h1>
+                <h2>Pondok Pesantren Raudhatul Ulum Sakatiga</h2>
+                <p>NPSN: 10648831 &bull; Terakreditasi A &bull; Muadalah Universitas Al-Azhar Kairo</p>
+                <p>Desa Sakatiga, Kecamatan Indralaya, Kabupaten Ogan Ilir, Sumatera Selatan 30816</p>
+                <p>Email: sekretariat@ppru.ac.id | Website: https://ppru.ac.id | WA: 0812-7890-1950</p>
             </div>
         </div>
 
@@ -254,7 +254,7 @@
                 <p>( {{ $ppdb->full_name }} )</p>
             </div>
             <div class="sig-box">
-                <p>Prabumulih, {{ date('d F Y') }}<br>Panitia SPMB Ishum,</p>
+                <p>Prabumulih, {{ date('d F Y') }}<br>Panitia SPMB PPRU,</p>
                 <div class="sig-space"></div>
                 <p>( Panitia SPMB TP 2026/2027 )</p>
             </div>

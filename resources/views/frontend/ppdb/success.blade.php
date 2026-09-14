@@ -1,6 +1,6 @@
 @extends('layouts.frontend')
 
-@section('title', 'Pendaftaran Berhasil - PPDB SMA IT Ishlahul Ummah Prabumulih')
+@section('title', 'Pendaftaran Berhasil - PPDB Pondok Pesantren Raudhatul Ulum Sakatiga')
 
 @section('content')
 <div class="bg-gray-50 py-12 sm:py-16">
@@ -21,7 +21,7 @@
                     Alhamdulillah, Formulir Telah Diterima!
                 </h1>
                 <p class="text-xs text-slate-500 max-w-sm mx-auto leading-relaxed">
-                    Terima kasih telah mendaftar di SMA IT Ishlahul Ummah Prabumulih Tahun Pelajaran 2026/2027.
+                    Terima kasih telah mendaftar di Pondok Pesantren Raudhatul Ulum Sakatiga Tahun Pelajaran 2026/2027.
                 </p>
             </div>
 

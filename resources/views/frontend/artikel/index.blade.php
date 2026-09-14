@@ -1,7 +1,7 @@
 @extends('layouts.frontend')
 
-@section('title', 'Berita & Artikel - SMA IT Ishlahul Ummah Prabumulih')
-@section('meta_description', 'Kumpulan berita sekolah, prestasi siswa, kegiatan akademik, tahfidz, dan artikel edukasi SMA Islam Terpadu Ishlahul Ummah Prabumulih.')
+@section('title', 'Berita & Artikel - Pondok Pesantren Raudhatul Ulum Sakatiga')
+@section('meta_description', 'Kumpulan berita sekolah, prestasi siswa, kegiatan akademik, tahfidz, dan artikel edukasi Pondok Pesantren Raudhatul Ulum Sakatiga.')
 
 @section('content')
 {{-- HERO HEADER --}}
@@ -28,7 +28,7 @@
             @endif
         </h1>
         <p class="text-sm text-emerald-100 mt-2 font-light max-w-2xl">
-            Informasi kegiatan santri, prestasi akademik & tahfidz, serta kabar terkini SMA IT Ishlahul Ummah Prabumulih.
+            Informasi kegiatan santri, prestasi akademik & tahfidz, serta kabar terkini Pondok Pesantren Raudhatul Ulum Sakatiga.
         </p>
     </div>
 </div>
@@ -57,9 +57,9 @@
                     <article class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col group reveal-fade-up delay-{{ $idx % 4 }}">
                         <a href="{{ route('artikel.show', $post->slug) }}" class="block relative h-48 overflow-hidden bg-gray-100">
                             @if($post->featured_image)
-                                <img src="{{ $post->featured_image }}" alt="{{ $post->title }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='/uploads/gedung-smait-ishum.webp'">
+                                <img src="{{ $post->featured_image }}" alt="{{ $post->title }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='/uploads/campus-robbani.webp'">
                             @else
-                                <img src="/uploads/gedung-smait-ishum.webp" alt="{{ $post->title }}" class="w-full h-full object-cover">
+                                <img src="/uploads/campus-robbani.webp" alt="{{ $post->title }}" class="w-full h-full object-cover">
                             @endif
                             @if($post->categories->isNotEmpty())
                                 <span class="absolute top-3 left-3 bg-[#00913e] text-white text-[10px] font-bold px-2 py-0.5 rounded-full shadow-sm">
@@ -147,9 +147,9 @@
                         <div class="flex items-start space-x-3 group">
                             <a href="{{ route('artikel.show', $rPost->slug) }}" class="w-16 h-16 rounded-xl overflow-hidden bg-gray-100 flex-shrink-0">
                                 @if($rPost->featured_image)
-                                    <img src="{{ $rPost->featured_image }}" alt="{{ $rPost->title }}" class="w-full h-full object-cover group-hover:scale-105 transition" onerror="this.src='/uploads/gedung-smait-ishum.webp'">
+                                    <img src="{{ $rPost->featured_image }}" alt="{{ $rPost->title }}" class="w-full h-full object-cover group-hover:scale-105 transition" onerror="this.src='/uploads/campus-robbani.webp'">
                                 @else
-                                    <img src="/uploads/gedung-smait-ishum.webp" alt="{{ $rPost->title }}" class="w-full h-full object-cover">
+                                    <img src="/uploads/campus-robbani.webp" alt="{{ $rPost->title }}" class="w-full h-full object-cover">
                                 @endif
                             </a>
                             <div class="flex-grow">
@@ -169,7 +169,7 @@
             <div class="rounded-2xl overflow-hidden shadow-lg bg-gradient-to-br from-emerald-900 to-[#00913e] p-6 text-white text-center space-y-3">
                 <span class="inline-block bg-orange-500 text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full text-white">PPDB Online</span>
                 <h4 class="text-lg font-extrabold text-white">Penerimaan Santri Baru</h4>
-                <p class="text-xs text-emerald-100">Jadilah bagian dari generasi Qur'ani dan saintis berprestasi di SMA IT Ishlahul Ummah Prabumulih.</p>
+                <p class="text-xs text-emerald-100">Jadilah bagian dari generasi Qur'ani dan saintis berprestasi di Pondok Pesantren Raudhatul Ulum Sakatiga.</p>
                 <a href="{{ route('hubungi') }}" class="inline-block w-full bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold py-2.5 rounded-xl text-xs hover:from-orange-600 hover:to-amber-600 transition shadow">
                     Daftar Sekarang
                 </a>

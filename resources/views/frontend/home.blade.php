@@ -325,7 +325,7 @@
                     <div class="absolute -bottom-4 -right-4 w-20 h-20 border-b-4 border-r-4 border-school-green rounded-br-3xl -z-0"></div>
                     
                     <div class="relative z-10 rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-gradient-to-b from-emerald-50 to-emerald-100 aspect-[4/5]">
-                        <img src="/uploads/kepsek-agi-gustiawan.webp" alt="KH. Tol'at Wafa Ahmad, Lc. - Mudir Pondok Pesantren Raudhatul Ulum" class="w-full h-full object-cover object-top transform hover:scale-105 transition duration-500" onerror="this.src='/uploads/logo-ppru-banner.png'">
+                        <img src="/uploads/kh-tolat-wafa-ahmad.webp" alt="KH. Tol'at Wafa Ahmad, Lc. - Mudir Pondok Pesantren Raudhatul Ulum" class="w-full h-full object-cover object-top transform hover:scale-105 transition duration-500" onerror="this.src='/uploads/logo-ppru-banner.png'">
                         <div class="absolute inset-0 bg-gradient-to-t from-gray-950/80 via-transparent to-transparent flex items-end p-5">
                             <div class="text-white">
                                 <span class="inline-block px-2.5 py-0.5 bg-school-gold text-gray-950 rounded-full text-[10px] font-black uppercase tracking-wider mb-1">
@@ -683,7 +683,7 @@
             <div class="lg:col-span-7 reveal-fade-up delay-1">
                 <article class="bg-white rounded-3xl shadow-sm hover:shadow-xl overflow-hidden border border-gray-100 h-full flex flex-col group transition duration-300">
                     <div class="relative h-64 sm:h-84 overflow-hidden bg-gray-100">
-                        <img src="{{ $featuredPost->featured_image_url }}" alt="{{ $featuredPost->title }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='/uploads/campus-ishum.jpg'">
+                        <img src="{{ $featuredPost->featured_image_url }}" alt="{{ $featuredPost->title }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='/uploads/campus-robbani.webp'">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
                         @if($featuredPost->categories->isNotEmpty())
                         <span class="absolute top-4 left-4 bg-school-green text-white text-[11px] font-bold px-3 py-1 rounded-full shadow-md">
@@ -803,19 +803,19 @@
 </section>
 
 {{-- ========================================================
-     SECTION #8: DEWAN ASATIDZ & TENAGA PENDIDIK
+     SECTION #8: PENGURUS YAYASAN (YAPIRUS) & DEWAN GURU
      ======================================================== --}}
 <section class="py-14 sm:py-18 bg-gray-50 border-t border-gray-200/80 overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center max-w-2xl mx-auto mb-10 reveal-fade-up">
             <span class="inline-block px-3 py-1 bg-emerald-100 text-school-green rounded-full text-xs font-bold uppercase tracking-wider mb-2">
-                Pendidik &amp; Masyayikh
+                Pimpinan &amp; Pengurus Yayasan
             </span>
             <h2 class="text-2xl sm:text-3xl font-black text-gray-900 tracking-tight">
-                Dewan Asatidz &amp; Dewan Guru
+                Pengurus Yayasan &amp; Dewan Guru
             </h2>
             <p class="text-xs sm:text-sm text-gray-600 mt-1">
-                Para masyayikh, ustadz, ustadzah, dan dosen profesional berdedikasi tinggi yang membimbing santri selama 24 jam di asrama
+                Jajaran pimpinan Pondok Pesantren Raudhatul Ulum Sakatiga dan pengurus Yayasan Perguruan Islam Raudhatul Ulum (YAPIRUS)
             </p>
             <div class="w-16 h-1 bg-school-green mx-auto mt-2.5 rounded-full"></div>
         </div>
@@ -825,7 +825,7 @@
             @foreach($dewan as $index => $d)
             <div class="bg-white rounded-3xl p-4 shadow-xs hover:shadow-xl border border-gray-100 text-center group transition transform hover:-translate-y-1.5 reveal-fade-up delay-{{ $index + 1 }}">
                 <div class="h-68 rounded-2xl overflow-hidden mb-3.5 bg-gray-100 relative">
-                    <img src="{{ $d->photo_url }}" alt="Foto {{ $d->name }} - {{ $d->position }}" class="w-full h-full object-cover object-top group-hover:scale-105 transition duration-300" onerror="this.src='/uploads/kepsek-agi-gustiawan.webp'">
+                    <img src="{{ $d->photo_url }}" alt="Foto {{ $d->name }} - {{ $d->position }}" class="w-full h-full object-cover object-top group-hover:scale-105 transition duration-300" onerror="this.src='/uploads/default-avatar.webp'">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end justify-center p-3">
                         <span class="text-white text-xs font-bold">{{ $d->position }}</span>
                     </div>
@@ -845,7 +845,7 @@
             @foreach($dewan as $index => $d)
             <div class="bg-white rounded-2xl p-2.5 shadow-xs border border-gray-100 text-center reveal-fade-up delay-{{ $index + 1 }}">
                 <div class="h-44 rounded-xl overflow-hidden mb-2 bg-gray-100">
-                    <img src="{{ $d->photo_url }}" alt="Foto {{ $d->name }} - {{ $d->position }}" class="w-full h-full object-cover object-top" onerror="this.src='/uploads/kepsek-agi-gustiawan.webp'">
+                    <img src="{{ $d->photo_url }}" alt="Foto {{ $d->name }} - {{ $d->position }}" class="w-full h-full object-cover object-top" onerror="this.src='/uploads/default-avatar.webp'">
                 </div>
                 <h3 class="font-extrabold text-xs text-gray-900 leading-tight">
                     {{ $d->name }}
@@ -858,8 +858,8 @@
         </div>
 
         <div class="text-center mt-10 reveal-fade-up">
-            <a href="{{ route('dewan.index') }}" aria-label="Lihat Semua Asatidz" class="inline-flex items-center bg-school-green hover:bg-emerald-800 text-white font-bold text-xs sm:text-sm px-7 py-3 rounded-full shadow transition">
-                <span>Lihat Seluruh Dewan Asatidz</span>
+            <a href="{{ route('dewan.index') }}" aria-label="Lihat Seluruh Dewan Asatidz & Pengurus" class="inline-flex items-center bg-school-green hover:bg-emerald-800 text-white font-bold text-xs sm:text-sm px-7 py-3 rounded-full shadow-md hover:shadow-lg transition">
+                <span>Lihat Seluruh Pengurus &amp; Dewan Asatidz</span>
                 <i class="fa-solid fa-arrow-right ml-2 text-xs" aria-hidden="true"></i>
             </a>
         </div>
@@ -955,7 +955,7 @@
                         <template x-for="(item, idx) in items" :key="idx">
                             <div class="flex-shrink-0 px-2 sm:px-3" :style="'width: ' + (100 / perView) + '%'">
                                 <div class="relative h-64 sm:h-80 md:h-96 lg:h-[360px] rounded-3xl overflow-hidden shadow-2xl bg-neutral-900 border border-neutral-800/80 group">
-                                    <img :src="item.url" :alt="item.title" class="w-full h-full object-cover group-hover:scale-105 transition duration-700 ease-out" onerror="this.src='/uploads/campus-ishum.jpg'">
+                                    <img :src="item.url" :alt="item.title" class="w-full h-full object-cover group-hover:scale-105 transition duration-700 ease-out" onerror="this.src='/uploads/campus-robbani.webp'">
                                     <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-5">
                                         <span class="text-xs sm:text-sm font-bold text-white leading-snug drop-shadow-md" x-text="item.title"></span>
                                     </div>

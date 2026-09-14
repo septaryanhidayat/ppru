@@ -1,7 +1,7 @@
 @extends('layouts.frontend')
 
-@section('title', 'Galeri Video & Dokumentasi - SMA IT Ishlahul Ummah Prabumulih')
-@section('meta_description', 'Kumpulan video profil sekolah, dokumentasi kegiatan santri, pentas prestasi, dan liputan pembelajaran SMA IT Ishlahul Ummah Prabumulih.')
+@section('title', 'Galeri Video TVRU & Dokumentasi - Pondok Pesantren Raudhatul Ulum Sakatiga')
+@section('meta_description', 'Kumpulan video profil pesantren, dokumentasi santri TVRU Sakatiga, sarasehan mudir, dan liputan kegiatan Pondok Pesantren Raudhatul Ulum Sakatiga.')
 
 @section('content')
 {{-- HERO HEADER --}}
@@ -12,9 +12,9 @@
             <span>/</span>
             <span class="text-amber-300 font-semibold">Galeri Video</span>
         </nav>
-        <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Galeri Video SMA IT Ishlahul Ummah Prabumulih</h1>
+        <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Galeri Video TVRU Pesantren Raudhatul Ulum</h1>
         <p class="text-sm text-emerald-100 mt-2 font-light max-w-2xl">
-            Dokumentasi video liputan kegiatan santri, tasmi' Al-Qur'an, praktikum sains, dan prestasi sekolah.
+            Dokumentasi video resmi dari kanal YouTube TVRU Sakatiga (@tvrusakatiga): sarasehan pimpinan, upacara santri, dan kegiatan kepesantrenan.
         </p>
     </div>
 </div>
@@ -22,9 +22,9 @@
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 space-y-12">
     
     <div class="text-center max-w-2xl mx-auto">
-        <span class="text-xs font-bold text-orange-500 uppercase tracking-wider block">DOKUMENTASI MULTIMEDIA</span>
+        <span class="text-xs font-bold text-school-green uppercase tracking-wider block">DOKUMENTASI MULTIMEDIA TVRU</span>
         <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight mt-1">
-            Video Kegiatan Santri Ishum
+            Video Kegiatan Santri &amp; Liputan Pesantren
         </h2>
         <div class="w-16 h-1 bg-[#00913e] mx-auto rounded-full mt-3"></div>
     </div>
@@ -59,9 +59,9 @@
 
                 <div class="p-6 pt-0 border-t border-gray-100 flex items-center justify-between text-xs text-gray-600 mt-2">
                     <span class="inline-flex items-center text-red-600 font-bold">
-                        <i class="fa-brands fa-youtube mr-1.5 text-sm" aria-hidden="true"></i> YouTube
+                        <i class="fa-brands fa-youtube mr-1.5 text-sm" aria-hidden="true"></i> TVRU Sakatiga
                     </span>
-                    <span>SMA IT Ishlahul Ummah Prabumulih</span>
+                    <span>PPRU Sakatiga Ogan Ilir</span>
                 </div>
             </div>
         @empty

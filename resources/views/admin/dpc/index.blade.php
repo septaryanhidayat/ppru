@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title', 'Program Unggulan Sekolah')
-@section('header_title', 'Program Unggulan SMA IT Ishlahul Ummah Prabumulih')
+@section('header_title', 'Program Unggulan Pondok Pesantren Raudhatul Ulum Sakatiga')
 
 @section('content')
 <div class="space-y-6">
@@ -23,7 +23,7 @@
                     <div>
                         {{-- Foto Cover Program --}}
                         <div class="h-44 w-full bg-slate-200 relative overflow-hidden">
-                            <img src="{{ $d->thumbnail_url }}" alt="{{ $d->name }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='/uploads/tahfidz-ishum.webp'">
+                            <img src="{{ $d->thumbnail_url }}" alt="{{ $d->name }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='/uploads/activities-robbani.webp'">
                             <span class="absolute top-2.5 left-2.5 bg-[#00913e] text-white text-[10px] font-bold px-2.5 py-1 rounded-lg shadow-sm">
                                 {{ $d->address ?: 'Unggulan' }}
                             </span>
@@ -49,7 +49,7 @@
                     </div>
 
                     <div class="p-4 pt-2 border-t border-slate-200/70 flex items-center justify-between text-xs bg-white">
-                        <span class="text-slate-400 text-[11px] font-medium">SMA IT Ishum</span>
+                        <span class="text-slate-400 text-[11px] font-medium">SMA IT PPRU</span>
                         <div class="flex items-center space-x-2">
                             <a href="{{ route('admin.dpc.edit', $d) }}" class="p-2 text-slate-600 hover:text-[#00913e] hover:bg-emerald-50 rounded-lg transition" title="Edit Program">
                                 <i class="fa-solid fa-pen-to-square"></i>

@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title', 'Fasilitas & Sarana Sekolah')
-@section('header_title', 'Fasilitas & Sarana SMA IT Ishlahul Ummah Prabumulih')
+@section('header_title', 'Fasilitas & Sarana Pondok Pesantren Raudhatul Ulum Sakatiga')
 
 @section('content')
 <div class="space-y-6">
@@ -23,7 +23,7 @@
                     <div>
                         {{-- Foto Thumbnail Fasilitas --}}
                         <div class="h-44 w-full bg-slate-200 relative overflow-hidden">
-                            <img src="{{ $b->thumbnail_url }}" alt="{{ $b->name }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='/uploads/gedung-smait-ishum.webp'">
+                            <img src="{{ $b->thumbnail_url }}" alt="{{ $b->name }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='/uploads/campus-robbani.webp'">
                             <span class="absolute top-2.5 left-2.5 bg-black/60 backdrop-blur-xs text-white text-[10px] font-bold px-2.5 py-1 rounded-lg">
                                 #{{ $b->order }}
                             </span>
@@ -50,7 +50,7 @@
                     </div>
 
                     <div class="p-4 pt-2 border-t border-slate-200/70 flex items-center justify-between text-xs bg-white">
-                        <span class="text-slate-400 text-[11px] font-medium">SMA IT Ishum</span>
+                        <span class="text-slate-400 text-[11px] font-medium">SMA IT PPRU</span>
                         <div class="flex items-center space-x-2">
                             <a href="{{ route('admin.bidang.edit', $b) }}" class="p-2 text-slate-600 hover:text-[#00913e] hover:bg-emerald-50 rounded-lg transition" title="Edit Fasilitas">
                                 <i class="fa-solid fa-pen-to-square"></i>

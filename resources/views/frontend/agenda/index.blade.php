@@ -1,7 +1,7 @@
 @extends('layouts.frontend')
 
-@section('title', 'Agenda Akademik & Kegiatan - SMA IT Ishlahul Ummah Prabumulih')
-@section('meta_description', 'Jadwal dan kalender agenda kegiatan akademik, ujian, perlombaan, tasmi\' Qur\'an, dan ekstrakurikuler SMA Islam Terpadu Ishlahul Ummah Prabumulih.')
+@section('title', 'Agenda Akademik & Kegiatan - Pondok Pesantren Raudhatul Ulum Sakatiga')
+@section('meta_description', 'Jadwal dan kalender agenda kegiatan akademik, ujian, perlombaan, tasmi\' Qur\'an, dan ekstrakurikuler Pondok Pesantren Raudhatul Ulum Sakatiga.')
 
 @section('content')
 {{-- HERO HEADER --}}
@@ -16,7 +16,7 @@
         </nav>
         <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Agenda Akademik & Santri</h1>
         <p class="text-sm text-emerald-100 mt-2 font-light max-w-2xl">
-            Jadwal kegiatan belajar, agenda tasmi' Al-Qur'an, olimpiade sains, dan ekstrakurikuler SMA IT Ishlahul Ummah Prabumulih.
+            Jadwal kegiatan belajar, agenda tasmi' Al-Qur'an, olimpiade sains, dan ekstrakurikuler Pondok Pesantren Raudhatul Ulum Sakatiga.
         </p>
     </div>
 </div>
@@ -49,7 +49,7 @@
                         </h2>
                         <p class="text-xs text-gray-500 mt-1.5 flex items-center">
                             <i class="fa-solid fa-location-dot mr-2 text-orange-500"></i>
-                            <span>{{ $agenda->location ?: 'Kampus SMA IT Ishlahul Ummah Prabumulih' }}</span>
+                            <span>{{ $agenda->location ?: 'Kampus Pondok Pesantren Raudhatul Ulum Sakatiga' }}</span>
                         </p>
                         <p class="text-xs text-gray-500 mt-2 line-clamp-2 leading-relaxed font-light">
                             {!! strip_tags($agenda->content) !!}

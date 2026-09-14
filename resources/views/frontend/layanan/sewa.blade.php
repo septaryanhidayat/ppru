@@ -1,7 +1,7 @@
 @extends('layouts.frontend')
 
-@section('title', 'Permohonan Sewa Menyewa Barang Milik Sekolah - SMA IT Ishlahul Ummah Prabumulih')
-@section('meta_description', 'Layanan dan ketentuan permohonan sewa menyewa sarana, prasarana, gedung, aula, dan perlengkapan milik SMA IT Ishlahul Ummah Prabumulih.')
+@section('title', 'Permohonan Sewa Menyewa Barang Milik Sekolah - Pondok Pesantren Raudhatul Ulum Sakatiga')
+@section('meta_description', 'Layanan dan ketentuan permohonan sewa menyewa sarana, prasarana, gedung, aula, dan perlengkapan milik Pondok Pesantren Raudhatul Ulum Sakatiga.')
 
 @section('content')
 {{-- HERO HEADER --}}
@@ -36,7 +36,7 @@
             PERMOHONAN SEWA MENYEWA BARANG MILIK SEKOLAH
         </h2>
         <p class="text-sm sm:text-base font-bold text-[#da251c] mt-1">
-            SMA Islam Terpadu Ishlahul Ummah Prabumulih
+            Pondok Pesantren Raudhatul Ulum Sakatiga
         </p>
         <div class="w-16 h-1 bg-[#00913e] mx-auto rounded-full mt-3"></div>
     </div>
@@ -88,7 +88,7 @@
                 ],
                 [
                     'title' => 'Pengaduan, Saran dan Masukan',
-                    'content' => '<p>Pengaduan, saran dan masukan dapat disampaikan ke bagian humas dan media layanan terpadu SMA IT Ishlahul Ummah Prabumulih</p><p class="mt-2"><strong>Alamat :</strong> Jln. Sadewa RT 01 RW 03 Kel. Krg Raja Prabumulih Timur</p><p><strong>No. HP (WA) :</strong> <a href="https://wa.me/6282182680647" target="_blank" class="text-emerald-600 font-bold hover:underline">0821-8268-0647</a></p><p><strong>Website :</strong> smaitishumpbm.sch.id</p><p><strong>Email :</strong> <a href="mailto:smaitishlahulummah2019@gmail.com" class="text-emerald-600 font-bold hover:underline">smaitishlahulummah2019@gmail.com</a></p>'
+                    'content' => '<p>Pengaduan, saran dan masukan dapat disampaikan ke bagian humas dan media layanan terpadu Pondok Pesantren Raudhatul Ulum Sakatiga</p><p class="mt-2"><strong>Alamat :</strong> Desa Sakatiga, Kec. Indralaya, Kab. Ogan Ilir, Sumatera Selatan</p><p><strong>No. HP (WA) :</strong> <a href="https://wa.me/6282182680647" target="_blank" class="text-emerald-600 font-bold hover:underline">0812-7890-1950</a></p><p><strong>Website :</strong> ppru.ac.id</p><p><strong>Email :</strong> <a href="mailto:sekretariat@ppru.ac.id" class="text-emerald-600 font-bold hover:underline">sekretariat@ppru.ac.id</a></p>'
                 ]
             ];
             $tabs = !empty($accordions) ? $accordions : $defaultSewaTabs;
@@ -152,7 +152,7 @@
                 <label for="whatsapp" class="block text-xs font-bold text-gray-700 mb-1">
                     Nomor WhatsApp <span class="text-red-500">*</span>
                 </label>
-                <input type="text" name="whatsapp" id="whatsapp" required value="{{ old('whatsapp') }}" placeholder="Contoh: 082182680647" class="w-full bg-white text-xs sm:text-sm text-gray-800 rounded-lg px-4 py-2.5 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#00913e] focus:border-transparent transition">
+                <input type="text" name="whatsapp" id="whatsapp" required value="{{ old('whatsapp') }}" placeholder="Contoh: 081278901950" class="w-full bg-white text-xs sm:text-sm text-gray-800 rounded-lg px-4 py-2.5 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#00913e] focus:border-transparent transition">
                 @error('whatsapp') <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span> @enderror
             </div>
 

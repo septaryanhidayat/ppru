@@ -120,8 +120,15 @@ class HomeController extends Controller
             $daerahPosts = $allPosts->sortByDesc('published_at')->slice(2, 6);
         }
 
-        // 8. Dewan Guru & Tenaga Kependidikan (Section 6-9 - 4 pendidik)
-        $dewan = AnggotaDewan::orderBy('order', 'asc')->take(4)->get();
+        // 8. Pengurus Yayasan (YAPIRUS) & Pimpinan Pesantren (Section 8)
+        $dewan = AnggotaDewan::whereIn('fraction', ['Yayasan', 'Pimpinan Pesantren'])
+            ->orderBy('order', 'asc')
+            ->take(8)
+            ->get();
+
+        if ($dewan->isEmpty()) {
+            $dewan = AnggotaDewan::orderBy('order', 'asc')->take(8)->get();
+        }
 
         // 9. Video Profil & Kegiatan Sekolah (Section 10 - 6 videos)
         $videos = Video::latest()->take(6)->get();
@@ -142,23 +149,23 @@ class HomeController extends Controller
             ->toArray();
 
         $fallbackRow1 = [
-            ['url' => '/uploads/ishum/fasilitas_3427_IMG-20240528-WA0106-scaled.webp', 'title' => 'Gedung Kampus SMA IT Ishlahul Ummah Prabumulih'],
-            ['url' => '/uploads/ishum/post_3442_IMG-20241020-WA0006-scaled.webp', 'title' => 'Aktivitas Belajar & Karakter Santri Terpadu'],
-            ['url' => '/uploads/ishum/fasilitas_1274_Ruang-Lab-Komputer1.webp', 'title' => 'Laboratorium Komputer & Digital Santri'],
-            ['url' => '/uploads/ishum/post_3460_IMG-20241020-WA0007-scaled.webp', 'title' => 'Pembinaan Disiplin & Kesiswaan Santri Ishum'],
-            ['url' => '/uploads/ishum/fasilitas_1278_HALL-SIT-Ishlahul-Ummah_.webp', 'title' => 'Aula Pertemuan & Munaqosah Qur\'an SIT'],
-            ['url' => '/uploads/ishum/post_3464_IMG-20241020-WA0005-scaled.webp', 'title' => 'Halaqah Tahfidz & Tartil Qur\'an Santri'],
+            ['url' => '/uploads/ishum/fasilitas_3427_IMG-20240528-WA0106-scaled.webp', 'title' => 'Kampus Terpadu Pondok Pesantren Raudhatul Ulum Sakatiga'],
+            ['url' => '/uploads/ishum/post_3442_IMG-20241020-WA0006-scaled.webp', 'title' => 'Aktivitas Belajar & Karakter Santri Raudhatul Ulum'],
+            ['url' => '/uploads/ishum/fasilitas_1274_Ruang-Lab-Komputer1.webp', 'title' => 'Laboratorium Komputer & Digital Santri PPRU'],
+            ['url' => '/uploads/ishum/post_3460_IMG-20241020-WA0007-scaled.webp', 'title' => 'Pembinaan Disiplin & Kepengasuhan Santri Sakatiga'],
+            ['url' => '/uploads/ishum/fasilitas_1278_HALL-SIT-Ishlahul-Ummah_.webp', 'title' => 'Masjid Utama & Aula Pertemuan Kampus A PPRU'],
+            ['url' => '/uploads/ishum/post_3464_IMG-20241020-WA0005-scaled.webp', 'title' => 'Halaqah Tahfidz & Tartil Qur\'an Santri Sakatiga'],
         ];
 
         $fallbackRow2 = [
-            ['url' => '/uploads/ishum/fasilitas_1275_R.-Lab-IPA.webp', 'title' => 'Laboratorium IPA & Eksperimen Sains Terpadu'],
-            ['url' => '/uploads/ishum/post_3467_IMG-20241020-WA0004-scaled.webp', 'title' => 'Ibadah Yaumiyah & Pembiasaan Akhlakul Karimah'],
-            ['url' => '/uploads/ishum/fasilitas_1377_IMG-20240528-WA0094-scaled.webp', 'title' => 'Gerbang Utama Kampus SMA IT Ishlahul Ummah'],
-            ['url' => '/uploads/ishum/post_3472_IMG-20241020-WA0003-scaled.webp', 'title' => 'Muhadharah & Pembinaan Da\'i Muda Santri'],
-            ['url' => '/uploads/ishum/fasilitas_2059_IMG-20221101-WA0010.webp', 'title' => 'Sarana Olahraga & Mushola Kampus Ishum'],
-            ['url' => '/uploads/ishum/post_3478_IMG-20241020-WA0008-scaled.webp', 'title' => 'Ukhuwah Islamiyah & Kebersamaan Santri'],
-            ['url' => '/uploads/ishum/prestasi_3513_IMG-20240928-WA0038.webp', 'title' => 'Apresiasi & Penganugerahan Prestasi Santri'],
-            ['url' => '/uploads/ishum/fasilitas_3431_IMG-20241014-WA0013-scaled.webp', 'title' => 'Ruang UKS & Pelayanan Kesehatan Sekolah'],
+            ['url' => '/uploads/ishum/fasilitas_1275_R.-Lab-IPA.webp', 'title' => 'Laboratorium Sains & Eksperimen Santri PPRU'],
+            ['url' => '/uploads/ishum/post_3467_IMG-20241020-WA0004-scaled.webp', 'title' => 'Ibadah Yaumiyah & Pembiasaan Akhlakul Karimah Santri'],
+            ['url' => '/uploads/ishum/fasilitas_1377_IMG-20240528-WA0094-scaled.webp', 'title' => 'Gerbang Utama Kampus Pondok Pesantren Raudhatul Ulum'],
+            ['url' => '/uploads/ishum/post_3472_IMG-20241020-WA0003-scaled.webp', 'title' => 'Muhadharah 3 Bahasa & Pembinaan Da\'i Santri RU'],
+            ['url' => '/uploads/ishum/fasilitas_2059_IMG-20221101-WA0010.webp', 'title' => 'Sarana Olahraga & Lingkungan Asri Pesantren PPRU'],
+            ['url' => '/uploads/ishum/post_3478_IMG-20241020-WA0008-scaled.webp', 'title' => 'Ukhuwah Islamiyah & Kebersamaan Santri di Asrama'],
+            ['url' => '/uploads/ishum/prestasi_3513_IMG-20240928-WA0038.webp', 'title' => 'Apresiasi & Penganugerahan Prestasi Santri PPRU'],
+            ['url' => '/uploads/ishum/fasilitas_3431_IMG-20241014-WA0013-scaled.webp', 'title' => 'Poskestren & Pelayanan Kesehatan Santri Sakatiga'],
         ];
 
         if (! empty($dbGallery)) {

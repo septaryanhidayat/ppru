@@ -1,26 +1,26 @@
 @extends('layouts.frontend')
 
-@section('title', 'Infaq Pembangunan & Beasiswa Pendidikan - SMA IT Ishlahul Ummah Prabumulih')
-@section('meta_description', 'Salurkan infaq pembangunan sarana laboratorium sains, asrama santri, dan beasiswa pendidikan dhuafa berprestasi melalui rekening resmi SMA IT Ishlahul Ummah Prabumulih.')
+@section('title', 'Infaq Pembangunan & Beasiswa Pendidikan - Pondok Pesantren Raudhatul Ulum Sakatiga')
+@section('meta_description', 'Salurkan infaq pembangunan sarana laboratorium sains, asrama santri, dan beasiswa pendidikan dhuafa berprestasi melalui rekening resmi Pondok Pesantren Raudhatul Ulum Sakatiga.')
 
 @section('content')
 @php
     $bank1Name = $siteSettings['donation_bank_1_name'] ?? 'Bank Sumsel Babel Syariah';
     $bank1Code = $siteSettings['donation_bank_1_code'] ?? '120';
     $bank1Rek = trim($siteSettings['donation_bank_1_rekening'] ?? '');
-    $bank1Holder = $siteSettings['donation_bank_1_holder'] ?? 'YAYASAN ISHLAHUL UMMAH PRABUMULIH';
+    $bank1Holder = $siteSettings['donation_bank_1_holder'] ?? 'YAYASAN PERGURUAN ISLAM RAUDHATUL ULUM (YAPIRUS)';
 
-    $bank2Name = $siteSettings['donation_bank_2_name'] ?? 'Bank Syariah Indonesia (BSI)';
-    $bank2Code = $siteSettings['donation_bank_2_code'] ?? '451';
-    $bank2Rek = trim($siteSettings['donation_bank_2_rekening'] ?? '');
-    $bank2Holder = $siteSettings['donation_bank_2_holder'] ?? 'SMA IT ISHLAHUL UMMAH PRABUMULIH';
+    $bank2Name = $siteSettings['donation_bank_2_name'] ?? 'Bank Sumsel Babel Syariah';
+    $bank2Code = $siteSettings['donation_bank_2_code'] ?? '120';
+    $bank2Rek = trim($siteSettings['donation_bank_2_rekening'] ?? '801-0900-1950');
+    $bank2Holder = $siteSettings['donation_bank_2_holder'] ?? 'PONDOK PESANTREN RAUDHATUL ULUM SAKATIGA';
 
-    $confirmPhone = !empty($siteSettings['donation_confirm_phone']) ? $siteSettings['donation_confirm_phone'] : ($siteSettings['contact_phone'] ?? '082182680647');
+    $confirmPhone = !empty($siteSettings['donation_confirm_phone']) ? $siteSettings['donation_confirm_phone'] : ($siteSettings['contact_phone'] ?? '081278901950');
     $cleanWa = preg_replace('/[^0-9]/', '', $confirmPhone);
     if (str_starts_with($cleanWa, '0')) {
         $cleanWa = '62' . substr($cleanWa, 1);
     }
-    $confirmText = urlencode("Assalamu'alaikum Bendahara SMA IT Ishlahul Ummah Prabumulih, saya telah menyalurkan infaq / donasi pendidikan untuk kemaslahatan sekolah.");
+    $confirmText = urlencode("Assalamu'alaikum Bendahara Pondok Pesantren Raudhatul Ulum Sakatiga, saya telah menyalurkan infaq / donasi pendidikan untuk kemaslahatan sekolah.");
 @endphp
 
 {{-- HERO HEADER ELEGAN --}}
@@ -41,10 +41,10 @@
                 <i class="fa-solid fa-hand-holding-heart mr-2"></i> Infaq & Shadaqah Jariyah
             </span>
             <h1 class="text-3xl sm:text-5xl font-black tracking-tight leading-tight">
-                Infaq Pembangunan & <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-orange-300 to-amber-200">Beasiswa Ishum</span>
+                Infaq Pembangunan & <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-orange-300 to-amber-200">Beasiswa PPRU</span>
             </h1>
             <p class="text-sm sm:text-base text-emerald-100 mt-4 leading-relaxed font-light">
-                Mari bergotong royong membangun sarana laboratorium riset modern, masjid kampus, fasilitas asrama tahfidz, dan program beasiswa bagi santri berprestasi di SMA Islam Terpadu Ishlahul Ummah Prabumulih.
+                Mari bergotong royong membangun sarana laboratorium riset modern, masjid kampus, fasilitas asrama tahfidz, dan program beasiswa bagi santri berprestasi di Pondok Pesantren Raudhatul Ulum Sakatiga.
             </p>
         </div>
     </div>
@@ -95,7 +95,7 @@
                         </div>
                         <div>
                             <h3 class="text-xl font-black text-gray-900 leading-tight">{{ $bank1Name }}</h3>
-                            <p class="text-xs text-emerald-800 font-semibold mt-0.5">Mitra Resmi Yayasan Ishum Prabumulih</p>
+                            <p class="text-xs text-emerald-800 font-semibold mt-0.5">Mitra Resmi Yayasan PPRU Prabumulih</p>
                         </div>
                     </div>
 
@@ -200,7 +200,7 @@
                     <i class="fa-brands fa-whatsapp text-lg text-emerald-600"></i>
                     <span>Kirim Bukti Transfer ({{ $confirmPhone }})</span>
                 </a>
-                <span class="text-[11px] text-emerald-200 text-center font-medium">Layanan Bendahara SMA IT Ishlahul Ummah Prabumulih</span>
+                <span class="text-[11px] text-emerald-200 text-center font-medium">Layanan Bendahara Pondok Pesantren Raudhatul Ulum Sakatiga</span>
             </div>
         </div>
     </div>
@@ -252,7 +252,7 @@
             <span>Akuntabilitas & Tata Kelola Infaq Yayasan</span>
         </h4>
         <p class="leading-relaxed text-gray-600">
-            Pengelolaan infaq pembangunan dan beasiswa pendidikan santri diatur secara profesional oleh Yayasan Ishum Prabumulih dengan prinsip amanah, transparan, dan dapat dipertanggungjawabkan secara berkala.
+            Pengelolaan infaq pembangunan dan beasiswa pendidikan santri diatur secara profesional oleh Yayasan PPRU Prabumulih dengan prinsip amanah, transparan, dan dapat dipertanggungjawabkan secara berkala.
         </p>
         <ul class="list-disc list-inside space-y-1 text-gray-600 text-xs">
             <li>100% dana infaq pembangunan dialokasikan langsung untuk sarana belajar, laboratorium, dan masjid kampus.</li>

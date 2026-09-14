@@ -22,14 +22,14 @@
                 <div class="bg-slate-50 rounded-2xl p-5 border border-slate-200/80 flex flex-col justify-between space-y-4 hover:shadow-md transition">
                     <div class="text-center space-y-3">
                         <div class="w-24 h-24 mx-auto rounded-2xl bg-white p-1 shadow-xs border border-slate-200 overflow-hidden">
-                            <img src="{{ $d->photo }}" alt="{{ $d->name }}" class="w-full h-full object-cover object-top rounded-xl" onerror="this.src='/uploads/logo-ishum-square.png'">
+                            <img src="{{ $d->photo }}" alt="{{ $d->name }}" class="w-full h-full object-cover object-top rounded-xl" onerror="this.src='/uploads/logo-ppru-square.png'">
                         </div>
                         <div>
                             <h3 class="font-extrabold text-sm text-slate-900">{{ $d->name }}</h3>
                             <span class="inline-block bg-emerald-100 text-[#00913e] text-[10px] font-bold px-2 py-0.5 rounded-full mt-1">
                                 {{ $d->position }}
                             </span>
-                            <p class="text-[11px] text-slate-500 mt-2 line-clamp-2">{{ $d->fraction ?? 'Dewan Guru & GTK Ishum' }}</p>
+                            <p class="text-[11px] text-slate-500 mt-2 line-clamp-2">{{ $d->fraction ?? 'Dewan Guru & GTK PPRU' }}</p>
                         </div>
                     </div>
 

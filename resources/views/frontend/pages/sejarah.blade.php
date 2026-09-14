@@ -1,7 +1,7 @@
 @extends('layouts.frontend')
 
-@section('title', 'Sejarah Sekolah - SMA IT Ishlahul Ummah Prabumulih')
-@section('meta_description', 'Sejarah perjalanan dan perkembangan SMA IT Ishlahul Ummah Prabumulih di Prabumulih Prabumulih dalam melahirkan generasi Qur\'ani dan saintis berprestasi.')
+@section('title', 'Sejarah Pesantren - Pondok Pesantren Raudhatul Ulum Sakatiga')
+@section('meta_description', 'Sejarah perjalanan dan perkembangan Pondok Pesantren Raudhatul Ulum Sakatiga sejak 1950 dalam melahirkan generasi Khairu Ummah dan santri berprestasi.')
 
 @section('content')
 {{-- HERO HEADER --}}
@@ -14,9 +14,9 @@
             <span>/</span>
             <span class="text-amber-300 font-semibold">Sejarah</span>
         </nav>
-        <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Sejarah SMA IT Ishlahul Ummah Prabumulih</h1>
+        <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Sejarah Pondok Pesantren Raudhatul Ulum</h1>
         <p class="text-sm text-emerald-100 mt-2 font-light max-w-2xl">
-            Jejak langkah pengabdian, dedikasi pendidik, dan perjalanan membangun peradaban pendidikan Islam terpadu di Kabupaten Prabumulih.
+            Jejak langkah pengabdian para ulama, perjuangan mendirikan madrasah, dan transformasi menuju pesantren modern muadalah Al-Azhar di Sakatiga, Ogan Ilir.
         </p>
     </div>
 </div>
@@ -30,44 +30,39 @@
                 
                 {{-- GAMBAR ILUSTRASI SEJARAH --}}
                 <div class="rounded-2xl overflow-hidden shadow-lg border border-gray-100 bg-gray-50 max-h-96">
-                    <img src="/uploads/gedung-smait-ishum.webp" alt="Kampus SMA IT Ishlahul Ummah Prabumulih" class="w-full h-full object-cover">
+                    <img src="/uploads/logo-ppru-banner.png" alt="Pondok Pesantren Raudhatul Ulum Sakatiga" class="w-full h-full object-cover">
                 </div>
 
                 <div class="border-b border-gray-100 pb-4">
-                    <span class="text-xs font-bold text-orange-500 uppercase tracking-wider block">Jejak Langkah & Perkembangan</span>
+                    <span class="text-xs font-bold text-school-green uppercase tracking-wider block">Jejak Langkah &amp; Perkembangan</span>
                     <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight mt-1">
-                        Membangun Generasi Emas Ishum di Bumi Caram Seguguk
+                        Menegakkan Risalah Islam di Bumi Sakatiga "Mekkah Kecil"
                     </h2>
                     <div class="w-16 h-1 bg-[#00913e] rounded-full mt-3"></div>
                 </div>
 
                 {{-- SEJARAH LENGKAP SEKOLAH --}}
                 <div class="prose-content text-gray-700 text-sm sm:text-base leading-relaxed space-y-5">
-                    @if(!empty($page->content) && strlen(trim(strip_tags($page->content))) > 50)
+                    @if(!empty($page->content) && strlen(trim(strip_tags($page->content))) > 50 && !str_contains($page->content, 'Raudhatul Ulum'))
                         {!! $page->content !!}
                     @else
+                        <h4>1. Era Cikal Bakal (1930 - 1950 M)</h4>
                         <p>
-                            SMA IT Ishlahul Ummah Prabumulih didirikan atas dasar cita-cita luhur para tokoh pendidikan dan ulama di Kabupaten Prabumulih yang menginginkan hadirnya institusi pendidikan menengah atas yang memadukan secara harmonis antara kecerdasan spiritual berbasis Al-Qur'an dan kemajuan sains-teknologi modern.
+                            Pondok Pesantren Raudhatul Ulum Sakatiga berakar dari dua madrasah bersejarah di Sakatiga sebelum masa kemerdekaan RI: Madrasah Al-Falah yang dirintis pada tahun 1930 oleh KH. Bahri bin Bunga (dilanjutkan oleh KH. Abdul Ghanie Bahri) dan Madrasah Al-Shibyan yang didirikan pada tahun 1936 oleh KH. Abd. Rahim Mandung dan KH. Abdullah Kenalim. Desa Sakatiga sejak dahulu kala telah dikenal dengan julukan "Mekkah Kecil" di Sumatera Selatan karena banyaknya para ulama Sakatiga yang menuntut ilmu di tanah suci Makkah Al-Mukarramah.
                         </p>
 
+                        <h4>2. Era Kebangkitan &amp; Pendirian Yayasan (1950 - 1986 M)</h4>
                         <p>
-                            Pada awal pendiriannya, sekolah dirintis dengan sarana yang terukur namun sarat akan semangat juang tenaga pendidik yang berdedikasi tinggi. Minat masyarakat yang besar terhadap konsep Sekolah Islam Terpadu (SIT) plus tahfidz dan riset membuat SMA IT Ishlahul Ummah Prabumulih terus tumbuh pesat dan dipercaya oleh para orang tua dari berbagai penjuru Sumatera Selatan.
+                            Pada tanggal 1 Agustus 1950, para alim ulama dan tokoh masyarakat Sakatiga bermufakat menghidupkan kembali madrasah dengan mendirikan Sekolah Rakyat Islam (SRI) dan Sekolah Menengah Agama Islam (SMAI), yang kemudian disatukan menjadi Perguruan Islam Raudhatul Ulum (PIRUS) Sakatiga di bawah naungan Yayasan Perguruan Islam Raudhatul Ulum (YAPIRUS) berdasarkan Akte Notaris Aminus Palembang No. 21.A Tahun 1966.
                         </p>
 
+                        <h4>3. Era Modern &amp; Pesantren Terpadu Muadalah (1986 - Sekarang)</h4>
                         <p>
-                            Seiring berjalannya waktu, sekolah terus memperluas sarana dan prasarana pendidikan. Pembangunan laboratorium sains mutakhir, laboratorium komputer multimedia terintegrasi, perpustakaan digital, serta asrama santri (Islamic Boarding School) yang representatif menjadi bukti komitmen nyata dalam menghadirkan lingkungan belajar yang holistik.
-                        </p>
-
-                        <p>
-                            Berbagai prestasi membanggakan berhasil diraih oleh santri-santriwati SMA IT Ishlahul Ummah Prabumulih, mulai dari juara Olimpiade Sains Nasional tingkat daerah hingga nasional, kejuaraan Musabaqah Hifdzil Qur’an (MHQ), kompetisi robotika, hingga keberhasilan meluluskan alumni ke berbagai perguruan tinggi negeri ternama (PTN) dan universitas di Timur Tengah.
-                        </p>
-
-                        <p>
-                            Kini, SMA IT Ishlahul Ummah Prabumulih telah berkembang menjadi salah satu sekolah rujukan di Prabumulih yang menerapkan Kurikulum Merdeka yang disempurnakan dengan kurikulum kekhasan Islam Terpadu Plus, didukung oleh tenaga pendidik berkualifikasi magister dan sertifikasi pendidik profesional.
+                            Mulai 8 Agustus 1986 di bawah kepemimpinan Mudir <strong>KH. Tol'at Wafa Ahmad, Lc.</strong>, diterapkan sistem pesantren modern terpadu (Kulliyatul Mu'allimin Al-Islamiyyah / KMI) dengan sistem asrama penuh (boarding school) 24 jam. Kurikulum pesantren memadukan keilmuan Pondok Modern Gontor, Kementerian Agama, dan Diknas, serta mendapatkan piagam pengakuan kesetaraan resmi (Muadalah) dari Universitas Al-Azhar Kairo Mesir dan Universitas Islam Madinah.
                         </p>
 
                         <p class="font-medium text-gray-900 bg-emerald-50/80 p-5 rounded-2xl border-l-4 border-[#00913e]">
-                            Dengan memegang teguh semboyan <em>Qur'ani, Berprestasi, dan Berakhlak Mulia</em>, SMA IT Ishlahul Ummah Prabumulih terus melangkah maju, berinovasi tanpa henti, dan bertekad mencetak calon pemimpin bangsa yang siap berkontribusi bagi kemaslahatan umat dan dunia.
+                            Kini, PPRU Sakatiga berkembang pesat di atas lahan lebih dari 60 hektar dengan mengasuh ribuan santri dari penjuru nusantara pada 8 unit pendidikan formal, mencetak generasi <em>Khairu Ummah</em> yang beraqidah lurus, berakhlak mulia, dan berdaya saing global.
                         </p>
                     @endif
                 </div>
@@ -90,7 +85,7 @@
                     @forelse($latestPosts ?? [] as $lp)
                         <a href="{{ route('artikel.show', $lp->slug) }}" class="flex items-center space-x-3 group">
                             <div class="w-16 h-16 rounded-xl overflow-hidden bg-gray-100 flex-shrink-0">
-                                <img src="{{ $lp->featured_image }}" alt="{{ $lp->title }}" class="w-full h-full object-cover group-hover:scale-110 transition duration-300" onerror="this.src='/uploads/gedung-smait-ishum.webp'">
+                                <img src="{{ $lp->featured_image }}" alt="{{ $lp->title }}" class="w-full h-full object-cover group-hover:scale-110 transition duration-300" onerror="this.src='/uploads/logo-ppru-banner.png'">
                             </div>
                             <div>
                                 <h4 class="text-xs font-bold text-gray-800 group-hover:text-[#00913e] transition line-clamp-2 leading-snug">
@@ -128,7 +123,7 @@
                                     {{ $la->title }}
                                 </h4>
                                 <span class="text-[11px] text-gray-400 block mt-1">
-                                    <i class="fa-solid fa-location-dot mr-1 text-orange-400"></i> {{ $la->location ?: 'Kampus SMA IT Ishlahul Ummah Prabumulih' }}
+                                    <i class="fa-solid fa-location-dot mr-1 text-orange-400"></i> {{ $la->location ?: 'Kampus Pondok Pesantren Raudhatul Ulum Sakatiga' }}
                                 </span>
                             </div>
                         </a>
@@ -145,11 +140,11 @@
                 </div>
                 <h3 class="text-xl font-extrabold">Bergabung Bersama Kami!</h3>
                 <p class="text-xs text-emerald-100 leading-relaxed">
-                    Daftarkan putra-putri tercinta sekarang dan jadilah bagian dari keluarga besar SMA IT Ishlahul Ummah Prabumulih.
+                    Daftarkan putra-putri tercinta sekarang dan jadilah bagian dari keluarga besar Pondok Pesantren Raudhatul Ulum Sakatiga.
                 </p>
                 <div class="pt-2">
                     <a href="{{ route('ppdb.index') }}" class="block w-full bg-[#da251c] hover:bg-[#b91c1c] text-white py-3 rounded-xl font-bold text-xs shadow-lg transition">
-                        Daftar PPDB Sekarang
+                        Daftar PPDB &amp; PSB Sekarang
                     </a>
                 </div>
             </div>

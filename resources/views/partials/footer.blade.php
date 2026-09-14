@@ -23,11 +23,16 @@
             
             {{-- KOLOM 1: IDENTITAS & LOGO PESANTREN (4 Kolom) --}}
             <div class="lg:col-span-4 space-y-4">
-                <div class="bg-white/95 p-3 rounded-2xl shadow-md inline-block border border-white/20">
-                    <img src="{{ $siteSettings['site_logo'] ?? '/uploads/logo-ppru-banner.png' }}" 
+                <div class="flex items-center space-x-3 group">
+                    <img src="/uploads/logo-ppru-transparent.png" 
                          alt="Logo Pondok Pesantren Raudhatul Ulum" 
-                         class="h-16 w-auto object-contain block" 
-                         onerror="this.src='/uploads/logo-ppru.png'">
+                         class="h-14 w-auto object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)]" 
+                         onerror="this.src='/uploads/logo-ppru-square.png'">
+                    <div>
+                        <span class="text-[10px] uppercase font-bold tracking-widest text-emerald-400 block leading-tight">Pondok Pesantren</span>
+                        <span class="text-lg font-black tracking-tight text-white block leading-tight">Raudhatul Ulum</span>
+                        <span class="text-[10px] uppercase font-bold tracking-wider text-[#fcd116] block leading-tight mt-0.5">Sakatiga • Ogan Ilir</span>
+                    </div>
                 </div>
                 <p class="text-xs text-gray-300 font-light leading-relaxed">
                     Pondok Pesantren Raudhatul Ulum (PPRU) Sakatiga adalah lembaga pendidikan Islam terpadu yang memadukan kurikulum Pondok Modern Gontor, Kementerian Agama, dan Dinas Pendidikan Nasional untuk mencetak generasi khoiru ummah yang berakhlak mulia, cerdas, dan mandiri.
@@ -156,6 +161,10 @@
                 <a href="{{ route('hubungi') }}" class="hover:text-white transition">Hubungi Kami</a>
                 <span>&bull;</span>
                 <a href="/login" class="hover:text-[#f59e0b] font-semibold transition">Portal Admin</a>
+                <span>&bull;</span>
+                <a href="https://berandadigital.net" target="_blank" rel="noopener" class="hover:text-white transition text-gray-400" title="Beranda Teknologi Digital">
+                    Dev by <span class="text-gray-300 hover:underline">Beranda Teknologi Digital</span>
+                </a>
             </div>
         </div>
 

@@ -19,7 +19,7 @@
             
             <div>
                 <label for="title" class="block text-xs font-bold text-slate-900 uppercase tracking-wider mb-1.5">Nama Berkas / Judul File <span class="text-red-500">*</span></label>
-                <input type="text" name="title" id="title" required value="{{ old('title') }}" placeholder="Contoh: Modul Tahfidz Qur'an Santri SMA IT Ishum..." class="w-full bg-slate-50 text-xs font-semibold text-slate-900 rounded-xl px-4 py-3 border border-slate-300 focus:outline-none focus:ring-2 focus:ring-[#00913e] transition">
+                <input type="text" name="title" id="title" required value="{{ old('title') }}" placeholder="Contoh: Modul Tahfidz Qur'an Santri SMA IT PPRU..." class="w-full bg-slate-50 text-xs font-semibold text-slate-900 rounded-xl px-4 py-3 border border-slate-300 focus:outline-none focus:ring-2 focus:ring-[#00913e] transition">
                 @error('title') <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span> @enderror
             </div>
 

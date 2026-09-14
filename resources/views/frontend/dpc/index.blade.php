@@ -1,7 +1,7 @@
 @extends('layouts.frontend')
 
-@section('title', 'Program Unggulan Sekolah - SMA IT Ishlahul Ummah Prabumulih')
-@section('meta_description', 'Program unggulan SMA IT Ishlahul Ummah Prabumulih: Tahfidz Qur\'an Mutqin, Sains & Robotika, Islamic Boarding, Bilingual Camp, dan Sukses Masuk PTN.')
+@section('title', 'Program Unggulan Sekolah - Pondok Pesantren Raudhatul Ulum Sakatiga')
+@section('meta_description', 'Program unggulan Pondok Pesantren Raudhatul Ulum Sakatiga: Tahfidz Qur\'an Mutqin, Sains & Robotika, Islamic Boarding, Bilingual Camp, dan Sukses Masuk PTN.')
 
 @section('content')
 {{-- HERO HEADER --}}
@@ -14,7 +14,7 @@
             <span>/</span>
             <span class="text-amber-300 font-semibold">Program Unggulan</span>
         </nav>
-        <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Program Unggulan SMA IT Ishlahul Ummah Prabumulih</h1>
+        <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Program Unggulan Pondok Pesantren Raudhatul Ulum Sakatiga</h1>
         <p class="text-sm text-emerald-100 mt-2 font-light max-w-2xl">
             Kurikulum terintegrasi yang dirancang khusus untuk mengoptimalkan potensi ruhiyah, intelektual, dan kepemimpinan santri.
         </p>
@@ -26,7 +26,7 @@
     <div class="text-center max-w-2xl mx-auto">
         <span class="text-xs font-bold text-[#da251c] uppercase tracking-wider block">Karakter &amp; Keahlian Abad 21</span>
         <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight mt-1">
-            Program Khusus Siswa Ishum
+            Program Khusus Siswa PPRU
         </h2>
         <p class="text-xs sm:text-sm text-gray-500 mt-1 font-light">Mengasah kecakapan santri menjadi pribadi cerdas, mandiri, dan berjiwa pelopor.</p>
         <div class="w-16 h-1 bg-[#00913e] mx-auto rounded-full mt-3"></div>
@@ -38,7 +38,7 @@
                 <div>
                     {{-- FOTO DOKUMENTASI PROGRAM --}}
                     <div class="h-48 sm:h-52 w-full overflow-hidden bg-slate-100 relative">
-                        <img src="{{ $dpc->thumbnail_url }}" alt="{{ $dpc->name }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='/uploads/tahfidz-ishum.webp'">
+                        <img src="{{ $dpc->thumbnail_url }}" alt="{{ $dpc->name }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='/uploads/activities-robbani.webp'">
                         <span class="absolute top-3.5 left-3.5 bg-[#00913e] text-white text-[10px] font-bold px-3 py-1 rounded-full shadow-md uppercase tracking-wider">
                             {{ $dpc->address ?: 'Program Unggulan' }}
                         </span>
@@ -69,7 +69,7 @@
                         <i class="fa-solid fa-star text-amber-400 text-xs"></i>
                         <span>Unggulan Terpadu</span>
                     </span>
-                    <span class="text-[11px] text-gray-400 font-medium">SMA IT Ishum</span>
+                    <span class="text-[11px] text-gray-400 font-medium">SMA IT PPRU</span>
                 </div>
             </div>
         @empty

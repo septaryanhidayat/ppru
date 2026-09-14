@@ -40,7 +40,7 @@
             <div>
                 <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Foto Tenaga Pendidik Saat Ini</label>
                 <div class="flex items-center space-x-4 mb-3">
-                    <img src="{{ $dewan->photo }}" alt="{{ $dewan->name }}" class="w-16 h-16 rounded-xl object-cover border border-slate-200 shadow-xs" onerror="this.src='/uploads/logo-ishum-square.png'">
+                    <img src="{{ $dewan->photo }}" alt="{{ $dewan->name }}" class="w-16 h-16 rounded-xl object-cover border border-slate-200 shadow-xs" onerror="this.src='/uploads/logo-ppru-square.png'">
                     <span class="text-xs text-slate-400 font-mono">{{ $dewan->photo }}</span>
                 </div>
                 <input type="file" name="photo" id="photo" accept="image/*" class="w-full text-xs text-slate-600 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-[#00913e] file:text-white hover:file:bg-[#094d28]">
