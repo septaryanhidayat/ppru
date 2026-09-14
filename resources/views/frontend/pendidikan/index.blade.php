@@ -65,8 +65,14 @@
                         {{-- Details --}}
                         <div class="p-6 space-y-3">
                             <div class="flex items-center space-x-3">
-                                <div class="w-10 h-10 rounded-2xl bg-emerald-50 text-[#00843d] flex items-center justify-center text-base shrink-0 border border-emerald-100 group-hover:bg-[#00843d] group-hover:text-white transition duration-300">
-                                    <i class="{{ $unit->icon ?: 'fa-solid fa-graduation-cap' }}"></i>
+                                <div class="w-12 h-12 rounded-2xl bg-white p-1 flex items-center justify-center shrink-0 border border-emerald-100 group-hover:border-[#00843d] shadow-xs group-hover:scale-105 transition duration-300 overflow-hidden">
+                                    @if(!empty($unit->logo))
+                                        <img src="{{ $unit->logo_url }}" alt="Logo {{ $unit->name }}" class="w-full h-full object-contain">
+                                    @else
+                                        <div class="w-full h-full rounded-xl bg-emerald-50 text-[#00843d] group-hover:bg-[#00843d] group-hover:text-white flex items-center justify-center text-base transition">
+                                            <i class="{{ $unit->icon ?: 'fa-solid fa-graduation-cap' }}"></i>
+                                        </div>
+                                    @endif
                                 </div>
                                 <h3 class="font-extrabold text-base sm:text-lg text-gray-900 group-hover:text-[#00843d] transition line-clamp-1">
                                     {{ $unit->name }}

@@ -12,6 +12,9 @@ use App\Models\Dpc;
 use App\Models\Feedback;
 use App\Models\Pengumuman;
 use App\Models\Post;
+use App\Models\PpdbRegistration;
+use App\Models\ServiceSubmission;
+use App\Models\UnitPendidikan;
 use App\Models\User;
 use App\Models\Video;
 use App\Models\VisitorLog;
@@ -74,6 +77,11 @@ class AdminDashboardController extends Controller
             'today_visitors' => $todayVisitors,
             'today_pageviews' => $todayPageviews,
             'week_visitors' => $weekVisitors,
+            'total_units' => UnitPendidikan::count(),
+            'total_ppdb' => PpdbRegistration::count(),
+            'total_ppdb_verified' => PpdbRegistration::where('status', 'verified')->count(),
+            'total_services' => ServiceSubmission::count(),
+            'pending_services' => ServiceSubmission::where('status', 'pending')->count(),
             'total_dewan' => AnggotaDewan::count(),
             'total_bidang' => Bidang::count(),
             'total_dpc' => Dpc::count(),
@@ -89,12 +97,24 @@ class AdminDashboardController extends Controller
             'security_warnings' => ActivityLog::where('status', 'warning')->count(),
         ];
 
+        $systemInfo = [
+            'official_url' => 'https://ppru.ac.id',
+            'php_version' => PHP_VERSION,
+            'laravel_version' => app()->version(),
+            'db_driver' => config('database.default'),
+            'server_time' => now()->format('d M Y - H:i:s').' WIB',
+            'app_env' => config('app.env'),
+            'debug_mode' => config('app.debug') ? 'Enabled' : 'Disabled',
+            'memory_usage' => round(memory_get_usage(true) / 1024 / 1024, 2).' MB',
+        ];
+
         $recentPosts = Post::where('type', 'post')->latest()->take(6)->get();
         $recentLogs = ActivityLog::latest()->take(8)->get();
         $recentThreats = ActivityLog::where('status', 'danger')->latest()->take(4)->get();
 
         return view('admin.dashboard', compact(
             'stats',
+            'systemInfo',
             'recentPosts',
             'recentLogs',
             'recentThreats',

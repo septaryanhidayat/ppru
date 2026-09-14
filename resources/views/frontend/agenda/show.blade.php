@@ -27,7 +27,7 @@
                 <span>&bull;</span>
                 <div class="flex items-center">
                     <i class="fa-solid fa-location-dot text-orange-500 mr-2 text-base"></i>
-                    <span>{{ $agenda->location ?: 'Kampus Pondok Pesantren Raudhatul Ulum Sakatiga' }}</span>
+                    <span>{{ $agenda->location ?: 'Pondok Pesantren Raudhatul Ulum Sakatiga' }}</span>
                 </div>
             </div>
 

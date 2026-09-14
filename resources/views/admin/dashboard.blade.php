@@ -11,9 +11,16 @@
         <div class="absolute -right-10 -bottom-10 w-60 h-60 bg-[#da251c]/10 rounded-full blur-3xl pointer-events-none"></div>
         <div class="relative z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
             <div class="space-y-2">
-                <div class="inline-flex items-center space-x-2 bg-slate-800/80 border border-slate-700/80 px-3 py-1 rounded-full text-xs text-amber-400 font-semibold">
-                    <i class="fa-solid fa-circle-check text-emerald-400 text-[10px]"></i>
-                    <span>Sistem Aktif & Terlindungi</span>
+                <div class="flex flex-wrap items-center gap-2">
+                    <div class="inline-flex items-center space-x-2 bg-slate-800/80 border border-slate-700/80 px-3 py-1 rounded-full text-xs text-amber-400 font-semibold">
+                        <i class="fa-solid fa-circle-check text-emerald-400 text-[10px]"></i>
+                        <span>Sistem Aktif & Terlindungi</span>
+                    </div>
+                    <a href="https://ppru.ac.id" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-1.5 bg-emerald-950/80 border border-emerald-500/40 hover:border-emerald-400 px-3 py-1 rounded-full text-xs text-emerald-300 font-bold hover:text-emerald-200 transition" title="Kunjungi Website Resmi Pondok Pesantren Raudhatul Ulum">
+                        <i class="fa-solid fa-globe text-emerald-400 text-[11px]"></i>
+                        <span>Website Resmi: https://ppru.ac.id</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-[9px] ml-1"></i>
+                    </a>
                 </div>
                 <h2 class="text-2xl sm:text-3xl font-black text-white tracking-tight">
                     Selamat Datang, {{ auth()->user()->name }}! 👋
@@ -24,6 +31,10 @@
             </div>
 
             <div class="flex flex-wrap items-center gap-3">
+                <a href="https://ppru.ac.id" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-4 py-3 rounded-xl shadow-md transition">
+                    <i class="fa-solid fa-external-link text-xs"></i>
+                    <span>Kunjungi ppru.ac.id</span>
+                </a>
                 <a href="{{ route('admin.posts.create') }}" class="inline-flex items-center space-x-2 bg-gradient-to-r from-[#da251c] to-[#ef4444] hover:from-[#b91c1c] hover:to-[#e05500] text-white text-xs font-bold px-5 py-3 rounded-xl shadow-lg transition transform hover:-translate-y-0.5">
                     <i class="fa-solid fa-pen-nib"></i>
                     <span>Tulis Berita Baru</span>
@@ -130,6 +141,126 @@
             <div class="flex items-center space-x-2 text-xs text-emerald-100 font-semibold mt-3 relative z-10">
                 <i class="fa-solid fa-lock text-white"></i>
                 <span>Firewall & WAF aktif</span>
+            </div>
+        </div>
+    </div>
+
+    {{-- 3B. OPERASIONAL & LAYANAN PESANTREN (Row 2 - Complex Institutional Metrics) --}}
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {{-- Card 5: Unit Pendidikan --}}
+        <a href="{{ route('admin.unit-pendidikan.index') }}" class="bg-white p-5 rounded-3xl border border-slate-200/80 shadow-xs hover:shadow-md transition group flex flex-col justify-between">
+            <div class="flex items-center justify-between">
+                <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Unit Pendidikan</span>
+                <div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center text-lg group-hover:scale-110 transition">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+            </div>
+            <div class="mt-4">
+                <div class="text-2xl font-black text-slate-900">{{ $stats['total_units'] ?? 8 }} <span class="text-xs font-semibold text-slate-400">Jenjang</span></div>
+                <p class="text-[11px] text-slate-500 mt-1">TK, MI, MTs, SMPIT, MA, SMAIT, STIT, Tahfidz</p>
+            </div>
+            <div class="mt-3 pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-amber-600 font-bold">
+                <span>Kelola Profil Unit</span>
+                <i class="fa-solid fa-arrow-right text-[10px] group-hover:translate-x-1 transition"></i>
+            </div>
+        </a>
+
+        {{-- Card 6: PSB Online --}}
+        <a href="{{ route('admin.ppdb.index') }}" class="bg-white p-5 rounded-3xl border border-slate-200/80 shadow-xs hover:shadow-md transition group flex flex-col justify-between">
+            <div class="flex items-center justify-between">
+                <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Pendaftaran PPDB</span>
+                <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-lg group-hover:scale-110 transition">
+                    <i class="fa-solid fa-user-plus"></i>
+                </div>
+            </div>
+            <div class="mt-4">
+                <div class="text-2xl font-black text-slate-900">{{ $stats['total_ppdb'] ?? 0 }} <span class="text-xs font-semibold text-emerald-600 font-bold">Santri</span></div>
+                <p class="text-[11px] text-slate-500 mt-1">{{ $stats['total_ppdb_verified'] ?? 0 }} berkas terverifikasi panitia</p>
+            </div>
+            <div class="mt-3 pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-emerald-600 font-bold">
+                <span>Data Calon Santri</span>
+                <i class="fa-solid fa-arrow-right text-[10px] group-hover:translate-x-1 transition"></i>
+            </div>
+        </a>
+
+        {{-- Card 7: Layanan Terpadu --}}
+        <a href="{{ route('admin.layanan.index') }}" class="bg-white p-5 rounded-3xl border border-slate-200/80 shadow-xs hover:shadow-md transition group flex flex-col justify-between">
+            <div class="flex items-center justify-between">
+                <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Layanan Terpadu</span>
+                <div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center text-lg group-hover:scale-110 transition">
+                    <i class="fa-solid fa-handshake-angle"></i>
+                </div>
+            </div>
+            <div class="mt-4">
+                <div class="text-2xl font-black text-slate-900">{{ $stats['total_services'] ?? 0 }} <span class="text-xs font-semibold text-blue-600 font-bold">Pengajuan</span></div>
+                <p class="text-[11px] text-slate-500 mt-1">{{ $stats['pending_services'] ?? 0 }} pengajuan menunggu verifikasi</p>
+            </div>
+            <div class="mt-3 pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-blue-600 font-bold">
+                <span>Buka Permohonan</span>
+                <i class="fa-solid fa-arrow-right text-[10px] group-hover:translate-x-1 transition"></i>
+            </div>
+        </a>
+
+        {{-- Card 8: Pusat Download --}}
+        <a href="{{ route('admin.downloads.index') }}" class="bg-white p-5 rounded-3xl border border-slate-200/80 shadow-xs hover:shadow-md transition group flex flex-col justify-between">
+            <div class="flex items-center justify-between">
+                <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Download & Berkas</span>
+                <div class="w-10 h-10 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center text-lg group-hover:scale-110 transition">
+                    <i class="fa-solid fa-file-arrow-down"></i>
+                </div>
+            </div>
+            <div class="mt-4">
+                <div class="text-2xl font-black text-slate-900">{{ $stats['total_downloads'] ?? 0 }} <span class="text-xs font-semibold text-purple-600 font-bold">Dokumen</span></div>
+                <p class="text-[11px] text-slate-500 mt-1">Brosur PSB, e-book santri, mars & hymne</p>
+            </div>
+            <div class="mt-3 pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-purple-600 font-bold">
+                <span>Kelola File Download</span>
+                <i class="fa-solid fa-arrow-right text-[10px] group-hover:translate-x-1 transition"></i>
+            </div>
+        </a>
+    </div>
+
+    {{-- 3C. SYSTEM & SERVER ENVIRONMENT SPECS CARD --}}
+    <div class="bg-slate-900 text-white rounded-3xl p-6 border border-slate-800 shadow-md">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-4 border-b border-slate-800">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-lg font-bold">
+                    <i class="fa-solid fa-server"></i>
+                </div>
+                <div>
+                    <h4 class="font-extrabold text-sm text-white">Status Infrastruktur & Spesifikasi Server</h4>
+                    <p class="text-xs text-slate-400">Ringkasan lingkungan sistem website resmi Pondok Pesantren Raudhatul Ulum Sakatiga</p>
+                </div>
+            </div>
+            <a href="https://ppru.ac.id" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-emerald-600/90 hover:bg-emerald-600 text-white text-xs font-bold px-4 py-2 rounded-xl transition">
+                <i class="fa-solid fa-globe"></i>
+                <span>Domain: https://ppru.ac.id</span>
+            </a>
+        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 pt-4 text-xs">
+            <div class="bg-slate-800/60 p-3.5 rounded-2xl border border-slate-700/60">
+                <span class="text-slate-400 text-[10px] uppercase font-bold block">PHP Runtime</span>
+                <span class="font-bold text-slate-200 mt-0.5 block">{{ $systemInfo['php_version'] ?? PHP_VERSION }}</span>
+            </div>
+            <div class="bg-slate-800/60 p-3.5 rounded-2xl border border-slate-700/60">
+                <span class="text-slate-400 text-[10px] uppercase font-bold block">Framework</span>
+                <span class="font-bold text-slate-200 mt-0.5 block">Laravel {{ $systemInfo['laravel_version'] ?? '12' }}</span>
+            </div>
+            <div class="bg-slate-800/60 p-3.5 rounded-2xl border border-slate-700/60">
+                <span class="text-slate-400 text-[10px] uppercase font-bold block">Database Driver</span>
+                <span class="font-bold text-emerald-400 mt-0.5 block">{{ strtoupper($systemInfo['db_driver'] ?? 'SQLITE') }}</span>
+            </div>
+            <div class="bg-slate-800/60 p-3.5 rounded-2xl border border-slate-700/60">
+                <span class="text-slate-400 text-[10px] uppercase font-bold block">Environment</span>
+                <span class="font-bold text-amber-400 mt-0.5 block">{{ strtoupper($systemInfo['app_env'] ?? 'LOCAL') }}</span>
+            </div>
+            <div class="bg-slate-800/60 p-3.5 rounded-2xl border border-slate-700/60">
+                <span class="text-slate-400 text-[10px] uppercase font-bold block">Memory Usage</span>
+                <span class="font-bold text-slate-200 mt-0.5 block">{{ $systemInfo['memory_usage'] ?? 'N/A' }}</span>
+            </div>
+            <div class="bg-slate-800/60 p-3.5 rounded-2xl border border-slate-700/60">
+                <span class="text-slate-400 text-[10px] uppercase font-bold block">Waktu Server</span>
+                <span class="font-bold text-slate-200 mt-0.5 block">{{ $systemInfo['server_time'] ?? date('d M Y H:i') }}</span>
             </div>
         </div>
     </div>

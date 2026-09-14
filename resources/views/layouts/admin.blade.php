@@ -491,10 +491,9 @@
             <div>
                 &copy; {{ date('Y') }} Pondok Pesantren Raudhatul Ulum Sakatiga &bull; Panel Administrasi
             </div>
-            <div class="text-[11px] text-slate-400 flex items-center gap-1.5">
-                <a href="https://berandadigital.net" target="_blank" rel="noopener" class="text-slate-600 hover:text-emerald-700 font-semibold hover:underline flex items-center gap-1.5" title="Beranda Teknologi Digital">
-                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block"></span>
-                    <span>Beranda Teknologi Digital</span>
+            <div class="text-[11px] text-slate-400">
+                <a href="https://berandadigital.net" target="_blank" rel="noopener" class="text-slate-400 hover:text-slate-600 font-normal hover:underline" title="Beranda Teknologi Digital">
+                    Beranda Teknologi Digital
                 </a>
             </div>
         </footer>

@@ -1,7 +1,7 @@
 @extends('layouts.frontend')
 
 @section('title', 'Portal Layanan Terpadu - Pondok Pesantren Raudhatul Ulum Sakatiga')
-@section('meta_description', 'Pintu Pelayanan Publik Terpadu Pondok Pesantren Raudhatul Ulum Sakatiga: Izin Kunjungan & Studi Banding, Permohonan Kemitraan Kerja Sama, dan Sewa Peminjaman Fasilitas Kampus.')
+@section('meta_description', 'Pintu Pelayanan Publik Terpadu Pondok Pesantren Raudhatul Ulum Sakatiga: Izin Kunjungan & Studi Banding, Permohonan Kemitraan Kerja Sama, dan Sewa Peminjaman Fasilitas Pondok.')
 
 @section('content')
 {{-- HERO HEADER --}}
@@ -67,11 +67,11 @@
                         </h3>
                     </div>
                     <p class="text-xs text-gray-500 leading-relaxed">
-                        Layanan pengajuan studi banding, observasi kurikulum kepesantrenan, riset ilmiah, atau kunjungan silaturahmi instansi/sekolah ke kampus Raudhatul Ulum.
+                        Layanan pengajuan studi banding, observasi kurikulum kepesantrenan, riset ilmiah, atau kunjungan silaturahmi instansi/sekolah ke Pondok Pesantren Raudhatul Ulum.
                     </p>
                     <ul class="text-[11px] text-gray-600 space-y-1.5 pt-2 border-t border-gray-100">
                         <li class="flex items-center gap-2"><i class="fa-solid fa-check text-[#00843d]"></i> <span>Bebas Biaya (Gratis)</span></li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-[#00843d]"></i> <span>Tur keliling fasilitas kampus</span></li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-[#00843d]"></i> <span>Tur keliling fasilitas pondok</span></li>
                         <li class="flex items-center gap-2"><i class="fa-solid fa-check text-[#00843d]"></i> <span>Respon konfirmasi maks 3 hari</span></li>
                     </ul>
                 </div>

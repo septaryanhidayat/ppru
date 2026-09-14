@@ -16,7 +16,7 @@
         </nav>
         <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Papan Pengumuman Sekolah</h1>
         <p class="text-sm text-emerald-100 mt-2 font-light max-w-2xl">
-            Informasi penting, edaran akademik, jadwal kegiatan santri, dan pengumuman resmi Pondok Pesantren Raudhatul Ulum Sakatiga.
+            Informasi penting, edaran akademik, kalender kegiatan, dan pengumuman resmi Pondok Pesantren Raudhatul Ulum Sakatiga.
         </p>
     </div>
 </div>

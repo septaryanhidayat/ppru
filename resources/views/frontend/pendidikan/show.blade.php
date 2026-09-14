@@ -83,73 +83,64 @@
     </div>
 </div>
 
-{{-- 2. INTEGRATED UNIT METADATA BANNER (Spacious, Elegant, No Text Truncation) --}}
-<section class="py-6 sm:py-8 bg-slate-100/70 border-b border-gray-200/80">
+{{-- 2. INTEGRATED UNIT HIGHLIGHTS BAR (Modern, Premium, Anti-Clipping) --}}
+<section class="py-6 sm:py-8 bg-slate-50 border-b border-gray-200/80">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-gray-200/90 grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 divide-y md:divide-y-0 md:divide-x divide-gray-100">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
             
-            {{-- Kolom 1: Jenjang, Tipe & Akreditasi --}}
-            <div class="space-y-3 pt-2 md:pt-0">
-                <span class="text-[11px] font-black uppercase tracking-wider text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full inline-block border border-emerald-100">
-                    Jenjang &amp; Akreditasi Resmi
-                </span>
-                <div class="space-y-1.5">
-                    <p class="text-base sm:text-lg font-black text-gray-900 flex items-center gap-2">
-                        <i class="fa-solid fa-school text-[#00843d]"></i>
-                        <span>{{ $unit->category_type }}</span>
-                    </p>
-                    <p class="text-xs sm:text-sm font-bold text-amber-600 flex items-center gap-2">
-                        <i class="fa-solid fa-certificate text-amber-500"></i>
-                        <span>Status: {{ $unit->badge ?: 'Terakreditasi A (Unggul)' }}</span>
-                    </p>
-                    <p class="text-xs text-gray-500 flex items-center gap-2">
-                        <i class="fa-solid fa-mosque text-emerald-700"></i>
-                        <span>Sistem: Boarding School (Asrama Terpadu 24 Jam)</span>
-                    </p>
+            {{-- Card 1: Jenjang & Akreditasi --}}
+            <div class="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-xs hover:shadow-md transition flex items-start space-x-3.5">
+                <div class="w-12 h-12 rounded-xl bg-emerald-50 text-[#00843d] flex items-center justify-center text-xl shrink-0 border border-emerald-100">
+                    <i class="fa-solid fa-graduation-cap"></i>
                 </div>
-            </div>
-
-            {{-- Kolom 2: Pimpinan Unit & Yayasan Pembina --}}
-            <div class="space-y-3 pt-4 md:pt-0 md:pl-8">
-                <span class="text-[11px] font-black uppercase tracking-wider text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full inline-block border border-emerald-100">
-                    Kepemimpinan &amp; Yayasan
-                </span>
-                <div class="space-y-1.5">
-                    <div>
-                        <span class="text-[10px] text-gray-400 font-bold uppercase block">Kepala / Mudir Unit:</span>
-                        <p class="text-sm sm:text-base font-black text-gray-900 leading-snug">
-                            {{ $unit->head_name ?? 'Ustadz H. M. Said, S.Ag., M.Pd.I' }}
-                        </p>
-                    </div>
-                    <div>
-                        <span class="text-[10px] text-gray-400 font-bold uppercase block">Yayasan Pembina:</span>
-                        <p class="text-xs sm:text-sm font-bold text-gray-700 flex items-center gap-1.5">
-                            <i class="fa-solid fa-building-flag text-[#00843d]"></i>
-                            <span>Yayasan Perguruan Islam Raudhatul Ulum (YAPIRUS)</span>
-                        </p>
+                <div class="min-w-0 flex-1">
+                    <span class="text-[10px] font-extrabold uppercase tracking-wider text-emerald-700 block">Jenjang Pendidikan</span>
+                    <h3 class="text-sm font-black text-gray-900 mt-0.5 leading-snug">{{ $unit->name }}</h3>
+                    <div class="mt-1.5 inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-amber-50 border border-amber-200 text-amber-800 text-[10px] font-bold">
+                        <i class="fa-solid fa-certificate text-[9px] text-amber-500"></i>
+                        <span>{{ $unit->badge ?: 'Terakreditasi A' }}</span>
                     </div>
                 </div>
             </div>
 
-            {{-- Kolom 3: Kontak & Layanan Informasi --}}
-            <div class="space-y-3 pt-4 md:pt-0 md:pl-8">
-                <span class="text-[11px] font-black uppercase tracking-wider text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full inline-block border border-emerald-100">
-                    Layanan &amp; Konsultasi PSB
-                </span>
-                <div class="space-y-2">
-                    <div>
-                        <span class="text-[10px] text-gray-400 font-bold uppercase block">Telepon / WhatsApp Panitia:</span>
-                        <a href="tel:{{ $unit->phone ?? '081278901950' }}" class="text-sm sm:text-base font-black text-emerald-700 hover:text-emerald-800 hover:underline flex items-center gap-2 mt-0.5">
-                            <i class="fa-solid fa-phone text-emerald-600"></i>
-                            <span>{{ $unit->phone ?? '0812-7890-1950' }}</span>
-                        </a>
-                    </div>
-                    <div class="pt-1">
-                        <a href="{{ route('ppdb.index') }}" class="inline-flex items-center space-x-2 bg-[#00843d] hover:bg-emerald-800 text-white font-bold text-xs px-4 py-2 rounded-xl shadow-xs transition">
-                            <i class="fa-solid fa-clipboard-check"></i>
-                            <span>Informasi Pendaftaran Santri Baru</span>
-                        </a>
-                    </div>
+            {{-- Card 2: Pimpinan Unit --}}
+            <div class="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-xs hover:shadow-md transition flex items-start space-x-3.5">
+                <div class="w-12 h-12 rounded-xl bg-amber-50 text-amber-700 flex items-center justify-center text-xl shrink-0 border border-amber-100">
+                    <i class="fa-solid fa-user-tie"></i>
+                </div>
+                <div class="min-w-0 flex-1">
+                    <span class="text-[10px] font-extrabold uppercase tracking-wider text-amber-800 block">Kepala / Mudir Unit</span>
+                    <h3 class="text-sm font-black text-gray-900 mt-0.5 leading-snug">{{ $unit->head_name ?? 'Ustadz H. M. Said, S.Ag., M.Pd.I' }}</h3>
+                    <p class="text-[11px] text-gray-500 mt-1">Yayasan Perguruan Islam Raudhatul Ulum</p>
+                </div>
+            </div>
+
+            {{-- Card 3: Kurikulum & Muadalah --}}
+            <div class="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-xs hover:shadow-md transition flex items-start space-x-3.5">
+                <div class="w-12 h-12 rounded-xl bg-sky-50 text-sky-700 flex items-center justify-center text-xl shrink-0 border border-sky-100">
+                    <i class="fa-solid fa-book-quran"></i>
+                </div>
+                <div class="min-w-0 flex-1">
+                    <span class="text-[10px] font-extrabold uppercase tracking-wider text-sky-800 block">Kurikulum &amp; Sistem</span>
+                    <h3 class="text-sm font-black text-gray-900 mt-0.5 leading-snug">{{ $unit->curriculum ?: 'Kemenag & Muadalah Al-Azhar' }}</h3>
+                    <p class="text-[11px] text-gray-500 mt-1">Boarding School (Asrama 24 Jam)</p>
+                </div>
+            </div>
+
+            {{-- Card 4: Hotline & Konsultasi PSB --}}
+            <div class="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-xs hover:shadow-md transition flex items-start space-x-3.5">
+                <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center text-xl shrink-0 border border-emerald-100">
+                    <i class="fa-solid fa-headset"></i>
+                </div>
+                <div class="min-w-0 flex-1">
+                    <span class="text-[10px] font-extrabold uppercase tracking-wider text-emerald-700 block">Layanan Konsultasi</span>
+                    <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $unit->phone ?? '081278901950') }}?text={{ urlencode('Assalamu\'alaikum, saya ingin konsultasi PSB unit ' . $unit->name) }}" target="_blank" rel="noopener" class="text-sm font-black text-emerald-700 hover:text-emerald-800 hover:underline block mt-0.5 leading-snug">
+                        {{ $unit->phone ?: '0812-7890-1950' }}
+                    </a>
+                    <a href="{{ route('ppdb.index') }}" class="text-[11px] font-bold text-amber-600 hover:text-amber-700 inline-flex items-center gap-1 mt-1">
+                        <span>Daftar Santri Baru</span>
+                        <i class="fa-solid fa-arrow-right text-[9px]"></i>
+                    </a>
                 </div>
             </div>
 
@@ -533,7 +524,7 @@
                     <h2 class="text-2xl sm:text-3xl font-black text-gray-900 mt-2 tracking-tight">
                         Galeri Aktivitas Santri
                     </h2>
-                    <p class="text-xs text-gray-500 mt-0.5">Potret ragam kegiatan belajar, keagamaan, dan pembinaan karakter di kampus pesantren</p>
+                    <p class="text-xs text-gray-500 mt-0.5">Potret ragam kegiatan belajar, keagamaan, dan pembinaan karakter di pondok pesantren</p>
                 </div>
                 <a href="{{ route('galeri.index') }}" class="text-xs font-bold text-[#00843d] hover:underline flex items-center gap-1 shrink-0">
                     <span>Lihat Semua Galeri</span>
@@ -543,9 +534,9 @@
 
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                 <div class="aspect-4/3 rounded-2xl overflow-hidden group relative shadow-xs">
-                    <img src="/uploads/campus-ppru-sakatiga.webp" alt="Kampus PPRU" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    <img src="/uploads/campus-ppru-sakatiga.webp" alt="Pondok PPRU" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent opacity-0 group-hover:opacity-100 transition flex items-end p-3">
-                        <span class="text-white text-[11px] font-bold">Kampus Utama Pesantren</span>
+                        <span class="text-white text-[11px] font-bold">Kompleks Utama Pondok</span>
                     </div>
                 </div>
                 <div class="aspect-4/3 rounded-2xl overflow-hidden group relative shadow-xs">
@@ -592,7 +583,7 @@
                                     <a href="{{ route('agenda.show', $ag->slug) }}">{{ $ag->title }}</a>
                                 </h4>
                                 <p class="text-[11px] text-gray-500 mt-0.5 line-clamp-1">
-                                    <i class="fa-solid fa-location-dot mr-1 text-amber-500"></i> {{ $ag->location ?? 'Kampus PPRU Sakatiga' }}
+                                    <i class="fa-solid fa-location-dot mr-1 text-amber-500"></i> {{ $ag->location ?? 'Pondok Pesantren Raudhatul Ulum Sakatiga' }}
                                 </p>
                             </div>
                         </div>
@@ -674,7 +665,7 @@
                     <div class="w-12 h-12 mx-auto rounded-xl bg-emerald-100 text-[#00843d] flex items-center justify-center text-xl mb-2.5">
                         <i class="fa-solid fa-mosque"></i>
                     </div>
-                    <h4 class="font-bold text-gray-900">Masjid Jami' Kampus</h4>
+                    <h4 class="font-bold text-gray-900">Masjid Jami' Pondok</h4>
                     <p class="text-[10px] text-gray-400 mt-1">Pusat Ibadah &amp; Halaqah</p>
                 </div>
                 <div class="p-4 rounded-2xl bg-slate-50 border border-gray-100 hover:border-emerald-300 transition">

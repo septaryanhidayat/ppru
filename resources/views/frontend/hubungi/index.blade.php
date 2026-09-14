@@ -1,7 +1,7 @@
 @extends('layouts.frontend')
 
 @section('title', 'Hubungi Kami & Informasi PPDB - Pondok Pesantren Raudhatul Ulum Sakatiga')
-@section('meta_description', 'Kontak resmi Pondok Pesantren Raudhatul Ulum Sakatiga: Nomor telepon, WhatsApp humas PPDB, email resmi, alamat kampus, dan formulir pesan.')
+@section('meta_description', 'Kontak resmi Pondok Pesantren Raudhatul Ulum Sakatiga: Nomor telepon, WhatsApp humas PPDB, email resmi, alamat pondok, dan formulir pesan.')
 
 @section('content')
 {{-- HERO HEADER --}}
@@ -14,7 +14,7 @@
         </nav>
         <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Hubungi Pondok Pesantren Raudhatul Ulum Sakatiga</h1>
         <p class="text-sm text-emerald-100 mt-2 font-light max-w-2xl">
-            Kami siap melayani pertanyaan seputar PPDB, kurikulum tahfidz & sains, program asrama, maupun kunjungan ke kampus.
+            Kami siap melayani pertanyaan seputar PPDB, kurikulum tahfidz & sains, program asrama, maupun kunjungan ke pondok.
         </p>
     </div>
 </div>

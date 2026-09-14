@@ -119,16 +119,16 @@
         <div class="grid grid-cols-4 md:grid-cols-8 gap-2 sm:gap-3 md:gap-3.5 text-center justify-items-center">
             @foreach($quickMenus as $qm)
             <a href="{{ $qm->url }}" 
-               class="group w-full flex flex-col items-center justify-between text-center p-2 sm:p-2.5 md:py-3.5 md:px-1 rounded-2xl border border-slate-100 hover:border-school-green bg-white hover:bg-emerald-50/40 shadow-xs hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 min-h-[88px] sm:min-h-[98px] md:min-h-[105px]" 
+               class="group w-full flex flex-col items-center justify-between text-center p-2 sm:p-2.5 md:py-3.5 md:px-1.5 rounded-2xl border border-amber-100/70 hover:border-amber-400 bg-gradient-to-b from-white via-white to-amber-50/40 hover:to-amber-100/50 shadow-xs hover:shadow-lg hover:shadow-amber-500/10 transition-all duration-300 transform hover:-translate-y-1 min-h-[92px] sm:min-h-[100px] md:min-h-[108px]" 
                aria-label="Menu {{ $qm->name }}">
-                <div class="w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 rounded-2xl bg-emerald-50 text-school-green flex items-center justify-center mx-auto mb-1.5 sm:mb-2 shadow-xs border border-emerald-100/70 group-hover:bg-school-green group-hover:text-white group-hover:scale-110 transition-all duration-300">
+                <div class="w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 rounded-2xl bg-gradient-to-br from-emerald-50 via-white to-amber-100/70 text-[#00843d] flex items-center justify-center mx-auto mb-1.5 sm:mb-2 shadow-xs border border-amber-200/80 group-hover:from-[#00843d] group-hover:to-amber-500 group-hover:text-white group-hover:scale-110 group-hover:border-amber-400 transition-all duration-300">
                     @if(!empty($qm->is_image) && $qm->is_image)
                         <img src="{{ $qm->icon }}" alt="Ikon {{ $qm->name }}" class="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 object-contain group-hover:scale-105 transition" onerror="this.src='/uploads/logo-ppru-square.png'">
                     @else
-                        <i class="{{ $qm->icon }} text-lg sm:text-xl md:text-2xl transition-colors duration-300" aria-hidden="true"></i>
+                        <i class="{{ $qm->icon }} text-base sm:text-lg md:text-xl transition-colors duration-300" aria-hidden="true"></i>
                     @endif
                 </div>
-                <span class="text-[11px] sm:text-[11px] md:text-xs font-bold text-slate-800 group-hover:text-school-green text-center leading-tight truncate w-full tracking-tight px-0.5">
+                <span class="text-[11px] sm:text-[11px] md:text-xs font-bold text-slate-800 group-hover:text-amber-700 text-center leading-tight block w-full tracking-tight px-0.5">
                     {{ $qm->name }}
                 </span>
             </a>
@@ -228,83 +228,247 @@
 </div>
 
 {{-- ========================================================
-     SECTION #2: 3 PILAR PENDIDIKAN PESANTREN (Inspired by Baitussalam)
+     SECTION #2: MENDIDIK DENGAN SEPENUH KASIH SAYANG & 3 PRIORITAS PEMBELAJARAN
+     (Inspired by Baitussalam - Quranic, Scientific, Leadership & Program Unggulan)
      ======================================================== --}}
-<section class="py-14 sm:py-18 bg-gradient-to-b from-white to-gray-50 overflow-hidden">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6">
-        <div class="text-center max-w-2xl mx-auto mb-10 reveal-fade-up">
-            <span class="inline-block px-3 py-1 bg-emerald-100 text-school-green rounded-full text-xs font-bold uppercase tracking-wider mb-2">
-                Fondasi Nilai Pesantren
-            </span>
-            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-black text-gray-900 tracking-tight">
-                3 Pilar Pendidikan Raudhatul Ulum
-            </h2>
-            <p class="text-xs sm:text-sm text-gray-600 mt-2 font-medium">
-                Pondasi pembinaan santri secara terpadu menuju terwujudnya generasi Khairu Ummah yang berilmu amaliah dan beramal ilmiah
-            </p>
-            <div class="w-16 h-1 bg-school-gold mx-auto mt-3 rounded-full"></div>
+<section class="py-16 sm:py-24 bg-gradient-to-b from-slate-900 via-emerald-950 to-slate-900 text-white relative overflow-hidden" x-data="{ videoModalOpen: false }">
+    {{-- Decorative Background Elements --}}
+    <div class="absolute inset-0 bg-[radial-gradient(#00843d_1px,transparent_1px)] [background-size:24px_24px] opacity-15 pointer-events-none"></div>
+    <div class="absolute -top-32 -left-32 w-96 h-96 bg-emerald-600/20 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute -bottom-32 -right-32 w-96 h-96 bg-[#f59e0b]/15 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-16">
+        
+        {{-- Video Teaser & Headline Showcase --}}
+        <div class="relative rounded-3xl overflow-hidden border border-white/15 bg-black/40 backdrop-blur-md shadow-2xl p-8 sm:p-12 lg:p-16">
+            {{-- Background Cinematic Poster / Ambience --}}
+            <div class="absolute inset-0 -z-10 overflow-hidden">
+                <img src="/uploads/campus-ppru-sakatiga.webp" alt="Pondok Pesantren Raudhatul Ulum" class="w-full h-full object-cover object-center filter brightness-[0.28] scale-105 transform hover:scale-100 transition duration-1000">
+                <div class="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-emerald-950/80 to-slate-950/90"></div>
+            </div>
+
+            <div class="max-w-4xl mx-auto text-center space-y-6">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-amber-300 text-xs font-black uppercase tracking-widest backdrop-blur-sm shadow-sm">
+                    <i class="fa-solid fa-heart text-rose-400 animate-pulse"></i>
+                    <span>Mendidik dengan Sepenuh Kasih Sayang</span>
+                </div>
+
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-tight">
+                    Mendidik dengan Kasih Sayang, Membentuk Generasi Khairu Ummah
+                </h2>
+
+                <p class="text-sm sm:text-base md:text-lg text-emerald-100/90 font-light leading-relaxed max-w-3xl mx-auto">
+                    Di Pondok Pesantren Raudhatul Ulum Sakatiga, proses pendidikan berakar pada keikhlasan pengasuhan, keteladanan akhlaqul karimah, serta keseimbangan antara spiritualitas Qur'ani, ketajaman nalar ilmiah, dan kepemimpinan global.
+                </p>
+
+                {{-- Interactive Video Play Button Trigger --}}
+                <div class="pt-4 flex flex-wrap items-center justify-center gap-4">
+                    <button @click="videoModalOpen = true" type="button" class="group inline-flex items-center gap-3.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-black text-xs sm:text-sm px-7 py-3.5 rounded-full shadow-lg shadow-amber-500/25 transition transform hover:scale-105 cursor-pointer">
+                        <span class="w-8 h-8 rounded-full bg-slate-950 text-amber-400 flex items-center justify-center text-xs group-hover:scale-110 transition shadow-inner">
+                            <i class="fa-solid fa-play ml-0.5"></i>
+                        </span>
+                        <span>Tonton Video Profil Singkat Pesantren (1 Menit)</span>
+                    </button>
+
+                    <a href="{{ route('ppdb.index') }}" class="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white font-bold text-xs sm:text-sm px-6 py-3.5 rounded-full border border-white/20 backdrop-blur-xs transition">
+                        <i class="fa-solid fa-graduation-cap text-amber-300"></i>
+                        <span>Pendaftaran PSB Online</span>
+                    </a>
+                </div>
+            </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-            {{-- Pilar 1 --}}
-            <div class="bg-white rounded-3xl p-6 sm:p-7 shadow-sm hover:shadow-xl border border-gray-100 hover:border-school-green/40 transition-all duration-300 transform hover:-translate-y-1.5 flex flex-col justify-between group reveal-fade-up delay-1">
-                <div>
-                    <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-500 to-school-green text-white flex items-center justify-center text-2xl shadow-md mb-5 group-hover:scale-110 transition duration-300">
-                        <i class="fa-solid fa-book-quran"></i>
-                    </div>
-                    <span class="text-[11px] font-bold uppercase tracking-wider text-school-green">Pilar Pertama</span>
-                    <h3 class="text-lg sm:text-xl font-black text-gray-900 mt-1 mb-3 group-hover:text-school-green transition">
-                        Dirasah Islamiyah &amp; Muadalah
-                    </h3>
-                    <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
-                        Mengkaji khazanah Islam klasik (Kutubut Turats) dan modern dengan sistem terpadu (Kulliyatul Mu'allimin Al-Islamiyyah), dwi-bahasa aktif (Arab &amp; Inggris), serta ijazah muadalah yang diakui resmi di Universitas Al-Azhar Kairo Mesir dan Madinah.
-                    </p>
-                </div>
-                <div class="pt-5 mt-5 border-t border-gray-100 flex items-center text-xs font-bold text-school-green group-hover:translate-x-1 transition">
-                    <span>Tafaqquh Fiddin</span>
-                    <i class="fa-solid fa-check-circle ml-auto text-sm text-school-green"></i>
-                </div>
+        {{-- 3 Prioritas Pembelajaran Utama (Quranic, Scientific, Leadership) --}}
+        <div class="space-y-6">
+            <div class="text-center max-w-2xl mx-auto">
+                <span class="text-xs font-bold uppercase tracking-widest text-amber-400 bg-amber-400/10 border border-amber-400/20 px-3.5 py-1 rounded-full inline-block">
+                    3 Prioritas Utama Pembelajaran
+                </span>
+                <h3 class="text-2xl sm:text-3xl font-extrabold text-white mt-2">
+                    Trisula Keunggulan Santri Raudhatul Ulum
+                </h3>
+                <p class="text-xs sm:text-sm text-slate-300 mt-1.5 font-light">
+                    Kurikulum komprehensif yang dirancang untuk mengantarkan santri berprestasi di kancah nasional maupun dunia.
+                </p>
             </div>
 
-            {{-- Pilar 2 --}}
-            <div class="bg-white rounded-3xl p-6 sm:p-7 shadow-sm hover:shadow-xl border border-gray-100 hover:border-amber-400/50 transition-all duration-300 transform hover:-translate-y-1.5 flex flex-col justify-between group reveal-fade-up delay-2 relative overflow-hidden">
-                <div class="absolute top-0 right-0 w-24 h-24 bg-amber-50 rounded-bl-full -mr-6 -mt-6 -z-0"></div>
-                <div class="relative z-10">
-                    <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-400 to-school-gold text-gray-950 flex items-center justify-center text-2xl shadow-md mb-5 group-hover:scale-110 transition duration-300">
-                        <i class="fa-solid fa-kaaba"></i>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+                
+                {{-- Prioritas 1: Quranic Character --}}
+                <div class="bg-gradient-to-b from-white/10 to-white/5 backdrop-blur-md rounded-3xl p-7 border border-white/15 hover:border-amber-400/60 transition-all duration-300 transform hover:-translate-y-2 flex flex-col justify-between group shadow-xl">
+                    <div class="space-y-4">
+                        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-400 to-amber-600 text-slate-950 flex items-center justify-center text-2xl font-black shadow-lg shadow-amber-500/20 group-hover:scale-110 transition duration-300">
+                            <i class="fa-solid fa-book-quran"></i>
+                        </div>
+                        <div>
+                            <span class="text-[10px] font-black uppercase tracking-wider text-amber-400 block">Prioritas I &bull; Keagamaan &amp; Karakter</span>
+                            <h4 class="text-xl font-black text-white mt-1 group-hover:text-amber-300 transition">
+                                Karakter Qur'ani (Quranic Insight)
+                            </h4>
+                        </div>
+                        <p class="text-xs sm:text-sm text-slate-200 font-light leading-relaxed">
+                            Bimbingan intensif tahsin dan tahfidzul Qur'an mutqin hingga 30 juz bersanad lewat unit khusus MATQULARU, kajian kitab kuning (turats), serta pembiasaan ibadah sunnah 24 jam dan penempaan 10 Jati Diri Santri Raudhatul Ulum.
+                        </p>
                     </div>
-                    <span class="text-[11px] font-bold uppercase tracking-wider text-amber-600">Pilar Kedua</span>
-                    <h3 class="text-lg sm:text-xl font-black text-gray-900 mt-1 mb-3 group-hover:text-amber-700 transition">
-                        Tahfidzul Qur'an &amp; Karakter Santri
+                    <div class="pt-5 mt-5 border-t border-white/10 flex items-center justify-between text-xs">
+                        <span class="text-amber-300 font-bold">Target Mutqin 30 Juz &amp; Sanad</span>
+                        <i class="fa-solid fa-check-circle text-amber-400 text-sm"></i>
+                    </div>
+                </div>
+
+                {{-- Prioritas 2: Scientific Insight --}}
+                <div class="bg-gradient-to-b from-white/10 to-white/5 backdrop-blur-md rounded-3xl p-7 border border-white/15 hover:border-emerald-400/60 transition-all duration-300 transform hover:-translate-y-2 flex flex-col justify-between group shadow-xl">
+                    <div class="space-y-4">
+                        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-400 to-[#00843d] text-white flex items-center justify-center text-2xl font-black shadow-lg shadow-emerald-500/20 group-hover:scale-110 transition duration-300">
+                            <i class="fa-solid fa-microscope"></i>
+                        </div>
+                        <div>
+                            <span class="text-[10px] font-black uppercase tracking-wider text-emerald-400 block">Prioritas II &bull; Sains &amp; Teknologi</span>
+                            <h4 class="text-xl font-black text-white mt-1 group-hover:text-emerald-300 transition">
+                                Nalar Ilmiah (Scientific Insight)
+                            </h4>
+                        </div>
+                        <p class="text-xs sm:text-sm text-slate-200 font-light leading-relaxed">
+                            Penguatan logika berpikir kritis melalui integrasi kurikulum sains nasional, laboratorium terpadu, olimpiade riset (KSM/OSN), pengenalan literasi digital modern, coding, robotika pesantren, dan karya tulis ilmiah santri.
+                        </p>
+                    </div>
+                    <div class="pt-5 mt-5 border-t border-white/10 flex items-center justify-between text-xs">
+                        <span class="text-emerald-300 font-bold">Laboratorium Modern &amp; Robotika</span>
+                        <i class="fa-solid fa-check-circle text-emerald-400 text-sm"></i>
+                    </div>
+                </div>
+
+                {{-- Prioritas 3: Global Leadership --}}
+                <div class="bg-gradient-to-b from-white/10 to-white/5 backdrop-blur-md rounded-3xl p-7 border border-white/15 hover:border-sky-400/60 transition-all duration-300 transform hover:-translate-y-2 flex flex-col justify-between group shadow-xl">
+                    <div class="space-y-4">
+                        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-sky-400 to-blue-600 text-white flex items-center justify-center text-2xl font-black shadow-lg shadow-sky-500/20 group-hover:scale-110 transition duration-300">
+                            <i class="fa-solid fa-globe"></i>
+                        </div>
+                        <div>
+                            <span class="text-[10px] font-black uppercase tracking-wider text-sky-400 block">Prioritas III &bull; Bahasa &amp; Kepemimpinan</span>
+                            <h4 class="text-xl font-black text-white mt-1 group-hover:text-sky-300 transition">
+                                Kepemimpinan Global (Global Leadership)
+                            </h4>
+                        </div>
+                        <p class="text-xs sm:text-sm text-slate-200 font-light leading-relaxed">
+                            Ekosistem dwi-bahasa aktif (Arab &amp; Inggris harian), kurikulum muadalah yang diakui resmi di Universitas Al-Azhar Kairo Mesir, organisasi kepemimpinan santri (OSPRU), kepanduan pramuka, serta kemandirian hidup berasrama 24 jam.
+                        </p>
+                    </div>
+                    <div class="pt-5 mt-5 border-t border-white/10 flex items-center justify-between text-xs">
+                        <span class="text-sky-300 font-bold">Dwi-Bahasa &amp; Muadalah Al-Azhar</span>
+                        <i class="fa-solid fa-check-circle text-sky-400 text-sm"></i>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        {{-- Program Unggulan Showcase (Directly Beneath 3 Priorities) --}}
+        <div class="pt-8 space-y-8">
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-4 border-b border-white/15">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-widest text-[#f59e0b] block">
+                        Kurikulum &amp; Ekstrakurikuler Khusus
+                    </span>
+                    <h3 class="text-2xl sm:text-3xl font-extrabold text-white mt-1">
+                        Program Unggulan Santri Raudhatul Ulum
                     </h3>
-                    <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
-                        Bimbingan intensif tahsin dan tahfidz hingga 30 juz mutqin bersanad lewat unit khusus MATQULARU, serta penempaan 10 Jati Diri Santri Raudhatul Ulum: beraqidah lurus, berakhlak mulia, berbadan sehat, dan mandiri.
+                    <p class="text-xs sm:text-sm text-slate-300 mt-1 font-light">
+                        Pilihan program akselerasi minat dan bakat untuk melahirkan generasi santri yang berprestasi dan berwawasan luas.
                     </p>
                 </div>
-                <div class="relative z-10 pt-5 mt-5 border-t border-gray-100 flex items-center text-xs font-bold text-amber-600 group-hover:translate-x-1 transition">
-                    <span>Hifzhil Qur'an &amp; Akhlaq</span>
-                    <i class="fa-solid fa-check-circle ml-auto text-sm text-amber-600"></i>
-                </div>
+                <a href="{{ route('dpc.index') }}" class="inline-flex items-center text-xs font-bold text-amber-400 hover:text-amber-300 transition flex-shrink-0">
+                    <span>Lihat Seluruh Program</span>
+                    <i class="fa-solid fa-arrow-right ml-1.5 text-[10px]"></i>
+                </a>
             </div>
 
-            {{-- Pilar 3 --}}
-            <div class="bg-white rounded-3xl p-6 sm:p-7 shadow-sm hover:shadow-xl border border-gray-100 hover:border-sky-400/50 transition-all duration-300 transform hover:-translate-y-1.5 flex flex-col justify-between group reveal-fade-up delay-3">
-                <div>
-                    <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-sky-500 to-school-sky text-white flex items-center justify-center text-2xl shadow-md mb-5 group-hover:scale-110 transition duration-300">
-                        <i class="fa-solid fa-microscope"></i>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                @forelse($programUnggulan as $p)
+                    <div class="bg-white/10 rounded-2xl overflow-hidden border border-white/15 hover:border-amber-400/80 transition-all duration-300 group hover:-translate-y-1 shadow-lg flex flex-col justify-between">
+                        <div>
+                            <div class="h-48 w-full overflow-hidden bg-slate-800 relative">
+                                <img src="{{ $p->thumbnail_url }}" alt="{{ $p->name }}" class="w-full h-full object-cover group-hover:scale-108 transition duration-500" onerror="this.src='/uploads/logo-ppru-banner.png'">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                                <span class="absolute top-3 left-3 bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 text-[10px] font-black px-2.5 py-0.5 rounded-full shadow">
+                                    {{ $p->address ?: 'Program Unggulan' }}
+                                </span>
+                            </div>
+                            <div class="p-5 space-y-2">
+                                <h4 class="font-extrabold text-base text-white group-hover:text-amber-300 transition line-clamp-1 leading-snug">
+                                    {{ $p->name }}
+                                </h4>
+                                <p class="text-xs text-slate-300 font-light leading-relaxed line-clamp-3">
+                                    {{ strip_tags($p->description) }}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-5 pb-5 pt-3 border-t border-white/10 flex items-center justify-between text-xs font-bold text-amber-400">
+                            <span>Rincian Pembinaan</span>
+                            <i class="fa-solid fa-chevron-right text-[10px] group-hover:translate-x-1 transition"></i>
+                        </div>
                     </div>
-                    <span class="text-[11px] font-bold uppercase tracking-wider text-school-sky">Pilar Ketiga</span>
-                    <h3 class="text-lg sm:text-xl font-black text-gray-900 mt-1 mb-3 group-hover:text-school-sky transition">
-                        Sains, Teknologi &amp; Kepemimpinan
-                    </h3>
-                    <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
-                        Integrasi kurikulum Kemenag/Kemendikbud dengan laboratorium sains terpadu, olimpiade riset, literasi digital dan robotika, kepanduan pramuka, serta pembekalan kepemimpinan santri (OSPRU) yang berwawasan global.
-                    </p>
+                @empty
+                    <div class="col-span-full py-8 text-center text-xs text-slate-400">
+                        Data program unggulan segera diperbarui.
+                    </div>
+                @endforelse
+            </div>
+        </div>
+
+    </div>
+
+    {{-- Interactive Video Modal Lightbox --}}
+    <div x-show="videoModalOpen" 
+         x-cloak 
+         x-transition:enter="transition ease-out duration-300"
+         x-transition:enter-start="opacity-0"
+         x-transition:enter-end="opacity-100"
+         x-transition:leave="transition ease-in duration-200"
+         x-transition:leave-start="opacity-100"
+         x-transition:leave-end="opacity-0"
+         @keydown.escape.window="videoModalOpen = false"
+         class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md">
+        
+        <div class="fixed inset-0" @click="videoModalOpen = false"></div>
+
+        <div class="relative w-full max-w-4xl bg-slate-900 rounded-3xl overflow-hidden border border-white/20 shadow-2xl z-10"
+             x-show="videoModalOpen"
+             x-transition:enter="transition ease-out duration-300"
+             x-transition:enter-start="opacity-0 scale-95"
+             x-transition:enter-end="opacity-100 scale-100">
+            
+            <div class="flex items-center justify-between px-6 py-4 border-b border-white/10 bg-slate-950/80">
+                <div class="flex items-center space-x-2">
+                    <span class="w-3 h-3 rounded-full bg-red-500 animate-pulse"></span>
+                    <h4 class="text-xs sm:text-sm font-bold text-white">Video Profil &amp; Dokumentasi Pondok Pesantren Raudhatul Ulum Sakatiga</h4>
                 </div>
-                <div class="pt-5 mt-5 border-t border-gray-100 flex items-center text-xs font-bold text-school-sky group-hover:translate-x-1 transition">
-                    <span>Sains &amp; Leadership</span>
-                    <i class="fa-solid fa-check-circle ml-auto text-sm text-school-sky"></i>
-                </div>
+                <button @click="videoModalOpen = false" type="button" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition cursor-pointer">
+                    <i class="fa-solid fa-xmark text-sm"></i>
+                </button>
+            </div>
+
+            <div class="aspect-video bg-black relative">
+                @php
+                    $firstVideo = $videos->first();
+                    $ytId = $firstVideo?->youtube_id ?? 'dQw4w9WgXcQ';
+                @endphp
+                <template x-if="videoModalOpen">
+                    <iframe class="w-full h-full" 
+                            src="https://www.youtube-nocookie.com/embed/{{ $ytId }}?autoplay=1" 
+                            title="Video Profil Pondok Pesantren Raudhatul Ulum Sakatiga" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                    </iframe>
+                </template>
+            </div>
+            
+            <div class="p-4 bg-slate-950 flex items-center justify-between text-xs text-slate-400">
+                <span>Pondok Pesantren Raudhatul Ulum Sakatiga, Ogan Ilir, Sumatera Selatan</span>
+                <a href="{{ route('video.index') }}" class="text-amber-400 hover:text-amber-300 font-bold">
+                    Lihat Koleksi Video Lainnya &rarr;
+                </a>
             </div>
         </div>
     </div>
@@ -421,8 +585,14 @@
                 <div>
                     {{-- Top Card Header --}}
                     <div class="flex items-start justify-between gap-3 mb-4">
-                        <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-school-green group-hover:bg-school-green group-hover:text-white flex items-center justify-center text-xl shadow-xs transition duration-300">
-                            <i class="{{ $u->icon ?: 'fa-solid fa-graduation-cap' }}"></i>
+                        <div class="w-12 h-12 rounded-2xl bg-white p-1.5 shadow-sm border border-emerald-100/80 group-hover:border-school-green group-hover:scale-105 flex items-center justify-center transition duration-300 overflow-hidden">
+                            @if(!empty($u->logo))
+                                <img src="{{ $u->logo_url }}" alt="Logo {{ $u->name }}" class="w-full h-full object-contain">
+                            @else
+                                <div class="w-full h-full rounded-xl bg-emerald-50 text-school-green group-hover:bg-school-green group-hover:text-white flex items-center justify-center text-lg transition">
+                                    <i class="{{ $u->icon ?: 'fa-solid fa-graduation-cap' }}"></i>
+                                </div>
+                            @endif
                         </div>
                         <span class="inline-block px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider {{ str_contains(strtolower($u->category_type), 'boarding') ? 'bg-emerald-100 text-emerald-800' : (str_contains(strtolower($u->category_type), 'tahfidz') ? 'bg-amber-100 text-amber-800' : 'bg-sky-100 text-sky-800') }}">
                             {{ $u->category_type }}
@@ -898,7 +1068,7 @@
 </section>
 
 {{-- ========================================================
-     SECTION #10: GALERI FOTO KEGIATAN SANTRI & KAMPUS
+     SECTION #10: GALERI FOTO KEGIATAN SANTRI & PONDOK
      ======================================================== --}}
 <section class="py-16 sm:py-20 bg-gray-950 text-white overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -911,7 +1081,7 @@
                 Galeri Kehidupan Pesantren
             </h2>
             <p class="text-xs sm:text-sm text-gray-400 mt-2">
-                Potret aktivitas ibadah, pembelajaran kelas, tahfidz Qur'an, dan dinamika santri di kampus PPRU Sakatiga
+                Potret aktivitas ibadah, pembelajaran kelas, tahfidz Qur'an, dan dinamika santri di pondok PPRU Sakatiga
             </p>
             <div class="w-16 h-1 bg-school-gold mx-auto mt-3 rounded-full"></div>
         </div>
@@ -1146,7 +1316,7 @@
                                     <a href="{{ route('agenda.show', $ag->slug) }}">{{ $ag->title }}</a>
                                 </h4>
                                 <p class="text-[11px] text-gray-500 mt-1">
-                                    <i class="fa-solid fa-location-dot text-gray-400 mr-1"></i> {{ $ag->location ?? 'Kampus PPRU Sakatiga' }}
+                                    <i class="fa-solid fa-location-dot text-gray-400 mr-1"></i> {{ $ag->location ?? 'Pondok Pesantren Raudhatul Ulum Sakatiga' }}
                                 </p>
                             </div>
                         </div>

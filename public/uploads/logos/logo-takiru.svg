@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="200" height="200">
+  <defs>
+    <linearGradient id="grad-TAKIRU" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f97316"/>
+      <stop offset="100%" stop-color="#c2410c"/>
+    </linearGradient>
+    <filter id="shadow-TAKIRU" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#000000" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+  <!-- Outer Shield / Circle -->
+  <circle cx="50" cy="50" r="47" fill="url(#grad-TAKIRU)" filter="url(#shadow-TAKIRU)"/>
+  <circle cx="50" cy="50" r="43" fill="none" stroke="#fde047" stroke-width="2"/>
+  <circle cx="50" cy="50" r="40" fill="none" stroke="#ffffff" stroke-width="0.75" stroke-dasharray="2,2"/>
+  
+  <!-- Graphic Symbol -->
+  <g transform="translate(0, -6)">
+    <circle cx="50" cy="42" r="16" fill="#fde047"/><circle cx="44" cy="40" r="2.5" fill="#c2410c"/><circle cx="56" cy="40" r="2.5" fill="#c2410c"/><path d="M44 48 Q50 54 56 48" stroke="#c2410c" stroke-width="2" fill="none"/>
+  </g>
+  
+  <!-- Banner Ribbons & Label -->
+  <path d="M18 70 Q50 63 82 70 L80 82 Q50 76 20 82 Z" fill="#ffffff" filter="url(#shadow-TAKIRU)"/>
+  <text x="50" y="78" text-anchor="middle" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-weight="900" font-size="9" fill="#c2410c" letter-spacing="0.5">TAKIRU</text>
+  
+  <!-- Bottom Text -->
+  <text x="50" y="90" text-anchor="middle" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-weight="800" font-size="4.5" fill="#ffffff" letter-spacing="0.8">PPRU SAKATIGA</text>
+</svg>

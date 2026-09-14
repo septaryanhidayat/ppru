@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Agenda;
 use App\Models\AnggotaDewan;
 use App\Models\Download;
+use App\Models\Dpc;
 use App\Models\Pengumuman;
 use App\Models\Post;
 use App\Models\Setting;
@@ -227,6 +228,9 @@ class HomeController extends Controller
             'button_text' => Setting::get('popup_button_text', 'Daftar PSB Sekarang'),
         ];
 
+        // 18. Program Unggulan Pesantren (Dpc)
+        $programUnggulan = Dpc::orderBy('order', 'asc')->get();
+
         return view('frontend.home', compact(
             'heroSlides',
             'sambutan',
@@ -246,6 +250,7 @@ class HomeController extends Controller
             'ebooks',
             'testimonials',
             'unitPendidikans',
+            'programUnggulan',
             'taujihPosts',
             'visitorHits',
             'popupSettings'

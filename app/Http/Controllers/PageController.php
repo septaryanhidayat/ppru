@@ -54,8 +54,9 @@ class PageController extends Controller
         $bidangs = Bidang::orderBy('order', 'asc')->get();
         $dpcs = Dpc::orderBy('order', 'asc')->get();
         $dewan = AnggotaDewan::orderBy('order', 'asc')->get();
+        $tree = AnggotaDewan::getHierarchyTree();
 
-        return view('frontend.pages.struktur', compact('page', 'bidangs', 'dpcs', 'dewan'));
+        return view('frontend.pages.struktur', compact('page', 'bidangs', 'dpcs', 'dewan', 'tree'));
     }
 
     public function privacyPolicy()

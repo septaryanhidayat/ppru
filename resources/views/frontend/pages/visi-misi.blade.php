@@ -215,7 +215,7 @@
                                     {{ $la->title }}
                                 </h4>
                                 <span class="text-[11px] text-gray-400 block mt-1">
-                                    <i class="fa-solid fa-location-dot mr-1 text-orange-400"></i> {{ $la->location ?: 'Kampus Pondok Pesantren Raudhatul Ulum Sakatiga' }}
+                                    <i class="fa-solid fa-location-dot mr-1 text-orange-400"></i> {{ $la->location ?: 'Pondok Pesantren Raudhatul Ulum Sakatiga' }}
                                 </span>
                             </div>
                         </a>

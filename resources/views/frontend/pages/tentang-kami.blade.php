@@ -92,7 +92,7 @@
             </div>
             <div class="lg:col-span-5 order-1 lg:order-2 flex justify-center">
                 <div class="rounded-2xl overflow-hidden shadow-lg border border-gray-100 max-h-80 bg-gray-50">
-                    <img src="/uploads/logo-ppru-banner.png" alt="Kampus Pondok Pesantren Raudhatul Ulum Sakatiga" class="w-full h-full object-cover object-center">
+                    <img src="/uploads/logo-ppru-banner.png" alt="Pondok Pesantren Raudhatul Ulum Sakatiga" class="w-full h-full object-cover object-center">
                 </div>
             </div>
         </div>
@@ -107,7 +107,7 @@
                     <i class="fa-solid fa-layer-group"></i>
                 </div>
                 <span class="text-xs font-bold text-[#00913e] uppercase tracking-wider block">Sarana Pesantren</span>
-                <h3 class="text-xl font-extrabold text-gray-900">Fasilitas &amp; Kampus</h3>
+                <h3 class="text-xl font-extrabold text-gray-900">Fasilitas &amp; Pondok</h3>
                 <p class="text-xs text-gray-500 leading-relaxed">
                     Masjid Jami', asrama putra/putri terpisah, laboratorium sains, lab multimedia digital, perpustakaan kutubut turats, dan sarana olahraga luas.
                 </p>
@@ -218,11 +218,11 @@
         </div>
     </section>
 
-    {{-- SEKSI 5: LOKASI KAMPUS SAKATIGA --}}
+    {{-- SEKSI 5: LOKASI PONDOK SAKATIGA --}}
     <section class="bg-white rounded-3xl p-8 sm:p-10 shadow-xl border border-gray-100 reveal-fade-up space-y-6">
         <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
             <div>
-                <span class="text-xs font-bold text-[#00913e] uppercase tracking-wider block">Lokasi Kampus</span>
+                <span class="text-xs font-bold text-[#00913e] uppercase tracking-wider block">Lokasi Pondok</span>
                 <h2 class="text-xl sm:text-2xl font-extrabold text-gray-900 mt-1">Pondok Pesantren Raudhatul Ulum Sakatiga</h2>
                 <p class="text-xs text-gray-500 mt-1">Desa Sakatiga, Kecamatan Indralaya, Kabupaten Ogan Ilir, Sumatera Selatan 30816</p>
             </div>

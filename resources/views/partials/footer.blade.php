@@ -156,14 +156,13 @@
         </div>
 
         {{-- 3. BARIS PALING BAWAH (Copyright Kiri, Watermark Statis Paling Bawah Kanan) --}}
-        <div class="mt-12 pt-6 border-t border-gray-800/80 flex flex-col sm:flex-row justify-between items-center text-xs text-gray-400 gap-3 text-center sm:text-left pr-0 sm:pr-20 pb-4">
-            <div>
+        <div class="mt-12 pt-6 border-t border-gray-800/80 flex flex-col sm:flex-row justify-between items-center text-xs text-gray-400 gap-3 text-center sm:text-left pb-4">
+            <div class="text-slate-400">
                 &copy; {{ date('Y') }} <strong>Pondok Pesantren Raudhatul Ulum Sakatiga</strong>. All Rights Reserved.
             </div>
-            <div class="text-[10.5px] shrink-0 font-normal">
-                <a href="https://berandadigital.net" target="_blank" rel="noopener noreferrer" class="text-slate-400/70 hover:text-slate-200 transition inline-flex items-center gap-1.5 font-normal tracking-wide opacity-80 hover:opacity-100" title="Beranda Teknologi Digital">
-                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500/70 inline-block"></span>
-                    <span class="font-normal text-slate-400/80 hover:text-slate-200">Beranda Teknologi Digital</span>
+            <div class="text-[10.5px] font-normal sm:ml-auto text-center sm:text-right">
+                <a href="https://berandadigital.net" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-slate-200 transition inline-flex items-center sm:justify-end gap-1.5 font-normal tracking-wide opacity-80 hover:opacity-100" title="Beranda Teknologi Digital">
+                    <span class="font-normal text-slate-400/90 hover:text-slate-200">Beranda Teknologi Digital</span>
                 </a>
             </div>
         </div>

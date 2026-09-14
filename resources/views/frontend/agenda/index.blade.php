@@ -49,7 +49,7 @@
                         </h2>
                         <p class="text-xs text-gray-500 mt-1.5 flex items-center">
                             <i class="fa-solid fa-location-dot mr-2 text-orange-500"></i>
-                            <span>{{ $agenda->location ?: 'Kampus Pondok Pesantren Raudhatul Ulum Sakatiga' }}</span>
+                            <span>{{ $agenda->location ?: 'Pondok Pesantren Raudhatul Ulum Sakatiga' }}</span>
                         </p>
                         <p class="text-xs text-gray-500 mt-2 line-clamp-2 leading-relaxed font-light">
                             {!! strip_tags($agenda->content) !!}

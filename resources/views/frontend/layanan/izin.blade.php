@@ -76,16 +76,17 @@
             </div>
         @endif
 
-        {{-- DETAIL PERSYARATAN & INFORMASI PELAYANAN (ACCORDION RESMI & MODERN) --}}
-        <div class="bg-white rounded-3xl border border-gray-200/80 overflow-hidden shadow-sm" x-data="{ activeTab: 0 }">
-            <div class="p-5 sm:p-6 bg-gradient-to-r from-emerald-50/80 to-white border-b border-gray-100 flex items-center justify-between">
+        {{-- DETAIL PERSYARATAN & INFORMASI PELAYANAN (OPEN CARDS MODERN - TANPA ACCORDION MEMBINGUNGKAN) --}}
+        <div class="space-y-6">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-gray-200 pb-3">
                 <div>
-                    <span class="text-[10px] font-extrabold uppercase tracking-wider text-[#00843d]">Informasi Lengkap</span>
-                    <h3 class="text-base sm:text-lg font-black text-gray-900 mt-0.5">Ketentuan Pelayanan Izin Kunjungan</h3>
+                    <h3 class="text-base sm:text-lg font-black text-gray-900">Ketentuan Pelayanan Izin Kunjungan</h3>
+                    <p class="text-xs text-gray-500">Seluruh rincian syarat, jadwal, serta prosedur izin kunjungan terbuka secara transparan tanpa perlu klik buka-tutup.</p>
                 </div>
-                <div class="w-9 h-9 rounded-xl bg-emerald-100 text-[#00843d] flex items-center justify-center text-sm shadow-xs">
-                    <i class="fa-solid fa-clipboard-list"></i>
-                </div>
+                <span class="inline-flex items-center gap-1.5 bg-emerald-50 text-[#00843d] px-3.5 py-1 rounded-full text-xs font-bold border border-emerald-100 self-start sm:self-auto">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <span>Informasi Terbuka</span>
+                </span>
             </div>
 
             @php
@@ -119,23 +120,17 @@
                 $tabs = !empty($accordions) ? $accordions : $defaultIzinTabs;
             @endphp
 
-            <div class="divide-y divide-gray-100">
-                @foreach($tabs as $idx => $tab)
-                    <div class="transition">
-                        <button type="button" @click="activeTab = (activeTab === {{ $idx }} ? -1 : {{ $idx }})" class="w-full py-4 px-6 text-left flex items-center justify-between hover:bg-emerald-50/40 focus:outline-none transition select-none">
-                            <span class="flex items-center space-x-3">
-                                <span class="w-7 h-7 rounded-lg bg-emerald-50 text-[#00843d] flex items-center justify-center text-xs font-black shrink-0">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                @foreach($tabs as $tab)
+                    <div class="bg-white rounded-3xl p-6 sm:p-7 border border-gray-200/90 shadow-sm hover:border-[#00843d] transition flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center space-x-3 mb-4">
+                                <div class="w-10 h-10 rounded-2xl bg-emerald-50 text-[#00843d] flex items-center justify-center text-base font-bold shadow-xs">
                                     <i class="{{ $tab['icon'] ?? 'fa-solid fa-circle-info' }}"></i>
-                                </span>
-                                <span class="font-bold text-xs sm:text-sm text-gray-900 tracking-tight">{{ $tab['title'] }}</span>
-                            </span>
-                            <span class="flex items-center space-x-2">
-                                <span class="text-xs font-bold text-[#00843d]" x-text="activeTab === {{ $idx }} ? 'Tutup' : 'Buka'"></span>
-                                <i class="fa-solid fa-chevron-down text-xs text-gray-400 transform transition-transform duration-200" :class="activeTab === {{ $idx }} ? 'rotate-180 text-[#00843d]' : ''"></i>
-                            </span>
-                        </button>
-                        <div x-show="activeTab === {{ $idx }}" x-collapse class="px-6 pb-5 pt-1 text-xs sm:text-sm text-gray-700 leading-relaxed border-t border-gray-100 bg-slate-50/50">
-                            <div class="prose prose-sm max-w-none text-gray-700 [&>ul]:list-disc [&>ul]:pl-5 [&>ul]:space-y-1 [&>p]:mb-2">
+                                </div>
+                                <h4 class="font-black text-sm sm:text-base text-gray-900">{{ $tab['title'] }}</h4>
+                            </div>
+                            <div class="text-xs text-gray-700 leading-relaxed prose prose-sm max-w-none [&>ul]:list-disc [&>ul]:pl-5 [&>ul]:space-y-1.5 [&>p]:mb-2">
                                 {!! $tab['content'] !!}
                             </div>
                         </div>

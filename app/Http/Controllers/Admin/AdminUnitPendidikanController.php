@@ -42,6 +42,8 @@ class AdminUnitPendidikanController extends Controller
             'icon' => 'nullable|string|max:100',
             'thumbnail' => 'nullable|string',
             'thumbnail_file' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
+            'logo' => 'nullable|string',
+            'logo_file' => 'nullable|image|mimes:jpeg,png,jpg,webp,svg|max:3072',
             'order' => 'nullable|integer',
             'is_active' => 'nullable|boolean',
         ]);
@@ -51,6 +53,14 @@ class AdminUnitPendidikanController extends Controller
             $converted = $this->webpService->processUploadedFile($request->file('thumbnail_file'), 'unit_pendidikan', 85, 1200);
             if ($converted['success']) {
                 $thumbnailPath = $converted['url'];
+            }
+        }
+
+        $logoPath = $validated['logo'] ?? null;
+        if ($request->hasFile('logo_file')) {
+            $converted = $this->webpService->processUploadedFile($request->file('logo_file'), 'unit_logo', 90, 600);
+            if ($converted['success']) {
+                $logoPath = $converted['url'];
             }
         }
 
@@ -76,6 +86,7 @@ class AdminUnitPendidikanController extends Controller
             'description' => $validated['description'] ?? '',
             'icon' => $validated['icon'] ?? 'fa-solid fa-graduation-cap',
             'thumbnail' => $thumbnailPath,
+            'logo' => $logoPath,
             'order' => $validated['order'] ?? 0,
             'is_active' => $request->has('is_active'),
         ]);
@@ -114,6 +125,8 @@ class AdminUnitPendidikanController extends Controller
             'icon' => 'nullable|string|max:100',
             'thumbnail' => 'nullable|string',
             'thumbnail_file' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
+            'logo' => 'nullable|string',
+            'logo_file' => 'nullable|image|mimes:jpeg,png,jpg,webp,svg|max:3072',
             'order' => 'nullable|integer',
             'is_active' => 'nullable|boolean',
         ]);
@@ -126,6 +139,16 @@ class AdminUnitPendidikanController extends Controller
             }
         } elseif (! empty($validated['thumbnail'])) {
             $thumbnailPath = $validated['thumbnail'];
+        }
+
+        $logoPath = $unitPendidikan->logo;
+        if ($request->hasFile('logo_file')) {
+            $converted = $this->webpService->processUploadedFile($request->file('logo_file'), 'unit_logo', 90, 600);
+            if ($converted['success']) {
+                $logoPath = $converted['url'];
+            }
+        } elseif (! empty($validated['logo'])) {
+            $logoPath = $validated['logo'];
         }
 
         if ($unitPendidikan->name !== $validated['name']) {
@@ -152,6 +175,7 @@ class AdminUnitPendidikanController extends Controller
             'description' => $validated['description'] ?? '',
             'icon' => $validated['icon'] ?? $unitPendidikan->icon,
             'thumbnail' => $thumbnailPath,
+            'logo' => $logoPath,
             'order' => $validated['order'] ?? 0,
             'is_active' => $request->has('is_active'),
         ]);

@@ -23,6 +23,7 @@ class UnitPendidikan extends Model
         'email',
         'website_url',
         'thumbnail',
+        'logo',
         'icon',
         'order',
         'is_active',
@@ -47,6 +48,17 @@ class UnitPendidikan extends Model
         }
 
         return '/uploads/logo-ppru-banner.png';
+    }
+
+    public function getLogoUrlAttribute(): string
+    {
+        if (! empty($this->logo)) {
+            $path = parse_url($this->logo, PHP_URL_PATH);
+
+            return '/'.ltrim($path, '/');
+        }
+
+        return '/uploads/logo-ppru-emblem.png';
     }
 
     public function getIconUrlAttribute(): string

@@ -29,7 +29,7 @@
                 </div>
                 <div>
                     <label class="block text-[11px] font-bold text-slate-600 mb-1">Lokasi Tempat *</label>
-                    <input type="text" name="location" required placeholder="Aula Utama Kampus PPRU" class="w-full bg-white text-xs text-slate-800 rounded-xl px-4 py-2.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
+                    <input type="text" name="location" required placeholder="Aula Utama Pondok PPRU" class="w-full bg-white text-xs text-slate-800 rounded-xl px-4 py-2.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
                 </div>
                 <div>
                     <label class="block text-[11px] font-bold text-slate-600 mb-1">Status Agenda</label>

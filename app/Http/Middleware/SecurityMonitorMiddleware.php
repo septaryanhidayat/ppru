@@ -19,8 +19,8 @@ class SecurityMonitorMiddleware
 
         // 1. Check for malicious webshell / sensitive file probing
         $probePatterns = [
-            '/\b(wp-config\.php|alfa\.php|wso\.php|b374k\.php|c99\.php|r57\.php|eval-stdin\.php)\b/i',
-            '/\b(\.env|\.git\/|web\.config|\.htaccess)\b/i',
+            '/\b(wp-config\.php|alfa\.php|wso\.php|b374k\.php|c99\.php|r57\.php|eval-stdin\.php|phpinfo\.php)\b/i',
+            '/\b(\.env|\.git\/|web\.config|\.htaccess|\.sqlite|\.bak|\.sql)\b/i',
             '/(\.\.\/|\.\.\\\)/', // Path traversal
         ];
 
@@ -36,7 +36,7 @@ class SecurityMonitorMiddleware
                     'status' => 'danger',
                 ]);
 
-                abort(403, 'Akses Ditolak: Pola permintaan tidak sah terdeteksi oleh sistem keamanan SMA IT Plus Robbani.');
+                abort(403, 'Akses Ditolak: Pola permintaan tidak sah terdeteksi oleh sistem keamanan Pondok Pesantren Raudhatul Ulum Sakatiga.');
             }
         }
 

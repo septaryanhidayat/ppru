@@ -14,7 +14,7 @@
         </nav>
         <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Galeri Foto Pondok Pesantren Raudhatul Ulum Sakatiga</h1>
         <p class="text-sm text-emerald-100 mt-2 font-light max-w-2xl">
-            Rekam jejak visual dinamika belajar, pembiasaan ibadah, praktikum sains, dan keceriaan santri di lingkungan kampus.
+            Rekam jejak visual dinamika belajar, pembiasaan ibadah, praktikum sains, dan keceriaan santri di lingkungan pondok.
         </p>
     </div>
 </div>

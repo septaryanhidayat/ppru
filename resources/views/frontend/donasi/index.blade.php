@@ -44,7 +44,7 @@
                 Infaq Pembangunan & <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-orange-300 to-amber-200">Beasiswa PPRU</span>
             </h1>
             <p class="text-sm sm:text-base text-emerald-100 mt-4 leading-relaxed font-light">
-                Mari bergotong royong membangun sarana laboratorium riset modern, masjid kampus, fasilitas asrama tahfidz, dan program beasiswa bagi santri berprestasi di Pondok Pesantren Raudhatul Ulum Sakatiga.
+                Mari bergotong royong membangun sarana laboratorium riset modern, masjid pondok, fasilitas asrama tahfidz, dan program beasiswa bagi santri berprestasi di Pondok Pesantren Raudhatul Ulum Sakatiga.
             </p>
         </div>
     </div>
@@ -255,7 +255,7 @@
             Pengelolaan infaq pembangunan dan beasiswa pendidikan santri diatur secara profesional oleh Yayasan Perguruan Islam Raudhatul Ulum Sakatiga (YAPIRUS) dengan prinsip amanah, transparan, dan dapat dipertanggungjawabkan secara berkala.
         </p>
         <ul class="list-disc list-inside space-y-1 text-gray-600 text-xs">
-            <li>100% dana infaq pembangunan dialokasikan langsung untuk sarana belajar, laboratorium, dan masjid kampus.</li>
+            <li>100% dana infaq pembangunan dialokasikan langsung untuk sarana belajar, laboratorium, dan masjid pondok.</li>
             <li>Program beasiswa disalurkan langsung kepada santri berprestasi dari keluarga prasejahtera dan dhuafa.</li>
             <li>Laporan keuangan disajikan secara berkala dalam forum komite dan rapat tahunan yayasan.</li>
         </ul>

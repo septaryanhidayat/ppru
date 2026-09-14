@@ -22,8 +22,9 @@ class AdminDewanController extends Controller
     public function index()
     {
         $dewan = AnggotaDewan::orderBy('order', 'asc')->get();
+        $tree = AnggotaDewan::getHierarchyTree();
 
-        return view('admin.dewan.index', compact('dewan'));
+        return view('admin.dewan.index', compact('dewan', 'tree'));
     }
 
     public function create()

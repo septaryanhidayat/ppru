@@ -66,6 +66,22 @@
                 </div>
             </div>
 
+            {{-- UPLOAD LOGO RESMI UNIT --}}
+            <div class="p-5 bg-amber-50/50 rounded-2xl border border-amber-200/80 space-y-3">
+                <label class="block text-xs font-bold text-amber-900 uppercase tracking-wider">
+                    Logo Resmi Unit Pendidikan (Lambang / Emblem)
+                </label>
+                <p class="text-[11px] text-slate-500">Logo unit resmi yang akan tampil menggantikan ikon umum di beranda &amp; halaman profil unit (PNG transparan/SVG disarankan).</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
+                    <div>
+                        <input type="file" name="logo_file" accept="image/*" class="w-full text-xs text-slate-500 file:mr-3 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-amber-100 file:text-amber-800 hover:file:bg-amber-200 bg-white rounded-xl border border-slate-200 cursor-pointer">
+                    </div>
+                    <div>
+                        <input type="text" name="logo" id="logo" value="{{ old('logo') }}" placeholder="Atau URL / Path Logo (/uploads/logo-...)" class="w-full bg-white text-xs text-slate-800 rounded-xl px-4 py-2.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00843d] font-mono">
+                    </div>
+                </div>
+            </div>
+
             <div>
                 <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
                     Deskripsi &amp; Profil Lengkap Unit Pendidikan

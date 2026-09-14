@@ -10,7 +10,7 @@
     <section class="relative bg-gradient-to-br from-[#072418] via-[#004d25] to-[#041d13] text-white overflow-hidden py-14 sm:py-20 lg:py-24 border-b border-emerald-800/40">
         {{-- Background Image Overlay with subtle zoom --}}
         <div class="absolute inset-0 z-0">
-            <img src="/uploads/campus-ppru-sakatiga.webp" alt="Kampus Pondok Pesantren Raudhatul Ulum Sakatiga" class="w-full h-full object-cover object-center opacity-25 filter blur-[1px] transform scale-105">
+            <img src="/uploads/campus-ppru-sakatiga.webp" alt="Pondok Pesantren Raudhatul Ulum Sakatiga" class="w-full h-full object-cover object-center opacity-25 filter blur-[1px] transform scale-105">
             <div class="absolute inset-0 bg-gradient-to-t from-[#072418] via-[#072418]/80 to-[#072418]/60"></div>
         </div>
 
@@ -279,7 +279,7 @@
                         </p>
                     </div>
                     <div class="pt-3 mt-3 border-t border-slate-200/80 text-[10px] text-slate-500 font-medium">
-                        Dapat dilaksanakan online/offline di kampus.
+                        Dapat dilaksanakan online/offline di pondok.
                     </div>
                 </div>
 
