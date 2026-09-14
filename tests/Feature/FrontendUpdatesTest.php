@@ -84,12 +84,11 @@ test('halaman download ebook memuat tombol unduh modul', function () {
     $response->assertSee('Download Modul (PDF)');
 });
 
-test('footer memuat live counter pengunjung dan copyright sekolah', function () {
+test('footer memuat live counter pengunjung dan identitas pesantren', function () {
     $response = $this->get(route('home'));
 
     $response->assertStatus(200);
-    $response->assertSee('SMA Islam Terpadu Ishlahul Ummah Prabumulih');
+    $response->assertSee('Pondok Pesantren Raudhatul Ulum');
     $response->assertSee('Pengunjung');
     $response->assertSee('Galeri');
-    $response->assertSee('Kabar Sekolah');
 });

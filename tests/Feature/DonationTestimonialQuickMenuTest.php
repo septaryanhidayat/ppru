@@ -166,6 +166,6 @@ test('home page renders at most 8 quick menu items in responsive grid', function
     $response = $this->get('/');
     $response->assertStatus(200);
     $response->assertSee('grid grid-cols-4 md:grid-cols-8', false);
-    $response->assertSee('Menu Utama Sekolah');
-    $response->assertSee('PPDB Online');
+    $response->assertSee('Layanan Utama Pesantren');
+    $response->assertSee('PSB Online');
 });

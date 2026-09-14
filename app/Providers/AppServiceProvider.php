@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Category;
 use App\Models\Setting;
+use App\Models\UnitPendidikan;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\URL;
@@ -54,8 +55,15 @@ class AppServiceProvider extends ServiceProvider
             } else {
                 View::share('headerCategories', collect());
             }
+
+            if (Schema::hasTable('unit_pendidikans')) {
+                View::share('navUnitPendidikans', UnitPendidikan::active()->orderBy('order', 'asc')->get());
+            } else {
+                View::share('navUnitPendidikans', collect());
+            }
         } catch (\Throwable $e) {
             View::share('headerCategories', collect());
+            View::share('navUnitPendidikans', collect());
         }
     }
 }

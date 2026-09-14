@@ -19,6 +19,7 @@ use App\Http\Controllers\Admin\AdminQuickMenuController;
 use App\Http\Controllers\Admin\AdminSecurityController;
 use App\Http\Controllers\Admin\AdminSettingController;
 use App\Http\Controllers\Admin\AdminTestimonialController;
+use App\Http\Controllers\Admin\AdminUnitPendidikanController;
 use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\AuthController;
@@ -30,6 +31,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InformationController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PpdbController;
+use App\Http\Controllers\UnitPendidikanController;
 use Illuminate\Support\Facades\Route;
 
 // === AUTHENTICATION ROUTES ===
@@ -52,6 +54,9 @@ Route::prefix('admin')->middleware('auth')->name('admin.')->group(function () {
     Route::get('/pages', [AdminPageController::class, 'index'])->name('pages.index');
     Route::get('/pages/{page}/edit', [AdminPageController::class, 'edit'])->name('pages.edit');
     Route::put('/pages/{page}', [AdminPageController::class, 'update'])->name('pages.update');
+
+    // Unit Pendidikan PPRU
+    Route::resource('unit-pendidikan', AdminUnitPendidikanController::class);
 
     // Dewan Guru & GTK
     Route::resource('dewan', AdminDewanController::class);
@@ -152,6 +157,7 @@ Route::get('/tag/{slug}', [ArticleController::class, 'tag'])->name('tag.show');
 
 // Profil Pages
 Route::get('/sambutan-kepala-sekolah', [PageController::class, 'sambutan'])->name('page.sambutan');
+Route::get('/sambutan-pimpinan', [PageController::class, 'sambutan']);
 Route::get('/sambutan-ketua-dpd', [PageController::class, 'sambutan']);
 Route::get('/tentang-kami', [PageController::class, 'tentangKami'])->name('page.tentang-kami');
 Route::get('/visi-dan-misi', [PageController::class, 'visiMisi'])->name('page.visi-misi');
@@ -159,6 +165,10 @@ Route::get('/sejarah', [PageController::class, 'sejarah'])->name('page.sejarah')
 Route::get('/struktur-organisasi', [PageController::class, 'struktur'])->name('page.struktur');
 Route::get('/struktur-kepengurusan', [PageController::class, 'struktur']);
 Route::get('/privacy-policy', [PageController::class, 'privacyPolicy'])->name('page.privacy-policy');
+
+// Unit Pendidikan (Jenjang & Lembaga Pesantren)
+Route::get('/pendidikan', [UnitPendidikanController::class, 'index'])->name('pendidikan.index');
+Route::get('/pendidikan/{slug}', [UnitPendidikanController::class, 'show'])->name('pendidikan.show');
 
 // Dewan Guru & GTK
 Route::get('/dewan-guru', [DewanController::class, 'index'])->name('dewan.index');

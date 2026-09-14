@@ -1,131 +1,167 @@
-{{-- FOOTER RESMI SMA ISLAM TERPADU ISHLAHUL UMMAH PRABUMULIH --}}
-<footer class="bg-[#0b131f] text-white pt-8 sm:pt-10 pb-8 font-['Poppins',sans-serif]">
+{{-- FOOTER RESMI PONDOK PESANTREN RAUDHATUL ULUM SAKATIGA OGAN ILIR --}}
+<footer class="bg-[#0b131f] text-white pt-10 sm:pt-14 pb-8 font-['Poppins',sans-serif] border-t-4 border-[#f59e0b]">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {{-- 1. NEWSLETTER SUBSCRIBE BAR (Warna Hijau Ishum #00913e & Tombol Merah Ishum #da251c) --}}
-        <div class="bg-gradient-to-r from-[#00913e] to-[#05a849] rounded-[22px] sm:rounded-[26px] px-6 sm:px-10 py-5 sm:py-6 mb-10 sm:mb-12 shadow-xl flex flex-col md:flex-row items-center justify-between gap-5 text-center md:text-left border border-green-600/40">
+        {{-- 1. NEWSLETTER / BULETIN BAR --}}
+        <div class="bg-gradient-to-r from-[#006830] via-[#00843d] to-[#044c23] rounded-3xl px-6 sm:px-10 py-6 sm:py-7 mb-12 sm:mb-14 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-5 text-center md:text-left border border-emerald-500/40">
             <div>
-                <span class="text-xs uppercase tracking-wider text-green-100 font-bold block mb-1">Buletin &amp; Kabar Sekolah</span>
-                <h2 class="text-xl sm:text-2xl font-bold text-white tracking-tight">Dapatkan Info &amp; Pengumuman Terupdate</h2>
+                <span class="text-xs uppercase tracking-wider text-[#fcd116] font-extrabold block mb-1">Kabar &amp; Informasi Terkini</span>
+                <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight">Dapatkan Informasi Resmi &amp; Pengumuman PSB PPRU</h2>
+                <p class="text-xs text-emerald-100 font-light mt-1">Daftarkan email Anda untuk menerima buletin pesantren dan jadwal seleksi santri baru.</p>
             </div>
             <form action="{{ route('hubungi') }}" method="GET" class="w-full md:w-auto flex flex-col sm:flex-row items-center gap-2.5 sm:gap-3 max-w-lg">
-                <input type="email" name="subscribe_email" placeholder="Masukkan Email Anda" aria-label="Masukkan Email Anda untuk Berlangganan" class="bg-white text-xs sm:text-sm text-gray-800 placeholder-gray-500 px-5 py-2.5 sm:py-3 rounded-full focus:outline-none focus:ring-2 focus:ring-[#da251c] w-full shadow-inner font-light" required>
-                <button type="submit" aria-label="Kirim Langganan Info Terupdate" class="bg-[#da251c] hover:bg-[#b91c1c] text-white font-extrabold text-xs sm:text-sm px-6 py-2.5 sm:py-3 rounded-full shadow-lg transition flex items-center justify-center space-x-2 flex-shrink-0 cursor-pointer min-h-[44px]">
-                    <i class="fa-solid fa-paper-plane text-xs" aria-hidden="true"></i>
-                    <span>LANGGANAN</span>
+                <input type="email" name="subscribe_email" placeholder="Masukkan Email Anda..." aria-label="Masukkan Email Anda" class="bg-white text-xs sm:text-sm text-gray-800 placeholder-gray-500 px-5 py-3 rounded-full focus:outline-none focus:ring-2 focus:ring-[#f59e0b] w-full shadow-inner font-light" required>
+                <button type="submit" class="bg-[#f59e0b] hover:bg-[#d97706] text-slate-900 font-black text-xs sm:text-sm px-7 py-3 rounded-full shadow-lg transition flex items-center justify-center space-x-2 shrink-0 cursor-pointer min-h-[44px]">
+                    <i class="fa-solid fa-paper-plane text-xs"></i>
+                    <span>BERLANGGANAN</span>
                 </button>
             </form>
         </div>
 
-        {{-- 2. MAIN FOOTER CONTENT --}}
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-8 items-start text-center md:text-left">
+        {{-- 2. MAIN FOOTER CONTENT (4 KOLOM TERSTRUKTUR SEPERTI BAITUSSALAM) --}}
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-10 items-start text-left">
             
-            {{-- KOLOM 1: LOGO ASLI SEKOLAH --}}
-            <div class="lg:col-span-3 flex justify-center md:justify-start">
-                <div class="bg-white p-3 rounded-2xl shadow-md inline-block">
-                    <img src="/uploads/logo-ishum-square.png" alt="Logo Resmi SMA Islam Terpadu Ishlahul Ummah Prabumulih" class="w-28 sm:w-32 h-auto object-contain block mx-auto md:mx-0" onerror="this.src='/uploads/logo-ishum.png'">
+            {{-- KOLOM 1: IDENTITAS & LOGO PESANTREN (4 Kolom) --}}
+            <div class="lg:col-span-4 space-y-4">
+                <div class="bg-white/95 p-3 rounded-2xl shadow-md inline-block border border-white/20">
+                    <img src="{{ $siteSettings['site_logo'] ?? '/uploads/logo-ppru-banner.png' }}" 
+                         alt="Logo Pondok Pesantren Raudhatul Ulum" 
+                         class="h-16 w-auto object-contain block" 
+                         onerror="this.src='/uploads/logo-ppru.png'">
                 </div>
-            </div>
-
-            {{-- KOLOM 2: ALAMAT SEKOLAH & KONTAK --}}
-            <div class="lg:col-span-4 space-y-3 footer-address-col text-center md:text-left flex flex-col items-center md:items-start">
-                <h3 class="w-full font-bold text-[#da251c] text-base sm:text-lg tracking-wide uppercase text-center md:text-left">
-                    Alamat Sekolah
-                </h3>
-                <p class="w-full text-sm sm:text-[15px] text-gray-200 font-normal leading-relaxed text-center md:text-left pr-0 md:pr-4">
-                    {{ $siteSettings['contact_address'] ?? 'Jalan Sadewa RT 01 RW 03 Kelurahan Karang Raja, Kecamatan Prabumulih Timur, Kota Prabumulih, Sumatera Selatan 31111' }}
+                <p class="text-xs text-gray-300 font-light leading-relaxed">
+                    Pondok Pesantren Raudhatul Ulum (PPRU) Sakatiga adalah lembaga pendidikan Islam terpadu yang memadukan kurikulum Pondok Modern Gontor, Kementerian Agama, dan Dinas Pendidikan Nasional untuk mencetak generasi khoiru ummah yang berakhlak mulia, cerdas, dan mandiri.
                 </p>
-                <div class="w-full space-y-2 pt-1 text-sm sm:text-[15px] text-gray-200 flex flex-col items-center md:items-start">
-                    <div class="w-full flex items-center justify-center md:justify-start space-x-3">
-                        <i class="fa-solid fa-phone text-[#10b981] w-4 text-center text-sm flex-shrink-0" aria-hidden="true"></i>
-                        <a href="tel:{{ $siteSettings['contact_phone'] ?? '082182680647' }}" class="text-gray-200 hover:text-[#da251c] transition py-0.5" aria-label="Telepon Sekolah">{{ $siteSettings['contact_phone'] ?? '0821-8268-0647' }}</a>
-                    </div>
-                    <div class="w-full flex items-center justify-center md:justify-start space-x-3">
-                        <i class="fa-solid fa-envelope text-[#10b981] w-4 text-center text-sm flex-shrink-0" aria-hidden="true"></i>
-                        <a href="mailto:{{ $siteSettings['contact_email'] ?? 'smaitishlahulummah2019@gmail.com' }}" class="text-gray-200 hover:text-[#da251c] transition py-0.5" aria-label="Email Sekolah">{{ $siteSettings['contact_email'] ?? 'smaitishlahulummah2019@gmail.com' }}</a>
-                    </div>
-                </div>
-            </div>
 
-            {{-- KOLOM 3: SOSIAL MEDIA & TAUTAN WEB RESMI --}}
-            <div class="lg:col-span-3 space-y-2 text-center md:text-left flex flex-col items-center md:items-start">
-                <h3 class="font-bold text-[#da251c] text-base sm:text-lg tracking-wide uppercase text-center md:text-left">
-                    Media Sosial
-                </h3>
-                <p class="text-base sm:text-[16px] font-bold text-white mb-2 text-center md:text-left">
-                    SMA IT Ishlahul Ummah
-                </p>
-                
-                {{-- Ikon Bulat Putih --}}
-                <div class="flex items-center justify-center md:justify-start space-x-2 pt-1 pb-3">
-                    <a href="{{ $siteSettings['social_facebook'] ?? 'https://facebook.com/smait.ishlahulummah.3' }}" target="_blank" class="w-11 h-11 rounded-full bg-white flex items-center justify-center text-[#00913e] hover:text-[#da251c] hover:scale-110 transition shadow" aria-label="Kunjungi Facebook SMA IT Ishlahul Ummah">
-                        <i class="fa-brands fa-facebook-f text-base" aria-hidden="true"></i>
-                    </a>
-                    <a href="{{ $siteSettings['social_instagram'] ?? 'https://instagram.com/smait_ishum_prabumulih' }}" target="_blank" class="w-11 h-11 rounded-full bg-white flex items-center justify-center text-[#00913e] hover:text-[#da251c] hover:scale-110 transition shadow" aria-label="Kunjungi Instagram SMA IT Ishlahul Ummah">
-                        <i class="fa-brands fa-instagram text-base" aria-hidden="true"></i>
-                    </a>
-                    <a href="{{ $siteSettings['social_youtube'] ?? 'https://www.youtube.com/channel/UCUJgvV-nqy89f3m8Hw2QrGg/videos' }}" target="_blank" class="w-11 h-11 rounded-full bg-white flex items-center justify-center text-[#00913e] hover:text-[#da251c] hover:scale-110 transition shadow" aria-label="Kunjungi YouTube SMA IT Ishlahul Ummah">
-                        <i class="fa-brands fa-youtube text-base" aria-hidden="true"></i>
-                    </a>
-                    <a href="https://wa.me/6282182680647" target="_blank" class="w-11 h-11 rounded-full bg-white flex items-center justify-center text-[#00913e] hover:text-[#da251c] hover:scale-110 transition shadow" aria-label="Hubungi WhatsApp SMA IT Ishlahul Ummah">
-                        <i class="fa-brands fa-whatsapp text-base" aria-hidden="true"></i>
-                    </a>
-                </div>
-
-                {{-- Tautan Web Resmi dengan Ikon Globe Hijau --}}
-                <div class="w-full space-y-1.5 text-sm sm:text-[15px] text-gray-200 pt-1 flex flex-col items-center md:items-start">
-                    <div class="flex items-center justify-center md:justify-start space-x-3">
-                        <i class="fa-solid fa-globe text-[#10b981] w-4 text-center text-sm flex-shrink-0" aria-hidden="true"></i>
-                        <a href="https://smaitishumpbm.sch.id" target="_blank" class="text-gray-200 hover:text-[#da251c] transition py-0.5">smaitishumpbm.sch.id</a>
+                {{-- Sosial Media Resmi PPRU --}}
+                <div class="pt-2">
+                    <span class="text-[11px] font-bold uppercase tracking-wider text-emerald-400 block mb-2">Media Sosial Resmi:</span>
+                    <div class="flex items-center space-x-2.5">
+                        <a href="{{ $siteSettings['social_facebook'] ?? 'https://www.facebook.com/pprusakatigasumsel/?locale=id_ID' }}" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-white/10 hover:bg-[#00843d] text-white flex items-center justify-center transition hover:scale-110 shadow-sm" aria-label="Facebook PPRU">
+                            <i class="fa-brands fa-facebook-f text-sm"></i>
+                        </a>
+                        <a href="{{ $siteSettings['social_instagram'] ?? 'https://www.instagram.com/ppru_sakatiga/' }}" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-white/10 hover:bg-[#e1306c] text-white flex items-center justify-center transition hover:scale-110 shadow-sm" aria-label="Instagram PPRU">
+                            <i class="fa-brands fa-instagram text-sm"></i>
+                        </a>
+                        <a href="{{ $siteSettings['social_youtube'] ?? 'https://www.youtube.com/@pprusakatiga' }}" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-white/10 hover:bg-[#ff0000] text-white flex items-center justify-center transition hover:scale-110 shadow-sm" aria-label="YouTube PPRU">
+                            <i class="fa-brands fa-youtube text-sm"></i>
+                        </a>
+                        <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $siteSettings['contact_whatsapp'] ?? '6281278901950') }}" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-white/10 hover:bg-[#25d366] text-white flex items-center justify-center transition hover:scale-110 shadow-sm" aria-label="WhatsApp PPRU">
+                            <i class="fa-brands fa-whatsapp text-sm"></i>
+                        </a>
                     </div>
                 </div>
             </div>
 
-            {{-- KOLOM 4: PENGUNJUNG (RATA KIRI DI DESKTOP) --}}
-            <div class="lg:col-span-2 space-y-2 text-center md:text-left flex flex-col items-center md:items-start justify-start">
-                <h3 class="font-bold text-[#da251c] text-base sm:text-lg tracking-wide uppercase flex items-center justify-center md:justify-start gap-2">
-                    <span>Pengunjung</span>
-                    <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#00913e] text-white border border-green-500">
-                        <span class="w-1.5 h-1.5 rounded-full bg-[#da251c] animate-ping mr-1"></span> Live
-                    </span>
+            {{-- KOLOM 2: UNIT PENDIDIKAN (3 Kolom) --}}
+            <div class="lg:col-span-3 space-y-3">
+                <h3 class="font-extrabold text-[#f59e0b] text-sm uppercase tracking-wider flex items-center gap-2 border-b border-gray-800 pb-2">
+                    <i class="fa-solid fa-building-columns text-xs"></i>
+                    <span>Unit Pendidikan</span>
                 </h3>
-                <div class="text-3xl sm:text-4xl lg:text-4xl font-bold text-white tracking-normal font-sans leading-tight pt-1 flex items-center justify-center md:justify-start" style="font-family: Arial, sans-serif;">
-                    <span id="footer-visitor-counter" data-target="{{ $rawVisitorHits ?? (int) str_replace(['.', ','], '', $visitorHits ?? '53512') }}">
-                        {{ $visitorHits ?? '53.512' }}
-                    </span>
+                <ul class="space-y-2 text-xs text-gray-300">
+                    @if(isset($navUnitPendidikans) && $navUnitPendidikans->isNotEmpty())
+                        @foreach($navUnitPendidikans->take(7) as $nu)
+                            <li>
+                                <a href="{{ route('pendidikan.show', $nu->slug) }}" class="hover:text-[#fcd116] transition flex items-center">
+                                    <i class="fa-solid fa-angle-right text-[10px] text-emerald-500 mr-2"></i>
+                                    <span class="truncate">{{ $nu->name }}</span>
+                                </a>
+                            </li>
+                        @endforeach
+                    @else
+                        <li><a href="{{ route('pendidikan.index') }}" class="hover:text-[#fcd116] transition"><i class="fa-solid fa-angle-right text-[10px] text-emerald-500 mr-2"></i> MA Raudhatul Ulum (MARU)</a></li>
+                        <li><a href="{{ route('pendidikan.index') }}" class="hover:text-[#fcd116] transition"><i class="fa-solid fa-angle-right text-[10px] text-emerald-500 mr-2"></i> SMA IT Raudhatul Ulum</a></li>
+                        <li><a href="{{ route('pendidikan.index') }}" class="hover:text-[#fcd116] transition"><i class="fa-solid fa-angle-right text-[10px] text-emerald-500 mr-2"></i> MTs Raudhatul Ulum (MATSARU)</a></li>
+                        <li><a href="{{ route('pendidikan.index') }}" class="hover:text-[#fcd116] transition"><i class="fa-solid fa-angle-right text-[10px] text-emerald-500 mr-2"></i> SMP IT Raudhatul Ulum</a></li>
+                        <li><a href="{{ route('pendidikan.index') }}" class="hover:text-[#fcd116] transition"><i class="fa-solid fa-angle-right text-[10px] text-emerald-500 mr-2"></i> Tahfidz Qur'an (MATQULARU)</a></li>
+                    @endif
+                    <li class="pt-1">
+                        <a href="{{ route('pendidikan.index') }}" class="font-bold text-[#f59e0b] hover:underline flex items-center">
+                            <span>Katalog Seluruh Jenjang &rarr;</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            {{-- KOLOM 3: TAUTAN CEPAT & INFORMASI (2 Kolom) --}}
+            <div class="lg:col-span-2 space-y-3">
+                <h3 class="font-extrabold text-[#f59e0b] text-sm uppercase tracking-wider flex items-center gap-2 border-b border-gray-800 pb-2">
+                    <i class="fa-solid fa-link text-xs"></i>
+                    <span>Tautan Cepat</span>
+                </h3>
+                <ul class="space-y-2 text-xs text-gray-300">
+                    <li><a href="{{ route('page.sambutan') }}" class="hover:text-[#fcd116] transition">Sambutan Mudir</a></li>
+                    <li><a href="{{ route('page.tentang-kami') }}" class="hover:text-[#fcd116] transition">Profil Pesantren</a></li>
+                    <li><a href="{{ route('page.visi-misi') }}" class="hover:text-[#fcd116] transition">Visi, Misi &amp; Jati Diri</a></li>
+                    <li><a href="{{ route('page.sejarah') }}" class="hover:text-[#fcd116] transition">Sejarah Sejak 1950</a></li>
+                    <li><a href="{{ route('dewan.index') }}" class="hover:text-[#fcd116] transition">Dewan Asatidz &amp; Guru</a></li>
+                    <li><a href="{{ route('ppdb.index') }}" class="hover:text-[#fcd116] transition font-bold text-emerald-400">Pendaftaran PSB Online</a></li>
+                    <li><a href="{{ route('download.index') }}" class="hover:text-[#fcd116] transition">Unduh Brosur PSB</a></li>
+                    <li><a href="{{ route('donasi') }}" class="hover:text-[#fcd116] transition text-amber-300">Wakaf &amp; Infaq Sarana</a></li>
+                </ul>
+            </div>
+
+            {{-- KOLOM 4: ALAMAT, KONTAK & PENGUNJUNG (3 Kolom) --}}
+            <div class="lg:col-span-3 space-y-3">
+                <h3 class="font-extrabold text-[#f59e0b] text-sm uppercase tracking-wider flex items-center gap-2 border-b border-gray-800 pb-2">
+                    <i class="fa-solid fa-location-dot text-xs"></i>
+                    <span>Alamat &amp; Kontak</span>
+                </h3>
+                <div class="space-y-2.5 text-xs text-gray-300 leading-relaxed">
+                    <p class="flex items-start space-x-2">
+                        <i class="fa-solid fa-map-pin text-[#f59e0b] mt-1 shrink-0"></i>
+                        <span>{{ $siteSettings['contact_address'] ?? 'Desa Sakatiga, Kecamatan Indralaya, Kabupaten Ogan Ilir, Sumatera Selatan 30816' }}</span>
+                    </p>
+                    <p class="flex items-center space-x-2">
+                        <i class="fa-solid fa-phone text-[#f59e0b] shrink-0"></i>
+                        <a href="tel:{{ $siteSettings['contact_phone'] ?? '081278901950' }}" class="hover:text-[#fcd116]">{{ $siteSettings['contact_phone'] ?? '0812-7890-1950' }}</a>
+                    </p>
+                    <p class="flex items-center space-x-2">
+                        <i class="fa-solid fa-envelope text-[#f59e0b] shrink-0"></i>
+                        <a href="mailto:{{ $siteSettings['contact_email'] ?? 'sekretariat@ppru.ac.id' }}" class="hover:text-[#fcd116] truncate">{{ $siteSettings['contact_email'] ?? 'sekretariat@ppru.ac.id' }}</a>
+                    </p>
                 </div>
-                <p class="text-xs text-gray-400 font-light text-center md:text-left">Kunjungan ke website resmi sekolah</p>
-                <div class="pt-2 flex items-center justify-center md:justify-start gap-2 text-xs text-gray-400 text-center md:text-left">
-                    <a href="{{ route('page.privacy-policy') }}" class="hover:text-white transition">Kebijakan Privasi</a>
-                    <span>&bull;</span>
-                    <a href="{{ route('hubungi') }}" class="hover:text-white transition">Kontak</a>
+
+                {{-- Counter Pengunjung --}}
+                <div class="pt-3 border-t border-gray-800/80">
+                    <div class="flex items-center justify-between">
+                        <span class="text-[11px] text-gray-400 font-medium">Statistik Pengunjung:</span>
+                        <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-900/60 text-emerald-300 border border-emerald-500/40">
+                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse mr-1.5"></span> Live
+                        </span>
+                    </div>
+                    <div class="text-2xl font-extrabold text-white tracking-tight pt-1 font-mono">
+                        <span id="footer-visitor-counter" data-target="{{ $rawVisitorHits ?? (int) str_replace(['.', ','], '', $visitorHits ?? '53512') }}">
+                            {{ $visitorHits ?? '53.512' }}
+                        </span>
+                    </div>
+                    <p class="text-[10px] text-gray-400">Kunjungan website resmi pesantren</p>
                 </div>
             </div>
 
         </div>
 
-        {{-- 3. DUA GARIS PEMISAH HORIZONTAL --}}
-        <div class="mt-12 mb-6 space-y-1">
-            <div class="border-t border-neutral-800"></div>
-            <div class="border-t border-neutral-800"></div>
-        </div>
+        {{-- 3. PEMISAH --}}
+        <div class="mt-12 mb-6 border-t border-gray-800"></div>
 
-        {{-- 4. BOTTOM COPYRIGHT & WATERMARK --}}
+        {{-- 4. COPYRIGHT --}}
         <div class="flex flex-col sm:flex-row justify-between items-center text-xs text-gray-400 gap-3 text-center sm:text-left">
             <div>
-                Copyright &copy; {{ date('Y') }} SMA Islam Terpadu Ishlahul Ummah Prabumulih. All Rights Reserved.
+                &copy; {{ date('Y') }} <strong>Pondok Pesantren Raudhatul Ulum Sakatiga</strong>. All Rights Reserved.
             </div>
-
-            <div class="text-[11px] text-gray-500">
-                <a href="https://berandadigital.net" target="_blank" rel="noopener" class="hover:text-gray-300 transition">
-                    Beranda Teknologi Digital
-                </a>
+            <div class="flex items-center space-x-4 text-[11px]">
+                <a href="{{ route('page.privacy-policy') }}" class="hover:text-white transition">Kebijakan Privasi</a>
+                <span>&bull;</span>
+                <a href="{{ route('hubungi') }}" class="hover:text-white transition">Hubungi Kami</a>
+                <span>&bull;</span>
+                <a href="/login" class="hover:text-[#f59e0b] font-semibold transition">Portal Admin</a>
             </div>
         </div>
 
     </div>
 
-    {{-- Script Animasi Hitung Visitor Counter --}}
+    {{-- Script Animasi Counter --}}
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const counterEl = document.getElementById('footer-visitor-counter');
@@ -137,30 +173,24 @@
             const runCounterAnimation = () => {
                 if (hasRun) return;
                 hasRun = true;
-
                 const duration = 2000;
                 const startTime = performance.now();
                 const startVal = Math.max(0, targetVal - 2500);
 
-                const formatNum = (num) => {
-                    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-                };
+                const formatNum = (num) => num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
                 const frame = (now) => {
                     const elapsed = now - startTime;
                     const progress = Math.min(elapsed / duration, 1);
                     const ease = 1 - Math.pow(1 - progress, 4);
                     const current = Math.floor(startVal + (targetVal - startVal) * ease);
-
                     counterEl.textContent = formatNum(current);
-
                     if (progress < 1) {
                         requestAnimationFrame(frame);
                     } else {
                         counterEl.textContent = formatNum(targetVal);
                     }
                 };
-
                 requestAnimationFrame(frame);
             };
 

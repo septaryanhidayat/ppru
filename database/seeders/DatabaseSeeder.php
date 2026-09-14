@@ -29,6 +29,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             DownloadSeeder::class,
             SchoolDataSeeder::class,
+            PpruDataSeeder::class,
+            PpruMediaAndNewsSeeder::class,
         ]);
     }
 }

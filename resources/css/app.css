@@ -6,19 +6,21 @@
 
 @theme {
     --font-sans: 'Poppins', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    --color-school-green: #00913e;
-    --color-school-green-dark: #007532;
+    --color-school-green: #00843d;
+    --color-school-green-dark: #00632e;
     --color-school-green-light: #05a849;
     --color-school-green-accent: #10b981;
-    --color-school-red: #da251c;
+    --color-school-green-soft: #ecfdf5;
+    --color-school-gold: #f59e0b;
+    --color-school-gold-light: #fcd116;
+    --color-school-gold-dark: #d97706;
+    --color-school-sky: #0284c7;
+    --color-school-sky-light: #38bdf8;
+    --color-school-red: #dc2626;
     --color-school-red-dark: #b91c1c;
     --color-school-red-light: #ef4444;
-    --color-school-orange: #da251c;
-    --color-school-orange-dark: #b91c1c;
-    --color-school-orange-light: #ef4444;
-    --color-school-gold: #f59e0b;
-    --color-school-dark: #111827;
-    --color-school-gray: #f8f9fa;
+    --color-school-dark: #0f172a;
+    --color-school-gray: #f8fafc;
 }
 
 body {

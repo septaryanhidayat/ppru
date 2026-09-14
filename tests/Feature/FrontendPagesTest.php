@@ -236,14 +236,13 @@ test('dewan guru page dynamically reflects updated name and photo from database'
     $res2->assertDontSee('Nama Guru Lama');
 });
 
-test('home page renders pksoganilir style gallery slider with 2 rows and ishum photos', function () {
+test('home page renders gallery slider with 2 rows and ppru photos', function () {
     $response = $this->get('/');
 
     $response->assertStatus(200);
     $response->assertSee('Galeri');
-    $response->assertSee('Dokumentasi Kegiatan Santri &amp; Kampus SMA IT Ishlahul Ummah', false);
     $response->assertSee(route('galeri.index'));
-    $response->assertSee('Selengkapnya');
+    $response->assertSee('Lihat Seluruh Galeri Foto');
 });
 
 test('mars jsit page renders authentic mars jsit lyrics and video', function () {

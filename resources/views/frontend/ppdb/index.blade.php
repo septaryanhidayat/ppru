@@ -1,7 +1,7 @@
 @extends('layouts.frontend')
 
-@section('title', 'SPMB / PPDB Online ' . ($settings['year'] ?? '2026/2027') . ' - SMA IT Ishlahul Ummah Prabumulih')
-@section('meta_description', 'Penerimaan Peserta Didik Baru (PPDB/SPMB) SMA Islam Terpadu Ishlahul Ummah Prabumulih Tahun Pelajaran ' . ($settings['year'] ?? '2026/2027') . '. Informasi alur, syarat, jadwal, biaya, dan formulir pendaftaran online.')
+@section('title', 'PSB / PPDB Online ' . ($settings['year'] ?? '2026/2027') . ' - Pondok Pesantren Raudhatul Ulum Sakatiga')
+@section('meta_description', 'Penerimaan Santri Baru (PSB/PPDB) Pondok Pesantren Raudhatul Ulum (PPRU) Sakatiga Tahun Pelajaran ' . ($settings['year'] ?? '2026/2027') . '. Informasi alur, syarat, jadwal, biaya, dan formulir pendaftaran online.')
 
 @section('content')
 <div class="bg-gradient-to-b from-emerald-50/50 via-white to-gray-50 py-10">
@@ -9,18 +9,18 @@
 
         {{-- HEADER BRAND & HERO TITLE --}}
         <div class="text-center space-y-4 reveal-fade-up">
-            <div class="inline-block p-2.5 bg-white rounded-3xl shadow-md border border-emerald-100">
-                <img src="/uploads/logo-ishum-square.png" alt="Logo SMA IT Ishlahul Ummah" class="h-24 sm:h-28 w-auto object-contain mx-auto">
+            <div class="inline-block p-3 bg-white rounded-3xl shadow-md border border-emerald-100">
+                <img src="/uploads/logo-ppru-banner.png" alt="Logo Pondok Pesantren Raudhatul Ulum" class="h-20 sm:h-24 w-auto object-contain mx-auto" onerror="this.src='/uploads/logo-ppru-square.png'">
             </div>
             <div>
-                <div class="inline-flex items-center space-x-2 bg-emerald-100 text-[#00913e] px-4 py-1.5 rounded-full text-xs font-black mb-2">
+                <div class="inline-flex items-center space-x-2 bg-emerald-100 text-school-green px-4 py-1.5 rounded-full text-xs font-black mb-2">
                     <span class="w-2.5 h-2.5 rounded-full bg-emerald-600 animate-pulse"></span>
                     <span>Pendaftaran Santri Baru Telah Dibuka</span>
                 </div>
                 <h1 class="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-950 tracking-tight uppercase">
-                    SPMB SMA IT ISHLAHUL UMMAH <br class="hidden sm:inline">PRABUMULIH
+                    PSB PONDOK PESANTREN RAUDHATUL ULUM <br class="hidden sm:inline">SAKATIGA OGAN ILIR
                 </h1>
-                <p class="text-sm sm:text-base font-extrabold text-[#da251c] mt-1.5">
+                <p class="text-sm sm:text-base font-extrabold text-school-gold mt-1.5">
                     Tahun Pelajaran {{ $settings['year'] ?? '2026/2027' }} &bull; {{ $settings['wave'] ?? 'Gelombang Aktif' }}
                 </p>
                 @if(!empty($settings['promo']))
@@ -29,29 +29,29 @@
                     </div>
                 @endif
                 <p class="text-xs sm:text-sm text-slate-800 max-w-2xl mx-auto mt-2.5 font-medium leading-relaxed">
-                    {{ $settings['tagline'] ?? "Mendidik Sepenuh Cinta. Mewujudkan generasi Qur'ani berkarakter tangguh, cerdas sains, mandiri, dan berwawasan global di bawah naungan JSIT Indonesia." }}
+                    {{ $settings['tagline'] ?? "Membina Generasi Khairu Ummah: Beraqidah Lurus, Berakhlak Mulia, Cerdas Sains, Mandiri, dan Berwawasan Global dengan Muadalah Al-Azhar Kairo Mesir." }}
                 </p>
             </div>
 
             {{-- CTA Quick Buttons --}}
             <div class="flex flex-wrap items-center justify-center gap-3 pt-2">
-                <a href="{{ route('ppdb.form') }}" class="inline-flex items-center space-x-2 bg-[#da251c] hover:bg-[#b91c1c] text-white px-7 py-3 rounded-2xl text-xs sm:text-sm font-black transition shadow-lg shadow-red-500/25 transform hover:scale-105">
+                <a href="{{ route('ppdb.form') }}" class="inline-flex items-center space-x-2 bg-school-green hover:bg-emerald-800 text-white px-7 py-3 rounded-2xl text-xs sm:text-sm font-black transition shadow-lg shadow-emerald-700/25 transform hover:scale-105">
                     <i class="fa-solid fa-file-pen text-sm"></i>
                     <span>Isi Formulir Online</span>
                 </a>
                 <a href="{{ route('home') }}" class="inline-flex items-center space-x-2 bg-slate-900 hover:bg-black text-white px-5 py-3 rounded-2xl text-xs sm:text-sm font-bold transition shadow-sm">
                     <i class="fa-solid fa-house text-xs"></i>
-                    <span>Beranda Sekolah</span>
+                    <span>Beranda Pesantren</span>
                 </a>
                 @php
-                    $cleanHotline = preg_replace('/[^0-9]/', '', (string) ($settings['hotline_phone'] ?? '082182680647'));
+                    $cleanHotline = preg_replace('/[^0-9]/', '', (string) ($settings['hotline_phone'] ?? '081278901950'));
                     if (str_starts_with($cleanHotline, '0')) {
                         $cleanHotline = '62' . substr($cleanHotline, 1);
                     }
                 @endphp
-                <a href="https://wa.me/{{ $cleanHotline }}?text={{ urlencode('Assalamu\'alaikum Panitia PPDB SMA IT Ishlahul Ummah Prabumulih, saya ingin konsultasi pendaftaran santri baru.') }}" target="_blank" class="inline-flex items-center space-x-2 bg-[#00913e] hover:bg-[#007532] text-white px-6 py-3 rounded-2xl text-xs sm:text-sm font-bold transition shadow-md">
+                <a href="https://wa.me/{{ $cleanHotline }}?text={{ urlencode('Assalamu\'alaikum Panitia PSB Pondok Pesantren Raudhatul Ulum Sakatiga, saya ingin konsultasi pendaftaran santri baru.') }}" target="_blank" class="inline-flex items-center space-x-2 bg-[#25D366] hover:bg-[#1EBE5D] text-white px-6 py-3 rounded-2xl text-xs sm:text-sm font-bold transition shadow-md">
                     <i class="fa-brands fa-whatsapp text-sm"></i>
-                    <span>Hotline WhatsApp ({{ $settings['hotline_phone'] ?? '0821-8268-0647' }})</span>
+                    <span>Hotline WhatsApp ({{ $settings['hotline_phone'] ?? '0812-7890-1950' }})</span>
                 </a>
             </div>
         </div>

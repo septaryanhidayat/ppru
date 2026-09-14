@@ -9,38 +9,39 @@ use App\Models\Pengumuman;
 use App\Models\Post;
 use App\Models\Setting;
 use App\Models\Testimonial;
+use App\Models\UnitPendidikan;
 use App\Models\Video;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        // 1. Hero slides data - SMA Islam Terpadu Ishlahul Ummah Prabumulih
+        // 1. Hero slides data - Pondok Pesantren Raudhatul Ulum Sakatiga
         $heroSlides = [
             [
-                'title' => 'Selamat Datang di Website Resmi',
-                'subtitle' => 'SMA Islam Terpadu Ishlahul Ummah Prabumulih',
-                'image' => '/uploads/ishum/fasilitas_3427_IMG-20240528-WA0106-scaled.webp',
-                'btn_text' => 'Sambutan Kepala Sekolah',
-                'btn_link' => route('page.sambutan', [], false),
-            ],
-            [
-                'title' => 'Tanggap, Tangkas dan Tangguh Menuju Indonesia Emas',
-                'subtitle' => 'Sekolah Islam Terpadu Pertama di Prabumulih Tergabung dalam JSIT dengan Kurikulum Terpadu & Tahfidzul Qur\'an.',
-                'image' => '/uploads/ishum/fasilitas_1278_HALL-SIT-Ishlahul-Ummah_.webp',
-                'btn_text' => 'Profil Singkat Sekolah',
+                'title' => 'Pondok Pesantren Raudhatul Ulum',
+                'subtitle' => 'Basis Kaderisasi Generasi Terbaik (Khoiru Ummah) yang Bermanfaat Luas dan Berdaya Saing Global di Sakatiga Ogan Ilir.',
+                'image' => '/uploads/campus-ishum.jpg',
+                'btn_text' => 'Profil Singkat Pesantren',
                 'btn_link' => route('page.tentang-kami', [], false),
             ],
             [
-                'title' => 'Penerimaan Peserta Didik Baru (PPDB)',
-                'subtitle' => 'Mari Bergabung dengan Keluarga Besar SMA IT Ishlahul Ummah Prabumulih.',
-                'image' => '/uploads/ishum/fasilitas_1377_IMG-20240528-WA0094-scaled.webp',
-                'btn_text' => 'Daftar PPDB Online',
+                'title' => 'Penerimaan Santri Baru (PSB) 2026/2027',
+                'subtitle' => 'Mari Bergabung dengan Pesantren Modern Terpadu Berasrama: Al-Qur\'an, Dwi-Bahasa, dan Dirasah Islamiyah.',
+                'image' => '/uploads/activities-robbani.webp',
+                'btn_text' => 'Daftar PSB Online',
                 'btn_link' => route('ppdb.index', [], false),
+            ],
+            [
+                'title' => 'Kurikulum Terpadu & Muadalah Al-Azhar',
+                'subtitle' => 'Memadukan Kurikulum Pondok Modern Gontor, Kementerian Agama, dan Dinas Pendidikan Nasional.',
+                'image' => '/uploads/campus-ishum.jpg',
+                'btn_text' => 'Sambutan Mudir PPRU',
+                'btn_link' => route('page.sambutan', [], false),
             ],
         ];
 
-        // 2. Sambutan Kepala Sekolah
+        // 2. Sambutan Mudir Pesantren
         $sambutan = Post::where('type', 'page')->where('slug', 'sambutan-kepala-sekolah')->first();
 
         // 3. Ambil semua post publik untuk fallback
@@ -191,18 +192,33 @@ class HomeController extends Controller
         // 13. Testimonials (Section 16)
         $testimonials = Testimonial::where('status', 'publish')->take(4)->get();
 
-        // 14. Visitor counter hits
+        // 14. Unit Pendidikan PPRU
+        $unitPendidikans = UnitPendidikan::active()->orderBy('order', 'asc')->get();
+
+        // 15. Taujih & Nasihat Pimpinan Pesantren
+        $taujihPosts = Post::posts()
+            ->published()
+            ->with(['categories'])
+            ->whereHas('categories', fn ($c) => $c->where('slug', 'taujih'))
+            ->orderBy('published_at', 'desc')
+            ->take(6)
+            ->get();
+        if ($taujihPosts->isEmpty()) {
+            $taujihPosts = $allPosts->take(4);
+        }
+
+        // 16. Visitor counter hits
         $visitorHits = view()->shared('visitorHits') ?? '53.512';
 
-        // 15. Popup Banner Settings
+        // 17. Popup Banner Settings
         $popupSettings = [
             'active' => Setting::get('popup_active', '1'),
             'image' => Setting::get('popup_image', '/uploads/popup/popup-ppdb.webp'),
-            'title' => Setting::get('popup_title', 'Penerimaan Peserta Didik Baru (PPDB) TP 2025/2026'),
-            'subtitle' => Setting::get('popup_subtitle', 'Potongan Biaya Masuk s.d 50% - Kuota Terbatas!'),
+            'title' => Setting::get('popup_title', 'Penerimaan Peserta Didik Baru (PPDB) TP 2026/2027'),
+            'subtitle' => Setting::get('popup_subtitle', 'Pondok Pesantren Raudhatul Ulum Sakatiga Ogan Ilir'),
             'link' => Setting::get('popup_link', '/ppdb'),
             'target' => Setting::get('popup_target', '_self'),
-            'button_text' => Setting::get('popup_button_text', 'Daftar PPDB Sekarang'),
+            'button_text' => Setting::get('popup_button_text', 'Daftar PSB Sekarang'),
         ];
 
         return view('frontend.home', compact(
@@ -223,6 +239,8 @@ class HomeController extends Controller
             'galleryRow2',
             'ebooks',
             'testimonials',
+            'unitPendidikans',
+            'taujihPosts',
             'visitorHits',
             'popupSettings'
         ));
