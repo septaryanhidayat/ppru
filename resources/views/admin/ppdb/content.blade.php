@@ -46,21 +46,21 @@
     </div>
 
     {{-- FORM PENGATURAN KONTEN & FORMULIR PPDB --}}
-    <form action="{{ route('admin.ppdb.content.update') }}" method="POST" class="space-y-8">
+    <form action="{{ route('admin.ppdb.content.update') }}" method="POST" enctype="multipart/form-data" class="space-y-8">
         @csrf
 
-        {{-- TAB 1: PENGATURAN KONTEN & 10 MENU PPDB --}}
+        {{-- TAB 1: PENGATURAN KONTEN HALAMAN PPDB --}}
         <div x-show="currentTab === 'konten'" class="space-y-8">
 
-            {{-- SECTION 1: STATUS & HERO PPDB --}}
+            {{-- SECTION 1: STATUS & HERO BANNER PPDB --}}
             <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-xs border border-slate-200/80 space-y-6">
                 <div class="flex items-center space-x-3 pb-4 border-b border-slate-100">
                     <div class="w-10 h-10 rounded-2xl bg-emerald-100 text-[#00913e] flex items-center justify-center font-bold text-lg">
                         <i class="fa-solid fa-bullhorn"></i>
                     </div>
                     <div>
-                        <h3 class="font-extrabold text-slate-900 text-base">1. Status Gelombang &amp; Hero PPDB</h3>
-                        <p class="text-xs text-slate-500">Atur periode penerimaan, tahun ajaran, nominal formulir, dan teks promo utama.</p>
+                        <h3 class="font-extrabold text-slate-900 text-base">1. Status Gelombang &amp; Hero Banner PSB</h3>
+                        <p class="text-xs text-slate-500">Atur periode penerimaan, tahun ajaran, nominal formulir, judul utama, dan 4 counter statistik.</p>
                     </div>
                 </div>
 
@@ -86,76 +86,325 @@
                     </div>
 
                     <div class="sm:col-span-3">
-                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Deskripsi Singkat SPMB PPDB</label>
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Judul Utama Hero (Headline)</label>
+                        <input type="text" name="ppdb_hero_title" value="{{ old('ppdb_hero_title', $settings['hero_title'] ?? 'PSB PONDOK PESANTREN RAUDHATUL ULUM SAKATIGA OGAN ILIR') }}" placeholder="Contoh: PSB PONDOK PESANTREN RAUDHATUL ULUM SAKATIGA OGAN ILIR" class="w-full bg-slate-50 text-xs font-bold rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
+                    </div>
+
+                    <div class="sm:col-span-3">
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Deskripsi Singkat / Tagline Hero</label>
                         <textarea name="ppdb_tagline" rows="2" class="w-full bg-slate-50 text-xs rounded-xl p-3.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">{{ old('ppdb_tagline', $settings['tagline']) }}</textarea>
                     </div>
+
+                    <div class="sm:col-span-3 pt-2">
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Gambar Background Hero</label>
+                        <div class="flex flex-col sm:flex-row items-center gap-4">
+                            <input type="text" name="ppdb_hero_bg" value="{{ old('ppdb_hero_bg', $settings['hero_bg'] ?? '/uploads/campus-ppru-sakatiga.webp') }}" class="w-full bg-slate-50 text-xs rounded-xl px-4 py-2.5 border border-slate-200">
+                            <div class="shrink-0">
+                                <label class="cursor-pointer bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold px-4 py-2.5 rounded-xl border border-slate-200 transition inline-flex items-center gap-1.5">
+                                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                                    <span>Upload Gambar Baru</span>
+                                    <input type="file" name="ppdb_hero_bg_file" accept="image/*" class="hidden">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {{-- 4 Stat Counters CRUD --}}
+                <div class="pt-4 border-t border-slate-100">
+                    <label class="block text-xs font-black text-slate-800 uppercase tracking-wider mb-3">
+                        <i class="fa-solid fa-calculator text-emerald-600 mr-1"></i> 4 Counter Statistik di Bawah Hero
+                    </label>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <div class="bg-slate-50 p-3.5 rounded-2xl border border-slate-200 space-y-2">
+                            <span class="text-[11px] font-black text-emerald-700 block uppercase">Statistik 1</span>
+                            <input type="text" name="ppdb_stat_1_val" value="{{ old('ppdb_stat_1_val', $settings['stat_1_val'] ?? '8 Unit') }}" placeholder="8 Unit" class="w-full bg-white text-xs font-bold rounded-lg px-3 py-2 border border-slate-200">
+                            <input type="text" name="ppdb_stat_1_lbl" value="{{ old('ppdb_stat_1_lbl', $settings['stat_1_lbl'] ?? 'Jenjang Terpadu') }}" placeholder="Jenjang Terpadu" class="w-full bg-white text-[11px] rounded-lg px-3 py-1.5 border border-slate-200">
+                        </div>
+
+                        <div class="bg-slate-50 p-3.5 rounded-2xl border border-slate-200 space-y-2">
+                            <span class="text-[11px] font-black text-emerald-700 block uppercase">Statistik 2</span>
+                            <input type="text" name="ppdb_stat_2_val" value="{{ old('ppdb_stat_2_val', $settings['stat_2_val'] ?? 'Muadalah') }}" placeholder="Muadalah" class="w-full bg-white text-xs font-bold rounded-lg px-3 py-2 border border-slate-200">
+                            <input type="text" name="ppdb_stat_2_lbl" value="{{ old('ppdb_stat_2_lbl', $settings['stat_2_lbl'] ?? 'Al-Azhar Kairo') }}" placeholder="Al-Azhar Kairo" class="w-full bg-white text-[11px] rounded-lg px-3 py-1.5 border border-slate-200">
+                        </div>
+
+                        <div class="bg-slate-50 p-3.5 rounded-2xl border border-slate-200 space-y-2">
+                            <span class="text-[11px] font-black text-emerald-700 block uppercase">Statistik 3</span>
+                            <input type="text" name="ppdb_stat_3_val" value="{{ old('ppdb_stat_3_val', $settings['stat_3_val'] ?? '30 Juz') }}" placeholder="30 Juz" class="w-full bg-white text-xs font-bold rounded-lg px-3 py-2 border border-slate-200">
+                            <input type="text" name="ppdb_stat_3_lbl" value="{{ old('ppdb_stat_3_lbl', $settings['stat_3_lbl'] ?? 'Tahfidz Mutqin') }}" placeholder="Tahfidz Mutqin" class="w-full bg-white text-[11px] rounded-lg px-3 py-1.5 border border-slate-200">
+                        </div>
+
+                        <div class="bg-slate-50 p-3.5 rounded-2xl border border-slate-200 space-y-2">
+                            <span class="text-[11px] font-black text-emerald-700 block uppercase">Statistik 4</span>
+                            <input type="text" name="ppdb_stat_4_val" value="{{ old('ppdb_stat_4_val', $settings['stat_4_val'] ?? '24 Jam') }}" placeholder="24 Jam" class="w-full bg-white text-xs font-bold rounded-lg px-3 py-2 border border-slate-200">
+                            <input type="text" name="ppdb_stat_4_lbl" value="{{ old('ppdb_stat_4_lbl', $settings['stat_4_lbl'] ?? 'Pembinaan Asrama') }}" placeholder="Pembinaan Asrama" class="w-full bg-white text-[11px] rounded-lg px-3 py-1.5 border border-slate-200">
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            {{-- SECTION 2: VIDEO PROFIL YOUTUBE --}}
+            {{-- SECTION 2: BROSUR / POSTER RESMI PSB (UPLOAD & PREVIEW) --}}
             <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-xs border border-slate-200/80 space-y-6">
                 <div class="flex items-center space-x-3 pb-4 border-b border-slate-100">
-                    <div class="w-10 h-10 rounded-2xl bg-red-100 text-red-600 flex items-center justify-center font-bold text-lg">
-                        <i class="fa-brands fa-youtube"></i>
+                    <div class="w-10 h-10 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center font-bold text-lg">
+                        <i class="fa-solid fa-image"></i>
                     </div>
                     <div>
-                        <h3 class="font-extrabold text-slate-900 text-base">2. Video Profil YouTube Halaman PPDB</h3>
-                        <p class="text-xs text-slate-500">Video resmi yang disematkan (embed) pada halaman informasi PPDB.</p>
+                        <h3 class="font-extrabold text-slate-900 text-base">2. Brosur &amp; Poster Resmi PSB (Gambar Digital)</h3>
+                        <p class="text-xs text-slate-500">Upload dan atur poster/flyer digital resmi penerimaan santri baru yang tampil di halaman PSB.</p>
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                    <div>
-                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">YouTube Video ID atau URL Lengkap <span class="text-red-500">*</span></label>
-                        <input type="text" name="ppdb_youtube_id" required value="{{ old('ppdb_youtube_id', $settings['youtube_id']) }}" placeholder="Contoh: IrPVG8CYjRc atau https://www.youtube.com/watch?v=IrPVG8CYjRc" class="w-full bg-slate-50 text-xs font-semibold rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 items-start">
+                    <div class="sm:col-span-2 space-y-4">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Judul Bagian Brosur / Poster</label>
+                            <input type="text" name="ppdb_flyer_title" value="{{ old('ppdb_flyer_title', $settings['flyer_title'] ?? 'Brosur & Poster Resmi PSB Online') }}" placeholder="Brosur & Poster Resmi PSB Online" class="w-full bg-slate-50 text-xs font-semibold rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Deskripsi / Keterangan Brosur</label>
+                            <textarea name="ppdb_flyer_desc" rows="3" class="w-full bg-slate-50 text-xs rounded-xl p-3.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">{{ old('ppdb_flyer_desc', $settings['flyer_desc'] ?? 'Dapatkan panduan lengkap penerimaan santri baru, profil keunggulan, rincian biaya, serta tata cara pendaftaran santri baru.') }}</textarea>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Pilih File Poster / Flyer Baru</label>
+                            <div class="flex items-center gap-3">
+                                <input type="file" name="ppdb_flyer_file" accept="image/*" class="w-full text-xs text-slate-500 file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-emerald-50 file:text-[#00913e] hover:file:bg-emerald-100 cursor-pointer">
+                            </div>
+                            <input type="hidden" name="ppdb_flyer_image" value="{{ $settings['flyer_image'] ?? '' }}">
+                            <p class="text-[10px] text-slate-400 mt-1.5">Format disarankan: WebP, JPG, atau PNG (Maks 5MB). Otomatis dioptimalkan.</p>
+                        </div>
                     </div>
 
-                    <div>
-                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Judul Teks Video</label>
-                        <input type="text" name="ppdb_video_title" value="{{ old('ppdb_video_title', $settings['video_title']) }}" placeholder="Video Profil & Dokumentasi SMA IT PPRU" class="w-full bg-slate-50 text-xs font-semibold rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
+                    <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 text-center space-y-2">
+                        <span class="text-[11px] font-bold text-slate-600 block">Preview Brosur Saat Ini</span>
+                        @if(!empty($settings['flyer_image']))
+                            <div class="relative rounded-xl overflow-hidden shadow-sm border border-slate-300 max-h-56 bg-slate-900">
+                                <img src="{{ $settings['flyer_image'] }}" alt="Poster PSB" class="w-full h-auto max-h-56 object-contain mx-auto">
+                            </div>
+                            <a href="{{ $settings['flyer_image'] }}" target="_blank" class="inline-flex items-center gap-1.5 text-[11px] text-[#00913e] font-bold hover:underline pt-1">
+                                <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                                <span>Buka Ukuran Penuh</span>
+                            </a>
+                        @else
+                            <div class="h-36 rounded-xl border border-dashed border-slate-300 flex items-center justify-center text-xs text-slate-400">
+                                Belum ada brosur diunggah
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
 
-            {{-- SECTION 3: JAM OPERASIONAL & SEKRETARIAT --}}
+            {{-- SECTION 3: HEADER KATALOG UNIT PENDIDIKAN --}}
             <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-xs border border-slate-200/80 space-y-6">
                 <div class="flex items-center space-x-3 pb-4 border-b border-slate-100">
                     <div class="w-10 h-10 rounded-2xl bg-emerald-100 text-[#00913e] flex items-center justify-center font-bold text-lg">
-                        <i class="fa-regular fa-clock"></i>
+                        <i class="fa-solid fa-building-columns"></i>
                     </div>
                     <div>
-                        <h3 class="font-extrabold text-slate-900 text-base">3. Jam Operasional SPMB &amp; Sekretariat</h3>
-                        <p class="text-xs text-slate-500">Jadwal layanan pendaftaran offline dan alamat sekretariat panitia.</p>
+                        <h3 class="font-extrabold text-slate-900 text-base">3. Teks Header Katalog Unit Pendidikan</h3>
+                        <p class="text-xs text-slate-500">Atur badge, judul, dan deskripsi pengantar pada bagian katalog unit pendidikan.</p>
                     </div>
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     <div>
-                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Hari Kerja (Senin - Jum'at) <span class="text-red-500">*</span></label>
-                        <input type="text" name="ppdb_operational_weekday" required value="{{ old('ppdb_operational_weekday', $settings['operational_weekday']) }}" placeholder="Senin – Jum'at: Pukul 08.00 – 15.00 WIB" class="w-full bg-slate-50 text-xs font-semibold rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Badge Bagian</label>
+                        <input type="text" name="ppdb_unit_badge" value="{{ old('ppdb_unit_badge', $settings['unit_badge'] ?? 'Multi-Unit Pendidikan Terpadu') }}" placeholder="Multi-Unit Pendidikan Terpadu" class="w-full bg-slate-50 text-xs font-semibold rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
                     </div>
 
                     <div>
-                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Hari Sabtu <span class="text-red-500">*</span></label>
-                        <input type="text" name="ppdb_operational_weekend" required value="{{ old('ppdb_operational_weekend', $settings['operational_weekend']) }}" placeholder="Sabtu: Pukul 08.00 – 12.00 WIB" class="w-full bg-slate-50 text-xs font-semibold rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Judul Utama</label>
+                        <input type="text" name="ppdb_unit_title" value="{{ old('ppdb_unit_title', $settings['unit_title'] ?? 'PILIH UNIT PENDIDIKAN TUJUAN') }}" placeholder="PILIH UNIT PENDIDIKAN TUJUAN" class="w-full bg-slate-50 text-xs font-semibold rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
                     </div>
 
                     <div class="sm:col-span-2">
-                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Alamat Sekretariat SPMB <span class="text-red-500">*</span></label>
-                        <input type="text" name="ppdb_secretariat" required value="{{ old('ppdb_secretariat', $settings['secretariat']) }}" placeholder="Kompleks SMA IT PPRU, Jl. Sadewa RT 01 RW 04 Karang Raja" class="w-full bg-slate-50 text-xs font-semibold rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Deskripsi Pengantar Unit</label>
+                        <textarea name="ppdb_unit_desc" rows="2" class="w-full bg-slate-50 text-xs rounded-xl p-3.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">{{ old('ppdb_unit_desc', $settings['unit_desc'] ?? 'Pondok Pesantren Raudhatul Ulum Sakatiga menaungi 8 unit pendidikan resmi yang terstruktur mulai dari Madrasah, TK Islam, Sekolah Islam Terpadu (JSIT), hingga Perguruan Tinggi Islam.') }}</textarea>
+                        <p class="text-[10px] text-slate-400 mt-1">Daftar item unit (nama, jenjang, gambar brosur, logo, dan rincian profil) dikelola secara mandiri melalui menu <a href="{{ route('admin.unit-pendidikan.index') }}" class="text-[#00913e] font-bold underline">Unit Pendidikan</a>.</p>
                     </div>
                 </div>
             </div>
 
-            {{-- SECTION 4: REKENING PEMBAYARAN FORMULIR --}}
+            {{-- SECTION 4: ALUR PENDAFTARAN & 5 TAHAPAN --}}
+            <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-xs border border-slate-200/80 space-y-6">
+                <div class="flex items-center space-x-3 pb-4 border-b border-slate-100">
+                    <div class="w-10 h-10 rounded-2xl bg-emerald-100 text-[#00913e] flex items-center justify-center font-bold text-lg">
+                        <i class="fa-solid fa-route"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-extrabold text-slate-900 text-base">4. Alur Pendaftaran &amp; 5 Tahapan Calon Santri</h3>
+                        <p class="text-xs text-slate-500">Sesuaikan judul, deskripsi, dan teks pada 5 kotak tahapan alur penerimaan santri.</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Judul Bagian Alur</label>
+                        <input type="text" name="ppdb_alur_title" value="{{ old('ppdb_alur_title', $settings['alur_title'] ?? 'ALUR PENDAFTARAN SANTRI BARU (PSB)') }}" class="w-full bg-slate-50 text-xs font-semibold rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Deskripsi Bagian Alur</label>
+                        <input type="text" name="ppdb_alur_desc" value="{{ old('ppdb_alur_desc', $settings['alur_desc'] ?? '5 Tahapan mudah dan transparan pendaftaran santri baru Pondok Pesantren Raudhatul Ulum Sakatiga') }}" class="w-full bg-slate-50 text-xs font-semibold rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
+                    </div>
+                </div>
+
+                {{-- 5 Step Cards CRUD --}}
+                <div class="space-y-4 pt-2">
+                    <div class="p-3 bg-emerald-50 text-[#00913e] rounded-xl text-xs font-black uppercase tracking-wider flex items-center gap-2">
+                        <i class="fa-solid fa-list-ol"></i>
+                        <span>5 Kotak Tahapan Alur</span>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+                        {{-- Step 1 --}}
+                        <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-2">
+                            <span class="w-6 h-6 rounded-lg bg-emerald-600 text-white font-black text-xs flex items-center justify-center">1</span>
+                            <label class="block text-[10px] font-bold text-slate-700 uppercase">Judul Tahap 1</label>
+                            <input type="text" name="ppdb_step_1_title" value="{{ old('ppdb_step_1_title', $settings['step_1_title'] ?? 'Pendaftaran Online') }}" class="w-full bg-white text-xs font-bold rounded-lg px-2.5 py-1.5 border border-slate-200">
+                            <label class="block text-[10px] font-bold text-slate-700 uppercase">Deskripsi</label>
+                            <textarea name="ppdb_step_1_desc" rows="3" class="w-full bg-white text-[11px] rounded-lg p-2 border border-slate-200 leading-snug">{{ old('ppdb_step_1_desc', $settings['step_1_desc'] ?? 'Mengisi formulir PSB melalui portal website resmi ini dengan data calon santri dan orang tua secara lengkap.') }}</textarea>
+                            <input type="text" name="ppdb_step_1_sub" value="{{ old('ppdb_step_1_sub', $settings['step_1_sub'] ?? 'Portal aktif 24 jam') }}" placeholder="Catatan kaki" class="w-full bg-white text-[10px] text-slate-500 rounded-lg px-2.5 py-1 border border-slate-200">
+                        </div>
+
+                        {{-- Step 2 --}}
+                        <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-2">
+                            <span class="w-6 h-6 rounded-lg bg-emerald-600 text-white font-black text-xs flex items-center justify-center">2</span>
+                            <label class="block text-[10px] font-bold text-slate-700 uppercase">Judul Tahap 2</label>
+                            <input type="text" name="ppdb_step_2_title" value="{{ old('ppdb_step_2_title', $settings['step_2_title'] ?? 'Transfer & Berkas') }}" class="w-full bg-white text-xs font-bold rounded-lg px-2.5 py-1.5 border border-slate-200">
+                            <label class="block text-[10px] font-bold text-slate-700 uppercase">Deskripsi</label>
+                            <textarea name="ppdb_step_2_desc" rows="3" class="w-full bg-white text-[11px] rounded-lg p-2 border border-slate-200 leading-snug">{{ old('ppdb_step_2_desc', $settings['step_2_desc'] ?? 'Membayar biaya pendaftaran ke rekening BSI resmi pesantren dan mengunggah bukti transfer serta berkas KK/Akta.') }}</textarea>
+                            <input type="text" name="ppdb_step_2_sub" value="{{ old('ppdb_step_2_sub', $settings['step_2_sub'] ?? 'Biaya Rp 250.000,- via Bank BSI') }}" placeholder="Catatan kaki" class="w-full bg-white text-[10px] text-slate-500 rounded-lg px-2.5 py-1 border border-slate-200">
+                        </div>
+
+                        {{-- Step 3 --}}
+                        <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-2">
+                            <span class="w-6 h-6 rounded-lg bg-emerald-600 text-white font-black text-xs flex items-center justify-center">3</span>
+                            <label class="block text-[10px] font-bold text-slate-700 uppercase">Judul Tahap 3</label>
+                            <input type="text" name="ppdb_step_3_title" value="{{ old('ppdb_step_3_title', $settings['step_3_title'] ?? 'Ujian Seleksi & Wawancara') }}" class="w-full bg-white text-xs font-bold rounded-lg px-2.5 py-1.5 border border-slate-200">
+                            <label class="block text-[10px] font-bold text-slate-700 uppercase">Deskripsi</label>
+                            <textarea name="ppdb_step_3_desc" rows="3" class="w-full bg-white text-[11px] rounded-lg p-2 border border-slate-200 leading-snug">{{ old('ppdb_step_3_desc', $settings['step_3_desc'] ?? 'Mengikuti tes potensi akademik, tes membaca Al-Qur\'an/tahfidz, dan wawancara kesiapan orang tua serta santri.') }}</textarea>
+                            <input type="text" name="ppdb_step_3_sub" value="{{ old('ppdb_step_3_sub', $settings['step_3_sub'] ?? 'Jadwal diinfokan via WhatsApp') }}" placeholder="Catatan kaki" class="w-full bg-white text-[10px] text-slate-500 rounded-lg px-2.5 py-1 border border-slate-200">
+                        </div>
+
+                        {{-- Step 4 --}}
+                        <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-2">
+                            <span class="w-6 h-6 rounded-lg bg-emerald-600 text-white font-black text-xs flex items-center justify-center">4</span>
+                            <label class="block text-[10px] font-bold text-slate-700 uppercase">Judul Tahap 4</label>
+                            <input type="text" name="ppdb_step_4_title" value="{{ old('ppdb_step_4_title', $settings['step_4_title'] ?? 'Pengumuman Kelulusan') }}" class="w-full bg-white text-xs font-bold rounded-lg px-2.5 py-1.5 border border-slate-200">
+                            <label class="block text-[10px] font-bold text-slate-700 uppercase">Deskripsi</label>
+                            <textarea name="ppdb_step_4_desc" rows="3" class="w-full bg-white text-[11px] rounded-lg p-2 border border-slate-200 leading-snug">{{ old('ppdb_step_4_desc', $settings['step_4_desc'] ?? 'Mengecek hasil seleksi kelulusan melalui website dan notifikasi resmi WhatsApp panitia PSB.') }}</textarea>
+                            <input type="text" name="ppdb_step_4_sub" value="{{ old('ppdb_step_4_sub', $settings['step_4_sub'] ?? 'Daftar ulang & fitting seragam') }}" placeholder="Catatan kaki" class="w-full bg-white text-[10px] text-slate-500 rounded-lg px-2.5 py-1 border border-slate-200">
+                        </div>
+
+                        {{-- Step 5 --}}
+                        <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-2">
+                            <span class="w-6 h-6 rounded-lg bg-emerald-600 text-white font-black text-xs flex items-center justify-center">5</span>
+                            <label class="block text-[10px] font-bold text-slate-700 uppercase">Judul Tahap 5</label>
+                            <input type="text" name="ppdb_step_5_title" value="{{ old('ppdb_step_5_title', $settings['step_5_title'] ?? 'Masuk Asrama (P2SB)') }}" class="w-full bg-white text-xs font-bold rounded-lg px-2.5 py-1.5 border border-slate-200">
+                            <label class="block text-[10px] font-bold text-slate-700 uppercase">Deskripsi</label>
+                            <textarea name="ppdb_step_5_desc" rows="3" class="w-full bg-white text-[11px] rounded-lg p-2 border border-slate-200 leading-snug">{{ old('ppdb_step_5_desc', $settings['step_5_desc'] ?? 'Kedatangan santri ke asrama, serah terima dengan Mudir dan pengasuh, serta mengikuti Pekan Perkenalan Santri Baru (P2SB).') }}</textarea>
+                            <input type="text" name="ppdb_step_5_sub" value="{{ old('ppdb_step_5_sub', $settings['step_5_sub'] ?? 'Khutbatul Arsy & pembagian kamar santri') }}" placeholder="Catatan kaki" class="w-full bg-white text-[10px] text-slate-500 rounded-lg px-2.5 py-1 border border-slate-200">
+                        </div>
+                    </div>
+
+                    <div class="pt-2">
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Petunjuk &amp; Alur Tambahan (Teks Bebas)</label>
+                        <textarea name="ppdb_alur" rows="4" class="w-full bg-slate-50 text-xs rounded-xl p-3.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00913e] leading-relaxed">{{ old('ppdb_alur', $settings['alur']) }}</textarea>
+                    </div>
+                </div>
+            </div>
+
+            {{-- SECTION 5: PILIHAN JALUR PENERIMAAN --}}
+            <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-xs border border-slate-200/80 space-y-6">
+                <div class="flex items-center space-x-3 pb-4 border-b border-slate-100">
+                    <div class="w-10 h-10 rounded-2xl bg-emerald-100 text-[#00913e] flex items-center justify-center font-bold text-lg">
+                        <i class="fa-solid fa-door-open"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-extrabold text-slate-900 text-base">5. Pilihan Jalur Penerimaan Santri Baru</h3>
+                        <p class="text-xs text-slate-500">Sesuaikan judul dan syarat setiap jalur seleksi (Reguler, Tahfidz, Prestasi, Alumni).</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Judul Bagian Jalur</label>
+                        <input type="text" name="ppdb_jalur_title" value="{{ old('ppdb_jalur_title', $settings['jalur_title'] ?? 'JALUR PENERIMAAN SANTRI BARU') }}" class="w-full bg-slate-50 text-xs font-semibold rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Deskripsi Bagian Jalur</label>
+                        <input type="text" name="ppdb_jalur_desc" value="{{ old('ppdb_jalur_desc', $settings['jalur_desc'] ?? 'Tersedia berbagai pilihan jalur penerimaan sesuai bakat, hafalan Al-Qur\'an, dan prestasi santri') }}" class="w-full bg-slate-50 text-xs font-semibold rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 pt-2">
+                    {{-- Jalur 1: Reguler --}}
+                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-3">
+                        <span class="text-xs font-black text-emerald-800 uppercase block"><i class="fa-solid fa-user-check mr-1.5"></i> Jalur 1</span>
+                        <div>
+                            <label class="block text-[10px] font-bold text-slate-700 uppercase mb-1">Judul Jalur</label>
+                            <input type="text" name="ppdb_jalur_reguler_title" value="{{ old('ppdb_jalur_reguler_title', $settings['jalur_reguler_title'] ?? 'Jalur Reguler (Mandiri)') }}" class="w-full bg-white text-xs font-bold rounded-xl px-3 py-2 border border-slate-200">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-bold text-slate-700 uppercase mb-1">Keterangan &amp; Syarat</label>
+                            <textarea name="ppdb_mandiri" rows="3" class="w-full bg-white text-xs rounded-xl p-3 border border-slate-200 leading-relaxed">{{ old('ppdb_mandiri', $settings['mandiri']) }}</textarea>
+                        </div>
+                    </div>
+
+                    {{-- Jalur 2: Tahfidz --}}
+                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-3">
+                        <span class="text-xs font-black text-amber-700 uppercase block"><i class="fa-solid fa-book-quran mr-1.5"></i> Jalur 2 (Tahfidz)</span>
+                        <div>
+                            <label class="block text-[10px] font-bold text-slate-700 uppercase mb-1">Judul Jalur</label>
+                            <input type="text" name="ppdb_jalur_tahfidz_title" value="{{ old('ppdb_jalur_tahfidz_title', $settings['jalur_tahfidz_title'] ?? 'Jalur Hafizh Al-Qur\'an') }}" class="w-full bg-white text-xs font-bold rounded-xl px-3 py-2 border border-slate-200">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-bold text-slate-700 uppercase mb-1">Keterangan &amp; Syarat</label>
+                            <textarea name="ppdb_tahfidz" rows="3" class="w-full bg-white text-xs rounded-xl p-3 border border-slate-200 leading-relaxed">{{ old('ppdb_tahfidz', $settings['tahfidz']) }}</textarea>
+                        </div>
+                    </div>
+
+                    {{-- Jalur 3: Prestasi --}}
+                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-3">
+                        <span class="text-xs font-black text-blue-700 uppercase block"><i class="fa-solid fa-trophy mr-1.5"></i> Jalur 3 (Prestasi)</span>
+                        <div>
+                            <label class="block text-[10px] font-bold text-slate-700 uppercase mb-1">Judul Jalur</label>
+                            <input type="text" name="ppdb_jalur_prestasi_title" value="{{ old('ppdb_jalur_prestasi_title', $settings['jalur_prestasi_title'] ?? 'Jalur Prestasi Sains') }}" class="w-full bg-white text-xs font-bold rounded-xl px-3 py-2 border border-slate-200">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-bold text-slate-700 uppercase mb-1">Keterangan &amp; Syarat</label>
+                            <textarea name="ppdb_prestasi" rows="3" class="w-full bg-white text-xs rounded-xl p-3 border border-slate-200 leading-relaxed">{{ old('ppdb_prestasi', $settings['prestasi']) }}</textarea>
+                        </div>
+                    </div>
+
+                    {{-- Jalur 4: Alumni --}}
+                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-3">
+                        <span class="text-xs font-black text-purple-700 uppercase block"><i class="fa-solid fa-people-roof mr-1.5"></i> Jalur 4 (Alumni)</span>
+                        <div>
+                            <label class="block text-[10px] font-bold text-slate-700 uppercase mb-1">Judul Jalur</label>
+                            <input type="text" name="ppdb_jalur_alumni_title" value="{{ old('ppdb_jalur_alumni_title', $settings['jalur_alumni_title'] ?? 'Jalur Alumni Internal') }}" class="w-full bg-white text-xs font-bold rounded-xl px-3 py-2 border border-slate-200">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-bold text-slate-700 uppercase mb-1">Keterangan &amp; Syarat</label>
+                            <textarea name="ppdb_alumni" rows="3" class="w-full bg-white text-xs rounded-xl p-3 border border-slate-200 leading-relaxed">{{ old('ppdb_alumni', $settings['alumni']) }}</textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {{-- SECTION 6: REKENING RESMI & OPERASIONAL --}}
             <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-xs border border-slate-200/80 space-y-6">
                 <div class="flex items-center space-x-3 pb-4 border-b border-slate-100">
                     <div class="w-10 h-10 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center font-bold text-lg">
                         <i class="fa-solid fa-credit-card"></i>
                     </div>
                     <div>
-                        <h3 class="font-extrabold text-slate-900 text-base">4. Rekening Pembayaran Biaya Formulir</h3>
-                        <p class="text-xs text-slate-500">Rekening tujuan transfer biaya formulir pendaftaran PPDB.</p>
+                        <h3 class="font-extrabold text-slate-900 text-base">6. Rekening Pembayaran &amp; Layanan Sekretariat</h3>
+                        <p class="text-xs text-slate-500">Rekening tujuan transfer pendaftaran, jam layanan sekretariat, dan hotline panitia.</p>
                     </div>
                 </div>
 
@@ -177,151 +426,141 @@
 
                     <div>
                         <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Atas Nama Rekening <span class="text-red-500">*</span></label>
-                        <input type="text" name="ppdb_bank_holder" required value="{{ old('ppdb_bank_holder', $settings['bank_holder']) }}" placeholder="YL. Fatmawati" class="w-full bg-slate-50 text-xs font-semibold rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
+                        <input type="text" name="ppdb_bank_holder" required value="{{ old('ppdb_bank_holder', $settings['bank_holder']) }}" placeholder="Pondok Pesantren Raudhatul Ulum" class="w-full bg-slate-50 text-xs font-semibold rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
                     </div>
-                </div>
-            </div>
 
-            {{-- SECTION 5: KONTAK HOTLINE WHATSAPP --}}
-            <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-xs border border-slate-200/80 space-y-6">
-                <div class="flex items-center space-x-3 pb-4 border-b border-slate-100">
-                    <div class="w-10 h-10 rounded-2xl bg-green-100 text-[#00913e] flex items-center justify-center font-bold text-lg">
-                        <i class="fa-brands fa-whatsapp"></i>
-                    </div>
                     <div>
-                        <h3 class="font-extrabold text-slate-900 text-base">5. Kontak WhatsApp Panitia PPDB</h3>
-                        <p class="text-xs text-slate-500">Nomor admin dan panitia yang menerima forwarding pendaftaran calon santri.</p>
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Hari Kerja (Senin - Jum'at) <span class="text-red-500">*</span></label>
+                        <input type="text" name="ppdb_operational_weekday" required value="{{ old('ppdb_operational_weekday', $settings['operational_weekday']) }}" placeholder="Senin – Jum'at: Pukul 08.00 – 15.00 WIB" class="w-full bg-slate-50 text-xs font-semibold rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
                     </div>
-                </div>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     <div>
-                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Nomor WhatsApp Admin Utama <span class="text-red-500">*</span></label>
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Hari Sabtu <span class="text-red-500">*</span></label>
+                        <input type="text" name="ppdb_operational_weekend" required value="{{ old('ppdb_operational_weekend', $settings['operational_weekend']) }}" placeholder="Sabtu: Pukul 08.00 – 12.00 WIB" class="w-full bg-slate-50 text-xs font-semibold rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
+                    </div>
+
+                    <div class="sm:col-span-2">
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Alamat Sekretariat SPMB <span class="text-red-500">*</span></label>
+                        <input type="text" name="ppdb_secretariat" required value="{{ old('ppdb_secretariat', $settings['secretariat']) }}" placeholder="Kompleks Pondok Pesantren Raudhatul Ulum, Sakatiga" class="w-full bg-slate-50 text-xs font-semibold rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Nomor WhatsApp Admin 1 <span class="text-red-500">*</span></label>
                         <input type="text" name="ppdb_hotline_phone" required value="{{ old('ppdb_hotline_phone', $settings['hotline_phone']) }}" placeholder="0812-7890-1950" class="w-full bg-slate-50 text-xs font-semibold rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
                     </div>
 
                     <div>
-                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Label Kontak Utama</label>
-                        <input type="text" name="ppdb_hotline_name" value="{{ old('ppdb_hotline_name', $settings['hotline_name']) }}" placeholder="Admin Hotline PPDB" class="w-full bg-slate-50 text-xs font-semibold rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Label Kontak 1</label>
+                        <input type="text" name="ppdb_hotline_name" value="{{ old('ppdb_hotline_name', $settings['hotline_name']) }}" placeholder="Panitia SPMB PPRU" class="w-full bg-slate-50 text-xs font-semibold rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
                     </div>
 
                     <div>
-                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Nomor WhatsApp CS 2 / Kepala Sekolah</label>
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Nomor WhatsApp CS 2</label>
                         <input type="text" name="ppdb_hotline_2_phone" value="{{ old('ppdb_hotline_2_phone', $settings['hotline_2_phone']) }}" placeholder="0812-7890-1950" class="w-full bg-slate-50 text-xs font-semibold rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
                     </div>
 
                     <div>
                         <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Label Kontak 2</label>
-                        <input type="text" name="ppdb_hotline_2_name" value="{{ old('ppdb_hotline_2_name', $settings['hotline_2_name']) }}" placeholder="Ust. Agi (Kepala Sekolah)" class="w-full bg-slate-50 text-xs font-semibold rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
+                        <input type="text" name="ppdb_hotline_2_name" value="{{ old('ppdb_hotline_2_name', $settings['hotline_2_name']) }}" placeholder="Sekretariat Pesantren" class="w-full bg-slate-50 text-xs font-semibold rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
                     </div>
                 </div>
             </div>
 
-            {{-- SECTION 6: KONTEN LENGKAP 10 ACCORDION MENU PPDB --}}
+            {{-- SECTION 7: VIDEO PROFIL YOUTUBE --}}
+            <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-xs border border-slate-200/80 space-y-6">
+                <div class="flex items-center space-x-3 pb-4 border-b border-slate-100">
+                    <div class="w-10 h-10 rounded-2xl bg-red-100 text-red-600 flex items-center justify-center font-bold text-lg">
+                        <i class="fa-brands fa-youtube"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-extrabold text-slate-900 text-base">7. Video Profil YouTube Halaman PPDB</h3>
+                        <p class="text-xs text-slate-500">Video dokumentasi resmi pesantren yang disematkan (embed) pada halaman informasi PPDB.</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">YouTube Video ID atau URL Lengkap <span class="text-red-500">*</span></label>
+                        <input type="text" name="ppdb_youtube_id" required value="{{ old('ppdb_youtube_id', $settings['youtube_id']) }}" placeholder="Contoh: LXtIbizPVvE atau https://www.youtube.com/watch?v=LXtIbizPVvE" class="w-full bg-slate-50 text-xs font-semibold rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Judul Teks Video</label>
+                        <input type="text" name="ppdb_video_title" value="{{ old('ppdb_video_title', $settings['video_title']) }}" placeholder="Profil & Suasana Kehidupan Santri Pondok Pesantren Raudhatul Ulum Sakatiga" class="w-full bg-slate-50 text-xs font-semibold rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Deskripsi Video</label>
+                        <textarea name="ppdb_video_desc" rows="2" class="w-full bg-slate-50 text-xs rounded-xl p-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">{{ old('ppdb_video_desc', $settings['video_desc'] ?? 'Saksikan lingkungan belajar, masjid agung, asrama santri, laboratorium, dan aktivitas harian di Pondok Pesantren Raudhatul Ulum Sakatiga') }}</textarea>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Label Channel YouTube</label>
+                        <input type="text" name="ppdb_video_channel" value="{{ old('ppdb_video_channel', $settings['video_channel'] ?? 'Channel Resmi TVRU Sakatiga (@tvrusakatiga)') }}" placeholder="Channel Resmi TVRU Sakatiga (@tvrusakatiga)" class="w-full bg-slate-50 text-xs font-semibold rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
+                    </div>
+                </div>
+            </div>
+
+            {{-- SECTION 8: PERTANYAAN SERING DIAJUKAN (FAQ) --}}
             <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-xs border border-slate-200/80 space-y-6">
                 <div class="flex items-center space-x-3 pb-4 border-b border-slate-100">
                     <div class="w-10 h-10 rounded-2xl bg-emerald-100 text-[#00913e] flex items-center justify-center font-bold text-lg">
-                        <i class="fa-solid fa-layer-group"></i>
+                        <i class="fa-solid fa-circle-question"></i>
                     </div>
                     <div>
-                        <h3 class="font-extrabold text-slate-900 text-base">6. Seluruh 10 Menu Accordion Informasi PPDB</h3>
-                        <p class="text-xs text-slate-500">Semua isi teks accordion pada halaman informasi PPDB dapat diedit di sini secara lengkap.</p>
+                        <h3 class="font-extrabold text-slate-900 text-base">8. Pertanyaan Sering Diajukan (FAQ)</h3>
+                        <p class="text-xs text-slate-500">Kelola daftar pertanyaan dan jawaban yang tampil pada accordion FAQ halaman PSB.</p>
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    
-                    {{-- KOLOM KIRI (6 MENU) --}}
-                    <div class="space-y-5">
-                        <div class="p-3 bg-emerald-50 text-[#00913e] rounded-xl text-xs font-black uppercase tracking-wider flex items-center gap-2">
-                            <i class="fa-solid fa-columns"></i>
-                            <span>Kolom Kiri (Jalur &amp; Persyaratan)</span>
-                        </div>
-
-                        <div>
-                            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">1. Alur Pendaftaran</label>
-                            <textarea name="ppdb_alur" rows="4" class="w-full bg-slate-50 text-xs rounded-xl p-3.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00913e] leading-relaxed">{{ old('ppdb_alur', $settings['alur']) }}</textarea>
-                            <p class="text-[10px] text-slate-400 mt-1">Gunakan baris baru untuk memisahkan setiap tahapan alur.</p>
-                        </div>
-
-                        <div>
-                            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">2. Syarat Pendaftaran</label>
-                            <textarea name="ppdb_syarat" rows="4" class="w-full bg-slate-50 text-xs rounded-xl p-3.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00913e] leading-relaxed">{{ old('ppdb_syarat', $settings['syarat']) }}</textarea>
-                            <p class="text-[10px] text-slate-400 mt-1">Gunakan baris baru untuk memisahkan setiap poin syarat berkas.</p>
-                        </div>
-
-                        <div>
-                            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">3. Jalur Prestasi &amp; Keringanan</label>
-                            <textarea name="ppdb_prestasi" rows="4" class="w-full bg-slate-50 text-xs rounded-xl p-3.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00913e] leading-relaxed">{{ old('ppdb_prestasi', $settings['prestasi']) }}</textarea>
-                        </div>
-
-                        <div>
-                            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">4. Jalur Hafizh Al-Qur'an (Tahfidz)</label>
-                            <textarea name="ppdb_tahfidz" rows="4" class="w-full bg-slate-50 text-xs rounded-xl p-3.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00913e] leading-relaxed">{{ old('ppdb_tahfidz', $settings['tahfidz']) }}</textarea>
-                        </div>
-
-                        <div>
-                            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">5. Jalur Alumni SMPIT PPRU</label>
-                            <textarea name="ppdb_alumni" rows="4" class="w-full bg-slate-50 text-xs rounded-xl p-3.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00913e] leading-relaxed">{{ old('ppdb_alumni', $settings['alumni']) }}</textarea>
-                        </div>
-
-                        <div>
-                            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">6. Jalur Reguler / Tes Mandiri</label>
-                            <textarea name="ppdb_mandiri" rows="4" class="w-full bg-slate-50 text-xs rounded-xl p-3.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00913e] leading-relaxed">{{ old('ppdb_mandiri', $settings['mandiri']) }}</textarea>
-                        </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Judul Bagian FAQ</label>
+                        <input type="text" name="ppdb_faq_title" value="{{ old('ppdb_faq_title', $settings['faq_title'] ?? 'PERTANYAAN SERING DIAJUKAN (FAQ)') }}" class="w-full bg-slate-50 text-xs font-semibold rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
                     </div>
 
-                    {{-- KOLOM KANAN (4 MENU) --}}
-                    <div class="space-y-5">
-                        <div class="p-3 bg-emerald-50 text-[#00913e] rounded-xl text-xs font-black uppercase tracking-wider flex items-center gap-2">
-                            <i class="fa-solid fa-columns"></i>
-                            <span>Kolom Kanan (Jadwal &amp; Biaya)</span>
-                        </div>
-
-                        <div>
-                            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">7. Jadwal Gelombang PPDB</label>
-                            <textarea name="ppdb_jadwal_gelombang" rows="5" class="w-full bg-slate-50 text-xs rounded-xl p-3.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00913e] leading-relaxed">{{ old('ppdb_jadwal_gelombang', $settings['jadwal_gelombang']) }}</textarea>
-                        </div>
-
-                        <div>
-                            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">8. Rincian Biaya &amp; Fasilitas Seragam</label>
-                            <textarea name="ppdb_biaya" rows="5" class="w-full bg-slate-50 text-xs rounded-xl p-3.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00913e] leading-relaxed">{{ old('ppdb_biaya', $settings['biaya']) }}</textarea>
-                        </div>
-
-                        <div>
-                            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">9. Pilihan Program: Boarding (Asrama) &amp; Full Day</label>
-                            <textarea name="ppdb_boarding" rows="5" class="w-full bg-slate-50 text-xs rounded-xl p-3.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00913e] leading-relaxed">{{ old('ppdb_boarding', $settings['boarding']) }}</textarea>
-                        </div>
-
-                        <div>
-                            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">10. Pengumuman Kelulusan &amp; Daftar Ulang</label>
-                            <textarea name="ppdb_kelulusan" rows="5" class="w-full bg-slate-50 text-xs rounded-xl p-3.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00913e] leading-relaxed">{{ old('ppdb_kelulusan', $settings['kelulusan']) }}</textarea>
-                        </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Subjudul / Deskripsi FAQ</label>
+                        <input type="text" name="ppdb_faq_desc" value="{{ old('ppdb_faq_desc', $settings['faq_desc'] ?? 'Jawaban seputar kehidupan berasrama dan pendaftaran santri baru di PPRU Sakatiga') }}" class="w-full bg-slate-50 text-xs font-semibold rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
                     </div>
 
+                    <div class="sm:col-span-2">
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                            Daftar Tanya Jawab FAQ <span class="text-emerald-700 font-normal">(Format: Pertanyaan | Jawaban, 1 baris per pertanyaan)</span>
+                        </label>
+                        <textarea name="ppdb_faq" rows="6" class="w-full bg-slate-50 font-mono text-xs rounded-xl p-3.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00913e] leading-relaxed">{{ old('ppdb_faq', $settings['faq'] ?? '') }}</textarea>
+                        <p class="text-[10px] text-slate-400 mt-1">Pisahkan antara teks pertanyaan dan jawaban dengan simbol pipa <code>|</code>. Setiap baris baru akan menjadi 1 item accordion FAQ di web.</p>
+                    </div>
                 </div>
             </div>
 
-            {{-- SECTION 7: UCAPAN PENUTUP & DOA --}}
+            {{-- SECTION 9: PESAN PENUTUP & CTA FORMULIR --}}
             <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-xs border border-slate-200/80 space-y-6">
                 <div class="flex items-center space-x-3 pb-4 border-b border-slate-100">
                     <div class="w-10 h-10 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center font-bold text-lg">
                         <i class="fa-solid fa-hands-praying"></i>
                     </div>
                     <div>
-                        <h3 class="font-extrabold text-slate-900 text-base">7. Pesan Penutup &amp; Doa Harapan</h3>
-                        <p class="text-xs text-slate-500">Teks ucapan terima kasih dan doa yang tampil di bagian bawah halaman PPDB.</p>
+                        <h3 class="font-extrabold text-slate-900 text-base">9. Pesan Penutup &amp; Tombol Pendaftaran</h3>
+                        <p class="text-xs text-slate-500">Teks ajakan penutup dan doa yang tampil di banner akhir halaman PPDB.</p>
                     </div>
                 </div>
 
                 <div class="space-y-4">
-                    <div>
-                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Judul Ucapan Penutup</label>
-                        <input type="text" name="ppdb_closing_title" value="{{ old('ppdb_closing_title', $settings['closing_title']) }}" class="w-full bg-slate-50 text-xs font-semibold rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Judul Banner Penutup</label>
+                            <input type="text" name="ppdb_closing_title" value="{{ old('ppdb_closing_title', $settings['closing_title']) }}" class="w-full bg-slate-50 text-xs font-semibold rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Teks Tombol CTA</label>
+                            <input type="text" name="ppdb_closing_btn_text" value="{{ old('ppdb_closing_btn_text', $settings['closing_btn_text'] ?? 'Isi Formulir Pendaftaran Sekarang') }}" class="w-full bg-slate-50 text-xs font-semibold rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
+                        </div>
                     </div>
 
                     <div>
-                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Isi Doa &amp; Harapan</label>
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Isi Doa &amp; Ajakan Harapan</label>
                         <textarea name="ppdb_closing_desc" rows="3" class="w-full bg-slate-50 text-xs rounded-xl p-3.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">{{ old('ppdb_closing_desc', $settings['closing_desc']) }}</textarea>
                     </div>
                 </div>

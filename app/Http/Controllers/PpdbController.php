@@ -25,12 +25,66 @@ class PpdbController extends Controller
             'year' => Setting::get('ppdb_year', '2026/2027'),
             'wave' => Setting::get('ppdb_wave', 'Gelombang 1 (Aktif)'),
             'promo' => Setting::get('ppdb_promo', 'Potongan Biaya Masuk Up to 50% OFF (*S&K berlaku)'),
-            'tagline' => Setting::get('ppdb_tagline', 'Mendidik Sepenuh Cinta. Membina Generasi Khairu Ummah yang Beraqidah Lurus, Berakhlak Mulia, Cerdas Sains, dan Berwawasan Global dengan Muadalah Al-Azhar Kairo.'),
-            'youtube_id' => Setting::get('ppdb_youtube_id', 'LXtIbizPVvE'),
-            'video_title' => Setting::get('ppdb_video_title', 'Profil & Suasana Kehidupan Santri Pondok Pesantren Raudhatul Ulum Sakatiga'),
+            'hero_title' => Setting::get('ppdb_hero_title', 'PSB PONDOK PESANTREN RAUDHATUL ULUM SAKATIGA OGAN ILIR'),
+            'tagline' => Setting::get('ppdb_tagline', 'Kaderisasi Generasi Khairu Ummah: Beraqidah Lurus, Berakhlak Mulia, Cerdas Sains, Mandiri, dan Berwawasan Global dengan Muadalah Al-Azhar Kairo Mesir.'),
+            'hero_bg' => Setting::get('ppdb_hero_bg', '/uploads/campus-ppru-sakatiga.webp'),
+
+            // 4 Stat Counters
+            'stat_1_val' => Setting::get('ppdb_stat_1_val', '8 Unit'),
+            'stat_1_lbl' => Setting::get('ppdb_stat_1_lbl', 'Jenjang Terpadu'),
+            'stat_2_val' => Setting::get('ppdb_stat_2_val', 'Muadalah'),
+            'stat_2_lbl' => Setting::get('ppdb_stat_2_lbl', 'Al-Azhar Kairo'),
+            'stat_3_val' => Setting::get('ppdb_stat_3_val', '30 Juz'),
+            'stat_3_lbl' => Setting::get('ppdb_stat_3_lbl', 'Tahfidz Mutqin'),
+            'stat_4_val' => Setting::get('ppdb_stat_4_val', '24 Jam'),
+            'stat_4_lbl' => Setting::get('ppdb_stat_4_lbl', 'Pembinaan Asrama'),
+
+            // Flyer / Brosur Resmi
+            'flyer_image' => Setting::get('ppdb_flyer_image', '/uploads/popup/popup-ppdb.webp'),
+            'flyer_title' => Setting::get('ppdb_flyer_title', 'Brosur & Poster Resmi PSB Online'),
+            'flyer_desc' => Setting::get('ppdb_flyer_desc', 'Dapatkan panduan lengkap penerimaan santri baru, profil keunggulan, rincian biaya, serta tata cara pendaftaran santri baru.'),
+
+            // Unit Section Header
+            'unit_badge' => Setting::get('ppdb_unit_badge', 'Multi-Unit Pendidikan Terpadu'),
+            'unit_title' => Setting::get('ppdb_unit_title', 'PILIH UNIT PENDIDIKAN TUJUAN'),
+            'unit_desc' => Setting::get('ppdb_unit_desc', 'Pondok Pesantren Raudhatul Ulum Sakatiga menaungi 8 unit pendidikan resmi yang terstruktur mulai dari Madrasah, TK Islam, Sekolah Islam Terpadu (JSIT), hingga Perguruan Tinggi Islam.'),
+
+            // Alur Section
+            'alur_title' => Setting::get('ppdb_alur_title', 'ALUR PENDAFTARAN SANTRI BARU (PSB)'),
+            'alur_desc' => Setting::get('ppdb_alur_desc', '5 Tahapan mudah dan transparan pendaftaran santri baru Pondok Pesantren Raudhatul Ulum Sakatiga'),
+            'step_1_title' => Setting::get('ppdb_step_1_title', 'Pendaftaran Online'),
+            'step_1_desc' => Setting::get('ppdb_step_1_desc', 'Mengisi formulir PSB melalui portal website resmi ini dengan data calon santri dan orang tua secara lengkap.'),
+            'step_1_sub' => Setting::get('ppdb_step_1_sub', 'Portal aktif 24 jam'),
+            'step_2_title' => Setting::get('ppdb_step_2_title', 'Transfer & Berkas'),
+            'step_2_desc' => Setting::get('ppdb_step_2_desc', 'Membayar biaya pendaftaran ke rekening BSI resmi pesantren dan mengunggah bukti transfer serta berkas KK/Akta.'),
+            'step_2_sub' => Setting::get('ppdb_step_2_sub', 'Biaya Rp 250.000,- via Bank BSI'),
+            'step_3_title' => Setting::get('ppdb_step_3_title', 'Ujian Seleksi & Wawancara'),
+            'step_3_desc' => Setting::get('ppdb_step_3_desc', 'Mengikuti tes potensi akademik, tes membaca Al-Qur\'an/tahfidz, dan wawancara kesiapan orang tua serta santri.'),
+            'step_3_sub' => Setting::get('ppdb_step_3_sub', 'Jadwal diinfokan via WhatsApp'),
+            'step_4_title' => Setting::get('ppdb_step_4_title', 'Pengumuman Kelulusan'),
+            'step_4_desc' => Setting::get('ppdb_step_4_desc', 'Mengecek hasil seleksi kelulusan melalui website dan notifikasi resmi WhatsApp panitia PSB.'),
+            'step_4_sub' => Setting::get('ppdb_step_4_sub', 'Daftar ulang & fitting seragam'),
+            'step_5_title' => Setting::get('ppdb_step_5_title', 'Masuk Asrama (P2SB)'),
+            'step_5_desc' => Setting::get('ppdb_step_5_desc', 'Kedatangan santri ke asrama, serah terima dengan Mudir dan pengasuh, serta mengikuti Pekan Perkenalan Santri Baru (P2SB).'),
+            'step_5_sub' => Setting::get('ppdb_step_5_sub', 'Khutbatul Arsy & pembagian kamar santri'),
+            'alur' => Setting::get('ppdb_alur', "Siapkan berkas foto/scan bukti transfer biaya pendaftaran melalui Bank Syariah Indonesia (BSI) nomor rekening 7011304251 a.n. Pondok Pesantren Raudhatul Ulum.\nSiapkan berkas foto/scan akta kelahiran dan kartu keluarga.\nMengisi formulir PPDB secara online pada website resmi.\nKonfirmasi pengisian formulir kepada panitia melalui WhatsApp (0812-7890-1950).\nPendaftaran selesai dan berkas diverifikasi tim panitia untuk tahapan tes wawancara dan tahfidz."),
+
+            // Jalur Section
+            'jalur_title' => Setting::get('ppdb_jalur_title', 'JALUR PENERIMAAN SANTRI BARU'),
+            'jalur_desc' => Setting::get('ppdb_jalur_desc', 'Tersedia berbagai pilihan jalur penerimaan sesuai bakat, hafalan Al-Qur\'an, dan prestasi santri'),
+            'jalur_reguler_title' => Setting::get('ppdb_jalur_reguler_title', 'Jalur Reguler (Mandiri)'),
+            'mandiri' => Setting::get('ppdb_mandiri', "Jalur umum melalui tahapan tes potensi akademik, tes membaca Al-Qur'an (tahsin & tajwid), dan wawancara kesiapan santri & orang tua."),
+            'jalur_tahfidz_title' => Setting::get('ppdb_jalur_tahfidz_title', "Jalur Hafizh Al-Qur'an"),
+            'tahfidz' => Setting::get('ppdb_tahfidz', "Keringanan biaya dan beasiswa khusus santri penghafal Al-Qur'an minimal 3 Juz s/d 30 Juz mutqin, serta bimbingan sanad Al-Qur'an di MATQULARU."),
+            'jalur_prestasi_title' => Setting::get('ppdb_jalur_prestasi_title', 'Jalur Prestasi Sains'),
+            'prestasi' => Setting::get('ppdb_prestasi', 'Bebas tes tulis akademik bagi pemenang juara 1, 2, atau 3 lomba sains (KSM/OSN), MTQ/MHQ, pidato, dan olahraga tingkat kota, provinsi, atau nasional.'),
+            'jalur_alumni_title' => Setting::get('ppdb_jalur_alumni_title', 'Jalur Alumni Internal'),
+            'alumni' => Setting::get('ppdb_alumni', 'Khusus bagi lulusan MTs Raudhatul Ulum dan SMPIT Raudhatul Ulum yang melanjutkan studi ke MARU atau SMAIT RU dengan potongan biaya uang pangkal.'),
+
+            // Rekening & Kontak
             'operational_weekday' => Setting::get('ppdb_operational_weekday', "Senin – Jum'at: Pukul 08.00 – 15.00 WIB"),
             'operational_weekend' => Setting::get('ppdb_operational_weekend', 'Sabtu: Pukul 08.00 – 12.00 WIB'),
-            'secretariat' => Setting::get('ppdb_secretariat', 'Kompleks Sekretariat SPMB Pondok Pesantren Raudhatul Ulum, Sakatiga, Ogan Ilir'),
+            'secretariat' => Setting::get('ppdb_secretariat', 'Kompleks Pondok Pesantren Raudhatul Ulum, Desa Sakatiga, Kecamatan Indralaya, Ogan Ilir, Sumatera Selatan'),
             'registration_fee' => Setting::get('ppdb_registration_fee', 'Rp 250.000,-'),
             'bank_name' => Setting::get('ppdb_bank_name', 'Bank Syariah Indonesia (BSI)'),
             'bank_code' => Setting::get('ppdb_bank_code', '451'),
@@ -40,23 +94,41 @@ class PpdbController extends Controller
             'hotline_name' => Setting::get('ppdb_hotline_name', 'Panitia SPMB PPRU'),
             'hotline_2_phone' => Setting::get('ppdb_hotline_2_phone', '0812-7890-1950'),
             'hotline_2_name' => Setting::get('ppdb_hotline_2_name', 'Sekretariat Pesantren'),
-            'alur' => Setting::get('ppdb_alur', "Siapkan berkas foto/scan bukti transfer biaya pendaftaran melalui Bank Syariah Indonesia (BSI) nomor rekening 7011304251 a.n. YL. Fatmawati.\nSiapkan berkas foto/scan akta kelahiran dan kartu keluarga.\nMengisi formulir PPDB secara online pada website resmi.\nKonfirmasi pengisian formulir kepada panitia melalui WhatsApp (0812-7890-1950).\nPendaftaran selesai dan berkas diverifikasi tim panitia untuk tahapan tes wawancara dan tahfidz."),
-            'syarat' => Setting::get('ppdb_syarat', "Mengisi Formulir Pendaftaran online dengan data yang benar dan lengkap.\nMelampirkan bukti transfer biaya pendaftaran.\nMelampirkan scan/fotokopi Akta Kelahiran dan Kartu Keluarga (KK).\nMelampirkan fotokopi rapor sekolah/madrasah asal semester 1-5.\nPas foto terbaru calon santri ukuran 3x4 berwarna."),
-            'prestasi' => Setting::get('ppdb_prestasi', "Bebas tes tulis akademik bagi Juara 1, 2, atau 3 tingkat Kota/Kabupaten, Provinsi, maupun Nasional.\nDiskon khusus biaya pendaftaran dan prioritas penerimaan."),
-            'tahfidz' => Setting::get('ppdb_tahfidz', "Tahfidz minimal 3 Juz: Beasiswa potongan biaya pendaftaran & SPP.\nTahfidz 10 Juz atau lebih: Beasiswa SPP berkala dan pembinaan khusus Sanad/Mutqin di MATQULARU.\nMengikuti tes sima'an tahfidz bersama dewan musyrif Al-Qur'an PPRU Sakatiga."),
-            'alumni' => Setting::get('ppdb_alumni', 'Keringanan istimewa bagi lulusan MTs / SMPIT Raudhatul Ulum yang melanjutkan ke MA / SMAIT Raudhatul Ulum Sakatiga berupa potongan biaya uang pangkal & pendaftaran prioritas.'),
-            'mandiri' => Setting::get('ppdb_mandiri', "Jalur seleksi reguler melalui tahapan:\nTes Potensi Akademik (Matematika, Bahasa Indonesia, PAI).\nTes Kemampuan Membaca Al-Qur'an (Tahsin & Tajwid).\nWawancara Komitmen Orang Tua & Santri."),
-            'jadwal_gelombang' => Setting::get('ppdb_jadwal_gelombang', "Gelombang 1: Oktober s/d Desember (Diskon Biaya Masuk s/d 50%)\nGelombang 2: Januari s/d April\nGelombang 3: Mei s/d Juli (Khusus sisa kuota)\n* Pendaftaran akan ditutup otomatis apabila kuota per kelas telah terpenuhi."),
-            'biaya' => Setting::get('ppdb_biaya', "Biaya Formulir Pendaftaran: Ditransfer ke rekening BSI sekolah 7011304251 a.n. YL. Fatmawati.\nPaket Seragam Pesantren (4 stel seragam lengkap + atribut dan jilbab/peci).\nBiaya Orientasi Santri (Khutbatul Arsy) & Kepesantrenan.\nUntuk rincian lengkap uang pangkal dan SPP asrama bulanan, hubungi langsung panitia SPMB."),
-            'boarding' => Setting::get('ppdb_boarding', "Program Boarding (Asrama Santri): Fasilitas asrama representatif, makan 3x sehari, pendampingan ibadah & tahfidz 24 jam bersama musyrif/musyrifah asrama.\nProgram Fullday: Khusus jenjang tertentu sesuai ketentuan pesantren."),
-            'kelulusan' => Setting::get('ppdb_kelulusan', 'Hasil seleksi diumumkan melalui website resmi dan notifikasi WhatsApp kepada orang tua calon santri. Calon santri yang dinyatakan lulus wajib melakukan daftar ulang sesuai jadwal yang ditentukan panitia.'),
-            'closing_title' => Setting::get('ppdb_closing_title', 'Terima Kasih Sudah Mendaftar di Pondok Pesantren Raudhatul Ulum Sakatiga'),
-            'closing_desc' => Setting::get('ppdb_closing_desc', 'Semoga Ananda kelak bisa menjadi santri berilmu, beramal, berakhlak mulia, dan berbakti kepada orang tua serta umat. Aamiin'),
+
+            // Video Profil
+            'youtube_id' => Setting::get('ppdb_youtube_id', 'LXtIbizPVvE'),
+            'video_title' => Setting::get('ppdb_video_title', 'Profil & Suasana Kehidupan Santri Pondok Pesantren Raudhatul Ulum Sakatiga'),
+            'video_desc' => Setting::get('ppdb_video_desc', 'Saksikan lingkungan belajar, masjid agung, asrama santri, laboratorium, dan aktivitas harian di Pondok Pesantren Raudhatul Ulum Sakatiga'),
+            'video_channel' => Setting::get('ppdb_video_channel', 'Channel Resmi TVRU Sakatiga (@tvrusakatiga)'),
+
+            // FAQ
+            'faq_title' => Setting::get('ppdb_faq_title', 'PERTANYAAN SERING DIAJUKAN (FAQ)'),
+            'faq_desc' => Setting::get('ppdb_faq_desc', 'Jawaban seputar kehidupan berasrama dan pendaftaran santri baru di PPRU Sakatiga'),
+            'faq' => Setting::get('ppdb_faq', "Apakah santri wajib tinggal di asrama (Boarding)? | Untuk jenjang Madrasah Aliyah (MARU), Madrasah Tsanawiyah (MATSARU), SMAIT RU, SMPIT RU, dan MATQULARU, seluruh santri diwajibkan tinggal di asrama (Boarding School) dengan pengawasan 24 jam bersama musyrif/musyrifah asrama. Sedangkan untuk jenjang MI (MIRU) dan TK (TAKIRU) bersifat Full Day School (non-asrama).\nBagaimana aturan kunjungan orang tua dan izin pulang santri? | Kunjungan orang tua dijadwalkan pada hari Ahad sesuai kalender kepesantrenan tanpa mengganggu jadwal belajar santri. Perizinan pulang diberikan pada liburan semester resmi pesantren atau urusan mendesak dengan izin pengasuhan asrama.\nApakah lulusan MARU dan SMAIT dapat melanjutkan ke universitas luar negeri? | Ya, benar. Madrasah Aliyah Raudhatul Ulum (MARU) memiliki piagam muadalah (penyetaraan ijazah) resmi dari Universitas Al-Azhar Kairo Mesir, sehingga alumni dapat langsung mendaftar ke Al-Azhar Kairo dan Universitas Islam Madinah. Selain itu, ijazah nasional Kemenag dan Kemendikbud diakui penuh untuk masuk PTN (SNBP, SNBT, SPAN-PTKIN) di seluruh Indonesia.\nBagaimana program pembinaan tahfidz Al-Qur'an di pesantren? | Setiap santri mendapatkan halaqah tahfidz harian ba'da Subuh dan ba'da Maghrib. Khusus santri unit MATQULARU, pembinaan dilakukan secara intensif dengan target mutqin 30 juz dan sanad."),
+
+            // Pesan Penutup & CTA
+            'closing_title' => Setting::get('ppdb_closing_title', 'SIAP MEMULAI LANGKAH MENJADI SANTRI KHOIRU UMMAH?'),
+            'closing_desc' => Setting::get('ppdb_closing_desc', 'Jangan lewatkan kesempatan emas bergabung dengan keluarga besar Pondok Pesantren Raudhatul Ulum Sakatiga. Kuota kelas terbatas setiap tahunnya.'),
+            'closing_btn_text' => Setting::get('ppdb_closing_btn_text', 'Isi Formulir Pendaftaran Sekarang'),
         ];
+
+        // Parse FAQs
+        $rawFaq = $settings['faq'] ?? '';
+        $faqs = [];
+        foreach (explode("\n", (string) $rawFaq) as $line) {
+            $line = trim($line);
+            if (! empty($line) && str_contains($line, '|')) {
+                [$q, $a] = explode('|', $line, 2);
+                $faqs[] = [
+                    'question' => trim($q),
+                    'answer' => trim($a),
+                ];
+            }
+        }
 
         $unitPendidikans = UnitPendidikan::active()->orderBy('order', 'asc')->get();
 
-        return view('frontend.ppdb.index', compact('settings', 'unitPendidikans'));
+        return view('frontend.ppdb.index', compact('settings', 'unitPendidikans', 'faqs'));
     }
 
     /**

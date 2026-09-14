@@ -10,7 +10,7 @@
     <section class="relative bg-gradient-to-br from-[#072418] via-[#004d25] to-[#041d13] text-white overflow-hidden py-14 sm:py-20 lg:py-24 border-b border-emerald-800/40">
         {{-- Background Image Overlay with subtle zoom --}}
         <div class="absolute inset-0 z-0">
-            <img src="/uploads/campus-ppru-sakatiga.webp" alt="Pondok Pesantren Raudhatul Ulum Sakatiga" class="w-full h-full object-cover object-center opacity-25 filter blur-[1px] transform scale-105">
+            <img src="{{ $settings['hero_bg'] ?? '/uploads/campus-ppru-sakatiga.webp' }}" alt="Pondok Pesantren Raudhatul Ulum Sakatiga" class="w-full h-full object-cover object-center opacity-25 filter blur-[1px] transform scale-105">
             <div class="absolute inset-0 bg-gradient-to-t from-[#072418] via-[#072418]/80 to-[#072418]/60"></div>
         </div>
 
@@ -37,8 +37,7 @@
                 {{-- Headline --}}
                 <div class="space-y-2">
                     <h1 class="text-2xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight uppercase leading-tight drop-shadow-md">
-                        PSB PONDOK PESANTREN RAUDHATUL ULUM<br class="hidden sm:inline">
-                        <span class="text-[#fcd116]">SAKATIGA OGAN ILIR</span>
+                        {{ $settings['hero_title'] ?? 'PSB PONDOK PESANTREN RAUDHATUL ULUM SAKATIGA OGAN ILIR' }}
                     </h1>
                     <p class="text-xs sm:text-sm md:text-base text-emerald-100/90 font-medium max-w-2xl mx-auto leading-relaxed pt-2">
                         {{ $settings['tagline'] ?? "Kaderisasi Generasi Khairu Ummah: Beraqidah Lurus, Berakhlak Mulia, Cerdas Sains, Mandiri, dan Berwawasan Global dengan Muadalah Al-Azhar Kairo Mesir." }}
@@ -48,20 +47,20 @@
                 {{-- Stat Counters --}}
                 <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-3xl mx-auto pt-2">
                     <div class="bg-black/35 backdrop-blur-md border border-emerald-500/20 rounded-2xl p-3.5 text-center">
-                        <span class="block text-xl sm:text-2xl font-black text-[#fcd116]">8 Unit</span>
-                        <span class="text-[11px] text-emerald-200 font-medium">Jenjang Terpadu</span>
+                        <span class="block text-xl sm:text-2xl font-black text-[#fcd116]">{{ $settings['stat_1_val'] ?? '8 Unit' }}</span>
+                        <span class="text-[11px] text-emerald-200 font-medium">{{ $settings['stat_1_lbl'] ?? 'Jenjang Terpadu' }}</span>
                     </div>
                     <div class="bg-black/35 backdrop-blur-md border border-emerald-500/20 rounded-2xl p-3.5 text-center">
-                        <span class="block text-xl sm:text-2xl font-black text-[#fcd116]">Muadalah</span>
-                        <span class="text-[11px] text-emerald-200 font-medium">Al-Azhar Kairo</span>
+                        <span class="block text-xl sm:text-2xl font-black text-[#fcd116]">{{ $settings['stat_2_val'] ?? 'Muadalah' }}</span>
+                        <span class="text-[11px] text-emerald-200 font-medium">{{ $settings['stat_2_lbl'] ?? 'Al-Azhar Kairo' }}</span>
                     </div>
                     <div class="bg-black/35 backdrop-blur-md border border-emerald-500/20 rounded-2xl p-3.5 text-center">
-                        <span class="block text-xl sm:text-2xl font-black text-[#fcd116]">30 Juz</span>
-                        <span class="text-[11px] text-emerald-200 font-medium">Tahfidz Mutqin</span>
+                        <span class="block text-xl sm:text-2xl font-black text-[#fcd116]">{{ $settings['stat_3_val'] ?? '30 Juz' }}</span>
+                        <span class="text-[11px] text-emerald-200 font-medium">{{ $settings['stat_3_lbl'] ?? 'Tahfidz Mutqin' }}</span>
                     </div>
                     <div class="bg-black/35 backdrop-blur-md border border-emerald-500/20 rounded-2xl p-3.5 text-center">
-                        <span class="block text-xl sm:text-2xl font-black text-[#fcd116]">24 Jam</span>
-                        <span class="text-[11px] text-emerald-200 font-medium">Pembinaan Asrama</span>
+                        <span class="block text-xl sm:text-2xl font-black text-[#fcd116]">{{ $settings['stat_4_val'] ?? '24 Jam' }}</span>
+                        <span class="text-[11px] text-emerald-200 font-medium">{{ $settings['stat_4_lbl'] ?? 'Pembinaan Asrama' }}</span>
                     </div>
                 </div>
 
@@ -96,13 +95,13 @@
         
         <div class="text-center max-w-3xl mx-auto space-y-3">
             <span class="inline-block text-xs font-black uppercase tracking-wider text-[#00843d] bg-emerald-50 px-3.5 py-1.5 rounded-full border border-emerald-200">
-                Multi-Unit Pendidikan Terpadu
+                {{ $settings['unit_badge'] ?? 'Multi-Unit Pendidikan Terpadu' }}
             </span>
             <h2 class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
-                PILIH UNIT PENDIDIKAN TUJUAN
+                {{ $settings['unit_title'] ?? 'PILIH UNIT PENDIDIKAN TUJUAN' }}
             </h2>
             <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Pondok Pesantren Raudhatul Ulum Sakatiga menaungi 8 unit pendidikan resmi yang terstruktur mulai dari Madrasah, TK Islam, Sekolah Islam Terpadu (JSIT), hingga Perguruan Tinggi Islam.
+                {{ $settings['unit_desc'] ?? 'Pondok Pesantren Raudhatul Ulum Sakatiga menaungi 8 unit pendidikan resmi yang terstruktur mulai dari Madrasah, TK Islam, Sekolah Islam Terpadu (JSIT), hingga Perguruan Tinggi Islam.' }}
             </p>
 
             {{-- Category Filter Tabs (Madrasah, TK, Sekolah IT, Sekolah Tinggi) --}}
@@ -216,6 +215,57 @@
 
     </section>
 
+    {{-- BROSUR & POSTER RESMI PSB (DIGITAL SHOWCASE) --}}
+    @if(!empty($settings['flyer_image']))
+    <section class="py-12 bg-slate-900 text-white border-y border-emerald-800/40 relative overflow-hidden" x-data="{ showFlyerModal: false }">
+        <div class="absolute -right-20 -bottom-20 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="bg-gradient-to-br from-emerald-950 via-[#072418] to-slate-950 rounded-3xl p-6 sm:p-10 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-8 border-2 border-emerald-500/30">
+                <div class="space-y-4 max-w-xl text-center md:text-left">
+                    <span class="inline-flex items-center gap-2 bg-[#f59e0b] text-slate-950 px-3.5 py-1 rounded-full text-xs font-black uppercase tracking-wider shadow-sm">
+                        <i class="fa-solid fa-file-arrow-down"></i>
+                        <span>Brosur Resmi Pesantren</span>
+                    </span>
+                    <h3 class="text-2xl sm:text-3xl font-black text-white tracking-tight leading-snug">
+                        {{ $settings['flyer_title'] ?? 'Brosur & Poster Resmi PSB Online' }}
+                    </h3>
+                    <p class="text-xs sm:text-sm text-emerald-100/90 leading-relaxed">
+                        {{ $settings['flyer_desc'] ?? 'Dapatkan panduan lengkap penerimaan santri baru, profil keunggulan, rincian biaya, serta tata cara pendaftaran santri baru.' }}
+                    </p>
+                    <div class="flex flex-wrap items-center justify-center md:justify-start gap-3 pt-2">
+                        <button @click="showFlyerModal = true" class="inline-flex items-center gap-2 bg-[#f59e0b] hover:bg-[#d97706] text-slate-950 text-xs sm:text-sm font-black px-6 py-3 rounded-xl transition shadow-lg cursor-pointer transform hover:scale-105">
+                            <i class="fa-solid fa-expand"></i>
+                            <span>Buka Ukuran Penuh</span>
+                        </button>
+                        <a href="{{ $settings['flyer_image'] }}" download="Brosur-PSB-PPRU.webp" class="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white text-xs sm:text-sm font-bold px-5 py-3 rounded-xl transition border border-white/20">
+                            <i class="fa-solid fa-download"></i>
+                            <span>Unduh Brosur</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="shrink-0 w-full max-w-xs md:max-w-sm rounded-2xl overflow-hidden shadow-2xl border-2 border-emerald-400/40 transform hover:scale-[1.02] transition cursor-pointer group" @click="showFlyerModal = true">
+                    <img src="{{ $settings['flyer_image'] }}" alt="{{ $settings['flyer_title'] ?? 'Brosur PSB' }}" class="w-full h-auto object-cover group-hover:brightness-105 transition">
+                </div>
+            </div>
+        </div>
+
+        {{-- Lightbox Modal Brosur --}}
+        <div x-show="showFlyerModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-sm" style="display: none;" x-cloak>
+            <div class="relative max-w-4xl w-full bg-slate-900 rounded-3xl overflow-hidden shadow-2xl border border-slate-700" @click.away="showFlyerModal = false">
+                <div class="p-4 bg-slate-950 flex items-center justify-between border-b border-slate-800 text-white">
+                    <span class="text-xs font-bold text-emerald-300">{{ $settings['flyer_title'] ?? 'Brosur Resmi PSB' }}</span>
+                    <button @click="showFlyerModal = false" class="text-slate-400 hover:text-white text-lg cursor-pointer">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+                <div class="p-3 max-h-[82vh] overflow-y-auto flex items-center justify-center bg-black">
+                    <img src="{{ $settings['flyer_image'] }}" alt="Flyer PSB" class="max-w-full h-auto rounded-xl">
+                </div>
+            </div>
+        </div>
+    </section>
+    @endif
+
     {{-- 3. ALUR KERJA PENDAFTARAN PESANTREN (VISUAL STEPPER) --}}
     <section class="py-14 sm:py-20 bg-white border-y border-slate-200/80">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
@@ -225,10 +275,10 @@
                     Proses Pendaftaran Terstruktur
                 </span>
                 <h2 class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
-                    ALUR PENDAFTARAN SANTRI BARU (PSB)
+                    {{ $settings['alur_title'] ?? 'ALUR PENDAFTARAN SANTRI BARU (PSB)' }}
                 </h2>
                 <p class="text-xs sm:text-sm text-slate-600">
-                    5 Langkah mudah menjadi santri Pondok Pesantren Raudhatul Ulum Sakatiga
+                    {{ $settings['alur_desc'] ?? '5 Tahapan mudah dan transparan pendaftaran santri baru Pondok Pesantren Raudhatul Ulum Sakatiga' }}
                 </p>
             </div>
 
@@ -241,13 +291,13 @@
                         <div class="w-10 h-10 rounded-xl bg-emerald-100 text-[#00843d] font-black text-base flex items-center justify-center">
                             1
                         </div>
-                        <h4 class="font-extrabold text-sm text-slate-900">Pendaftaran Online</h4>
+                        <h4 class="font-extrabold text-sm text-slate-900">{{ $settings['step_1_title'] ?? 'Pendaftaran Online' }}</h4>
                         <p class="text-xs text-slate-600 leading-relaxed">
-                            Mengisi formulir pendaftaran santri baru melalui website resmi, memilih unit pendidikan dan jalur yang diinginkan.
+                            {{ $settings['step_1_desc'] ?? 'Mengisi formulir PSB melalui portal website resmi ini dengan data calon santri dan orang tua secara lengkap.' }}
                         </p>
                     </div>
                     <div class="pt-3 mt-3 border-t border-slate-200/80 text-[10px] text-slate-500 font-medium">
-                        Melengkapi data diri calon santri &amp; wali.
+                        {{ $settings['step_1_sub'] ?? 'Portal aktif 24 jam' }}
                     </div>
                 </div>
 
@@ -257,13 +307,13 @@
                         <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-800 font-black text-base flex items-center justify-center">
                             2
                         </div>
-                        <h4 class="font-extrabold text-sm text-slate-900">Infaq Formulir</h4>
+                        <h4 class="font-extrabold text-sm text-slate-900">{{ $settings['step_2_title'] ?? 'Transfer & Berkas' }}</h4>
                         <p class="text-xs text-slate-600 leading-relaxed">
-                            Membayar infaq formulir pendaftaran ({{ $settings['registration_fee'] ?? 'Rp 250.000,-' }}) melalui Bank Syariah Indonesia (BSI) dan menyimpan bukti transfer.
+                            {{ $settings['step_2_desc'] ?? 'Membayar biaya pendaftaran ke rekening BSI resmi pesantren dan mengunggah bukti transfer serta berkas KK/Akta.' }}
                         </p>
                     </div>
                     <div class="pt-3 mt-3 border-t border-slate-200/80 text-[10px] text-slate-500 font-medium">
-                        Rek BSI 7011304251 a.n. YL. Fatmawati.
+                        {{ $settings['step_2_sub'] ?? 'Biaya Rp 250.000,- via Bank BSI' }}
                     </div>
                 </div>
 
@@ -273,13 +323,13 @@
                         <div class="w-10 h-10 rounded-xl bg-blue-100 text-blue-800 font-black text-base flex items-center justify-center">
                             3
                         </div>
-                        <h4 class="font-extrabold text-sm text-slate-900">Ujian Seleksi Masuk</h4>
+                        <h4 class="font-extrabold text-sm text-slate-900">{{ $settings['step_3_title'] ?? 'Ujian Seleksi & Wawancara' }}</h4>
                         <p class="text-xs text-slate-600 leading-relaxed">
-                            Mengikuti tes tahsin/tahfidz Al-Qur'an, wawancara kepesantrenan calon santri &amp; wali, serta tes potensi akademik.
+                            {{ $settings['step_3_desc'] ?? 'Mengikuti tes potensi akademik, tes membaca Al-Qur\'an/tahfidz, dan wawancara kesiapan orang tua serta santri.' }}
                         </p>
                     </div>
                     <div class="pt-3 mt-3 border-t border-slate-200/80 text-[10px] text-slate-500 font-medium">
-                        Dapat dilaksanakan online/offline di pondok.
+                        {{ $settings['step_3_sub'] ?? 'Jadwal diinfokan via WhatsApp' }}
                     </div>
                 </div>
 
@@ -289,13 +339,13 @@
                         <div class="w-10 h-10 rounded-xl bg-purple-100 text-purple-800 font-black text-base flex items-center justify-center">
                             4
                         </div>
-                        <h4 class="font-extrabold text-sm text-slate-900">Pengumuman &amp; Verifikasi</h4>
+                        <h4 class="font-extrabold text-sm text-slate-900">{{ $settings['step_4_title'] ?? 'Pengumuman Kelulusan' }}</h4>
                         <p class="text-xs text-slate-600 leading-relaxed">
-                            Pengumuman kelulusan melalui portal resmi dan notifikasi WhatsApp. Santri yang lulus melanjutkan proses verifikasi berkas fisik.
+                            {{ $settings['step_4_desc'] ?? 'Mengecek hasil seleksi kelulusan melalui website dan notifikasi resmi WhatsApp panitia PSB.' }}
                         </p>
                     </div>
                     <div class="pt-3 mt-3 border-t border-slate-200/80 text-[10px] text-slate-500 font-medium">
-                        Daftar ulang &amp; konfirmasi pemesanan asrama.
+                        {{ $settings['step_4_sub'] ?? 'Daftar ulang & fitting seragam' }}
                     </div>
                 </div>
 
@@ -305,13 +355,13 @@
                         <div class="w-10 h-10 rounded-xl bg-emerald-600 text-white font-black text-base flex items-center justify-center">
                             5
                         </div>
-                        <h4 class="font-extrabold text-sm text-slate-900">Masuk Asrama (P2SB)</h4>
+                        <h4 class="font-extrabold text-sm text-slate-900">{{ $settings['step_5_title'] ?? 'Masuk Asrama (P2SB)' }}</h4>
                         <p class="text-xs text-slate-600 leading-relaxed">
-                            Kedatangan santri ke asrama, serah terima dengan Mudir dan pengasuh, serta mengikuti Pekan Perkenalan Santri Baru (P2SB).
+                            {{ $settings['step_5_desc'] ?? 'Kedatangan santri ke asrama, serah terima dengan Mudir dan pengasuh, serta mengikuti Pekan Perkenalan Santri Baru (P2SB).' }}
                         </p>
                     </div>
                     <div class="pt-3 mt-3 border-t border-slate-200/80 text-[10px] text-slate-500 font-medium">
-                        Khutbatul Arsy &amp; pembagian kamar santri.
+                        {{ $settings['step_5_sub'] ?? 'Khutbatul Arsy & pembagian kamar santri' }}
                     </div>
                 </div>
 
@@ -340,10 +390,10 @@
                 Pilihan Jalur Masuk
             </span>
             <h2 class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
-                JALUR PENERIMAAN SANTRI BARU
+                {{ $settings['jalur_title'] ?? 'JALUR PENERIMAAN SANTRI BARU' }}
             </h2>
             <p class="text-xs sm:text-sm text-slate-600">
-                Tersedia berbagai pilihan jalur penerimaan sesuai bakat, hafalan Al-Qur'an, dan prestasi santri
+                {{ $settings['jalur_desc'] ?? 'Tersedia berbagai pilihan jalur penerimaan sesuai bakat, hafalan Al-Qur\'an, dan prestasi santri' }}
             </p>
         </div>
 
@@ -354,7 +404,7 @@
                 <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-[#00843d] flex items-center justify-center text-xl font-bold">
                     <i class="fa-solid fa-user-check"></i>
                 </div>
-                <h3 class="font-extrabold text-base text-slate-900">Jalur Reguler (Mandiri)</h3>
+                <h3 class="font-extrabold text-base text-slate-900">{{ $settings['jalur_reguler_title'] ?? 'Jalur Reguler (Mandiri)' }}</h3>
                 <p class="text-xs text-slate-600 leading-relaxed whitespace-pre-line">
                     {{ $settings['mandiri'] ?? 'Jalur umum melalui tahapan tes potensi akademik, tes membaca Al-Qur\'an (tahsin & tajwid), dan wawancara kesiapan santri & orang tua.' }}
                 </p>
@@ -372,7 +422,7 @@
                 <div class="w-12 h-12 rounded-2xl bg-amber-50 text-amber-700 flex items-center justify-center text-xl font-bold">
                     <i class="fa-solid fa-book-quran"></i>
                 </div>
-                <h3 class="font-extrabold text-base text-slate-900">Jalur Hafizh Al-Qur'an</h3>
+                <h3 class="font-extrabold text-base text-slate-900">{{ $settings['jalur_tahfidz_title'] ?? 'Jalur Hafizh Al-Qur\'an' }}</h3>
                 <p class="text-xs text-slate-600 leading-relaxed whitespace-pre-line">
                     {{ $settings['tahfidz'] ?? 'Keringanan biaya dan beasiswa khusus santri penghafal Al-Qur\'an minimal 3 Juz s/d 30 Juz mutqin, serta bimbingan sanad Al-Qur\'an di MATQULARU.' }}
                 </p>
@@ -387,7 +437,7 @@
                 <div class="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center text-xl font-bold">
                     <i class="fa-solid fa-trophy"></i>
                 </div>
-                <h3 class="font-extrabold text-base text-slate-900">Jalur Prestasi Sains</h3>
+                <h3 class="font-extrabold text-base text-slate-900">{{ $settings['jalur_prestasi_title'] ?? 'Jalur Prestasi Sains' }}</h3>
                 <p class="text-xs text-slate-600 leading-relaxed whitespace-pre-line">
                     {{ $settings['prestasi'] ?? 'Bebas tes tulis akademik bagi pemenang juara 1, 2, atau 3 lomba sains (KSM/OSN), MTQ/MHQ, pidato, dan olahraga tingkat kota, provinsi, atau nasional.' }}
                 </p>
@@ -402,7 +452,7 @@
                 <div class="w-12 h-12 rounded-2xl bg-purple-50 text-purple-600 flex items-center justify-center text-xl font-bold">
                     <i class="fa-solid fa-people-roof"></i>
                 </div>
-                <h3 class="font-extrabold text-base text-slate-900">Jalur Alumni Internal</h3>
+                <h3 class="font-extrabold text-base text-slate-900">{{ $settings['jalur_alumni_title'] ?? 'Jalur Alumni Internal' }}</h3>
                 <p class="text-xs text-slate-600 leading-relaxed whitespace-pre-line">
                     {{ $settings['alumni'] ?? 'Khusus bagi lulusan MTs Raudhatul Ulum dan SMPIT Raudhatul Ulum yang melanjutkan studi ke MARU atau SMAIT RU dengan potongan biaya uang pangkal.' }}
                 </p>
@@ -537,7 +587,7 @@
                 SEKILAS KEHIDUPAN SANTRI RAUDHATUL ULUM
             </h2>
             <p class="text-xs sm:text-sm text-slate-600">
-                Saksikan lingkungan belajar, masjid, asrama santri, dan aktivitas harian di Pondok Pesantren Raudhatul Ulum Sakatiga
+                {{ $settings['video_desc'] ?? 'Saksikan lingkungan belajar, masjid agung, asrama santri, laboratorium, dan aktivitas harian di Pondok Pesantren Raudhatul Ulum Sakatiga' }}
             </p>
         </div>
 
@@ -559,7 +609,7 @@
                     </div>
                     <div>
                         <h4 class="text-xs sm:text-sm font-extrabold text-slate-900">{{ $settings['video_title'] ?? 'Video Profil & Dokumentasi Pesantren' }}</h4>
-                        <p class="text-xs text-slate-500 font-medium">Channel Resmi TVRU Sakatiga (@tvrusakatiga)</p>
+                        <p class="text-xs text-slate-500 font-medium">{{ $settings['video_channel'] ?? 'Channel Resmi TVRU Sakatiga (@tvrusakatiga)' }}</p>
                     </div>
                 </div>
                 <a href="https://www.youtube.com/watch?v={{ $settings['youtube_id'] }}" target="_blank" class="inline-flex items-center space-x-1.5 text-xs font-bold text-red-600 hover:text-red-700 bg-red-50 hover:bg-red-100 px-4 py-2 rounded-xl transition flex-shrink-0">
@@ -573,64 +623,45 @@
 
     {{-- 7. FAQ & CALL TO ACTION FINAL --}}
     <section class="py-14 sm:py-20 bg-emerald-50/60 border-t border-emerald-100">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10" x-data="{ openFaq: 1 }">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10" x-data="{ openFaq: 0 }">
             
             <div class="text-center space-y-2">
                 <h2 class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
-                    PERTANYAAN SERING DIAJUKAN (FAQ)
+                    {{ $settings['faq_title'] ?? 'PERTANYAAN SERING DIAJUKAN (FAQ)' }}
                 </h2>
                 <p class="text-xs sm:text-sm text-slate-600">
-                    Jawaban seputar kehidupan berasrama dan pendaftaran santri baru di PPRU Sakatiga
+                    {{ $settings['faq_desc'] ?? 'Jawaban seputar kehidupan berasrama dan pendaftaran santri baru di PPRU Sakatiga' }}
                 </p>
             </div>
 
+            @if(!empty($faqs))
             <div class="space-y-3">
-                {{-- FAQ 1 --}}
+                @foreach($faqs as $index => $faq)
                 <div class="bg-white rounded-2xl border border-emerald-200 overflow-hidden shadow-xs">
-                    <button @click="openFaq = (openFaq === 1 ? null : 1)" class="w-full px-5 py-4 flex items-center justify-between text-left font-bold text-xs sm:text-sm text-slate-900 cursor-pointer">
-                        <span>Apakah santri wajib tinggal di asrama (Boarding)?</span>
-                        <i class="fa-solid" :class="openFaq === 1 ? 'fa-chevron-up text-[#00843d]' : 'fa-chevron-down text-gray-400'"></i>
+                    <button @click="openFaq = (openFaq === {{ $index }} ? null : {{ $index }})" class="w-full px-5 py-4 flex items-center justify-between text-left font-bold text-xs sm:text-sm text-slate-900 cursor-pointer">
+                        <span>{{ $faq['question'] }}</span>
+                        <i class="fa-solid" :class="openFaq === {{ $index }} ? 'fa-chevron-up text-[#00843d]' : 'fa-chevron-down text-gray-400'"></i>
                     </button>
-                    <div x-show="openFaq === 1" x-collapse class="px-5 pb-4 text-xs text-slate-600 leading-relaxed border-t border-emerald-50 pt-3">
-                        Untuk jenjang Madrasah Aliyah (MARU), Madrasah Tsanawiyah (MATSARU), SMAIT RU, SMPIT RU, dan MATQULARU, seluruh santri diwajibkan tinggal di asrama (Boarding School) dengan pengawasan 24 jam bersama musyrif/musyrifah asrama. Sedangkan untuk jenjang MI (MIRU) dan TK (TAKIRU) bersifat Full Day School (non-asrama).
+                    <div x-show="openFaq === {{ $index }}" x-collapse class="px-5 pb-4 text-xs text-slate-600 leading-relaxed border-t border-emerald-50 pt-3">
+                        {{ $faq['answer'] }}
                     </div>
                 </div>
-
-                {{-- FAQ 2 --}}
-                <div class="bg-white rounded-2xl border border-emerald-200 overflow-hidden shadow-xs">
-                    <button @click="openFaq = (openFaq === 2 ? null : 2)" class="w-full px-5 py-4 flex items-center justify-between text-left font-bold text-xs sm:text-sm text-slate-900 cursor-pointer">
-                        <span>Bagaimana aturan kunjungan orang tua dan izin pulang santri?</span>
-                        <i class="fa-solid" :class="openFaq === 2 ? 'fa-chevron-up text-[#00843d]' : 'fa-chevron-down text-gray-400'"></i>
-                    </button>
-                    <div x-show="openFaq === 2" x-collapse class="px-5 pb-4 text-xs text-slate-600 leading-relaxed border-t border-emerald-50 pt-3">
-                        Kunjungan orang tua dijadwalkan pada hari Ahad sesuai kalender kepesantrenan tanpa mengganggu jadwal belajar santri. Perizinan pulang diberikan pada liburan semester resmi pesantren atau urusan mendesak dengan izin pengasuhan asrama.
-                    </div>
-                </div>
-
-                {{-- FAQ 3 --}}
-                <div class="bg-white rounded-2xl border border-emerald-200 overflow-hidden shadow-xs">
-                    <button @click="openFaq = (openFaq === 3 ? null : 3)" class="w-full px-5 py-4 flex items-center justify-between text-left font-bold text-xs sm:text-sm text-slate-900 cursor-pointer">
-                        <span>Apakah lulusan MARU dan SMAIT dapat melanjutkan ke universitas luar negeri?</span>
-                        <i class="fa-solid" :class="openFaq === 3 ? 'fa-chevron-up text-[#00843d]' : 'fa-chevron-down text-gray-400'"></i>
-                    </button>
-                    <div x-show="openFaq === 3" x-collapse class="px-5 pb-4 text-xs text-slate-600 leading-relaxed border-t border-emerald-50 pt-3">
-                        Ya, benar. Madrasah Aliyah Raudhatul Ulum (MARU) memiliki piagam muadalah (penyetaraan ijazah) resmi dari Universitas Al-Azhar Kairo Mesir, sehingga alumni dapat langsung mendaftar ke Al-Azhar Kairo dan Universitas Islam Madinah. Selain itu, ijazah nasional Kemenag dan Kemendikbud diakui penuh untuk masuk PTN (SNBP, SNBT, SPAN-PTKIN) di seluruh Indonesia.
-                    </div>
-                </div>
+                @endforeach
             </div>
+            @endif
 
             {{-- Closing Banner --}}
             <div class="bg-gradient-to-r from-[#00843d] to-[#072418] text-white rounded-3xl p-8 text-center space-y-4 shadow-xl">
                 <h3 class="text-xl sm:text-2xl font-black tracking-tight">
-                    SIAP MEMULAI LANGKAH MENJADI SANTRI KHOIRU UMMAH?
+                    {{ $settings['closing_title'] ?? 'SIAP MEMULAI LANGKAH MENJADI SANTRI KHOIRU UMMAH?' }}
                 </h3>
                 <p class="text-xs sm:text-sm text-emerald-100 max-w-xl mx-auto leading-relaxed">
-                    Jangan lewatkan kesempatan emas bergabung dengan keluarga besar Pondok Pesantren Raudhatul Ulum Sakatiga. Kuota kelas terbatas setiap tahunnya.
+                    {{ $settings['closing_desc'] ?? 'Jangan lewatkan kesempatan emas bergabung dengan keluarga besar Pondok Pesantren Raudhatul Ulum Sakatiga. Kuota kelas terbatas setiap tahunnya.' }}
                 </p>
                 <div class="pt-2">
                     <a href="{{ route('ppdb.form') }}" class="inline-flex items-center space-x-2 bg-[#f59e0b] hover:bg-[#d97706] text-slate-950 font-black px-8 py-3.5 rounded-2xl text-xs sm:text-sm transition shadow-lg transform hover:scale-105">
                         <i class="fa-solid fa-paper-plane"></i>
-                        <span>Isi Formulir Pendaftaran Sekarang</span>
+                        <span>{{ $settings['closing_btn_text'] ?? 'Isi Formulir Pendaftaran Sekarang' }}</span>
                     </a>
                 </div>
             </div>
