@@ -69,49 +69,85 @@
         @endif
 
         {{-- TWO-COLUMN BALANCED GRID --}}
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
             
-            {{-- KOLOM KIRI (5 Kolom): INFORMASI & KETENTUAN CEPAT (DINAMIS SESUAI ADMIN) --}}
-            <div class="lg:col-span-5 space-y-4">
-                
-                @php
-                    $accordionList = !empty($accordions) ? $accordions : [];
-                @endphp
-
-                @foreach($accordionList as $tab)
-                    <div class="bg-white rounded-3xl p-5 sm:p-6 border border-slate-200/90 shadow-xs hover:border-[#00843d]/60 transition space-y-2.5">
-                        <div class="flex items-center space-x-3">
-                            <div class="w-8 h-8 rounded-xl bg-emerald-50 text-[#00843d] flex items-center justify-center text-xs font-black shrink-0">
-                                <i class="fa-solid fa-circle-check"></i>
+            {{-- KOLOM KIRI (5 Kolom): SATU KOTAK CARD TERPADU (PERSYARATAN, PROSEDUR, WAKTU, BIAYA, PENGADUAN) --}}
+            <div class="lg:col-span-5 flex flex-col">
+                <div class="bg-white rounded-3xl p-6 sm:p-7 border border-slate-200/90 shadow-md flex flex-col justify-between flex-1 space-y-5" x-data="{ activeTab: 0 }">
+                    
+                    <div class="space-y-4">
+                        {{-- Header Card --}}
+                        <div class="pb-3 border-b border-slate-100 flex items-center justify-between">
+                            <div>
+                                <span class="text-[10px] font-black uppercase tracking-wider text-amber-700 bg-amber-50 px-2.5 py-0.5 rounded-full border border-amber-100">
+                                    Sinergi &amp; Kemitraan
+                                </span>
+                                <h3 class="text-base sm:text-lg font-black text-slate-900 tracking-tight mt-1">
+                                    Informasi Kerja Sama
+                                </h3>
                             </div>
-                            <h3 class="font-black text-xs sm:text-sm text-slate-900 tracking-tight">{{ $tab['title'] }}</h3>
+                            <div class="w-8 h-8 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center text-sm font-bold shadow-xs">
+                                <i class="fa-solid fa-handshake"></i>
+                            </div>
                         </div>
-                        <div class="text-xs text-slate-600 leading-relaxed prose prose-sm max-w-none [&>ul]:list-disc [&>ul]:pl-5 [&>ul]:space-y-1 [&>ol]:list-decimal [&>ol]:pl-5 [&>p]:mb-1">
-                            {!! $tab['content'] !!}
-                        </div>
-                    </div>
-                @endforeach
 
-                {{-- Helpdesk Pimpinan / Humas --}}
-                <div class="p-5 rounded-3xl bg-gradient-to-r from-emerald-900 to-emerald-950 text-white space-y-2 shadow-sm">
-                    <div class="flex items-center space-x-2 text-xs font-bold text-emerald-200">
-                        <i class="fa-solid fa-comments text-amber-400"></i>
-                        <span>Koordinasi Audiensi Pimpinan</span>
+                        {{-- Tab Switcher Pills --}}
+                        @php
+                            $accordionList = !empty($accordions) ? $accordions : [];
+                        @endphp
+
+                        @if(!empty($accordionList))
+                            <div class="flex flex-wrap gap-1 p-1 bg-slate-100/90 rounded-2xl border border-slate-200/60">
+                                @foreach($accordionList as $idx => $tab)
+                                    <button type="button" 
+                                            @click="activeTab = {{ $idx }}" 
+                                            :class="activeTab === {{ $idx }} ? 'bg-[#00843d] text-white shadow-xs font-bold' : 'text-slate-600 hover:text-slate-900 font-medium hover:bg-white/60'" 
+                                            class="flex-1 min-w-[85px] text-[11px] py-1.5 px-2 rounded-xl transition text-center truncate cursor-pointer select-none">
+                                        {{ $tab['title'] }}
+                                    </button>
+                                @endforeach
+                            </div>
+
+                            {{-- Tab Content Box --}}
+                            <div class="bg-slate-50/70 rounded-2xl p-4 sm:p-5 border border-slate-200/70 min-h-[260px] max-h-[460px] overflow-y-auto">
+                                @foreach($accordionList as $idx => $tab)
+                                    <div x-show="activeTab === {{ $idx }}" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 translate-y-1" x-transition:enter-end="opacity-100 translate-y-0" class="space-y-2.5">
+                                        <div class="flex items-center space-x-2 pb-2 border-b border-slate-200/80">
+                                            <span class="w-5 h-5 rounded-md bg-emerald-100 text-[#00843d] flex items-center justify-center text-[10px] font-black">
+                                                <i class="fa-solid fa-check"></i>
+                                            </span>
+                                            <h4 class="font-bold text-xs sm:text-sm text-slate-900">{{ $tab['title'] }}</h4>
+                                        </div>
+                                        <div class="text-xs text-slate-600 leading-relaxed prose prose-sm max-w-none [&>ul]:list-disc [&>ul]:pl-5 [&>ul]:space-y-1 [&>ol]:list-decimal [&>ol]:pl-5 [&>p]:mb-1.5">
+                                            {!! $tab['content'] !!}
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        @endif
                     </div>
-                    <p class="text-[11px] text-emerald-100 font-light leading-relaxed">
-                        Untuk audiensi resmi dengan Pimpinan Yayasan / Mudir Pesantren, silakan hubungi bagian Sekretariat Eksekutif.
-                    </p>
-                    <a href="https://wa.me/6281278901950?text={{ urlencode('Assalamu\'alaikum Humas PPRU Sakatiga, kami dari instansi ingin mengajukan permohonan audiensi kerja sama.') }}" target="_blank" class="inline-flex items-center gap-2 text-xs font-bold text-amber-300 hover:text-white transition pt-1">
-                        <i class="fa-brands fa-whatsapp text-sm"></i>
-                        <span>WhatsApp: 0812-7890-1950</span>
-                    </a>
+
+                    {{-- Helpdesk Pimpinan / Humas Footer inside the same card --}}
+                    <div class="p-3.5 rounded-2xl bg-gradient-to-r from-emerald-950 to-slate-950 text-white flex items-center justify-between gap-3 shadow-sm border border-emerald-900/40 mt-auto">
+                        <div class="flex items-center space-x-2.5">
+                            <i class="fa-brands fa-whatsapp text-emerald-400 text-xl shrink-0"></i>
+                            <div class="text-[11px] leading-tight">
+                                <span class="font-bold text-white block">Audiensi Pimpinan</span>
+                                <span class="text-emerald-200 text-[10px]">WhatsApp: 0812-7890-1950</span>
+                            </div>
+                        </div>
+                        <a href="https://wa.me/6281278901950?text={{ urlencode('Assalamu\'alaikum Humas PPRU Sakatiga, kami dari instansi ingin mengajukan permohonan audiensi kerja sama.') }}" target="_blank" class="bg-[#25D366] hover:bg-[#1EBE5D] text-white text-[11px] font-bold px-3 py-1.5 rounded-xl transition shrink-0 shadow-sm flex items-center gap-1">
+                            <span>Chat WA</span>
+                            <i class="fa-solid fa-arrow-right text-[9px]"></i>
+                        </a>
+                    </div>
+
                 </div>
-
             </div>
 
             {{-- KOLOM KANAN (7 Kolom): FORMULIR PENGAJUAN PROPOSAL --}}
-            <div class="lg:col-span-7">
-                <div class="bg-white rounded-3xl p-6 sm:p-8 md:p-9 border border-slate-200/90 shadow-md space-y-6">
+            <div class="lg:col-span-7 flex flex-col">
+                <div class="bg-white rounded-3xl p-6 sm:p-8 md:p-9 border border-slate-200/90 shadow-md space-y-6 flex-1 flex flex-col justify-between">
                     
                     <div class="pb-4 border-b border-slate-100 flex items-center justify-between">
                         <div>

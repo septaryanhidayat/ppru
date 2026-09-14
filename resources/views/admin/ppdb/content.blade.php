@@ -96,15 +96,25 @@
                     </div>
 
                     <div class="sm:col-span-3 pt-2">
-                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Gambar Background Hero</label>
-                        <div class="flex flex-col sm:flex-row items-center gap-4">
-                            <input type="text" name="ppdb_hero_bg" value="{{ old('ppdb_hero_bg', $settings['hero_bg'] ?? '/uploads/campus-ppru-sakatiga.webp') }}" class="w-full bg-slate-50 text-xs rounded-xl px-4 py-2.5 border border-slate-200">
-                            <div class="shrink-0">
-                                <label class="cursor-pointer bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold px-4 py-2.5 rounded-xl border border-slate-200 transition inline-flex items-center gap-1.5">
-                                    <i class="fa-solid fa-cloud-arrow-up"></i>
-                                    <span>Upload Gambar Baru</span>
-                                    <input type="file" name="ppdb_hero_bg_file" accept="image/*" class="hidden">
-                                </label>
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
+                            Gambar Background Hero (Pilih File)
+                        </label>
+                        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 p-4 bg-slate-50 rounded-2xl border border-slate-200">
+                            {{-- Preview Thumbnail --}}
+                            <div class="w-28 h-20 rounded-xl overflow-hidden bg-slate-900 border border-slate-300 shrink-0 relative group shadow-xs">
+                                <img src="{{ old('ppdb_hero_bg', $settings['hero_bg'] ?? '/uploads/campus-ppru-sakatiga.webp') }}" 
+                                     alt="Preview Hero" 
+                                     class="w-full h-full object-cover">
+                            </div>
+                            
+                            {{-- Choose File Input --}}
+                            <div class="flex-1 w-full space-y-1.5">
+                                <input type="file" 
+                                       name="ppdb_hero_bg_file" 
+                                       accept="image/*" 
+                                       class="w-full text-xs text-slate-600 file:mr-3 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-[#00913e] file:text-white hover:file:bg-emerald-800 cursor-pointer bg-white rounded-xl border border-slate-200 shadow-xs">
+                                <p class="text-[10px] text-slate-500">Pilih file gambar langsung dari komputer/HP (JPG, PNG, WebP maks 5MB). Otomatis dikonversi ke WebP tajam.</p>
+                                <input type="hidden" name="ppdb_hero_bg" value="{{ old('ppdb_hero_bg', $settings['hero_bg'] ?? '/uploads/campus-ppru-sakatiga.webp') }}">
                             </div>
                         </div>
                     </div>
@@ -221,9 +231,69 @@
 
                     <div class="sm:col-span-2">
                         <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Deskripsi Pengantar Unit</label>
-                        <textarea name="ppdb_unit_desc" rows="2" class="w-full bg-slate-50 text-xs rounded-xl p-3.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">{{ old('ppdb_unit_desc', $settings['unit_desc'] ?? 'Pondok Pesantren Raudhatul Ulum Sakatiga menaungi 8 unit pendidikan resmi yang terstruktur mulai dari Madrasah, TK Islam, Sekolah Islam Terpadu (JSIT), hingga Perguruan Tinggi Islam.') }}</textarea>
-                        <p class="text-[10px] text-slate-400 mt-1">Daftar item unit (nama, jenjang, gambar brosur, logo, dan rincian profil) dikelola secara mandiri melalui menu <a href="{{ route('admin.unit-pendidikan.index') }}" class="text-[#00913e] font-bold underline">Unit Pendidikan</a>.</p>
+                        <textarea name="ppdb_unit_desc" rows="3" class="w-full bg-slate-50 text-xs rounded-xl p-3.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">{{ old('ppdb_unit_desc', $settings['unit_desc'] ?? 'Pondok Pesantren Raudhatul Ulum Sakatiga menaungi 8 unit pendidikan resmi yang terstruktur mulai dari Madrasah, TK Islam, Sekolah Islam Terpadu (JSIT), hingga Perguruan Tinggi Islam.') }}</textarea>
                     </div>
+                </div>
+
+                {{-- CRUD Foto Unit Pendidikan di Halaman PSB --}}
+                <div class="pt-6 border-t border-slate-200 space-y-4">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                        <div>
+                            <h4 class="text-xs sm:text-sm font-black text-slate-900 uppercase tracking-wider flex items-center gap-1.5">
+                                <i class="fa-solid fa-camera text-emerald-600"></i>
+                                <span>Kelola Foto 8 Unit Pendidikan PSB (Choose File / Upload Langsung)</span>
+                            </h4>
+                            <p class="text-[11px] text-slate-500 mt-0.5">
+                                Ganti foto unit pendidikan yang tampil pada kartu pilihan unit di halaman PSB langsung melalui tombol <b>Choose File</b> berikut:
+                            </p>
+                        </div>
+                        <a href="{{ route('admin.unit-pendidikan.index') }}" class="text-xs text-[#00913e] hover:underline font-bold inline-flex items-center gap-1 shrink-0">
+                            <span>Manajemen Detail Unit</span>
+                            <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                        </a>
+                    </div>
+
+                    @if(isset($unitPendidikans) && $unitPendidikans->isNotEmpty())
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                            @foreach($unitPendidikans as $unit)
+                                <div class="bg-slate-50 rounded-2xl p-3.5 border border-slate-200 space-y-3 flex flex-col justify-between shadow-2xs hover:border-[#00913e]/60 transition">
+                                    <div class="space-y-2">
+                                        <div class="relative h-32 w-full rounded-xl overflow-hidden bg-slate-900 border border-slate-300">
+                                            <img src="{{ $unit->thumbnail_url }}" alt="{{ $unit->name }}" class="w-full h-full object-cover">
+                                            <span class="absolute top-2 left-2 bg-[#00913e] text-white text-[9px] font-black px-2 py-0.5 rounded shadow">
+                                                {{ $unit->category_type }}
+                                            </span>
+                                            @if($unit->short_name)
+                                                <span class="absolute bottom-2 right-2 bg-black/75 text-[#fcd116] text-[10px] font-black px-2 py-0.5 rounded backdrop-blur-xs">
+                                                    {{ $unit->short_name }}
+                                                </span>
+                                            @endif
+                                        </div>
+                                        <div>
+                                            <div class="font-bold text-xs text-slate-900 truncate" title="{{ $unit->name }}">{{ $unit->name }}</div>
+                                            <div class="text-[10px] text-slate-500 font-medium">{{ $unit->badge ?: 'Jenjang Resmi' }}</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="space-y-1.5 pt-2 border-t border-slate-200/80">
+                                        <label class="block text-[10px] font-bold text-slate-700 uppercase">
+                                            Ganti Foto Unit (Choose File):
+                                        </label>
+                                        <input type="file" 
+                                               name="unit_photos[{{ $unit->id }}]" 
+                                               accept="image/*" 
+                                               class="w-full text-[10px] text-slate-600 file:mr-2 file:py-1.5 file:px-2.5 file:rounded-lg file:border-0 file:text-[10px] file:font-bold file:bg-[#00913e] file:text-white hover:file:bg-emerald-800 cursor-pointer bg-white rounded-lg border border-slate-200 shadow-2xs">
+                                        <div class="flex items-center justify-between text-[10px] pt-0.5">
+                                            <a href="{{ route('admin.unit-pendidikan.edit', $unit) }}" class="text-slate-500 hover:text-[#00913e] font-semibold inline-flex items-center gap-1">
+                                                <i class="fa-solid fa-pen-to-square text-[9px]"></i>
+                                                <span>Edit Data Lengkap</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    @endif
                 </div>
             </div>
 
@@ -311,8 +381,35 @@
                     </div>
 
                     <div class="pt-2">
-                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Petunjuk &amp; Alur Tambahan (Teks Bebas)</label>
-                        <textarea name="ppdb_alur" rows="4" class="w-full bg-slate-50 text-xs rounded-xl p-3.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00913e] leading-relaxed">{{ old('ppdb_alur', $settings['alur']) }}</textarea>
+                        <div class="flex items-center justify-between mb-1.5">
+                            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider">
+                                Petunjuk &amp; Alur Tambahan (Teks Bebas)
+                            </label>
+                            <span class="text-[10px] text-slate-400">Toolbar format penulisan</span>
+                        </div>
+                        <div class="flex flex-wrap items-center justify-between gap-1 bg-slate-100/90 border border-b-0 border-slate-200 rounded-t-xl px-3 py-1.5 text-xs text-slate-700">
+                            <div class="flex items-center gap-1">
+                                <button type="button" onclick="formatTextarea('ppdb_alur_textarea', 'bold')" title="Tebal (Bold)" class="w-7 h-7 rounded hover:bg-white hover:shadow-xs font-bold transition flex items-center justify-center cursor-pointer border border-transparent hover:border-slate-300"><b>B</b></button>
+                                <button type="button" onclick="formatTextarea('ppdb_alur_textarea', 'italic')" title="Miring (Italic)" class="w-7 h-7 rounded hover:bg-white hover:shadow-xs italic font-serif transition flex items-center justify-center cursor-pointer border border-transparent hover:border-slate-300"><i>I</i></button>
+                                <button type="button" onclick="formatTextarea('ppdb_alur_textarea', 'underline')" title="Garis Bawah (Underline)" class="w-7 h-7 rounded hover:bg-white hover:shadow-xs underline transition flex items-center justify-center cursor-pointer border border-transparent hover:border-slate-300"><u>U</u></button>
+                                <span class="w-[1px] h-4 bg-slate-300 mx-1"></span>
+                                <button type="button" onclick="formatTextarea('ppdb_alur_textarea', 'center')" title="Rata Tengah (Center)" class="h-7 px-2 rounded hover:bg-white hover:shadow-xs text-[11px] font-semibold transition flex items-center gap-1 cursor-pointer border border-transparent hover:border-slate-300">
+                                    <i class="fa-solid fa-align-center text-[10px]"></i>
+                                    <span>Tengah</span>
+                                </button>
+                                <button type="button" onclick="formatTextarea('ppdb_alur_textarea', 'bullet')" title="Poin / Bullet" class="h-7 px-2 rounded hover:bg-white hover:shadow-xs text-[11px] font-semibold transition flex items-center gap-1 cursor-pointer border border-transparent hover:border-slate-300">
+                                    <i class="fa-solid fa-list-ul text-[10px]"></i>
+                                    <span>Poin</span>
+                                </button>
+                            </div>
+                            <div class="flex items-center gap-1 text-[10px] text-slate-500">
+                                <button type="button" onclick="expandTextarea('ppdb_alur_textarea', 80)" class="px-2 py-1 rounded bg-white hover:bg-slate-50 border border-slate-200 font-semibold transition cursor-pointer inline-flex items-center gap-1">
+                                    <i class="fa-solid fa-arrows-up-down text-[9px]"></i>
+                                    <span>Perbesar Kotak</span>
+                                </button>
+                            </div>
+                        </div>
+                        <textarea id="ppdb_alur_textarea" name="ppdb_alur" rows="8" class="w-full bg-slate-50 text-xs rounded-b-xl p-3.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00913e] leading-relaxed min-h-[180px]">{{ old('ppdb_alur', $settings['alur']) }}</textarea>
                     </div>
                 </div>
             </div>
@@ -525,11 +622,46 @@
                     </div>
 
                     <div class="sm:col-span-2">
-                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
-                            Daftar Tanya Jawab FAQ <span class="text-emerald-700 font-normal">(Format: Pertanyaan | Jawaban, 1 baris per pertanyaan)</span>
-                        </label>
-                        <textarea name="ppdb_faq" rows="6" class="w-full bg-slate-50 font-mono text-xs rounded-xl p-3.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00913e] leading-relaxed">{{ old('ppdb_faq', $settings['faq'] ?? '') }}</textarea>
-                        <p class="text-[10px] text-slate-400 mt-1">Pisahkan antara teks pertanyaan dan jawaban dengan simbol pipa <code>|</code>. Setiap baris baru akan menjadi 1 item accordion FAQ di web.</p>
+                        <div class="flex items-center justify-between mb-1.5">
+                            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider">
+                                Daftar Tanya Jawab FAQ <span class="text-emerald-700 font-normal">(Format: Pertanyaan | Jawaban, 1 baris per pertanyaan)</span>
+                            </label>
+                            <span class="text-[10px] text-slate-400">Gunakan toolbar di bawah untuk format cepat</span>
+                        </div>
+                        
+                        {{-- Writing Toolbar FAQ --}}
+                        <div class="flex flex-wrap items-center justify-between gap-1 bg-slate-100/90 border border-b-0 border-slate-200 rounded-t-xl px-3 py-1.5 text-xs text-slate-700">
+                            <div class="flex flex-wrap items-center gap-1">
+                                <button type="button" onclick="formatTextarea('ppdb_faq_textarea', 'bold')" title="Tebal (Bold)" class="w-7 h-7 rounded hover:bg-white hover:shadow-xs font-bold transition flex items-center justify-center cursor-pointer border border-transparent hover:border-slate-300"><b>B</b></button>
+                                <button type="button" onclick="formatTextarea('ppdb_faq_textarea', 'italic')" title="Miring (Italic)" class="w-7 h-7 rounded hover:bg-white hover:shadow-xs italic font-serif transition flex items-center justify-center cursor-pointer border border-transparent hover:border-slate-300"><i>I</i></button>
+                                <button type="button" onclick="formatTextarea('ppdb_faq_textarea', 'underline')" title="Garis Bawah (Underline)" class="w-7 h-7 rounded hover:bg-white hover:shadow-xs underline transition flex items-center justify-center cursor-pointer border border-transparent hover:border-slate-300"><u>U</u></button>
+                                <span class="w-[1px] h-4 bg-slate-300 mx-1"></span>
+                                <button type="button" onclick="formatTextarea('ppdb_faq_textarea', 'center')" title="Rata Tengah (Center)" class="h-7 px-2 rounded hover:bg-white hover:shadow-xs text-[11px] font-semibold transition flex items-center gap-1 cursor-pointer border border-transparent hover:border-slate-300">
+                                    <i class="fa-solid fa-align-center text-[10px]"></i>
+                                    <span>Tengah</span>
+                                </button>
+                                <button type="button" onclick="formatTextarea('ppdb_faq_textarea', 'pipe')" title="Sisipkan Format Pipa FAQ (Pertanyaan | Jawaban)" class="h-7 px-2.5 rounded bg-emerald-100/90 hover:bg-emerald-200 text-[#00843d] text-[11px] font-bold transition flex items-center gap-1 cursor-pointer border border-emerald-300">
+                                    <i class="fa-solid fa-plus text-[9px]"></i>
+                                    <span>Format Pipa FAQ (|)</span>
+                                </button>
+                                <button type="button" onclick="formatTextarea('ppdb_faq_textarea', 'bullet')" title="Daftar Poin" class="h-7 px-2 rounded hover:bg-white hover:shadow-xs text-[11px] font-semibold transition flex items-center gap-1 cursor-pointer border border-transparent hover:border-slate-300">
+                                    <i class="fa-solid fa-list-ul text-[10px]"></i>
+                                    <span>Poin</span>
+                                </button>
+                            </div>
+                            <div class="flex items-center gap-1.5 text-[10px] text-slate-500">
+                                <button type="button" onclick="expandTextarea('ppdb_faq_textarea', 120)" class="px-2 py-1 rounded bg-white hover:bg-slate-50 border border-slate-200 font-semibold transition cursor-pointer inline-flex items-center gap-1" title="Perbesar Tinggi Kotak Teks">
+                                    <i class="fa-solid fa-arrows-up-down text-[9px]"></i>
+                                    <span>Perbesar Kotak</span>
+                                </button>
+                                <button type="button" onclick="expandTextarea('ppdb_faq_textarea', -100)" class="px-2 py-1 rounded bg-white hover:bg-slate-50 border border-slate-200 font-semibold transition cursor-pointer" title="Perkecil Tinggi Kotak Teks">
+                                    <span>Perkecil</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <textarea id="ppdb_faq_textarea" name="ppdb_faq" rows="12" class="w-full bg-slate-50 font-mono text-xs rounded-b-xl p-4 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00913e] leading-relaxed min-h-[280px]">{{ old('ppdb_faq', $settings['faq'] ?? '') }}</textarea>
+                        <p class="text-[10px] text-slate-400 mt-1.5">Pisahkan antara teks pertanyaan dan jawaban dengan simbol pipa <code>|</code>. Setiap baris baru akan menjadi 1 item accordion FAQ di web.</p>
                     </div>
                 </div>
             </div>
@@ -560,8 +692,29 @@
                     </div>
 
                     <div>
-                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Isi Doa &amp; Ajakan Harapan</label>
-                        <textarea name="ppdb_closing_desc" rows="3" class="w-full bg-slate-50 text-xs rounded-xl p-3.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">{{ old('ppdb_closing_desc', $settings['closing_desc']) }}</textarea>
+                        <div class="flex items-center justify-between mb-1.5">
+                            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider">Isi Doa &amp; Ajakan Harapan</label>
+                            <span class="text-[10px] text-slate-400">Toolbar format penulisan</span>
+                        </div>
+                        <div class="flex flex-wrap items-center justify-between gap-1 bg-slate-100/90 border border-b-0 border-slate-200 rounded-t-xl px-3 py-1.5 text-xs text-slate-700">
+                            <div class="flex items-center gap-1">
+                                <button type="button" onclick="formatTextarea('ppdb_closing_desc_textarea', 'bold')" title="Tebal (Bold)" class="w-7 h-7 rounded hover:bg-white hover:shadow-xs font-bold transition flex items-center justify-center cursor-pointer border border-transparent hover:border-slate-300"><b>B</b></button>
+                                <button type="button" onclick="formatTextarea('ppdb_closing_desc_textarea', 'italic')" title="Miring (Italic)" class="w-7 h-7 rounded hover:bg-white hover:shadow-xs italic font-serif transition flex items-center justify-center cursor-pointer border border-transparent hover:border-slate-300"><i>I</i></button>
+                                <button type="button" onclick="formatTextarea('ppdb_closing_desc_textarea', 'underline')" title="Garis Bawah" class="w-7 h-7 rounded hover:bg-white hover:shadow-xs underline transition flex items-center justify-center cursor-pointer border border-transparent hover:border-slate-300"><u>U</u></button>
+                                <span class="w-[1px] h-4 bg-slate-300 mx-1"></span>
+                                <button type="button" onclick="formatTextarea('ppdb_closing_desc_textarea', 'center')" title="Rata Tengah" class="h-7 px-2 rounded hover:bg-white hover:shadow-xs text-[11px] font-semibold transition flex items-center gap-1 cursor-pointer border border-transparent hover:border-slate-300">
+                                    <i class="fa-solid fa-align-center text-[10px]"></i>
+                                    <span>Tengah</span>
+                                </button>
+                            </div>
+                            <div class="flex items-center gap-1 text-[10px] text-slate-500">
+                                <button type="button" onclick="expandTextarea('ppdb_closing_desc_textarea', 80)" class="px-2 py-1 rounded bg-white hover:bg-slate-50 border border-slate-200 font-semibold transition cursor-pointer inline-flex items-center gap-1">
+                                    <i class="fa-solid fa-arrows-up-down text-[9px]"></i>
+                                    <span>Perbesar</span>
+                                </button>
+                            </div>
+                        </div>
+                        <textarea id="ppdb_closing_desc_textarea" name="ppdb_closing_desc" rows="6" class="w-full bg-slate-50 text-xs rounded-b-xl p-3.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00913e] leading-relaxed min-h-[140px]">{{ old('ppdb_closing_desc', $settings['closing_desc']) }}</textarea>
                     </div>
                 </div>
             </div>
@@ -972,4 +1125,52 @@
     </div>
 
 </div>
+
+<script>
+function formatTextarea(id, type) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const start = el.selectionStart;
+    const end = el.selectionEnd;
+    const val = el.value;
+    const selected = val.substring(start, end);
+    let replacement = '';
+
+    switch(type) {
+        case 'bold':
+            replacement = selected ? `<b>${selected}</b>` : `<b>teks tebal</b>`;
+            break;
+        case 'italic':
+            replacement = selected ? `<i>${selected}</i>` : `<i>teks miring</i>`;
+            break;
+        case 'underline':
+            replacement = selected ? `<u>${selected}</u>` : `<u>teks garis bawah</u>`;
+            break;
+        case 'center':
+            replacement = selected ? `<center>${selected}</center>` : `<center>teks rata tengah</center>`;
+            break;
+        case 'pipe':
+            replacement = selected ? ` | ${selected}` : `\nPertanyaan Baru? | Jawaban lengkap pertanyaan di sini.`;
+            break;
+        case 'bullet':
+            replacement = selected ? `• ${selected}` : `• Poin penjelasan baru\n`;
+            break;
+    }
+
+    el.value = val.substring(0, start) + replacement + val.substring(end);
+    el.focus();
+    el.selectionStart = start + replacement.length;
+    el.selectionEnd = start + replacement.length;
+    el.dispatchEvent(new Event('input', { bubbles: true }));
+}
+
+function expandTextarea(id, delta) {
+    const el = document.getElementById(id);
+    if (el) {
+        const cur = el.offsetHeight;
+        const newHeight = Math.max(120, cur + delta);
+        el.style.height = newHeight + 'px';
+    }
+}
+</script>
 @endsection

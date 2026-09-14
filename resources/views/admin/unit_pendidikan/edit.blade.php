@@ -56,19 +56,16 @@
                 <label class="block text-xs font-bold text-[#00843d] uppercase tracking-wider">
                     Foto Gedung / Dokumentasi Unit (Thumbnail)
                 </label>
+                <p class="text-[11px] text-slate-500">Unggah foto dokumentasi unit kegiatan atau gedung sekolah (JPG, PNG, WebP).</p>
                 @if($unit->thumbnail)
                     <div class="flex items-center space-x-3 mb-2">
-                        <img src="{{ $unit->thumbnail_url }}" alt="Preview" class="h-16 w-24 object-cover rounded-lg border border-emerald-200">
+                        <img src="{{ $unit->thumbnail_url }}" alt="Preview" class="h-20 w-32 object-cover rounded-xl border border-emerald-200 shadow-2xs">
                         <span class="text-xs text-slate-500 font-mono break-all">{{ $unit->thumbnail }}</span>
                     </div>
                 @endif
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
-                    <div>
-                        <input type="file" name="thumbnail_file" accept="image/*" class="w-full text-xs text-slate-500 file:mr-3 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-emerald-100 file:text-[#00843d] hover:file:bg-emerald-200 bg-white rounded-xl border border-slate-200 cursor-pointer">
-                    </div>
-                    <div>
-                        <input type="text" name="thumbnail" id="thumbnail" value="{{ old('thumbnail', $unit->thumbnail) }}" placeholder="Atau URL / Path Foto (/uploads/...)" class="w-full bg-white text-xs text-slate-800 rounded-xl px-4 py-2.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00843d] font-mono">
-                    </div>
+                <div>
+                    <input type="file" name="thumbnail_file" accept="image/*" class="w-full text-xs text-slate-600 file:mr-3 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-[#00843d] file:text-white hover:file:bg-emerald-800 bg-white rounded-xl border border-slate-200 cursor-pointer shadow-2xs">
+                    <input type="hidden" name="thumbnail" id="thumbnail" value="{{ old('thumbnail', $unit->thumbnail) }}">
                 </div>
             </div>
 
@@ -77,22 +74,18 @@
                 <label class="block text-xs font-bold text-amber-900 uppercase tracking-wider">
                     Logo Resmi Unit Pendidikan (Lambang / Emblem)
                 </label>
-                <p class="text-[11px] text-slate-500">Logo unit resmi yang akan tampil menggantikan ikon umum di beranda &amp; halaman profil unit (PNG transparan/SVG disarankan).</p>
+                <p class="text-[11px] text-slate-500">Logo unit resmi yang akan tampil di beranda &amp; halaman profil unit (PNG transparan/SVG disarankan).</p>
                 @if($unit->logo)
                     <div class="flex items-center space-x-3 mb-2">
-                        <div class="w-14 h-14 bg-white rounded-xl p-2 border border-amber-300 shadow-xs flex items-center justify-center">
+                        <div class="w-16 h-16 bg-white rounded-xl p-2 border border-amber-300 shadow-xs flex items-center justify-center">
                             <img src="{{ $unit->logo_url }}" alt="Logo {{ $unit->name }}" class="max-w-full max-h-full object-contain">
                         </div>
                         <span class="text-xs text-slate-500 font-mono break-all">{{ $unit->logo }}</span>
                     </div>
                 @endif
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
-                    <div>
-                        <input type="file" name="logo_file" accept="image/*" class="w-full text-xs text-slate-500 file:mr-3 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-amber-100 file:text-amber-800 hover:file:bg-amber-200 bg-white rounded-xl border border-slate-200 cursor-pointer">
-                    </div>
-                    <div>
-                        <input type="text" name="logo" id="logo" value="{{ old('logo', $unit->logo) }}" placeholder="Atau URL / Path Logo (/uploads/logo-...)" class="w-full bg-white text-xs text-slate-800 rounded-xl px-4 py-2.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00843d] font-mono">
-                    </div>
+                <div>
+                    <input type="file" name="logo_file" accept="image/*" class="w-full text-xs text-slate-600 file:mr-3 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-amber-600 file:text-white hover:file:bg-amber-700 bg-white rounded-xl border border-slate-200 cursor-pointer shadow-2xs">
+                    <input type="hidden" name="logo" id="logo" value="{{ old('logo', $unit->logo) }}">
                 </div>
             </div>
 
@@ -100,7 +93,8 @@
                 <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
                     Deskripsi &amp; Profil Lengkap Unit Pendidikan
                 </label>
-                <textarea name="description" rows="5" class="w-full bg-slate-50 text-xs text-slate-800 rounded-xl p-4 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00843d] leading-relaxed">{{ old('description', $unit->description) }}</textarea>
+                <input type="hidden" name="description" id="unit_description_input" value="{{ old('description', $unit->description) }}">
+                <div id="unit_editor" data-quill="unit_description_input" class="bg-white min-h-[260px] rounded-b-xl border border-slate-200"></div>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">

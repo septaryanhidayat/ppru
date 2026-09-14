@@ -639,11 +639,11 @@
                 @foreach($faqs as $index => $faq)
                 <div class="bg-white rounded-2xl border border-emerald-200 overflow-hidden shadow-xs">
                     <button @click="openFaq = (openFaq === {{ $index }} ? null : {{ $index }})" class="w-full px-5 py-4 flex items-center justify-between text-left font-bold text-xs sm:text-sm text-slate-900 cursor-pointer">
-                        <span>{{ $faq['question'] }}</span>
+                        <span>{!! strip_tags($faq['question'], '<b><strong><i><em><u><center><span>') !!}</span>
                         <i class="fa-solid" :class="openFaq === {{ $index }} ? 'fa-chevron-up text-[#00843d]' : 'fa-chevron-down text-gray-400'"></i>
                     </button>
                     <div x-show="openFaq === {{ $index }}" x-collapse class="px-5 pb-4 text-xs text-slate-600 leading-relaxed border-t border-emerald-50 pt-3">
-                        {{ $faq['answer'] }}
+                        {!! strip_tags($faq['answer'], '<p><br><b><strong><i><em><u><center><ul><ol><li><a><span>') !!}
                     </div>
                 </div>
                 @endforeach

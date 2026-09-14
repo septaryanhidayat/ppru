@@ -425,7 +425,7 @@ class InformationController extends Controller
                 ],
                 [
                     'title' => 'Pengaduan, Saran dan Masukan',
-                    'content' => '<p>Pengaduan, saran, dan masukan dapat disampaikan secara tertulis melalui kotak saran di kantor pesantren atau melalui email: sekretariat@ppru.ac.id dan WhatsApp: 0812-7890-1950</p>',
+                    'content' => '<p>Pengaduan, saran dan masukan dapat disampaikan ke bagian Sekretariat &amp; Humas Layanan Terpadu Pondok Pesantren Raudhatul Ulum Sakatiga.</p><p><strong>Alamat:</strong> Kompleks Pondok Pesantren Raudhatul Ulum, Desa Sakatiga, Kec. Indralaya, Kab. Ogan Ilir, Sumatera Selatan 30662</p><p><strong>No. HP (WhatsApp):</strong> <a href="https://wa.me/6281278901950" target="_blank" class="text-[#00843d] font-bold">0812-7890-1950</a></p><p><strong>Website:</strong> <a href="https://ppru.ac.id" target="_blank" class="text-[#00843d] font-bold">ppru.ac.id</a></p><p><strong>Email:</strong> <a href="mailto:sekretariat@ppru.ac.id" class="text-[#00843d] font-bold">sekretariat@ppru.ac.id</a></p>',
                 ],
             ],
             'kerjasama' => [
@@ -451,7 +451,7 @@ class InformationController extends Controller
                 ],
                 [
                     'title' => 'Pengaduan, Saran dan Masukan',
-                    'content' => '<p>Pengaduan, saran, dan masukan dapat disampaikan melalui email: sekretariat@ppru.ac.id atau WhatsApp Humas: 0812-7890-1950</p>',
+                    'content' => '<p>Pengaduan, saran dan masukan dapat disampaikan ke bagian Sekretariat &amp; Humas Layanan Terpadu Pondok Pesantren Raudhatul Ulum Sakatiga.</p><p><strong>Alamat:</strong> Kompleks Pondok Pesantren Raudhatul Ulum, Desa Sakatiga, Kec. Indralaya, Kab. Ogan Ilir, Sumatera Selatan 30662</p><p><strong>No. HP (WhatsApp):</strong> <a href="https://wa.me/6281278901950" target="_blank" class="text-[#00843d] font-bold">0812-7890-1950</a></p><p><strong>Website:</strong> <a href="https://ppru.ac.id" target="_blank" class="text-[#00843d] font-bold">ppru.ac.id</a></p><p><strong>Email:</strong> <a href="mailto:sekretariat@ppru.ac.id" class="text-[#00843d] font-bold">sekretariat@ppru.ac.id</a></p>',
                 ],
             ],
             'sewa' => [
@@ -477,7 +477,7 @@ class InformationController extends Controller
                 ],
                 [
                     'title' => 'Pengaduan, Saran dan Masukan',
-                    'content' => '<p>Pengaduan, saran, dan masukan dapat disampaikan secara langsung atau melalui WhatsApp Humas: 0812-7890-1950</p>',
+                    'content' => '<p>Pengaduan, saran dan masukan dapat disampaikan ke bagian Sekretariat &amp; Humas Layanan Terpadu Pondok Pesantren Raudhatul Ulum Sakatiga.</p><p><strong>Alamat:</strong> Kompleks Pondok Pesantren Raudhatul Ulum, Desa Sakatiga, Kec. Indralaya, Kab. Ogan Ilir, Sumatera Selatan 30662</p><p><strong>No. HP (WhatsApp):</strong> <a href="https://wa.me/6281278901950" target="_blank" class="text-[#00843d] font-bold">0812-7890-1950</a></p><p><strong>Website:</strong> <a href="https://ppru.ac.id" target="_blank" class="text-[#00843d] font-bold">ppru.ac.id</a></p><p><strong>Email:</strong> <a href="mailto:sekretariat@ppru.ac.id" class="text-[#00843d] font-bold">sekretariat@ppru.ac.id</a></p>',
                 ],
             ],
             default => [],

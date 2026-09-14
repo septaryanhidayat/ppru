@@ -216,7 +216,11 @@
             </div>
 
             <div class="prose-content text-gray-700 text-sm sm:text-base leading-relaxed space-y-4">
-                {!! nl2br(e($unit->description)) !!}
+                @if(strip_tags($unit->description) !== $unit->description)
+                    {!! strip_tags($unit->description, '<p><br><b><strong><i><em><u><center><ul><ol><li><a><h1><h2><h3><h4><h5><h6><div><span>') !!}
+                @else
+                    {!! nl2br(e($unit->description)) !!}
+                @endif
             </div>
 
             {{-- 3 Pilar Utama --}}

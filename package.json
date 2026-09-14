@@ -17,6 +17,7 @@
         "@laravel/multiplex": "^0.4.1"
     },
     "dependencies": {
-        "alpinejs": "^3.17.1"
+        "alpinejs": "^3.17.1",
+        "html-to-image": "^1.11.13"
     }
 }

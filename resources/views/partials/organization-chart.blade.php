@@ -22,66 +22,74 @@
         const prevTransform = target.style.transform;
         target.style.transform = 'none';
 
-        const doCapture = () => {
-            const renderCanvas = () => {
-                html2canvas(target, {
-                    scale: 3,
-                    useCORS: true,
-                    allowTaint: true,
-                    backgroundColor: '#ffffff',
-                    logging: false,
-                    windowWidth: 1180,
-                    windowHeight: target.scrollHeight,
-                    onclone: (clonedDoc) => {
-                        const canvasEl = clonedDoc.getElementById('org-chart-canvas');
-                        if (canvasEl) {
-                            canvasEl.style.transform = 'none';
-                            canvasEl.style.width = '1180px';
-                            canvasEl.style.maxWidth = '1180px';
-                            canvasEl.style.overflow = 'visible';
-                            canvasEl.querySelectorAll('*').forEach(el => {
-                                el.style.overflow = 'visible';
-                            });
-                        }
-                    }
-                }).then(canvas => {
-                    target.style.transform = prevTransform;
-                    this.isExporting = false;
-                    const link = document.createElement('a');
-                    link.download = 'bagan-struktur-organisasi-ppru-sakatiga.png';
-                    link.href = canvas.toDataURL('image/png');
-                    link.click();
-                    if (typeof Swal !== 'undefined') {
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Bagan Berhasil Diunduh!',
-                            text: 'File gambar bagan landscape resolusi tinggi telah disimpan dalam format PNG dengan garis presisi tanpa terpotong.',
-                            timer: 2500,
-                            showConfirmButton: false,
-                        });
-                    }
-                }).catch(err => {
-                    target.style.transform = prevTransform;
-                    this.isExporting = false;
-                    console.error(err);
-                    alert('Gagal mengekspor gambar bagan.');
-                });
-            };
-
-            if (document.fonts && document.fonts.ready) {
-                document.fonts.ready.then(renderCanvas);
-            } else {
-                renderCanvas();
+        const performExport = () => {
+            const h2i = window.htmlToImage;
+            if (!h2i || !h2i.toPng) {
+                target.style.transform = prevTransform;
+                this.isExporting = false;
+                alert('Pustaka konversi gambar belum siap, silakan coba lagi.');
+                return;
             }
+
+            h2i.toPng(target, {
+                quality: 1.0,
+                pixelRatio: 2,
+                backgroundColor: '#ffffff',
+                cacheBust: true,
+                style: {
+                    transform: 'none',
+                    margin: '0',
+                    boxShadow: 'none',
+                }
+            }).then((dataUrl) => {
+                target.style.transform = prevTransform;
+                this.isExporting = false;
+                const link = document.createElement('a');
+                link.download = 'bagan-struktur-organisasi-ppru-sakatiga.png';
+                link.href = dataUrl;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+
+                if (typeof Swal !== 'undefined') {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Bagan Berhasil Diunduh!',
+                        text: 'File gambar bagan landscape resolusi tinggi telah disimpan dalam format PNG dengan latar belakang putih bersih.',
+                        timer: 2500,
+                        showConfirmButton: false,
+                    });
+                }
+            }).catch((err) => {
+                target.style.transform = prevTransform;
+                this.isExporting = false;
+                console.error('Export error:', err);
+                alert('Gagal mengekspor gambar bagan: ' + (err.message || 'Terjadi kendala rendering'));
+            });
         };
 
-        if (typeof html2canvas === 'undefined') {
+        if (typeof window.htmlToImage === 'undefined' || !window.htmlToImage.toPng) {
             const script = document.createElement('script');
-            script.src = 'https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js';
-            script.onload = doCapture;
+            script.src = 'https://cdn.jsdelivr.net/npm/html-to-image@1.11.11/dist/html-to-image.js';
+            script.onload = () => {
+                if (document.fonts && document.fonts.ready) {
+                    document.fonts.ready.then(performExport);
+                } else {
+                    performExport();
+                }
+            };
+            script.onerror = () => {
+                target.style.transform = prevTransform;
+                this.isExporting = false;
+                alert('Gagal memuat pustaka gambar.');
+            };
             document.head.appendChild(script);
         } else {
-            doCapture();
+            if (document.fonts && document.fonts.ready) {
+                document.fonts.ready.then(performExport);
+            } else {
+                performExport();
+            }
         }
     }
 }" class="space-y-3" id="org-chart-root">
@@ -202,13 +210,13 @@
     </div>
 
     <!-- Chart Canvas Container (Landscape Scroll Wrapper) -->
-    <div id="org-chart-wrapper" class="relative w-full overflow-x-auto rounded-3xl bg-slate-100/70 dark:bg-slate-950/70 border border-slate-200 dark:border-slate-800 shadow-inner p-3 sm:p-5 transition-all">
+    <div id="org-chart-wrapper" class="relative w-full overflow-x-auto rounded-3xl bg-white border border-slate-200 shadow-sm p-3 sm:p-5 transition-all">
         
-        <!-- The Printable & Exportable Canvas (Landscape Width ~1180px, Simetris & Anti-Clipping) -->
+        <!-- The Printable & Exportable Canvas (Landscape Width ~1180px, Simetris & Anti-Clipping, Pure White Background) -->
         <div id="org-chart-canvas" 
              :style="'transform: scale(' + (zoomLevel / 100) + '); transform-origin: top center; transition: transform 0.2s ease-out;'"
-             class="w-[1180px] mx-auto p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-md space-y-5"
-             style="background-image: radial-gradient(rgba(0, 132, 61, 0.06) 1px, transparent 1px); background-size: 16px 16px;">
+             class="w-[1180px] mx-auto p-6 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-5"
+             style="background-color: #ffffff; background-image: none;">
             
             <!-- Bagan Header Title dengan Logo PPRU Resmi -->
             <div class="text-center pb-4 border-b border-slate-200 dark:border-slate-800">

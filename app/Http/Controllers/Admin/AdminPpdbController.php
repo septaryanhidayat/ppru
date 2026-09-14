@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\ActivityLog;
 use App\Models\PpdbRegistration;
 use App\Models\Setting;
+use App\Models\UnitPendidikan;
 use App\Services\PpdbFormService;
 use App\Services\WebpService;
 use Illuminate\Http\Request;
@@ -225,8 +226,9 @@ class AdminPpdbController extends Controller
 
         $schema = PpdbFormService::getSchema();
         $sections = PpdbFormService::getSections();
+        $unitPendidikans = UnitPendidikan::orderBy('order')->orderBy('id')->get();
 
-        return view('admin.ppdb.content', compact('settings', 'schema', 'sections'));
+        return view('admin.ppdb.content', compact('settings', 'schema', 'sections', 'unitPendidikans'));
     }
 
     /**
@@ -355,6 +357,21 @@ class AdminPpdbController extends Controller
                 $uploadRes = $this->webpService->processUploadedFile($file, 'ppdb', 85, 1920);
                 if ($uploadRes['success']) {
                     $validated['ppdb_hero_bg'] = $uploadRes['url'];
+                }
+            }
+        }
+
+        // Handle unit photos uploads from PSB content dashboard
+        if ($request->hasFile('unit_photos') && is_array($request->file('unit_photos'))) {
+            foreach ($request->file('unit_photos') as $unitId => $photoFile) {
+                if ($photoFile && $photoFile->isValid()) {
+                    $uploadRes = $this->webpService->processUploadedFile($photoFile, 'units', 85, 1200);
+                    if ($uploadRes['success']) {
+                        $unit = UnitPendidikan::find($unitId);
+                        if ($unit) {
+                            $unit->update(['thumbnail' => $uploadRes['url']]);
+                        }
+                    }
                 }
             }
         }
