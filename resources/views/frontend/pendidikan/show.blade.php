@@ -4,14 +4,14 @@
 @section('meta_description', Str::limit(strip_tags($unit->description), 160))
 
 @section('content')
-{{-- HERO BANNER --}}
-<div class="relative bg-gradient-to-br from-[#006830] via-[#00843d] to-[#053d1c] text-white py-14 sm:py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
-    <div class="absolute -right-16 -bottom-16 w-80 h-80 bg-white/5 rounded-full blur-2xl pointer-events-none"></div>
-    <div class="absolute -left-16 -top-16 w-80 h-80 bg-[#f59e0b]/10 rounded-full blur-2xl pointer-events-none"></div>
+{{-- 1. HERO BANNER (Full Width, Islamic Aesthetic) --}}
+<section class="relative bg-gradient-to-br from-[#005a28] via-[#00843d] to-[#043317] text-white py-14 sm:py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <div class="absolute -right-16 -bottom-16 w-96 h-96 bg-white/5 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute -left-16 -top-16 w-96 h-96 bg-[#f59e0b]/10 rounded-full blur-3xl pointer-events-none"></div>
 
-    <div class="max-w-6xl mx-auto space-y-4 relative z-10">
-        <div class="flex flex-wrap items-center gap-2">
-            <span class="bg-[#00843d] border border-white/25 text-white text-xs font-black px-3.5 py-1 rounded-full shadow-xs uppercase tracking-wider">
+    <div class="max-w-7xl mx-auto space-y-5 relative z-10">
+        <div class="flex flex-wrap items-center gap-2.5">
+            <span class="bg-black/20 border border-white/20 text-white text-xs font-extrabold px-3.5 py-1 rounded-full shadow-xs uppercase tracking-wider backdrop-blur-xs">
                 <i class="fa-solid fa-school mr-1.5 text-amber-300"></i> {{ $unit->category_type }}
             </span>
             @if($unit->badge)
@@ -20,27 +20,48 @@
                 </span>
             @endif
             @if($unit->short_name)
-                <span class="bg-white/20 text-white text-xs font-bold px-3 py-1 rounded-full backdrop-blur-xs">
+                <span class="bg-white/20 text-white text-xs font-bold px-3.5 py-1 rounded-full backdrop-blur-xs">
                     {{ $unit->short_name }}
                 </span>
             @endif
+            <span class="bg-emerald-950/60 border border-emerald-400/30 text-emerald-200 text-xs font-bold px-3 py-1 rounded-full">
+                YAPIRUS Sakatiga &bull; Terakreditasi
+            </span>
         </div>
 
-        <h1 class="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight leading-tight">
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight leading-tight text-white drop-shadow-sm max-w-4xl">
             {{ $unit->name }}
         </h1>
 
         @if($unit->curriculum)
-            <p class="text-xs sm:text-sm text-emerald-100 font-medium flex items-center max-w-3xl">
-                <i class="fa-solid fa-book-quran mr-2 text-[#f59e0b] text-base shrink-0"></i>
+            <p class="text-sm sm:text-base text-emerald-100 font-medium flex items-center max-w-3xl">
+                <i class="fa-solid fa-book-quran mr-2.5 text-[#f59e0b] text-lg shrink-0"></i>
                 <span>{{ $unit->curriculum }}</span>
             </p>
         @endif
+
+        {{-- Top Action Buttons --}}
+        <div class="pt-3 flex flex-wrap items-center gap-3">
+            <a href="{{ route('ppdb.index') }}" class="bg-[#f59e0b] hover:bg-[#d97706] text-slate-950 font-black text-xs sm:text-sm px-6 py-3 rounded-full shadow-lg hover:shadow-xl transition flex items-center space-x-2 transform hover:scale-105">
+                <i class="fa-solid fa-graduation-cap"></i>
+                <span>Daftar PSB Online {{ $unit->short_name ?: $unit->name }}</span>
+            </a>
+            @if($unit->phone)
+                <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $unit->phone) }}?text=Assalamu%27alaikum%20Panitia%20PSB%20{{ urlencode($unit->name) }}%2C%20saya%20ingin%20konsultasi%20pendaftaran" target="_blank" rel="noopener" class="bg-white/15 hover:bg-white/25 text-white font-bold text-xs sm:text-sm px-5 py-3 rounded-full border border-white/20 backdrop-blur-xs transition flex items-center space-x-2">
+                    <i class="fa-brands fa-whatsapp text-emerald-300 text-base"></i>
+                    <span>Konsultasi WhatsApp</span>
+                </a>
+            @endif
+            <a href="{{ route('download.index') }}" class="bg-black/20 hover:bg-black/30 text-emerald-100 font-bold text-xs sm:text-sm px-5 py-3 rounded-full border border-emerald-500/30 transition flex items-center space-x-2">
+                <i class="fa-solid fa-file-arrow-down"></i>
+                <span>Unduh Brosur &amp; Rincian Biaya</span>
+            </a>
+        </div>
     </div>
-</div>
+</section>
 
 {{-- BREADCRUMB --}}
-<div class="bg-white border-b border-gray-100 py-3 shadow-xs sticky top-18 z-20">
+<div class="bg-white border-b border-gray-100 py-3 shadow-xs sticky top-20 z-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center space-x-2 text-xs text-gray-500 font-medium overflow-x-auto">
         <a href="{{ route('home') }}" class="hover:text-[#00843d] flex items-center shrink-0"><i class="fa-solid fa-house mr-1.5 text-[#00843d]"></i> Beranda</a>
         <span class="text-gray-300">/</span>
@@ -50,355 +71,749 @@
     </div>
 </div>
 
-{{-- CONTENT DETAIL --}}
-<div class="py-12 sm:py-16 bg-slate-50/70 min-h-[60vh]">
+{{-- 2. INTEGRATED UNIT INFO STRIP (Merger dari Sidebar Kanan Lama ke Tata Letak Relevan) --}}
+<section class="py-8 bg-slate-50 border-b border-gray-200/70">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-            
-            {{-- MAIN COLUMN (8 Kolom) --}}
-            <div class="lg:col-span-8 space-y-8">
-                
-                {{-- CARD PROFIL & GAMBARAN UNIT --}}
-                <div class="bg-white rounded-3xl p-6 sm:p-9 shadow-sm border border-gray-100 space-y-6 reveal-fade-up">
-                    <div class="flex items-center justify-between border-b border-gray-100 pb-4">
-                        <div class="flex items-center space-x-3">
-                            <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-school-green flex items-center justify-center text-xl shadow-xs">
-                                <i class="{{ $unit->icon ?: 'fa-solid fa-graduation-cap' }}"></i>
-                            </div>
-                            <div>
-                                <h2 class="text-xl sm:text-2xl font-black text-gray-900 tracking-tight">
-                                    Profil &amp; Kurikulum {{ $unit->short_name ?: $unit->name }}
-                                </h2>
-                                <p class="text-xs text-gray-500 font-medium">Pondok Pesantren Raudhatul Ulum Sakatiga</p>
-                            </div>
-                        </div>
-                    </div>
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4 text-center sm:text-left">
+            <div class="bg-white p-4 rounded-2xl border border-gray-200/80 shadow-xs hover:border-emerald-300 transition">
+                <span class="text-[10px] font-bold text-gray-400 uppercase tracking-wider block">Jenjang / Tipe</span>
+                <p class="font-extrabold text-xs sm:text-sm text-gray-900 mt-1 flex items-center justify-center sm:justify-start gap-1.5">
+                    <i class="fa-solid fa-school text-[#00843d]"></i>
+                    <span>{{ $unit->category_type }}</span>
+                </p>
+            </div>
+            <div class="bg-white p-4 rounded-2xl border border-gray-200/80 shadow-xs hover:border-emerald-300 transition">
+                <span class="text-[10px] font-bold text-gray-400 uppercase tracking-wider block">Akreditasi Resmi</span>
+                <p class="font-extrabold text-xs sm:text-sm text-amber-600 mt-1 flex items-center justify-center sm:justify-start gap-1.5">
+                    <i class="fa-solid fa-certificate"></i>
+                    <span>{{ $unit->badge ?: 'A (Unggul)' }}</span>
+                </p>
+            </div>
+            <div class="bg-white p-4 rounded-2xl border border-gray-200/80 shadow-xs hover:border-emerald-300 transition">
+                <span class="text-[10px] font-bold text-gray-400 uppercase tracking-wider block">Kepala / Pimpinan</span>
+                <p class="font-extrabold text-xs sm:text-sm text-gray-900 mt-1 truncate" title="{{ $unit->head_name ?? 'Ustadz Pimpinan Unit' }}">
+                    <i class="fa-solid fa-user-tie text-[#00843d] mr-1"></i>
+                    <span>{{ $unit->head_name ?? 'Ustadz Pimpinan Unit' }}</span>
+                </p>
+            </div>
+            <div class="bg-white p-4 rounded-2xl border border-gray-200/80 shadow-xs hover:border-emerald-300 transition">
+                <span class="text-[10px] font-bold text-gray-400 uppercase tracking-wider block">Sistem Pembelajaran</span>
+                <p class="font-extrabold text-xs sm:text-sm text-emerald-800 mt-1 flex items-center justify-center sm:justify-start gap-1.5">
+                    <i class="fa-solid fa-mosque text-[#00843d]"></i>
+                    <span>Boarding &amp; Terpadu</span>
+                </p>
+            </div>
+            <div class="bg-white p-4 rounded-2xl border border-gray-200/80 shadow-xs hover:border-emerald-300 transition">
+                <span class="text-[10px] font-bold text-gray-400 uppercase tracking-wider block">Kontak Layanan</span>
+                <a href="tel:{{ $unit->phone ?? '081278901950' }}" class="font-extrabold text-xs sm:text-sm text-emerald-700 hover:underline mt-1 block truncate">
+                    <i class="fa-solid fa-phone mr-1"></i>
+                    <span>{{ $unit->phone ?? '0812-7890-1950' }}</span>
+                </a>
+            </div>
+            <div class="bg-white p-4 rounded-2xl border border-gray-200/80 shadow-xs hover:border-emerald-300 transition">
+                <span class="text-[10px] font-bold text-gray-400 uppercase tracking-wider block">Yayasan Pembina</span>
+                <p class="font-extrabold text-xs sm:text-sm text-gray-900 mt-1 truncate">
+                    <i class="fa-solid fa-building-flag text-[#00843d] mr-1"></i>
+                    <span>YAPIRUS Sakatiga</span>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
 
-                    {{-- Deskripsi Utama --}}
-                    <div class="prose-content text-gray-700 text-sm sm:text-base leading-relaxed space-y-4">
-                        {!! nl2br(e($unit->description)) !!}
-                    </div>
+{{-- MAIN CONTENT SECTIONS (Tampilan Penuh / Full Width) --}}
+<div class="py-12 sm:py-16 bg-slate-50/50 space-y-12 sm:space-y-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 sm:space-y-16">
 
-                    {{-- Highlight Keunggulan Unit --}}
-                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4">
-                        <div class="bg-emerald-50/60 p-4 rounded-2xl border border-emerald-100/80 text-center sm:text-left">
-                            <i class="fa-solid fa-certificate text-emerald-600 text-xl mb-2"></i>
-                            <h4 class="font-extrabold text-xs text-emerald-950">Akreditasi &amp; Ijazah</h4>
-                            <p class="text-[11px] text-emerald-800/80 mt-0.5">Ijazah resmi pemerintah serta muadalah Al-Azhar Kairo &amp; Timur Tengah.</p>
-                        </div>
-                        <div class="bg-amber-50/60 p-4 rounded-2xl border border-amber-100/80 text-center sm:text-left">
-                            <i class="fa-solid fa-language text-amber-600 text-xl mb-2"></i>
-                            <h4 class="font-extrabold text-xs text-amber-950">Dwi-Bahasa Aktif</h4>
-                            <p class="text-[11px] text-amber-800/80 mt-0.5">Bahasa Arab fusha dan Inggris aktif dalam percakapan dan pembelajaran harian.</p>
-                        </div>
-                        <div class="bg-sky-50/60 p-4 rounded-2xl border border-sky-100/80 text-center sm:text-left">
-                            <i class="fa-solid fa-book-quran text-sky-600 text-xl mb-2"></i>
-                            <h4 class="font-extrabold text-xs text-sky-950">Tahfidz &amp; Karakter</h4>
-                            <p class="text-[11px] text-sky-800/80 mt-0.5">Target hafalan Al-Qur'an mutqin serta pembentukan 10 Jati Diri Santri.</p>
-                        </div>
-                    </div>
-                </div>
-
-                {{-- JADWAL RUTINITAS 24 JAM SANTRI (Daily Boarding Routine) --}}
-                <div class="bg-white rounded-3xl p-6 sm:p-9 shadow-sm border border-gray-100 space-y-6 reveal-fade-up">
-                    <div class="border-b border-gray-100 pb-4">
-                        <span class="text-[11px] font-bold uppercase tracking-wider text-school-green bg-emerald-50 px-3 py-1 rounded-full">
-                            Sistem Asrama Penuh (Boarding)
+        {{-- 3. SAMBUTAN KEPALA SEKOLAH / MUDIR UNIT --}}
+        <section class="bg-white rounded-3xl p-6 sm:p-10 shadow-sm border border-gray-100 reveal-fade-up">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                {{-- Foto Kepala Sekolah --}}
+                <div class="lg:col-span-4 flex flex-col items-center text-center">
+                    <div class="relative w-48 h-48 sm:w-56 sm:h-56 rounded-3xl overflow-hidden shadow-xl border-4 border-emerald-100 group">
+                        <img src="/uploads/kepala-sekolah-ppru.webp" 
+                             alt="Kepala {{ $unit->name }}" 
+                             class="w-full h-full object-cover object-top transform group-hover:scale-105 transition duration-500"
+                             onerror="this.src='/uploads/default-avatar.webp'">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                        <span class="absolute bottom-3 left-3 right-3 bg-white/90 backdrop-blur-xs text-[#00843d] text-[11px] font-black py-1 px-2.5 rounded-full shadow">
+                            Kepala {{ $unit->short_name ?: 'Unit' }}
                         </span>
-                        <h3 class="text-xl sm:text-2xl font-black text-gray-900 mt-2 tracking-tight">
-                            Jadwal Rutinitas 24 Jam Santri
-                        </h3>
-                        <p class="text-xs text-gray-500 mt-1">Pembinaan terpadu jasmani, ruhani, dan fikriyah santri sepanjang hari di lingkungan asrama pesantren</p>
                     </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
-                        <div class="space-y-3">
-                            <div class="flex items-start space-x-3 p-3 rounded-2xl bg-slate-50 border border-gray-100">
-                                <span class="px-2 py-1 bg-emerald-600 text-white rounded-lg font-mono font-bold text-[11px] shrink-0">04.00 - 05.30</span>
-                                <div>
-                                    <h5 class="font-bold text-gray-900">Qiyamul Lail &amp; Shubuh Berjamaah</h5>
-                                    <p class="text-gray-500 text-[11px] mt-0.5">Shalat tahajjud, shalat shubuh berjamaah, dzikir ma'tsurat, dan pemberian mufrodat / vocabulary harian.</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start space-x-3 p-3 rounded-2xl bg-slate-50 border border-gray-100">
-                                <span class="px-2 py-1 bg-emerald-600 text-white rounded-lg font-mono font-bold text-[11px] shrink-0">05.30 - 06.45</span>
-                                <div>
-                                    <h5 class="font-bold text-gray-900">Mandi, Sarapan &amp; Piket Asrama</h5>
-                                    <p class="text-gray-500 text-[11px] mt-0.5">Penanaman kemandirian dan kebersihan kamar asrama serta persiapan KBM formal.</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start space-x-3 p-3 rounded-2xl bg-slate-50 border border-gray-100">
-                                <span class="px-2 py-1 bg-school-green text-white rounded-lg font-mono font-bold text-[11px] shrink-0">07.00 - 12.15</span>
-                                <div>
-                                    <h5 class="font-bold text-gray-900">KBM Pagi (Dirasah &amp; Sains)</h5>
-                                    <p class="text-gray-500 text-[11px] mt-0.5">Pembelajaran kurikulum terpadu: ilmu-ilmu syar'i, kitab turats, sains teknologi, matematika, dan bahasa.</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start space-x-3 p-3 rounded-2xl bg-slate-50 border border-gray-100">
-                                <span class="px-2 py-1 bg-emerald-600 text-white rounded-lg font-mono font-bold text-[11px] shrink-0">12.15 - 13.30</span>
-                                <div>
-                                    <h5 class="font-bold text-gray-900">Shalat Dzuhur &amp; Makan Siang</h5>
-                                    <p class="text-gray-500 text-[11px] mt-0.5">Shalat dzuhur berjamaah di masjid utama dilanjutkan makan siang bersama di ruang makan santri.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="space-y-3">
-                            <div class="flex items-start space-x-3 p-3 rounded-2xl bg-slate-50 border border-gray-100">
-                                <span class="px-2 py-1 bg-emerald-600 text-white rounded-lg font-mono font-bold text-[11px] shrink-0">13.30 - 15.00</span>
-                                <div>
-                                    <h5 class="font-bold text-gray-900">KBM Siang / Praktikum Laboratorium</h5>
-                                    <p class="text-gray-500 text-[11px] mt-0.5">Praktikum sains IPA, laboratorium komputer digital, dan bimbingan belajar tambahan.</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start space-x-3 p-3 rounded-2xl bg-slate-50 border border-gray-100">
-                                <span class="px-2 py-1 bg-emerald-600 text-white rounded-lg font-mono font-bold text-[11px] shrink-0">15.00 - 17.30</span>
-                                <div>
-                                    <h5 class="font-bold text-gray-900">Ashar, Muhadatsah, Olahraga &amp; Ekskul</h5>
-                                    <p class="text-gray-500 text-[11px] mt-0.5">Latihan percakapan dwi-bahasa (Arab &amp; Inggris), kepanduan pramuka, silat tapak suci, futsal, dan seni kaligrafi.</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start space-x-3 p-3 rounded-2xl bg-slate-50 border border-gray-100">
-                                <span class="px-2 py-1 bg-school-green text-white rounded-lg font-mono font-bold text-[11px] shrink-0">18.00 - 20.30</span>
-                                <div>
-                                    <h5 class="font-bold text-gray-900">Maghrib, Halaqah Tahfidz &amp; Isya</h5>
-                                    <p class="text-gray-500 text-[11px] mt-0.5">Setoran hafalan Al-Qur'an (ziyadah) dan muraja'ah bersama musyrif tahfidz di masjid.</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start space-x-3 p-3 rounded-2xl bg-slate-50 border border-gray-100">
-                                <span class="px-2 py-1 bg-emerald-600 text-white rounded-lg font-mono font-bold text-[11px] shrink-0">20.30 - 22.00</span>
-                                <div>
-                                    <h5 class="font-bold text-gray-900">Belajar Terbimbing (Muwajjah) &amp; Istirahat</h5>
-                                    <p class="text-gray-500 text-[11px] mt-0.5">Muhadharah pidato 3 bahasa, pengulangan pelajaran esok hari, dan istirahat malam tepat pukul 22.00 WIB.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <h3 class="font-black text-base sm:text-lg text-gray-900 mt-3">{{ $unit->head_name ?? 'Ustadz H. M. Said, S.Ag., M.Pd.I' }}</h3>
+                    <p class="text-xs text-[#00843d] font-bold">Kepala {{ $unit->name }}</p>
+                    <p class="text-[11px] text-gray-400 mt-0.5">Pondok Pesantren Raudhatul Ulum Sakatiga</p>
                 </div>
 
-                {{-- DEWAN ASATIDZ & GURU PENGAJAR UNIT --}}
-                <div class="bg-white rounded-3xl p-6 sm:p-9 shadow-sm border border-gray-100 space-y-6 reveal-fade-up">
-                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-gray-100 pb-4">
-                        <div>
-                            <span class="text-[11px] font-bold uppercase tracking-wider text-school-green bg-emerald-50 px-3 py-1 rounded-full">
-                                Tenaga Pendidik
-                            </span>
-                            <h3 class="text-xl sm:text-2xl font-black text-gray-900 mt-2 tracking-tight">
-                                Dewan Asatidz &amp; Guru Pengajar {{ $unit->short_name }}
-                            </h3>
-                            <p class="text-xs text-gray-500 mt-0.5">Asatidz berdedikasi tinggi, alumni perguruan tinggi terkemuka dalam dan luar negeri</p>
-                        </div>
+                {{-- Sambutan Singkat --}}
+                <div class="lg:col-span-8 space-y-4">
+                    <div class="inline-flex items-center space-x-2 bg-emerald-50 text-[#00843d] text-xs font-black px-3.5 py-1.5 rounded-full">
+                        <i class="fa-solid fa-quote-left text-amber-500"></i>
+                        <span>Sambutan Pimpinan Unit</span>
                     </div>
-
-                    @if($teachers->isNotEmpty())
-                        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
-                            @foreach($teachers as $t)
-                                <div class="bg-slate-50/80 rounded-2xl p-4 border border-gray-100 text-center hover:border-emerald-300 hover:bg-white hover:shadow-md transition duration-300 group">
-                                    <div class="w-24 h-24 mx-auto rounded-full overflow-hidden mb-3 bg-white shadow-xs border-2 border-emerald-100">
-                                        <img src="{{ $t->photo_url }}" alt="{{ $t->name }}" class="w-full h-full object-cover object-top group-hover:scale-105 transition" onerror="this.src='/uploads/default-avatar.webp'">
-                                    </div>
-                                    <h4 class="font-bold text-xs sm:text-sm text-gray-900 line-clamp-2">{{ $t->name }}</h4>
-                                    <p class="text-[11px] text-school-green font-semibold mt-0.5 line-clamp-1">{{ $t->position }}</p>
-                                    @if($t->education)
-                                        <p class="text-[10px] text-gray-400 mt-1 line-clamp-1"><i class="fa-solid fa-graduation-cap mr-1"></i> {{ $t->education }}</p>
-                                    @endif
-                                </div>
-                            @endforeach
-                        </div>
-                    @else
-                        <div class="text-center py-8 bg-slate-50 rounded-2xl text-xs text-gray-500">
-                            <i class="fa-solid fa-chalkboard-user text-3xl text-emerald-400 mb-2"></i>
-                            <p>Data tenaga pendidik unit {{ $unit->name }} sedang dalam proses sinkronisasi.</p>
-                        </div>
-                    @endif
-                </div>
-
-                {{-- SARANA & FASILITAS KHUSUS UNIT --}}
-                <div class="bg-white rounded-3xl p-6 sm:p-9 shadow-sm border border-gray-100 space-y-6 reveal-fade-up">
-                    <div class="border-b border-gray-100 pb-4">
-                        <span class="text-[11px] font-bold uppercase tracking-wider text-school-green bg-emerald-50 px-3 py-1 rounded-full">
-                            Kenyamanan Belajar
-                        </span>
-                        <h3 class="text-xl sm:text-2xl font-black text-gray-900 mt-2 tracking-tight">
-                            Fasilitas Penunjang Unit
-                        </h3>
-                    </div>
-
-                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 text-xs">
-                        <div class="p-3.5 rounded-2xl bg-slate-50 border border-gray-100 flex items-center space-x-3">
-                            <i class="fa-solid fa-chalkboard text-emerald-600 text-lg"></i>
-                            <span class="font-bold text-gray-800">Ruang Kelas Multimedia</span>
-                        </div>
-                        <div class="p-3.5 rounded-2xl bg-slate-50 border border-gray-100 flex items-center space-x-3">
-                            <i class="fa-solid fa-bed text-emerald-600 text-lg"></i>
-                            <span class="font-bold text-gray-800">Asrama Santri Asri</span>
-                        </div>
-                        <div class="p-3.5 rounded-2xl bg-slate-50 border border-gray-100 flex items-center space-x-3">
-                            <i class="fa-solid fa-flask text-emerald-600 text-lg"></i>
-                            <span class="font-bold text-gray-800">Lab Sains Terpadu</span>
-                        </div>
-                        <div class="p-3.5 rounded-2xl bg-slate-50 border border-gray-100 flex items-center space-x-3">
-                            <i class="fa-solid fa-desktop text-emerald-600 text-lg"></i>
-                            <span class="font-bold text-gray-800">Lab Komputer &amp; IT</span>
-                        </div>
-                        <div class="p-3.5 rounded-2xl bg-slate-50 border border-gray-100 flex items-center space-x-3">
-                            <i class="fa-solid fa-mosque text-emerald-600 text-lg"></i>
-                            <span class="font-bold text-gray-800">Masjid Jami' Kampus</span>
-                        </div>
-                        <div class="p-3.5 rounded-2xl bg-slate-50 border border-gray-100 flex items-center space-x-3">
-                            <i class="fa-solid fa-futbol text-emerald-600 text-lg"></i>
-                            <span class="font-bold text-gray-800">Lapangan Olahraga</span>
-                        </div>
+                    <h2 class="text-2xl sm:text-3xl font-black text-gray-900 tracking-tight leading-tight">
+                        Mendidik Generasi Robbani yang Unggul Ilmu, Kokoh Iman, dan Berakhlak Mulia
+                    </h2>
+                    <div class="prose-content text-gray-600 text-sm sm:text-base leading-relaxed space-y-3">
+                        <p>
+                            <em>Assalamu’alaikum Warahmatullahi Wabarakatuh.</em>
+                        </p>
+                        <p>
+                            Ahlan wa sahlan di laman resmi <strong>{{ $unit->name }}</strong> Pondok Pesantren Raudhatul Ulum Sakatiga. Kami berkomitmen menyelenggarakan ekosistem pendidikan Islam terpadu yang memadukan kedalaman ilmu syar'i (kitab kuning), tahfidzul Qur'an mutqin, kecakapan dwi-bahasa (Arab &amp; Inggris), serta keunggulan sains dan teknologi modern.
+                        </p>
+                        <p>
+                            Melalui bimbingan penuh asatidz dan musyrif asrama selama 24 jam, para santri kami tempa agar memiliki karakter kepemimpinan, kemandirian hidup, dan wawasan global, siap mengemban estafet dakwah Islamiyyah dan berprestasi di kancah nasional maupun internasional.
+                        </p>
+                        <p class="font-semibold text-gray-800">
+                            <em>Wassalamu’alaikum Warahmatullahi Wabarakatuh.</em>
+                        </p>
                     </div>
                 </div>
+            </div>
+        </section>
 
-                {{-- ALUR PENDAFTARAN PSB / PPDB ONLINE --}}
-                <div class="bg-gradient-to-br from-school-green to-[#005a28] text-white rounded-3xl p-6 sm:p-9 shadow-xl space-y-6 reveal-fade-up">
-                    <div class="border-b border-white/20 pb-4">
-                        <span class="text-[11px] font-black uppercase tracking-wider text-amber-300 bg-black/20 px-3 py-1 rounded-full">
-                            Penerimaan Santri Baru (PSB)
-                        </span>
-                        <h3 class="text-xl sm:text-2xl font-black text-white mt-2 tracking-tight">
-                            Alur Pendaftaran Masuk Santri Baru
-                        </h3>
-                        <p class="text-xs text-green-100 mt-1">Langkah mudah menjadi bagian dari keluarga besar Pondok Pesantren Raudhatul Ulum Sakatiga</p>
-                    </div>
-
-                    <div class="grid grid-cols-1 sm:grid-cols-4 gap-4 text-xs">
-                        <div class="bg-white/10 backdrop-blur-xs p-4 rounded-2xl border border-white/15">
-                            <span class="w-6 h-6 rounded-full bg-amber-400 text-slate-950 font-black flex items-center justify-center text-xs mb-2">1</span>
-                            <h5 class="font-bold text-white text-sm">Daftar Online</h5>
-                            <p class="text-green-100 text-[11px] mt-1">Mengisi formulir PSB melalui portal website resmi.</p>
-                        </div>
-                        <div class="bg-white/10 backdrop-blur-xs p-4 rounded-2xl border border-white/15">
-                            <span class="w-6 h-6 rounded-full bg-amber-400 text-slate-950 font-black flex items-center justify-center text-xs mb-2">2</span>
-                            <h5 class="font-bold text-white text-sm">Verifikasi Berkas</h5>
-                            <p class="text-green-100 text-[11px] mt-1">Upload dokumen KK, Akte Kelahiran, dan pas foto santri.</p>
-                        </div>
-                        <div class="bg-white/10 backdrop-blur-xs p-4 rounded-2xl border border-white/15">
-                            <span class="w-6 h-6 rounded-full bg-amber-400 text-slate-950 font-black flex items-center justify-center text-xs mb-2">3</span>
-                            <h5 class="font-bold text-white text-sm">Tes &amp; Wawancara</h5>
-                            <p class="text-green-100 text-[11px] mt-1">Ujian baca Al-Qur'an, potensi akademik, dan wawancara wali.</p>
-                        </div>
-                        <div class="bg-white/10 backdrop-blur-xs p-4 rounded-2xl border border-white/15">
-                            <span class="w-6 h-6 rounded-full bg-amber-400 text-slate-950 font-black flex items-center justify-center text-xs mb-2">4</span>
-                            <h5 class="font-bold text-white text-sm">Daftar Ulang</h5>
-                            <p class="text-green-100 text-[11px] mt-1">Pengumuman kelulusan dan penempatan kamar asrama santri.</p>
-                        </div>
-                    </div>
-
-                    <div class="pt-4 flex flex-wrap gap-3">
-                        <a href="{{ route('ppdb.index') }}" class="bg-[#f59e0b] hover:bg-amber-500 text-slate-950 text-xs font-black px-6 py-3 rounded-full shadow-lg transition flex items-center space-x-2">
-                            <i class="fa-solid fa-graduation-cap"></i>
-                            <span>Daftar PSB Online Sekarang</span>
-                        </a>
-                        @if($unit->phone)
-                            <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $unit->phone) }}?text=Assalamu%27alaikum%20Panitia%20PSB%20{{ urlencode($unit->name) }}%2C%20saya%20ingin%20konsultasi%20pendaftaran" target="_blank" class="bg-white/20 hover:bg-white/30 text-white text-xs font-bold px-5 py-3 rounded-full transition flex items-center space-x-2">
-                                <i class="fa-brands fa-whatsapp text-green-300 text-sm"></i>
-                                <span>Konsultasi WhatsApp</span>
-                            </a>
-                        @endif
-                    </div>
+        {{-- 4. PROFIL MENDALAM & KARAKTERISTIK UNGGULAN UNIT --}}
+        <section class="bg-white rounded-3xl p-6 sm:p-10 shadow-sm border border-gray-100 space-y-6 reveal-fade-up">
+            <div class="border-b border-gray-100 pb-4 flex items-center justify-between">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-[#00843d] bg-emerald-50 px-3 py-1 rounded-full">
+                        Tentang Lembaga
+                    </span>
+                    <h2 class="text-2xl sm:text-3xl font-black text-gray-900 mt-2 tracking-tight">
+                        Profil &amp; Identitas {{ $unit->name }}
+                    </h2>
                 </div>
-
+                <div class="hidden sm:flex w-12 h-12 rounded-2xl bg-emerald-50 text-[#00843d] items-center justify-center text-xl shadow-xs">
+                    <i class="{{ $unit->icon ?: 'fa-solid fa-graduation-cap' }}"></i>
+                </div>
             </div>
 
-            {{-- SIDEBAR COLUMN (4 Kolom) --}}
-            <div class="lg:col-span-4 space-y-6">
-                
-                {{-- Quick Info Card --}}
-                <div class="bg-white rounded-3xl p-6 shadow-sm border border-gray-100 space-y-4 reveal-fade-up">
-                    <h3 class="text-sm font-black text-gray-900 border-b border-gray-100 pb-3 flex items-center gap-2">
-                        <span class="w-2 h-2 rounded-full bg-school-green"></span>
-                        <span>Informasi Singkat Unit</span>
-                    </h3>
-                    
-                    <ul class="space-y-3 text-xs">
-                        <li class="flex justify-between py-1.5 border-b border-gray-50">
-                            <span class="text-gray-500">Nama Lembaga:</span>
-                            <span class="font-bold text-gray-900 text-right">{{ $unit->short_name ?: $unit->name }}</span>
-                        </li>
-                        <li class="flex justify-between py-1.5 border-b border-gray-50">
-                            <span class="text-gray-500">Tipe Pendidikan:</span>
-                            <span class="font-bold text-emerald-700">{{ $unit->category_type }}</span>
-                        </li>
-                        @if($unit->badge)
-                            <li class="flex justify-between py-1.5 border-b border-gray-50">
-                                <span class="text-gray-500">Akreditasi:</span>
-                                <span class="font-bold text-amber-600">{{ $unit->badge }}</span>
-                            </li>
-                        @endif
-                        @if($unit->head_name)
-                            <li class="flex justify-between py-1.5 border-b border-gray-50">
-                                <span class="text-gray-500">Pimpinan / Kepala:</span>
-                                <span class="font-bold text-gray-900 text-right">{{ $unit->head_name }}</span>
-                            </li>
-                        @endif
-                        @if($unit->phone)
-                            <li class="flex justify-between py-1.5 border-b border-gray-50">
-                                <span class="text-gray-500">Kontak Telepon/WA:</span>
-                                <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $unit->phone) }}" target="_blank" class="font-bold text-emerald-700 hover:underline">{{ $unit->phone }}</a>
-                            </li>
-                        @endif
-                        @if($unit->email)
-                            <li class="flex justify-between py-1.5 border-b border-gray-50">
-                                <span class="text-gray-500">Email Resmi:</span>
-                                <a href="mailto:{{ $unit->email }}" class="font-bold text-gray-900 hover:text-school-green">{{ $unit->email }}</a>
-                            </li>
-                        @endif
-                        <li class="flex justify-between py-1.5">
-                            <span class="text-gray-500">Naungan:</span>
-                            <span class="font-bold text-gray-900 text-right">YAPIRUS Sakatiga</span>
-                        </li>
-                    </ul>
+            <div class="prose-content text-gray-700 text-sm sm:text-base leading-relaxed space-y-4">
+                {!! nl2br(e($unit->description)) !!}
+            </div>
 
-                    <div class="pt-2">
-                        <a href="{{ route('ppdb.index') }}" class="w-full bg-school-green hover:bg-emerald-800 text-white font-black text-xs py-3 rounded-2xl flex items-center justify-center space-x-2 shadow-md transition">
-                            <i class="fa-solid fa-file-pen"></i>
-                            <span>Formulir PSB Online</span>
-                        </a>
+            {{-- 3 Pilar Utama --}}
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 pt-4">
+                <div class="bg-gradient-to-br from-emerald-50 to-white p-5 rounded-2xl border border-emerald-100 shadow-xs">
+                    <div class="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center text-lg mb-3 shadow-sm">
+                        <i class="fa-solid fa-certificate"></i>
+                    </div>
+                    <h4 class="font-extrabold text-sm text-gray-900">Akreditasi &amp; Ijazah Ganda</h4>
+                    <p class="text-xs text-gray-600 mt-1.5 leading-relaxed">
+                        Ijazah resmi Kementerian Agama/Kemendikbud serta ijazah kepesantrenan dengan pengakuan muadalah Al-Azhar Kairo Mesir.
+                    </p>
+                </div>
+                <div class="bg-gradient-to-br from-amber-50 to-white p-5 rounded-2xl border border-amber-100 shadow-xs">
+                    <div class="w-10 h-10 rounded-xl bg-amber-500 text-white flex items-center justify-center text-lg mb-3 shadow-sm">
+                        <i class="fa-solid fa-language"></i>
+                    </div>
+                    <h4 class="font-extrabold text-sm text-gray-900">Bahasa Arab &amp; Inggris Aktif</h4>
+                    <p class="text-xs text-gray-600 mt-1.5 leading-relaxed">
+                        Lingkungan bimbingan dwi-bahasa intensif harian (muhadatsah, mufrodat, dan muhadharah pidato 3 bahasa).
+                    </p>
+                </div>
+                <div class="bg-gradient-to-br from-sky-50 to-white p-5 rounded-2xl border border-sky-100 shadow-xs">
+                    <div class="w-10 h-10 rounded-xl bg-sky-600 text-white flex items-center justify-center text-lg mb-3 shadow-sm">
+                        <i class="fa-solid fa-book-quran"></i>
+                    </div>
+                    <h4 class="font-extrabold text-sm text-gray-900">Tahfidz &amp; 10 Jati Diri</h4>
+                    <p class="text-xs text-gray-600 mt-1.5 leading-relaxed">
+                        Program tahfidzul Qur'an berkala dengan sanad bersambung serta pembiasaan adab luhur 10 Jati Diri Santri Raudhatul Ulum.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        {{-- 5. VISI, MISI & TARGET KOMPETENSI LULUSAN --}}
+        <section class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            <div class="lg:col-span-5 bg-[#00843d] text-white rounded-3xl p-6 sm:p-9 shadow-lg space-y-5">
+                <span class="text-[11px] font-black uppercase tracking-wider text-amber-300 bg-black/20 px-3 py-1 rounded-full">
+                    Arah Perjuangan
+                </span>
+                <h3 class="text-2xl font-black tracking-tight text-white">Visi &amp; Misi Unit</h3>
+                <div class="space-y-4 text-xs sm:text-sm">
+                    <div class="bg-white/10 p-4 rounded-2xl border border-white/15 backdrop-blur-xs">
+                        <h5 class="font-black text-amber-300 uppercase tracking-wide text-xs">Visi:</h5>
+                        <p class="text-white mt-1 leading-relaxed">
+                            Terwujudnya lembaga pendidikan Islam terpadu yang melahirkan kader ulama, intelektual muslim yang berakhlak mulia, cerdas, berwawasan global, dan berpegang teguh pada Al-Qur'an dan As-Sunnah.
+                        </p>
+                    </div>
+                    <div class="bg-white/10 p-4 rounded-2xl border border-white/15 backdrop-blur-xs">
+                        <h5 class="font-black text-amber-300 uppercase tracking-wide text-xs">Misi Utama:</h5>
+                        <ul class="text-emerald-100 mt-1 space-y-2 list-disc pl-4 leading-relaxed text-xs">
+                            <li>Menyelenggarakan pendidikan tahfidzul Qur'an dan penguasaan kitab-kitab mu'tabarah.</li>
+                            <li>Mengembangkan penguasaan sains, teknologi, dan bahasa asing secara komprehensif.</li>
+                            <li>Menanamkan kedisiplinan dan adab islami melalui pembinaan kepengasuhan 24 jam.</li>
+                            <li>Mempersiapkan santri melanjutkan studi ke universitas ternama di Timur Tengah dan PTN favorit.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-7 bg-white rounded-3xl p-6 sm:p-9 shadow-sm border border-gray-100 space-y-5">
+                <span class="text-[11px] font-bold uppercase tracking-wider text-[#00843d] bg-emerald-50 px-3 py-1 rounded-full">
+                    Standar Output
+                </span>
+                <h3 class="text-2xl font-black text-gray-900 tracking-tight">10 Target Kompetensi Lulusan</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                    <div class="flex items-start space-x-2.5 p-3 rounded-xl bg-slate-50 border border-gray-100">
+                        <i class="fa-solid fa-check-circle text-[#00843d] mt-0.5 text-sm"></i>
+                        <span class="text-gray-700 font-semibold">Salimul 'Aqidah (Aqidah yang lurus dan bersih dari syirik)</span>
+                    </div>
+                    <div class="flex items-start space-x-2.5 p-3 rounded-xl bg-slate-50 border border-gray-100">
+                        <i class="fa-solid fa-check-circle text-[#00843d] mt-0.5 text-sm"></i>
+                        <span class="text-gray-700 font-semibold">Shahihul 'Ibadah (Ibadah yang benar sesuai tuntunan Rasulullah)</span>
+                    </div>
+                    <div class="flex items-start space-x-2.5 p-3 rounded-xl bg-slate-50 border border-gray-100">
+                        <i class="fa-solid fa-check-circle text-[#00843d] mt-0.5 text-sm"></i>
+                        <span class="text-gray-700 font-semibold">Matinul Khuluq (Akhlak yang mulia dan terpuji)</span>
+                    </div>
+                    <div class="flex items-start space-x-2.5 p-3 rounded-xl bg-slate-50 border border-gray-100">
+                        <i class="fa-solid fa-check-circle text-[#00843d] mt-0.5 text-sm"></i>
+                        <span class="text-gray-700 font-semibold">Qadirun 'Alal Kasbi (Memiliki kemandirian hidup &amp; etos kerja)</span>
+                    </div>
+                    <div class="flex items-start space-x-2.5 p-3 rounded-xl bg-slate-50 border border-gray-100">
+                        <i class="fa-solid fa-check-circle text-[#00843d] mt-0.5 text-sm"></i>
+                        <span class="text-gray-700 font-semibold">Mutsaqqaful Fikr (Wawasan keilmuan dan sains yang luas)</span>
+                    </div>
+                    <div class="flex items-start space-x-2.5 p-3 rounded-xl bg-slate-50 border border-gray-100">
+                        <i class="fa-solid fa-check-circle text-[#00843d] mt-0.5 text-sm"></i>
+                        <span class="text-gray-700 font-semibold">Qawiyyul Jism (Fisik prima melalui olahraga sunnah memanah &amp; silat)</span>
+                    </div>
+                    <div class="flex items-start space-x-2.5 p-3 rounded-xl bg-slate-50 border border-gray-100">
+                        <i class="fa-solid fa-check-circle text-[#00843d] mt-0.5 text-sm"></i>
+                        <span class="text-gray-700 font-semibold">Hafidz Al-Qur'an mutqin sesuai jenjang pendidikan</span>
+                    </div>
+                    <div class="flex items-start space-x-2.5 p-3 rounded-xl bg-slate-50 border border-gray-100">
+                        <i class="fa-solid fa-check-circle text-[#00843d] mt-0.5 text-sm"></i>
+                        <span class="text-gray-700 font-semibold">Cakap berbahasa Arab fusha dan Inggris aktif</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        {{-- 6. STRUKTUR KURIKULUM GANDA (Kepesantrenan & Nasional) --}}
+        <section class="bg-white rounded-3xl p-6 sm:p-10 shadow-sm border border-gray-100 space-y-6 reveal-fade-up">
+            <div class="border-b border-gray-100 pb-4">
+                <span class="text-xs font-bold uppercase tracking-wider text-[#00843d] bg-emerald-50 px-3 py-1 rounded-full">
+                    Struktur Akademik
+                </span>
+                <h2 class="text-2xl sm:text-3xl font-black text-gray-900 mt-2 tracking-tight">
+                    Kurikulum Terpadu Pesantren &amp; Nasional
+                </h2>
+                <p class="text-xs sm:text-sm text-gray-500 mt-1">Sinergi antara kurikulum kepesantrenan modern, kurikulum salafiyah, dan kurikulum kementerian</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {{-- Kurikulum Pesantren --}}
+                <div class="bg-gradient-to-br from-emerald-50/70 to-white rounded-2xl p-6 border border-emerald-100 space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-xl bg-[#00843d] text-white flex items-center justify-center text-lg">
+                            <i class="fa-solid fa-book-open-reader"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-extrabold text-base text-gray-900">Kurikulum Kepesantrenan</h3>
+                            <p class="text-[11px] text-gray-500">Dirasah Islamiyyah &amp; Kitab Kuning Mu'tabarah</p>
+                        </div>
+                    </div>
+                    <ul class="space-y-2 text-xs text-gray-700">
+                        <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-[#00843d] text-xs"></i> <span>Tahfidzul Qur'an, Tahsin Qira'ati &amp; Ilmu Tajwid</span></li>
+                        <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-[#00843d] text-xs"></i> <span>Nahwu, Shorof, &amp; Balaghah (Kaidah Bahasa Arab)</span></li>
+                        <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-[#00843d] text-xs"></i> <span>Fiqh &amp; Ushul Fiqh Mazhab Syafi'i &amp; Muqaranah</span></li>
+                        <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-[#00843d] text-xs"></i> <span>Tafsir Jalalain, Hadits Arbain &amp; Riyadhis Shalihin</span></li>
+                        <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-[#00843d] text-xs"></i> <span>Tauhid / Aqidah Ahlussunnah Wal Jama'ah</span></li>
+                    </ul>
+                </div>
+
+                {{-- Kurikulum Nasional & Sains --}}
+                <div class="bg-gradient-to-br from-amber-50/70 to-white rounded-2xl p-6 border border-amber-100 space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-xl bg-[#f59e0b] text-slate-950 flex items-center justify-center text-lg">
+                            <i class="fa-solid fa-microchip"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-extrabold text-base text-gray-900">Kurikulum Nasional &amp; Sains</h3>
+                            <p class="text-[11px] text-gray-500">Kementerian Pendidikan / Kementerian Agama</p>
+                        </div>
+                    </div>
+                    <ul class="space-y-2 text-xs text-gray-700">
+                        <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-amber-600 text-xs"></i> <span>Matematika, Fisika, Kimia, Biologi &amp; Sains Terapan</span></li>
+                        <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-amber-600 text-xs"></i> <span>Bahasa Indonesia, Sejarah, &amp; Pendidikan Kewarganegaraan</span></li>
+                        <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-amber-600 text-xs"></i> <span>Literasi Komputer, Pemrograman Dasar &amp; Robotika</span></li>
+                        <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-amber-600 text-xs"></i> <span>English Language &amp; TOEFL Preparation</span></li>
+                        <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-amber-600 text-xs"></i> <span>Bimbingan Intensif UTBK &amp; Seleksi Beasiswa Timur Tengah</span></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        {{-- 7. JADWAL RUTINITAS 24 JAM SANTRI (Boarding Schedule) --}}
+        <section class="bg-white rounded-3xl p-6 sm:p-10 shadow-sm border border-gray-100 space-y-6 reveal-fade-up">
+            <div class="border-b border-gray-100 pb-4">
+                <span class="text-xs font-bold uppercase tracking-wider text-[#00843d] bg-emerald-50 px-3 py-1 rounded-full">
+                    Sistem Asrama Penuh (Boarding)
+                </span>
+                <h2 class="text-2xl sm:text-3xl font-black text-gray-900 mt-2 tracking-tight">
+                    Jadwal Rutinitas 24 Jam Santri
+                </h2>
+                <p class="text-xs text-gray-500 mt-1">Pembinaan terpadu jasmani, ruhani, dan fikriyah santri sepanjang hari di lingkungan asrama pesantren</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                <div class="space-y-3">
+                    <div class="flex items-start space-x-3 p-3.5 rounded-2xl bg-slate-50 border border-gray-100">
+                        <span class="px-2.5 py-1 bg-[#00843d] text-white rounded-lg font-mono font-bold text-[11px] shrink-0">04.00 - 05.30</span>
+                        <div>
+                            <h4 class="font-bold text-gray-900">Qiyamul Lail &amp; Shubuh Berjamaah</h4>
+                            <p class="text-gray-500 text-[11px] mt-0.5">Shalat tahajjud, shalat shubuh berjamaah, dzikir ma'tsurat, dan pemberian mufrodat / vocabulary harian.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-3 p-3.5 rounded-2xl bg-slate-50 border border-gray-100">
+                        <span class="px-2.5 py-1 bg-[#00843d] text-white rounded-lg font-mono font-bold text-[11px] shrink-0">05.30 - 06.45</span>
+                        <div>
+                            <h4 class="font-bold text-gray-900">Mandi, Sarapan &amp; Piket Asrama</h4>
+                            <p class="text-gray-500 text-[11px] mt-0.5">Penanaman kemandirian dan kebersihan kamar asrama serta persiapan KBM formal.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-3 p-3.5 rounded-2xl bg-slate-50 border border-gray-100">
+                        <span class="px-2.5 py-1 bg-[#00843d] text-white rounded-lg font-mono font-bold text-[11px] shrink-0">07.00 - 12.15</span>
+                        <div>
+                            <h4 class="font-bold text-gray-900">KBM Pagi (Dirasah Islamiyyah &amp; Sains)</h4>
+                            <p class="text-gray-500 text-[11px] mt-0.5">Pembelajaran kurikulum terpadu: ilmu-ilmu syar'i, kitab turats, sains teknologi, matematika, dan bahasa.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-3 p-3.5 rounded-2xl bg-slate-50 border border-gray-100">
+                        <span class="px-2.5 py-1 bg-[#00843d] text-white rounded-lg font-mono font-bold text-[11px] shrink-0">12.15 - 13.30</span>
+                        <div>
+                            <h4 class="font-bold text-gray-900">Shalat Dzuhur &amp; Makan Siang</h4>
+                            <p class="text-gray-500 text-[11px] mt-0.5">Shalat dzuhur berjamaah di masjid utama dilanjutkan makan siang bersama di ruang makan santri.</p>
+                        </div>
                     </div>
                 </div>
 
-                {{-- Other Units List --}}
-                @if($otherUnits->isNotEmpty())
-                    <div class="bg-white rounded-3xl p-6 shadow-sm border border-gray-100 space-y-4 reveal-fade-up">
-                        <h3 class="text-sm font-black text-gray-900 border-b border-gray-100 pb-3 flex items-center gap-2">
-                            <i class="fa-solid fa-building-columns text-school-green"></i>
-                            <span>Unit Pendidikan Lainnya</span>
-                        </h3>
-                        <div class="space-y-2.5">
-                            @foreach($otherUnits as $ou)
-                                <a href="{{ route('pendidikan.show', $ou->slug) }}" class="flex items-center space-x-3 p-3 rounded-2xl hover:bg-emerald-50/60 transition group border border-transparent hover:border-emerald-200">
-                                    <div class="w-9 h-9 rounded-xl bg-emerald-100 text-school-green flex items-center justify-center text-xs shrink-0 group-hover:bg-school-green group-hover:text-white transition">
-                                        <i class="{{ $ou->icon ?: 'fa-solid fa-school' }}"></i>
-                                    </div>
-                                    <div class="min-w-0 flex-1">
-                                        <p class="text-xs font-bold text-gray-800 truncate group-hover:text-school-green transition">{{ $ou->name }}</p>
-                                        <p class="text-[10px] text-gray-400">{{ $ou->category_type }} &bull; {{ $ou->badge ?: 'PPRU' }}</p>
-                                    </div>
-                                    <i class="fa-solid fa-chevron-right text-[10px] text-gray-300 group-hover:text-school-green group-hover:translate-x-0.5 transition"></i>
-                                </a>
-                            @endforeach
+                <div class="space-y-3">
+                    <div class="flex items-start space-x-3 p-3.5 rounded-2xl bg-slate-50 border border-gray-100">
+                        <span class="px-2.5 py-1 bg-[#00843d] text-white rounded-lg font-mono font-bold text-[11px] shrink-0">13.30 - 15.00</span>
+                        <div>
+                            <h4 class="font-bold text-gray-900">KBM Siang / Praktikum Laboratorium</h4>
+                            <p class="text-gray-500 text-[11px] mt-0.5">Praktikum sains IPA, laboratorium komputer digital, dan bimbingan belajar tambahan.</p>
                         </div>
                     </div>
-                @endif
-
-                {{-- Download Brosur Card --}}
-                <div class="bg-emerald-50 rounded-3xl p-6 border border-emerald-100 text-center space-y-3 reveal-fade-up">
-                    <div class="w-12 h-12 rounded-2xl bg-school-green text-white flex items-center justify-center text-xl mx-auto shadow-md">
-                        <i class="fa-solid fa-file-pdf"></i>
+                    <div class="flex items-start space-x-3 p-3.5 rounded-2xl bg-slate-50 border border-gray-100">
+                        <span class="px-2.5 py-1 bg-[#00843d] text-white rounded-lg font-mono font-bold text-[11px] shrink-0">15.00 - 17.30</span>
+                        <div>
+                            <h4 class="font-bold text-gray-900">Ashar, Muhadatsah, Olahraga &amp; Ekskul</h4>
+                            <p class="text-gray-500 text-[11px] mt-0.5">Latihan percakapan dwi-bahasa (Arab &amp; Inggris), panahan, kepanduan pramuka, silat tapak suci, dan seni kaligrafi.</p>
+                        </div>
                     </div>
-                    <h4 class="font-extrabold text-sm text-gray-900">Brosur &amp; Rincian Biaya</h4>
-                    <p class="text-[11px] text-gray-600">Unduh dokumen resmi panduan santri baru, kurikulum lengkap, dan rincian biaya pondok.</p>
-                    <a href="{{ route('download.index') }}" class="inline-flex items-center space-x-1.5 text-xs font-bold text-school-green hover:underline">
-                        <span>Pusat Unduhan Brosur</span>
+                    <div class="flex items-start space-x-3 p-3.5 rounded-2xl bg-slate-50 border border-gray-100">
+                        <span class="px-2.5 py-1 bg-[#00843d] text-white rounded-lg font-mono font-bold text-[11px] shrink-0">18.00 - 20.30</span>
+                        <div>
+                            <h4 class="font-bold text-gray-900">Maghrib, Halaqah Tahfidz &amp; Isya</h4>
+                            <p class="text-gray-500 text-[11px] mt-0.5">Setoran hafalan Al-Qur'an (ziyadah) dan muraja'ah bersama musyrif tahfidz di masjid.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-3 p-3.5 rounded-2xl bg-slate-50 border border-gray-100">
+                        <span class="px-2.5 py-1 bg-[#00843d] text-white rounded-lg font-mono font-bold text-[11px] shrink-0">20.30 - 22.00</span>
+                        <div>
+                            <h4 class="font-bold text-gray-900">Belajar Terbimbing (Muwajjah) &amp; Istirahat</h4>
+                            <p class="text-gray-500 text-[11px] mt-0.5">Muhadharah pidato 3 bahasa, pengulangan pelajaran esok hari, dan istirahat malam tepat pukul 22.00 WIB.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        {{-- 8. DEWAN ASATIDZ & GURU PENGAJAR UNIT --}}
+        <section class="bg-white rounded-3xl p-6 sm:p-10 shadow-sm border border-gray-100 space-y-6 reveal-fade-up">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-gray-100 pb-4">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-[#00843d] bg-emerald-50 px-3 py-1 rounded-full">
+                        Tenaga Pendidik
+                    </span>
+                    <h2 class="text-2xl sm:text-3xl font-black text-gray-900 mt-2 tracking-tight">
+                        Dewan Asatidz &amp; Guru Pengajar {{ $unit->short_name }}
+                    </h2>
+                    <p class="text-xs text-gray-500 mt-0.5">Asatidz berdedikasi tinggi, alumni perguruan tinggi terkemuka dalam dan luar negeri</p>
+                </div>
+                <a href="{{ route('dewan.index') }}" class="text-xs font-bold text-[#00843d] hover:underline flex items-center gap-1 shrink-0">
+                    <span>Semua Dewan Asatidz</span>
+                    <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                </a>
+            </div>
+
+            @if($teachers->isNotEmpty())
+                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+                    @foreach($teachers as $t)
+                        <div class="bg-slate-50/80 rounded-2xl p-4 border border-gray-100 text-center hover:border-emerald-300 hover:bg-white hover:shadow-md transition duration-300 group">
+                            <div class="w-20 h-20 sm:w-24 sm:h-24 mx-auto rounded-full overflow-hidden mb-3 bg-white shadow-xs border-2 border-emerald-100">
+                                <img src="{{ $t->photo_url }}" alt="{{ $t->name }}" class="w-full h-full object-cover object-top group-hover:scale-105 transition" onerror="this.src='/uploads/default-avatar.webp'">
+                            </div>
+                            <h4 class="font-bold text-xs sm:text-sm text-gray-900 line-clamp-2">{{ $t->name }}</h4>
+                            <p class="text-[11px] text-[#00843d] font-semibold mt-0.5 line-clamp-1">{{ $t->position }}</p>
+                            @if($t->education)
+                                <p class="text-[10px] text-gray-400 mt-1 line-clamp-1"><i class="fa-solid fa-graduation-cap mr-1"></i> {{ $t->education }}</p>
+                            @endif
+                        </div>
+                    @endforeach
+                </div>
+            @endif
+        </section>
+
+        {{-- 9. PRESTASI SANTRI & GURU UNIT --}}
+        @if(isset($prestasi) && $prestasi->isNotEmpty())
+            <section class="bg-white rounded-3xl p-6 sm:p-10 shadow-sm border border-gray-100 space-y-6 reveal-fade-up">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-gray-100 pb-4">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-amber-600 bg-amber-50 px-3 py-1 rounded-full">
+                            Rekam Prestasi
+                        </span>
+                        <h2 class="text-2xl sm:text-3xl font-black text-gray-900 mt-2 tracking-tight">
+                            Prestasi Santri &amp; Guru
+                        </h2>
+                        <p class="text-xs text-gray-500 mt-0.5">Bukti dedikasi santri Raudhatul Ulum dalam kompetisi akademik, sains, dan keagamaan</p>
+                    </div>
+                    <a href="{{ route('prestasi.index') }}" class="text-xs font-bold text-[#00843d] hover:underline flex items-center gap-1 shrink-0">
+                        <span>Semua Prestasi</span>
                         <i class="fa-solid fa-arrow-right text-[10px]"></i>
                     </a>
                 </div>
 
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                    @foreach($prestasi as $p)
+                        <article class="bg-slate-50/70 rounded-2xl overflow-hidden border border-gray-100 hover:shadow-md hover:border-emerald-200 transition group flex flex-col">
+                            <div class="aspect-video w-full bg-gray-200 overflow-hidden relative">
+                                <img src="{{ $p->featured_image_url }}" alt="{{ $p->title }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='/uploads/campus-ppru-sakatiga.webp'">
+                                <span class="absolute top-2.5 left-2.5 bg-amber-500 text-white text-[9px] font-black px-2 py-0.5 rounded-full shadow">
+                                    Prestasi
+                                </span>
+                            </div>
+                            <div class="p-4 flex-1 flex flex-col justify-between space-y-2">
+                                <h4 class="font-bold text-xs sm:text-sm text-gray-900 line-clamp-2 group-hover:text-[#00843d] transition">
+                                    <a href="{{ route('artikel.show', $p->slug) }}">{{ $p->title }}</a>
+                                </h4>
+                                <span class="text-[10px] text-gray-400 block pt-1 border-t border-gray-100">
+                                    <i class="fa-solid fa-calendar mr-1"></i> {{ $p->created_at ? $p->created_at->translatedFormat('d M Y') : 'Terbaru' }}
+                                </span>
+                            </div>
+                        </article>
+                    @endforeach
+                </div>
+            </section>
+        @endif
+
+        {{-- 10. ALUMNI SUKSES & KIPRAH LULUSAN --}}
+        <section class="bg-gradient-to-br from-emerald-900 via-[#005a28] to-[#043317] text-white rounded-3xl p-6 sm:p-10 shadow-xl space-y-6 reveal-fade-up">
+            <div class="border-b border-white/20 pb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <div>
+                    <span class="text-xs font-black uppercase tracking-wider text-amber-300 bg-black/20 px-3 py-1 rounded-full">
+                        Jejaring Alumni
+                    </span>
+                    <h2 class="text-2xl sm:text-3xl font-black text-white mt-2 tracking-tight">
+                        Kiprah Alumni {{ $unit->short_name ?: $unit->name }}
+                    </h2>
+                    <p class="text-xs text-emerald-100 mt-1">Lulusan Raudhatul Ulum tersebar di berbagai universitas terbaik dunia dan berkiprah di masyarakat</p>
+                </div>
             </div>
-        </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs">
+                <div class="bg-white/10 backdrop-blur-xs p-5 rounded-2xl border border-white/15 space-y-3">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-amber-400 bg-white/20 shrink-0">
+                            <img src="/uploads/default-avatar.webp" alt="Alumni Al-Azhar" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-black text-white text-sm">Ust. Ahmad Fauzan, Lc.</h4>
+                            <p class="text-amber-300 text-[11px] font-semibold">Alumni Al-Azhar Cairo Mesir</p>
+                        </div>
+                    </div>
+                    <p class="text-emerald-100 text-[11px] leading-relaxed italic">
+                        "Pondok Pesantren Raudhatul Ulum Sakatiga membekali saya kemampuan bahasa Arab fusha dan pemahaman kitab kuning yang sangat kuat, sehingga sangat memudahkan studi saya di Fakultas Ushuluddin Universitas Al-Azhar Kairo."
+                    </p>
+                </div>
+
+                <div class="bg-white/10 backdrop-blur-xs p-5 rounded-2xl border border-white/15 space-y-3">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-amber-400 bg-white/20 shrink-0">
+                            <img src="/uploads/default-avatar.webp" alt="Alumni Madinah" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-black text-white text-sm">Ust. Muhammad Ihsan, Lc.</h4>
+                            <p class="text-amber-300 text-[11px] font-semibold">Alumni Universitas Islam Madinah</p>
+                        </div>
+                    </div>
+                    <p class="text-emerald-100 text-[11px] leading-relaxed italic">
+                        "Kedisiplinan ibadah, hafalan mutqin Al-Qur'an, dan penanaman adab di PPRU menjadi modal utama saya meraih beasiswa penuh di Kota Madinah Nabawiyyah."
+                    </p>
+                </div>
+
+                <div class="bg-white/10 backdrop-blur-xs p-5 rounded-2xl border border-white/15 space-y-3">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-amber-400 bg-white/20 shrink-0">
+                            <img src="/uploads/default-avatar.webp" alt="Alumni PTN" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-black text-white text-sm">dr. Fatimah Zahra</h4>
+                            <p class="text-amber-300 text-[11px] font-semibold">Alumni Kedokteran PTN &amp; Hafidzah 30 Juz</p>
+                        </div>
+                    </div>
+                    <p class="text-emerald-100 text-[11px] leading-relaxed italic">
+                        "Di Raudhatul Ulum, saya belajar bahwa sains dan Al-Qur'an saling menguatkan. Menghafal Al-Qur'an 30 juz membuka pintu kecerdasan untuk menyelesaikan studi kedokteran."
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        {{-- 11. GALERI FOTO KEGIATAN KHUSUS UNIT --}}
+        <section class="bg-white rounded-3xl p-6 sm:p-10 shadow-sm border border-gray-100 space-y-6 reveal-fade-up">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-gray-100 pb-4">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-[#00843d] bg-emerald-50 px-3 py-1 rounded-full">
+                        Dokumentasi Santri
+                    </span>
+                    <h2 class="text-2xl sm:text-3xl font-black text-gray-900 mt-2 tracking-tight">
+                        Galeri Aktivitas Santri
+                    </h2>
+                    <p class="text-xs text-gray-500 mt-0.5">Potret ragam kegiatan belajar, keagamaan, dan pembinaan karakter di kampus pesantren</p>
+                </div>
+                <a href="{{ route('galeri.index') }}" class="text-xs font-bold text-[#00843d] hover:underline flex items-center gap-1 shrink-0">
+                    <span>Lihat Semua Galeri</span>
+                    <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                </a>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="aspect-4/3 rounded-2xl overflow-hidden group relative shadow-xs">
+                    <img src="/uploads/campus-ppru-sakatiga.webp" alt="Kampus PPRU" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent opacity-0 group-hover:opacity-100 transition flex items-end p-3">
+                        <span class="text-white text-[11px] font-bold">Kampus Utama Pesantren</span>
+                    </div>
+                </div>
+                <div class="aspect-4/3 rounded-2xl overflow-hidden group relative shadow-xs">
+                    <img src="/uploads/activities-ppru-sakatiga.webp" alt="Latihan Memanah Santri" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent opacity-0 group-hover:opacity-100 transition flex items-end p-3">
+                        <span class="text-white text-[11px] font-bold">Latihan Memanah Sunnah</span>
+                    </div>
+                </div>
+                <div class="aspect-4/3 rounded-2xl overflow-hidden group relative shadow-xs">
+                    <img src="/uploads/ppru-tahfidz.webp" alt="Halaqah Tahfidz" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent opacity-0 group-hover:opacity-100 transition flex items-end p-3">
+                        <span class="text-white text-[11px] font-bold">Halaqah Tahfidzul Qur'an</span>
+                    </div>
+                </div>
+                <div class="aspect-4/3 rounded-2xl overflow-hidden group relative shadow-xs">
+                    <img src="/uploads/ppru-muhadharah.webp" alt="Muhadharah 3 Bahasa" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent opacity-0 group-hover:opacity-100 transition flex items-end p-3">
+                        <span class="text-white text-[11px] font-bold">Muhadharah Pidato 3 Bahasa</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        {{-- 12. AGENDA & PENGUMUMAN UNIT TERKINI --}}
+        <section class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            {{-- Agenda --}}
+            <div class="lg:col-span-6 bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-gray-100 space-y-5">
+                <div class="flex items-center justify-between border-b border-gray-100 pb-3">
+                    <h3 class="font-black text-lg text-gray-900 flex items-center gap-2">
+                        <i class="fa-solid fa-calendar-days text-[#00843d]"></i>
+                        <span>Agenda &amp; Kalender</span>
+                    </h3>
+                    <a href="{{ route('agenda.index') }}" class="text-xs font-bold text-[#00843d] hover:underline">Semua &rarr;</a>
+                </div>
+                <div class="space-y-3">
+                    @forelse($agendas as $ag)
+                        <div class="flex items-start space-x-3.5 p-3.5 rounded-2xl bg-slate-50 border border-gray-100 hover:border-emerald-200 transition">
+                            <div class="bg-emerald-100 text-[#00843d] p-2.5 rounded-xl text-center shrink-0 min-w-[50px]">
+                                <span class="block text-[10px] font-bold uppercase">{{ $ag->event_date ? $ag->event_date->format('M') : 'AGENDA' }}</span>
+                                <span class="block text-base font-black">{{ $ag->event_date ? $ag->event_date->format('d') : '•' }}</span>
+                            </div>
+                            <div class="min-w-0 flex-1">
+                                <h4 class="font-bold text-xs sm:text-sm text-gray-900 line-clamp-1 hover:text-[#00843d]">
+                                    <a href="{{ route('agenda.show', $ag->slug) }}">{{ $ag->title }}</a>
+                                </h4>
+                                <p class="text-[11px] text-gray-500 mt-0.5 line-clamp-1">
+                                    <i class="fa-solid fa-location-dot mr-1 text-amber-500"></i> {{ $ag->location ?? 'Kampus PPRU Sakatiga' }}
+                                </p>
+                            </div>
+                        </div>
+                    @empty
+                        <p class="text-xs text-gray-400 py-4 text-center">Belum ada agenda terdaftar.</p>
+                    @endforelse
+                </div>
+            </div>
+
+            {{-- Pengumuman --}}
+            <div class="lg:col-span-6 bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-gray-100 space-y-5">
+                <div class="flex items-center justify-between border-b border-gray-100 pb-3">
+                    <h3 class="font-black text-lg text-gray-900 flex items-center gap-2">
+                        <i class="fa-solid fa-bullhorn text-amber-500"></i>
+                        <span>Pengumuman Resmi</span>
+                    </h3>
+                    <a href="{{ route('pengumuman.index') }}" class="text-xs font-bold text-[#00843d] hover:underline">Semua &rarr;</a>
+                </div>
+                <div class="space-y-3">
+                    @forelse($pengumumen as $pe)
+                        <div class="p-3.5 rounded-2xl bg-slate-50 border border-gray-100 hover:border-emerald-200 transition space-y-1">
+                            <span class="text-[10px] font-bold text-[#00843d] bg-emerald-50 px-2 py-0.5 rounded-md">Resmi Pesantren</span>
+                            <h4 class="font-bold text-xs sm:text-sm text-gray-900 hover:text-[#00843d] line-clamp-1">
+                                <a href="{{ route('pengumuman.show', $pe->slug) }}">{{ $pe->title }}</a>
+                            </h4>
+                            <p class="text-[10px] text-gray-400">
+                                <i class="fa-solid fa-clock mr-1"></i> {{ $pe->created_at ? $pe->created_at->translatedFormat('d F Y') : 'Terbaru' }}
+                            </p>
+                        </div>
+                    @empty
+                        <p class="text-xs text-gray-400 py-4 text-center">Belum ada pengumuman terdaftar.</p>
+                    @endforelse
+                </div>
+            </div>
+        </section>
+
+        {{-- 13. SARANA & FASILITAS PENUNJANG KHUSUS UNIT --}}
+        <section class="bg-white rounded-3xl p-6 sm:p-10 shadow-sm border border-gray-100 space-y-6 reveal-fade-up">
+            <div class="border-b border-gray-100 pb-4">
+                <span class="text-xs font-bold uppercase tracking-wider text-[#00843d] bg-emerald-50 px-3 py-1 rounded-full">
+                    Kenyamanan Belajar
+                </span>
+                <h2 class="text-2xl sm:text-3xl font-black text-gray-900 mt-2 tracking-tight">
+                    Fasilitas Penunjang Pendidikan
+                </h2>
+                <p class="text-xs text-gray-500 mt-1">Infrastruktur modern dan representatif untuk mendukung kenyamanan belajar santri</p>
+            </div>
+
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 text-center text-xs">
+                <div class="p-4 rounded-2xl bg-slate-50 border border-gray-100 hover:border-emerald-300 transition">
+                    <div class="w-12 h-12 mx-auto rounded-xl bg-emerald-100 text-[#00843d] flex items-center justify-center text-xl mb-2.5">
+                        <i class="fa-solid fa-chalkboard"></i>
+                    </div>
+                    <h4 class="font-bold text-gray-900">Ruang Kelas Multimedia</h4>
+                    <p class="text-[10px] text-gray-400 mt-1">AC, Proyektor &amp; Smart Audio</p>
+                </div>
+                <div class="p-4 rounded-2xl bg-slate-50 border border-gray-100 hover:border-emerald-300 transition">
+                    <div class="w-12 h-12 mx-auto rounded-xl bg-emerald-100 text-[#00843d] flex items-center justify-center text-xl mb-2.5">
+                        <i class="fa-solid fa-bed"></i>
+                    </div>
+                    <h4 class="font-bold text-gray-900">Asrama Santri Asri</h4>
+                    <p class="text-[10px] text-gray-400 mt-1">Musyrif Pembimbing 24 Jam</p>
+                </div>
+                <div class="p-4 rounded-2xl bg-slate-50 border border-gray-100 hover:border-emerald-300 transition">
+                    <div class="w-12 h-12 mx-auto rounded-xl bg-emerald-100 text-[#00843d] flex items-center justify-center text-xl mb-2.5">
+                        <i class="fa-solid fa-flask"></i>
+                    </div>
+                    <h4 class="font-bold text-gray-900">Lab Sains Terpadu</h4>
+                    <p class="text-[10px] text-gray-400 mt-1">Fisika, Kimia, &amp; Biologi</p>
+                </div>
+                <div class="p-4 rounded-2xl bg-slate-50 border border-gray-100 hover:border-emerald-300 transition">
+                    <div class="w-12 h-12 mx-auto rounded-xl bg-emerald-100 text-[#00843d] flex items-center justify-center text-xl mb-2.5">
+                        <i class="fa-solid fa-desktop"></i>
+                    </div>
+                    <h4 class="font-bold text-gray-900">Lab Komputer &amp; IT</h4>
+                    <p class="text-[10px] text-gray-400 mt-1">Koneksi Internet Edukasi</p>
+                </div>
+                <div class="p-4 rounded-2xl bg-slate-50 border border-gray-100 hover:border-emerald-300 transition">
+                    <div class="w-12 h-12 mx-auto rounded-xl bg-emerald-100 text-[#00843d] flex items-center justify-center text-xl mb-2.5">
+                        <i class="fa-solid fa-mosque"></i>
+                    </div>
+                    <h4 class="font-bold text-gray-900">Masjid Jami' Kampus</h4>
+                    <p class="text-[10px] text-gray-400 mt-1">Pusat Ibadah &amp; Halaqah</p>
+                </div>
+                <div class="p-4 rounded-2xl bg-slate-50 border border-gray-100 hover:border-emerald-300 transition">
+                    <div class="w-12 h-12 mx-auto rounded-xl bg-emerald-100 text-[#00843d] flex items-center justify-center text-xl mb-2.5">
+                        <i class="fa-solid fa-futbol"></i>
+                    </div>
+                    <h4 class="font-bold text-gray-900">Sarana Olahraga</h4>
+                    <p class="text-[10px] text-gray-400 mt-1">Panahan, Futsal &amp; Silat</p>
+                </div>
+            </div>
+        </section>
+
+        {{-- 14. ALUR PENDAFTARAN SANTRI BARU (PSB) & CTA PENDAFTARAN --}}
+        <section class="bg-gradient-to-br from-[#005a28] to-[#00843d] text-white rounded-3xl p-6 sm:p-10 shadow-xl space-y-6 reveal-fade-up">
+            <div class="border-b border-white/20 pb-4">
+                <span class="text-xs font-black uppercase tracking-wider text-amber-300 bg-black/20 px-3 py-1 rounded-full">
+                    Penerimaan Santri Baru (PSB)
+                </span>
+                <h2 class="text-2xl sm:text-3xl font-black text-white mt-2 tracking-tight">
+                    Alur Pendaftaran Masuk {{ $unit->name }}
+                </h2>
+                <p class="text-xs text-emerald-100 mt-1">Langkah mudah menjadi bagian dari keluarga besar Pondok Pesantren Raudhatul Ulum Sakatiga</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-4 gap-4 text-xs">
+                <div class="bg-white/10 backdrop-blur-xs p-5 rounded-2xl border border-white/15">
+                    <span class="w-7 h-7 rounded-full bg-amber-400 text-slate-950 font-black flex items-center justify-center text-xs mb-3">1</span>
+                    <h4 class="font-bold text-white text-sm">Daftar Online</h4>
+                    <p class="text-emerald-100 text-[11px] mt-1">Mengisi formulir PSB resmi melalui portal website pesantren.</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-xs p-5 rounded-2xl border border-white/15">
+                    <span class="w-7 h-7 rounded-full bg-amber-400 text-slate-950 font-black flex items-center justify-center text-xs mb-3">2</span>
+                    <h4 class="font-bold text-white text-sm">Verifikasi Berkas</h4>
+                    <p class="text-emerald-100 text-[11px] mt-1">Upload dokumen KK, Akta Kelahiran, raport, dan pas foto santri.</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-xs p-5 rounded-2xl border border-white/15">
+                    <span class="w-7 h-7 rounded-full bg-amber-400 text-slate-950 font-black flex items-center justify-center text-xs mb-3">3</span>
+                    <h4 class="font-bold text-white text-sm">Tes &amp; Wawancara</h4>
+                    <p class="text-emerald-100 text-[11px] mt-1">Ujian baca Al-Qur'an, potensi akademik, dan wawancara komitmen wali.</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-xs p-5 rounded-2xl border border-white/15">
+                    <span class="w-7 h-7 rounded-full bg-amber-400 text-slate-950 font-black flex items-center justify-center text-xs mb-3">4</span>
+                    <h4 class="font-bold text-white text-sm">Daftar Ulang</h4>
+                    <p class="text-emerald-100 text-[11px] mt-1">Pengumuman kelulusan, penyelesaian administrasi, dan penempatan asrama.</p>
+                </div>
+            </div>
+
+            <div class="pt-4 flex flex-wrap gap-4 items-center">
+                <a href="{{ route('ppdb.index') }}" class="bg-[#f59e0b] hover:bg-amber-400 text-slate-950 text-xs sm:text-sm font-black px-8 py-3.5 rounded-full shadow-lg hover:shadow-xl transition flex items-center space-x-2 transform hover:scale-105">
+                    <i class="fa-solid fa-graduation-cap text-base"></i>
+                    <span>Daftar PSB {{ $unit->short_name ?: 'Online' }} Sekarang</span>
+                </a>
+                @if($unit->phone)
+                    <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $unit->phone) }}?text=Assalamu%27alaikum%20Panitia%20PSB%20{{ urlencode($unit->name) }}" target="_blank" rel="noopener" class="bg-white/20 hover:bg-white/30 text-white text-xs sm:text-sm font-bold px-6 py-3.5 rounded-full transition flex items-center space-x-2">
+                        <i class="fa-brands fa-whatsapp text-emerald-300 text-base"></i>
+                        <span>Hubungi Panitia PSB</span>
+                    </a>
+                @endif
+            </div>
+        </section>
+
+        {{-- 15. UNIT PENDIDIKAN LAINNYA DI PONDOK PESANTREN RAUDHATUL ULUM --}}
+        @if(isset($otherUnits) && $otherUnits->isNotEmpty())
+            <section class="space-y-6 reveal-fade-up">
+                <div class="border-b border-gray-200 pb-3 flex items-center justify-between">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-[#00843d]">Eksplorasi Jenjang</span>
+                        <h2 class="text-xl sm:text-2xl font-black text-gray-900 mt-1">Unit Pendidikan Lainnya di PPRU</h2>
+                    </div>
+                    <a href="{{ route('pendidikan.index') }}" class="text-xs font-bold text-[#00843d] hover:underline flex items-center gap-1">
+                        <span>Lihat Semua Unit</span>
+                        <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                    </a>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                    @foreach($otherUnits as $ou)
+                        @php
+                            $cleanOuName = trim(preg_replace('/\s*\([^)]*\)\s*$/', '', $ou->name));
+                        @endphp
+                        <a href="{{ route('pendidikan.show', $ou->slug) }}" class="bg-white rounded-2xl p-4 border border-gray-100 hover:border-emerald-300 hover:shadow-md transition duration-300 group flex items-start space-x-3.5">
+                            <div class="w-10 h-10 rounded-xl bg-emerald-50 text-[#00843d] flex items-center justify-center text-sm shrink-0 group-hover:bg-[#00843d] group-hover:text-white transition">
+                                <i class="{{ $ou->icon ?: 'fa-solid fa-school' }}"></i>
+                            </div>
+                            <div class="min-w-0 flex-1">
+                                <h4 class="font-bold text-xs text-gray-900 group-hover:text-[#00843d] transition line-clamp-1">{{ $cleanOuName }}</h4>
+                                <p class="text-[10px] text-gray-400 mt-0.5">{{ $ou->category_type }} &bull; {{ $ou->badge ?: 'PPRU' }}</p>
+                                <span class="text-[10px] font-bold text-[#00843d] inline-flex items-center gap-1 mt-1 group-hover:underline">
+                                    <span>Lihat Profil</span>
+                                    <i class="fa-solid fa-chevron-right text-[8px]"></i>
+                                </span>
+                            </div>
+                        </a>
+                    @endforeach
+                </div>
+            </section>
+        @endif
+
     </div>
 </div>
 @endsection

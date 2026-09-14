@@ -1,8 +1,8 @@
 <?php
 
 use App\Models\ActivityLog;
+use App\Models\Bidang;
 use App\Models\Post;
-use App\Models\Setting;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
@@ -156,7 +156,7 @@ test('admin can manage bidang with rich content', function () {
         'role' => 'admin',
     ]);
 
-    $bidang = \App\Models\Bidang::create([
+    $bidang = Bidang::create([
         'name' => 'Laboratorium Komputer & Riset IT',
         'slug' => 'lab-komputer',
         'description' => '<p>Fasilitas komputasi modern untuk santri.</p>',
@@ -175,7 +175,7 @@ test('admin can manage bidang with rich content', function () {
     ]);
 
     $response->assertRedirect('/admin/bidang');
-    $this->assertDatabaseHas('bidangs', [
+    $this->assertDatabaseHas('fasilitas', [
         'id' => $bidang->id,
         'name' => 'Laboratorium Komputer & Riset IT Updated',
     ]);

@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Agenda;
 use App\Models\AnggotaDewan;
+use App\Models\Pengumuman;
+use App\Models\Post;
 use App\Models\UnitPendidikan;
 
 class UnitPendidikanController extends Controller
@@ -26,12 +29,27 @@ class UnitPendidikanController extends Controller
         if ($teachers->isEmpty()) {
             $teachers = AnggotaDewan::whereNotIn('fraction', ['Yayasan', 'Pimpinan Pesantren'])
                 ->orderBy('order', 'asc')
-                ->take(6)
+                ->take(8)
                 ->get();
         }
 
-        $otherUnits = UnitPendidikan::active()->where('id', '!=', $unit->id)->orderBy('order', 'asc')->take(6)->get();
+        $otherUnits = UnitPendidikan::active()->where('id', '!=', $unit->id)->orderBy('order', 'asc')->get();
 
-        return view('frontend.pendidikan.show', compact('unit', 'teachers', 'otherUnits'));
+        // Unit-specific or latest authentic pesantren agendas
+        $agendas = Agenda::orderBy('event_date', 'desc')->take(3)->get();
+
+        // Unit-specific or latest authentic pesantren announcements
+        $pengumumen = Pengumuman::orderBy('created_at', 'desc')->take(3)->get();
+
+        // Unit-specific or latest achievements
+        $prestasi = Post::whereHas('categories', function ($q) {
+            $q->where('slug', 'prestasi');
+        })->latest()->take(4)->get();
+
+        if ($prestasi->isEmpty()) {
+            $prestasi = Post::latest()->take(4)->get();
+        }
+
+        return view('frontend.pendidikan.show', compact('unit', 'teachers', 'otherUnits', 'agendas', 'pengumumen', 'prestasi'));
     }
 }

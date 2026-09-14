@@ -160,10 +160,10 @@
             <div>
                 &copy; {{ date('Y') }} <strong>Pondok Pesantren Raudhatul Ulum Sakatiga</strong>. All Rights Reserved.
             </div>
-            <div class="text-[11px] shrink-0">
-                <a href="https://berandadigital.net" target="_blank" rel="noopener noreferrer" class="hover:text-emerald-400 transition text-gray-400 inline-flex items-center gap-1.5 font-medium" title="Beranda Teknologi Digital">
-                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                    <span class="text-gray-300 hover:text-white hover:underline">Beranda Teknologi Digital</span>
+            <div class="text-[10.5px] shrink-0 font-normal">
+                <a href="https://berandadigital.net" target="_blank" rel="noopener noreferrer" class="text-slate-400/70 hover:text-slate-200 transition inline-flex items-center gap-1.5 font-normal tracking-wide opacity-80 hover:opacity-100" title="Beranda Teknologi Digital">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500/70 inline-block"></span>
+                    <span class="font-normal text-slate-400/80 hover:text-slate-200">Beranda Teknologi Digital</span>
                 </a>
             </div>
         </div>

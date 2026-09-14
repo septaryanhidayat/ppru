@@ -9,6 +9,8 @@ class Bidang extends Model
 {
     use HasFactory;
 
+    protected $table = 'fasilitas';
+
     protected $fillable = [
         'name',
         'slug',

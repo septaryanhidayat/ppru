@@ -9,6 +9,8 @@ class AnggotaDewan extends Model
 {
     use HasFactory;
 
+    protected $table = 'dewan_asatidz';
+
     protected $fillable = [
         'name',
         'slug',

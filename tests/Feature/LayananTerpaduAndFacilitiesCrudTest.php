@@ -248,7 +248,7 @@ test('admin can manage bidang (fasilitas & sarana sekolah) with thumbnail', func
     ]);
 
     $response->assertRedirect(route('admin.bidang.index'));
-    $this->assertDatabaseHas('bidangs', [
+    $this->assertDatabaseHas('fasilitas', [
         'name' => 'Laboratorium Multimedia dan Robotika',
         'thumbnail' => '/uploads/lab-multimedia.webp',
     ]);
@@ -265,7 +265,7 @@ test('admin can manage bidang (fasilitas & sarana sekolah) with thumbnail', func
     ]);
 
     $updateResponse->assertRedirect(route('admin.bidang.index'));
-    $this->assertDatabaseHas('bidangs', [
+    $this->assertDatabaseHas('fasilitas', [
         'id' => $bidang->id,
         'name' => 'Laboratorium Multimedia Modern',
         'thumbnail' => '/uploads/lab-multimedia-v2.webp',
@@ -274,12 +274,12 @@ test('admin can manage bidang (fasilitas & sarana sekolah) with thumbnail', func
     // Delete
     $deleteResponse = $this->actingAs($admin)->delete(route('admin.bidang.destroy', $bidang));
     $deleteResponse->assertRedirect(route('admin.bidang.index'));
-    $this->assertDatabaseMissing('bidangs', ['id' => $bidang->id]);
+    $this->assertDatabaseMissing('fasilitas', ['id' => $bidang->id]);
 });
 
 test('admin can manage dpc (program unggulan sekolah) with thumbnail', function () {
     $admin = User::factory()->create([
-        'email' => 'admin_dpc@ishum.sch.id',
+        'email' => 'admin_dpc@ppru.ac.id',
     ]);
 
     // Create
@@ -293,7 +293,7 @@ test('admin can manage dpc (program unggulan sekolah) with thumbnail', function 
     ]);
 
     $response->assertRedirect(route('admin.dpc.index'));
-    $this->assertDatabaseHas('dpcs', [
+    $this->assertDatabaseHas('program_unggulans', [
         'name' => 'Kelas Riset Ilmiah dan Olimpiade Sains',
         'address' => 'Sains & Teknologi',
         'thumbnail' => '/uploads/kelas-riset.webp',
@@ -312,7 +312,7 @@ test('admin can manage dpc (program unggulan sekolah) with thumbnail', function 
     ]);
 
     $updateResponse->assertRedirect(route('admin.dpc.index'));
-    $this->assertDatabaseHas('dpcs', [
+    $this->assertDatabaseHas('program_unggulans', [
         'id' => $dpc->id,
         'name' => 'Kelas Riset & KIR Nasional',
         'thumbnail' => '/uploads/kelas-riset-updated.webp',
@@ -321,5 +321,5 @@ test('admin can manage dpc (program unggulan sekolah) with thumbnail', function 
     // Delete
     $deleteResponse = $this->actingAs($admin)->delete(route('admin.dpc.destroy', $dpc));
     $deleteResponse->assertRedirect(route('admin.dpc.index'));
-    $this->assertDatabaseMissing('dpcs', ['id' => $dpc->id]);
+    $this->assertDatabaseMissing('program_unggulans', ['id' => $dpc->id]);
 });
