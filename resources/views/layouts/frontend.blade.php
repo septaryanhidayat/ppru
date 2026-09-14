@@ -197,18 +197,6 @@
         </div>
     </div>
 
-    {{-- WATERMARK BERANDA TEKNOLOGI DIGITAL (Kecil & Tidak Mencolok di Kanan Bawah) --}}
-    <div class="fixed bottom-1 right-2 z-20 pointer-events-auto">
-        <a href="https://berandadigital.net" 
-           target="_blank" 
-           rel="noopener noreferrer" 
-           class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-white/75 hover:bg-white text-[9px] sm:text-[10px] text-gray-400 hover:text-gray-700 shadow-2xs border border-gray-200/50 backdrop-blur-xs transition duration-200" 
-           title="Beranda Teknologi Digital">
-            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500/70"></span>
-            <span class="font-normal tracking-tight">Beranda Teknologi Digital</span>
-        </a>
-    </div>
-
     {{-- FLOATING BACK TO TOP BUTTON (Stacked di atas WhatsApp jika di scroll) --}}
     <button id="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="fixed bottom-20 right-5 z-30 bg-school-green hover:bg-emerald-800 text-white w-10 h-10 rounded-full shadow-xl flex items-center justify-center transition-all opacity-0 pointer-events-none duration-300 cursor-pointer border-2 border-white" aria-label="Kembali ke atas halaman">
         <i class="fa-solid fa-chevron-up text-xs" aria-hidden="true"></i>

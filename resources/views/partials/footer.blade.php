@@ -21,8 +21,8 @@
         {{-- 2. MAIN FOOTER CONTENT (4 KOLOM TERSTRUKTUR SEPERTI BAITUSSALAM) --}}
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-10 items-start text-center md:text-left">
             
-            {{-- KOLOM 1: IDENTITAS & LOGO PESANTREN (4 Kolom) --}}
-            <div class="lg:col-span-4 space-y-4 flex flex-col items-center md:items-start text-center md:text-left">
+            {{-- KOLOM 1: IDENTITAS & LOGO PESANTREN (3 Kolom) --}}
+            <div class="lg:col-span-3 space-y-4 flex flex-col items-center md:items-start text-center md:text-left">
                 <div class="flex items-center space-x-3 group justify-center md:justify-start">
                     <img src="/uploads/logo-ppru-transparent.png" 
                          alt="Logo Pondok Pesantren Raudhatul Ulum" 
@@ -58,8 +58,8 @@
                 </div>
             </div>
 
-            {{-- KOLOM 2: UNIT PENDIDIKAN (4 Kolom - Teks Bebas Terpotong) --}}
-            <div class="lg:col-span-3 space-y-3 flex flex-col items-center md:items-start w-full">
+            {{-- KOLOM 2: UNIT PENDIDIKAN (4 Kolom - Lapang & Tidak Terpotong) --}}
+            <div class="lg:col-span-4 space-y-3 flex flex-col items-center md:items-start w-full">
                 <h3 class="font-extrabold text-[#f59e0b] text-sm uppercase tracking-wider flex items-center justify-center md:justify-start gap-2 border-b border-gray-800 pb-2 w-full">
                     <i class="fa-solid fa-building-columns text-xs"></i>
                     <span>Unit Pendidikan</span>
@@ -67,19 +67,25 @@
                 <ul class="space-y-2.5 text-xs text-gray-300 w-full text-center md:text-left">
                     @if(isset($navUnitPendidikans) && $navUnitPendidikans->isNotEmpty())
                         @foreach($navUnitPendidikans->take(8) as $nu)
+                            @php
+                                $cleanUnitName = trim(preg_replace('/\s*\([^)]*\)\s*$/', '', $nu->name));
+                            @endphp
                             <li>
-                                <a href="{{ route('pendidikan.show', $nu->slug) }}" class="hover:text-[#fcd116] transition flex items-center justify-center md:justify-start text-left">
-                                    <i class="fa-solid fa-angle-right text-[10px] text-emerald-500 mr-2 shrink-0"></i>
-                                    <span class="leading-snug break-words">{{ $nu->name }}</span>
+                                <a href="{{ route('pendidikan.show', $nu->slug) }}" class="hover:text-[#fcd116] transition flex items-center justify-center md:justify-start text-left group">
+                                    <i class="fa-solid fa-angle-right text-[10px] text-emerald-500 mr-2 shrink-0 group-hover:translate-x-0.5 transition-transform"></i>
+                                    <span class="leading-relaxed">{{ $cleanUnitName }}</span>
                                 </a>
                             </li>
                         @endforeach
                     @else
-                        <li><a href="{{ route('pendidikan.index') }}" class="hover:text-[#fcd116] transition flex items-center justify-center md:justify-start"><i class="fa-solid fa-angle-right text-[10px] text-emerald-500 mr-2 shrink-0"></i> Madrasah Aliyah Raudhatul Ulum (MARU)</a></li>
-                        <li><a href="{{ route('pendidikan.index') }}" class="hover:text-[#fcd116] transition flex items-center justify-center md:justify-start"><i class="fa-solid fa-angle-right text-[10px] text-emerald-500 mr-2 shrink-0"></i> SMA IT Raudhatul Ulum</a></li>
-                        <li><a href="{{ route('pendidikan.index') }}" class="hover:text-[#fcd116] transition flex items-center justify-center md:justify-start"><i class="fa-solid fa-angle-right text-[10px] text-emerald-500 mr-2 shrink-0"></i> Madrasah Tsanawiyah Raudhatul Ulum (MATSARU)</a></li>
-                        <li><a href="{{ route('pendidikan.index') }}" class="hover:text-[#fcd116] transition flex items-center justify-center md:justify-start"><i class="fa-solid fa-angle-right text-[10px] text-emerald-500 mr-2 shrink-0"></i> SMP IT Raudhatul Ulum</a></li>
-                        <li><a href="{{ route('pendidikan.index') }}" class="hover:text-[#fcd116] transition flex items-center justify-center md:justify-start"><i class="fa-solid fa-angle-right text-[10px] text-emerald-500 mr-2 shrink-0"></i> Madrasah Tahfizhul Qur'an (MATQULARU)</a></li>
+                        <li><a href="{{ route('pendidikan.index') }}" class="hover:text-[#fcd116] transition flex items-center justify-center md:justify-start"><i class="fa-solid fa-angle-right text-[10px] text-emerald-500 mr-2 shrink-0"></i> Madrasah Aliyah Raudhatul Ulum</a></li>
+                        <li><a href="{{ route('pendidikan.index') }}" class="hover:text-[#fcd116] transition flex items-center justify-center md:justify-start"><i class="fa-solid fa-angle-right text-[10px] text-emerald-500 mr-2 shrink-0"></i> Madrasah Tsanawiyah Raudhatul Ulum</a></li>
+                        <li><a href="{{ route('pendidikan.index') }}" class="hover:text-[#fcd116] transition flex items-center justify-center md:justify-start"><i class="fa-solid fa-angle-right text-[10px] text-emerald-500 mr-2 shrink-0"></i> Madrasah Ibtidaiyah Raudhatul Ulum</a></li>
+                        <li><a href="{{ route('pendidikan.index') }}" class="hover:text-[#fcd116] transition flex items-center justify-center md:justify-start"><i class="fa-solid fa-angle-right text-[10px] text-emerald-500 mr-2 shrink-0"></i> Madrasah Tahfizhul Qur'an Lil Aulad</a></li>
+                        <li><a href="{{ route('pendidikan.index') }}" class="hover:text-[#fcd116] transition flex items-center justify-center md:justify-start"><i class="fa-solid fa-angle-right text-[10px] text-emerald-500 mr-2 shrink-0"></i> TK Islam Raudhatul Ulum</a></li>
+                        <li><a href="{{ route('pendidikan.index') }}" class="hover:text-[#fcd116] transition flex items-center justify-center md:justify-start"><i class="fa-solid fa-angle-right text-[10px] text-emerald-500 mr-2 shrink-0"></i> SMP Islam Terpadu Raudhatul Ulum</a></li>
+                        <li><a href="{{ route('pendidikan.index') }}" class="hover:text-[#fcd116] transition flex items-center justify-center md:justify-start"><i class="fa-solid fa-angle-right text-[10px] text-emerald-500 mr-2 shrink-0"></i> SMA Islam Terpadu Raudhatul Ulum</a></li>
+                        <li><a href="{{ route('pendidikan.index') }}" class="hover:text-[#fcd116] transition flex items-center justify-center md:justify-start"><i class="fa-solid fa-angle-right text-[10px] text-emerald-500 mr-2 shrink-0"></i> Institut Agama Islam Nur Raudhatul Ulum</a></li>
                     @endif
                     <li class="pt-1 text-center md:text-left">
                         <a href="{{ route('pendidikan.index') }}" class="font-bold text-[#f59e0b] hover:underline inline-flex items-center">
@@ -147,23 +153,38 @@
 
         </div>
 
-        {{-- 3. PEMISAH --}}
-        <div class="mt-12 mb-6 border-t border-gray-800"></div>
+        {{-- 3. LINK INFORMASI HUKUM & PORTAL (Diletakkan rapi di atas baris copyright) --}}
+        <div class="mt-12 pt-6 border-t border-gray-800/80 flex flex-wrap items-center justify-center sm:justify-between gap-4 text-xs text-gray-400">
+            <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
+                <a href="{{ route('page.privacy-policy') }}" class="hover:text-[#fcd116] transition inline-flex items-center gap-1.5">
+                    <i class="fa-solid fa-shield-halved text-[11px] text-emerald-400"></i>
+                    <span>Kebijakan Privasi</span>
+                </a>
+                <span class="text-gray-700 hidden sm:inline">&bull;</span>
+                <a href="{{ route('hubungi') }}" class="hover:text-[#fcd116] transition inline-flex items-center gap-1.5">
+                    <i class="fa-solid fa-headset text-[11px] text-emerald-400"></i>
+                    <span>Hubungi Kami</span>
+                </a>
+                <span class="text-gray-700 hidden sm:inline">&bull;</span>
+                <a href="/login" class="hover:text-[#fcd116] transition inline-flex items-center gap-1.5 font-semibold text-gray-300">
+                    <i class="fa-solid fa-lock text-[11px] text-[#f59e0b]"></i>
+                    <span>Portal Admin</span>
+                </a>
+            </div>
+            <div class="text-[11px] text-gray-400">
+                Pondok Pesantren Raudhatul Ulum Sakatiga &bull; Ogan Ilir, Sumatera Selatan
+            </div>
+        </div>
 
-        {{-- 4. COPYRIGHT --}}
-        <div class="flex flex-col sm:flex-row justify-between items-center text-xs text-gray-400 gap-3 text-center sm:text-left">
+        {{-- 4. BARIS PALING BAWAH (Copyright Kiri, Watermark Statis Paling Bawah Kanan) --}}
+        <div class="mt-4 pt-4 border-t border-gray-900 flex flex-col sm:flex-row justify-between items-center text-xs text-gray-400 gap-3 text-center sm:text-left pr-0 sm:pr-20 pb-4">
             <div>
                 &copy; {{ date('Y') }} <strong>Pondok Pesantren Raudhatul Ulum Sakatiga</strong>. All Rights Reserved.
             </div>
-            <div class="flex items-center space-x-4 text-[11px]">
-                <a href="{{ route('page.privacy-policy') }}" class="hover:text-white transition">Kebijakan Privasi</a>
-                <span>&bull;</span>
-                <a href="{{ route('hubungi') }}" class="hover:text-white transition">Hubungi Kami</a>
-                <span>&bull;</span>
-                <a href="/login" class="hover:text-[#f59e0b] font-semibold transition">Portal Admin</a>
-                <span>&bull;</span>
-                <a href="https://berandadigital.net" target="_blank" rel="noopener" class="hover:text-white transition text-gray-400" title="Beranda Teknologi Digital">
-                    Dev by <span class="text-gray-300 hover:underline">Beranda Teknologi Digital</span>
+            <div class="text-[11px] shrink-0">
+                <a href="https://berandadigital.net" target="_blank" rel="noopener noreferrer" class="hover:text-white transition text-gray-400 inline-flex items-center gap-1.5" title="Beranda Teknologi Digital">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                    <span>Dev by <span class="text-gray-300 hover:underline">Beranda Teknologi Digital</span></span>
                 </a>
             </div>
         </div>

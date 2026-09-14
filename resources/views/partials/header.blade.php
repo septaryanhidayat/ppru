@@ -126,9 +126,12 @@
 
                             @if(isset($navUnitPendidikans) && $navUnitPendidikans->isNotEmpty())
                                 @foreach($navUnitPendidikans as $nu)
+                                    @php
+                                        $cleanNuName = trim(preg_replace('/\s*\([^)]*\)\s*$/', '', $nu->name));
+                                    @endphp
                                     <a href="{{ route('pendidikan.show', $nu->slug) }}" class="block px-4 py-2 text-xs font-semibold text-gray-700 hover:bg-emerald-50 hover:text-[#00843d] transition">
                                         <div class="flex items-center justify-between">
-                                            <span class="font-bold truncate">{{ $nu->name }}</span>
+                                            <span class="font-bold truncate">{{ $cleanNuName }}</span>
                                             @if($nu->short_name)
                                                 <span class="text-[9px] bg-emerald-100 text-[#00843d] px-1.5 py-0.2 rounded font-bold shrink-0 ml-1.5">{{ $nu->short_name }}</span>
                                             @endif
@@ -138,28 +141,28 @@
                                 @endforeach
                             @else
                                 <a href="{{ route('pendidikan.index') }}" class="block px-4 py-2 text-xs font-semibold text-gray-700 hover:bg-emerald-50 hover:text-[#00843d] transition">
-                                    Madrasah Aliyah Raudhatul Ulum (MARU)
+                                    Madrasah Aliyah Raudhatul Ulum
                                 </a>
                                 <a href="{{ route('pendidikan.index') }}" class="block px-4 py-2 text-xs font-semibold text-gray-700 hover:bg-emerald-50 hover:text-[#00843d] transition">
-                                    SMA IT Raudhatul Ulum
+                                    Madrasah Tsanawiyah Raudhatul Ulum
                                 </a>
                                 <a href="{{ route('pendidikan.index') }}" class="block px-4 py-2 text-xs font-semibold text-gray-700 hover:bg-emerald-50 hover:text-[#00843d] transition">
-                                    Madrasah Tsanawiyah Raudhatul Ulum (MATSARU)
+                                    Madrasah Ibtidaiyah Raudhatul Ulum
                                 </a>
                                 <a href="{{ route('pendidikan.index') }}" class="block px-4 py-2 text-xs font-semibold text-gray-700 hover:bg-emerald-50 hover:text-[#00843d] transition">
-                                    SMP IT Raudhatul Ulum
+                                    Madrasah Tahfizhul Qur'an Lil Aulad
                                 </a>
                                 <a href="{{ route('pendidikan.index') }}" class="block px-4 py-2 text-xs font-semibold text-gray-700 hover:bg-emerald-50 hover:text-[#00843d] transition">
-                                    Madrasah Tahfizhul Qur'an (MATQULARU)
+                                    TK Islam Raudhatul Ulum
                                 </a>
                                 <a href="{{ route('pendidikan.index') }}" class="block px-4 py-2 text-xs font-semibold text-gray-700 hover:bg-emerald-50 hover:text-[#00843d] transition">
-                                    Madrasah Ibtidaiyah Raudhatul Ulum (MIRU)
+                                    SMP Islam Terpadu Raudhatul Ulum
                                 </a>
                                 <a href="{{ route('pendidikan.index') }}" class="block px-4 py-2 text-xs font-semibold text-gray-700 hover:bg-emerald-50 hover:text-[#00843d] transition">
-                                    TK Islam Raudhatul Ulum (TAKIRU)
+                                    SMA Islam Terpadu Raudhatul Ulum
                                 </a>
                                 <a href="{{ route('pendidikan.index') }}" class="block px-4 py-2 text-xs font-semibold text-gray-700 hover:bg-emerald-50 hover:text-[#00843d] transition">
-                                    Sekolah Tinggi Ilmu Tarbiyah (STITRU)
+                                    Institut Agama Islam Nur Raudhatul Ulum
                                 </a>
                             @endif
 
@@ -340,7 +343,7 @@
                 <a href="{{ route('pendidikan.index') }}" class="block py-1.5 font-bold text-[#00843d]">Katalog Semua Unit</a>
                 @if(isset($navUnitPendidikans))
                     @foreach($navUnitPendidikans as $nu)
-                        <a href="{{ route('pendidikan.show', $nu->slug) }}" class="block py-1.5 text-gray-600 hover:text-[#00843d] truncate">{{ $nu->name }}</a>
+                        <a href="{{ route('pendidikan.show', $nu->slug) }}" class="block py-1.5 text-gray-600 hover:text-[#00843d] truncate">{{ trim(preg_replace('/\s*\([^)]*\)\s*$/', '', $nu->name)) }}</a>
                     @endforeach
                 @endif
             </div>

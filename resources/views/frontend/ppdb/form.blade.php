@@ -64,11 +64,6 @@
                     </p>
                 </div>
             </div>
-                    <p class="text-xs text-slate-500 max-w-md mx-auto">
-                        Isi formulir dengan data yang sah dan lengkap. Tanda bintang (<span class="text-red-500 font-bold">*</span>) wajib diisi.
-                    </p>
-                </div>
-            </div>
 
             {{-- KOTAK PENGUMUMAN / INFO ATAS FORM --}}
             @if(!empty($formSettings['announcement']))

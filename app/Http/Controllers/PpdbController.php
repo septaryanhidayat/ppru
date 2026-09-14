@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ActivityLog;
 use App\Models\PpdbRegistration;
 use App\Models\Setting;
+use App\Models\UnitPendidikan;
 use App\Services\PpdbFormService;
 use App\Services\WebpService;
 use Carbon\Carbon;
@@ -25,8 +26,8 @@ class PpdbController extends Controller
             'wave' => Setting::get('ppdb_wave', 'Gelombang 1 (Aktif)'),
             'promo' => Setting::get('ppdb_promo', 'Potongan Biaya Masuk Up to 50% OFF (*S&K berlaku)'),
             'tagline' => Setting::get('ppdb_tagline', 'Mendidik Sepenuh Cinta. Membina Generasi Khairu Ummah yang Beraqidah Lurus, Berakhlak Mulia, Cerdas Sains, dan Berwawasan Global dengan Muadalah Al-Azhar Kairo.'),
-            'youtube_id' => Setting::get('ppdb_youtube_id', 'IrPVG8CYjRc'),
-            'video_title' => Setting::get('ppdb_video_title', 'Video Profil & Dokumentasi Pondok Pesantren Raudhatul Ulum Sakatiga'),
+            'youtube_id' => Setting::get('ppdb_youtube_id', 'LXtIbizPVvE'),
+            'video_title' => Setting::get('ppdb_video_title', 'Profil & Suasana Kehidupan Santri Pondok Pesantren Raudhatul Ulum Sakatiga'),
             'operational_weekday' => Setting::get('ppdb_operational_weekday', "Senin – Jum'at: Pukul 08.00 – 15.00 WIB"),
             'operational_weekend' => Setting::get('ppdb_operational_weekend', 'Sabtu: Pukul 08.00 – 12.00 WIB'),
             'secretariat' => Setting::get('ppdb_secretariat', 'Kompleks Sekretariat SPMB Pondok Pesantren Raudhatul Ulum, Sakatiga, Ogan Ilir'),
@@ -53,12 +54,11 @@ class PpdbController extends Controller
             'closing_desc' => Setting::get('ppdb_closing_desc', 'Semoga Ananda kelak bisa menjadi santri berilmu, beramal, berakhlak mulia, dan berbakti kepada orang tua serta umat. Aamiin'),
         ];
 
-        return view('frontend.ppdb.index', compact('settings'));
+        $unitPendidikans = UnitPendidikan::active()->orderBy('order', 'asc')->get();
+
+        return view('frontend.ppdb.index', compact('settings', 'unitPendidikans'));
     }
 
-    /**
-     * Display the PPDB Registration Form.
-     */
     /**
      * Display the PPDB Registration Form.
      */
@@ -92,13 +92,14 @@ class PpdbController extends Controller
             'bank_account' => Setting::get('ppdb_bank_account', '7011304251'),
             'bank_holder' => Setting::get('ppdb_bank_holder', 'YL. Fatmawati'),
             'registration_fee' => Setting::get('ppdb_registration_fee', 'Rp 250.000,-'),
-            'hotline_phone' => Setting::get('ppdb_hotline_phone', '0821-8268-0647'),
+            'hotline_phone' => Setting::get('ppdb_hotline_phone', '0812-7890-1950'),
         ];
 
         $groupedFields = PpdbFormService::getActiveFieldsGrouped();
         $sections = PpdbFormService::getSections();
+        $unitPendidikans = UnitPendidikan::active()->orderBy('order', 'asc')->get();
 
-        return view('frontend.ppdb.form', compact('formSettings', 'groupedFields', 'sections'));
+        return view('frontend.ppdb.form', compact('formSettings', 'groupedFields', 'sections', 'unitPendidikans'));
     }
 
     /**
