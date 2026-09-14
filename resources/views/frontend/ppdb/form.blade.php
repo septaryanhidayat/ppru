@@ -5,7 +5,7 @@
 
 @section('content')
 <div class="bg-gray-50 py-10 sm:py-14 font-['Poppins',sans-serif]">
-    <div class="max-w-3xl mx-auto px-4 sm:px-6">
+    <div class="max-w-4xl lg:max-w-5xl mx-auto px-4 sm:px-6">
 
         {{-- JIKA FORMULIR SEDANG DITUTUP SEMENTARA --}}
         @if(($formSettings['status'] ?? '1') === '0')
@@ -115,7 +115,7 @@
                             </div>
 
                             @if($secKey === 'pilihan')
-                                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5">
                                     @foreach($groupedFields[$secKey] as $f)
                                         @include('frontend.ppdb.partials.form_field', ['field' => $f])
                                     @endforeach

@@ -119,16 +119,16 @@
         <div class="grid grid-cols-4 md:grid-cols-8 gap-2.5 sm:gap-3 md:gap-3.5 text-center justify-items-center">
             @foreach($quickMenus as $qm)
             <a href="{{ $qm->url }}" 
-               class="group w-full flex flex-col items-center justify-between text-center p-2 sm:p-2.5 md:py-3.5 md:px-2 rounded-2xl border border-slate-200/90 hover:border-amber-400 bg-white hover:bg-gradient-to-b hover:from-slate-900 hover:to-slate-950 shadow-xs hover:shadow-xl hover:shadow-slate-950/20 transition-all duration-300 transform hover:-translate-y-1.5 min-h-[96px] sm:min-h-[104px] md:min-h-[112px]" 
+               class="group w-full flex flex-col items-center justify-between text-center p-2 sm:p-2.5 md:py-3.5 md:px-2 rounded-2xl border border-slate-200/90 hover:border-emerald-600 bg-white hover:bg-gradient-to-b hover:from-[#005a28] hover:to-emerald-950 shadow-xs hover:shadow-xl hover:shadow-emerald-950/20 transition-all duration-300 transform hover:-translate-y-1.5 min-h-[96px] sm:min-h-[104px] md:min-h-[112px] focus:outline-none focus:ring-2 focus:ring-[#00843d]" 
                aria-label="Menu {{ $qm->name }}">
-                <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-gradient-to-br from-slate-950 via-slate-900 to-[#005a28] border-2 border-amber-400/40 group-hover:border-amber-400 text-amber-400 group-hover:text-amber-300 flex items-center justify-center mx-auto mb-1.5 sm:mb-2 shadow-md shadow-slate-950/15 group-hover:shadow-lg group-hover:shadow-amber-500/25 group-hover:scale-110 transition-all duration-300">
+                <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-emerald-50 border border-emerald-200 group-hover:border-emerald-400 text-[#00843d] group-hover:bg-[#00843d] group-hover:text-white flex items-center justify-center mx-auto mb-1.5 sm:mb-2 shadow-xs group-hover:shadow-md group-hover:scale-110 transition-all duration-300">
                     @if(!empty($qm->is_image) && $qm->is_image)
                         <img src="{{ $qm->icon }}" alt="Ikon {{ $qm->name }}" class="w-6 h-6 sm:w-6 sm:h-6 md:w-7 md:h-7 object-contain group-hover:scale-105 transition" onerror="this.src='/uploads/logo-ppru-square.png'">
                     @else
                         <i class="{{ $qm->icon }} text-base sm:text-lg md:text-xl transition-transform duration-300 group-hover:scale-105" aria-hidden="true"></i>
                     @endif
                 </div>
-                <span class="text-[11px] sm:text-[11px] md:text-xs font-bold text-slate-800 group-hover:text-amber-400 text-center leading-tight block w-full tracking-tight px-0.5 transition-colors">
+                <span class="text-[11px] sm:text-[11px] md:text-xs font-black text-slate-900 group-hover:text-white text-center leading-tight block w-full tracking-tight px-0.5 transition-colors">
                     {{ $qm->name }}
                 </span>
             </a>

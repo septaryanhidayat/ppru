@@ -116,20 +116,20 @@
 
         <!-- TAMPILAN 3: TABEL DAFTAR LENGKAP NAMA PENGURUS YAYASAN PPRU -->
         <div x-show="viewMode === 'table'" x-cloak x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-2" x-transition:enter-end="opacity-100 translate-y-0">
-            <div class="bg-white rounded-3xl border border-gray-200 overflow-hidden shadow-sm">
-                <div class="p-6 bg-gradient-to-r from-emerald-900 to-[#00843d] text-white flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div class="bg-white rounded-3xl border border-emerald-100 overflow-hidden shadow-sm">
+                <div class="p-6 bg-white border-b border-gray-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                     <div>
-                        <span class="text-[10px] uppercase font-bold tracking-widest text-emerald-200 block">Daftar Lengkap</span>
-                        <h3 class="text-lg font-black text-white">Pengurus Yayasan &amp; Pimpinan Pesantren Raudhatul Ulum</h3>
+                        <span class="text-[10px] uppercase font-bold tracking-widest text-[#00843d] bg-emerald-50 px-3 py-1 rounded-full border border-emerald-100 inline-block mb-1">Daftar Lengkap</span>
+                        <h3 class="text-xl font-black text-gray-900">Pengurus Yayasan &amp; Pimpinan Pesantren Raudhatul Ulum</h3>
                     </div>
-                    <span class="px-3.5 py-1.5 rounded-full bg-white/20 text-white text-xs font-bold backdrop-blur-xs self-start sm:self-auto">
+                    <span class="px-3.5 py-1.5 rounded-full bg-emerald-50 text-[#00843d] border border-emerald-200 text-xs font-bold self-start sm:self-auto">
                         Total {{ $dewan->count() }} Pejabat &amp; Asatidz
                     </span>
                 </div>
 
                 <div class="overflow-x-auto">
-                    <table class="w-full text-left text-xs">
-                        <thead class="bg-slate-50 border-b border-gray-200 text-slate-600 uppercase font-black tracking-wider text-[10px]">
+                    <table class="w-full text-left text-xs bg-white">
+                        <thead class="bg-white border-b-2 border-emerald-500 text-slate-700 uppercase font-black tracking-wider text-[10px]">
                             <tr>
                                 <th class="py-3.5 px-4 text-center w-12">No</th>
                                 <th class="py-3.5 px-4">Foto &amp; Nama Lengkap</th>

@@ -18,7 +18,7 @@
             <div>
                 <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Ekstrakurikuler &amp; Club</h1>
                 <p class="text-sm text-emerald-100 mt-1 font-light">
-                    Mengasah bakat, kepemimpinan, kemandirian, dan persaudaraan santri SMA IT PPRU.
+                    Mengasah bakat, kepemimpinan, kemandirian, dan persaudaraan santri Pondok Pesantren Raudhatul Ulum Sakatiga.
                 </p>
             </div>
         </div>

@@ -36,7 +36,7 @@
                     {{ $item->title }}
                 </h3>
                 <span class="text-xs text-[#00913e] font-semibold mt-1">
-                    {{ $item->excerpt ?: 'Alumni SMA IT PPRU' }}
+                    {{ $item->excerpt ?: 'Alumni Pondok Pesantren Raudhatul Ulum' }}
                 </span>
                 <span class="inline-block mt-3 bg-emerald-50 text-emerald-700 text-[10px] font-bold px-2.5 py-0.5 rounded-full">
                     Terverifikasi

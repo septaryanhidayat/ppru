@@ -387,25 +387,55 @@
                             </label>
                             <span class="text-[10px] text-slate-400">Toolbar format penulisan</span>
                         </div>
-                        <div class="flex flex-wrap items-center justify-between gap-1 bg-slate-100/90 border border-b-0 border-slate-200 rounded-t-xl px-3 py-1.5 text-xs text-slate-700">
-                            <div class="flex items-center gap-1">
+                        <div class="flex flex-wrap items-center justify-between gap-1.5 bg-slate-100/90 border border-b-0 border-slate-200 rounded-t-xl px-3 py-2 text-xs text-slate-700">
+                            <div class="flex flex-wrap items-center gap-1">
                                 <button type="button" onclick="formatTextarea('ppdb_alur_textarea', 'bold')" title="Tebal (Bold)" class="w-7 h-7 rounded hover:bg-white hover:shadow-xs font-bold transition flex items-center justify-center cursor-pointer border border-transparent hover:border-slate-300"><b>B</b></button>
                                 <button type="button" onclick="formatTextarea('ppdb_alur_textarea', 'italic')" title="Miring (Italic)" class="w-7 h-7 rounded hover:bg-white hover:shadow-xs italic font-serif transition flex items-center justify-center cursor-pointer border border-transparent hover:border-slate-300"><i>I</i></button>
                                 <button type="button" onclick="formatTextarea('ppdb_alur_textarea', 'underline')" title="Garis Bawah (Underline)" class="w-7 h-7 rounded hover:bg-white hover:shadow-xs underline transition flex items-center justify-center cursor-pointer border border-transparent hover:border-slate-300"><u>U</u></button>
+                                <button type="button" onclick="formatTextarea('ppdb_alur_textarea', 'strike')" title="Coret (Strikethrough)" class="w-7 h-7 rounded hover:bg-white hover:shadow-xs line-through transition flex items-center justify-center cursor-pointer border border-transparent hover:border-slate-300"><s>S</s></button>
                                 <span class="w-[1px] h-4 bg-slate-300 mx-1"></span>
+                                <button type="button" onclick="formatTextarea('ppdb_alur_textarea', 'left')" title="Rata Kiri (Left)" class="h-7 px-2 rounded hover:bg-white hover:shadow-xs text-[11px] font-semibold transition flex items-center gap-1 cursor-pointer border border-transparent hover:border-slate-300">
+                                    <i class="fa-solid fa-align-left text-[10px]"></i>
+                                    <span>Kiri</span>
+                                </button>
                                 <button type="button" onclick="formatTextarea('ppdb_alur_textarea', 'center')" title="Rata Tengah (Center)" class="h-7 px-2 rounded hover:bg-white hover:shadow-xs text-[11px] font-semibold transition flex items-center gap-1 cursor-pointer border border-transparent hover:border-slate-300">
                                     <i class="fa-solid fa-align-center text-[10px]"></i>
                                     <span>Tengah</span>
                                 </button>
-                                <button type="button" onclick="formatTextarea('ppdb_alur_textarea', 'bullet')" title="Poin / Bullet" class="h-7 px-2 rounded hover:bg-white hover:shadow-xs text-[11px] font-semibold transition flex items-center gap-1 cursor-pointer border border-transparent hover:border-slate-300">
+                                <button type="button" onclick="formatTextarea('ppdb_alur_textarea', 'right')" title="Rata Kanan (Right)" class="h-7 px-2 rounded hover:bg-white hover:shadow-xs text-[11px] font-semibold transition flex items-center gap-1 cursor-pointer border border-transparent hover:border-slate-300">
+                                    <i class="fa-solid fa-align-right text-[10px]"></i>
+                                    <span>Kanan</span>
+                                </button>
+                                <button type="button" onclick="formatTextarea('ppdb_alur_textarea', 'justify')" title="Rata Penuh (Justify)" class="h-7 px-2 rounded bg-white shadow-xs text-[#00843d] border border-emerald-300 text-[11px] font-bold transition flex items-center gap-1 cursor-pointer">
+                                    <i class="fa-solid fa-align-justify text-[10px]"></i>
+                                    <span>Rata Penuh</span>
+                                </button>
+                                <span class="w-[1px] h-4 bg-slate-300 mx-1"></span>
+                                <button type="button" onclick="formatTextarea('ppdb_alur_textarea', 'heading')" title="Sub Judul (H3)" class="h-7 px-2 rounded hover:bg-white hover:shadow-xs text-[11px] font-bold transition flex items-center gap-1 cursor-pointer border border-transparent hover:border-slate-300">
+                                    <span>H3</span>
+                                </button>
+                                <button type="button" onclick="formatTextarea('ppdb_alur_textarea', 'bullet')" title="Daftar Poin" class="h-7 px-2 rounded hover:bg-white hover:shadow-xs text-[11px] font-semibold transition flex items-center gap-1 cursor-pointer border border-transparent hover:border-slate-300">
                                     <i class="fa-solid fa-list-ul text-[10px]"></i>
                                     <span>Poin</span>
+                                </button>
+                                <button type="button" onclick="formatTextarea('ppdb_alur_textarea', 'number')" title="Daftar Angka" class="h-7 px-2 rounded hover:bg-white hover:shadow-xs text-[11px] font-semibold transition flex items-center gap-1 cursor-pointer border border-transparent hover:border-slate-300">
+                                    <i class="fa-solid fa-list-ol text-[10px]"></i>
+                                    <span>Angka</span>
+                                </button>
+                                <button type="button" onclick="formatTextarea('ppdb_alur_textarea', 'quote')" title="Kutipan / Catatan" class="h-7 px-2 rounded hover:bg-white hover:shadow-xs text-[11px] font-semibold transition flex items-center gap-1 cursor-pointer border border-transparent hover:border-slate-300">
+                                    <i class="fa-solid fa-quote-left text-[10px]"></i>
+                                </button>
+                                <button type="button" onclick="formatTextarea('ppdb_alur_textarea', 'clear')" title="Hapus Tag Format" class="h-7 px-2 rounded hover:bg-white hover:shadow-xs text-[11px] text-red-600 font-semibold transition flex items-center gap-1 cursor-pointer border border-transparent hover:border-slate-300">
+                                    <i class="fa-solid fa-eraser text-[10px]"></i>
                                 </button>
                             </div>
                             <div class="flex items-center gap-1 text-[10px] text-slate-500">
                                 <button type="button" onclick="expandTextarea('ppdb_alur_textarea', 80)" class="px-2 py-1 rounded bg-white hover:bg-slate-50 border border-slate-200 font-semibold transition cursor-pointer inline-flex items-center gap-1">
                                     <i class="fa-solid fa-arrows-up-down text-[9px]"></i>
                                     <span>Perbesar Kotak</span>
+                                </button>
+                                <button type="button" onclick="expandTextarea('ppdb_alur_textarea', -80)" class="px-2 py-1 rounded bg-white hover:bg-slate-50 border border-slate-200 font-semibold transition cursor-pointer">
+                                    <span>Perkecil</span>
                                 </button>
                             </div>
                         </div>
@@ -630,23 +660,44 @@
                         </div>
                         
                         {{-- Writing Toolbar FAQ --}}
-                        <div class="flex flex-wrap items-center justify-between gap-1 bg-slate-100/90 border border-b-0 border-slate-200 rounded-t-xl px-3 py-1.5 text-xs text-slate-700">
+                        <div class="flex flex-wrap items-center justify-between gap-1.5 bg-slate-100/90 border border-b-0 border-slate-200 rounded-t-xl px-3 py-2 text-xs text-slate-700">
                             <div class="flex flex-wrap items-center gap-1">
                                 <button type="button" onclick="formatTextarea('ppdb_faq_textarea', 'bold')" title="Tebal (Bold)" class="w-7 h-7 rounded hover:bg-white hover:shadow-xs font-bold transition flex items-center justify-center cursor-pointer border border-transparent hover:border-slate-300"><b>B</b></button>
                                 <button type="button" onclick="formatTextarea('ppdb_faq_textarea', 'italic')" title="Miring (Italic)" class="w-7 h-7 rounded hover:bg-white hover:shadow-xs italic font-serif transition flex items-center justify-center cursor-pointer border border-transparent hover:border-slate-300"><i>I</i></button>
                                 <button type="button" onclick="formatTextarea('ppdb_faq_textarea', 'underline')" title="Garis Bawah (Underline)" class="w-7 h-7 rounded hover:bg-white hover:shadow-xs underline transition flex items-center justify-center cursor-pointer border border-transparent hover:border-slate-300"><u>U</u></button>
+                                <button type="button" onclick="formatTextarea('ppdb_faq_textarea', 'strike')" title="Coret (Strikethrough)" class="w-7 h-7 rounded hover:bg-white hover:shadow-xs line-through transition flex items-center justify-center cursor-pointer border border-transparent hover:border-slate-300"><s>S</s></button>
                                 <span class="w-[1px] h-4 bg-slate-300 mx-1"></span>
+                                <button type="button" onclick="formatTextarea('ppdb_faq_textarea', 'left')" title="Rata Kiri (Left)" class="h-7 px-2 rounded hover:bg-white hover:shadow-xs text-[11px] font-semibold transition flex items-center gap-1 cursor-pointer border border-transparent hover:border-slate-300">
+                                    <i class="fa-solid fa-align-left text-[10px]"></i>
+                                    <span>Kiri</span>
+                                </button>
                                 <button type="button" onclick="formatTextarea('ppdb_faq_textarea', 'center')" title="Rata Tengah (Center)" class="h-7 px-2 rounded hover:bg-white hover:shadow-xs text-[11px] font-semibold transition flex items-center gap-1 cursor-pointer border border-transparent hover:border-slate-300">
                                     <i class="fa-solid fa-align-center text-[10px]"></i>
                                     <span>Tengah</span>
                                 </button>
+                                <button type="button" onclick="formatTextarea('ppdb_faq_textarea', 'right')" title="Rata Kanan (Right)" class="h-7 px-2 rounded hover:bg-white hover:shadow-xs text-[11px] font-semibold transition flex items-center gap-1 cursor-pointer border border-transparent hover:border-slate-300">
+                                    <i class="fa-solid fa-align-right text-[10px]"></i>
+                                    <span>Kanan</span>
+                                </button>
+                                <button type="button" onclick="formatTextarea('ppdb_faq_textarea', 'justify')" title="Rata Penuh (Justify)" class="h-7 px-2 rounded bg-white shadow-xs text-[#00843d] border border-emerald-300 text-[11px] font-bold transition flex items-center gap-1 cursor-pointer">
+                                    <i class="fa-solid fa-align-justify text-[10px]"></i>
+                                    <span>Rata Penuh</span>
+                                </button>
+                                <span class="w-[1px] h-4 bg-slate-300 mx-1"></span>
                                 <button type="button" onclick="formatTextarea('ppdb_faq_textarea', 'pipe')" title="Sisipkan Format Pipa FAQ (Pertanyaan | Jawaban)" class="h-7 px-2.5 rounded bg-emerald-100/90 hover:bg-emerald-200 text-[#00843d] text-[11px] font-bold transition flex items-center gap-1 cursor-pointer border border-emerald-300">
                                     <i class="fa-solid fa-plus text-[9px]"></i>
-                                    <span>Format Pipa FAQ (|)</span>
+                                    <span>+ Format Pipa FAQ (|)</span>
                                 </button>
                                 <button type="button" onclick="formatTextarea('ppdb_faq_textarea', 'bullet')" title="Daftar Poin" class="h-7 px-2 rounded hover:bg-white hover:shadow-xs text-[11px] font-semibold transition flex items-center gap-1 cursor-pointer border border-transparent hover:border-slate-300">
                                     <i class="fa-solid fa-list-ul text-[10px]"></i>
                                     <span>Poin</span>
+                                </button>
+                                <button type="button" onclick="formatTextarea('ppdb_faq_textarea', 'number')" title="Daftar Angka" class="h-7 px-2 rounded hover:bg-white hover:shadow-xs text-[11px] font-semibold transition flex items-center gap-1 cursor-pointer border border-transparent hover:border-slate-300">
+                                    <i class="fa-solid fa-list-ol text-[10px]"></i>
+                                    <span>Angka</span>
+                                </button>
+                                <button type="button" onclick="formatTextarea('ppdb_faq_textarea', 'clear')" title="Hapus Tag Format" class="h-7 px-2 rounded hover:bg-white hover:shadow-xs text-[11px] text-red-600 font-semibold transition flex items-center gap-1 cursor-pointer border border-transparent hover:border-slate-300">
+                                    <i class="fa-solid fa-eraser text-[10px]"></i>
                                 </button>
                             </div>
                             <div class="flex items-center gap-1.5 text-[10px] text-slate-500">
@@ -696,21 +747,48 @@
                             <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider">Isi Doa &amp; Ajakan Harapan</label>
                             <span class="text-[10px] text-slate-400">Toolbar format penulisan</span>
                         </div>
-                        <div class="flex flex-wrap items-center justify-between gap-1 bg-slate-100/90 border border-b-0 border-slate-200 rounded-t-xl px-3 py-1.5 text-xs text-slate-700">
-                            <div class="flex items-center gap-1">
+                        <div class="flex flex-wrap items-center justify-between gap-1.5 bg-slate-100/90 border border-b-0 border-slate-200 rounded-t-xl px-3 py-2 text-xs text-slate-700">
+                            <div class="flex flex-wrap items-center gap-1">
                                 <button type="button" onclick="formatTextarea('ppdb_closing_desc_textarea', 'bold')" title="Tebal (Bold)" class="w-7 h-7 rounded hover:bg-white hover:shadow-xs font-bold transition flex items-center justify-center cursor-pointer border border-transparent hover:border-slate-300"><b>B</b></button>
                                 <button type="button" onclick="formatTextarea('ppdb_closing_desc_textarea', 'italic')" title="Miring (Italic)" class="w-7 h-7 rounded hover:bg-white hover:shadow-xs italic font-serif transition flex items-center justify-center cursor-pointer border border-transparent hover:border-slate-300"><i>I</i></button>
                                 <button type="button" onclick="formatTextarea('ppdb_closing_desc_textarea', 'underline')" title="Garis Bawah" class="w-7 h-7 rounded hover:bg-white hover:shadow-xs underline transition flex items-center justify-center cursor-pointer border border-transparent hover:border-slate-300"><u>U</u></button>
+                                <button type="button" onclick="formatTextarea('ppdb_closing_desc_textarea', 'strike')" title="Coret (Strikethrough)" class="w-7 h-7 rounded hover:bg-white hover:shadow-xs line-through transition flex items-center justify-center cursor-pointer border border-transparent hover:border-slate-300"><s>S</s></button>
                                 <span class="w-[1px] h-4 bg-slate-300 mx-1"></span>
+                                <button type="button" onclick="formatTextarea('ppdb_closing_desc_textarea', 'left')" title="Rata Kiri (Left)" class="h-7 px-2 rounded hover:bg-white hover:shadow-xs text-[11px] font-semibold transition flex items-center gap-1 cursor-pointer border border-transparent hover:border-slate-300">
+                                    <i class="fa-solid fa-align-left text-[10px]"></i>
+                                    <span>Kiri</span>
+                                </button>
                                 <button type="button" onclick="formatTextarea('ppdb_closing_desc_textarea', 'center')" title="Rata Tengah" class="h-7 px-2 rounded hover:bg-white hover:shadow-xs text-[11px] font-semibold transition flex items-center gap-1 cursor-pointer border border-transparent hover:border-slate-300">
                                     <i class="fa-solid fa-align-center text-[10px]"></i>
                                     <span>Tengah</span>
+                                </button>
+                                <button type="button" onclick="formatTextarea('ppdb_closing_desc_textarea', 'right')" title="Rata Kanan (Right)" class="h-7 px-2 rounded hover:bg-white hover:shadow-xs text-[11px] font-semibold transition flex items-center gap-1 cursor-pointer border border-transparent hover:border-slate-300">
+                                    <i class="fa-solid fa-align-right text-[10px]"></i>
+                                    <span>Kanan</span>
+                                </button>
+                                <button type="button" onclick="formatTextarea('ppdb_closing_desc_textarea', 'justify')" title="Rata Penuh (Justify)" class="h-7 px-2 rounded bg-white shadow-xs text-[#00843d] border border-emerald-300 text-[11px] font-bold transition flex items-center gap-1 cursor-pointer">
+                                    <i class="fa-solid fa-align-justify text-[10px]"></i>
+                                    <span>Rata Penuh</span>
+                                </button>
+                                <span class="w-[1px] h-4 bg-slate-300 mx-1"></span>
+                                <button type="button" onclick="formatTextarea('ppdb_closing_desc_textarea', 'bullet')" title="Daftar Poin" class="h-7 px-2 rounded hover:bg-white hover:shadow-xs text-[11px] font-semibold transition flex items-center gap-1 cursor-pointer border border-transparent hover:border-slate-300">
+                                    <i class="fa-solid fa-list-ul text-[10px]"></i>
+                                    <span>Poin</span>
+                                </button>
+                                <button type="button" onclick="formatTextarea('ppdb_closing_desc_textarea', 'quote')" title="Kutipan Doa" class="h-7 px-2 rounded hover:bg-white hover:shadow-xs text-[11px] font-semibold transition flex items-center gap-1 cursor-pointer border border-transparent hover:border-slate-300">
+                                    <i class="fa-solid fa-quote-left text-[10px]"></i>
+                                </button>
+                                <button type="button" onclick="formatTextarea('ppdb_closing_desc_textarea', 'clear')" title="Hapus Tag Format" class="h-7 px-2 rounded hover:bg-white hover:shadow-xs text-[11px] text-red-600 font-semibold transition flex items-center gap-1 cursor-pointer border border-transparent hover:border-slate-300">
+                                    <i class="fa-solid fa-eraser text-[10px]"></i>
                                 </button>
                             </div>
                             <div class="flex items-center gap-1 text-[10px] text-slate-500">
                                 <button type="button" onclick="expandTextarea('ppdb_closing_desc_textarea', 80)" class="px-2 py-1 rounded bg-white hover:bg-slate-50 border border-slate-200 font-semibold transition cursor-pointer inline-flex items-center gap-1">
                                     <i class="fa-solid fa-arrows-up-down text-[9px]"></i>
                                     <span>Perbesar</span>
+                                </button>
+                                <button type="button" onclick="expandTextarea('ppdb_closing_desc_textarea', -80)" class="px-2 py-1 rounded bg-white hover:bg-slate-50 border border-slate-200 font-semibold transition cursor-pointer">
+                                    <span>Perkecil</span>
                                 </button>
                             </div>
                         </div>
@@ -1146,14 +1224,38 @@ function formatTextarea(id, type) {
         case 'underline':
             replacement = selected ? `<u>${selected}</u>` : `<u>teks garis bawah</u>`;
             break;
+        case 'strike':
+            replacement = selected ? `<s>${selected}</s>` : `<s>teks coret</s>`;
+            break;
+        case 'left':
+            replacement = selected ? `<div align="left">${selected}</div>` : `<div align="left">Teks rata kiri</div>`;
+            break;
         case 'center':
-            replacement = selected ? `<center>${selected}</center>` : `<center>teks rata tengah</center>`;
+            replacement = selected ? `<center>${selected}</center>` : `<center>Teks rata tengah</center>`;
+            break;
+        case 'right':
+            replacement = selected ? `<div align="right">${selected}</div>` : `<div align="right">Teks rata kanan</div>`;
+            break;
+        case 'justify':
+            replacement = selected ? `<div align="justify" style="text-align: justify;">${selected}</div>` : `<div align="justify" style="text-align: justify;">Teks rata penuh (kiri dan kanan)</div>`;
+            break;
+        case 'heading':
+            replacement = selected ? `<h3>${selected}</h3>` : `<h3>Sub Judul Penting</h3>\n`;
+            break;
+        case 'bullet':
+            replacement = selected ? `• ${selected}` : `• Poin penjelasan baru\n`;
+            break;
+        case 'number':
+            replacement = selected ? `1. ${selected}` : `1. Langkah pertama\n2. Langkah kedua\n`;
+            break;
+        case 'quote':
+            replacement = selected ? `<blockquote>${selected}</blockquote>` : `<blockquote>Catatan atau petunjuk khusus di sini</blockquote>\n`;
             break;
         case 'pipe':
             replacement = selected ? ` | ${selected}` : `\nPertanyaan Baru? | Jawaban lengkap pertanyaan di sini.`;
             break;
-        case 'bullet':
-            replacement = selected ? `• ${selected}` : `• Poin penjelasan baru\n`;
+        case 'clear':
+            replacement = selected ? selected.replace(/<[^>]*>?/gm, '') : '';
             break;
     }
 

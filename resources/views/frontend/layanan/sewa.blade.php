@@ -6,7 +6,7 @@
 @section('content')
 {{-- 1. COMPACT HERO HEADER --}}
 <section class="relative bg-gradient-to-r from-emerald-950 via-[#00843d] to-emerald-900 text-white py-8 sm:py-10 px-4 sm:px-6 lg:px-8 overflow-hidden">
-    <div class="max-w-6xl mx-auto relative z-10 space-y-2">
+    <div class="max-w-7xl mx-auto relative z-10 space-y-2">
         <nav class="text-xs text-emerald-200 flex items-center space-x-2">
             <a href="{{ route('home') }}" class="hover:text-white transition flex items-center gap-1">
                 <i class="fa-solid fa-house text-[10px]"></i>
@@ -45,7 +45,7 @@
 
 {{-- 2. MAIN SPLIT INTERFACE --}}
 <div class="bg-slate-50/70 py-8 sm:py-12">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {{-- NOTIFIKASI SUKSES --}}
         @if(session('success'))
@@ -71,13 +71,13 @@
         {{-- TWO-COLUMN BALANCED GRID --}}
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
             
-            {{-- KOLOM KIRI (5 Kolom): SATU KOTAK CARD TERPADU (PERSYARATAN, WAKTU, BIAYA, PRODUK, PENGADUAN) --}}
+            {{-- KOLOM KIRI (5 Kolom): SATU KOTAK CARD TERPADU (PERSYARATAN, PROSEDUR, WAKTU, BIAYA, PRODUK) --}}
             <div class="lg:col-span-5 flex flex-col">
-                <div class="bg-white rounded-3xl p-6 sm:p-7 border border-slate-200/90 shadow-md flex flex-col justify-between flex-1 space-y-5" x-data="{ activeTab: 0 }">
+                <div class="bg-white rounded-3xl p-6 sm:p-7 border border-slate-200/90 shadow-md flex flex-col justify-between flex-1 space-y-6">
                     
-                    <div class="space-y-4">
+                    <div class="space-y-5">
                         {{-- Header Card --}}
-                        <div class="pb-3 border-b border-slate-100 flex items-center justify-between">
+                        <div class="pb-3.5 border-b border-slate-100 flex items-center justify-between">
                             <div>
                                 <span class="text-[10px] font-black uppercase tracking-wider text-amber-700 bg-amber-50 px-2.5 py-0.5 rounded-full border border-amber-200">
                                     Pedoman &amp; Ketentuan
@@ -91,40 +91,40 @@
                             </div>
                         </div>
 
-                        {{-- Tab Switcher Pills --}}
+                        {{-- Unified Specification Sections (No Truncated Tabs) --}}
                         @php
                             $accordionList = !empty($accordions) ? $accordions : [];
+                            // Pisahkan Pengaduan untuk diletakkan di card bawah full-width
+                            $specList = array_filter($accordionList, function($item) {
+                                return !str_contains(strtolower($item['title'] ?? ''), 'pengaduan');
+                            });
                         @endphp
 
-                        @if(!empty($accordionList))
-                            <div class="flex flex-wrap gap-1 p-1 bg-slate-100/90 rounded-2xl border border-slate-200/60">
-                                @foreach($accordionList as $idx => $tab)
-                                    <button type="button" 
-                                            @click="activeTab = {{ $idx }}" 
-                                            :class="activeTab === {{ $idx }} ? 'bg-[#00843d] text-white shadow-xs font-bold' : 'text-slate-600 hover:text-slate-900 font-medium hover:bg-white/60'" 
-                                            class="flex-1 min-w-[85px] text-[11px] py-1.5 px-2 rounded-xl transition text-center truncate cursor-pointer select-none">
-                                        {{ $tab['title'] }}
-                                    </button>
-                                @endforeach
-                            </div>
-
-                            {{-- Tab Content Box --}}
-                            <div class="bg-slate-50/70 rounded-2xl p-4 sm:p-5 border border-slate-200/70 min-h-[260px] max-h-[460px] overflow-y-auto">
-                                @foreach($accordionList as $idx => $tab)
-                                    <div x-show="activeTab === {{ $idx }}" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 translate-y-1" x-transition:enter-end="opacity-100 translate-y-0" class="space-y-2.5">
-                                        <div class="flex items-center space-x-2 pb-2 border-b border-slate-200/80">
-                                            <span class="w-5 h-5 rounded-md bg-emerald-100 text-[#00843d] flex items-center justify-center text-[10px] font-black">
-                                                <i class="fa-solid fa-check"></i>
-                                            </span>
-                                            <h4 class="font-bold text-xs sm:text-sm text-slate-900">{{ $tab['title'] }}</h4>
-                                        </div>
-                                        <div class="text-xs text-slate-600 leading-relaxed prose prose-sm max-w-none [&>ul]:list-disc [&>ul]:pl-5 [&>ul]:space-y-1 [&>ol]:list-decimal [&>ol]:pl-5 [&>p]:mb-1.5">
-                                            {!! $tab['content'] !!}
-                                        </div>
+                        <div class="space-y-4">
+                            @foreach($specList as $item)
+                                <div class="p-4 rounded-2xl bg-slate-50/80 border border-slate-200/70 space-y-2">
+                                    <div class="flex items-center space-x-2 pb-2 border-b border-slate-200/80">
+                                        <span class="w-6 h-6 rounded-lg bg-emerald-100 text-[#00843d] flex items-center justify-center text-xs font-black shrink-0">
+                                            @if(str_contains(strtolower($item['title']), 'waktu'))
+                                                <i class="fa-solid fa-clock text-[10px]"></i>
+                                            @elseif(str_contains(strtolower($item['title']), 'biaya'))
+                                                <i class="fa-solid fa-tags text-[10px]"></i>
+                                            @elseif(str_contains(strtolower($item['title']), 'produk'))
+                                                <i class="fa-solid fa-certificate text-[10px]"></i>
+                                            @elseif(str_contains(strtolower($item['title']), 'prosedur') || str_contains(strtolower($item['title']), 'mekanisme'))
+                                                <i class="fa-solid fa-diagram-project text-[10px]"></i>
+                                            @else
+                                                <i class="fa-solid fa-list-check text-[10px]"></i>
+                                            @endif
+                                        </span>
+                                        <h4 class="font-bold text-xs sm:text-sm text-slate-900 tracking-tight">{{ $item['title'] }}</h4>
                                     </div>
-                                @endforeach
-                            </div>
-                        @endif
+                                    <div class="text-xs text-slate-600 leading-relaxed prose prose-sm max-w-none [&>ul]:list-disc [&>ul]:pl-5 [&>ul]:space-y-1.5 [&>ol]:list-decimal [&>ol]:pl-5 [&>ol]:space-y-1.5 [&>p]:m-0">
+                                        {!! $item['content'] !!}
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
 
                     {{-- Helpdesk Sarpras WA inside the same card --}}
@@ -268,6 +268,92 @@
                 </div>
             </div>
 
+        </div>
+
+        {{-- 3. SEKSI PENGADUAN, SARAN DAN MASUKAN (FULL-WIDTH BALANCED BOTTOM CARD) --}}
+        <div class="mt-8">
+            <div class="bg-white rounded-3xl p-6 sm:p-8 md:p-9 border border-slate-200/90 shadow-md">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-5 border-b border-slate-100">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center text-lg font-bold">
+                            <i class="fa-solid fa-clipboard-check"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-base sm:text-lg font-black text-slate-900 tracking-tight">
+                                Pengaduan, Saran dan Masukan
+                            </h3>
+                            <p class="text-xs text-slate-500">Kanal pengaduan fasilitas, kendala teknis, dan pemeliharaan sarana prasarana PPRU Sakatiga.</p>
+                        </div>
+                    </div>
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-[#00843d] text-xs font-bold border border-emerald-200 self-start sm:self-auto">
+                        <i class="fa-solid fa-headset"></i>
+                        <span>Respon Cepat Pelayanan</span>
+                    </span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-6 text-xs sm:text-sm text-slate-600">
+                    {{-- Col 1: Pengantar & Alamat --}}
+                    <div class="space-y-2">
+                        <span class="font-extrabold text-slate-900 uppercase tracking-wider text-[11px] block text-emerald-800">
+                            <i class="fa-solid fa-location-dot mr-1"></i> Alamat Sekretariat &amp; Humas
+                        </span>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Pengaduan, saran dan masukan dapat disampaikan ke bagian Sekretariat &amp; Humas Layanan Terpadu Pondok Pesantren Raudhatul Ulum Sakatiga.
+                        </p>
+                        <p class="text-xs font-semibold text-slate-800 bg-slate-50 p-3 rounded-xl border border-slate-100">
+                            Kompleks Pondok Pesantren Raudhatul Ulum, Desa Sakatiga, Kec. Indralaya, Kab. Ogan Ilir, Sumatera Selatan 30662
+                        </p>
+                    </div>
+
+                    {{-- Col 2: Kontak WhatsApp & Email --}}
+                    <div class="space-y-3">
+                        <span class="font-extrabold text-slate-900 uppercase tracking-wider text-[11px] block text-emerald-800">
+                            <i class="fa-solid fa-phone-volume mr-1"></i> Kontak &amp; Saluran Resmi
+                        </span>
+                        <div class="space-y-2">
+                            <a href="https://wa.me/6281278901950" target="_blank" class="flex items-center space-x-3 p-3 rounded-xl bg-emerald-50 hover:bg-emerald-100/70 border border-emerald-200 transition group">
+                                <i class="fa-brands fa-whatsapp text-xl text-[#25D366]"></i>
+                                <div>
+                                    <span class="text-[10px] text-emerald-800 font-bold block uppercase">No. HP (WhatsApp)</span>
+                                    <span class="text-xs sm:text-sm font-black text-slate-900 group-hover:text-[#00843d] transition">0812-7890-1950</span>
+                                </div>
+                            </a>
+                            <a href="mailto:sekretariat@ppru.ac.id" class="flex items-center space-x-3 p-3 rounded-xl bg-slate-50 hover:bg-slate-100 border border-slate-200 transition group">
+                                <i class="fa-solid fa-envelope text-lg text-emerald-700"></i>
+                                <div>
+                                    <span class="text-[10px] text-slate-500 font-bold block uppercase">Email Resmi</span>
+                                    <span class="text-xs sm:text-sm font-bold text-slate-900 group-hover:text-[#00843d] transition">sekretariat@ppru.ac.id</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    {{-- Col 3: Website & Komitmen Pelayanan --}}
+                    <div class="space-y-3">
+                        <span class="font-extrabold text-slate-900 uppercase tracking-wider text-[11px] block text-emerald-800">
+                            <i class="fa-solid fa-globe mr-1"></i> Portal &amp; Waktu Pelayanan
+                        </span>
+                        <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200/80 space-y-2">
+                            <div class="flex items-center justify-between text-xs">
+                                <span class="text-slate-500 font-medium">Website:</span>
+                                <a href="https://ppru.ac.id" target="_blank" class="font-bold text-[#00843d] hover:underline">ppru.ac.id</a>
+                            </div>
+                            <div class="flex items-center justify-between text-xs pt-1 border-t border-slate-200">
+                                <span class="text-slate-500 font-medium">Hari Kerja:</span>
+                                <span class="font-bold text-slate-800">Senin - Sabtu</span>
+                            </div>
+                            <div class="flex items-center justify-between text-xs pt-1 border-t border-slate-200">
+                                <span class="text-slate-500 font-medium">Jam Pelayanan:</span>
+                                <span class="font-bold text-slate-800">08.00 - 15.30 WIB</span>
+                            </div>
+                        </div>
+                        <p class="text-[11px] text-slate-500 leading-normal flex items-center gap-1.5">
+                            <i class="fa-solid fa-circle-check text-emerald-600 shrink-0"></i>
+                            <span>Layanan sewa dan peminjaman sarana dikelola transparan dan akuntabel.</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
 
     </div>
