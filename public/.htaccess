@@ -1,15 +1,26 @@
 # ==============================================================================
-# SMA IT ISHLAHUL UMMAH - PUBLIC DIRECTORY .HTACCESS (LARAVEL FRONT CONTROLLER)
+# PONDOK PESANTREN RAUDHATUL ULUM (PPRU) - PUBLIC .HTACCESS (LARAVEL FRONT)
 # ==============================================================================
 
 # ------------------------------------------------------------------------------
-# 1. CPANEL / LITESPEED PHP 8.4 HANDLER
+# 1. CPANEL / CLOUDLINUX / LITESPEED PHP 8.4 FORCED HANDLER
 # ------------------------------------------------------------------------------
 # php -- BEGIN cPanel-generated handler, do not edit
-# Set the “ea-php84” package as the default “PHP” programming language.
+# EasyApache 4 Handler
 <IfModule mime_module>
   AddHandler application/x-httpd-ea-php84 .php .php8 .phtml
 </IfModule>
+
+# CloudLinux Alt-PHP 8.4 & LiteSpeed LSAPI Handler Fallback
+<IfModule lsapi_module>
+  AddHandler application/x-httpd-alt-php84 .php
+</IfModule>
+
+<FilesMatch "\.(php|php8|phtml)$">
+  <IfModule lsapi_module>
+    SetHandler application/x-httpd-alt-php84
+  </IfModule>
+</FilesMatch>
 # php -- END cPanel-generated handler, do not edit
 
 <IfModule mod_rewrite.c>

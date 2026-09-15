@@ -1,7 +1,8 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/berandad/repositories/smaitishum/
-    - /bin/touch $DEPLOYPATH/public/index.php
+    - export DEPLOYPATH=/home/pesonaas/repositories/ppru
+    - /bin/mkdir -p $DEPLOYPATH/storage/framework/cache/data $DEPLOYPATH/storage/framework/sessions $DEPLOYPATH/storage/framework/views $DEPLOYPATH/storage/logs $DEPLOYPATH/bootstrap/cache
     - /bin/chmod -R 775 $DEPLOYPATH/storage $DEPLOYPATH/bootstrap/cache
     - /bin/chmod -R 755 $DEPLOYPATH/public/uploads
+    - /bin/touch $DEPLOYPATH/public/index.php

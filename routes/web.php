@@ -42,6 +42,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 // === ADMIN CMS PANEL ROUTES (PROTECTED) ===
 Route::prefix('admin')->middleware('auth')->name('admin.')->group(function () {
     Route::get('/', [AdminDashboardController::class, 'index'])->name('dashboard');
+    Route::post('/maintenance/toggle', [AdminDashboardController::class, 'toggleMaintenance'])->name('maintenance.toggle');
 
     // Analitik Pengunjung & Tren Pembaca
     Route::get('/analytics', [AdminAnalyticsController::class, 'index'])->name('analytics.index');

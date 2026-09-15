@@ -14,10 +14,12 @@ use App\Models\Pengumuman;
 use App\Models\Post;
 use App\Models\PpdbRegistration;
 use App\Models\ServiceSubmission;
+use App\Models\Setting;
 use App\Models\UnitPendidikan;
 use App\Models\User;
 use App\Models\Video;
 use App\Models\VisitorLog;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Schema;
@@ -112,6 +114,10 @@ class AdminDashboardController extends Controller
         $recentLogs = ActivityLog::latest()->take(8)->get();
         $recentThreats = ActivityLog::where('status', 'danger')->latest()->take(4)->get();
 
+        $isMaintenance = (string) Setting::get('maintenance_mode', '0') === '1';
+        $maintenanceTitle = Setting::get('maintenance_title', 'Pemeliharaan Sistem Berkala');
+        $maintenanceMessage = Setting::get('maintenance_message', 'Mohon maaf atas ketidaknyamanannya. Website resmi Pondok Pesantren Raudhatul Ulum Sakatiga sedang dalam pemeliharaan sistem rutin untuk meningkatkan kualitas layanan dan performa. Kami akan segera kembali online.');
+
         return view('admin.dashboard', compact(
             'stats',
             'systemInfo',
@@ -121,8 +127,48 @@ class AdminDashboardController extends Controller
             'topTodayPages',
             'topTodayReferrers',
             'topCities',
-            'hasVisitorLogs'
+            'hasVisitorLogs',
+            'isMaintenance',
+            'maintenanceTitle',
+            'maintenanceMessage'
         ));
+    }
+
+    /**
+     * Aktifkan / Nonaktifkan Mode Pemeliharaan (Maintenance Mode).
+     * Saat aktif, hanya admin login yang dapat menjelajahi website.
+     */
+    public function toggleMaintenance(Request $request)
+    {
+        $current = (string) Setting::get('maintenance_mode', '0');
+        $newStatus = $current === '1' ? '0' : '1';
+
+        Setting::set('maintenance_mode', $newStatus, 'system');
+
+        if ($request->filled('maintenance_title')) {
+            Setting::set('maintenance_title', $request->input('maintenance_title'), 'system');
+        }
+        if ($request->filled('maintenance_message')) {
+            Setting::set('maintenance_message', $request->input('maintenance_message'), 'system');
+        }
+
+        ActivityLog::create([
+            'user_id' => auth()->id(),
+            'user_name' => auth()->user()?->name ?? 'Administrator',
+            'action' => 'maintenance_toggle',
+            'description' => $newStatus === '1'
+                ? 'Mengaktifkan Mode Maintenance (Website kini hanya bisa diakses oleh Admin yang sedang login)'
+                : 'Menonaktifkan Mode Maintenance (Website kembali publik dan dapat diakses umum)',
+            'ip_address' => $request->ip(),
+            'user_agent' => $request->userAgent(),
+            'status' => $newStatus === '1' ? 'warning' : 'info',
+        ]);
+
+        $statusText = $newStatus === '1'
+            ? 'DIAKTIFKAN. Pengunjung umum diarahkan ke halaman pemeliharaan, hanya admin login yang dapat melihat website.'
+            : 'DINONAKTIFKAN. Website kini kembali normal dan dapat diakses publik.';
+
+        return back()->with('success', "Mode Pemeliharaan (Maintenance Mode) berhasil {$statusText}");
     }
 
     /**

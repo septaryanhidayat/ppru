@@ -50,85 +50,165 @@ class AdminBackupController extends Controller
             'status' => 'warning',
         ]);
 
-        $filename = 'robbani_school_database_backup_'.date('Y-m-d_His').'.sql';
+        $filename = 'ppru_database_backup_'.date('Y-m-d_His').'.sql';
 
         return response()->streamDownload(function () {
-            echo "-- ==========================================================\n";
-            echo "-- SMA IT PLUS ROBBANI - DATABASE SQL DUMP\n";
-            echo '-- Generated at: '.date('Y-m-d H:i:s')."\n";
-            echo "-- Platform: Laravel 12 / MySQL 8 & MariaDB Compatible\n";
-            echo "-- ==========================================================\n\n";
+            echo "-- =====================================================================\n";
+            echo "-- PONDOK PESANTREN RAUDHATUL ULUM (PPRU) SAKATIGA\n";
+            echo '-- DATABASE MYSQL DUMP - '.date('Y-m-d H:i:s')." WIB\n";
+            echo "-- Compatible with MySQL 5.7+, MySQL 8.0+, MariaDB 10.3+\n";
+            echo "-- =====================================================================\n\n";
+
             echo "SET FOREIGN_KEY_CHECKS=0;\n";
             echo "SET SQL_MODE = 'NO_AUTO_VALUE_ON_ZERO';\n";
+            echo "SET AUTOCOMMIT = 0;\n";
+            echo "START TRANSACTION;\n";
             echo "SET time_zone = '+07:00';\n\n";
+            echo "/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;\n";
+            echo "/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;\n";
+            echo "/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;\n";
+            echo "/*!40101 SET NAMES utf8mb4 */;\n\n";
 
-            $tables = Schema::getTableListing();
+            $tableObjects = DB::select("SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%' AND name NOT LIKE 'sessions' ORDER BY name ASC");
 
-            foreach ($tables as $t) {
-                $table = str_replace('main.', '', $t);
-                if (in_array($table, ['migrations', 'sqlite_sequence'])) {
-                    continue;
-                }
-
-                $columns = Schema::getColumnListing($table);
-                if (empty($columns)) {
-                    continue;
-                }
+            foreach ($tableObjects as $tObj) {
+                $table = $tObj->name;
+                $cols = Schema::getColumns($table);
+                $indexes = Schema::getIndexes($table);
 
                 echo "-- --------------------------------------------------------\n";
-                echo "-- Table structure for table `{$table}`\n";
-                echo "-- --------------------------------------------------------\n";
+                echo "-- Struktur tabel untuk `{$table}`\n";
+                echo "-- --------------------------------------------------------\n\n";
                 echo "DROP TABLE IF EXISTS `{$table}`;\n";
                 echo "CREATE TABLE `{$table}` (\n";
 
-                $colDefs = [];
-                foreach ($columns as $col) {
-                    if ($col === 'id') {
-                        $colDefs[] = '  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT';
-                    } elseif (str_contains($col, 'content') || str_contains($col, 'description') || str_contains($col, 'summary') || str_contains($col, 'bio') || str_contains($col, 'education')) {
-                        $colDefs[] = "  `{$col}` longtext DEFAULT NULL";
-                    } elseif (str_contains($col, '_id')) {
-                        $colDefs[] = "  `{$col}` bigint(20) UNSIGNED DEFAULT NULL";
-                    } elseif (str_contains($col, '_count') || $col === 'order') {
-                        $colDefs[] = "  `{$col}` int(11) DEFAULT '0'";
-                    } elseif (str_contains($col, '_at') || str_contains($col, '_date')) {
-                        $colDefs[] = "  `{$col}` timestamp NULL DEFAULT NULL";
-                    } else {
-                        $colDefs[] = "  `{$col}` varchar(255) DEFAULT NULL";
+                $colDefinitions = [];
+                $primaryCols = [];
+
+                foreach ($indexes as $idx) {
+                    if ($idx['primary'] ?? false) {
+                        $primaryCols = $idx['columns'] ?? [];
                     }
                 }
-                $colDefs[] = '  PRIMARY KEY (`id`)';
-                echo implode(",\n", $colDefs)."\n";
+
+                if (empty($primaryCols)) {
+                    foreach ($cols as $col) {
+                        if ($col['name'] === 'id') {
+                            $primaryCols = ['id'];
+                            break;
+                        }
+                    }
+                }
+
+                foreach ($cols as $col) {
+                    $name = $col['name'];
+                    $typeName = strtolower($col['type_name'] ?? $col['type'] ?? '');
+                    $isAuto = (bool) ($col['auto_increment'] ?? false);
+                    $isNullable = (bool) ($col['nullable'] ?? false);
+                    $default = $col['default'] ?? null;
+
+                    $colDef = "  `{$name}` ";
+
+                    if ($name === 'id') {
+                        $colDef .= 'bigint(20) UNSIGNED NOT NULL';
+                        if ($isAuto || in_array('id', $primaryCols)) {
+                            $colDef .= ' AUTO_INCREMENT';
+                        }
+                    } elseif (str_contains($name, '_id') && $typeName === 'integer') {
+                        $colDef .= 'bigint(20) UNSIGNED';
+                        $colDef .= $isNullable ? ' DEFAULT NULL' : ' NOT NULL';
+                    } elseif ($typeName === 'integer' || $typeName === 'int') {
+                        if ($col['type'] === 'tinyint(1)' || str_starts_with($name, 'is_') || str_starts_with($name, 'has_')) {
+                            $colDef .= "tinyint(1) NOT NULL DEFAULT '0'";
+                        } else {
+                            $colDef .= "int(11) NOT NULL DEFAULT '0'";
+                        }
+                    } elseif ($typeName === 'tinyint' || $typeName === 'boolean') {
+                        $defVal = ($default === '1' || $default === 1) ? "'1'" : "'0'";
+                        $colDef .= "tinyint(1) NOT NULL DEFAULT {$defVal}";
+                    } elseif ($typeName === 'datetime' || $typeName === 'timestamp') {
+                        $colDef .= 'timestamp NULL DEFAULT NULL';
+                    } elseif ($typeName === 'date') {
+                        $colDef .= 'date NULL DEFAULT NULL';
+                    } elseif ($typeName === 'text' || $typeName === 'longtext' || str_ends_with($name, '_content') || str_ends_with($name, '_description') || $name === 'content' || $name === 'message' || $name === 'profile_summary' || $name === 'education' || $name === 'notes' || $name === 'extra_fields' || $name === 'value') {
+                        $colDef .= 'longtext DEFAULT NULL';
+                    } else {
+                        $colDef .= 'varchar(255)';
+                        if ($isNullable) {
+                            $colDef .= ' DEFAULT NULL';
+                        } elseif ($default !== null) {
+                            $cleanDef = trim($default, "'\"");
+                            $colDef .= " NOT NULL DEFAULT '{$cleanDef}'";
+                        } else {
+                            $colDef .= ' NOT NULL';
+                        }
+                    }
+
+                    $colDefinitions[] = $colDef;
+                }
+
+                if (! empty($primaryCols)) {
+                    $colDefinitions[] = '  PRIMARY KEY (`'.implode('`, `', $primaryCols).'`)';
+                }
+
+                $addedIndexes = [];
+                foreach ($indexes as $idx) {
+                    if ($idx['primary'] ?? false) {
+                        continue;
+                    }
+                    $idxName = $idx['name'] ?? '';
+                    $idxCols = $idx['columns'] ?? [];
+                    if (empty($idxCols) || in_array($idxName, $addedIndexes)) {
+                        continue;
+                    }
+                    $addedIndexes[] = $idxName;
+
+                    if ($idx['unique'] ?? false) {
+                        $colDefinitions[] = "  UNIQUE KEY `{$idxName}` (`".implode('`, `', $idxCols).'`)';
+                    } else {
+                        $colDefinitions[] = "  KEY `{$idxName}` (`".implode('`, `', $idxCols).'`)';
+                    }
+                }
+
+                echo implode(",\n", $colDefinitions)."\n";
                 echo ") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;\n\n";
 
-                // Table data
                 $rows = DB::table($table)->get();
                 if ($rows->count() > 0) {
-                    echo "-- Dumping data for table `{$table}`\n";
-                    echo "INSERT INTO `{$table}` (`".implode('`, `', $columns)."`) VALUES\n";
+                    $columnNames = array_map(fn ($c) => $c['name'], $cols);
+                    echo "-- Data untuk tabel `{$table}`\n";
+                    echo "INSERT INTO `{$table}` (`".implode('`, `', $columnNames)."`) VALUES\n";
 
-                    $valLines = [];
+                    $rowSqls = [];
                     foreach ($rows as $row) {
-                        $vals = [];
-                        foreach ($columns as $c) {
-                            $val = $row->$c ?? null;
+                        $values = [];
+                        foreach ($columnNames as $colName) {
+                            $val = $row->$colName ?? null;
                             if (is_null($val)) {
-                                $vals[] = 'NULL';
+                                $values[] = 'NULL';
                             } elseif (is_numeric($val) && ! str_starts_with((string) $val, '0')) {
-                                $vals[] = $val;
+                                $values[] = $val;
                             } else {
-                                $escaped = str_replace(['\\', "\x00", "\n", "\r", "'", '"', "\x1a"], ['\\\\', '\\0', '\\n', '\\r', "\'", '\\"', '\\Z'], (string) $val);
-                                $vals[] = "'{$escaped}'";
+                                $escaped = str_replace(
+                                    ['\\', "\x00", "\n", "\r", "'", '"', "\x1a"],
+                                    ['\\\\', '\\0', '\\n', '\\r', "\'", '\\"', '\\Z'],
+                                    (string) $val
+                                );
+                                $values[] = "'{$escaped}'";
                             }
                         }
-                        $valLines[] = '('.implode(', ', $vals).')';
+                        $rowSqls[] = '('.implode(', ', $values).')';
                     }
-                    echo implode(",\n", $valLines).";\n\n";
+
+                    echo implode(",\n", $rowSqls).";\n\n";
                 }
             }
 
             echo "SET FOREIGN_KEY_CHECKS=1;\n";
-            echo "-- End of backup file\n";
+            echo "COMMIT;\n\n";
+            echo "/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;\n";
+            echo "/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;\n";
+            echo "/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;\n";
         }, $filename, [
             'Content-Type' => 'application/sql',
             'Content-Disposition' => "attachment; filename=\"{$filename}\"",

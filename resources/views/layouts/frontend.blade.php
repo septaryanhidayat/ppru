@@ -68,6 +68,30 @@
 </head>
 <body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen font-sans selection:bg-school-green selection:text-white">
 
+    {{-- MAINTENANCE MODE BANNER FOR LOGGED IN ADMIN --}}
+    @auth
+        @if(\App\Models\Setting::get('maintenance_mode', '0') === '1')
+            <div class="bg-gradient-to-r from-amber-600 via-amber-700 to-amber-800 text-white text-xs font-semibold py-2.5 px-4 shadow-md sticky top-0 z-[100] border-b border-amber-500">
+                <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
+                    <div class="flex items-center gap-2 text-center sm:text-left">
+                        <span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-white/20 text-white shrink-0">
+                            <i class="fa-solid fa-triangle-exclamation text-[11px]"></i>
+                        </span>
+                        <span>
+                            <strong class="font-bold">MODE MAINTENANCE AKTIF:</strong> Website saat ini ditutup untuk pengunjung umum dan hanya dapat dilihat oleh Anda sebagai Administrator.
+                        </span>
+                    </div>
+                    <div class="flex items-center gap-2 shrink-0">
+                        <a href="{{ route('admin.dashboard') }}" class="bg-white text-amber-900 hover:bg-amber-100 px-3 py-1 rounded-lg text-[11px] font-bold shadow-xs transition inline-flex items-center gap-1.5">
+                            <i class="fa-solid fa-gauge text-[10px]"></i>
+                            <span>Kelola di Dashboard</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        @endif
+    @endauth
+
     {{-- HEADER --}}
     @include('partials.header')
 
