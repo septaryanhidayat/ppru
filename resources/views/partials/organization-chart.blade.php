@@ -26,15 +26,57 @@
         const prevTransform = target.style.transform;
         target.style.transform = 'none';
 
-        const performExport = () => {
-            if (typeof window.html2canvas === 'undefined') {
+        const downloadDataUrl = (dataUrl) => {
+            target.style.transform = prevTransform;
+            this.isExporting = false;
+            const link = document.createElement('a');
+            link.download = 'bagan-struktur-organisasi-ppru-sakatiga.png';
+            link.href = dataUrl;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+
+            if (typeof Swal !== 'undefined') {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Bagan Berhasil Diunduh!',
+                    text: 'File gambar bagan landscape resolusi tinggi telah disimpan dalam format PNG dengan latar belakang putih bersih.',
+                    timer: 2500,
+                    showConfirmButton: false,
+                });
+            }
+        };
+
+        const tryHtmlToImage = () => {
+            if (typeof window.htmlToImage !== 'undefined' && typeof window.htmlToImage.toPng === 'function') {
+                window.htmlToImage.toPng(target, {
+                    quality: 0.95,
+                    backgroundColor: '#ffffff',
+                    pixelRatio: 2,
+                    skipFonts: true,
+                }).then((dataUrl) => {
+                    downloadDataUrl(dataUrl);
+                }).catch((fallbackErr) => {
+                    target.style.transform = prevTransform;
+                    this.isExporting = false;
+                    console.error('Fallback export error:', fallbackErr);
+                    alert('Gagal mengekspor gambar bagan: ' + (fallbackErr.message || 'Terjadi kendala rendering'));
+                });
+            } else {
                 target.style.transform = prevTransform;
                 this.isExporting = false;
-                alert('Pustaka konversi gambar belum siap, silakan coba lagi.');
+                alert('Gagal mengekspor gambar bagan.');
+            }
+        };
+
+        const performExport = () => {
+            const h2c = window.html2canvasPro || window.html2canvas;
+            if (typeof h2c === 'undefined') {
+                tryHtmlToImage();
                 return;
             }
 
-            window.html2canvas(target, {
+            h2c(target, {
                 scale: 2,
                 useCORS: true,
                 allowTaint: true,
@@ -49,36 +91,17 @@
                     }
                 }
             }).then((canvas) => {
-                target.style.transform = prevTransform;
-                this.isExporting = false;
                 const dataUrl = canvas.toDataURL('image/png');
-                const link = document.createElement('a');
-                link.download = 'bagan-struktur-organisasi-ppru-sakatiga.png';
-                link.href = dataUrl;
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-
-                if (typeof Swal !== 'undefined') {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Bagan Berhasil Diunduh!',
-                        text: 'File gambar bagan landscape resolusi tinggi telah disimpan dalam format PNG dengan latar belakang putih bersih.',
-                        timer: 2500,
-                        showConfirmButton: false,
-                    });
-                }
+                downloadDataUrl(dataUrl);
             }).catch((err) => {
-                target.style.transform = prevTransform;
-                this.isExporting = false;
-                console.error('Export error:', err);
-                alert('Gagal mengekspor gambar bagan: ' + (err.message || 'Terjadi kendala rendering'));
+                console.warn('html2canvas failed, attempting htmlToImage fallback:', err);
+                tryHtmlToImage();
             });
         };
 
-        if (typeof window.html2canvas === 'undefined') {
+        if (typeof window.html2canvas === 'undefined' && typeof window.html2canvasPro === 'undefined') {
             const script = document.createElement('script');
-            script.src = 'https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js';
+            script.src = 'https://cdn.jsdelivr.net/npm/html2canvas-pro@latest/dist/html2canvas.min.js';
             script.onload = () => {
                 if (document.fonts && document.fonts.ready) {
                     document.fonts.ready.then(performExport);
@@ -87,9 +110,7 @@
                 }
             };
             script.onerror = () => {
-                target.style.transform = prevTransform;
-                this.isExporting = false;
-                alert('Gagal memuat pustaka gambar.');
+                tryHtmlToImage();
             };
             document.head.appendChild(script);
         } else {
@@ -359,10 +380,6 @@
                         </div>
                     </div>
 
-                    <!-- Center Badge (Operasional Ma'had) -->
-                    <div class="px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-[#00843d] text-[10px] font-extrabold shadow-xs">
-                        <i class="fa-solid fa-diagram-project mr-1"></i> KOORDINASI BIDANG
-                    </div>
 
                     <!-- Bendahara Yayasan Card (Warna Hijau Zamrud, Bukan Hitam) -->
                     <div class="w-[240px] rounded-xl bg-white border border-emerald-300 shadow-xs">

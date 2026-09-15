@@ -174,20 +174,22 @@
 
         {{-- 3. SAMBUTAN KEPALA SEKOLAH / MUDIR UNIT --}}
         <section class="bg-white rounded-3xl p-6 sm:p-10 shadow-sm border border-gray-100 reveal-fade-up">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                {{-- Foto Kepala Sekolah --}}
-                <div class="lg:col-span-4 flex flex-col items-center text-center">
-                    <div class="relative w-44 h-44 sm:w-52 sm:h-52 rounded-3xl overflow-hidden shadow-lg border-4 border-slate-200 bg-gradient-to-b from-slate-50 to-slate-200 p-3 flex items-center justify-center group">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+                {{-- Foto Kepala Sekolah (Memanjang Vertikal Sejajar Informasi Sambutan) --}}
+                <div class="lg:col-span-4 flex flex-col justify-between items-center text-center bg-gradient-to-b from-slate-50 via-white to-emerald-50/30 p-5 sm:p-6 rounded-3xl border border-slate-200/80 shadow-xs h-full">
+                    <div class="relative w-full flex-1 min-h-[260px] sm:min-h-[300px] rounded-2xl overflow-hidden shadow-sm border border-slate-200/80 bg-white p-4 flex items-center justify-center group">
                         <img src="/uploads/avatar-neutral-gray.svg" 
                              alt="Kepala {{ $unit->name }}" 
-                             class="w-full h-full object-contain transform group-hover:scale-105 transition duration-500">
-                        <span class="absolute bottom-2.5 left-2.5 right-2.5 bg-slate-900/80 backdrop-blur-xs text-white text-[11px] font-bold py-1 px-2.5 rounded-full shadow text-center">
+                             class="w-full h-full max-h-56 sm:max-h-64 object-contain transform group-hover:scale-105 transition duration-500">
+                        <span class="absolute bottom-3 left-3 right-3 bg-slate-900/85 backdrop-blur-xs text-white text-[11px] font-bold py-1.5 px-3 rounded-full shadow text-center">
                             Kepala {{ $unit->short_name ?: 'Unit' }}
                         </span>
                     </div>
-                    <h3 class="font-black text-base sm:text-lg text-gray-900 mt-3.5">{{ $unit->head_name ?? 'Ustadz Fulan' }}</h3>
-                    <p class="text-xs text-[#00843d] font-bold">Kepala {{ $unit->name }}</p>
-                    <p class="text-[11px] text-gray-400 mt-0.5">Pondok Pesantren Raudhatul Ulum Sakatiga</p>
+                    <div class="w-full pt-4 mt-2 border-t border-slate-200/70">
+                        <h3 class="font-black text-base sm:text-lg text-gray-900 leading-snug">{{ $unit->head_name ?? 'Ustadz Fulan' }}</h3>
+                        <p class="text-xs text-[#00843d] font-bold mt-1">Kepala {{ $unit->name }}</p>
+                        <p class="text-[11px] text-gray-400 mt-0.5">Pondok Pesantren Raudhatul Ulum Sakatiga</p>
+                    </div>
                 </div>
 
                 {{-- Sambutan Singkat --}}
@@ -565,7 +567,10 @@
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                     @foreach($unitGallery as $g)
                         <div class="aspect-4/3 rounded-2xl overflow-hidden group relative shadow-xs bg-slate-100 border border-slate-200/60">
-                            <img src="{{ $g['image'] }}" alt="{{ $g['title'] }}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                            <img src="{{ $g['image'] }}" 
+                                 alt="{{ $g['title'] }}" 
+                                 onerror="this.onerror=null;this.src='/uploads/official/kbm-santri-0054.webp'"
+                                 class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
                             <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex flex-col justify-end p-3.5">
                                 <span class="text-amber-300 text-[10px] font-black uppercase tracking-wider mb-0.5">{{ $g['badge'] }}</span>
                                 <span class="text-white text-xs font-bold line-clamp-2 leading-snug">{{ $g['title'] }}</span>
@@ -575,28 +580,28 @@
                 </div>
             @else
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    <div class="aspect-4/3 rounded-2xl overflow-hidden group relative shadow-xs">
+                    <div class="aspect-4/3 rounded-2xl overflow-hidden group relative shadow-xs bg-slate-100 border border-slate-200/60">
                         <img src="/uploads/official/drone-raudhatul-ulum.webp" alt="Pondok PPRU" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent opacity-0 group-hover:opacity-100 transition flex items-end p-3">
                             <span class="text-white text-[11px] font-bold">Kompleks Utama Pondok</span>
                         </div>
                     </div>
-                    <div class="aspect-4/3 rounded-2xl overflow-hidden group relative shadow-xs">
-                        <img src="/uploads/official/panahan.webp" alt="Latihan Memanah Santri" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    <div class="aspect-4/3 rounded-2xl overflow-hidden group relative shadow-xs bg-slate-100 border border-slate-200/60">
+                        <img src="/uploads/official/panahan-santri.webp" alt="Latihan Memanah Santri" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent opacity-0 group-hover:opacity-100 transition flex items-end p-3">
                             <span class="text-white text-[11px] font-bold">Latihan Memanah Sunnah</span>
                         </div>
                     </div>
-                    <div class="aspect-4/3 rounded-2xl overflow-hidden group relative shadow-xs">
+                    <div class="aspect-4/3 rounded-2xl overflow-hidden group relative shadow-xs bg-slate-100 border border-slate-200/60">
                         <img src="/uploads/official/ngaji-sore.webp" alt="Halaqah Tahfidz" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent opacity-0 group-hover:opacity-100 transition flex items-end p-3">
                             <span class="text-white text-[11px] font-bold">Halaqah Tahfidzul Qur'an</span>
                         </div>
                     </div>
-                    <div class="aspect-4/3 rounded-2xl overflow-hidden group relative shadow-xs">
-                        <img src="/uploads/official/img-0054.webp" alt="Kegiatan Santri" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    <div class="aspect-4/3 rounded-2xl overflow-hidden group relative shadow-xs bg-slate-100 border border-slate-200/60">
+                        <img src="/uploads/official/kbm-santri-0054.webp" alt="Kegiatan Santri" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent opacity-0 group-hover:opacity-100 transition flex items-end p-3">
-                            <span class="text-white text-[11px] font-bold">Aktivitas Pembelajaran Santri</span>
+                            <span class="text-white text-[11px] font-bold">Pembelajaran &amp; Karakter</span>
                         </div>
                     </div>
                 </div>

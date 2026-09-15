@@ -17,10 +17,10 @@
         <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-4xl mx-auto space-y-6">
                 
-                {{-- Logo Resmi SPMB PPRU --}}
+                {{-- Logo Resmi SPMB PPRU (Horizontal Landscape Badge) --}}
                 <div class="flex justify-center -mb-1">
-                    <div class="inline-flex items-center justify-center bg-white/95 backdrop-blur-md rounded-3xl p-3.5 sm:p-5 shadow-2xl border-2 border-amber-300 transform hover:scale-105 transition duration-300">
-                        <img src="/uploads/official/logo-spmb-2027.png" alt="Logo Resmi SPMB 2027 Pondok Pesantren Raudhatul Ulum" class="h-24 sm:h-32 md:h-40 w-auto object-contain drop-shadow-md">
+                    <div class="inline-flex items-center justify-center bg-white/95 backdrop-blur-md rounded-2xl sm:rounded-3xl px-6 sm:px-10 py-3 sm:py-4 shadow-2xl border-2 border-amber-300 transform hover:scale-105 transition duration-300">
+                        <img src="/uploads/official/logo-spmb-2027.png" alt="Logo Resmi SPMB 2027 Pondok Pesantren Raudhatul Ulum" class="h-16 sm:h-20 md:h-24 lg:h-28 w-auto max-w-[280px] sm:max-w-[420px] md:max-w-[520px] object-contain drop-shadow-md">
                     </div>
                 </div>
 

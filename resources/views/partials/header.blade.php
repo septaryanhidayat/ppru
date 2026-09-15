@@ -42,26 +42,11 @@
         <div class="flex justify-between items-center h-20">
             
             {{-- LOGO RESMI PONDOK PESANTREN RAUDHATUL ULUM --}}
-            <a href="{{ route('home') }}" class="flex items-center gap-3 sm:gap-3.5 group flex-shrink-0" aria-label="Beranda Pondok Pesantren Raudhatul Ulum">
-                <div class="relative flex items-center justify-center shrink-0">
-                    <img src="/uploads/official/logo-ru-berwarna.png" 
-                         alt="Emblem Pondok Pesantren Raudhatul Ulum Sakatiga" 
-                         class="h-12 sm:h-13 w-auto object-contain transform group-hover:scale-105 transition duration-300 drop-shadow-md" 
-                         onerror="this.src='/uploads/logo-ppru-square.png'">
-                </div>
-                <div class="flex flex-col justify-center border-l border-emerald-500/40 pl-3 text-left space-y-0.5">
-                    <span class="text-[10px] sm:text-[10.5px] font-bold uppercase tracking-[0.18em] text-emerald-100 leading-none">
-                        Pondok Pesantren
-                    </span>
-                    <span class="text-base sm:text-lg font-black tracking-tight text-white group-hover:text-[#fcd116] transition-colors duration-200 leading-tight">
-                        Raudhatul Ulum
-                    </span>
-                    <span class="text-[9px] sm:text-[9.5px] font-bold uppercase tracking-[0.16em] text-[#fcd116] leading-none flex items-center gap-1.5">
-                        <span>Sakatiga</span>
-                        <span class="text-emerald-300/60">&bull;</span>
-                        <span>Ogan Ilir</span>
-                    </span>
-                </div>
+            <a href="{{ route('home') }}" class="flex items-center group flex-shrink-0 py-1" aria-label="Beranda Pondok Pesantren Raudhatul Ulum">
+                <img src="/uploads/official/logo-web-ppru.png" 
+                     alt="Pondok Pesantren Raudhatul Ulum Sakatiga" 
+                     class="h-11 sm:h-12 md:h-14 w-auto object-contain transform group-hover:scale-105 transition duration-300 drop-shadow-md" 
+                     onerror="this.src='/uploads/official/logo-ru-berwarna.png'">
             </a>
 
             {{-- DESKTOP NAVIGATION --}}
