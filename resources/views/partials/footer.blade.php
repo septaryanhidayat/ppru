@@ -24,7 +24,7 @@
             {{-- KOLOM 1: IDENTITAS & LOGO PESANTREN (3 Kolom) --}}
             <div class="lg:col-span-3 space-y-4 flex flex-col items-center md:items-start text-center md:text-left">
                 <div class="flex items-center space-x-3 group justify-center md:justify-start">
-                    <img src="/uploads/logo-ppru-transparent.png" 
+                    <img src="/uploads/official/logo-ru-berwarna.png" 
                          alt="Logo Pondok Pesantren Raudhatul Ulum" 
                          class="h-14 w-auto object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)]" 
                          onerror="this.src='/uploads/logo-ppru-square.png'">

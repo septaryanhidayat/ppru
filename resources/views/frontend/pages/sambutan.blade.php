@@ -24,7 +24,7 @@
 <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
     <div class="bg-white rounded-3xl p-8 sm:p-12 shadow-xl border border-gray-100 reveal-fade-up">
         @php
-            $kepsekPhoto = '/uploads/kh-tolat-wafa-ahmad.webp';
+            $kepsekPhoto = '/uploads/official/foto-mudir.webp';
             $kepsekName = 'KH. Tol\'at Wafa Ahmad, Lc.';
             $kepsekPos = 'Mudir Pondok Pesantren Raudhatul Ulum Sakatiga';
         @endphp

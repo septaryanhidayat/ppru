@@ -24,14 +24,8 @@ class UnitPendidikanController extends Controller
         $teachers = AnggotaDewan::where('fraction', $unit->short_name)
             ->orWhere('fraction', $unit->name)
             ->orderBy('order', 'asc')
+            ->take(4)
             ->get();
-
-        if ($teachers->isEmpty()) {
-            $teachers = AnggotaDewan::whereNotIn('fraction', ['Yayasan', 'Pimpinan Pesantren'])
-                ->orderBy('order', 'asc')
-                ->take(8)
-                ->get();
-        }
 
         $otherUnits = UnitPendidikan::active()->where('id', '!=', $unit->id)->orderBy('order', 'asc')->get();
 
@@ -44,12 +38,44 @@ class UnitPendidikanController extends Controller
         // Unit-specific or latest achievements
         $prestasi = Post::whereHas('categories', function ($q) {
             $q->where('slug', 'prestasi');
+        })->where(function ($q) use ($unit) {
+            $q->where('title', 'like', '%'.$unit->short_name.'%')
+                ->orWhere('content', 'like', '%'.$unit->short_name.'%');
         })->latest()->take(4)->get();
+
+        if ($prestasi->isEmpty()) {
+            $prestasi = Post::whereHas('categories', function ($q) {
+                $q->where('slug', 'prestasi');
+            })->latest()->take(4)->get();
+        }
 
         if ($prestasi->isEmpty()) {
             $prestasi = Post::latest()->take(4)->get();
         }
 
-        return view('frontend.pendidikan.show', compact('unit', 'teachers', 'otherUnits', 'agendas', 'pengumumen', 'prestasi'));
+        $unitGallery = [
+            [
+                'title' => 'Kegiatan Pembelajaran & Pembinaan Santri '.$unit->short_name,
+                'image' => '/uploads/official/img-0054.webp',
+                'badge' => 'Akademik',
+            ],
+            [
+                'title' => 'Halaqah Tahfidzul Qur\'an & Pengajian Kitab',
+                'image' => '/uploads/official/ngaji-sore.webp',
+                'badge' => 'Tahfidz',
+            ],
+            [
+                'title' => 'Latihan Olahraga Sunnah Panahan Santri',
+                'image' => '/uploads/official/panahan.webp',
+                'badge' => 'Sunnah',
+            ],
+            [
+                'title' => 'Kampus Terpadu & Kawasan Asrama '.$unit->short_name,
+                'image' => '/uploads/official/drone-raudhatul-ulum.webp',
+                'badge' => 'Lingkungan',
+            ],
+        ];
+
+        return view('frontend.pendidikan.show', compact('unit', 'teachers', 'otherUnits', 'agendas', 'pengumumen', 'prestasi', 'unitGallery'));
     }
 }

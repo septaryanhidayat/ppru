@@ -35,15 +35,15 @@
 
         {{-- DISPLAY EMBLEM LOGO --}}
         <div class="w-64 h-64 sm:w-80 sm:h-80 mx-auto rounded-3xl bg-emerald-50/50 p-8 shadow-inner border border-emerald-100 flex items-center justify-center relative group">
-            <img src="/uploads/logo-ppru-square.png" alt="Logo Resmi Pondok Pesantren Raudhatul Ulum Sakatiga" class="max-h-full max-w-full object-contain group-hover:scale-105 transition duration-500">
+            <img src="/uploads/official/logo-ru-berwarna.png" alt="Logo Resmi Pondok Pesantren Raudhatul Ulum Sakatiga" class="max-h-full max-w-full object-contain group-hover:scale-105 transition duration-500">
         </div>
 
         <div>
-            <a href="/uploads/logo-ppru-square.png" download="logo-ppru-square.png" class="inline-flex items-center bg-[#00913e] hover:bg-emerald-800 text-white px-8 py-3.5 rounded-2xl text-xs sm:text-sm font-bold shadow-lg hover:shadow-xl transition space-x-2 transform hover:scale-105">
+            <a href="/uploads/official/master/logo-ru-berwarna.png" download="logo-resmi-ppru-berwarna.png" class="inline-flex items-center bg-[#00913e] hover:bg-emerald-800 text-white px-8 py-3.5 rounded-2xl text-xs sm:text-sm font-bold shadow-lg hover:shadow-xl transition space-x-2 transform hover:scale-105">
                 <i class="fa-solid fa-download text-sm"></i>
-                <span>Download Lambang Emblem (Format Vektor SVG)</span>
+                <span>Download Logo Resmi Resolusi Tinggi (Format HD Master PNG)</span>
             </a>
-            <p class="text-[11px] text-gray-400 mt-2 font-medium">Format Asli Vektor SVG Resolusi Tinggi &bull; Latar Belakang Transparan &bull; Siap Cetak & Desain</p>
+            <p class="text-[11px] text-gray-400 mt-2 font-medium">Format Asli Resolusi Ultra HD (2272x2329 px) &bull; Latar Belakang Transparan &bull; Siap Cetak, Spanduk &amp; Desain Grafis</p>
         </div>
     </article>
 
@@ -145,44 +145,88 @@
 
     </div>
 
-    {{-- KARTU VARIAN UNDUHAN LAINNYA --}}
+    {{-- KARTU VARIAN UNDUHAN RESMI LENGKAP --}}
     <div class="bg-white rounded-3xl p-8 sm:p-10 shadow-xl border border-gray-100 reveal-fade-up space-y-6">
         <div class="flex items-center justify-between flex-wrap gap-2">
-            <h3 class="text-lg sm:text-xl font-extrabold text-gray-900">Varian Logo Sekolah Lainnya</h3>
-            <span class="text-xs bg-emerald-100 text-[#00913e] font-bold px-3 py-1 rounded-full">Format Vektor & Raster</span>
+            <div>
+                <h3 class="text-lg sm:text-xl font-extrabold text-gray-900">Varian Logo Sekolah Lainnya &amp; Paket Aset Resmi</h3>
+                <p class="text-xs text-gray-500 mt-0.5">Seluruh file asli beresolusi tinggi, siap untuk publikasi digital, dokumen resmi, seragam, dan percetakan.</p>
+            </div>
+            <span class="text-xs bg-emerald-100 text-[#00913e] font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5">
+                <i class="fa-solid fa-circle-check text-emerald-600"></i> Master File Asli
+            </span>
         </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {{-- Logo Header Horizontal --}}
-            <div class="p-6 rounded-2xl bg-gray-50/80 border border-gray-200 flex flex-col justify-between gap-4">
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
+            {{-- 1. Logo & Branding Lengkap --}}
+            <div class="p-6 rounded-2xl bg-gray-50/90 border border-gray-200 flex flex-col justify-between gap-5 hover:border-emerald-300 transition">
                 <div class="flex items-center space-x-4">
-                    <div class="w-20 h-14 rounded-xl bg-white p-2 border border-gray-200 flex items-center justify-center flex-shrink-0 shadow-sm">
-                        <img src="/uploads/logo-ppru.png" alt="Logo Horizontal" class="max-h-full max-w-full object-contain">
+                    <div class="w-20 h-20 rounded-2xl bg-white p-2 border border-gray-200 flex items-center justify-center flex-shrink-0 shadow-sm">
+                        <img src="/uploads/official/logo-branding-ru.png" alt="Logo & Branding Raudhatul Ulum" class="max-h-full max-w-full object-contain">
                     </div>
                     <div>
-                        <h4 class="font-bold text-xs sm:text-sm text-gray-900">Logo Horizontal (Header & Surat)</h4>
-                        <span class="text-[11px] text-gray-400">Vektor SVG Transparan</span>
+                        <h4 class="font-bold text-sm text-gray-900 leading-snug">Logo &amp; Branding Raudhatul Ulum</h4>
+                        <span class="text-[11px] text-gray-500 block mt-0.5">Format PNG Master Resolusi Tinggi (3375x6000 px)</span>
+                        <span class="inline-block bg-blue-50 text-blue-700 text-[10px] font-bold px-2 py-0.5 rounded-md mt-1.5">Branding Lengkap</span>
                     </div>
                 </div>
-                <a href="/uploads/logo-ppru.png" download="logo-ppru-banner.png" class="w-full text-center bg-[#00913e] hover:bg-emerald-800 text-white px-4 py-2.5 rounded-xl text-xs font-bold transition flex items-center justify-center space-x-1.5 shadow">
-                    <i class="fa-solid fa-download text-[11px]"></i>
-                    <span>Unduh Logo Horizontal</span>
+                <a href="/uploads/official/master/logo-branding-ru.png" download="logo-branding-raudhatul-ulum.png" class="w-full text-center bg-[#00913e] hover:bg-emerald-800 text-white px-4 py-2.5 rounded-xl text-xs font-bold transition flex items-center justify-center space-x-1.5 shadow">
+                    <i class="fa-solid fa-download text-xs"></i>
+                    <span>Unduh Master Logo &amp; Branding</span>
                 </a>
             </div>
 
-            {{-- Emblem Lingkaran --}}
-            <div class="p-6 rounded-2xl bg-gray-50/80 border border-gray-200 flex flex-col justify-between gap-4">
+            {{-- 2. Branding Monokrom --}}
+            <div class="p-6 rounded-2xl bg-gray-50/90 border border-gray-200 flex flex-col justify-between gap-5 hover:border-gray-400 transition">
                 <div class="flex items-center space-x-4">
-                    <div class="w-20 h-14 rounded-xl bg-white p-2 border border-gray-200 flex items-center justify-center flex-shrink-0 shadow-sm">
-                        <img src="/uploads/logo-ppru-square.png" alt="Logo Emblem" class="max-h-full max-w-full object-contain">
+                    <div class="w-20 h-20 rounded-2xl bg-white p-2 border border-gray-200 flex items-center justify-center flex-shrink-0 shadow-sm">
+                        <img src="/uploads/official/branding-ru-monokrom.png" alt="Branding RU Monokrom" class="max-h-full max-w-full object-contain">
                     </div>
                     <div>
-                        <h4 class="font-bold text-xs sm:text-sm text-gray-900">Emblem Bulat (Badge / Stempel)</h4>
-                        <span class="text-[11px] text-gray-400">Vektor SVG Transparan</span>
+                        <h4 class="font-bold text-sm text-gray-900 leading-snug">Branding PPRU Monokrom (Hitam-Putih)</h4>
+                        <span class="text-[11px] text-gray-500 block mt-0.5">Format PNG Master Monokrom (3375x4219 px)</span>
+                        <span class="inline-block bg-gray-100 text-gray-700 text-[10px] font-bold px-2 py-0.5 rounded-md mt-1.5">Stempel, Kop &amp; Fotokopi</span>
                     </div>
                 </div>
-                <a href="/uploads/logo-ppru-square.png" download="logo-ppru-square.png" class="w-full text-center bg-orange-600 hover:bg-orange-700 text-white px-4 py-2.5 rounded-xl text-xs font-bold transition flex items-center justify-center space-x-1.5 shadow">
-                    <i class="fa-solid fa-download text-[11px]"></i>
-                    <span>Unduh Emblem Bulat</span>
+                <a href="/uploads/official/master/branding-ru-monokrom.png" download="branding-ppru-monokrom.png" class="w-full text-center bg-gray-800 hover:bg-black text-white px-4 py-2.5 rounded-xl text-xs font-bold transition flex items-center justify-center space-x-1.5 shadow">
+                    <i class="fa-solid fa-download text-xs"></i>
+                    <span>Unduh Master Monokrom</span>
+                </a>
+            </div>
+
+            {{-- 3. Logo SPMB 2027 --}}
+            <div class="p-6 rounded-2xl bg-amber-50/50 border border-amber-200 flex flex-col justify-between gap-5 hover:border-amber-400 transition">
+                <div class="flex items-center space-x-4">
+                    <div class="w-20 h-20 rounded-2xl bg-white p-2 border border-amber-200 flex items-center justify-center flex-shrink-0 shadow-sm">
+                        <img src="/uploads/official/logo-spmb-2027.png" alt="Logo SPMB 2027" class="max-h-full max-w-full object-contain">
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-sm text-gray-900 leading-snug">Logo Resmi SPMB / PPDB 2027</h4>
+                        <span class="text-[11px] text-gray-500 block mt-0.5">Format PNG Master Berwarna (3375x4219 px)</span>
+                        <span class="inline-block bg-amber-100 text-amber-800 text-[10px] font-bold px-2 py-0.5 rounded-md mt-1.5">Penerimaan Santri Baru</span>
+                    </div>
+                </div>
+                <a href="/uploads/official/master/logo-spmb-2027.png" download="logo-spmb-ppru-2027.png" class="w-full text-center bg-amber-600 hover:bg-amber-700 text-white px-4 py-2.5 rounded-xl text-xs font-bold transition flex items-center justify-center space-x-1.5 shadow">
+                    <i class="fa-solid fa-download text-xs"></i>
+                    <span>Unduh Master Logo SPMB</span>
+                </a>
+            </div>
+
+            {{-- 4. Logo Emblem Lingkaran Berwarna --}}
+            <div class="p-6 rounded-2xl bg-emerald-50/50 border border-emerald-200 flex flex-col justify-between gap-5 hover:border-emerald-400 transition">
+                <div class="flex items-center space-x-4">
+                    <div class="w-20 h-20 rounded-2xl bg-white p-2 border border-emerald-200 flex items-center justify-center flex-shrink-0 shadow-sm">
+                        <img src="/uploads/official/logo-ru-berwarna.png" alt="Logo Emblem PPRU" class="max-h-full max-w-full object-contain">
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-sm text-gray-900 leading-snug">Logo Emblem Utama Berwarna</h4>
+                        <span class="text-[11px] text-gray-500 block mt-0.5">Format PNG Transparan Ultra HD (2272x2329 px)</span>
+                        <span class="inline-block bg-emerald-100 text-[#00913e] text-[10px] font-bold px-2 py-0.5 rounded-md mt-1.5">Logo Resmi Pesantren</span>
+                    </div>
+                </div>
+                <a href="/uploads/official/master/logo-ru-berwarna.png" download="logo-resmi-ppru-berwarna.png" class="w-full text-center bg-[#00913e] hover:bg-emerald-800 text-white px-4 py-2.5 rounded-xl text-xs font-bold transition flex items-center justify-center space-x-1.5 shadow">
+                    <i class="fa-solid fa-download text-xs"></i>
+                    <span>Unduh Master Logo Emblem</span>
                 </a>
             </div>
         </div>

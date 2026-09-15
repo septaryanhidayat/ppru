@@ -25,32 +25,34 @@
 
     {{-- SEKSI 1: SAMBUTAN MUDIR PESANTREN --}}
     <section class="bg-white rounded-3xl p-8 sm:p-12 shadow-xl border border-gray-100 reveal-fade-up">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-            <div class="lg:col-span-4 flex justify-center">
-                <div class="w-56 h-72 sm:w-64 sm:h-80 rounded-2xl overflow-hidden shadow-xl border-4 border-white ring-4 ring-emerald-100 bg-emerald-50 relative group">
-                    <img src="/uploads/kh-tolat-wafa-ahmad.webp" alt="KH. Tol'at Wafa Ahmad, Lc. - Mudir Pesantren" class="w-full h-full object-cover object-top group-hover:scale-105 transition duration-500" onerror="this.src='/uploads/logo-ppru-banner.png'">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
-                    <div class="absolute bottom-3 left-3 text-white">
-                        <span class="block text-sm font-extrabold">KH. Tol'at Wafa Ahmad, Lc.</span>
-                        <span class="text-[11px] text-emerald-300">Mudir Pondok Pesantren</span>
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch">
+            <div class="lg:col-span-5 flex flex-col">
+                <div class="w-full h-full min-h-[360px] sm:min-h-[420px] rounded-3xl overflow-hidden shadow-xl border-4 border-white ring-4 ring-emerald-100 bg-emerald-50 relative group flex flex-col">
+                    <img src="/uploads/official/foto-mudir.webp" alt="KH. Tol'at Wafa Ahmad, Lc. - Mudir Pesantren" class="w-full h-full object-cover object-top group-hover:scale-105 transition duration-500" onerror="this.src='/uploads/official/logo-ru-berwarna.png'">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none"></div>
+                    <div class="absolute bottom-4 left-4 right-4 text-white">
+                        <span class="block text-base sm:text-lg font-extrabold drop-shadow">KH. Tol'at Wafa Ahmad, Lc.</span>
+                        <span class="text-xs text-emerald-300 font-semibold drop-shadow">Mudir Pondok Pesantren Raudhatul Ulum</span>
                     </div>
                 </div>
             </div>
-            <div class="lg:col-span-8 space-y-4 text-left">
-                <div class="inline-flex items-center space-x-2 bg-emerald-100 text-[#00913e] px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider">
-                    <i class="fa-solid fa-user-tie"></i>
-                    <span>Sambutan Pimpinan Pesantren</span>
+            <div class="lg:col-span-7 flex flex-col justify-between space-y-4 text-left">
+                <div>
+                    <div class="inline-flex items-center space-x-2 bg-emerald-100 text-[#00843d] px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider">
+                        <i class="fa-solid fa-user-tie"></i>
+                        <span>Sambutan Pimpinan Pesantren</span>
+                    </div>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight mt-3">
+                        Mendidik Generasi Khairu Ummah, Berdaya Saing Global
+                    </h2>
+                    <div class="w-16 h-1 bg-[#00913e] rounded-full my-3"></div>
+                    <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
+                        Assalamu'alaikum Warahmatullahi Wabarakatuh. Pondok Pesantren Raudhatul Ulum Sakatiga sejak berdirinya pada 1 Agustus 1950, senantiasa teguh mengemban amanah kaderisasi generasi terbaik umat. Memadukan kurikulum kepesantrenan terpadu (Pondok Modern Gontor), Kementerian Agama, kurikulum nasional, serta ijazah kesetaraan Muadalah dari Universitas Al-Azhar Kairo Mesir.
+                    </p>
+                    <p class="text-gray-600 text-sm sm:text-base leading-relaxed mt-3">
+                        Dalam lingkungan asrama 24 jam yang asri di atas lahan lebih dari 60 hektar, para santri dibina dengan penguasaan bahasa Arab dan Inggris aktif, tahfidzul qur'an mutqin, pengkajian kitab turats, sains teknologi, dan penempaan 10 Jati Diri Santri Raudhatul Ulum.
+                    </p>
                 </div>
-                <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight">
-                    Mendidik Generasi Khairu Ummah, Berdaya Saing Global
-                </h2>
-                <div class="w-16 h-1 bg-[#00913e] rounded-full"></div>
-                <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
-                    Assalamu'alaikum Warahmatullahi Wabarakatuh. Pondok Pesantren Raudhatul Ulum Sakatiga sejak berdirinya pada 1 Agustus 1950, senantiasa teguh mengemban amanah kaderisasi generasi terbaik umat. Memadukan kurikulum kepesantrenan terpadu (Pondok Modern Gontor), Kementerian Agama, kurikulum nasional, serta ijazah kesetaraan Muadalah dari Universitas Al-Azhar Kairo Mesir.
-                </p>
-                <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
-                    Dalam lingkungan asrama 24 jam yang asri di atas lahan lebih dari 60 hektar, para santri dibina dengan penguasaan bahasa Arab dan Inggris aktif, tahfidzul qur'an mutqin, pengkajian kitab turats, sains teknologi, dan penempaan 10 Jati Diri Santri Raudhatul Ulum.
-                </p>
                 <div class="pt-4 flex flex-wrap gap-3">
                     <a href="{{ route('page.sambutan') }}" class="inline-flex items-center bg-[#00913e] hover:bg-emerald-800 text-white px-6 py-3 rounded-xl text-xs font-bold shadow-md hover:shadow-lg transition">
                         <span>Baca Sambutan Lengkap</span>
@@ -66,23 +68,25 @@
 
     {{-- SEKSI 2: SEJARAH SINGKAT PESANTREN --}}
     <section class="bg-white rounded-3xl p-8 sm:p-12 shadow-xl border border-gray-100 reveal-fade-up">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-            <div class="lg:col-span-7 space-y-4 order-2 lg:order-1">
-                <div class="inline-flex items-center space-x-2 bg-amber-100 text-amber-900 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider">
-                    <i class="fa-solid fa-landmark"></i>
-                    <span>Jejak Langkah</span>
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch">
+            <div class="lg:col-span-7 flex flex-col justify-between space-y-4 order-2 lg:order-1">
+                <div>
+                    <div class="inline-flex items-center space-x-2 bg-amber-100 text-amber-900 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider">
+                        <i class="fa-solid fa-landmark"></i>
+                        <span>Jejak Langkah</span>
+                    </div>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight mt-3">
+                        Sejarah Pondok Pesantren Raudhatul Ulum Sakatiga
+                    </h2>
+                    <span class="block text-xs sm:text-sm font-semibold text-[#00913e] mt-1">Dari "Mekkah Kecil" Menuju Pesantren Muadalah Modern</span>
+                    <div class="w-16 h-1 bg-[#00913e] rounded-full my-3"></div>
+                    <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
+                        Pondok Pesantren Raudhatul Ulum berakar dari madrasah bersejarah di Desa Sakatiga sejak 1930 (Madrasah Al-Falah) dan 1936 (Madrasah Al-Shibyan). Desa Sakatiga telah lama dijuluki sebagai "Mekkah Kecil" di Sumatera Selatan berkat banyaknya alim ulama yang bermukim dan menimba ilmu di tanah suci Makkah.
+                    </p>
+                    <p class="text-gray-600 text-sm sm:text-base leading-relaxed mt-3">
+                        Pada 1 Agustus 1950, madrasah resmi bertransformasi di bawah naungan Yayasan Perguruan Islam Raudhatul Ulum (YAPIRUS). Sejak 1986 di bawah kepemimpinan Mudir KH. Tol'at Wafa Ahmad, Lc., diterapkan kurikulum boarding modern terpadu dan muadalah resmi Universitas Al-Azhar Kairo Mesir.
+                    </p>
                 </div>
-                <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight">
-                    Sejarah Pondok Pesantren Raudhatul Ulum Sakatiga
-                </h2>
-                <span class="block text-xs sm:text-sm font-semibold text-[#00913e]">Dari "Mekkah Kecil" Menuju Pesantren Muadalah Modern</span>
-                <div class="w-16 h-1 bg-[#00913e] rounded-full"></div>
-                <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
-                    Pondok Pesantren Raudhatul Ulum berakar dari madrasah bersejarah di Desa Sakatiga sejak 1930 (Madrasah Al-Falah) dan 1936 (Madrasah Al-Shibyan). Desa Sakatiga telah lama dijuluki sebagai "Mekkah Kecil" di Sumatera Selatan berkat banyaknya alim ulama yang bermukim dan menimba ilmu di tanah suci Makkah.
-                </p>
-                <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
-                    Pada 1 Agustus 1950, madrasah resmi bertransformasi di bawah naungan Yayasan Perguruan Islam Raudhatul Ulum (YAPIRUS). Sejak 1986 di bawah kepemimpinan Mudir KH. Tol'at Wafa Ahmad, Lc., diterapkan kurikulum boarding modern terpadu dan muadalah resmi Universitas Al-Azhar Kairo Mesir.
-                </p>
                 <div class="pt-4">
                     <a href="{{ route('page.sejarah') }}" class="inline-flex items-center bg-gray-900 hover:bg-black text-white px-6 py-3 rounded-xl text-xs font-bold shadow-md hover:shadow-lg transition">
                         <span>Baca Sejarah Lengkap</span>
@@ -90,9 +94,14 @@
                     </a>
                 </div>
             </div>
-            <div class="lg:col-span-5 order-1 lg:order-2 flex justify-center">
-                <div class="rounded-2xl overflow-hidden shadow-lg border border-gray-100 max-h-80 bg-gray-50">
-                    <img src="/uploads/logo-ppru-banner.png" alt="Pondok Pesantren Raudhatul Ulum Sakatiga" class="w-full h-full object-cover object-center">
+            <div class="lg:col-span-5 order-1 lg:order-2 flex flex-col">
+                <div class="w-full h-full min-h-[360px] sm:min-h-[420px] rounded-3xl overflow-hidden shadow-xl border-4 border-white ring-4 ring-emerald-100 bg-gray-50 relative group flex flex-col">
+                    <img src="/uploads/official/drone-raudhatul-ulum.webp" alt="Pondok Pesantren Raudhatul Ulum Sakatiga" class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none"></div>
+                    <div class="absolute bottom-4 left-4 right-4 text-white">
+                        <span class="block text-sm sm:text-base font-extrabold drop-shadow">Kampus Terpadu PPRU Sakatiga</span>
+                        <span class="text-[11px] text-emerald-300 font-medium drop-shadow">Pemandangan Kawasan Pesantren Seluas 60+ Hektar</span>
+                    </div>
                 </div>
             </div>
         </div>

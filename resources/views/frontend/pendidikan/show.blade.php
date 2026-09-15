@@ -86,60 +86,80 @@
 {{-- 2. INTEGRATED UNIT HIGHLIGHTS BAR (Modern, Premium, Anti-Clipping) --}}
 <section class="py-6 sm:py-8 bg-slate-50 border-b border-gray-200/80">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 items-stretch">
             
             {{-- Card 1: Jenjang & Akreditasi --}}
-            <div class="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-xs hover:shadow-md transition flex items-start space-x-3.5">
-                <div class="w-12 h-12 rounded-xl bg-emerald-50 text-[#00843d] flex items-center justify-center text-xl shrink-0 border border-emerald-100">
-                    <i class="fa-solid fa-graduation-cap"></i>
+            <div class="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-xs hover:shadow-md transition flex flex-col justify-between h-full group">
+                <div class="flex items-start space-x-3.5">
+                    <div class="w-11 h-11 rounded-xl bg-emerald-50 text-[#00843d] flex items-center justify-center text-lg shrink-0 border border-emerald-100 group-hover:scale-105 transition">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+                    <div class="min-w-0 flex-1">
+                        <span class="text-[10px] font-extrabold uppercase tracking-wider text-emerald-700 block">Jenjang Pendidikan</span>
+                        <h3 class="text-sm font-black text-gray-900 mt-0.5 leading-snug line-clamp-2">{{ $unit->name }}</h3>
+                    </div>
                 </div>
-                <div class="min-w-0 flex-1">
-                    <span class="text-[10px] font-extrabold uppercase tracking-wider text-emerald-700 block">Jenjang Pendidikan</span>
-                    <h3 class="text-sm font-black text-gray-900 mt-0.5 leading-snug">{{ $unit->name }}</h3>
-                    <div class="mt-1.5 inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-amber-50 border border-amber-200 text-amber-800 text-[10px] font-bold">
+                <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+                    <span class="text-[10px] font-medium text-slate-500">Status Akreditasi</span>
+                    <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-amber-50 border border-amber-200 text-amber-800 text-[10px] font-bold">
                         <i class="fa-solid fa-certificate text-[9px] text-amber-500"></i>
                         <span>{{ $unit->badge ?: 'Terakreditasi A' }}</span>
-                    </div>
+                    </span>
                 </div>
             </div>
 
             {{-- Card 2: Pimpinan Unit --}}
-            <div class="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-xs hover:shadow-md transition flex items-start space-x-3.5">
-                <div class="w-12 h-12 rounded-xl bg-amber-50 text-amber-700 flex items-center justify-center text-xl shrink-0 border border-amber-100">
-                    <i class="fa-solid fa-user-tie"></i>
+            <div class="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-xs hover:shadow-md transition flex flex-col justify-between h-full group">
+                <div class="flex items-start space-x-3.5">
+                    <div class="w-11 h-11 rounded-xl bg-amber-50 text-amber-700 flex items-center justify-center text-lg shrink-0 border border-amber-100 group-hover:scale-105 transition">
+                        <i class="fa-solid fa-user-tie"></i>
+                    </div>
+                    <div class="min-w-0 flex-1">
+                        <span class="text-[10px] font-extrabold uppercase tracking-wider text-amber-800 block">Kepala / Mudir Unit</span>
+                        <h3 class="text-sm font-black text-gray-900 mt-0.5 leading-snug line-clamp-2">{{ $unit->head_name ?? 'Ustadz Fulan' }}</h3>
+                    </div>
                 </div>
-                <div class="min-w-0 flex-1">
-                    <span class="text-[10px] font-extrabold uppercase tracking-wider text-amber-800 block">Kepala / Mudir Unit</span>
-                    <h3 class="text-sm font-black text-gray-900 mt-0.5 leading-snug">{{ $unit->head_name ?? 'Ustadz H. M. Said, S.Ag., M.Pd.I' }}</h3>
-                    <p class="text-[11px] text-gray-500 mt-1">Yayasan Perguruan Islam Raudhatul Ulum</p>
+                <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+                    <span class="text-[10px] font-medium text-slate-500">Lembaga</span>
+                    <span class="text-[10px] font-bold text-slate-700">YAPIRUS Sakatiga</span>
                 </div>
             </div>
 
             {{-- Card 3: Kurikulum & Muadalah --}}
-            <div class="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-xs hover:shadow-md transition flex items-start space-x-3.5">
-                <div class="w-12 h-12 rounded-xl bg-sky-50 text-sky-700 flex items-center justify-center text-xl shrink-0 border border-sky-100">
-                    <i class="fa-solid fa-book-quran"></i>
+            <div class="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-xs hover:shadow-md transition flex flex-col justify-between h-full group">
+                <div class="flex items-start space-x-3.5">
+                    <div class="w-11 h-11 rounded-xl bg-sky-50 text-sky-700 flex items-center justify-center text-lg shrink-0 border border-sky-100 group-hover:scale-105 transition">
+                        <i class="fa-solid fa-book-quran"></i>
+                    </div>
+                    <div class="min-w-0 flex-1">
+                        <span class="text-[10px] font-extrabold uppercase tracking-wider text-sky-800 block">Kurikulum &amp; Sistem</span>
+                        <h3 class="text-sm font-black text-gray-900 mt-0.5 leading-snug line-clamp-2">{{ $unit->curriculum ?: 'Kemenag & Muadalah Al-Azhar' }}</h3>
+                    </div>
                 </div>
-                <div class="min-w-0 flex-1">
-                    <span class="text-[10px] font-extrabold uppercase tracking-wider text-sky-800 block">Kurikulum &amp; Sistem</span>
-                    <h3 class="text-sm font-black text-gray-900 mt-0.5 leading-snug">{{ $unit->curriculum ?: 'Kemenag & Muadalah Al-Azhar' }}</h3>
-                    <p class="text-[11px] text-gray-500 mt-1">Boarding School (Asrama 24 Jam)</p>
+                <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+                    <span class="text-[10px] font-medium text-slate-500">Sistem</span>
+                    <span class="text-[10px] font-bold text-sky-700">Boarding School 24 Jam</span>
                 </div>
             </div>
 
             {{-- Card 4: Hotline & Konsultasi PSB --}}
-            <div class="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-xs hover:shadow-md transition flex items-start space-x-3.5">
-                <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center text-xl shrink-0 border border-emerald-100">
-                    <i class="fa-solid fa-headset"></i>
+            <div class="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-xs hover:shadow-md transition flex flex-col justify-between h-full group">
+                <div class="flex items-start space-x-3.5">
+                    <div class="w-11 h-11 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center text-lg shrink-0 border border-emerald-100 group-hover:scale-105 transition">
+                        <i class="fa-solid fa-headset"></i>
+                    </div>
+                    <div class="min-w-0 flex-1">
+                        <span class="text-[10px] font-extrabold uppercase tracking-wider text-emerald-700 block">Layanan Konsultasi</span>
+                        <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $unit->phone ?? '081278901950') }}?text={{ urlencode('Assalamu\'alaikum, saya ingin konsultasi PSB unit ' . $unit->name) }}" target="_blank" rel="noopener" class="text-sm font-black text-emerald-700 hover:text-emerald-800 hover:underline block mt-0.5 leading-snug">
+                            {{ $unit->phone ?: '0812-7890-1950' }}
+                        </a>
+                    </div>
                 </div>
-                <div class="min-w-0 flex-1">
-                    <span class="text-[10px] font-extrabold uppercase tracking-wider text-emerald-700 block">Layanan Konsultasi</span>
-                    <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $unit->phone ?? '081278901950') }}?text={{ urlencode('Assalamu\'alaikum, saya ingin konsultasi PSB unit ' . $unit->name) }}" target="_blank" rel="noopener" class="text-sm font-black text-emerald-700 hover:text-emerald-800 hover:underline block mt-0.5 leading-snug">
-                        {{ $unit->phone ?: '0812-7890-1950' }}
-                    </a>
-                    <a href="{{ route('ppdb.index') }}" class="text-[11px] font-bold text-amber-600 hover:text-amber-700 inline-flex items-center gap-1 mt-1">
+                <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+                    <span class="text-[10px] font-medium text-slate-500">Penerimaan Santri</span>
+                    <a href="{{ route('ppdb.index') }}" class="text-[10px] font-bold text-amber-600 hover:text-amber-700 inline-flex items-center gap-1">
                         <span>Daftar Santri Baru</span>
-                        <i class="fa-solid fa-arrow-right text-[9px]"></i>
+                        <i class="fa-solid fa-arrow-right text-[8px]"></i>
                     </a>
                 </div>
             </div>
@@ -157,17 +177,15 @@
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
                 {{-- Foto Kepala Sekolah --}}
                 <div class="lg:col-span-4 flex flex-col items-center text-center">
-                    <div class="relative w-48 h-48 sm:w-56 sm:h-56 rounded-3xl overflow-hidden shadow-xl border-4 border-emerald-100 group">
-                        <img src="/uploads/kepala-sekolah-ppru.webp" 
+                    <div class="relative w-44 h-44 sm:w-52 sm:h-52 rounded-3xl overflow-hidden shadow-lg border-4 border-slate-200 bg-gradient-to-b from-slate-50 to-slate-200 p-3 flex items-center justify-center group">
+                        <img src="/uploads/avatar-neutral-gray.svg" 
                              alt="Kepala {{ $unit->name }}" 
-                             class="w-full h-full object-cover object-top transform group-hover:scale-105 transition duration-500"
-                             onerror="this.src='/uploads/default-avatar.webp'">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-                        <span class="absolute bottom-3 left-3 right-3 bg-white/90 backdrop-blur-xs text-[#00843d] text-[11px] font-black py-1 px-2.5 rounded-full shadow">
+                             class="w-full h-full object-contain transform group-hover:scale-105 transition duration-500">
+                        <span class="absolute bottom-2.5 left-2.5 right-2.5 bg-slate-900/80 backdrop-blur-xs text-white text-[11px] font-bold py-1 px-2.5 rounded-full shadow text-center">
                             Kepala {{ $unit->short_name ?: 'Unit' }}
                         </span>
                     </div>
-                    <h3 class="font-black text-base sm:text-lg text-gray-900 mt-3">{{ $unit->head_name ?? 'Ustadz H. M. Said, S.Ag., M.Pd.I' }}</h3>
+                    <h3 class="font-black text-base sm:text-lg text-gray-900 mt-3.5">{{ $unit->head_name ?? 'Ustadz Fulan' }}</h3>
                     <p class="text-xs text-[#00843d] font-bold">Kepala {{ $unit->name }}</p>
                     <p class="text-[11px] text-gray-400 mt-0.5">Pondok Pesantren Raudhatul Ulum Sakatiga</p>
                 </div>
@@ -397,16 +415,23 @@
             </div>
 
             @if($teachers->isNotEmpty())
-                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
                     @foreach($teachers as $t)
-                        <div class="bg-slate-50/80 rounded-2xl p-4 border border-gray-100 text-center hover:border-emerald-300 hover:bg-white hover:shadow-md transition duration-300 group">
-                            <div class="w-20 h-20 sm:w-24 sm:h-24 mx-auto rounded-full overflow-hidden mb-3 bg-white shadow-xs border-2 border-emerald-100">
-                                <img src="{{ $t->photo_url }}" alt="{{ $t->name }}" class="w-full h-full object-cover object-top group-hover:scale-105 transition" onerror="this.src='/uploads/default-avatar.webp'">
+                        <div class="bg-slate-50/80 rounded-2xl p-5 border border-slate-200/80 text-center hover:border-emerald-300 hover:bg-white hover:shadow-md transition duration-300 group flex flex-col justify-between h-full">
+                            <div>
+                                <div class="w-24 h-24 mx-auto rounded-full overflow-hidden mb-3.5 bg-slate-100 shadow-xs border-2 border-slate-200 p-1 flex items-center justify-center">
+                                    <img src="{{ $t->photo_url }}" alt="{{ $t->name }}" class="w-full h-full object-contain rounded-full group-hover:scale-105 transition" onerror="this.src='/uploads/avatar-neutral-gray.svg'">
+                                </div>
+                                <span class="inline-block px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 text-[10px] font-bold mb-1.5 border border-emerald-100">
+                                    Jabatan #{{ $t->order }}
+                                </span>
+                                <h4 class="font-bold text-xs sm:text-sm text-gray-900 line-clamp-2">{{ $t->name }}</h4>
+                                <p class="text-[11px] text-[#00843d] font-semibold mt-1 leading-snug">{{ $t->position }}</p>
                             </div>
-                            <h4 class="font-bold text-xs sm:text-sm text-gray-900 line-clamp-2">{{ $t->name }}</h4>
-                            <p class="text-[11px] text-[#00843d] font-semibold mt-0.5 line-clamp-1">{{ $t->position }}</p>
                             @if($t->education)
-                                <p class="text-[10px] text-gray-400 mt-1 line-clamp-1"><i class="fa-solid fa-graduation-cap mr-1"></i> {{ $t->education }}</p>
+                                <div class="mt-3.5 pt-2.5 border-t border-slate-200/60">
+                                    <p class="text-[10px] text-gray-500 line-clamp-1"><i class="fa-solid fa-graduation-cap mr-1 text-emerald-600"></i> {{ $t->education }}</p>
+                                </div>
                             @endif
                         </div>
                     @endforeach
@@ -536,32 +561,46 @@
                 </a>
             </div>
 
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div class="aspect-4/3 rounded-2xl overflow-hidden group relative shadow-xs">
-                    <img src="/uploads/campus-ppru-sakatiga.webp" alt="Pondok PPRU" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent opacity-0 group-hover:opacity-100 transition flex items-end p-3">
-                        <span class="text-white text-[11px] font-bold">Kompleks Utama Pondok</span>
+            @if(isset($unitGallery) && !empty($unitGallery))
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    @foreach($unitGallery as $g)
+                        <div class="aspect-4/3 rounded-2xl overflow-hidden group relative shadow-xs bg-slate-100 border border-slate-200/60">
+                            <img src="{{ $g['image'] }}" alt="{{ $g['title'] }}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex flex-col justify-end p-3.5">
+                                <span class="text-amber-300 text-[10px] font-black uppercase tracking-wider mb-0.5">{{ $g['badge'] }}</span>
+                                <span class="text-white text-xs font-bold line-clamp-2 leading-snug">{{ $g['title'] }}</span>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            @else
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="aspect-4/3 rounded-2xl overflow-hidden group relative shadow-xs">
+                        <img src="/uploads/official/drone-raudhatul-ulum.webp" alt="Pondok PPRU" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent opacity-0 group-hover:opacity-100 transition flex items-end p-3">
+                            <span class="text-white text-[11px] font-bold">Kompleks Utama Pondok</span>
+                        </div>
+                    </div>
+                    <div class="aspect-4/3 rounded-2xl overflow-hidden group relative shadow-xs">
+                        <img src="/uploads/official/panahan.webp" alt="Latihan Memanah Santri" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent opacity-0 group-hover:opacity-100 transition flex items-end p-3">
+                            <span class="text-white text-[11px] font-bold">Latihan Memanah Sunnah</span>
+                        </div>
+                    </div>
+                    <div class="aspect-4/3 rounded-2xl overflow-hidden group relative shadow-xs">
+                        <img src="/uploads/official/ngaji-sore.webp" alt="Halaqah Tahfidz" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent opacity-0 group-hover:opacity-100 transition flex items-end p-3">
+                            <span class="text-white text-[11px] font-bold">Halaqah Tahfidzul Qur'an</span>
+                        </div>
+                    </div>
+                    <div class="aspect-4/3 rounded-2xl overflow-hidden group relative shadow-xs">
+                        <img src="/uploads/official/img-0054.webp" alt="Kegiatan Santri" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent opacity-0 group-hover:opacity-100 transition flex items-end p-3">
+                            <span class="text-white text-[11px] font-bold">Aktivitas Pembelajaran Santri</span>
+                        </div>
                     </div>
                 </div>
-                <div class="aspect-4/3 rounded-2xl overflow-hidden group relative shadow-xs">
-                    <img src="/uploads/activities-ppru-sakatiga.webp" alt="Latihan Memanah Santri" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent opacity-0 group-hover:opacity-100 transition flex items-end p-3">
-                        <span class="text-white text-[11px] font-bold">Latihan Memanah Sunnah</span>
-                    </div>
-                </div>
-                <div class="aspect-4/3 rounded-2xl overflow-hidden group relative shadow-xs">
-                    <img src="/uploads/ppru-tahfidz.webp" alt="Halaqah Tahfidz" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent opacity-0 group-hover:opacity-100 transition flex items-end p-3">
-                        <span class="text-white text-[11px] font-bold">Halaqah Tahfidzul Qur'an</span>
-                    </div>
-                </div>
-                <div class="aspect-4/3 rounded-2xl overflow-hidden group relative shadow-xs">
-                    <img src="/uploads/ppru-muhadharah.webp" alt="Muhadharah 3 Bahasa" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent opacity-0 group-hover:opacity-100 transition flex items-end p-3">
-                        <span class="text-white text-[11px] font-bold">Muhadharah Pidato 3 Bahasa</span>
-                    </div>
-                </div>
-            </div>
+            @endif
         </section>
 
         {{-- 12. AGENDA & PENGUMUMAN UNIT TERKINI --}}

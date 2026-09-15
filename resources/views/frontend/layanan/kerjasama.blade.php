@@ -147,7 +147,7 @@
 
             {{-- KOLOM KANAN (7 Kolom): FORMULIR PENGAJUAN PROPOSAL --}}
             <div class="lg:col-span-7 flex flex-col">
-                <div class="bg-white rounded-3xl p-6 sm:p-8 md:p-9 border border-slate-200/90 shadow-md space-y-6 flex-1 flex flex-col justify-between">
+                <div class="bg-white rounded-3xl p-6 sm:p-8 md:p-9 border border-slate-200/90 shadow-md space-y-6 flex-1 flex flex-col">
                     
                     <div class="pb-4 border-b border-slate-100 flex items-center justify-between">
                         <div>
@@ -162,88 +162,90 @@
                         </div>
                     </div>
 
-                    <form action="{{ route('layanan.kerjasama.submit') }}" method="POST" enctype="multipart/form-data" class="space-y-5">
+                    <form action="{{ route('layanan.kerjasama.submit') }}" method="POST" enctype="multipart/form-data" class="space-y-5 flex-1 flex flex-col justify-between">
                         @csrf
                         <input type="hidden" name="_hp_security_check" value="">
 
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            {{-- 1. Nama Narahubung --}}
+                        <div class="space-y-4">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                {{-- 1. Nama Narahubung --}}
+                                <div>
+                                    <label for="name" class="block text-xs font-bold text-slate-700 mb-1.5">
+                                        Nama Lengkap Penanggung Jawab <span class="text-red-500">*</span>
+                                    </label>
+                                    <div class="relative">
+                                        <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                                            <i class="fa-solid fa-user-tie text-xs"></i>
+                                        </span>
+                                        <input type="text" name="name" id="name" required value="{{ old('name') }}" placeholder="Nama lengkap Anda &amp; gelar" class="w-full bg-slate-50 text-xs sm:text-sm text-slate-800 rounded-xl pl-9 pr-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00843d] focus:bg-white transition">
+                                    </div>
+                                    @error('name') <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span> @enderror
+                                </div>
+
+                                {{-- 2. Nama Instansi / Perusahaan --}}
+                                <div>
+                                    <label for="agency" class="block text-xs font-bold text-slate-700 mb-1.5">
+                                        Nama Instansi / Perusahaan / Lembaga <span class="text-red-500">*</span>
+                                    </label>
+                                    <div class="relative">
+                                        <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                                            <i class="fa-solid fa-building-flag text-xs"></i>
+                                        </span>
+                                        <input type="text" name="agency" id="agency" required value="{{ old('agency') }}" placeholder="Nama instansi/perusahaan Anda" class="w-full bg-slate-50 text-xs sm:text-sm text-slate-800 rounded-xl pl-9 pr-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00843d] focus:bg-white transition">
+                                    </div>
+                                    @error('agency') <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span> @enderror
+                                </div>
+                            </div>
+
+                            {{-- 3. Nomor WhatsApp --}}
                             <div>
-                                <label for="name" class="block text-xs font-bold text-slate-700 mb-1.5">
-                                    Nama Lengkap Penanggung Jawab <span class="text-red-500">*</span>
+                                <label for="whatsapp" class="block text-xs font-bold text-slate-700 mb-1.5">
+                                    Nomor WhatsApp / Telepon Kantor <span class="text-red-500">*</span>
                                 </label>
                                 <div class="relative">
-                                    <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
-                                        <i class="fa-solid fa-user-tie text-xs"></i>
+                                    <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-emerald-600">
+                                        <i class="fa-brands fa-whatsapp text-sm"></i>
                                     </span>
-                                    <input type="text" name="name" id="name" required value="{{ old('name') }}" placeholder="Nama lengkap Anda &amp; gelar" class="w-full bg-slate-50 text-xs sm:text-sm text-slate-800 rounded-xl pl-9 pr-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00843d] focus:bg-white transition">
+                                    <input type="text" name="whatsapp" id="whatsapp" required value="{{ old('whatsapp') }}" placeholder="Contoh: 081278901950" class="w-full bg-slate-50 text-xs sm:text-sm text-slate-800 rounded-xl pl-9 pr-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00843d] focus:bg-white transition">
                                 </div>
-                                @error('name') <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span> @enderror
+                                @error('whatsapp') <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span> @enderror
                             </div>
 
-                            {{-- 2. Nama Instansi / Perusahaan --}}
+                            {{-- 4. Rencana Kerja Sama --}}
                             <div>
-                                <label for="agency" class="block text-xs font-bold text-slate-700 mb-1.5">
-                                    Nama Instansi / Perusahaan / Lembaga <span class="text-red-500">*</span>
+                                <label for="purpose" class="block text-xs font-bold text-slate-700 mb-1.5">
+                                    Ruang Lingkup &amp; Rencana Program Kerja Sama <span class="text-red-500">*</span>
                                 </label>
-                                <div class="relative">
-                                    <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
-                                        <i class="fa-solid fa-building-flag text-xs"></i>
-                                    </span>
-                                    <input type="text" name="agency" id="agency" required value="{{ old('agency') }}" placeholder="Nama instansi/perusahaan Anda" class="w-full bg-slate-50 text-xs sm:text-sm text-slate-800 rounded-xl pl-9 pr-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00843d] focus:bg-white transition">
+                                <textarea name="purpose" id="purpose" rows="7" required placeholder="Jelaskan garis besar usulan kemitraan, manfaat timbal balik, target waktu pelaksanaan, dan pihak-pihak terkait..." class="w-full bg-slate-50 text-xs sm:text-sm text-slate-800 rounded-xl p-3.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00843d] focus:bg-white transition leading-relaxed min-h-[170px] sm:min-h-[200px]">{{ old('purpose') }}</textarea>
+                                @error('purpose') <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span> @enderror
+                            </div>
+
+                            {{-- 5 & 6. Upload Proposal & Identitas --}}
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
+                                <div class="bg-slate-50 p-4 rounded-2xl border border-dashed border-slate-300 hover:border-[#00843d] transition">
+                                    <label class="block text-xs font-bold text-slate-800 mb-1">
+                                        <span>Sertakan Surat Proposal Kerja Sama</span>
+                                        <span class="text-red-500">*</span>
+                                    </label>
+                                    <p class="text-[10px] text-slate-400 mb-2">Format PDF / DOC (Maks 5 MB)</p>
+                                    <input type="file" name="letter_file" required accept=".pdf,.doc,.docx" class="w-full text-xs text-slate-700 font-medium file:mr-2.5 file:py-1.5 file:px-3 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-[#00843d] file:text-white hover:file:bg-emerald-800 file:cursor-pointer transition">
+                                    @error('letter_file') <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span> @enderror
                                 </div>
-                                @error('agency') <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span> @enderror
-                            </div>
-                        </div>
 
-                        {{-- 3. Nomor WhatsApp --}}
-                        <div>
-                            <label for="whatsapp" class="block text-xs font-bold text-slate-700 mb-1.5">
-                                Nomor WhatsApp / Telepon Kantor <span class="text-red-500">*</span>
-                            </label>
-                            <div class="relative">
-                                <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-emerald-600">
-                                    <i class="fa-brands fa-whatsapp text-sm"></i>
-                                </span>
-                                <input type="text" name="whatsapp" id="whatsapp" required value="{{ old('whatsapp') }}" placeholder="Contoh: 081278901950" class="w-full bg-slate-50 text-xs sm:text-sm text-slate-800 rounded-xl pl-9 pr-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00843d] focus:bg-white transition">
-                            </div>
-                            @error('whatsapp') <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span> @enderror
-                        </div>
-
-                        {{-- 4. Rencana Kerja Sama --}}
-                        <div>
-                            <label for="purpose" class="block text-xs font-bold text-slate-700 mb-1.5">
-                                Ruang Lingkup &amp; Rencana Program Kerja Sama <span class="text-red-500">*</span>
-                            </label>
-                            <textarea name="purpose" id="purpose" rows="4" required placeholder="Jelaskan garis besar usulan kemitraan, manfaat timbal balik, target waktu pelaksanaan, dan pihak-pihak terkait..." class="w-full bg-slate-50 text-xs sm:text-sm text-slate-800 rounded-xl p-3.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00843d] focus:bg-white transition leading-relaxed">{{ old('purpose') }}</textarea>
-                            @error('purpose') <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span> @enderror
-                        </div>
-
-                        {{-- 5 & 6. Upload Proposal & Identitas --}}
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
-                            <div class="bg-slate-50 p-4 rounded-2xl border border-dashed border-slate-300 hover:border-[#00843d] transition">
-                                <label class="block text-xs font-bold text-slate-800 mb-1">
-                                    <span>Sertakan Surat Proposal Kerja Sama</span>
-                                    <span class="text-red-500">*</span>
-                                </label>
-                                <p class="text-[10px] text-slate-400 mb-2">Format PDF / DOC (Maks 5 MB)</p>
-                                <input type="file" name="letter_file" required accept=".pdf,.doc,.docx" class="w-full text-xs text-slate-700 font-medium file:mr-2.5 file:py-1.5 file:px-3 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-[#00843d] file:text-white hover:file:bg-emerald-800 file:cursor-pointer transition">
-                                @error('letter_file') <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span> @enderror
-                            </div>
-
-                            <div class="bg-slate-50 p-4 rounded-2xl border border-dashed border-slate-300 hover:border-[#00843d] transition">
-                                <label class="block text-xs font-bold text-slate-800 mb-1">
-                                    <span>Sertakan KTP Penanggung Jawab / Legalitas</span>
-                                    <span class="text-red-500">*</span>
-                                </label>
-                                <p class="text-[10px] text-slate-400 mb-2">Format JPG / PNG / PDF (Maks 5 MB)</p>
-                                <input type="file" name="ktp_file" required accept="image/*,.pdf" class="w-full text-xs text-slate-700 font-medium file:mr-2.5 file:py-1.5 file:px-3 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-[#00843d] file:text-white hover:file:bg-emerald-800 file:cursor-pointer transition">
-                                @error('ktp_file') <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span> @enderror
+                                <div class="bg-slate-50 p-4 rounded-2xl border border-dashed border-slate-300 hover:border-[#00843d] transition">
+                                    <label class="block text-xs font-bold text-slate-800 mb-1">
+                                        <span>Sertakan KTP Penanggung Jawab / Legalitas</span>
+                                        <span class="text-red-500">*</span>
+                                    </label>
+                                    <p class="text-[10px] text-slate-400 mb-2">Format JPG / PNG / PDF (Maks 5 MB)</p>
+                                    <input type="file" name="ktp_file" required accept="image/*,.pdf" class="w-full text-xs text-slate-700 font-medium file:mr-2.5 file:py-1.5 file:px-3 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-[#00843d] file:text-white hover:file:bg-emerald-800 file:cursor-pointer transition">
+                                    @error('ktp_file') <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span> @enderror
+                                </div>
                             </div>
                         </div>
 
                         {{-- SUBMIT BUTTON --}}
-                        <div class="pt-2">
+                        <div class="pt-4">
                             <button type="submit" class="w-full bg-[#00843d] hover:bg-emerald-800 text-white font-black text-sm py-4 rounded-2xl shadow-lg shadow-emerald-600/20 hover:shadow-xl transition cursor-pointer flex items-center justify-center space-x-2 transform hover:scale-[1.01]">
                                 <i class="fa-solid fa-handshake text-sm"></i>
                                 <span>Kirim Permohonan Kerja Sama</span>

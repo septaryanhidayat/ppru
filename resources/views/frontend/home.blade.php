@@ -488,7 +488,7 @@
                     <div class="absolute -bottom-4 -right-4 w-20 h-20 border-b-4 border-r-4 border-school-green rounded-br-3xl -z-0"></div>
                     
                     <div class="relative z-10 rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-gradient-to-b from-emerald-50 to-emerald-100 aspect-[4/5]">
-                        <img src="/uploads/kh-tolat-wafa-ahmad.webp" alt="KH. Tol'at Wafa Ahmad, Lc. - Mudir Pondok Pesantren Raudhatul Ulum" class="w-full h-full object-cover object-top transform hover:scale-105 transition duration-500" onerror="this.src='/uploads/logo-ppru-banner.png'">
+                        <img src="/uploads/official/foto-mudir.webp" alt="KH. Tol'at Wafa Ahmad, Lc. - Mudir Pondok Pesantren Raudhatul Ulum" class="w-full h-full object-cover object-top transform hover:scale-105 transition duration-500" onerror="this.src='/uploads/official/logo-ru-berwarna.png'">
                         <div class="absolute inset-0 bg-gradient-to-t from-gray-950/80 via-transparent to-transparent flex items-end p-5">
                             <div class="text-white">
                                 <span class="inline-block px-2.5 py-0.5 bg-school-gold text-gray-950 rounded-full text-[10px] font-black uppercase tracking-wider mb-1">

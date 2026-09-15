@@ -10,13 +10,20 @@
     <section class="relative bg-gradient-to-br from-[#072418] via-[#004d25] to-[#041d13] text-white overflow-hidden py-14 sm:py-20 lg:py-24 border-b border-emerald-800/40">
         {{-- Background Image Overlay with subtle zoom --}}
         <div class="absolute inset-0 z-0">
-            <img src="{{ $settings['hero_bg'] ?? '/uploads/campus-ppru-sakatiga.webp' }}" alt="Pondok Pesantren Raudhatul Ulum Sakatiga" class="w-full h-full object-cover object-center opacity-25 filter blur-[1px] transform scale-105">
+            <img src="{{ $settings['hero_bg'] ?? '/uploads/official/drone-danau-telok-putih.webp' }}" alt="Pondok Pesantren Raudhatul Ulum Sakatiga" class="w-full h-full object-cover object-center opacity-25 filter blur-[1px] transform scale-105">
             <div class="absolute inset-0 bg-gradient-to-t from-[#072418] via-[#072418]/80 to-[#072418]/60"></div>
         </div>
 
         <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-4xl mx-auto space-y-6">
                 
+                {{-- Logo Resmi SPMB PPRU --}}
+                <div class="flex justify-center -mb-1">
+                    <div class="inline-flex items-center justify-center bg-white/95 backdrop-blur-md rounded-3xl p-3.5 sm:p-5 shadow-2xl border-2 border-amber-300 transform hover:scale-105 transition duration-300">
+                        <img src="/uploads/official/logo-spmb-2027.png" alt="Logo Resmi SPMB 2027 Pondok Pesantren Raudhatul Ulum" class="h-24 sm:h-32 md:h-40 w-auto object-contain drop-shadow-md">
+                    </div>
+                </div>
+
                 {{-- Badges --}}
                 <div class="inline-flex flex-wrap items-center justify-center gap-2">
                     <span class="inline-flex items-center gap-2 bg-emerald-500/20 text-emerald-300 border border-emerald-400/40 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider backdrop-blur-md">

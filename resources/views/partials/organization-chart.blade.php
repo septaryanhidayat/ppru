@@ -27,29 +27,31 @@
         target.style.transform = 'none';
 
         const performExport = () => {
-            const h2i = window.htmlToImage;
-            if (!h2i || !h2i.toPng) {
+            if (typeof window.html2canvas === 'undefined') {
                 target.style.transform = prevTransform;
                 this.isExporting = false;
                 alert('Pustaka konversi gambar belum siap, silakan coba lagi.');
                 return;
             }
 
-            h2i.toPng(target, {
-                quality: 1.0,
-                pixelRatio: 2,
+            window.html2canvas(target, {
+                scale: 2,
+                useCORS: true,
+                allowTaint: true,
                 backgroundColor: '#ffffff',
-                skipFonts: true,
-                fontEmbedCSS: '',
-                cacheBust: false,
-                style: {
-                    transform: 'none',
-                    margin: '0',
-                    boxShadow: 'none',
+                logging: false,
+                onclone: (clonedDoc) => {
+                    const clonedCanvas = clonedDoc.getElementById('org-chart-canvas');
+                    if (clonedCanvas) {
+                        clonedCanvas.style.transform = 'none';
+                        clonedCanvas.style.boxShadow = 'none';
+                        clonedCanvas.style.margin = '0';
+                    }
                 }
-            }).then((dataUrl) => {
+            }).then((canvas) => {
                 target.style.transform = prevTransform;
                 this.isExporting = false;
+                const dataUrl = canvas.toDataURL('image/png');
                 const link = document.createElement('a');
                 link.download = 'bagan-struktur-organisasi-ppru-sakatiga.png';
                 link.href = dataUrl;
@@ -74,9 +76,9 @@
             });
         };
 
-        if (typeof window.htmlToImage === 'undefined' || !window.htmlToImage.toPng) {
+        if (typeof window.html2canvas === 'undefined') {
             const script = document.createElement('script');
-            script.src = 'https://cdn.jsdelivr.net/npm/html-to-image@1.11.11/dist/html-to-image.js';
+            script.src = 'https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js';
             script.onload = () => {
                 if (document.fonts && document.fonts.ready) {
                     document.fonts.ready.then(performExport);
