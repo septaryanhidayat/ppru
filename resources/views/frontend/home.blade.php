@@ -36,13 +36,13 @@
                 {{-- Konten Rata Tengah --}}
                 <div class="absolute inset-0 flex items-center justify-center pt-4 pb-20 sm:pb-16">
                     <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center text-white space-y-3 sm:space-y-4">
-                        <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full text-[11px] sm:text-xs font-bold uppercase tracking-widest bg-school-green/90 text-white shadow-lg backdrop-blur-xs border border-white/20">
+                        <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full text-[11px] sm:text-xs font-bold uppercase tracking-widest bg-school-green/90 text-white shadow-lg backdrop-blur-xs border border-white/20 reveal-fade-up">
                             <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
                             <span>Pondok Pesantren Raudhatul Ulum Sakatiga</span>
                         </div>
-                        <h1 class="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight drop-shadow-xl leading-tight" x-text="slide.title"></h1>
-                        <p class="text-xs sm:text-base md:text-lg text-gray-200 font-medium max-w-2xl mx-auto drop-shadow line-clamp-3 sm:line-clamp-none leading-relaxed" x-text="slide.subtitle"></p>
-                        <div class="pt-2 sm:pt-4 flex flex-wrap items-center justify-center gap-3">
+                        <h1 class="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight drop-shadow-xl leading-tight reveal-fade-up delay-1" x-text="slide.title"></h1>
+                        <p class="text-xs sm:text-base md:text-lg text-gray-200 font-medium max-w-2xl mx-auto drop-shadow line-clamp-3 sm:line-clamp-none leading-relaxed reveal-fade-up delay-2" x-text="slide.subtitle"></p>
+                        <div class="pt-2 sm:pt-4 flex flex-wrap items-center justify-center gap-3 reveal-fade-up delay-3">
                             <a :href="slide.btn_link" class="inline-flex items-center justify-center bg-gradient-to-r from-school-gold to-amber-500 hover:from-amber-500 hover:to-amber-600 text-gray-950 px-6 sm:px-8 py-2.5 sm:py-3 rounded-full font-black text-xs sm:text-sm shadow-xl transition transform hover:scale-105">
                                 <span x-text="slide.btn_text"></span>
                                 <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
@@ -119,7 +119,7 @@
         <div class="grid grid-cols-4 md:grid-cols-8 gap-2.5 sm:gap-3 md:gap-3.5 text-center justify-items-center">
             @foreach($quickMenus as $qm)
             <a href="{{ $qm->url }}" 
-               class="group w-full flex flex-col items-center justify-between text-center p-2 sm:p-2.5 md:py-3.5 md:px-2 rounded-2xl border border-slate-200/90 hover:border-emerald-600 bg-white hover:bg-gradient-to-b hover:from-[#005a28] hover:to-emerald-950 shadow-xs hover:shadow-xl hover:shadow-emerald-950/20 transition-all duration-300 transform hover:-translate-y-1.5 min-h-[96px] sm:min-h-[104px] md:min-h-[112px] focus:outline-none focus:ring-2 focus:ring-[#00843d]" 
+               class="group w-full flex flex-col items-center justify-between text-center p-2 sm:p-2.5 md:py-3.5 md:px-2 rounded-2xl border border-slate-200/90 hover:border-emerald-600 bg-white hover:bg-gradient-to-b hover:from-[#005a28] hover:to-emerald-950 shadow-xs hover:shadow-xl hover:shadow-emerald-950/20 transition-all duration-300 transform hover:-translate-y-1.5 min-h-[96px] sm:min-h-[104px] md:min-h-[112px] focus:outline-none focus:ring-2 focus:ring-[#00843d] reveal-fade-up delay-{{ ($loop->index % 8) + 1 }}" 
                aria-label="Menu {{ $qm->name }}">
                 <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-emerald-50 border border-emerald-200 group-hover:border-emerald-400 text-[#00843d] group-hover:bg-[#00843d] group-hover:text-white flex items-center justify-center mx-auto mb-1.5 sm:mb-2 shadow-xs group-hover:shadow-md group-hover:scale-110 transition-all duration-300">
                     @if(!empty($qm->is_image) && $qm->is_image)
@@ -241,21 +241,21 @@
     <div class="absolute -bottom-32 -right-32 w-96 h-96 bg-[#f59e0b]/15 rounded-full blur-3xl pointer-events-none"></div>
 
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-6">
-        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-amber-300 text-xs font-black uppercase tracking-widest backdrop-blur-sm shadow-sm">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-amber-300 text-xs font-black uppercase tracking-widest backdrop-blur-sm shadow-sm reveal-fade-up">
             <i class="fa-solid fa-heart text-rose-400 animate-pulse"></i>
             <span>Mendidik dengan Sepenuh Kasih Sayang</span>
         </div>
 
-        <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tight leading-tight">
+        <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tight leading-tight reveal-fade-up delay-1">
             Mendidik dengan Kasih Sayang, Membentuk Generasi Khairu Ummah
         </h2>
 
-        <p class="text-sm sm:text-base md:text-lg text-emerald-100/90 font-light leading-relaxed max-w-3xl mx-auto">
+        <p class="text-sm sm:text-base md:text-lg text-emerald-100/90 font-light leading-relaxed max-w-3xl mx-auto reveal-fade-up delay-2">
             Di Pondok Pesantren Raudhatul Ulum Sakatiga, proses pendidikan berakar pada keikhlasan pengasuhan, keteladanan akhlaqul karimah, serta keseimbangan antara spiritualitas Qur'ani, ketajaman nalar ilmiah, dan kepemimpinan global.
         </p>
 
         {{-- Interactive Video Play Button & PSB Trigger --}}
-        <div class="pt-4 flex flex-wrap items-center justify-center gap-4">
+        <div class="pt-4 flex flex-wrap items-center justify-center gap-4 reveal-fade-up delay-3">
             <button @click="videoModalOpen = true" type="button" class="group inline-flex items-center gap-3.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-black text-xs sm:text-sm px-7 py-3.5 rounded-full shadow-xl shadow-amber-500/25 transition transform hover:scale-105 cursor-pointer">
                 <span class="w-8 h-8 rounded-full bg-slate-950 text-amber-400 flex items-center justify-center text-xs group-hover:scale-110 transition shadow-inner">
                     <i class="fa-solid fa-play ml-0.5"></i>

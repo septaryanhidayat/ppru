@@ -266,16 +266,23 @@
                     });
                 }, {
                     threshold: 0.05,
-                    rootMargin: '0px 0px -25px 0px'
+                    rootMargin: '0px 0px -20px 0px'
                 });
 
-                reveals.forEach(el => {
-                    const rect = el.getBoundingClientRect();
-                    if (rect.top < window.innerHeight && rect.bottom >= 0) {
-                        el.classList.add('is-revealed');
-                    } else {
-                        observer.observe(el);
-                    }
+                // Observe all elements
+                reveals.forEach(el => observer.observe(el));
+
+                // Trigger fast fade-up on initial viewport elements after initial paint
+                requestAnimationFrame(() => {
+                    setTimeout(() => {
+                        reveals.forEach(el => {
+                            const rect = el.getBoundingClientRect();
+                            if (rect.top < window.innerHeight && rect.bottom >= 0) {
+                                el.classList.add('is-revealed');
+                                observer.unobserve(el);
+                            }
+                        });
+                    }, 60);
                 });
             } else {
                 reveals.forEach(el => el.classList.add('is-revealed'));

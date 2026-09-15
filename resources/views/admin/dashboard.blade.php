@@ -30,16 +30,16 @@
                 </p>
             </div>
 
-            <div class="flex flex-wrap items-center gap-3">
-                <a href="https://ppru.ac.id" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-4 py-3 rounded-xl shadow-md transition">
+            <div class="flex flex-nowrap items-center gap-2.5 sm:gap-3 shrink-0 overflow-x-auto max-w-full pb-1">
+                <a href="https://ppru.ac.id" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-4 py-3 rounded-xl shadow-md transition whitespace-nowrap shrink-0">
                     <i class="fa-solid fa-external-link text-xs"></i>
                     <span>Kunjungi ppru.ac.id</span>
                 </a>
-                <a href="{{ route('admin.posts.create') }}" class="inline-flex items-center space-x-2 bg-gradient-to-r from-[#da251c] to-[#ef4444] hover:from-[#b91c1c] hover:to-[#e05500] text-white text-xs font-bold px-5 py-3 rounded-xl shadow-lg transition transform hover:-translate-y-0.5">
+                <a href="{{ route('admin.posts.create') }}" class="inline-flex items-center space-x-2 bg-gradient-to-r from-[#da251c] to-[#ef4444] hover:from-[#b91c1c] hover:to-[#e05500] text-white text-xs font-bold px-5 py-3 rounded-xl shadow-lg transition transform hover:-translate-y-0.5 whitespace-nowrap shrink-0">
                     <i class="fa-solid fa-pen-nib"></i>
                     <span>Tulis Berita Baru</span>
                 </a>
-                <a href="{{ route('admin.backup.download') }}" class="inline-flex items-center space-x-2 bg-slate-800 hover:bg-slate-700 text-white text-xs font-semibold px-4 py-3 rounded-xl border border-slate-700 transition">
+                <a href="{{ route('admin.backup.download') }}" class="inline-flex items-center space-x-2 bg-slate-800 hover:bg-slate-700 text-white text-xs font-semibold px-4 py-3 rounded-xl border border-slate-700 transition whitespace-nowrap shrink-0">
                     <i class="fa-solid fa-cloud-arrow-down text-amber-400"></i>
                     <span>Unduh Backup SQL</span>
                 </a>
