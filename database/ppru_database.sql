@@ -1,7 +1,7 @@
 -- =====================================================================
 -- PONDOK PESANTREN RAUDHATUL ULUM (PPRU) SAKATIGA
 -- DATABASE MYSQL DUMP FOR CPANEL PRODUCTION DEPLOYMENT
--- Generated at: 2026-09-15 20:22:52 WIB
+-- Generated at: 2026-09-16 01:20:04 WIB
 -- Compatible with MySQL 5.7+, MySQL 8.0+, MariaDB 10.3+
 -- =====================================================================
 
@@ -328,7 +328,7 @@ CREATE TABLE `feedbacks` (
 
 DROP TABLE IF EXISTS `job_batches`;
 CREATE TABLE `job_batches` (
-  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id` varchar(255) NOT NULL,
   `name` varchar(255) NOT NULL,
   `total_jobs` int(11) NOT NULL DEFAULT '0',
   `pending_jobs` int(11) NOT NULL DEFAULT '0',
@@ -783,6 +783,32 @@ CREATE TABLE `service_submissions` (
   KEY `service_submissions_service_type_index` (`service_type`),
   KEY `service_submissions_status_index` (`status`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+-- Struktur tabel untuk `sessions`
+-- --------------------------------------------------------
+
+DROP TABLE IF EXISTS `sessions`;
+CREATE TABLE `sessions` (
+  `id` varchar(255) NOT NULL,
+  `user_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `ip_address` varchar(255) DEFAULT NULL,
+  `user_agent` longtext DEFAULT NULL,
+  `payload` longtext DEFAULT NULL,
+  `last_activity` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `sessions_last_activity_index` (`last_activity`),
+  KEY `sessions_user_id_index` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Data untuk tabel `sessions`
+INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
+('UTz48mr83NQhC0s4bB9Q0oagY5sLOmyOdDwgxNfu', 5, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36', 'eyJfdG9rZW4iOiJxZEZFNFpad3VDWk9UNnJsSGUyQU5aTU1OOHhGWlQyS0lodHRZY05yIiwiX3ByZXZpb3VzIjp7InVybCI6Imh0dHA6XC9cL3BwcnUudGVzdCIsInJvdXRlIjoiaG9tZSJ9LCJfZmxhc2giOnsib2xkIjpbXSwibmV3IjpbXX0sInVybCI6W10sImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjo1fQ==', 1789502394),
+('EP4MWKhn8eGSpl9tJunQNjQQb9sywEtmm0BGRIh2', NULL, '127.0.0.1', 'Symfony', 'eyJfdG9rZW4iOiJBcmp1Q2d2dW1tdGFJcmNXaldCVUpUOHNwdm1MYVNZVTV0Y0hqN2RJIiwiX3ByZXZpb3VzIjp7InVybCI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsInJvdXRlIjoiaG9tZSJ9LCJfZmxhc2giOnsib2xkIjpbXSwibmV3IjpbXX19', 1789498740),
+('XfxZm3kPxo3xLSrX5Z8nuRMLI3RT4FX6CrOg288Q', NULL, '127.0.0.1', '', 'eyJfdG9rZW4iOiI2Z2xDb2IzZFoxYmR6dHZJV1pSdHRHQ3NyaHVWM2FTdDFTeWlhbk5wIiwiX3ByZXZpb3VzIjp7InVybCI6Imh0dHA6XC9cL3BwcnUudGVzdFwvc3RydWt0dXItb3JnYW5pc2FzaSIsInJvdXRlIjoicGFnZS5zdHJ1a3R1ciJ9LCJfZmxhc2giOnsib2xkIjpbXSwibmV3IjpbXX19', 1789500305),
+('lQcDMY35zLcKYsJ1hC4uRyeSDVEeqnBwDDNMXICK', NULL, '127.0.0.1', 'Symfony', 'eyJfdG9rZW4iOiJibXZLSEJZSFJ3QTlYM3A3bjEwRWoydUM3UzRCRTlxOGxvVU10c3lZIiwiX3ByZXZpb3VzIjp7InVybCI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsInJvdXRlIjoiaG9tZSJ9LCJfZmxhc2giOnsib2xkIjpbXSwibmV3IjpbXX19', 1789501070),
+('nKgDyc3YDNNJb27S0mM7FEwlqvWn18iN9YxMhGvD', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36', 'eyJfdG9rZW4iOiJiYW0xSEJiZHVoa1JMMjJJQ05OYjAzQTk5MHp2Qk1QMW5JMmgyM0hsIiwiX3ByZXZpb3VzIjp7InVybCI6Imh0dHA6XC9cL3BwcnUudGVzdFwvcGVuZGlkaWthblwvbWFkcmFzYWgtdHNhbmF3aXlhaC1yYXVkaGF0dWwtdWx1bSIsInJvdXRlIjoicGVuZGlkaWthbi5zaG93In0sIl9mbGFzaCI6eyJvbGQiOltdLCJuZXciOltdfX0=', 1789503414),
+('oBVPaqfXgEFTuTO59zDuAOuUEPUSDpPXTkSUXJT7', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36', 'eyJfdG9rZW4iOiJDRndQSzhzeVJTVG9nTGN0bHBSTXFPS05KelhSbThNa2M3a2RvS1pvIiwiX3ByZXZpb3VzIjp7InVybCI6Imh0dHA6XC9cL3BwcnUudGVzdFwvcGVuZGlkaWthblwvbWFkcmFzYWgtYWxpeWFoLXJhdWRoYXR1bC11bHVtIiwicm91dGUiOiJwZW5kaWRpa2FuLnNob3cifSwiX2ZsYXNoIjp7Im9sZCI6W10sIm5ldyI6W119fQ==', 1789503414);
 
 -- --------------------------------------------------------
 -- Struktur tabel untuk `settings`

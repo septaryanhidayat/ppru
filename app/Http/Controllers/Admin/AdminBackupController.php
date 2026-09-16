@@ -69,7 +69,7 @@ class AdminBackupController extends Controller
             echo "/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;\n";
             echo "/*!40101 SET NAMES utf8mb4 */;\n\n";
 
-            $tableObjects = DB::select("SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%' AND name NOT LIKE 'sessions' ORDER BY name ASC");
+            $tableObjects = DB::select("SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%' ORDER BY name ASC");
 
             foreach ($tableObjects as $tObj) {
                 $table = $tObj->name;
@@ -110,9 +110,13 @@ class AdminBackupController extends Controller
                     $colDef = "  `{$name}` ";
 
                     if ($name === 'id') {
-                        $colDef .= 'bigint(20) UNSIGNED NOT NULL';
-                        if ($isAuto || in_array('id', $primaryCols)) {
-                            $colDef .= ' AUTO_INCREMENT';
+                        if ($typeName === 'integer' || $typeName === 'int' || $isAuto) {
+                            $colDef .= 'bigint(20) UNSIGNED NOT NULL';
+                            if ($isAuto || in_array('id', $primaryCols)) {
+                                $colDef .= ' AUTO_INCREMENT';
+                            }
+                        } else {
+                            $colDef .= 'varchar(255) NOT NULL';
                         }
                     } elseif (str_contains($name, '_id') && $typeName === 'integer') {
                         $colDef .= 'bigint(20) UNSIGNED';
@@ -158,7 +162,7 @@ class AdminBackupController extends Controller
                     }
                     $idxName = $idx['name'] ?? '';
                     $idxCols = $idx['columns'] ?? [];
-                    if (empty($idxCols) || in_array($idxName, $addedIndexes)) {
+                    if (empty($idxCols) || in_array($idxName, $addedIndexes) || str_starts_with($idxName, 'sqlite_autoindex_')) {
                         continue;
                     }
                     $addedIndexes[] = $idxName;
