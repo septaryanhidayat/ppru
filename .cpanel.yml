@@ -1,7 +1,9 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/pesonaas/repositories/ppru
+    - export DEPLOYPATH=/home/pesonaas/public_html/
+    - /bin/cp -R * $DEPLOYPATH
+    - /bin/cp .htaccess $DEPLOYPATH
     - /bin/mkdir -p $DEPLOYPATH/storage/framework/cache/data $DEPLOYPATH/storage/framework/sessions $DEPLOYPATH/storage/framework/views $DEPLOYPATH/storage/logs $DEPLOYPATH/bootstrap/cache
     - /bin/chmod -R 775 $DEPLOYPATH/storage $DEPLOYPATH/bootstrap/cache
     - /bin/chmod -R 755 $DEPLOYPATH/public/uploads
