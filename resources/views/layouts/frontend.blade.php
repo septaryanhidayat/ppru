@@ -55,7 +55,12 @@
         .ql-align-left, [style*="text-align: left"] { text-align: left !important; }
         .ql-align-justify, [style*="text-align: justify"] { text-align: justify !important; text-justify: inter-word; }
         .prose-content { text-align: justify; text-justify: inter-word; }
-        .prose-content p { margin-bottom: 1.25rem; line-height: 1.85; text-align: justify; text-justify: inter-word; }
+        .prose-content p { margin-bottom: 1.25rem; line-height: 1.85; }
+        .prose-content p:not([class*="ql-align-"]):not([style*="text-align"]) { text-align: justify; text-justify: inter-word; }
+        .prose-content .ql-align-left, .prose-content p.ql-align-left { text-align: left !important; }
+        .prose-content .ql-align-center, .prose-content p.ql-align-center { text-align: center !important; }
+        .prose-content .ql-align-right, .prose-content p.ql-align-right { text-align: right !important; }
+        .prose-content .ql-align-justify, .prose-content p.ql-align-justify { text-align: justify !important; text-justify: inter-word; }
         .prose-content img { margin-left: auto !important; margin-right: auto !important; display: block; border-radius: 1rem; max-width: 100%; height: auto; }
         @media (min-width: 768px) {
             .footer-address-col, .footer-address-col * { text-align: left !important; }

@@ -88,9 +88,10 @@
             padding: 20px 24px !important;
             color: #1e293b;
         }
-        .ql-editor .ql-align-center { text-align: center; }
-        .ql-editor .ql-align-right { text-align: right; }
-        .ql-editor .ql-align-justify { text-align: justify; }
+        .ql-editor .ql-align-left { text-align: left !important; }
+        .ql-editor .ql-align-center { text-align: center !important; }
+        .ql-editor .ql-align-right { text-align: right !important; }
+        .ql-editor .ql-align-justify { text-align: justify !important; text-justify: inter-word; }
         .ql-editor p {
             margin-bottom: 1rem !important;
         }
@@ -563,7 +564,7 @@
                             ['bold', 'italic', 'underline', 'strike'],
                             [{ 'color': [] }, { 'background': [] }],
                             [{ 'script': 'sub'}, { 'script': 'super' }],
-                            [{ 'align': [] }],
+                            [{ 'align': '' }, { 'align': 'center' }, { 'align': 'right' }, { 'align': 'justify' }],
                             [{ 'list': 'ordered'}, { 'list': 'bullet' }, { 'indent': '-1'}, { 'indent': '+1' }],
                             ['blockquote', 'code-block'],
                             ['link', 'image', 'video'],
@@ -571,6 +572,25 @@
                         ]
                     }
                 });
+
+                // Attach Indonesian tooltips to toolbar buttons
+                setTimeout(function() {
+                    const toolbarEl = editorEl.previousElementSibling;
+                    if (toolbarEl) {
+                        toolbarEl.querySelectorAll('.ql-align').forEach(function(btn) {
+                            const val = btn.getAttribute('value');
+                            if (!val) {
+                                btn.setAttribute('title', 'Rata Kiri (Left)');
+                            } else if (val === 'center') {
+                                btn.setAttribute('title', 'Rata Tengah (Center)');
+                            } else if (val === 'right') {
+                                btn.setAttribute('title', 'Rata Kanan (Right)');
+                            } else if (val === 'justify') {
+                                btn.setAttribute('title', 'Rata Penuh / Kanan-Kiri (Justify)');
+                            }
+                        });
+                    }
+                }, 100);
 
                 // Set initial content (cleaned)
                 if (targetInput.value) {

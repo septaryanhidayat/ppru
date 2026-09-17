@@ -79,7 +79,7 @@
 {{-- ========================================================
      SECTION #1: FLOATING QUICK ICONS / MENU UTAMA (8 Kartu Pesantren)
      ======================================================== --}}
-<div x-data="{ showDownloadModal: false }" class="max-w-6xl mx-auto px-4 sm:px-6 relative z-30 -mt-8 sm:-mt-10 reveal-fade-up">
+<div x-data="{ showDownloadModal: false }" class="max-w-6xl mx-auto px-4 sm:px-6 relative z-30 -mt-8 sm:-mt-10 mb-8 sm:mb-12 reveal-fade-up">
     <div class="bg-white rounded-3xl shadow-2xl border border-gray-100 p-4 sm:p-6 md:p-7">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 mb-4 sm:mb-5 border-b border-gray-100">
             <div class="text-center sm:text-left">
@@ -254,29 +254,34 @@
     $popupYtId = $siteSettings['home_profile_video_popup_id'] ?? $bgYtId ?? 'BG311kT-yXc';
 @endphp
 
-<section class="w-full relative overflow-hidden bg-slate-950 py-24 sm:py-32 text-white" x-data="{ videoModalOpen: false }">
+<section class="w-full relative overflow-hidden bg-slate-950 py-28 sm:py-36 text-white" x-data="{ videoModalOpen: false }">
+    {{-- Top Organic Wave Divider (Smooth transition from page background) --}}
+    <div class="absolute top-0 left-0 right-0 overflow-hidden leading-none z-10 pointer-events-none">
+        <svg class="relative block w-full h-8 sm:h-12 md:h-16 text-gray-50 fill-current" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path d="M0,0 L1200,0 L1200,40 C1050,85 850,-30 700,40 C550,110 300,15 0,35 Z"></path>
+        </svg>
+    </div>
+
     {{-- Full Width Cinematic Video & Vibrant Atmospheric Overlay --}}
     <div class="absolute inset-0 -z-10 overflow-hidden select-none pointer-events-none">
         {{-- 1. Poster Scenery Fallback (Clear, visible campus backdrop) --}}
         <img src="{{ $siteSettings['home_profile_poster_image'] ?? '/uploads/campus-ppru-sakatiga.webp' }}" 
              alt="Pondok Pesantren Raudhatul Ulum Sakatiga" 
-             class="w-full h-full object-cover object-center filter brightness-[0.5] contrast-[1.08] scale-105 transform hover:scale-100 transition duration-1000">
+             class="w-full h-full object-cover object-center filter brightness-[0.6] contrast-[1.08] scale-105 transform hover:scale-100 transition duration-1000">
 
         {{-- 2. HTML5 Direct MP4 Video Loop (If provided) --}}
         @if($isMp4)
             <video autoplay muted loop playsinline poster="{{ $siteSettings['home_profile_poster_image'] ?? '/uploads/campus-ppru-sakatiga.webp' }}" 
-                   class="absolute inset-0 w-full h-full object-cover opacity-75 mix-blend-screen">
+                   style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.75;">
                 <source src="{{ $rawBgVideo }}" type="video/mp4">
             </video>
-        {{-- 3. YouTube Cinematic Loop Video Stream --}}
+        {{-- 3. YouTube Cinematic Loop Video Stream (Universal 16:9 Full-Bleed Formula) --}}
         @elseif($bgYtId)
-            <div class="absolute inset-0 w-full h-full overflow-hidden pointer-events-none">
-                <iframe class="w-[300%] h-[300%] min-w-full min-h-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none opacity-60 scale-125 object-cover"
-                        src="https://www.youtube-nocookie.com/embed/{{ $bgYtId }}?autoplay=1&mute=1&loop=1&playlist={{ $bgYtId }}&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&disablekb=1&enablejsapi=1" 
+            <div style="position: absolute; inset: 0; width: 100%; height: 100%; overflow: hidden; pointer-events: none;">
+                <iframe style="position: absolute; top: 50%; left: 50%; width: 100vw; height: 56.25vw; min-height: 100%; min-width: 177.77vh; transform: translate(-50%, -50%) scale(1.18); border: 0; pointer-events: none; opacity: 0.65;"
+                        src="https://www.youtube.com/embed/{{ $bgYtId }}?autoplay=1&mute=1&loop=1&playlist={{ $bgYtId }}&controls=0&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&playsinline=1&enablejsapi=1" 
                         title="Video Background Pesantren Raudhatul Ulum" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        loading="lazy">
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share">
                 </iframe>
             </div>
         @endif
@@ -370,6 +375,13 @@
                 </a>
             </div>
         </div>
+    </div>
+
+    {{-- Bottom Organic Wave Divider (Smooth transition into Section 3 pure white) --}}
+    <div class="absolute bottom-0 left-0 right-0 overflow-hidden leading-none z-10 pointer-events-none">
+        <svg class="relative block w-full h-10 sm:h-16 md:h-20 text-white fill-current" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path d="M0,0 C150,85 350,-35 500,45 C650,120 900,10 1200,35 L1200,120 L0,120 Z"></path>
+        </svg>
     </div>
 </section>
 
