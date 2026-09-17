@@ -175,7 +175,7 @@
                                 <i class="fa-brands fa-youtube w-5 text-red-600 mr-2 text-sm"></i> Video Kegiatan &amp; Podcast
                             </a>
                             <a href="{{ route('kategori.show', 'taujih') }}" class="block px-4 py-2.5 text-xs font-semibold text-gray-700 hover:bg-emerald-50 hover:text-[#00843d] transition flex items-center">
-                                <i class="fa-solid fa-mosque w-5 text-[#00843d] mr-2 text-sm"></i> Taujih &amp; Tausiyah
+                                <i class="fa-solid fa-mosque w-5 text-[#00843d] mr-2 text-sm"></i> Taujih, Tausiyah &amp; Khutbah Jum'at
                             </a>
                         </div>
                     </div>
@@ -296,7 +296,7 @@
                 <a href="{{ route('pengumuman.index') }}" class="block py-1.5 text-gray-600 hover:text-[#00843d]">Pengumuman Resmi</a>
                 <a href="{{ route('galeri.index') }}" class="block py-1.5 text-gray-600 hover:text-[#00843d]">Galeri Foto Kegiatan</a>
                 <a href="{{ route('video.index') }}" class="block py-1.5 text-gray-600 hover:text-[#00843d]">Video Kegiatan &amp; Podcast</a>
-                <a href="{{ route('kategori.show', 'taujih') }}" class="block py-1.5 text-gray-600 hover:text-[#00843d]">Taujih &amp; Tausiyah</a>
+                <a href="{{ route('kategori.show', 'taujih') }}" class="block py-1.5 text-gray-600 hover:text-[#00843d]">Taujih, Tausiyah &amp; Khutbah Jum'at</a>
             </div>
         </details>
 

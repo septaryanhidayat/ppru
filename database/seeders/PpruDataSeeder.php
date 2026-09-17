@@ -238,7 +238,7 @@ class PpruDataSeeder extends Seeder
 
         // 4. Categories
         $categoriesMap = [
-            'taujih' => 'Taujih & Tausiyah',
+            'taujih' => 'Taujih, Tausiyah & Khutbah Jum\'at',
             'berita' => 'Berita Pondok',
             'kegiatan' => 'Kegiatan Santri',
             'prestasi-siswa' => 'Prestasi Santri & Guru',

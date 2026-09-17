@@ -61,7 +61,7 @@ class PpruMediaAndNewsSeeder extends Seeder
 
         // 2. Ensure Categories Exist
         $categories = [
-            'taujih' => 'Taujih & Tausiyah',
+            'taujih' => 'Taujih, Tausiyah & Khutbah Jum\'at',
             'berita' => 'Berita Pondok',
             'kegiatan' => 'Kegiatan Santri',
             'prestasi-siswa' => 'Prestasi Santri & Guru',

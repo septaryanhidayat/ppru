@@ -263,3 +263,21 @@ test('open graph meta tags include compliant dimensions, secure urls, and lightw
     expect(filesize($bannerPath))->toBeLessThan(300 * 1024);
     expect(filesize($squarePath))->toBeLessThan(300 * 1024);
 });
+
+test('taujih category and header navigation includes khutbah jumat label', function () {
+    Category::updateOrCreate(
+        ['slug' => 'taujih'],
+        ['name' => "Taujih, Tausiyah & Khutbah Jum'at"]
+    );
+
+    $response = $this->get('/');
+    $response->assertStatus(200);
+    $response->assertSee("Taujih, Tausiyah &amp; Khutbah Jum'at", false);
+
+    $catRedirect = $this->get(route('kategori.show', 'taujih'));
+    $catRedirect->assertRedirect(route('artikel.index', ['kategori' => 'taujih']));
+
+    $catPage = $this->get(route('artikel.index', ['kategori' => 'taujih']));
+    $catPage->assertStatus(200);
+    $catPage->assertSee("Taujih, Tausiyah &amp; Khutbah Jum'at", false);
+});
