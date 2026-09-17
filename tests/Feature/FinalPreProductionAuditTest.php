@@ -29,7 +29,7 @@ test('frontend homepage renders cinematic video background with top and bottom o
     // Assert Section 2 presence, wave dividers, and non-negative z-index layering
     $response->assertSee('Mendidik dengan Sepenuh Kasih Sayang');
     $response->assertSee('Mendidik dengan Kasih Sayang, Membentuk Generasi Khairu Ummah');
-    $response->assertSee('https://www.youtube.com/embed/BG311kT-yXc', false);
+    $response->assertSee('embed/BG311kT-yXc', false);
     $response->assertSee('preserveAspectRatio="none"', false);
     $response->assertSee('viewBox="0 0 1200 120"', false);
     $response->assertSee('absolute inset-0 z-0 overflow-hidden', false);

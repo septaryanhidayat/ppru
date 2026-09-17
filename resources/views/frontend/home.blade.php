@@ -79,7 +79,7 @@
 {{-- ========================================================
      SECTION #1: FLOATING QUICK ICONS / MENU UTAMA (8 Kartu Pesantren)
      ======================================================== --}}
-<div x-data="{ showDownloadModal: false }" class="max-w-6xl mx-auto px-4 sm:px-6 relative z-30 -mt-8 sm:-mt-10 mb-14 sm:mb-20 reveal-fade-up">
+<div x-data="{ showDownloadModal: false }" class="max-w-6xl mx-auto px-4 sm:px-6 relative z-30 -mt-8 sm:-mt-10 mb-20 sm:mb-28 md:mb-32 reveal-fade-up">
     <div class="bg-white rounded-3xl shadow-2xl border border-gray-100 p-4 sm:p-6 md:p-7">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 mb-4 sm:mb-5 border-b border-gray-100">
             <div class="text-center sm:text-left">
@@ -254,7 +254,17 @@
     $popupYtId = $siteSettings['home_profile_video_popup_id'] ?? $bgYtId ?? 'BG311kT-yXc';
 @endphp
 
-<section class="w-full relative overflow-hidden bg-slate-950 pt-24 sm:pt-32 pb-44 sm:pb-52 text-white" x-data="{ videoModalOpen: false }">
+<section class="w-full relative overflow-hidden bg-slate-950 pt-36 sm:pt-48 md:pt-56 pb-52 sm:pb-64 md:pb-72 text-white min-h-[680px] sm:min-h-[760px] md:min-h-[820px] flex flex-col justify-center" 
+         x-data="{ 
+             videoModalOpen: false,
+             videoLoaded: false,
+             videoSrc: ''
+         }"
+         x-init="
+             setTimeout(() => {
+                 videoSrc = 'https://www.youtube-nocookie.com/embed/{{ $bgYtId }}?autoplay=1&mute=1&loop=1&playlist={{ $bgYtId }}&controls=0&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&playsinline=1';
+             }, 350);
+         ">
     {{-- Top Organic Wave Divider (Smooth transition from page background) --}}
     <div class="absolute top-0 left-0 right-0 overflow-hidden leading-none z-10 pointer-events-none">
         <svg class="relative block w-full h-6 sm:h-8 md:h-10 text-gray-50 fill-current" viewBox="0 0 1200 120" preserveAspectRatio="none">
@@ -267,29 +277,34 @@
         {{-- 1. Poster Scenery Fallback (Clear, visible campus backdrop) --}}
         <img src="{{ $siteSettings['home_profile_poster_image'] ?? '/uploads/campus-ppru-sakatiga.webp' }}" 
              alt="Pondok Pesantren Raudhatul Ulum Sakatiga" 
-             class="w-full h-full object-cover object-center filter brightness-[0.75] contrast-[1.05] scale-105 transform hover:scale-100 transition duration-1000">
+             class="w-full h-full object-cover object-center filter brightness-[0.75] contrast-[1.05] scale-105 transform hover:scale-100 transition duration-1000"
+             :class="{ 'opacity-0': videoLoaded }"
+             style="transition: opacity 0.8s ease-in-out;">
 
         {{-- 2. HTML5 Direct MP4 Video Loop (If provided) --}}
         @if($isMp4)
             <video autoplay muted loop playsinline poster="{{ $siteSettings['home_profile_poster_image'] ?? '/uploads/campus-ppru-sakatiga.webp' }}" 
-                   style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.8;">
+                   style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 1;">
                 <source src="{{ $rawBgVideo }}" type="video/mp4">
             </video>
-        {{-- 3. YouTube Cinematic Loop Video Stream (Universal 16:9 Full-Bleed Formula) --}}
+        {{-- 3. YouTube Cinematic Loop Video Stream (Deferred, 100% opacity to prevent collision) --}}
         @elseif($bgYtId)
             <div style="position: absolute; inset: 0; width: 100%; height: 100%; overflow: hidden; pointer-events: none;">
-                <iframe style="position: absolute; top: 50%; left: 50%; width: 100vw; height: 56.25vw; min-height: 100%; min-width: 177.77vh; transform: translate(-50%, -50%) scale(1.15); border: 0; pointer-events: none; opacity: 0.75;"
-                        src="https://www.youtube.com/embed/{{ $bgYtId }}?autoplay=1&mute=1&loop=1&playlist={{ $bgYtId }}&controls=0&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&playsinline=1&enablejsapi=1" 
-                        title="Video Background Pesantren Raudhatul Ulum" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share">
-                </iframe>
+                <template x-if="videoSrc">
+                    <iframe style="position: absolute; top: 50%; left: 50%; width: 100vw; height: 56.25vw; min-height: 100%; min-width: 177.77vh; transform: translate(-50%, -50%) scale(1.15); border: 0; pointer-events: none; opacity: 1; transition: opacity 0.8s ease-in-out;"
+                            :src="videoSrc"
+                            @load="videoLoaded = true"
+                            title="Video Background Pesantren Raudhatul Ulum" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share">
+                    </iframe>
+                </template>
             </div>
         @endif
 
-        {{-- 4. Cinematic Overlay (Warm dark translucent gradient - NOT pitch black) --}}
-        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/30 to-slate-950/75"></div>
-        <div class="absolute inset-0 bg-gradient-to-r from-slate-950/50 via-transparent to-slate-950/50"></div>
-        <div class="absolute inset-0 bg-[radial-gradient(#00843d_1.2px,transparent_1.2px)] [background-size:26px_26px] opacity-20 pointer-events-none"></div>
+        {{-- 4. Cinematic Overlay (Warm dark translucent gradient for high text legibility) --}}
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/40 to-slate-950/80"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-slate-950/60 via-transparent to-slate-950/60"></div>
+        <div class="absolute inset-0 bg-[radial-gradient(#00843d_1.2px,transparent_1.2px)] [background-size:26px_26px] opacity-15 pointer-events-none"></div>
     </div>
 
     {{-- Vibrant Ambient Light Glows --}}
