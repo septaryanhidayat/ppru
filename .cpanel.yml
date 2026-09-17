@@ -9,10 +9,10 @@ deployment:
     # PERINGATAN: Konfigurasi ini HANYA bekerja di dalam repositories/ppru.
     # SAMA SEKALI TIDAK MENYENTUH /home/pesonaas/public_html (web utama aman 100%).
     # ==============================================================================
-    - "export DEPLOYPATH=/home/pesonaas/repositories/ppru"
-    - "/bin/mkdir -p $DEPLOYPATH/storage/framework/cache/data $DEPLOYPATH/storage/framework/sessions $DEPLOYPATH/storage/framework/views $DEPLOYPATH/storage/logs $DEPLOYPATH/bootstrap/cache $DEPLOYPATH/public/uploads"
-    - "/bin/chmod -R 775 $DEPLOYPATH/storage $DEPLOYPATH/bootstrap/cache"
-    - "/bin/chmod -R 755 $DEPLOYPATH/public/uploads"
-    - "(cd $DEPLOYPATH && (php artisan storage:link || true))"
-    - "(cd $DEPLOYPATH && (php artisan migrate --force || /usr/local/bin/php artisan migrate --force || /opt/cpanel/ea-php84/root/usr/bin/php artisan migrate --force || true))"
-    - "(cd $DEPLOYPATH && (php artisan optimize:clear || /usr/local/bin/php artisan optimize:clear || /opt/cpanel/ea-php84/root/usr/bin/php artisan optimize:clear || true))"
+    - /bin/mkdir -p /home/pesonaas/repositories/ppru/storage/framework/cache/data /home/pesonaas/repositories/ppru/storage/framework/sessions /home/pesonaas/repositories/ppru/storage/framework/views /home/pesonaas/repositories/ppru/storage/logs /home/pesonaas/repositories/ppru/bootstrap/cache /home/pesonaas/repositories/ppru/public/uploads
+    - /bin/chmod -R 775 /home/pesonaas/repositories/ppru/storage /home/pesonaas/repositories/ppru/bootstrap/cache
+    - /bin/chmod -R 755 /home/pesonaas/repositories/ppru/public/uploads
+    - /bin/touch /home/pesonaas/repositories/ppru/storage/logs/laravel.log
+    - cd /home/pesonaas/repositories/ppru && (php artisan storage:link || true)
+    - cd /home/pesonaas/repositories/ppru && (php artisan migrate --force || /usr/local/bin/php artisan migrate --force || /opt/cpanel/ea-php84/root/usr/bin/php artisan migrate --force || true)
+    - cd /home/pesonaas/repositories/ppru && (php artisan optimize:clear || /usr/local/bin/php artisan optimize:clear || /opt/cpanel/ea-php84/root/usr/bin/php artisan optimize:clear || true)

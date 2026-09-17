@@ -47,13 +47,11 @@
                             </td>
                             <td class="py-4 px-4 text-center">
                                 <div class="flex items-center justify-center space-x-2">
-                                    <a href="{{ $page->public_url }}" target="_blank" class="inline-flex items-center space-x-1.5 bg-slate-100 hover:bg-emerald-50 hover:text-[#00843d] text-slate-600 font-bold px-3 py-1.5 rounded-xl border border-slate-200 transition text-xs" title="Lihat Tampilan Publik">
+                                    <a href="{{ $page->public_url }}" target="_blank" class="w-8 h-8 rounded-xl bg-slate-100 hover:bg-emerald-50 hover:text-[#00843d] text-slate-600 flex items-center justify-center border border-slate-200 transition text-xs shadow-xs" title="Lihat Tampilan Publik">
                                         <i class="fa-solid fa-eye text-xs"></i>
-                                        <span class="hidden sm:inline">Lihat Web</span>
                                     </a>
-                                    <a href="{{ route('admin.pages.edit', $page) }}" class="inline-flex items-center space-x-1.5 bg-[#da251c] hover:bg-[#b91c1c] text-white font-bold px-3.5 py-1.5 rounded-xl shadow-xs transition">
+                                    <a href="{{ route('admin.pages.edit', $page) }}" class="w-8 h-8 rounded-xl bg-[#da251c] hover:bg-[#b91c1c] text-white flex items-center justify-center shadow-xs transition text-xs" title="Edit Konten">
                                         <i class="fa-solid fa-pen-to-square text-xs"></i>
-                                        <span>Edit Konten</span>
                                     </a>
                                 </div>
                             </td>

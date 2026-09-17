@@ -26,12 +26,38 @@ test('frontend homepage renders cinematic video background with top and bottom o
     $response = $this->get('/');
     $response->assertStatus(200);
 
-    // Assert Section 2 presence and wave dividers
+    // Assert Section 2 presence, wave dividers, and non-negative z-index layering
     $response->assertSee('Mendidik dengan Sepenuh Kasih Sayang');
     $response->assertSee('Mendidik dengan Kasih Sayang, Membentuk Generasi Khairu Ummah');
     $response->assertSee('https://www.youtube.com/embed/BG311kT-yXc', false);
     $response->assertSee('preserveAspectRatio="none"', false);
     $response->assertSee('viewBox="0 0 1200 120"', false);
+    $response->assertSee('absolute inset-0 z-0 overflow-hidden', false);
+    $response->assertDontSee('absolute inset-0 -z-10', false);
+});
+
+test('admin pages table uses compact icon-only action buttons without text truncation', function () {
+    $this->actingAs($this->admin);
+
+    Post::firstOrCreate(
+        ['slug' => 'tentang-kami'],
+        ['title' => 'Tentang Kami', 'content' => '<p>Konten tentang kami</p>', 'type' => 'page', 'author_id' => $this->admin->id]
+    );
+
+    $response = $this->get(route('admin.pages.index'));
+    $response->assertStatus(200);
+    $response->assertSee('fa-eye');
+    $response->assertSee('fa-pen-to-square');
+    $response->assertDontSee('<span>Edit Konten</span>', false);
+    $response->assertDontSee('Lihat Web</span>', false);
+});
+
+test('spmb landing page displays clean badges and proportional official logo without overlapping', function () {
+    $response = $this->get(route('ppdb.index'));
+    $response->assertStatus(200);
+    $response->assertSee('/uploads/official/logo-spmb-2027.png', false);
+    $response->assertSee('Pendaftaran Santri Baru TP', false);
+    $response->assertDontSee('-mb-1', false);
 });
 
 test('article editor supports left, center, right, and justify alignments and renders properly on public view', function () {
