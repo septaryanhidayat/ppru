@@ -228,42 +228,93 @@
 </div>
 
 {{-- ========================================================
-     SECTION #2: MENDIDIK DENGAN SEPENUH KASIH SAYANG (FULL WIDTH CINEMATIC)
+     SECTION #2: MENDIDIK DENGAN SEPENUH KASIH SAYANG (FULL WIDTH CINEMATIC VIDEO BACKGROUND)
      ======================================================== --}}
-<section class="w-full relative overflow-hidden bg-slate-950 py-20 sm:py-28 text-white" x-data="{ videoModalOpen: false }">
-    {{-- Full Width Cinematic Poster & Gradient Backdrop --}}
-    <div class="absolute inset-0 -z-10 overflow-hidden">
-        <img src="/uploads/campus-ppru-sakatiga.webp" alt="Pondok Pesantren Raudhatul Ulum Sakatiga" class="w-full h-full object-cover object-center filter brightness-[0.22] scale-105 transform hover:scale-100 transition duration-1000">
-        <div class="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-emerald-950/85 to-slate-950/95"></div>
-        <div class="absolute inset-0 bg-[radial-gradient(#00843d_1px,transparent_1px)] [background-size:28px_28px] opacity-20 pointer-events-none"></div>
+@php
+    $rawBgVideo = $siteSettings['home_profile_video_bg'] ?? '';
+    $isMp4 = false;
+    $bgYtId = null;
+
+    if (!empty($rawBgVideo)) {
+        if (preg_match('/\.(mp4|webm|ogg)(\?.*)?$/i', $rawBgVideo)) {
+            $isMp4 = true;
+        } elseif (preg_match('/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/ ]{11})/i', $rawBgVideo, $matches)) {
+            $bgYtId = $matches[1];
+        } elseif (strlen(trim($rawBgVideo)) === 11) {
+            $bgYtId = trim($rawBgVideo);
+        }
+    }
+
+    // Default to official pesantren video if no custom video URL specified
+    if (!$isMp4 && empty($bgYtId)) {
+        $firstVideo = $videos->first();
+        $bgYtId = $firstVideo?->youtube_id ?? 'BG311kT-yXc';
+    }
+
+    $popupYtId = $siteSettings['home_profile_video_popup_id'] ?? $bgYtId ?? 'BG311kT-yXc';
+@endphp
+
+<section class="w-full relative overflow-hidden bg-slate-950 py-24 sm:py-32 text-white" x-data="{ videoModalOpen: false }">
+    {{-- Full Width Cinematic Video & Vibrant Atmospheric Overlay --}}
+    <div class="absolute inset-0 -z-10 overflow-hidden select-none pointer-events-none">
+        {{-- 1. Poster Scenery Fallback (Clear, visible campus backdrop) --}}
+        <img src="{{ $siteSettings['home_profile_poster_image'] ?? '/uploads/campus-ppru-sakatiga.webp' }}" 
+             alt="Pondok Pesantren Raudhatul Ulum Sakatiga" 
+             class="w-full h-full object-cover object-center filter brightness-[0.5] contrast-[1.08] scale-105 transform hover:scale-100 transition duration-1000">
+
+        {{-- 2. HTML5 Direct MP4 Video Loop (If provided) --}}
+        @if($isMp4)
+            <video autoplay muted loop playsinline poster="{{ $siteSettings['home_profile_poster_image'] ?? '/uploads/campus-ppru-sakatiga.webp' }}" 
+                   class="absolute inset-0 w-full h-full object-cover opacity-75 mix-blend-screen">
+                <source src="{{ $rawBgVideo }}" type="video/mp4">
+            </video>
+        {{-- 3. YouTube Cinematic Loop Video Stream --}}
+        @elseif($bgYtId)
+            <div class="absolute inset-0 w-full h-full overflow-hidden pointer-events-none">
+                <iframe class="w-[300%] h-[300%] min-w-full min-h-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none opacity-60 scale-125 object-cover"
+                        src="https://www.youtube-nocookie.com/embed/{{ $bgYtId }}?autoplay=1&mute=1&loop=1&playlist={{ $bgYtId }}&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&disablekb=1&enablejsapi=1" 
+                        title="Video Background Pesantren Raudhatul Ulum" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        loading="lazy">
+                </iframe>
+            </div>
+        @endif
+
+        {{-- 4. Cinematic Overlay (Warm dark translucent gradient - NOT pitch black) --}}
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/45 to-slate-950/85"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-slate-950/75 via-transparent to-slate-950/75"></div>
+        <div class="absolute inset-0 bg-[radial-gradient(#00843d_1.2px,transparent_1.2px)] [background-size:26px_26px] opacity-20 pointer-events-none"></div>
     </div>
-    <div class="absolute -top-32 -left-32 w-96 h-96 bg-emerald-600/20 rounded-full blur-3xl pointer-events-none"></div>
-    <div class="absolute -bottom-32 -right-32 w-96 h-96 bg-[#f59e0b]/15 rounded-full blur-3xl pointer-events-none"></div>
+
+    {{-- Vibrant Ambient Light Glows --}}
+    <div class="absolute -top-32 -left-32 w-96 h-96 bg-emerald-600/30 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute -bottom-32 -right-32 w-96 h-96 bg-amber-500/25 rounded-full blur-3xl pointer-events-none"></div>
 
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-6">
-        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-amber-300 text-xs font-black uppercase tracking-widest backdrop-blur-sm shadow-sm reveal-fade-up">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-900/80 border border-white/20 text-amber-300 text-xs font-black uppercase tracking-widest backdrop-blur-md shadow-lg reveal-fade-up">
             <i class="fa-solid fa-heart text-rose-400 animate-pulse"></i>
-            <span>Mendidik dengan Sepenuh Kasih Sayang</span>
+            <span>{{ $siteSettings['home_profile_badge'] ?? 'Mendidik dengan Sepenuh Kasih Sayang' }}</span>
         </div>
 
-        <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tight leading-tight reveal-fade-up delay-1">
-            Mendidik dengan Kasih Sayang, Membentuk Generasi Khairu Ummah
+        <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tight leading-tight drop-shadow-[0_4px_16px_rgba(0,0,0,0.85)] reveal-fade-up delay-1">
+            {{ $siteSettings['home_profile_headline'] ?? 'Mendidik dengan Kasih Sayang, Membentuk Generasi Khairu Ummah' }}
         </h2>
 
-        <p class="text-sm sm:text-base md:text-lg text-emerald-100/90 font-light leading-relaxed max-w-3xl mx-auto reveal-fade-up delay-2">
-            Di Pondok Pesantren Raudhatul Ulum Sakatiga, proses pendidikan berakar pada keikhlasan pengasuhan, keteladanan akhlaqul karimah, serta keseimbangan antara spiritualitas Qur'ani, ketajaman nalar ilmiah, dan kepemimpinan global.
+        <p class="text-sm sm:text-base md:text-lg text-emerald-100 font-normal leading-relaxed max-w-3xl mx-auto drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] reveal-fade-up delay-2">
+            {{ $siteSettings['home_profile_desc'] ?? 'Di Pondok Pesantren Raudhatul Ulum Sakatiga, proses pendidikan berakar pada keikhlasan pengasuhan, keteladanan akhlaqul karimah, serta keseimbangan antara spiritualitas Qur\'ani, ketajaman nalar ilmiah, dan kepemimpinan global.' }}
         </p>
 
         {{-- Interactive Video Play Button & PSB Trigger --}}
         <div class="pt-4 flex flex-wrap items-center justify-center gap-4 reveal-fade-up delay-3">
-            <button @click="videoModalOpen = true" type="button" class="group inline-flex items-center gap-3.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-black text-xs sm:text-sm px-7 py-3.5 rounded-full shadow-xl shadow-amber-500/25 transition transform hover:scale-105 cursor-pointer">
+            <button @click="videoModalOpen = true" type="button" class="group inline-flex items-center gap-3.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-black text-xs sm:text-sm px-7 py-3.5 rounded-full shadow-2xl shadow-amber-500/30 transition transform hover:scale-105 cursor-pointer">
                 <span class="w-8 h-8 rounded-full bg-slate-950 text-amber-400 flex items-center justify-center text-xs group-hover:scale-110 transition shadow-inner">
                     <i class="fa-solid fa-play ml-0.5"></i>
                 </span>
-                <span>Tonton Video Profil Singkat Pesantren (1 Menit)</span>
+                <span>{{ $siteSettings['home_profile_btn_text'] ?? 'Tonton Video Profil Singkat Pesantren (1 Menit)' }}</span>
             </button>
 
-            <a href="{{ route('ppdb.index') }}" class="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white font-bold text-xs sm:text-sm px-6 py-3.5 rounded-full border border-white/20 backdrop-blur-xs transition">
+            <a href="{{ route('ppdb.index') }}" class="inline-flex items-center gap-2 bg-slate-900/80 hover:bg-slate-800 text-white font-bold text-xs sm:text-sm px-6 py-3.5 rounded-full border border-white/20 backdrop-blur-md shadow-lg transition">
                 <i class="fa-solid fa-graduation-cap text-amber-300"></i>
                 <span>Pendaftaran PSB Online</span>
             </a>
@@ -301,13 +352,9 @@
             </div>
 
             <div class="aspect-video bg-black relative">
-                @php
-                    $firstVideo = $videos->first();
-                    $ytId = $firstVideo?->youtube_id ?? 'dQw4w9WgXcQ';
-                @endphp
                 <template x-if="videoModalOpen">
                     <iframe class="w-full h-full" 
-                            src="https://www.youtube-nocookie.com/embed/{{ $ytId }}?autoplay=1" 
+                            src="https://www.youtube-nocookie.com/embed/{{ $popupYtId }}?autoplay=1&rel=0" 
                             title="Video Profil Pondok Pesantren Raudhatul Ulum Sakatiga" 
                             frameborder="0" 
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 

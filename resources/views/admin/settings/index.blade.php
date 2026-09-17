@@ -403,6 +403,76 @@
                     </div>
                 </div>
             </div>
+
+        {{-- 5. VIDEO BACKGROUND BERANDA & PROFIL SINGKAT --}}
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+            <div class="px-6 py-4 bg-gray-50/80 border-b border-gray-100 flex items-center justify-between">
+                <div class="flex items-center space-x-2.5">
+                    <span class="w-7 h-7 rounded-lg bg-amber-100 text-amber-700 flex items-center justify-center text-xs font-bold">5</span>
+                    <div>
+                        <h2 class="font-bold text-sm text-gray-900">Video Background Beranda & Video Profil Pesantren</h2>
+                        <p class="text-[11px] text-gray-500">Atur video background yang berputar bergerak di section 'Mendidik dengan Kasih Sayang' pada beranda</p>
+                    </div>
+                </div>
+                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-[10px] font-bold bg-amber-50 text-amber-700 border border-amber-200">
+                    <i class="fa-solid fa-film mr-1.5"></i> Video Showcase
+                </span>
+            </div>
+
+            <div class="p-6 space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                        URL Video Background (YouTube atau Link File MP4)
+                    </label>
+                    <input type="text" name="home_profile_video_bg" value="{{ $settings['home_profile_video_bg'] ?? 'https://www.youtube.com/watch?v=BG311kT-yXc' }}" 
+                           placeholder="Contoh: https://www.youtube.com/watch?v=BG311kT-yXc atau https://domain.com/video-drone.mp4" 
+                           class="w-full bg-gray-50 text-xs text-gray-800 rounded-xl px-4 py-3 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
+                    <p class="text-[11px] text-gray-400 mt-1">Bisa diisi URL YouTube (misal channel resmi TVRU Sakatiga) atau link file langsung (.mp4/.webm). Video diputar otomatis secara berulang (loop) tanpa suara di belakang teks.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                            Judul Badge Atas
+                        </label>
+                        <input type="text" name="home_profile_badge" value="{{ $settings['home_profile_badge'] ?? 'Mendidik dengan Sepenuh Kasih Sayang' }}" 
+                               class="w-full bg-gray-50 text-xs text-gray-800 rounded-xl px-4 py-3 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                            ID Video Popup (Tombol "Tonton Video")
+                        </label>
+                        <input type="text" name="home_profile_video_popup_id" value="{{ $settings['home_profile_video_popup_id'] ?? 'BG311kT-yXc' }}" 
+                               placeholder="Contoh: BG311kT-yXc" 
+                               class="w-full bg-gray-50 text-xs text-gray-800 rounded-xl px-4 py-3 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
+                        <p class="text-[10px] text-gray-400 mt-1">ID video YouTube yang akan diputar dengan suara di jendela modal saat pengunjung klik tombol play.</p>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                        Judul Utama Section
+                    </label>
+                    <input type="text" name="home_profile_headline" value="{{ $settings['home_profile_headline'] ?? 'Mendidik dengan Kasih Sayang, Membentuk Generasi Khairu Ummah' }}" 
+                           class="w-full bg-gray-50 text-xs text-gray-800 rounded-xl px-4 py-3 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                        Deskripsi / Penjelasan Singkat
+                    </label>
+                    <textarea name="home_profile_desc" rows="3" class="w-full bg-gray-50 text-xs text-gray-800 rounded-xl px-4 py-3 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">{{ $settings['home_profile_desc'] ?? 'Di Pondok Pesantren Raudhatul Ulum Sakatiga, proses pendidikan berakar pada keikhlasan pengasuhan, keteladanan akhlaqul karimah, serta keseimbangan antara spiritualitas Qur\'ani, ketajaman nalar ilmiah, dan kepemimpinan global.' }}</textarea>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                        Teks Tombol Play Video
+                    </label>
+                    <input type="text" name="home_profile_btn_text" value="{{ $settings['home_profile_btn_text'] ?? 'Tonton Video Profil Singkat Pesantren (1 Menit)' }}" 
+                           class="w-full bg-gray-50 text-xs text-gray-800 rounded-xl px-4 py-3 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
+                </div>
+            </div>
         </div>
 
         {{-- SUBMIT BAR --}}
