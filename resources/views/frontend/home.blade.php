@@ -79,7 +79,7 @@
 {{-- ========================================================
      SECTION #1: FLOATING QUICK ICONS / MENU UTAMA (8 Kartu Pesantren)
      ======================================================== --}}
-<div x-data="{ showDownloadModal: false }" class="max-w-6xl mx-auto px-4 sm:px-6 relative z-30 -mt-8 sm:-mt-10 mb-20 sm:mb-28 md:mb-32 reveal-fade-up">
+<div x-data="{ showDownloadModal: false }" class="max-w-6xl mx-auto px-4 sm:px-6 relative z-30 -mt-8 sm:-mt-10 mb-28 sm:mb-36 md:mb-44 reveal-fade-up">
     <div class="bg-white rounded-3xl shadow-2xl border border-gray-100 p-4 sm:p-6 md:p-7">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 mb-4 sm:mb-5 border-b border-gray-100">
             <div class="text-center sm:text-left">
@@ -254,32 +254,40 @@
     $popupYtId = $siteSettings['home_profile_video_popup_id'] ?? $bgYtId ?? 'BG311kT-yXc';
 @endphp
 
-<section class="w-full relative overflow-hidden bg-slate-950 pt-36 sm:pt-48 md:pt-56 pb-52 sm:pb-64 md:pb-72 text-white min-h-[680px] sm:min-h-[760px] md:min-h-[820px] flex flex-col justify-center" 
+<section class="w-full relative overflow-hidden bg-[#070707] py-36 sm:py-48 md:py-56 lg:py-64 text-white min-h-[85vh] flex flex-col justify-center items-center" 
          x-data="{ 
              videoModalOpen: false,
              videoLoaded: false,
              videoSrc: ''
          }"
          x-init="
-             setTimeout(() => {
-                 videoSrc = 'https://www.youtube-nocookie.com/embed/{{ $bgYtId }}?autoplay=1&mute=1&loop=1&playlist={{ $bgYtId }}&controls=0&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&playsinline=1';
-             }, 350);
+             if ('requestIdleCallback' in window) {
+                 requestIdleCallback(() => {
+                     setTimeout(() => {
+                         videoSrc = 'https://www.youtube-nocookie.com/embed/{{ $bgYtId }}?autoplay=1&mute=1&loop=1&playlist={{ $bgYtId }}&controls=0&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&playsinline=1&enablejsapi=1';
+                     }, 1000);
+                 });
+             } else {
+                 setTimeout(() => {
+                     videoSrc = 'https://www.youtube-nocookie.com/embed/{{ $bgYtId }}?autoplay=1&mute=1&loop=1&playlist={{ $bgYtId }}&controls=0&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&playsinline=1&enablejsapi=1';
+                 }, 1200);
+             }
          ">
-    {{-- Top Organic Wave Divider (Smooth transition from page background) --}}
+    {{-- Top Organic Wave Divider (Smooth, slim transition from page background) --}}
     <div class="absolute top-0 left-0 right-0 overflow-hidden leading-none z-10 pointer-events-none">
-        <svg class="relative block w-full h-6 sm:h-8 md:h-10 text-gray-50 fill-current" viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <svg class="relative block w-full h-5 sm:h-7 md:h-8 text-gray-50 fill-current" viewBox="0 0 1200 120" preserveAspectRatio="none">
             <path d="M0,0 L1200,0 L1200,40 C1050,85 850,-30 700,40 C550,110 300,15 0,35 Z"></path>
         </svg>
     </div>
 
     {{-- Full Width Cinematic Video & Vibrant Atmospheric Overlay --}}
-    <div class="absolute inset-0 z-0 overflow-hidden select-none pointer-events-none">
+    <div class="absolute inset-0 z-0 overflow-hidden select-none pointer-events-none bg-[#070707]">
         {{-- 1. Poster Scenery Fallback (Clear, visible campus backdrop) --}}
         <img src="{{ $siteSettings['home_profile_poster_image'] ?? '/uploads/campus-ppru-sakatiga.webp' }}" 
              alt="Pondok Pesantren Raudhatul Ulum Sakatiga" 
-             class="w-full h-full object-cover object-center filter brightness-[0.75] contrast-[1.05] scale-105 transform hover:scale-100 transition duration-1000"
-             :class="{ 'opacity-0': videoLoaded }"
-             style="transition: opacity 0.8s ease-in-out;">
+             class="w-full h-full object-cover object-center filter brightness-[0.70] contrast-[1.05] scale-105 transform transition duration-1000"
+             :class="{ 'opacity-0': videoLoaded, 'opacity-100': !videoLoaded }"
+             style="transition: opacity 1.2s ease-in-out;">
 
         {{-- 2. HTML5 Direct MP4 Video Loop (If provided) --}}
         @if($isMp4)
@@ -287,11 +295,13 @@
                    style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 1;">
                 <source src="{{ $rawBgVideo }}" type="video/mp4">
             </video>
-        {{-- 3. YouTube Cinematic Loop Video Stream (Deferred, 100% opacity to prevent collision) --}}
+        {{-- 3. YouTube Cinematic Loop Video Stream (Deferred, fades in smoothly on load) --}}
         @elseif($bgYtId)
             <div style="position: absolute; inset: 0; width: 100%; height: 100%; overflow: hidden; pointer-events: none;">
                 <template x-if="videoSrc">
-                    <iframe style="position: absolute; top: 50%; left: 50%; width: 100vw; height: 56.25vw; min-height: 100%; min-width: 177.77vh; transform: translate(-50%, -50%) scale(1.15); border: 0; pointer-events: none; opacity: 1; transition: opacity 0.8s ease-in-out;"
+                    <iframe style="position: absolute; top: 50%; left: 50%; width: 100vw; height: 56.25vw; min-height: 100%; min-width: 177.77vh; transform: translate(-50%, -50%) scale(1.18); border: 0; pointer-events: none;"
+                            :class="{ 'opacity-100': videoLoaded, 'opacity-0': !videoLoaded }"
+                            class="transition-opacity duration-1000 ease-in-out"
                             :src="videoSrc"
                             @load="videoLoaded = true"
                             title="Video Background Pesantren Raudhatul Ulum" 
@@ -301,42 +311,51 @@
             </div>
         @endif
 
-        {{-- 4. Cinematic Overlay (Warm dark translucent gradient for high text legibility) --}}
-        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/40 to-slate-950/80"></div>
-        <div class="absolute inset-0 bg-gradient-to-r from-slate-950/60 via-transparent to-slate-950/60"></div>
-        <div class="absolute inset-0 bg-[radial-gradient(#00843d_1.2px,transparent_1.2px)] [background-size:26px_26px] opacity-15 pointer-events-none"></div>
+        {{-- 4. Uniform Dark Contrast Overlay (75% Dark Tint like Baitussalam #070707 for flawless text contrast) --}}
+        <div class="absolute inset-0 bg-[#070707]/75"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black/85"></div>
+        <div class="absolute inset-0 bg-[radial-gradient(#00843d_1.2px,transparent_1.2px)] [background-size:26px_26px] opacity-10 pointer-events-none"></div>
     </div>
 
     {{-- Vibrant Ambient Light Glows --}}
-    <div class="absolute -top-32 -left-32 w-96 h-96 bg-emerald-600/30 rounded-full blur-3xl pointer-events-none"></div>
-    <div class="absolute -bottom-32 -right-32 w-96 h-96 bg-amber-500/25 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute -top-32 -left-32 w-96 h-96 bg-emerald-600/20 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute -bottom-32 -right-32 w-96 h-96 bg-amber-500/20 rounded-full blur-3xl pointer-events-none"></div>
 
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 text-center space-y-6">
-        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-900/80 border border-white/20 text-amber-300 text-xs font-black uppercase tracking-widest backdrop-blur-md shadow-lg reveal-fade-up">
-            <i class="fa-solid fa-heart text-rose-400 animate-pulse"></i>
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 text-center space-y-6 sm:space-y-7">
+        <div class="inline-flex items-center gap-2.5 px-5 py-2 rounded-full bg-black/70 border border-emerald-400/40 text-amber-300 text-xs sm:text-sm font-black uppercase tracking-widest shadow-2xl backdrop-blur-xs reveal-fade-up">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+            <i class="fa-solid fa-heart text-rose-400"></i>
             <span>{{ $siteSettings['home_profile_badge'] ?? 'Mendidik dengan Sepenuh Kasih Sayang' }}</span>
         </div>
 
-        <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tight leading-tight drop-shadow-[0_4px_16px_rgba(0,0,0,0.85)] reveal-fade-up delay-1">
+        <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.2] drop-shadow-[0_4px_24px_rgba(0,0,0,0.95)] max-w-4xl mx-auto reveal-fade-up delay-1">
             {{ $siteSettings['home_profile_headline'] ?? 'Mendidik dengan Kasih Sayang, Membentuk Generasi Khairu Ummah' }}
         </h2>
 
-        <p class="text-sm sm:text-base md:text-lg text-emerald-100 font-normal leading-relaxed max-w-3xl mx-auto drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] reveal-fade-up delay-2">
+        <p class="text-base sm:text-lg md:text-xl text-slate-100 font-medium leading-relaxed max-w-3xl mx-auto drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)] reveal-fade-up delay-2">
             {{ $siteSettings['home_profile_desc'] ?? 'Di Pondok Pesantren Raudhatul Ulum Sakatiga, proses pendidikan berakar pada keikhlasan pengasuhan, keteladanan akhlaqul karimah, serta keseimbangan antara spiritualitas Qur\'ani, ketajaman nalar ilmiah, dan kepemimpinan global.' }}
         </p>
 
-        {{-- Interactive Video Play Button & PSB Trigger --}}
-        <div class="pt-4 pb-2 flex flex-wrap items-center justify-center gap-4 reveal-fade-up delay-3">
-            <button @click="videoModalOpen = true" type="button" class="group inline-flex items-center gap-3.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-black text-xs sm:text-sm px-7 py-3.5 rounded-full shadow-2xl shadow-amber-500/30 transition transform hover:scale-105 cursor-pointer">
+        {{-- Interactive Video Play Button & PSB Trigger - 100% Solid Opaque Non-Transparent --}}
+        <div class="pt-6 pb-2 flex flex-wrap items-center justify-center gap-4 sm:gap-5 reveal-fade-up delay-3">
+            {{-- Button 1: Solid Gold / Amber --}}
+            <button @click="videoModalOpen = true" type="button" class="group inline-flex items-center gap-3.5 bg-[#f59e0b] hover:bg-[#d97706] text-slate-950 font-black text-xs sm:text-sm px-8 py-4 rounded-full shadow-2xl shadow-amber-500/40 transition-all duration-300 transform hover:scale-105 cursor-pointer border-2 border-amber-300">
                 <span class="w-8 h-8 rounded-full bg-slate-950 text-amber-400 flex items-center justify-center text-xs group-hover:scale-110 transition shadow-inner">
                     <i class="fa-solid fa-play ml-0.5"></i>
                 </span>
                 <span>{{ $siteSettings['home_profile_btn_text'] ?? 'Tonton Video Profil Singkat Pesantren (1 Menit)' }}</span>
             </button>
 
-            <a href="{{ route('ppdb.index') }}" class="inline-flex items-center gap-2 bg-slate-900/80 hover:bg-slate-800 text-white font-bold text-xs sm:text-sm px-6 py-3.5 rounded-full border border-white/20 backdrop-blur-md shadow-lg transition">
-                <i class="fa-solid fa-graduation-cap text-amber-300"></i>
+            {{-- Button 2: Solid Islamic Green (Zero Transparency, Solid Emerald) --}}
+            <a href="{{ route('ppdb.index') }}" class="inline-flex items-center gap-2.5 bg-[#00843d] hover:bg-[#006e33] text-white font-black text-xs sm:text-sm px-8 py-4 rounded-full shadow-2xl shadow-emerald-950/60 transition-all duration-300 transform hover:scale-105 border-2 border-emerald-400">
+                <i class="fa-solid fa-graduation-cap text-[#fcd116] text-base"></i>
                 <span>Pendaftaran PSB Online</span>
+            </a>
+
+            {{-- Button 3: Solid Dark Slate (Profil Lengkap) --}}
+            <a href="{{ route('page.tentang-kami') }}" class="inline-flex items-center gap-2.5 bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs sm:text-sm px-7 py-4 rounded-full shadow-2xl transition-all duration-300 transform hover:scale-105 border-2 border-slate-700">
+                <i class="fa-solid fa-landmark-dome text-amber-400"></i>
+                <span>Profil Lengkap</span>
             </a>
         </div>
     </div>
@@ -392,9 +411,9 @@
         </div>
     </div>
 
-    {{-- Bottom Organic Wave Divider (Smooth transition into Section 3 pure white) --}}
+    {{-- Bottom Organic Wave Divider (Smooth transition into Section 3 pure white, slim profile) --}}
     <div class="absolute bottom-0 left-0 right-0 overflow-hidden leading-none z-10 pointer-events-none">
-        <svg class="relative block w-full h-10 sm:h-14 md:h-16 text-white fill-current" viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <svg class="relative block w-full h-6 sm:h-8 md:h-10 text-white fill-current" viewBox="0 0 1200 120" preserveAspectRatio="none">
             <path d="M0,0 C150,85 350,-35 500,45 C650,120 900,10 1200,35 L1200,120 L0,120 Z"></path>
         </svg>
     </div>
