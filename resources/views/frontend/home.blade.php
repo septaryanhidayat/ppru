@@ -254,7 +254,7 @@
     $popupYtId = $siteSettings['home_profile_video_popup_id'] ?? $bgYtId ?? 'BG311kT-yXc';
 @endphp
 
-<section class="w-full relative overflow-hidden bg-[#070707] py-36 sm:py-48 md:py-56 lg:py-64 text-white min-h-[85vh] flex flex-col justify-center items-center" 
+<section class="w-full relative overflow-hidden bg-[#070707] py-48 sm:py-60 md:py-72 lg:py-80 text-white min-h-[92vh] md:min-h-[1000px] flex flex-col justify-center items-center" 
          x-data="{ 
              videoModalOpen: false,
              videoLoaded: false,
@@ -275,17 +275,17 @@
          ">
     {{-- Top Organic Wave Divider (Smooth, slim transition from page background) --}}
     <div class="absolute top-0 left-0 right-0 overflow-hidden leading-none z-10 pointer-events-none">
-        <svg class="relative block w-full h-5 sm:h-7 md:h-8 text-gray-50 fill-current" viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <svg class="relative block w-full h-5 sm:h-6 md:h-7 text-gray-50 fill-current" viewBox="0 0 1200 120" preserveAspectRatio="none">
             <path d="M0,0 L1200,0 L1200,40 C1050,85 850,-30 700,40 C550,110 300,15 0,35 Z"></path>
         </svg>
     </div>
 
-    {{-- Full Width Cinematic Video & Vibrant Atmospheric Overlay --}}
+    {{-- Full Width Cinematic Video & Dark Semi-Transparent Atmospheric Overlay --}}
     <div class="absolute inset-0 z-0 overflow-hidden select-none pointer-events-none bg-[#070707]">
         {{-- 1. Poster Scenery Fallback (Clear, visible campus backdrop) --}}
         <img src="{{ $siteSettings['home_profile_poster_image'] ?? '/uploads/campus-ppru-sakatiga.webp' }}" 
              alt="Pondok Pesantren Raudhatul Ulum Sakatiga" 
-             class="w-full h-full object-cover object-center filter brightness-[0.70] contrast-[1.05] scale-105 transform transition duration-1000"
+             class="w-full h-full object-cover object-center filter brightness-[0.65] contrast-[1.05] scale-105 transform transition duration-1000"
              :class="{ 'opacity-0': videoLoaded, 'opacity-100': !videoLoaded }"
              style="transition: opacity 1.2s ease-in-out;">
 
@@ -311,34 +311,38 @@
             </div>
         @endif
 
-        {{-- 4. Uniform Dark Contrast Overlay (75% Dark Tint like Baitussalam #070707 for flawless text contrast) --}}
-        <div class="absolute inset-0 bg-[#070707]/75"></div>
-        <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black/85"></div>
+        {{-- 4. Multi-Layer Semi-Transparent Black Overlay (Darkens bright video & ensures top text is 100% legible) --}}
+        <div style="position: absolute; inset: 0; background-color: rgba(0, 0, 0, 0.78); pointer-events: none;"></div>
+        <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.68) 35%, rgba(0, 0, 0, 0.72) 70%, rgba(0, 0, 0, 0.96) 100%); pointer-events: none;"></div>
         <div class="absolute inset-0 bg-[radial-gradient(#00843d_1.2px,transparent_1.2px)] [background-size:26px_26px] opacity-10 pointer-events-none"></div>
     </div>
 
-    {{-- Vibrant Ambient Light Glows --}}
-    <div class="absolute -top-32 -left-32 w-96 h-96 bg-emerald-600/20 rounded-full blur-3xl pointer-events-none"></div>
-    <div class="absolute -bottom-32 -right-32 w-96 h-96 bg-amber-500/20 rounded-full blur-3xl pointer-events-none"></div>
+    {{-- Subtle Ambient Glows --}}
+    <div class="absolute -top-32 -left-32 w-96 h-96 bg-emerald-600/15 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute -bottom-32 -right-32 w-96 h-96 bg-amber-500/15 rounded-full blur-3xl pointer-events-none"></div>
 
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 text-center space-y-6 sm:space-y-7">
-        <div class="inline-flex items-center gap-2.5 px-5 py-2 rounded-full bg-black/70 border border-emerald-400/40 text-amber-300 text-xs sm:text-sm font-black uppercase tracking-widest shadow-2xl backdrop-blur-xs reveal-fade-up">
-            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+    {{-- Inner Content Container with Extended Top & Bottom Space (Ekstra 2cm / ~80-100px atas dan bawah) --}}
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 text-center pt-24 sm:pt-32 md:pt-40 pb-28 sm:pb-36 md:pb-44 space-y-6 sm:space-y-7">
+        {{-- Top Badge with Dedicated Dark Backing for Maximum Readability --}}
+        <div class="inline-flex items-center gap-2.5 px-6 py-2.5 rounded-full border border-emerald-400/60 text-amber-300 text-xs sm:text-sm font-black uppercase tracking-widest shadow-2xl backdrop-blur-md reveal-fade-up" style="background-color: rgba(0, 0, 0, 0.85);">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
             <i class="fa-solid fa-heart text-rose-400"></i>
             <span>{{ $siteSettings['home_profile_badge'] ?? 'Mendidik dengan Sepenuh Kasih Sayang' }}</span>
         </div>
 
+        {{-- Headline --}}
         <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.2] drop-shadow-[0_4px_24px_rgba(0,0,0,0.95)] max-w-4xl mx-auto reveal-fade-up delay-1">
             {{ $siteSettings['home_profile_headline'] ?? 'Mendidik dengan Kasih Sayang, Membentuk Generasi Khairu Ummah' }}
         </h2>
 
+        {{-- Description --}}
         <p class="text-base sm:text-lg md:text-xl text-slate-100 font-medium leading-relaxed max-w-3xl mx-auto drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)] reveal-fade-up delay-2">
             {{ $siteSettings['home_profile_desc'] ?? 'Di Pondok Pesantren Raudhatul Ulum Sakatiga, proses pendidikan berakar pada keikhlasan pengasuhan, keteladanan akhlaqul karimah, serta keseimbangan antara spiritualitas Qur\'ani, ketajaman nalar ilmiah, dan kepemimpinan global.' }}
         </p>
 
-        {{-- Interactive Video Play Button & PSB Trigger - 100% Solid Opaque Non-Transparent --}}
-        <div class="pt-6 pb-2 flex flex-wrap items-center justify-center gap-4 sm:gap-5 reveal-fade-up delay-3">
-            {{-- Button 1: Solid Gold / Amber --}}
+        {{-- 2 Action Buttons (SPMB button removed per request, 100% Solid & High Contrast) --}}
+        <div class="pt-6 pb-2 flex flex-wrap items-center justify-center gap-4 sm:gap-6 reveal-fade-up delay-3">
+            {{-- Button 1: Solid Gold / Amber (Tonton Video) --}}
             <button @click="videoModalOpen = true" type="button" class="group inline-flex items-center gap-3.5 bg-[#f59e0b] hover:bg-[#d97706] text-slate-950 font-black text-xs sm:text-sm px-8 py-4 rounded-full shadow-2xl shadow-amber-500/40 transition-all duration-300 transform hover:scale-105 cursor-pointer border-2 border-amber-300">
                 <span class="w-8 h-8 rounded-full bg-slate-950 text-amber-400 flex items-center justify-center text-xs group-hover:scale-110 transition shadow-inner">
                     <i class="fa-solid fa-play ml-0.5"></i>
@@ -346,16 +350,10 @@
                 <span>{{ $siteSettings['home_profile_btn_text'] ?? 'Tonton Video Profil Singkat Pesantren (1 Menit)' }}</span>
             </button>
 
-            {{-- Button 2: Solid Islamic Green (Zero Transparency, Solid Emerald) --}}
-            <a href="{{ route('ppdb.index') }}" class="inline-flex items-center gap-2.5 bg-[#00843d] hover:bg-[#006e33] text-white font-black text-xs sm:text-sm px-8 py-4 rounded-full shadow-2xl shadow-emerald-950/60 transition-all duration-300 transform hover:scale-105 border-2 border-emerald-400">
-                <i class="fa-solid fa-graduation-cap text-[#fcd116] text-base"></i>
-                <span>Pendaftaran PSB Online</span>
-            </a>
-
-            {{-- Button 3: Solid Dark Slate (Profil Lengkap) --}}
-            <a href="{{ route('page.tentang-kami') }}" class="inline-flex items-center gap-2.5 bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs sm:text-sm px-7 py-4 rounded-full shadow-2xl transition-all duration-300 transform hover:scale-105 border-2 border-slate-700">
-                <i class="fa-solid fa-landmark-dome text-amber-400"></i>
-                <span>Profil Lengkap</span>
+            {{-- Button 2: Solid Islamic Green (Jelajahi Profil Lengkap) --}}
+            <a href="{{ route('page.tentang-kami') }}" class="inline-flex items-center gap-2.5 bg-[#00843d] hover:bg-[#006e33] text-white font-black text-xs sm:text-sm px-8 py-4 rounded-full shadow-2xl shadow-emerald-950/60 transition-all duration-300 transform hover:scale-105 border-2 border-emerald-400">
+                <i class="fa-solid fa-landmark-dome text-[#fcd116] text-base"></i>
+                <span>Jelajahi Profil Lengkap Pesantren</span>
             </a>
         </div>
     </div>
@@ -413,7 +411,7 @@
 
     {{-- Bottom Organic Wave Divider (Smooth transition into Section 3 pure white, slim profile) --}}
     <div class="absolute bottom-0 left-0 right-0 overflow-hidden leading-none z-10 pointer-events-none">
-        <svg class="relative block w-full h-6 sm:h-8 md:h-10 text-white fill-current" viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <svg class="relative block w-full h-5 sm:h-6 md:h-7 text-white fill-current" viewBox="0 0 1200 120" preserveAspectRatio="none">
             <path d="M0,0 C150,85 350,-35 500,45 C650,120 900,10 1200,35 L1200,120 L0,120 Z"></path>
         </svg>
     </div>
