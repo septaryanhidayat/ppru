@@ -1,7 +1,7 @@
 @extends('layouts.frontend')
 
-@section('title', 'Sejarah Pesantren - Pondok Pesantren Raudhatul Ulum Sakatiga')
-@section('meta_description', 'Sejarah perjalanan dan perkembangan Pondok Pesantren Raudhatul Ulum Sakatiga sejak 1950 dalam melahirkan generasi Khairu Ummah dan santri berprestasi.')
+@section('title', ($page?->meta_title ?: ($page?->title ?: 'Sejarah Pesantren')) . ' - ' . ($siteSettings['site_name'] ?? 'Pondok Pesantren Raudhatul Ulum Sakatiga'))
+@section('meta_description', $page?->meta_description ?: 'Sejarah perjalanan dan perkembangan Pondok Pesantren Raudhatul Ulum Sakatiga sejak 1950 dalam melahirkan generasi Khairu Ummah dan santri berprestasi.')
 
 @section('content')
 {{-- HERO HEADER --}}
@@ -12,11 +12,11 @@
             <span>/</span>
             <span>Profil</span>
             <span>/</span>
-            <span class="text-amber-300 font-semibold">Sejarah</span>
+            <span class="text-amber-300 font-semibold">{{ $page?->title ?: 'Sejarah' }}</span>
         </nav>
-        <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Sejarah Pondok Pesantren Raudhatul Ulum</h1>
+        <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">{{ $page?->title ?: 'Sejarah Pondok Pesantren Raudhatul Ulum' }}</h1>
         <p class="text-sm text-emerald-100 mt-2 font-light max-w-2xl">
-            Jejak langkah pengabdian para ulama, perjuangan mendirikan madrasah, dan transformasi menuju pesantren modern muadalah Al-Azhar di Sakatiga, Ogan Ilir.
+            {{ $page?->excerpt ?: 'Jejak langkah pengabdian para ulama, perjuangan mendirikan madrasah, dan transformasi menuju pesantren modern muadalah Al-Azhar di Sakatiga, Ogan Ilir.' }}
         </p>
     </div>
 </div>
@@ -36,14 +36,14 @@
                 <div class="border-b border-gray-100 pb-4">
                     <span class="text-xs font-bold text-school-green uppercase tracking-wider block">Jejak Langkah &amp; Perkembangan</span>
                     <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight mt-1">
-                        Menegakkan Risalah Islam di Bumi Sakatiga "Mekkah Kecil"
+                        {{ $page?->title ?: 'Menegakkan Risalah Islam di Bumi Sakatiga "Mekkah Kecil"' }}
                     </h2>
                     <div class="w-16 h-1 bg-[#00913e] rounded-full mt-3"></div>
                 </div>
 
                 {{-- SEJARAH LENGKAP SEKOLAH --}}
                 <div class="prose-content text-gray-700 text-sm sm:text-base leading-relaxed space-y-5">
-                    @if(!empty($page->content) && strlen(trim(strip_tags($page->content))) > 50 && !str_contains($page->content, 'Raudhatul Ulum'))
+                    @if(!empty($page?->content) && strlen(trim(strip_tags($page->content))) > 0)
                         {!! $page->content !!}
                     @else
                         <h4>1. Era Cikal Bakal (1930 - 1950 M)</h4>

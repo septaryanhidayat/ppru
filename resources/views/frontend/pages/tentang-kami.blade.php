@@ -1,7 +1,7 @@
 @extends('layouts.frontend')
 
-@section('title', 'Tentang Kami - Pondok Pesantren Raudhatul Ulum Sakatiga')
-@section('meta_description', 'Mengenal profil, sejarah, visi misi, fasilitas, pimpinan, serta keunggulan Pondok Pesantren Raudhatul Ulum Sakatiga, Ogan Ilir, Sumatera Selatan.')
+@section('title', ($page?->meta_title ?: ($page?->title ?: 'Tentang Kami')) . ' - ' . ($siteSettings['site_name'] ?? 'Pondok Pesantren Raudhatul Ulum Sakatiga'))
+@section('meta_description', $page?->meta_description ?: 'Mengenal profil, sejarah, visi misi, fasilitas, pimpinan, serta keunggulan Pondok Pesantren Raudhatul Ulum Sakatiga, Ogan Ilir, Sumatera Selatan.')
 
 @section('content')
 {{-- HERO HEADER & BREADCRUMB --}}
@@ -12,16 +12,29 @@
             <span>/</span>
             <span>Profil</span>
             <span>/</span>
-            <span class="text-[#f59e0b] font-semibold">Tentang Kami</span>
+            <span class="text-[#f59e0b] font-semibold">{{ $page?->title ?: 'Tentang Kami' }}</span>
         </nav>
-        <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Profil Pondok Pesantren Raudhatul Ulum</h1>
+        <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">{{ $page?->title ?: 'Profil Pondok Pesantren Raudhatul Ulum' }}</h1>
         <p class="text-sm text-gray-200 mt-2 font-light max-w-2xl">
-            Mengenal lebih dekat visi, sejarah, pimpinan, sistem muadalah Al-Azhar, dan nilai pendidikan kepesantrenan di Sakatiga, Ogan Ilir.
+            {{ $page?->excerpt ?: 'Mengenal lebih dekat visi, sejarah, pimpinan, sistem muadalah Al-Azhar, dan nilai pendidikan kepesantrenan di Sakatiga, Ogan Ilir.' }}
         </p>
     </div>
 </div>
 
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 space-y-16">
+
+    {{-- KONTEN PROFIL RESMI DARI ADMIN --}}
+    @if(!empty($page?->content) && strlen(trim(strip_tags($page->content))) > 0)
+    <section class="bg-white rounded-3xl p-8 sm:p-12 shadow-xl border border-gray-100 reveal-fade-up">
+        <div class="inline-flex items-center space-x-2 bg-emerald-100 text-[#00843d] px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-4">
+            <i class="fa-solid fa-circle-info"></i>
+            <span>{{ $page->title }}</span>
+        </div>
+        <div class="prose-content text-gray-700 text-sm sm:text-base leading-relaxed">
+            {!! $page->content !!}
+        </div>
+    </section>
+    @endif
 
     {{-- SEKSI 1: SAMBUTAN MUDIR PESANTREN --}}
     <section class="bg-white rounded-3xl p-8 sm:p-12 shadow-xl border border-gray-100 reveal-fade-up">

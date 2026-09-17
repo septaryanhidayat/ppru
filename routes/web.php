@@ -160,7 +160,9 @@ Route::get('/kategori/{slug}', [ArticleController::class, 'category'])->name('ka
 Route::get('/tag/{slug}', [ArticleController::class, 'tag'])->name('tag.show');
 
 // Profil Pages
-Route::get('/sambutan-kepala-sekolah', [PageController::class, 'sambutan'])->name('page.sambutan');
+Route::get('/sambutan', [PageController::class, 'sambutan'])->name('page.sambutan');
+Route::get('/sambutan-mudir', [PageController::class, 'sambutan']);
+Route::get('/sambutan-kepala-sekolah', [PageController::class, 'sambutan']);
 Route::get('/sambutan-pimpinan', [PageController::class, 'sambutan']);
 Route::get('/sambutan-ketua-dpd', [PageController::class, 'sambutan']);
 Route::get('/tentang-kami', [PageController::class, 'tentangKami'])->name('page.tentang-kami');

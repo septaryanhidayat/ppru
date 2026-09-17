@@ -117,4 +117,26 @@ class Post extends Model
 
         return 'Humas Pondok Pesantren Raudhatul Ulum Sakatiga';
     }
+
+    public function getPublicUrlAttribute(): string
+    {
+        if ($this->type === 'page') {
+            return match ($this->slug) {
+                'sambutan-kepala-sekolah', 'sambutan-ketua-dpd' => route('page.sambutan'),
+                'tentang-kami' => route('page.tentang-kami'),
+                'visi-dan-misi' => route('page.visi-misi'),
+                'sejarah' => route('page.sejarah'),
+                'struktur-organisasi', 'struktur-kepengurusan' => route('page.struktur'),
+                'privacy-policy' => route('page.privacy-policy'),
+                'donasi' => route('donasi'),
+                'e-book' => route('download.ebook'),
+                'hymne-mars' => route('download.hymne-mars'),
+                'logo' => route('download.logo'),
+                'hubungi' => route('hubungi'),
+                default => url('/'.$this->slug),
+            };
+        }
+
+        return route('artikel.show', $this->slug);
+    }
 }

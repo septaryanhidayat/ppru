@@ -5,12 +5,18 @@
 
 @section('content')
 <div class="max-w-5xl mx-auto space-y-6">
-    <div class="flex items-center justify-between">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <a href="{{ route('admin.pages.index') }}" class="text-xs font-semibold text-slate-500 hover:text-slate-800 flex items-center space-x-2">
             <i class="fa-solid fa-arrow-left"></i>
             <span>Kembali ke Daftar Halaman</span>
         </a>
-        <span class="text-xs text-slate-400">Slug URL: <code class="bg-slate-100 px-2 py-1 rounded font-mono">/{{ $page->slug }}</code></span>
+        <div class="flex items-center space-x-3 text-xs">
+            <span class="text-slate-400">Slug URL: <code class="bg-slate-100 px-2 py-1 rounded font-mono">/{{ $page->slug }}</code></span>
+            <a href="{{ $page->public_url }}" target="_blank" class="inline-flex items-center space-x-1.5 bg-emerald-50 hover:bg-emerald-100 text-[#00843d] font-bold px-3 py-1.5 rounded-xl border border-emerald-200 transition" title="Buka Halaman Publik">
+                <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                <span>Lihat di Web Publik</span>
+            </a>
+        </div>
     </div>
 
     <form action="{{ route('admin.pages.update', $page) }}" method="POST" class="space-y-6">

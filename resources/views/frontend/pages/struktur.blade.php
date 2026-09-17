@@ -1,7 +1,7 @@
 @extends('layouts.frontend')
 
-@section('title', 'Struktur Organisasi - Pondok Pesantren Raudhatul Ulum Sakatiga')
-@section('meta_description', 'Bagan struktur organisasi pimpinan dan kepengurusan Yayasan Perguruan Islam Raudhatul Ulum (YAPIRUS) Sakatiga.')
+@section('title', ($page?->meta_title ?: ($page?->title ?: 'Struktur Organisasi')) . ' - ' . ($siteSettings['site_name'] ?? 'Pondok Pesantren Raudhatul Ulum Sakatiga'))
+@section('meta_description', $page?->meta_description ?: 'Bagan struktur organisasi pimpinan dan kepengurusan Yayasan Perguruan Islam Raudhatul Ulum (YAPIRUS) Sakatiga.')
 
 @section('content')
 {{-- HERO HEADER --}}
@@ -12,11 +12,11 @@
             <span>/</span>
             <span>Profil</span>
             <span>/</span>
-            <span class="text-amber-300 font-semibold">Struktur Organisasi</span>
+            <span class="text-amber-300 font-semibold">{{ $page?->title ?: 'Struktur Organisasi' }}</span>
         </nav>
-        <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Struktur Organisasi Pesantren</h1>
+        <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">{{ $page?->title ?: 'Struktur Organisasi Pesantren' }}</h1>
         <p class="text-sm text-emerald-100 mt-2 font-light max-w-2xl">
-            Susunan pimpinan Pondok Pesantren Raudhatul Ulum dan kepengurusan Yayasan Perguruan Islam Raudhatul Ulum (YAPIRUS) Sakatiga.
+            {{ $page?->excerpt ?: 'Susunan pimpinan Pondok Pesantren Raudhatul Ulum dan kepengurusan Yayasan Perguruan Islam Raudhatul Ulum (YAPIRUS) Sakatiga.' }}
         </p>
     </div>
 </div>
@@ -25,6 +25,18 @@
     
     {{-- SEKSI 1: STRUKTUR ORGANISASI DUAL-MODE (Bagan Hirarki vs Daftar Kartu) --}}
     <section class="space-y-6">
+
+        @if(!empty($page?->content) && strlen(trim(strip_tags($page->content))) > 0)
+            <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-emerald-100 text-gray-700 text-xs sm:text-sm leading-relaxed reveal-fade-up">
+                <div class="inline-flex items-center space-x-2 bg-emerald-100 text-[#00843d] px-3.5 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider mb-3">
+                    <i class="fa-solid fa-circle-info"></i>
+                    <span>Informasi Kepemimpinan</span>
+                </div>
+                <div class="prose-content">
+                    {!! $page->content !!}
+                </div>
+            </div>
+        @endif
         
         <!-- View Mode Switcher Header -->
         <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pb-4 border-b border-gray-200">

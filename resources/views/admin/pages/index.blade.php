@@ -35,16 +35,27 @@
                                 </div>
                             </td>
                             <td class="py-4 px-4 text-slate-500 font-mono text-xs">
-                                /{{ $page->slug }}
+                                <div class="flex items-center space-x-2">
+                                    <span class="bg-slate-100 text-slate-700 px-2 py-0.5 rounded font-mono text-xs">/{{ $page->slug }}</span>
+                                    <a href="{{ $page->public_url }}" target="_blank" class="text-xs text-[#00843d] hover:underline font-bold inline-flex items-center space-x-1" title="Buka Halaman di Web Publik">
+                                        <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                                    </a>
+                                </div>
                             </td>
                             <td class="py-4 px-4 text-slate-400">
                                 {{ $page->updated_at ? $page->updated_at->format('d M Y H:i') : '-' }}
                             </td>
                             <td class="py-4 px-4 text-center">
-                                <a href="{{ route('admin.pages.edit', $page) }}" class="inline-flex items-center space-x-1.5 bg-[#da251c] hover:bg-[#b91c1c] text-white font-bold px-3.5 py-1.5 rounded-xl shadow-xs transition">
-                                    <i class="fa-solid fa-pen-to-square text-xs"></i>
-                                    <span>Edit Konten</span>
-                                </a>
+                                <div class="flex items-center justify-center space-x-2">
+                                    <a href="{{ $page->public_url }}" target="_blank" class="inline-flex items-center space-x-1.5 bg-slate-100 hover:bg-emerald-50 hover:text-[#00843d] text-slate-600 font-bold px-3 py-1.5 rounded-xl border border-slate-200 transition text-xs" title="Lihat Tampilan Publik">
+                                        <i class="fa-solid fa-eye text-xs"></i>
+                                        <span class="hidden sm:inline">Lihat Web</span>
+                                    </a>
+                                    <a href="{{ route('admin.pages.edit', $page) }}" class="inline-flex items-center space-x-1.5 bg-[#da251c] hover:bg-[#b91c1c] text-white font-bold px-3.5 py-1.5 rounded-xl shadow-xs transition">
+                                        <i class="fa-solid fa-pen-to-square text-xs"></i>
+                                        <span>Edit Konten</span>
+                                    </a>
+                                </div>
                             </td>
                         </tr>
                     @empty

@@ -1,7 +1,7 @@
 @extends('layouts.frontend')
 
-@section('title', 'Kata Sambutan Mudir / Sambutan Kepala Sekolah - Pondok Pesantren Raudhatul Ulum Sakatiga')
-@section('meta_description', 'Sambutan resmi Mudir Pondok Pesantren Raudhatul Ulum Sakatiga, KH. Tol\'at Wafa Ahmad, Lc.')
+@section('title', ($page?->meta_title ?: ($page?->title ?: 'Kata Sambutan Mudir Pesantren')) . ' - ' . ($siteSettings['site_name'] ?? 'Pondok Pesantren Raudhatul Ulum Sakatiga'))
+@section('meta_description', $page?->meta_description ?: 'Sambutan resmi Mudir Pondok Pesantren Raudhatul Ulum Sakatiga, KH. Tol\'at Wafa Ahmad, Lc.')
 
 @section('content')
 {{-- HERO HEADER --}}
@@ -12,11 +12,11 @@
             <span>/</span>
             <span>Profil</span>
             <span>/</span>
-            <span class="text-[#fcd116] font-semibold">Kata Sambutan Mudir Pesantren</span>
+            <span class="text-[#fcd116] font-semibold">{{ $page?->title ?: 'Kata Sambutan Mudir Pesantren' }}</span>
         </nav>
-        <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Kata Sambutan Mudir Pesantren</h1>
+        <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">{{ $page?->title ?: 'Kata Sambutan Mudir Pesantren' }}</h1>
         <p class="text-sm text-gray-200 mt-2 font-light">
-            Amanat dan risalah pendidikan dari Pimpinan Pondok Pesantren Raudhatul Ulum Sakatiga, Ogan Ilir.
+            {{ $page?->excerpt ?: 'Amanat dan risalah pendidikan dari Pimpinan Pondok Pesantren Raudhatul Ulum Sakatiga, Ogan Ilir.' }}
         </p>
     </div>
 </div>
@@ -48,7 +48,7 @@
 
         {{-- KONTEN PIDATO RESMI --}}
         <div class="prose-content text-gray-800 text-sm sm:text-base leading-relaxed space-y-5 text-justify max-w-4xl mx-auto">
-            @if(!empty($page->content) && strlen(trim(strip_tags($page->content))) > 0 && !str_contains($page->content, 'Raudhatul Ulum'))
+            @if(!empty($page?->content) && strlen(trim(strip_tags($page->content))) > 0)
                 {!! $page->content !!}
             @else
                 <p class="font-semibold text-gray-900 text-base sm:text-lg">Assalamu'alaikum Warahmatullahi Wabarakatuh,</p>

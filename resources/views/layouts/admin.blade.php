@@ -742,6 +742,8 @@
             }
         });
     </script>
+    {{-- Local Storage Form Draft Auto-Save Engine --}}
+    <script src="{{ asset('js/form-draft-saver.js') }}"></script>
     @stack('scripts')
 </body>
 </html>
