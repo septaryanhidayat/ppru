@@ -266,6 +266,12 @@
     if (empty($badgeText) || $badgeText === 'Mendidik dengan Sepenuh Kasih Sayang') {
         $badgeText = 'Profil Pesantren';
     }
+
+    // Concise button text (Tonton Video Profil)
+    $btnText = trim($siteSettings['home_profile_btn_text'] ?? '');
+    if (empty($btnText) || $btnText === 'Tonton Video Profil Singkat Pesantren (1 Menit)' || $btnText === 'Lihat Video Singkat') {
+        $btnText = 'Tonton Video Profil';
+    }
 @endphp
 
 <section class="w-full relative overflow-hidden bg-[#070707] text-white flex flex-col justify-center items-center" 
@@ -288,10 +294,10 @@
                  }, 1200);
              }
          ">
-    {{-- Top Organic Wave Divider (Smooth, slim transition from page background) --}}
+    {{-- Top Convex Arc Divider (Smooth, symmetrical outward curve) --}}
     <div class="absolute -top-px left-0 right-0 overflow-hidden leading-none z-10 pointer-events-none" style="top: -1px;">
-        <svg class="relative block w-full h-5 sm:h-6 md:h-7 text-gray-50 fill-current -translate-y-[1px]" viewBox="0 0 1200 120" preserveAspectRatio="none">
-            <path d="M0,0 L1200,0 L1200,40 C1050,85 850,-30 700,40 C550,110 300,15 0,35 Z"></path>
+        <svg class="relative block w-full h-5 sm:h-7 md:h-9 text-gray-50 fill-current -translate-y-[1px]" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path d="M0,0 L1200,0 L1200,120 Q600,-120 0,120 Z"></path>
         </svg>
     </div>
 
@@ -364,7 +370,7 @@
                 <span class="w-8 h-8 rounded-full bg-slate-950 text-amber-400 flex items-center justify-center text-xs group-hover:scale-110 transition shadow-inner">
                     <i class="fa-solid fa-play ml-0.5"></i>
                 </span>
-                <span>{{ $siteSettings['home_profile_btn_text'] ?? 'Tonton Video Profil Singkat Pesantren (1 Menit)' }}</span>
+                <span>{{ $btnText }}</span>
             </button>
 
             {{-- Button 2: Solid Islamic Green (Pendaftaran PSB Online) --}}
@@ -426,10 +432,10 @@
         </div>
     </div>
 
-    {{-- Bottom Organic Wave Divider (Smooth transition into Section 3 pure white, slim profile) --}}
+    {{-- Bottom Convex Arc Divider (Smooth, symmetrical outward curve into Section 3 pure white) --}}
     <div class="absolute -bottom-px left-0 right-0 overflow-hidden leading-none z-10 pointer-events-none" style="bottom: -1px;">
-        <svg class="relative block w-full h-5 sm:h-6 md:h-7 text-white fill-current translate-y-[1px]" viewBox="0 0 1200 120" preserveAspectRatio="none">
-            <path d="M0,0 C150,85 350,-35 500,45 C650,120 900,10 1200,35 L1200,120 L0,120 Z"></path>
+        <svg class="relative block w-full h-5 sm:h-7 md:h-9 text-white fill-current translate-y-[1px]" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path d="M0,120 L1200,120 L1200,0 Q600,240 0,0 Z"></path>
         </svg>
     </div>
 </section>

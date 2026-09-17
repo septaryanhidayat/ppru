@@ -17,7 +17,7 @@ beforeEach(function () {
     );
 });
 
-test('frontend homepage renders cinematic video background with top and bottom organic wave dividers', function () {
+test('frontend homepage renders cinematic video background with top and bottom convex arc dividers', function () {
     Setting::updateOrCreate(
         ['key' => 'home_profile_video_bg'],
         ['value' => 'https://www.youtube.com/watch?v=BG311kT-yXc', 'group' => 'general']
@@ -26,12 +26,15 @@ test('frontend homepage renders cinematic video background with top and bottom o
     $response = $this->get('/');
     $response->assertStatus(200);
 
-    // Assert Section 2 presence, wave dividers, and non-negative z-index layering
+    // Assert Section 2 presence, convex arc dividers, and non-negative z-index layering
     $response->assertSee('Profil Pesantren');
+    $response->assertSee('Tonton Video Profil');
     $response->assertSee('Mendidik dengan Kasih Sayang, Membentuk Generasi Khairu Ummah');
     $response->assertSee('embed/BG311kT-yXc', false);
     $response->assertSee('preserveAspectRatio="none"', false);
     $response->assertSee('viewBox="0 0 1200 120"', false);
+    $response->assertSee('Q600,-120 0,120', false);
+    $response->assertSee('Q600,240 0,0', false);
     $response->assertSee('absolute inset-0 z-0 overflow-hidden', false);
     $response->assertDontSee('absolute inset-0 -z-10', false);
 });
