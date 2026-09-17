@@ -254,7 +254,8 @@
     $popupYtId = $siteSettings['home_profile_video_popup_id'] ?? $bgYtId ?? 'BG311kT-yXc';
 @endphp
 
-<section class="w-full relative overflow-hidden bg-[#070707] py-48 sm:py-60 md:py-72 lg:py-80 text-white min-h-[92vh] md:min-h-[1000px] flex flex-col justify-center items-center" 
+<section class="w-full relative overflow-hidden bg-[#070707] text-white flex flex-col justify-center items-center" 
+         style="min-height: 920px; padding-top: 80px; padding-bottom: 90px;"
          x-data="{ 
              videoModalOpen: false,
              videoLoaded: false,
@@ -321,10 +322,12 @@
     <div class="absolute -top-32 -left-32 w-96 h-96 bg-emerald-600/15 rounded-full blur-3xl pointer-events-none"></div>
     <div class="absolute -bottom-32 -right-32 w-96 h-96 bg-amber-500/15 rounded-full blur-3xl pointer-events-none"></div>
 
-    {{-- Inner Content Container with Extended Top & Bottom Space (Ekstra 2cm / ~80-100px atas dan bawah) --}}
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 text-center pt-24 sm:pt-32 md:pt-40 pb-28 sm:pb-36 md:pb-44 space-y-6 sm:space-y-7">
-        {{-- Top Badge with Dedicated Dark Backing for Maximum Readability --}}
-        <div class="inline-flex items-center gap-2.5 px-6 py-2.5 rounded-full border border-emerald-400/60 text-amber-300 text-xs sm:text-sm font-black uppercase tracking-widest shadow-2xl backdrop-blur-md reveal-fade-up" style="background-color: rgba(0, 0, 0, 0.85);">
+    {{-- Inner Content Container with Extended Top & Bottom Space (Jarak 2cm / ~80-100px atas dan bawah) --}}
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 text-center space-y-6 sm:space-y-7"
+         style="padding-top: 80px; padding-bottom: 90px;">
+        {{-- Top Badge with Dedicated Dark Backing & Extra Top Clearance (+2cm) --}}
+        <div class="inline-flex items-center gap-2.5 px-6 py-2.5 rounded-full border border-emerald-400/60 text-amber-300 text-xs sm:text-sm font-black uppercase tracking-widest shadow-2xl backdrop-blur-md reveal-fade-up" 
+             style="margin-top: 25px; background-color: rgba(0, 0, 0, 0.85);">
             <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
             <i class="fa-solid fa-heart text-rose-400"></i>
             <span>{{ $siteSettings['home_profile_badge'] ?? 'Mendidik dengan Sepenuh Kasih Sayang' }}</span>
@@ -340,8 +343,9 @@
             {{ $siteSettings['home_profile_desc'] ?? 'Di Pondok Pesantren Raudhatul Ulum Sakatiga, proses pendidikan berakar pada keikhlasan pengasuhan, keteladanan akhlaqul karimah, serta keseimbangan antara spiritualitas Qur\'ani, ketajaman nalar ilmiah, dan kepemimpinan global.' }}
         </p>
 
-        {{-- 2 Action Buttons: Video Profile & PSB Online (Solid, 100% Non-Transparent, High Contrast) --}}
-        <div class="pt-6 pb-2 flex flex-wrap items-center justify-center gap-4 sm:gap-6 reveal-fade-up delay-3">
+        {{-- 2 Action Buttons: Video Profile & PSB Online with Extra Bottom Clearance (+2cm) --}}
+        <div class="pt-6 pb-2 flex flex-wrap items-center justify-center gap-4 sm:gap-6 reveal-fade-up delay-3"
+             style="margin-bottom: 30px;">
             {{-- Button 1: Solid Gold / Amber (Tonton Video Profil) --}}
             <button @click="videoModalOpen = true" type="button" class="group inline-flex items-center gap-3.5 bg-[#f59e0b] hover:bg-[#d97706] text-slate-950 font-black text-xs sm:text-sm px-8 py-4 rounded-full shadow-2xl shadow-amber-500/40 transition-all duration-300 transform hover:scale-105 cursor-pointer border-2 border-amber-300">
                 <span class="w-8 h-8 rounded-full bg-slate-950 text-amber-400 flex items-center justify-center text-xs group-hover:scale-110 transition shadow-inner">
