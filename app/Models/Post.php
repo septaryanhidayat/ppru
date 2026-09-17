@@ -17,10 +17,13 @@ class Post extends Model
         'content',
         'excerpt',
         'status',
+        'is_featured',
         'type',
         'featured_image',
+        'featured_image_caption',
         'views_count',
         'author_id',
+        'author_name',
         'published_at',
         'meta_title',
         'meta_description',
@@ -30,6 +33,7 @@ class Post extends Model
     protected $casts = [
         'published_at' => 'datetime',
         'views_count' => 'integer',
+        'is_featured' => 'boolean',
     ];
 
     public function author(): BelongsTo
@@ -72,6 +76,11 @@ class Post extends Model
         return $query->where('type', 'page');
     }
 
+    public function scopeFeatured($query)
+    {
+        return $query->where('is_featured', true);
+    }
+
     public function getFeaturedImageUrlAttribute(): string
     {
         if (! empty($this->featured_image)) {
@@ -86,5 +95,26 @@ class Post extends Model
     public function getPostDateAttribute()
     {
         return $this->published_at ?? $this->created_at;
+    }
+
+    public function getReadingTimeAttribute(): string
+    {
+        $words = str_word_count(strip_tags($this->content ?? ''));
+        $minutes = max(1, (int) ceil($words / 200));
+
+        return "{$minutes} menit baca";
+    }
+
+    public function getDisplayAuthorAttribute(): string
+    {
+        if (! empty($this->author_name)) {
+            return $this->author_name;
+        }
+
+        if ($this->author && ! empty($this->author->name)) {
+            return $this->author->name;
+        }
+
+        return 'Humas Pondok Pesantren Raudhatul Ulum Sakatiga';
     }
 }

@@ -62,16 +62,23 @@
                                 <img src="/uploads/campus-robbani.webp" alt="{{ $post->title }}" class="w-full h-full object-cover">
                             @endif
                             @if($post->categories->isNotEmpty())
-                                <span class="absolute top-3 left-3 bg-[#00913e] text-white text-[10px] font-bold px-2 py-0.5 rounded-full shadow-sm">
+                                <span class="absolute top-3 left-3 bg-[#00913e] text-white text-[10px] font-bold px-2.5 py-0.5 rounded-full shadow-sm">
                                     {{ $post->categories->first()->name }}
+                                </span>
+                            @endif
+                            @if($post->is_featured)
+                                <span class="absolute top-3 right-3 bg-amber-500 text-white text-[10px] font-extrabold px-2 py-0.5 rounded-full shadow-sm flex items-center gap-1">
+                                    <i class="fa-solid fa-thumbtack text-[9px]"></i> Headline
                                 </span>
                             @endif
                         </a>
 
                         <div class="p-5 flex-grow flex flex-col justify-between space-y-3">
                             <div>
-                                <div class="flex items-center text-[11px] text-gray-400 space-x-2 mb-2">
+                                <div class="flex items-center text-[11px] text-gray-400 gap-2 mb-2 flex-wrap">
                                     <span><i class="fa-regular fa-calendar mr-1 text-[#00913e]"></i>{{ $post->published_at ? $post->published_at->translatedFormat('d M Y') : '-' }}</span>
+                                    <span>&bull;</span>
+                                    <span><i class="fa-regular fa-clock mr-1 text-[#00913e]"></i>{{ $post->reading_time }}</span>
                                     <span>&bull;</span>
                                     <span><i class="fa-regular fa-eye mr-1"></i>{{ number_format($post->views_count) }}</span>
                                 </div>

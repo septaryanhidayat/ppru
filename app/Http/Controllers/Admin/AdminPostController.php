@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
+use App\Models\User;
 use App\Services\WebpService;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -34,6 +36,10 @@ class AdminPostController extends Controller
             $query->where('title', 'like', "%{$search}%");
         }
 
+        if ($catId = $request->input('category_id')) {
+            $query->whereHas('categories', fn ($q) => $q->where('categories.id', $catId));
+        }
+
         $posts = $query->latest('published_at')->latest('id')->paginate(15)->withQueryString();
 
         $counts = [
@@ -43,16 +49,19 @@ class AdminPostController extends Controller
             'alumni' => Post::where('type', 'alumni')->count(),
         ];
 
-        return view('admin.posts.index', compact('posts', 'type', 'counts'));
+        $categories = Category::orderBy('name', 'asc')->get();
+
+        return view('admin.posts.index', compact('posts', 'type', 'counts', 'categories'));
     }
 
     public function create()
     {
         $type = request('type', 'post');
-        $categories = Category::all();
-        $tags = Tag::all();
+        $categories = Category::orderBy('name', 'asc')->get();
+        $tags = Tag::orderBy('name', 'asc')->get();
+        $users = User::orderBy('name', 'asc')->get();
 
-        return view('admin.posts.create', compact('categories', 'tags', 'type'));
+        return view('admin.posts.create', compact('categories', 'tags', 'users', 'type'));
     }
 
     public function store(Request $request)
@@ -63,9 +72,18 @@ class AdminPostController extends Controller
             'content' => 'required|string',
             'excerpt' => 'nullable|string|max:500',
             'status' => 'required|in:publish,draft',
+            'is_featured' => 'nullable|boolean',
+            'published_at' => 'nullable|date',
+            'author_id' => 'nullable|exists:users,id',
+            'author_name' => 'nullable|string|max:255',
             'featured_image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
+            'featured_image_caption' => 'nullable|string|max:255',
             'categories' => 'nullable|array',
+            'new_category' => 'nullable|string|max:255',
             'tags' => 'nullable|string',
+            'meta_title' => 'nullable|string|max:255',
+            'meta_description' => 'nullable|string|max:500',
+            'meta_keywords' => 'nullable|string|max:255',
         ]);
 
         $featuredImageUrl = null;
@@ -86,28 +104,51 @@ class AdminPostController extends Controller
             }
         }
 
+        // Tanggal terbit kustom atau default waktu sekarang
+        $publishedAt = ! empty($validated['published_at'])
+            ? Carbon::parse($validated['published_at'])
+            : now();
+
         $post = Post::create([
             'title' => $validated['title'],
             'slug' => Str::slug($validated['title']).'-'.time(),
             'content' => $validated['content'],
             'excerpt' => ($validated['excerpt'] ?? null) ?: Str::limit(strip_tags($validated['content']), 180),
             'status' => $validated['status'],
+            'is_featured' => $request->boolean('is_featured'),
             'type' => $type,
             'featured_image' => $featuredImageUrl,
-            'author_id' => Auth::id(),
-            'published_at' => now(),
+            'featured_image_caption' => $validated['featured_image_caption'] ?? null,
+            'author_id' => $validated['author_id'] ?? Auth::id(),
+            'author_name' => $validated['author_name'] ?? null,
+            'published_at' => $publishedAt,
+            'meta_title' => $validated['meta_title'] ?? null,
+            'meta_description' => $validated['meta_description'] ?? null,
+            'meta_keywords' => $validated['meta_keywords'] ?? null,
         ]);
 
-        if (! empty($validated['categories'])) {
-            $post->categories()->sync($validated['categories']);
+        // Kategori (gabungkan checklist + new_category jika diinput)
+        $categoryIds = $request->input('categories', []);
+        if (! empty($validated['new_category'])) {
+            $newCatName = trim($validated['new_category']);
+            $newCat = Category::firstOrCreate(
+                ['slug' => Str::slug($newCatName)],
+                ['name' => $newCatName]
+            );
+            if (! in_array($newCat->id, $categoryIds)) {
+                $categoryIds[] = $newCat->id;
+            }
+        }
+
+        if (! empty($categoryIds)) {
+            $post->categories()->sync($categoryIds);
         }
 
         // Process tags
         if (! empty($validated['tags'])) {
-            $tagNames = explode(',', $validated['tags']);
+            $tagNames = array_filter(array_map('trim', explode(',', $validated['tags'])));
             $tagIds = [];
             foreach ($tagNames as $tName) {
-                $tName = trim($tName);
                 if ($tName) {
                     $tag = Tag::firstOrCreate(
                         ['slug' => Str::slug($tName)],
@@ -121,18 +162,19 @@ class AdminPostController extends Controller
 
         $redirectParams = ($type === 'post') ? [] : ['type' => $type];
 
-        return redirect()->route('admin.posts.index', $redirectParams)->with('success', 'Konten berhasil diterbitkan dengan gambar teroptimasi WebP!');
+        return redirect()->route('admin.posts.index', $redirectParams)->with('success', 'Konten berhasil disimpan dan diterbitkan!');
     }
 
     public function edit(Post $post)
     {
         $type = $post->type;
-        $categories = Category::all();
-        $tags = Tag::all();
+        $categories = Category::orderBy('name', 'asc')->get();
+        $tags = Tag::orderBy('name', 'asc')->get();
+        $users = User::orderBy('name', 'asc')->get();
         $selectedCategories = $post->categories->pluck('id')->toArray();
         $selectedTags = $post->tags->pluck('name')->implode(', ');
 
-        return view('admin.posts.edit', compact('post', 'categories', 'tags', 'selectedCategories', 'selectedTags', 'type'));
+        return view('admin.posts.edit', compact('post', 'categories', 'tags', 'users', 'selectedCategories', 'selectedTags', 'type'));
     }
 
     public function update(Request $request, Post $post)
@@ -143,9 +185,18 @@ class AdminPostController extends Controller
             'content' => 'required|string',
             'excerpt' => 'nullable|string|max:500',
             'status' => 'required|in:publish,draft',
+            'is_featured' => 'nullable|boolean',
+            'published_at' => 'nullable|date',
+            'author_id' => 'nullable|exists:users,id',
+            'author_name' => 'nullable|string|max:255',
             'featured_image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
+            'featured_image_caption' => 'nullable|string|max:255',
             'categories' => 'nullable|array',
+            'new_category' => 'nullable|string|max:255',
             'tags' => 'nullable|string',
+            'meta_title' => 'nullable|string|max:255',
+            'meta_description' => 'nullable|string|max:500',
+            'meta_keywords' => 'nullable|string|max:255',
         ]);
 
         $featuredImageUrl = $post->featured_image;
@@ -165,24 +216,47 @@ class AdminPostController extends Controller
             }
         }
 
+        // Tanggal terbit kustom atau pertahankan tanggal yang ada
+        $publishedAt = ! empty($validated['published_at'])
+            ? Carbon::parse($validated['published_at'])
+            : ($post->published_at ?? now());
+
         $post->update([
             'title' => $validated['title'],
             'type' => $validated['type'] ?? $post->type,
             'content' => $validated['content'],
             'excerpt' => ($validated['excerpt'] ?? null) ?: Str::limit(strip_tags($validated['content']), 180),
             'status' => $validated['status'],
+            'is_featured' => $request->boolean('is_featured'),
             'featured_image' => $featuredImageUrl,
+            'featured_image_caption' => $validated['featured_image_caption'] ?? null,
+            'author_id' => $validated['author_id'] ?? $post->author_id,
+            'author_name' => $validated['author_name'] ?? null,
+            'published_at' => $publishedAt,
+            'meta_title' => $validated['meta_title'] ?? null,
+            'meta_description' => $validated['meta_description'] ?? null,
+            'meta_keywords' => $validated['meta_keywords'] ?? null,
         ]);
 
-        if (isset($validated['categories'])) {
-            $post->categories()->sync($validated['categories']);
+        // Kategori (sinkronkan daftar terpilih + new_category jika diinput)
+        $categoryIds = $request->input('categories', []);
+        if (! empty($validated['new_category'])) {
+            $newCatName = trim($validated['new_category']);
+            $newCat = Category::firstOrCreate(
+                ['slug' => Str::slug($newCatName)],
+                ['name' => $newCatName]
+            );
+            if (! in_array($newCat->id, $categoryIds)) {
+                $categoryIds[] = $newCat->id;
+            }
         }
+        $post->categories()->sync($categoryIds);
 
-        if (isset($validated['tags'])) {
-            $tagNames = explode(',', $validated['tags']);
+        // Tags
+        if ($request->has('tags')) {
+            $tagNames = array_filter(array_map('trim', explode(',', $request->input('tags', ''))));
             $tagIds = [];
             foreach ($tagNames as $tName) {
-                $tName = trim($tName);
                 if ($tName) {
                     $tag = Tag::firstOrCreate(
                         ['slug' => Str::slug($tName)],

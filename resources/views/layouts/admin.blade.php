@@ -216,6 +216,11 @@
                         <span class="sidebar-label">Berita &amp; Artikel</span>
                     </a>
 
+                    <a href="{{ route('admin.categories.index') }}" class="sidebar-item flex items-center space-x-3 px-3 py-1.5 rounded-lg transition {{ request()->routeIs('admin.categories*') ? 'bg-gradient-to-r from-[#00843d] to-[#05a849] text-white font-bold shadow-md' : 'hover:bg-slate-800/70 text-slate-300 hover:text-white' }}" title="Kategori Artikel & Berita">
+                        <i class="fa-solid fa-tags text-xs w-4 text-center text-amber-400"></i>
+                        <span class="sidebar-label">Kategori Berita</span>
+                    </a>
+
                     <a href="{{ route('admin.pages.index') }}" class="sidebar-item flex items-center space-x-3 px-3 py-1.5 rounded-lg transition {{ request()->routeIs('admin.pages*') ? 'bg-gradient-to-r from-[#00843d] to-[#05a849] text-white font-bold shadow-md' : 'hover:bg-slate-800/70 text-slate-300 hover:text-white' }}" title="Halaman Profil Statis">
                         <i class="fa-solid fa-file-lines text-xs w-4 text-center"></i>
                         <span class="sidebar-label">Halaman Profil Statis</span>

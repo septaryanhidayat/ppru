@@ -34,16 +34,21 @@
         {{-- MAIN ARTICLE (2/3) --}}
         <article class="lg:col-span-2 bg-white p-6 sm:p-10 rounded-3xl shadow-xl border border-gray-100 reveal-fade-up">
             
-            {{-- Category Pills --}}
-            @if($post->categories->isNotEmpty())
-                <div class="flex flex-wrap gap-2 mb-4">
+            {{-- Category Pills & Headline Badge --}}
+            <div class="flex flex-wrap items-center gap-2 mb-4">
+                @if($post->is_featured)
+                    <span class="bg-amber-100 text-amber-800 border border-amber-300 text-xs font-extrabold px-3 py-1 rounded-full flex items-center gap-1.5 shadow-2xs">
+                        <i class="fa-solid fa-thumbtack text-[10px]"></i> Berita Utama
+                    </span>
+                @endif
+                @if($post->categories->isNotEmpty())
                     @foreach($post->categories as $cat)
                         <a href="{{ route('artikel.index', ['kategori' => $cat->slug]) }}" class="bg-emerald-100 text-[#00913e] hover:bg-[#00913e] hover:text-white transition text-xs font-bold px-3 py-1 rounded-full">
                             {{ $cat->name }}
                         </a>
                     @endforeach
-                </div>
-            @endif
+                @endif
+            </div>
 
             {{-- Title --}}
             <h1 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-gray-900 tracking-tight leading-snug mb-4">
@@ -51,10 +56,10 @@
             </h1>
 
             {{-- Meta Info --}}
-            <div class="flex flex-wrap items-center text-xs text-gray-500 gap-4 py-3 border-y border-gray-100 mb-6">
+            <div class="flex flex-wrap items-center text-xs text-gray-500 gap-3 sm:gap-4 py-3 border-y border-gray-100 mb-6">
                 <div class="flex items-center space-x-2">
-                    <i class="fa-solid fa-user text-[#00913e]"></i>
-                    <span>{{ $post->author?->name ?: 'Humas Pondok Pesantren Raudhatul Ulum Sakatiga' }}</span>
+                    <i class="fa-solid fa-user-pen text-[#00913e]"></i>
+                    <span class="font-medium text-gray-700">{{ $post->display_author }}</span>
                 </div>
                 <span>&bull;</span>
                 <div class="flex items-center space-x-2">
@@ -63,15 +68,25 @@
                 </div>
                 <span>&bull;</span>
                 <div class="flex items-center space-x-2">
+                    <i class="fa-regular fa-clock text-[#00913e]"></i>
+                    <span>{{ $post->reading_time }}</span>
+                </div>
+                <span>&bull;</span>
+                <div class="flex items-center space-x-2">
                     <i class="fa-regular fa-eye text-gray-400"></i>
                     <span>{{ number_format($post->views_count) }} kali dibaca</span>
                 </div>
             </div>
 
-            {{-- Featured Image --}}
+            {{-- Featured Image & Takarir Foto --}}
             @if($post->featured_image)
-                <div class="mb-8 rounded-2xl overflow-hidden shadow-md bg-gray-100">
+                <div class="mb-8 rounded-2xl overflow-hidden shadow-md bg-gray-100 border border-gray-100">
                     <img src="{{ $post->featured_image }}" alt="{{ $post->title }}" class="w-full h-auto max-h-[500px] object-cover" onerror="this.style.display='none'">
+                    @if($post->featured_image_caption)
+                        <div class="p-3 bg-slate-50 border-t border-slate-100 text-center text-xs text-slate-500 italic">
+                            <i class="fa-solid fa-camera text-slate-400 mr-1.5 text-[11px]"></i>{{ $post->featured_image_caption }}
+                        </div>
+                    @endif
                 </div>
             @endif
 

@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AdminAgendaController;
 use App\Http\Controllers\Admin\AdminAnalyticsController;
 use App\Http\Controllers\Admin\AdminBackupController;
 use App\Http\Controllers\Admin\AdminBidangController;
+use App\Http\Controllers\Admin\AdminCategoryController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AdminDewanController;
 use App\Http\Controllers\Admin\AdminDownloadController;
@@ -48,7 +49,9 @@ Route::prefix('admin')->middleware('auth')->name('admin.')->group(function () {
     Route::get('/analytics', [AdminAnalyticsController::class, 'index'])->name('analytics.index');
     Route::post('/analytics/prune', [AdminAnalyticsController::class, 'prune'])->name('analytics.prune');
 
-    // Posts Management
+    // Posts & Categories Management
+    Route::post('/categories/quick', [AdminCategoryController::class, 'quickStore'])->name('categories.quick');
+    Route::resource('categories', AdminCategoryController::class);
     Route::resource('posts', AdminPostController::class);
 
     // Static Pages Management (Profil, Visi Misi, Sejarah, Sambutan, Struktur, Privacy Policy)
