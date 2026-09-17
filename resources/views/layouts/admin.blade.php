@@ -269,9 +269,9 @@
                         <span class="sidebar-label">Donasi &amp; Rekening Bank</span>
                     </a>
 
-                    <a href="{{ route('admin.pages.hymne-mars') }}" class="sidebar-item flex items-center space-x-3 px-3 py-1.5 rounded-lg transition {{ request()->routeIs('admin.pages.hymne-mars*') ? 'bg-gradient-to-r from-[#00843d] to-[#05a849] text-white font-bold shadow-md' : 'hover:bg-slate-800/70 text-slate-300 hover:text-white' }}" title="Mars & Hymne Sekolah">
+                    <a href="{{ route('admin.pages.hymne-mars') }}" class="sidebar-item flex items-center space-x-3 px-3 py-1.5 rounded-lg transition {{ request()->routeIs('admin.pages.hymne-mars*') ? 'bg-gradient-to-r from-[#00843d] to-[#05a849] text-white font-bold shadow-md' : 'hover:bg-slate-800/70 text-slate-300 hover:text-white' }}" title="Mars & Hymne">
                         <i class="fa-solid fa-music text-xs w-4 text-center text-rose-400"></i>
-                        <span class="sidebar-label">Mars &amp; Hymne JSIT</span>
+                        <span class="sidebar-label">Mars &amp; Hymne</span>
                     </a>
 
                     <a href="{{ route('admin.pages.logo') }}" class="sidebar-item flex items-center space-x-3 px-3 py-1.5 rounded-lg transition {{ request()->routeIs('admin.pages.logo*') ? 'bg-gradient-to-r from-[#00843d] to-[#05a849] text-white font-bold shadow-md' : 'hover:bg-slate-800/70 text-slate-300 hover:text-white' }}" title="Logo Resmi & Identitas Visual">

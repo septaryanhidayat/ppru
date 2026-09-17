@@ -39,6 +39,8 @@ test('admin can access specialized static pages management views and see reorgan
     $resMars->assertStatus(200);
     $resMars->assertSee('Kelola Mars &amp; Hymne', false);
     $resMars->assertSee('Video Player Mars YouTube');
+    $resMars->assertSee('Mars &amp; Hymne</span>', false);
+    $resMars->assertDontSee('Mars &amp; Hymne JSIT</span>', false);
 
     // 4. Logo & Identitas Editor
     $resLogo = $this->get(route('admin.pages.logo'));
