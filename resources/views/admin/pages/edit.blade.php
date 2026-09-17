@@ -19,7 +19,7 @@
         </div>
     </div>
 
-    <form action="{{ route('admin.pages.update', $page) }}" method="POST" class="space-y-6">
+    <form action="{{ route('admin.pages.update', $page) }}" method="POST" enctype="multipart/form-data" class="space-y-6">
         @csrf
         @method('PUT')
 
@@ -37,6 +37,80 @@
                 <label for="excerpt" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Ringkasan Pendek (Opsional)</label>
                 <textarea name="excerpt" id="excerpt" rows="2" class="w-full bg-slate-50 text-xs text-slate-800 rounded-xl p-4 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#da251c] transition">{{ old('excerpt', $page->excerpt) }}</textarea>
             </div>
+
+            @if(in_array($page->slug, ['sambutan', 'sambutan-kepala-sekolah', 'sambutan-mudir']))
+                {{-- KHUSUS HALAMAN SAMBUTAN MUDIR: DATA PIMPINAN & FOTO --}}
+                <div class="p-6 rounded-2xl bg-emerald-50/70 border border-emerald-200 space-y-5">
+                    <div class="flex items-center space-x-3 pb-3 border-b border-emerald-200/80">
+                        <div class="w-9 h-9 rounded-xl bg-[#00843d] text-white flex items-center justify-center text-sm shadow-xs">
+                            <i class="fa-solid fa-user-tie"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-slate-900 text-sm">Profil Mudir &amp; Identitas Pimpinan Pesantren</h3>
+                            <p class="text-[11px] text-emerald-800">Ubah foto, nama, jabatan, kutipan, dan tombol ajakan pada halaman sambutan ini secara dinamis.</p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Nama Lengkap Mudir / Pimpinan</label>
+                            <input type="text" name="mudir_name" value="{{ old('mudir_name', $settings['mudir_name'] ?? 'KH. Tol\'at Wafa Ahmad, Lc.') }}" class="w-full bg-white text-xs font-semibold rounded-xl px-3.5 py-2.5 border border-slate-200 focus:ring-2 focus:ring-[#00843d]">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Jabatan Resmi</label>
+                            <input type="text" name="mudir_position" value="{{ old('mudir_position', $settings['mudir_position'] ?? 'Mudir Pondok Pesantren Raudhatul Ulum Sakatiga') }}" class="w-full bg-white text-xs font-semibold rounded-xl px-3.5 py-2.5 border border-slate-200 focus:ring-2 focus:ring-[#00843d]">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Badge Sertifikasi / Akreditasi Pimpinan</label>
+                            <input type="text" name="mudir_badge" value="{{ old('mudir_badge', $settings['mudir_badge'] ?? 'Muadalah Al-Azhar Kairo & Akreditasi A') }}" class="w-full bg-white text-xs font-semibold rounded-xl px-3.5 py-2.5 border border-slate-200 focus:ring-2 focus:ring-[#00843d]">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Ganti Foto Resmi Mudir (JPG/PNG/WEBP)</label>
+                            <input type="file" name="mudir_photo_file" accept="image/*" class="w-full text-xs text-slate-600 file:mr-3 file:py-2 file:px-3.5 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-[#00843d] file:text-white hover:file:bg-emerald-800 cursor-pointer">
+                            @if(!empty($settings['mudir_photo']))
+                                <p class="text-[10px] text-slate-500 mt-1">Foto aktif saat ini: <a href="{{ $settings['mudir_photo'] }}" target="_blank" class="text-emerald-700 font-bold underline">Lihat Foto</a></p>
+                            @endif
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Kutipan / Motto Mudir</label>
+                        <textarea name="mudir_quote" rows="2" class="w-full bg-white text-xs rounded-xl p-3 border border-slate-200 focus:ring-2 focus:ring-[#00843d]">{{ old('mudir_quote', $settings['mudir_quote'] ?? '"Mendidik Generasi Khairu Ummah, Berilmu Amaliah, Beramal Ilmiah, dan Berakhlak Qur\'ani."') }}</textarea>
+                    </div>
+
+                    {{-- Banner CTA Bawah Sambutan --}}
+                    <div class="pt-3 border-t border-emerald-200/80 space-y-3">
+                        <span class="text-xs font-bold text-slate-800 uppercase tracking-wider block">Banner Ajakan (CTA) Bawah Halaman Sambutan</span>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-[11px] font-semibold text-slate-600 mb-1">Judul Banner CTA</label>
+                                <input type="text" name="sambutan_cta_title" value="{{ old('sambutan_cta_title', $settings['sambutan_cta_title'] ?? 'Penerimaan Santri Baru (PSB Online)') }}" class="w-full bg-white text-xs rounded-xl px-3 py-2 border border-slate-200">
+                            </div>
+                            <div>
+                                <label class="block text-[11px] font-semibold text-slate-600 mb-1">Deskripsi Singkat CTA</label>
+                                <input type="text" name="sambutan_cta_subtitle" value="{{ old('sambutan_cta_subtitle', $settings['sambutan_cta_subtitle'] ?? 'Mari bergabung bersama ribuan santri dari seluruh penjuru nusantara di Pondok Pesantren Raudhatul Ulum Sakatiga.') }}" class="w-full bg-white text-xs rounded-xl px-3 py-2 border border-slate-200">
+                            </div>
+                            <div>
+                                <label class="block text-[11px] font-semibold text-slate-600 mb-1">Tombol 1 (Teks &amp; Link)</label>
+                                <div class="grid grid-cols-2 gap-2">
+                                    <input type="text" name="sambutan_cta_btn1_text" placeholder="Teks Tombol" value="{{ old('sambutan_cta_btn1_text', $settings['sambutan_cta_btn1_text'] ?? 'Daftar PPDB & PSB Online') }}" class="w-full bg-white text-xs rounded-xl px-3 py-2 border border-slate-200">
+                                    <input type="text" name="sambutan_cta_btn1_url" placeholder="URL Target" value="{{ old('sambutan_cta_btn1_url', $settings['sambutan_cta_btn1_url'] ?? '/ppdb') }}" class="w-full bg-white text-xs rounded-xl px-3 py-2 border border-slate-200">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-[11px] font-semibold text-slate-600 mb-1">Tombol 2 (Teks &amp; Link)</label>
+                                <div class="grid grid-cols-2 gap-2">
+                                    <input type="text" name="sambutan_cta_btn2_text" placeholder="Teks Tombol" value="{{ old('sambutan_cta_btn2_text', $settings['sambutan_cta_btn2_text'] ?? 'Hubungi Kami') }}" class="w-full bg-white text-xs rounded-xl px-3 py-2 border border-slate-200">
+                                    <input type="text" name="sambutan_cta_btn2_url" placeholder="URL Target" value="{{ old('sambutan_cta_btn2_url', $settings['sambutan_cta_btn2_url'] ?? '/hubungi') }}" class="w-full bg-white text-xs rounded-xl px-3 py-2 border border-slate-200">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endif
 
             {{-- RICH TEXT WYSIWYG EDITOR (WordPress Style Toolbox) --}}
             <div>

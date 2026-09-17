@@ -128,6 +128,8 @@ class AdminLayananController extends Controller
      */
     public function content()
     {
+        $settings = Setting::all()->pluck('value', 'key')->toArray();
+
         $storedIzin = json_decode(Setting::get('layanan_izin_accordions', '[]'), true) ?: [];
         $izinAccordions = ! empty($storedIzin) ? $storedIzin : InformationController::getDefaultAccordions('izin');
 
@@ -137,15 +139,52 @@ class AdminLayananController extends Controller
         $storedSewa = json_decode(Setting::get('layanan_sewa_accordions', '[]'), true) ?: [];
         $sewaAccordions = ! empty($storedSewa) ? $storedSewa : InformationController::getDefaultAccordions('sewa');
 
-        return view('admin.layanan.content', compact('izinAccordions', 'kerjasamaAccordions', 'sewaAccordions'));
+        return view('admin.layanan.content', compact('settings', 'izinAccordions', 'kerjasamaAccordions', 'sewaAccordions'));
     }
 
     /**
-     * Save updated accordions & terms content
+     * Save updated accordions & terms content or portal cards
      */
     public function updateContent(Request $request)
     {
         $type = $request->input('service_type');
+
+        if ($type === 'portal') {
+            foreach ($request->except(['_token', 'service_type']) as $field => $val) {
+                Setting::set($field, $val ?? '', 'layanan');
+            }
+
+            // Sync aliases between portal and ptsp keys
+            if ($request->filled('layanan_portal_hero_title')) {
+                Setting::set('ptsp_page_title', $request->input('layanan_portal_hero_title'), 'layanan');
+            } elseif ($request->filled('ptsp_page_title')) {
+                Setting::set('layanan_portal_hero_title', $request->input('ptsp_page_title'), 'layanan');
+            }
+
+            if ($request->filled('layanan_card_1_title')) {
+                Setting::set('ptsp_card1_title', $request->input('layanan_card_1_title'), 'layanan');
+            } elseif ($request->filled('ptsp_card1_title')) {
+                Setting::set('layanan_card_1_title', $request->input('ptsp_card1_title'), 'layanan');
+            }
+
+            if ($request->filled('layanan_card_1_btn_text')) {
+                Setting::set('ptsp_card1_btn', $request->input('layanan_card_1_btn_text'), 'layanan');
+            } elseif ($request->filled('ptsp_card1_btn')) {
+                Setting::set('layanan_card_1_btn_text', $request->input('ptsp_card1_btn'), 'layanan');
+            }
+
+            ActivityLog::create([
+                'user_id' => Auth::id(),
+                'user_name' => Auth::user()->name,
+                'action' => 'layanan_content_update',
+                'description' => 'Memperbarui informasi kartu & portal utama Layanan Terpadu',
+                'ip_address' => $request->ip(),
+                'user_agent' => $request->userAgent(),
+                'status' => 'info',
+            ]);
+
+            return redirect()->route('admin.layanan.content', ['tab' => 'portal'])->with('success', 'Pengaturan portal utama Layanan Terpadu berhasil diperbarui.');
+        }
 
         if (! in_array($type, ['izin', 'kerjasama', 'sewa'], true)) {
             return back()->with('error', 'Jenis layanan tidak valid.');

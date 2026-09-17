@@ -24,9 +24,18 @@
 <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
     <div class="bg-white rounded-3xl p-8 sm:p-12 shadow-xl border border-gray-100 reveal-fade-up">
         @php
-            $kepsekPhoto = '/uploads/official/foto-mudir.webp';
-            $kepsekName = 'KH. Tol\'at Wafa Ahmad, Lc.';
-            $kepsekPos = 'Mudir Pondok Pesantren Raudhatul Ulum Sakatiga';
+            $kepsekPhoto = $siteSettings['mudir_photo'] ?? '/uploads/official/foto-mudir.webp';
+            $kepsekName = $siteSettings['mudir_name'] ?? 'KH. Tol\'at Wafa Ahmad, Lc.';
+            $kepsekPos = $siteSettings['mudir_position'] ?? 'Mudir Pondok Pesantren Raudhatul Ulum Sakatiga';
+            $kepsekQuote = $siteSettings['mudir_quote'] ?? '"Mendidik Generasi Khairu Ummah, Berilmu Amaliah, Beramal Ilmiah, dan Berakhlak Qur\'ani."';
+            $kepsekBadge = $siteSettings['mudir_badge'] ?? 'Muadalah Al-Azhar Kairo & Akreditasi A';
+
+            $ctaTitle = $siteSettings['sambutan_cta_title'] ?? 'Penerimaan Santri Baru (PSB Online)';
+            $ctaSubtitle = $siteSettings['sambutan_cta_subtitle'] ?? 'Mari bergabung bersama ribuan santri dari seluruh penjuru nusantara di Pondok Pesantren Raudhatul Ulum Sakatiga.';
+            $ctaBtn1Text = $siteSettings['sambutan_cta_btn1_text'] ?? 'Daftar PPDB & PSB Online';
+            $ctaBtn1Url = !empty($siteSettings['sambutan_cta_btn1_url']) ? $siteSettings['sambutan_cta_btn1_url'] : route('ppdb.index');
+            $ctaBtn2Text = $siteSettings['sambutan_cta_btn2_text'] ?? 'Hubungi Kami';
+            $ctaBtn2Url = !empty($siteSettings['sambutan_cta_btn2_url']) ? $siteSettings['sambutan_cta_btn2_url'] : route('hubungi');
         @endphp
 
         {{-- PROFIL PIMPINAN HEADER --}}
@@ -42,7 +51,7 @@
                     {{ $kepsekName }}
                 </h2>
                 <p class="text-xs sm:text-sm text-school-green font-bold">{{ $kepsekPos }}</p>
-                <p class="text-xs sm:text-sm text-gray-600 italic pt-1">"Mendidik Generasi Khairu Ummah, Berilmu Amaliah, Beramal Ilmiah, dan Berakhlak Qur'ani."</p>
+                <p class="text-xs sm:text-sm text-gray-600 italic pt-1">{{ $kepsekQuote }}</p>
             </div>
         </div>
 
@@ -74,7 +83,7 @@
                     </div>
                     <div class="inline-flex items-center space-x-2 bg-emerald-50 px-4 py-2 rounded-xl text-xs text-school-green border border-emerald-200">
                         <i class="fa-solid fa-certificate text-amber-500"></i>
-                        <span>Muadalah Al-Azhar Kairo &amp; Akreditasi A</span>
+                        <span>{{ $kepsekBadge }}</span>
                     </div>
                 </div>
             @endif
@@ -83,15 +92,15 @@
         {{-- CTA DAFTAR PPDB / PSB --}}
         <div class="mt-10 pt-8 border-t border-gray-100 bg-gradient-to-r from-school-green via-emerald-800 to-gray-900 rounded-3xl p-6 sm:p-8 text-white flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl">
             <div>
-                <h4 class="text-xl font-extrabold">Penerimaan Santri Baru (PSB Online)</h4>
-                <p class="text-xs sm:text-sm text-green-100 mt-1">Mari bergabung bersama ribuan santri dari seluruh penjuru nusantara di Pondok Pesantren Raudhatul Ulum Sakatiga.</p>
+                <h4 class="text-xl font-extrabold">{{ $ctaTitle }}</h4>
+                <p class="text-xs sm:text-sm text-green-100 mt-1">{{ $ctaSubtitle }}</p>
             </div>
             <div class="flex flex-wrap gap-3 flex-shrink-0">
-                <a href="{{ route('ppdb.index') }}" class="bg-[#f59e0b] hover:bg-[#d97706] text-gray-950 px-5 py-2.5 rounded-xl font-black text-xs shadow-md transition flex items-center">
-                    <i class="fa-solid fa-graduation-cap mr-1.5"></i> Daftar PPDB &amp; PSB Online
+                <a href="{{ $ctaBtn1Url }}" class="bg-[#f59e0b] hover:bg-[#d97706] text-gray-950 px-5 py-2.5 rounded-xl font-black text-xs shadow-md transition flex items-center">
+                    <i class="fa-solid fa-graduation-cap mr-1.5"></i> {{ $ctaBtn1Text }}
                 </a>
-                <a href="{{ route('hubungi') }}" class="bg-white/20 hover:bg-white/30 text-white px-5 py-2.5 rounded-xl font-bold text-xs shadow transition flex items-center">
-                    <i class="fa-solid fa-phone mr-1.5"></i> Hubungi Kami
+                <a href="{{ $ctaBtn2Url }}" class="bg-white/20 hover:bg-white/30 text-white px-5 py-2.5 rounded-xl font-bold text-xs shadow transition flex items-center">
+                    <i class="fa-solid fa-phone mr-1.5"></i> {{ $ctaBtn2Text }}
                 </a>
             </div>
         </div>

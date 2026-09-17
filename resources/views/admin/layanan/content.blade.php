@@ -54,7 +54,7 @@
 @endpush
 
 @section('content')
-<div class="space-y-6" x-data="{ activeTab: '{{ request('tab', 'izin') }}' }">
+<div class="space-y-6" x-data="{ activeTab: '{{ request('tab', 'portal') }}' }">
 
     {{-- TOP NAVIGATION TABS --}}
     <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 pb-4">
@@ -63,33 +63,219 @@
                 <i class="fa-solid fa-arrow-left mr-1.5"></i> Daftar Permohonan
             </a>
 
+            <button type="button" @click="activeTab = 'portal'" :class="activeTab === 'portal' ? 'bg-[#00913e] text-white shadow-xs' : 'bg-white text-slate-700 hover:bg-slate-50 border border-slate-200'" class="px-4 py-2 rounded-xl text-xs font-bold transition flex items-center space-x-1.5 cursor-pointer">
+                <i class="fa-solid fa-handshake-angle"></i>
+                <span>Portal Utama &amp; 3 Kartu Layanan</span>
+            </button>
+
             <button type="button" @click="activeTab = 'izin'" :class="activeTab === 'izin' ? 'bg-[#00913e] text-white shadow-xs' : 'bg-white text-slate-700 hover:bg-slate-50 border border-slate-200'" class="px-4 py-2 rounded-xl text-xs font-bold transition flex items-center space-x-1.5 cursor-pointer">
                 <i class="fa-solid fa-school"></i>
-                <span>1. Izin Kunjungan Sekolah</span>
+                <span>1. Izin Kunjungan</span>
             </button>
 
             <button type="button" @click="activeTab = 'kerjasama'" :class="activeTab === 'kerjasama' ? 'bg-[#00913e] text-white shadow-xs' : 'bg-white text-slate-700 hover:bg-slate-50 border border-slate-200'" class="px-4 py-2 rounded-xl text-xs font-bold transition flex items-center space-x-1.5 cursor-pointer">
                 <i class="fa-solid fa-handshake"></i>
-                <span>2. Permohonan Kerja Sama</span>
+                <span>2. Kerja Sama</span>
             </button>
 
             <button type="button" @click="activeTab = 'sewa'" :class="activeTab === 'sewa' ? 'bg-[#00913e] text-white shadow-xs' : 'bg-white text-slate-700 hover:bg-slate-50 border border-slate-200'" class="px-4 py-2 rounded-xl text-xs font-bold transition flex items-center space-x-1.5 cursor-pointer">
                 <i class="fa-solid fa-boxes-packing"></i>
-                <span>3. Sewa Barang Milik Sekolah</span>
+                <span>3. Sewa Barang</span>
             </button>
         </div>
 
         <div class="flex items-center gap-2">
-            <a :href="activeTab === 'izin' ? '{{ route('layanan.izin') }}' : (activeTab === 'kerjasama' ? '{{ route('layanan.kerjasama') }}' : '{{ route('layanan.sewa') }}')" target="_blank" class="px-4 py-2 rounded-xl text-xs font-bold bg-slate-800 hover:bg-slate-900 text-white transition flex items-center space-x-1.5 shadow-xs">
+            <a :href="activeTab === 'portal' ? '{{ route('layanan.index') }}' : (activeTab === 'izin' ? '{{ route('layanan.izin') }}' : (activeTab === 'kerjasama' ? '{{ route('layanan.kerjasama') }}' : '{{ route('layanan.sewa') }}'))" target="_blank" class="px-4 py-2 rounded-xl text-xs font-bold bg-slate-800 hover:bg-slate-900 text-white transition flex items-center space-x-1.5 shadow-xs">
                 <i class="fa-solid fa-arrow-up-right-from-square"></i>
                 <span>Pratinjau Halaman Web</span>
             </a>
         </div>
     </div>
 
+    {{-- ============================================================ --}}
+    {{-- TAB 0: PORTAL UTAMA PTSP & 3 KARTU LAYANAN --}}
+    {{-- ============================================================ --}}
+    <div x-show="activeTab === 'portal'" class="space-y-6">
+        <form action="{{ route('admin.layanan.content.update') }}" method="POST" class="space-y-6">
+            @csrf
+            <input type="hidden" name="service_type" value="portal">
+
+            {{-- Hero Portal --}}
+            <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-xs border border-slate-200/80 space-y-5">
+                <div class="flex items-center space-x-3 pb-4 border-b border-slate-100">
+                    <div class="w-10 h-10 rounded-2xl bg-amber-100 text-slate-900 flex items-center justify-center font-black text-lg">
+                        <i class="fa-solid fa-handshake-angle"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-black text-slate-900 text-base">Header &amp; Pengantar Portal Layanan Terpadu</h3>
+                        <p class="text-xs text-slate-500">Teks pembuka dan narasi pintu pelayanan terpadu satu pintu (PTSP).</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Badge Header</label>
+                        <input type="text" name="layanan_portal_hero_badge" value="{{ $settings['layanan_portal_hero_badge'] ?? 'Pelayanan Terpadu Satu Pintu (PTSP)' }}" class="w-full bg-slate-50 text-xs font-semibold rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00843d]">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Judul Utama Hero</label>
+                        <input type="text" name="layanan_portal_hero_title" value="{{ $settings['layanan_portal_hero_title'] ?? 'PORTAL LAYANAN TERPADU' }}" class="w-full bg-slate-50 text-xs font-semibold rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00843d]">
+                    </div>
+                    <div class="md:col-span-2">
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Deskripsi Lengkap Hero</label>
+                        <textarea name="layanan_portal_hero_desc" rows="2" class="w-full bg-slate-50 text-xs rounded-xl p-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00843d]">{{ $settings['layanan_portal_hero_desc'] ?? 'Satu pintu pelayanan administrasi resmi, perizinan kunjungan edukasi, kemitraan strategis, dan peminjaman fasilitas Pondok Pesantren Raudhatul Ulum Sakatiga.' }}</textarea>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5 pt-3 border-t border-slate-100">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Judul Seksi Pilihan Layanan</label>
+                        <input type="text" name="layanan_section_title" value="{{ $settings['layanan_section_title'] ?? 'Pilih Layanan yang Anda Butuhkan' }}" class="w-full bg-slate-50 text-xs font-semibold rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00843d]">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Deskripsi Seksi Pilihan Layanan</label>
+                        <input type="text" name="layanan_section_desc" value="{{ $settings['layanan_section_desc'] ?? 'Ajukan permohonan secara daring, tim Sekretariat dan Humas akan memproses permohonan Anda secara cepat, transparan, dan profesional.' }}" class="w-full bg-slate-50 text-xs rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00843d]">
+                    </div>
+                </div>
+            </div>
+
+            {{-- 3 Kartu Layanan --}}
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {{-- Kartu 1: Izin --}}
+                <div class="bg-white rounded-3xl p-6 shadow-xs border border-slate-200/80 space-y-4">
+                    <div class="flex items-center space-x-3 pb-3 border-b border-slate-100">
+                        <div class="w-9 h-9 rounded-xl bg-emerald-100 text-[#00843d] flex items-center justify-center font-bold text-sm">
+                            <i class="fa-solid fa-id-card-clip"></i>
+                        </div>
+                        <h4 class="font-black text-slate-900 text-sm">1. Layanan Izin Kunjungan</h4>
+                    </div>
+                    <div>
+                        <label class="text-[11px] font-bold text-slate-600 block mb-1">Badge Kartu</label>
+                        <input type="text" name="layanan_card_1_badge" value="{{ $settings['layanan_card_1_badge'] ?? 'Layanan Izin' }}" class="w-full bg-slate-50 text-xs rounded-xl px-3 py-2 border border-slate-200">
+                    </div>
+                    <div>
+                        <label class="text-[11px] font-bold text-slate-600 block mb-1">Judul Layanan</label>
+                        <input type="text" name="layanan_card_1_title" value="{{ $settings['layanan_card_1_title'] ?? 'Permohonan Izin Kunjungan ke Sekolah' }}" class="w-full bg-slate-50 text-xs font-bold rounded-xl px-3 py-2 border border-slate-200">
+                    </div>
+                    <div>
+                        <label class="text-[11px] font-bold text-slate-600 block mb-1">Deskripsi Ringkas</label>
+                        <textarea name="layanan_card_1_desc" rows="3" class="w-full bg-slate-50 text-xs rounded-xl p-2.5 border border-slate-200">{{ $settings['layanan_card_1_desc'] ?? 'Layanan pengajuan studi banding, observasi kurikulum kepesantrenan, riset ilmiah, atau kunjungan silaturahmi instansi/sekolah ke Pondok Pesantren Raudhatul Ulum.' }}</textarea>
+                    </div>
+                    <div>
+                        <label class="text-[11px] font-bold text-slate-600 block mb-1">Poin Benefit (Pisahkan dengan tanda |)</label>
+                        <input type="text" name="layanan_card_1_benefits" value="{{ $settings['layanan_card_1_benefits'] ?? 'Bebas Biaya (Gratis)|Tur keliling fasilitas pondok|Respon konfirmasi maks 3 hari' }}" class="w-full bg-slate-50 text-xs rounded-xl px-3 py-2 border border-slate-200">
+                    </div>
+                    <div>
+                        <label class="text-[11px] font-bold text-slate-600 block mb-1">Teks Tombol Aksi</label>
+                        <input type="text" name="layanan_card_1_btn_text" value="{{ $settings['layanan_card_1_btn_text'] ?? 'Ajukan Izin Kunjungan' }}" class="w-full bg-slate-50 text-xs font-bold text-[#00843d] rounded-xl px-3 py-2 border border-slate-200">
+                    </div>
+                </div>
+
+                {{-- Kartu 2: Kerjasama --}}
+                <div class="bg-white rounded-3xl p-6 shadow-xs border border-slate-200/80 space-y-4">
+                    <div class="flex items-center space-x-3 pb-3 border-b border-slate-100">
+                        <div class="w-9 h-9 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center font-bold text-sm">
+                            <i class="fa-solid fa-handshake"></i>
+                        </div>
+                        <h4 class="font-black text-slate-900 text-sm">2. Permohonan Kerja Sama</h4>
+                    </div>
+                    <div>
+                        <label class="text-[11px] font-bold text-slate-600 block mb-1">Badge Kartu</label>
+                        <input type="text" name="layanan_card_2_badge" value="{{ $settings['layanan_card_2_badge'] ?? 'Kemitraan & MoU' }}" class="w-full bg-slate-50 text-xs rounded-xl px-3 py-2 border border-slate-200">
+                    </div>
+                    <div>
+                        <label class="text-[11px] font-bold text-slate-600 block mb-1">Judul Layanan</label>
+                        <input type="text" name="layanan_card_2_title" value="{{ $settings['layanan_card_2_title'] ?? 'Permohonan Kerja Sama' }}" class="w-full bg-slate-50 text-xs font-bold rounded-xl px-3 py-2 border border-slate-200">
+                    </div>
+                    <div>
+                        <label class="text-[11px] font-bold text-slate-600 block mb-1">Deskripsi Ringkas</label>
+                        <textarea name="layanan_card_2_desc" rows="3" class="w-full bg-slate-50 text-xs rounded-xl p-2.5 border border-slate-200">{{ $settings['layanan_card_2_desc'] ?? 'Pengajuan kolaborasi program akademik, beasiswa, program CSR dunia usaha, riset bersama, dan kemitraan lembaga keuangan syariah atau universitas.' }}</textarea>
+                    </div>
+                    <div>
+                        <label class="text-[11px] font-bold text-slate-600 block mb-1">Poin Benefit (Pisahkan dengan tanda |)</label>
+                        <input type="text" name="layanan_card_2_benefits" value="{{ $settings['layanan_card_2_benefits'] ?? 'MoU resmi berkekuatan hukum|Kolaborasi program berkelanjutan|Publikasi bersama media resmi' }}" class="w-full bg-slate-50 text-xs rounded-xl px-3 py-2 border border-slate-200">
+                    </div>
+                    <div>
+                        <label class="text-[11px] font-bold text-slate-600 block mb-1">Teks Tombol Aksi</label>
+                        <input type="text" name="layanan_card_2_btn_text" value="{{ $settings['layanan_card_2_btn_text'] ?? 'Ajukan Permohonan MoU' }}" class="w-full bg-slate-50 text-xs font-bold text-amber-700 rounded-xl px-3 py-2 border border-slate-200">
+                    </div>
+                </div>
+
+                {{-- Kartu 3: Sewa --}}
+                <div class="bg-white rounded-3xl p-6 shadow-xs border border-slate-200/80 space-y-4">
+                    <div class="flex items-center space-x-3 pb-3 border-b border-slate-100">
+                        <div class="w-9 h-9 rounded-xl bg-purple-100 text-purple-700 flex items-center justify-center font-bold text-sm">
+                            <i class="fa-solid fa-boxes-packing"></i>
+                        </div>
+                        <h4 class="font-black text-slate-900 text-sm">3. Sewa Sarana &amp; Fasilitas</h4>
+                    </div>
+                    <div>
+                        <label class="text-[11px] font-bold text-slate-600 block mb-1">Badge Kartu</label>
+                        <input type="text" name="layanan_card_3_badge" value="{{ $settings['layanan_card_3_badge'] ?? 'Peminjaman Aset' }}" class="w-full bg-slate-50 text-xs rounded-xl px-3 py-2 border border-slate-200">
+                    </div>
+                    <div>
+                        <label class="text-[11px] font-bold text-slate-600 block mb-1">Judul Layanan</label>
+                        <input type="text" name="layanan_card_3_title" value="{{ $settings['layanan_card_3_title'] ?? 'Permohonan Sewa Menyewa Barang Sekolah' }}" class="w-full bg-slate-50 text-xs font-bold rounded-xl px-3 py-2 border border-slate-200">
+                    </div>
+                    <div>
+                        <label class="text-[11px] font-bold text-slate-600 block mb-1">Deskripsi Ringkas</label>
+                        <textarea name="layanan_card_3_desc" rows="3" class="w-full bg-slate-50 text-xs rounded-xl p-2.5 border border-slate-200">{{ $settings['layanan_card_3_desc'] ?? 'Fasilitas peminjaman atau penyewaan sarana aula serbaguna, panggung, sound system, lapangan olahraga, atau peralatan kegiatan bagi masyarakat dan instansi.' }}</textarea>
+                    </div>
+                    <div>
+                        <label class="text-[11px] font-bold text-slate-600 block mb-1">Poin Benefit (Pisahkan dengan tanda |)</label>
+                        <input type="text" name="layanan_card_3_benefits" value="{{ $settings['layanan_card_3_benefits'] ?? 'Fasilitas bersih & terawat|Kapasitas representatif|Pendampingan teknisi lapangan' }}" class="w-full bg-slate-50 text-xs rounded-xl px-3 py-2 border border-slate-200">
+                    </div>
+                    <div>
+                        <label class="text-[11px] font-bold text-slate-600 block mb-1">Teks Tombol Aksi</label>
+                        <input type="text" name="layanan_card_3_btn_text" value="{{ $settings['layanan_card_3_btn_text'] ?? 'Ajukan Sewa Fasilitas' }}" class="w-full bg-slate-50 text-xs font-bold text-purple-700 rounded-xl px-3 py-2 border border-slate-200">
+                    </div>
+                </div>
+            </div>
+
+            {{-- Kontak Helpdesk PTSP --}}
+            <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-xs border border-slate-200/80 space-y-5">
+                <div class="flex items-center space-x-3 pb-4 border-b border-slate-100">
+                    <div class="w-10 h-10 rounded-2xl bg-teal-100 text-teal-800 flex items-center justify-center font-black text-lg">
+                        <i class="fa-solid fa-headset"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-black text-slate-900 text-base">Kontak Bantuan Meja Pelayanan (PTSP)</h3>
+                        <p class="text-xs text-slate-500">Nomor WhatsApp, email resmi sekretariat, dan jam operasional pelayanan.</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">WhatsApp Layanan</label>
+                        <input type="text" name="layanan_ptsp_wa" value="{{ $settings['layanan_ptsp_wa'] ?? '081278901950' }}" class="w-full bg-slate-50 text-xs font-bold rounded-xl px-4 py-3 border border-slate-200">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Email Sekretariat</label>
+                        <input type="email" name="layanan_ptsp_email" value="{{ $settings['layanan_ptsp_email'] ?? 'sekretariat@ppru.ac.id' }}" class="w-full bg-slate-50 text-xs font-bold rounded-xl px-4 py-3 border border-slate-200">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Jam Kerja Pelayanan</label>
+                        <input type="text" name="layanan_ptsp_hours" value="{{ $settings['layanan_ptsp_hours'] ?? 'Senin - Sabtu: 08.00 - 15.00 WIB' }}" class="w-full bg-slate-50 text-xs rounded-xl px-4 py-3 border border-slate-200">
+                    </div>
+                    <div class="md:col-span-3">
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Catatan Bantuan</label>
+                        <input type="text" name="layanan_ptsp_note" value="{{ $settings['layanan_ptsp_note'] ?? 'Butuh bantuan cepat atau konfirmasi mendesak? Hubungi meja resepsionis & sekretariat resmi.' }}" class="w-full bg-slate-50 text-xs rounded-xl px-4 py-3 border border-slate-200">
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex items-center justify-end space-x-3 pt-2">
+                <button type="submit" class="bg-[#00843d] hover:bg-emerald-800 text-white font-bold text-xs px-7 py-3 rounded-xl shadow-lg transition flex items-center space-x-2 cursor-pointer">
+                    <i class="fa-solid fa-floppy-disk"></i>
+                    <span>Simpan Pengaturan Portal Layanan</span>
+                </button>
+            </div>
+        </form>
+    </div>
+
     {{-- ALERT INFO WORD TOOLBAR --}}
-    <div class="bg-emerald-50 border border-emerald-200/80 rounded-2xl p-4 text-xs text-emerald-900 flex items-start space-x-3 shadow-xs">
-        <div class="w-8 h-8 rounded-xl bg-emerald-100 text-[#00913e] flex items-center justify-center font-bold text-sm flex-shrink-0 mt-0.5">
+    <div x-show="activeTab !== 'portal'" class="bg-emerald-50 border border-emerald-200/80 rounded-2xl p-4 text-xs text-emerald-900 flex items-start space-x-3 shadow-xs">
+        <div class="w-8 h-8 rounded-xl bg-emerald-100 text-[#00843d] flex items-center justify-center font-bold text-sm flex-shrink-0 mt-0.5">
             <i class="fa-solid fa-spell-check"></i>
         </div>
         <div class="leading-relaxed">

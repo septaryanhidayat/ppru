@@ -19,6 +19,7 @@ use App\Http\Controllers\Admin\AdminPpdbController;
 use App\Http\Controllers\Admin\AdminQuickMenuController;
 use App\Http\Controllers\Admin\AdminSecurityController;
 use App\Http\Controllers\Admin\AdminSettingController;
+use App\Http\Controllers\Admin\AdminStaticPageController;
 use App\Http\Controllers\Admin\AdminTestimonialController;
 use App\Http\Controllers\Admin\AdminUnitPendidikanController;
 use App\Http\Controllers\Admin\AdminUserController;
@@ -56,6 +57,12 @@ Route::prefix('admin')->middleware('auth')->name('admin.')->group(function () {
 
     // Static Pages Management (Profil, Visi Misi, Sejarah, Sambutan, Struktur, Privacy Policy)
     Route::get('/pages', [AdminPageController::class, 'index'])->name('pages.index');
+    Route::get('/pages/donasi', [AdminStaticPageController::class, 'donasi'])->name('pages.donasi');
+    Route::post('/pages/donasi', [AdminStaticPageController::class, 'updateDonasi'])->name('pages.donasi.update');
+    Route::get('/pages/hymne-mars', [AdminStaticPageController::class, 'hymneMars'])->name('pages.hymne-mars');
+    Route::post('/pages/hymne-mars', [AdminStaticPageController::class, 'updateHymneMars'])->name('pages.hymne-mars.update');
+    Route::get('/pages/logo', [AdminStaticPageController::class, 'logo'])->name('pages.logo');
+    Route::post('/pages/logo', [AdminStaticPageController::class, 'updateLogo'])->name('pages.logo.update');
     Route::get('/pages/{page}/edit', [AdminPageController::class, 'edit'])->name('pages.edit');
     Route::put('/pages/{page}', [AdminPageController::class, 'update'])->name('pages.update');
 

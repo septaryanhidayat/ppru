@@ -36,9 +36,11 @@
                 {{-- Konten Rata Tengah --}}
                 <div class="absolute inset-0 flex items-center justify-center pt-4 pb-20 sm:pb-16">
                     <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center text-white space-y-3 sm:space-y-4">
-                        <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full text-[11px] sm:text-xs font-bold uppercase tracking-widest bg-school-green/90 text-white shadow-lg backdrop-blur-xs border border-white/20 reveal-fade-up">
-                            <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
-                            <span>Pondok Pesantren Raudhatul Ulum Sakatiga</span>
+                        <div class="inline-flex items-center space-x-1.5 sm:space-x-2 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full text-[9px] xs:text-[10px] sm:text-xs font-bold uppercase tracking-wider sm:tracking-widest bg-school-green/90 text-white shadow-lg backdrop-blur-xs border border-white/20 reveal-fade-up max-w-[95vw] sm:max-w-none">
+                            <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-amber-400 animate-pulse shrink-0"></span>
+                            <span class="whitespace-nowrap overflow-hidden text-ellipsis">
+                                {{ $siteSettings['home_hero_badge'] ?? 'Pondok Pesantren Raudhatul Ulum Sakatiga' }}
+                            </span>
                         </div>
                         <h1 class="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight drop-shadow-xl leading-tight reveal-fade-up delay-1" x-text="slide.title"></h1>
                         <p class="text-xs sm:text-base md:text-lg text-gray-200 font-medium max-w-2xl mx-auto drop-shadow line-clamp-3 sm:line-clamp-none leading-relaxed reveal-fade-up delay-2" x-text="slide.subtitle"></p>
@@ -346,15 +348,15 @@
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 text-center space-y-5 sm:space-y-6"
          style="padding-top: 38px; padding-bottom: 38px;">
         {{-- Top Badge with Dedicated Dark Backing & 1cm Clearance from Top Edge --}}
-        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-emerald-400/60 text-amber-300 text-xs sm:text-sm font-black uppercase tracking-widest shadow-2xl backdrop-blur-md reveal-fade-up" 
+        <div class="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1 sm:py-1.5 rounded-full border border-emerald-400/60 text-amber-300 text-xs sm:text-sm font-black uppercase tracking-wider sm:tracking-widest shadow-2xl backdrop-blur-md reveal-fade-up max-w-[95vw] sm:max-w-none" 
              style="background-color: rgba(0, 0, 0, 0.85);">
-            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-            <i class="fa-solid fa-landmark-dome text-amber-300"></i>
-            <span>{{ $badgeText }}</span>
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping shrink-0"></span>
+            <i class="fa-solid fa-landmark-dome text-amber-300 shrink-0"></i>
+            <span class="whitespace-nowrap">{{ $badgeText }}</span>
         </div>
 
         {{-- Headline --}}
-        <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.2] drop-shadow-[0_4px_24px_rgba(0,0,0,0.95)] max-w-4xl mx-auto reveal-fade-up delay-1">
+        <h2 class="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.2] drop-shadow-[0_4px_24px_rgba(0,0,0,0.95)] max-w-4xl mx-auto reveal-fade-up delay-1">
             {{ $siteSettings['home_profile_headline'] ?? 'Mendidik dengan Kasih Sayang, Membentuk Generasi Khairu Ummah' }}
         </h2>
 
