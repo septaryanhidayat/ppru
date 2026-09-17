@@ -252,10 +252,19 @@
     }
 
     $popupYtId = $siteSettings['home_profile_video_popup_id'] ?? $bgYtId ?? 'BG311kT-yXc';
+    $posterImage = !empty($siteSettings['home_profile_poster_image']) ? $siteSettings['home_profile_poster_image'] : '/uploads/campus-ppru-sakatiga.webp';
+
+    // Dynamic overlay opacity percentage from admin dashboard (default 75%)
+    $rawOpacity = $siteSettings['home_profile_overlay_opacity'] ?? 75;
+    $overlayOpacity = is_numeric($rawOpacity) ? max(10, min(98, (int)$rawOpacity)) : 75;
+    $overlayAlpha = round($overlayOpacity / 100, 2);
+    $topAlpha = min(0.98, round($overlayAlpha + 0.15, 2));
+    $midAlpha = max(0.25, round($overlayAlpha - 0.08, 2));
+    $bottomAlpha = min(0.98, round($overlayAlpha + 0.18, 2));
 @endphp
 
 <section class="w-full relative overflow-hidden bg-[#070707] text-white flex flex-col justify-center items-center" 
-         style="min-height: 920px; padding-top: 80px; padding-bottom: 90px;"
+         style="min-height: 560px; padding-top: 38px; padding-bottom: 38px;"
          x-data="{ 
              videoModalOpen: false,
              videoLoaded: false,
@@ -283,8 +292,8 @@
 
     {{-- Full Width Cinematic Video & Dark Semi-Transparent Atmospheric Overlay --}}
     <div class="absolute inset-0 z-0 overflow-hidden select-none pointer-events-none bg-[#070707]">
-        {{-- 1. Poster Scenery Fallback (Clear, visible campus backdrop) --}}
-        <img src="{{ $siteSettings['home_profile_poster_image'] ?? '/uploads/campus-ppru-sakatiga.webp' }}" 
+        {{-- 1. Poster Scenery Fallback (Configurable via Admin Setting) --}}
+        <img src="{{ $posterImage }}" 
              alt="Pondok Pesantren Raudhatul Ulum Sakatiga" 
              class="w-full h-full object-cover object-center filter brightness-[0.65] contrast-[1.05] scale-105 transform transition duration-1000"
              :class="{ 'opacity-0': videoLoaded, 'opacity-100': !videoLoaded }"
@@ -292,7 +301,7 @@
 
         {{-- 2. HTML5 Direct MP4 Video Loop (If provided) --}}
         @if($isMp4)
-            <video autoplay muted loop playsinline poster="{{ $siteSettings['home_profile_poster_image'] ?? '/uploads/campus-ppru-sakatiga.webp' }}" 
+            <video autoplay muted loop playsinline poster="{{ $posterImage }}" 
                    style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 1;">
                 <source src="{{ $rawBgVideo }}" type="video/mp4">
             </video>
@@ -312,9 +321,9 @@
             </div>
         @endif
 
-        {{-- 4. Multi-Layer Semi-Transparent Black Overlay (Darkens bright video & ensures top text is 100% legible) --}}
-        <div style="position: absolute; inset: 0; background-color: rgba(0, 0, 0, 0.78); pointer-events: none;"></div>
-        <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.68) 35%, rgba(0, 0, 0, 0.72) 70%, rgba(0, 0, 0, 0.96) 100%); pointer-events: none;"></div>
+        {{-- 4. Multi-Layer Semi-Transparent Black Overlay (CRUD Configurable Opacity via Admin) --}}
+        <div style="position: absolute; inset: 0; background-color: rgba(0, 0, 0, {{ $overlayAlpha }}); pointer-events: none;"></div>
+        <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0, 0, 0, {{ $topAlpha }}) 0%, rgba(0, 0, 0, {{ $midAlpha }}) 35%, rgba(0, 0, 0, {{ $overlayAlpha }}) 70%, rgba(0, 0, 0, {{ $bottomAlpha }}) 100%); pointer-events: none;"></div>
         <div class="absolute inset-0 bg-[radial-gradient(#00843d_1.2px,transparent_1.2px)] [background-size:26px_26px] opacity-10 pointer-events-none"></div>
     </div>
 
@@ -322,12 +331,12 @@
     <div class="absolute -top-32 -left-32 w-96 h-96 bg-emerald-600/15 rounded-full blur-3xl pointer-events-none"></div>
     <div class="absolute -bottom-32 -right-32 w-96 h-96 bg-amber-500/15 rounded-full blur-3xl pointer-events-none"></div>
 
-    {{-- Inner Content Container with Extended Top & Bottom Space (Jarak 2cm / ~80-100px atas dan bawah) --}}
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 text-center space-y-6 sm:space-y-7"
-         style="padding-top: 80px; padding-bottom: 90px;">
-        {{-- Top Badge with Dedicated Dark Backing & Extra Top Clearance (+2cm) --}}
-        <div class="inline-flex items-center gap-2.5 px-6 py-2.5 rounded-full border border-emerald-400/60 text-amber-300 text-xs sm:text-sm font-black uppercase tracking-widest shadow-2xl backdrop-blur-md reveal-fade-up" 
-             style="margin-top: 25px; background-color: rgba(0, 0, 0, 0.85);">
+    {{-- Inner Content Container with Exact 1cm (~38px) Clearance Top & Bottom --}}
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 text-center space-y-5 sm:space-y-6"
+         style="padding-top: 38px; padding-bottom: 38px;">
+        {{-- Top Badge with Dedicated Dark Backing & 1cm Clearance from Top Edge --}}
+        <div class="inline-flex items-center gap-2.5 px-5 py-2 rounded-full border border-emerald-400/60 text-amber-300 text-xs sm:text-sm font-black uppercase tracking-widest shadow-2xl backdrop-blur-md reveal-fade-up" 
+             style="background-color: rgba(0, 0, 0, 0.85);">
             <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
             <i class="fa-solid fa-heart text-rose-400"></i>
             <span>{{ $siteSettings['home_profile_badge'] ?? 'Mendidik dengan Sepenuh Kasih Sayang' }}</span>
@@ -343,11 +352,10 @@
             {{ $siteSettings['home_profile_desc'] ?? 'Di Pondok Pesantren Raudhatul Ulum Sakatiga, proses pendidikan berakar pada keikhlasan pengasuhan, keteladanan akhlaqul karimah, serta keseimbangan antara spiritualitas Qur\'ani, ketajaman nalar ilmiah, dan kepemimpinan global.' }}
         </p>
 
-        {{-- 2 Action Buttons: Video Profile & PSB Online with Extra Bottom Clearance (+2cm) --}}
-        <div class="pt-6 pb-2 flex flex-wrap items-center justify-center gap-4 sm:gap-6 reveal-fade-up delay-3"
-             style="margin-bottom: 30px;">
+        {{-- 2 Action Buttons: Video Profile & PSB Online with 1cm Clearance to Bottom Edge --}}
+        <div class="pt-4 pb-1 flex flex-wrap items-center justify-center gap-4 sm:gap-6 reveal-fade-up delay-3">
             {{-- Button 1: Solid Gold / Amber (Tonton Video Profil) --}}
-            <button @click="videoModalOpen = true" type="button" class="group inline-flex items-center gap-3.5 bg-[#f59e0b] hover:bg-[#d97706] text-slate-950 font-black text-xs sm:text-sm px-8 py-4 rounded-full shadow-2xl shadow-amber-500/40 transition-all duration-300 transform hover:scale-105 cursor-pointer border-2 border-amber-300">
+            <button @click="videoModalOpen = true" type="button" class="group inline-flex items-center gap-3.5 bg-[#f59e0b] hover:bg-[#d97706] text-slate-950 font-black text-xs sm:text-sm px-8 py-3.5 rounded-full shadow-2xl shadow-amber-500/40 transition-all duration-300 transform hover:scale-105 cursor-pointer border-2 border-amber-300">
                 <span class="w-8 h-8 rounded-full bg-slate-950 text-amber-400 flex items-center justify-center text-xs group-hover:scale-110 transition shadow-inner">
                     <i class="fa-solid fa-play ml-0.5"></i>
                 </span>
@@ -355,7 +363,7 @@
             </button>
 
             {{-- Button 2: Solid Islamic Green (Pendaftaran PSB Online) --}}
-            <a href="{{ route('ppdb.index') }}" class="inline-flex items-center gap-2.5 bg-[#00843d] hover:bg-[#006e33] text-white font-black text-xs sm:text-sm px-8 py-4 rounded-full shadow-2xl shadow-emerald-950/60 transition-all duration-300 transform hover:scale-105 border-2 border-emerald-400">
+            <a href="{{ route('ppdb.index') }}" class="inline-flex items-center gap-2.5 bg-[#00843d] hover:bg-[#006e33] text-white font-black text-xs sm:text-sm px-8 py-3.5 rounded-full shadow-2xl shadow-emerald-950/60 transition-all duration-300 transform hover:scale-105 border-2 border-emerald-400">
                 <i class="fa-solid fa-graduation-cap text-[#fcd116] text-base"></i>
                 <span>Pendaftaran PSB Online</span>
             </a>

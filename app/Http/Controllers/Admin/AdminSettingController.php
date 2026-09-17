@@ -27,7 +27,7 @@ class AdminSettingController extends Controller
 
     public function update(Request $request)
     {
-        $data = $request->except(['_token', 'og_image_file', 'site_logo_file']);
+        $data = $request->except(['_token', 'og_image_file', 'site_logo_file', 'home_profile_poster_file']);
 
         // Handle OG Image file upload
         if ($request->hasFile('og_image_file')) {
@@ -42,6 +42,14 @@ class AdminSettingController extends Controller
             $converted = $this->webpService->processUploadedFile($request->file('site_logo_file'), 'settings', 95, 800);
             if ($converted['success']) {
                 $data['site_logo'] = $converted['url'];
+            }
+        }
+
+        // Handle Home Profile Poster file upload
+        if ($request->hasFile('home_profile_poster_file')) {
+            $converted = $this->webpService->processUploadedFile($request->file('home_profile_poster_file'), 'settings', 85, 1920);
+            if ($converted['success']) {
+                $data['home_profile_poster_image'] = $converted['url'];
             }
         }
 

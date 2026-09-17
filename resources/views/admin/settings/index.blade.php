@@ -472,6 +472,51 @@
                     <input type="text" name="home_profile_btn_text" value="{{ $settings['home_profile_btn_text'] ?? 'Tonton Video Profil Singkat Pesantren (1 Menit)' }}" 
                            class="w-full bg-gray-50 text-xs text-gray-800 rounded-xl px-4 py-3 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
                 </div>
+
+                {{-- Foto Background Sementara (Poster Image sebelum video dimuat) --}}
+                <div class="border-t border-gray-100 pt-4">
+                    <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                        Foto Background Sementara (Poster Gambar Sebelum Video Berputar)
+                    </label>
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+                        <div class="w-32 h-20 rounded-xl overflow-hidden bg-slate-900 border border-gray-200 shrink-0 shadow-inner">
+                            <img src="{{ $settings['home_profile_poster_image'] ?? '/uploads/campus-ppru-sakatiga.webp' }}" 
+                                 alt="Preview Poster Video" 
+                                 class="w-full h-full object-cover"
+                                 onerror="this.src='/uploads/campus-ppru-sakatiga.webp'">
+                        </div>
+                        <div class="flex-1 w-full space-y-2">
+                            <input type="file" name="home_profile_poster_file" accept="image/*"
+                                   class="block w-full text-xs text-gray-500 file:mr-3 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-emerald-50 file:text-[#00913e] hover:file:bg-emerald-100 cursor-pointer">
+                            <input type="text" name="home_profile_poster_image" value="{{ $settings['home_profile_poster_image'] ?? '/uploads/campus-ppru-sakatiga.webp' }}" 
+                                   placeholder="Atau masukkan URL / path gambar langsung..." 
+                                   class="w-full bg-gray-50 text-xs text-gray-800 rounded-xl px-4 py-2 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
+                            <p class="text-[11px] text-gray-400">Gambar yang tampil pertama kali saat halaman dibuka sebelum video YouTube/MP4 mulai berjalan.</p>
+                        </div>
+                    </div>
+                </div>
+
+                {{-- Persentase Transparansi Cover Hitam Video --}}
+                <div class="border-t border-gray-100 pt-4" x-data="{ opacityVal: {{ (int)($settings['home_profile_overlay_opacity'] ?? 75) }} }">
+                    <div class="flex items-center justify-between mb-1.5">
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider">
+                            Persentase Kepekatan Cover Hitam di Atas Video
+                        </label>
+                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-black bg-slate-900 text-amber-400 border border-slate-700">
+                            <span x-text="opacityVal"></span>% Kepekatan Hitam
+                        </span>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <input type="range" name="home_profile_overlay_opacity" min="10" max="95" step="1" 
+                               x-model="opacityVal"
+                               class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#00913e]">
+                        <input type="number" min="10" max="95" x-model="opacityVal"
+                               class="w-20 text-center bg-gray-50 text-xs font-bold text-gray-800 rounded-xl px-2 py-2 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
+                    </div>
+                    <p class="text-[11px] text-gray-400 mt-1.5">
+                        Geser untuk mengatur transparansi warna hitam di atas video. Nilai standar <strong>75% - 80%</strong> memberikan efek sinematik yang meredupkan adegan video terang (seperti langit/pohon) agar seluruh teks putih terbaca dengan sangat jelas.
+                    </p>
+                </div>
             </div>
         </div>
 

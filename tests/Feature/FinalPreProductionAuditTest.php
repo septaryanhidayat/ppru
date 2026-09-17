@@ -151,12 +151,16 @@ test('admin can update video background settings in admin settings and persist t
         'home_profile_headline' => 'Membangun Generasi Emas Berkarakter Luhur',
         'home_profile_desc' => 'Deskripsi profil teruji di PPRU Sakatiga.',
         'home_profile_btn_text' => 'Lihat Video Singkat',
+        'home_profile_poster_image' => '/uploads/custom-campus-poster.webp',
+        'home_profile_overlay_opacity' => '80',
     ]);
 
     $response->assertSessionHasNoErrors();
     expect(Setting::get('home_profile_video_bg'))->toBe('https://www.youtube.com/watch?v=UGc6hUcwSXk');
     expect(Setting::get('home_profile_badge'))->toBe('Pendidikan Akhlaqul Karimah');
     expect(Setting::get('home_profile_headline'))->toBe('Membangun Generasi Emas Berkarakter Luhur');
+    expect(Setting::get('home_profile_poster_image'))->toBe('/uploads/custom-campus-poster.webp');
+    expect(Setting::get('home_profile_overlay_opacity'))->toBe('80');
 });
 
 test('unauthenticated guests are blocked and redirected to login from admin routes', function () {
