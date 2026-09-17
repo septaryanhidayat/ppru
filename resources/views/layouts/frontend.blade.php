@@ -49,6 +49,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <style>
+        [x-cloak] { display: none !important; }
         .font-arabic { font-family: 'Amiri', serif; }
         .ql-align-center, [style*="text-align: center"] { text-align: center !important; }
         .ql-align-right, [style*="text-align: right"] { text-align: right !important; }

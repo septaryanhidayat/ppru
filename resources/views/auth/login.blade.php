@@ -40,9 +40,9 @@
             @csrf
 
             <div>
-                <label for="email" class="block text-xs font-semibold text-gray-700 mb-1.5">Masukkan Email Administrator</label>
+                <label for="email" class="block text-xs font-semibold text-gray-700 mb-1.5">Alamat Email</label>
                 <div class="relative">
-                    <input type="email" name="email" id="email" required value="{{ old('email') }}" placeholder="admin@ppru.ac.id" class="w-full bg-gray-50 text-xs text-gray-800 rounded-xl pl-10 pr-4 py-3.5 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#00913e] transition">
+                    <input type="email" name="email" id="email" required value="{{ old('email') }}" placeholder="Masukkan email Anda" class="w-full bg-gray-50 text-xs text-gray-800 rounded-xl pl-10 pr-4 py-3.5 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#00913e] transition">
                     <i class="fa-solid fa-envelope absolute left-3.5 top-4 text-gray-400 text-xs"></i>
                 </div>
             </div>
@@ -50,7 +50,7 @@
             <div>
                 <label for="password" class="block text-xs font-semibold text-gray-700 mb-1.5">Kata Sandi</label>
                 <div class="relative">
-                    <input type="password" name="password" id="password" required placeholder="••••••••" class="w-full bg-gray-50 text-xs text-gray-800 rounded-xl pl-10 pr-4 py-3.5 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#00913e] transition">
+                    <input type="password" name="password" id="password" required placeholder="Masukkan kata sandi Anda" class="w-full bg-gray-50 text-xs text-gray-800 rounded-xl pl-10 pr-4 py-3.5 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#00913e] transition">
                     <i class="fa-solid fa-lock absolute left-3.5 top-4 text-gray-400 text-xs"></i>
                 </div>
             </div>

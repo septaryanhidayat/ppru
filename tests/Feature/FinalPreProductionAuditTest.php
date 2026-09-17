@@ -182,3 +182,31 @@ test('unauthenticated guests are blocked and redirected to login from admin rout
         $res->assertRedirect('/login');
     }
 });
+
+test('login page uses generic placeholder and does not leak specific admin email address', function () {
+    $response = $this->get('/login');
+    $response->assertStatus(200);
+    $response->assertSee('placeholder="Masukkan email Anda"', false);
+    $response->assertSee('placeholder="Masukkan kata sandi Anda"', false);
+    $response->assertDontSee('placeholder="admin@ppru.ac.id"', false);
+    $response->assertDontSee('Masukkan Email Administrator', false);
+});
+
+test('homepage includes x-cloak rule, hides video modal initially, and renders SPMB promo popup', function () {
+    Setting::updateOrCreate(
+        ['key' => 'popup_active'],
+        ['value' => '1', 'group' => 'general']
+    );
+    Setting::updateOrCreate(
+        ['key' => 'popup_image'],
+        ['value' => '/uploads/popup/popup-ppdb.webp', 'group' => 'general']
+    );
+
+    $response = $this->get('/');
+    $response->assertStatus(200);
+    $response->assertSee('[x-cloak] { display: none !important; }', false);
+    $response->assertSee('style="display: none;"', false);
+    $response->assertSee('id="ppruHomePopupModal"', false);
+    $response->assertSee('z-[70]', false);
+    $response->assertSee('/uploads/popup/popup-ppdb.webp', false);
+});

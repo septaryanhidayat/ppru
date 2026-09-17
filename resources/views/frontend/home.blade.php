@@ -384,6 +384,7 @@
     {{-- Interactive Video Modal Lightbox --}}
     <div x-show="videoModalOpen" 
          x-cloak 
+         style="display: none;"
          x-transition:enter="transition ease-out duration-300"
          x-transition:enter-start="opacity-0"
          x-transition:enter-end="opacity-100"
@@ -1540,7 +1541,7 @@
 {{-- ========================================================
      HOMEPAGE PROMO POPUP BANNER MODAL
      ======================================================== --}}
-<div id="ppruHomePopupModal" class="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/80 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300">
+<div id="ppruHomePopupModal" class="fixed inset-0 z-[70] flex items-center justify-center p-3 sm:p-4 bg-black/80 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300">
     <div id="ppruHomePopupCard" class="relative bg-white rounded-3xl shadow-2xl overflow-hidden max-w-sm sm:max-w-md w-full transform scale-95 transition-transform duration-300 border border-white/20">
         {{-- Close Button --}}
         <button id="closePpruHomePopupBtn" type="button" aria-label="Tutup Banner Promosi" class="absolute top-3 right-3 z-10 w-9 h-9 bg-black/60 hover:bg-black text-white rounded-full flex items-center justify-center backdrop-blur-md transition shadow-lg cursor-pointer">
@@ -1578,22 +1579,19 @@
 
         if (!modal) return;
 
-        // Check if user already dismissed it in this browser session
-        if (!sessionStorage.getItem('ppru_home_popup_closed')) {
-            setTimeout(function () {
-                modal.classList.remove('opacity-0', 'pointer-events-none');
-                modal.classList.add('opacity-100');
-                card.classList.remove('scale-95');
-                card.classList.add('scale-100');
-            }, 600);
-        }
+        // Display promo banner smoothly upon homepage load
+        setTimeout(function () {
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            modal.classList.add('opacity-100');
+            card.classList.remove('scale-95');
+            card.classList.add('scale-100');
+        }, 500);
 
         function closePopup() {
             modal.classList.add('opacity-0', 'pointer-events-none');
             modal.classList.remove('opacity-100');
             card.classList.add('scale-95');
             card.classList.remove('scale-100');
-            sessionStorage.setItem('ppru_home_popup_closed', '1');
         }
 
         if (closeBtn) {
