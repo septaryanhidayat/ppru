@@ -435,7 +435,8 @@
                         <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
                             Judul Badge Atas
                         </label>
-                        <input type="text" name="home_profile_badge" value="{{ $settings['home_profile_badge'] ?? 'Mendidik dengan Sepenuh Kasih Sayang' }}" 
+                        <input type="text" name="home_profile_badge" value="{{ $settings['home_profile_badge'] ?? 'Profil Pesantren' }}" 
+                               placeholder="Contoh: Profil Pesantren"
                                class="w-full bg-gray-50 text-xs text-gray-800 rounded-xl px-4 py-3 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
                     </div>
 

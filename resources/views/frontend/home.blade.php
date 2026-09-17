@@ -261,6 +261,11 @@
     $topAlpha = min(0.98, round($overlayAlpha + 0.15, 2));
     $midAlpha = max(0.25, round($overlayAlpha - 0.08, 2));
     $bottomAlpha = min(0.98, round($overlayAlpha + 0.18, 2));
+    // Short, non-repetitive badge text
+    $badgeText = trim($siteSettings['home_profile_badge'] ?? '');
+    if (empty($badgeText) || $badgeText === 'Mendidik dengan Sepenuh Kasih Sayang') {
+        $badgeText = 'Profil Pesantren';
+    }
 @endphp
 
 <section class="w-full relative overflow-hidden bg-[#070707] text-white flex flex-col justify-center items-center" 
@@ -335,11 +340,11 @@
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 text-center space-y-5 sm:space-y-6"
          style="padding-top: 38px; padding-bottom: 38px;">
         {{-- Top Badge with Dedicated Dark Backing & 1cm Clearance from Top Edge --}}
-        <div class="inline-flex items-center gap-2.5 px-5 py-2 rounded-full border border-emerald-400/60 text-amber-300 text-xs sm:text-sm font-black uppercase tracking-widest shadow-2xl backdrop-blur-md reveal-fade-up" 
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-emerald-400/60 text-amber-300 text-xs sm:text-sm font-black uppercase tracking-widest shadow-2xl backdrop-blur-md reveal-fade-up" 
              style="background-color: rgba(0, 0, 0, 0.85);">
-            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
-            <i class="fa-solid fa-heart text-rose-400"></i>
-            <span>{{ $siteSettings['home_profile_badge'] ?? 'Mendidik dengan Sepenuh Kasih Sayang' }}</span>
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+            <i class="fa-solid fa-landmark-dome text-amber-300"></i>
+            <span>{{ $badgeText }}</span>
         </div>
 
         {{-- Headline --}}
