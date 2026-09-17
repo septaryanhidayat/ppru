@@ -8,3 +8,5 @@ deployment:
     - "/bin/chmod -R 775 $DEPLOYPATH/storage $DEPLOYPATH/bootstrap/cache"
     - "/bin/chmod -R 755 $DEPLOYPATH/public/uploads"
     - "/bin/touch $DEPLOYPATH/public/index.php"
+    - "(cd $DEPLOYPATH && (php artisan migrate --force || /usr/local/bin/php artisan migrate --force || /opt/cpanel/ea-php84/root/usr/bin/php artisan migrate --force || true))"
+    - "(cd $DEPLOYPATH && (php artisan optimize:clear || /usr/local/bin/php artisan optimize:clear || /opt/cpanel/ea-php84/root/usr/bin/php artisan optimize:clear || true))"
