@@ -14,25 +14,73 @@
     <meta name="google-site-verification" content="{{ $siteSettings['google_site_verification'] }}">
     @endif
 
+    @php
+        $canonicalUrl = url()->current();
+        if (request()->isSecure() || app()->environment('production') || str_contains($canonicalUrl, 'ppru.ac.id')) {
+            $canonicalUrl = preg_replace('/^http:/i', 'https:', $canonicalUrl);
+        }
+
+        $pageOgImage = trim(View::yieldContent('og_image'));
+        $rawOgImage = !empty($pageOgImage) ? $pageOgImage : ($siteSettings['og_image'] ?? '/uploads/official/og-ppru-preview.jpg');
+
+        if (!str_starts_with($rawOgImage, 'http://') && !str_starts_with($rawOgImage, 'https://')) {
+            $ogImage = url($rawOgImage);
+        } else {
+            $ogImage = $rawOgImage;
+        }
+
+        if (request()->isSecure() || app()->environment('production') || str_contains($ogImage, 'ppru.ac.id')) {
+            $ogImage = preg_replace('/^http:/i', 'https:', $ogImage);
+        }
+
+        $ogExt = strtolower(pathinfo(parse_url($ogImage, PHP_URL_PATH), PATHINFO_EXTENSION));
+        $ogMime = match($ogExt) {
+            'png' => 'image/png',
+            'webp' => 'image/webp',
+            default => 'image/jpeg',
+        };
+    @endphp
+
     {{-- Open Graph / Facebook / WhatsApp --}}
     <meta property="og:locale" content="id_ID">
     <meta property="og:type" content="@yield('og_type', 'website')">
     <meta property="og:site_name" content="{{ $siteSettings['site_name'] ?? 'Pondok Pesantren Raudhatul Ulum' }}">
-    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:url" content="{{ $canonicalUrl }}">
     <meta property="og:title" content="@yield('og_title', View::yieldContent('title', $siteSettings['og_title'] ?? 'Pondok Pesantren Raudhatul Ulum'))">
     <meta property="og:description" content="@yield('og_description', View::yieldContent('meta_description', $siteSettings['og_description'] ?? $siteSettings['site_description'] ?? 'Pondok Pesantren Raudhatul Ulum Sakatiga Ogan Ilir Sumatera Selatan.'))">
-    <meta property="og:image" content="@yield('og_image', asset($siteSettings['og_image'] ?? '/uploads/logo-ppru-banner.png'))">
-    <meta property="og:image:secure_url" content="@yield('og_image', asset($siteSettings['og_image'] ?? '/uploads/logo-ppru-banner.png'))">
+    <meta property="og:image" content="{{ $ogImage }}">
+    <meta property="og:image:secure_url" content="{{ $ogImage }}">
+    <meta property="og:image:type" content="{{ $ogMime }}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="{{ $siteSettings['site_name'] ?? 'Pondok Pesantren Raudhatul Ulum' }}">
+
+    @if(empty($pageOgImage))
+    @php
+        $ogSquare = url('/uploads/official/og-ppru-square.jpg');
+        if (request()->isSecure() || app()->environment('production') || str_contains($ogSquare, 'ppru.ac.id')) {
+            $ogSquare = preg_replace('/^http:/i', 'https:', $ogSquare);
+        }
+    @endphp
+    <meta property="og:image" content="{{ $ogSquare }}">
+    <meta property="og:image:secure_url" content="{{ $ogSquare }}">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="600">
+    <meta property="og:image:height" content="600">
+    @endif
+
+    {{-- Fallback image for WhatsApp & older scrapers --}}
+    <link rel="image_src" href="{{ $ogImage }}">
 
     {{-- Twitter Cards --}}
     <meta name="twitter:card" content="{{ $siteSettings['twitter_card'] ?? 'summary_large_image' }}">
     <meta name="twitter:site" content="@ppru_sakatiga">
     <meta name="twitter:title" content="@yield('og_title', View::yieldContent('title', $siteSettings['og_title'] ?? 'Pondok Pesantren Raudhatul Ulum'))">
     <meta name="twitter:description" content="@yield('og_description', View::yieldContent('meta_description', $siteSettings['og_description'] ?? $siteSettings['site_description'] ?? 'Official Website Pondok Pesantren Raudhatul Ulum'))">
-    <meta name="twitter:image" content="@yield('og_image', asset($siteSettings['og_image'] ?? '/uploads/logo-ppru-banner.png'))">
+    <meta name="twitter:image" content="{{ $ogImage }}">
 
     {{-- Canonical URL --}}
-    <link rel="canonical" href="{{ url()->current() }}">
+    <link rel="canonical" href="{{ $canonicalUrl }}">
 
     {{-- Favicon --}}
     <link rel="icon" type="image/png" href="{{ asset($siteSettings['site_favicon'] ?? '/uploads/logo-ppru-square.png') }}">

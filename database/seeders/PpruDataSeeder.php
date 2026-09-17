@@ -50,7 +50,7 @@ class PpruDataSeeder extends Seeder
             'site_favicon' => '/uploads/logo-ppru-square.png',
             'og_title' => 'Pondok Pesantren Raudhatul Ulum Sakatiga Ogan Ilir',
             'og_description' => 'Pondok Pesantren Modern Terpadu berbasis Al-Qur\'an, Dwi-Bahasa (Arab & Inggris), Dirasah Islamiyah, dan Sains Teknologi.',
-            'og_image' => '/uploads/logo-ppru-banner.png',
+            'og_image' => '/uploads/official/og-ppru-preview.jpg',
             'meta_keywords' => 'pondok pesantren raudhatul ulum, ppru sakatiga, raudhatul ulum ogan ilir, ponpes sakatiga, ppdb ppru, santri sakatiga, ma raudhatul ulum, mts raudhatul ulum, smait ru, smpit ru',
             'npsn' => '10648831',
             'akreditasi' => 'TERAKREDITASI A & MUADALAH AL-AZHAR KAIRO',

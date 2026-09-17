@@ -232,3 +232,34 @@ test('downloadable assets preserve original formats PNG or JPG while web views l
     $homePage->assertSee('/uploads/official/logo-web-ppru.webp', false);
     $homePage->assertSee('/uploads/official/logo-ru-berwarna.webp', false);
 });
+
+test('open graph meta tags include compliant dimensions, secure urls, and lightweight preview image for whatsapp', function () {
+    Setting::updateOrCreate(
+        ['key' => 'og_image'],
+        ['value' => '/uploads/official/og-ppru-preview.jpg', 'group' => 'general']
+    );
+
+    $response = $this->get('/');
+    $response->assertStatus(200);
+
+    // Verify WhatsApp / Social Meta Tags
+    $response->assertSee('property="og:image"', false);
+    $response->assertSee('property="og:image:secure_url"', false);
+    $response->assertSee('property="og:image:type" content="image/jpeg"', false);
+    $response->assertSee('property="og:image:width" content="1200"', false);
+    $response->assertSee('property="og:image:height" content="630"', false);
+    $response->assertSee('property="og:image:width" content="600"', false);
+    $response->assertSee('property="og:image:height" content="600"', false);
+    $response->assertSee('rel="image_src"', false);
+    $response->assertSee('/uploads/official/og-ppru-preview.jpg', false);
+    $response->assertSee('/uploads/official/og-ppru-square.jpg', false);
+
+    // Verify image files exist on disk and are strictly under 300KB (WhatsApp limit)
+    $bannerPath = public_path('uploads/official/og-ppru-preview.jpg');
+    $squarePath = public_path('uploads/official/og-ppru-square.jpg');
+
+    expect(file_exists($bannerPath))->toBeTrue();
+    expect(file_exists($squarePath))->toBeTrue();
+    expect(filesize($bannerPath))->toBeLessThan(300 * 1024);
+    expect(filesize($squarePath))->toBeLessThan(300 * 1024);
+});
