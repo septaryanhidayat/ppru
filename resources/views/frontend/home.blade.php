@@ -340,9 +340,9 @@
             {{ $siteSettings['home_profile_desc'] ?? 'Di Pondok Pesantren Raudhatul Ulum Sakatiga, proses pendidikan berakar pada keikhlasan pengasuhan, keteladanan akhlaqul karimah, serta keseimbangan antara spiritualitas Qur\'ani, ketajaman nalar ilmiah, dan kepemimpinan global.' }}
         </p>
 
-        {{-- 2 Action Buttons (SPMB button removed per request, 100% Solid & High Contrast) --}}
+        {{-- 2 Action Buttons: Video Profile & PSB Online (Solid, 100% Non-Transparent, High Contrast) --}}
         <div class="pt-6 pb-2 flex flex-wrap items-center justify-center gap-4 sm:gap-6 reveal-fade-up delay-3">
-            {{-- Button 1: Solid Gold / Amber (Tonton Video) --}}
+            {{-- Button 1: Solid Gold / Amber (Tonton Video Profil) --}}
             <button @click="videoModalOpen = true" type="button" class="group inline-flex items-center gap-3.5 bg-[#f59e0b] hover:bg-[#d97706] text-slate-950 font-black text-xs sm:text-sm px-8 py-4 rounded-full shadow-2xl shadow-amber-500/40 transition-all duration-300 transform hover:scale-105 cursor-pointer border-2 border-amber-300">
                 <span class="w-8 h-8 rounded-full bg-slate-950 text-amber-400 flex items-center justify-center text-xs group-hover:scale-110 transition shadow-inner">
                     <i class="fa-solid fa-play ml-0.5"></i>
@@ -350,10 +350,10 @@
                 <span>{{ $siteSettings['home_profile_btn_text'] ?? 'Tonton Video Profil Singkat Pesantren (1 Menit)' }}</span>
             </button>
 
-            {{-- Button 2: Solid Islamic Green (Jelajahi Profil Lengkap) --}}
-            <a href="{{ route('page.tentang-kami') }}" class="inline-flex items-center gap-2.5 bg-[#00843d] hover:bg-[#006e33] text-white font-black text-xs sm:text-sm px-8 py-4 rounded-full shadow-2xl shadow-emerald-950/60 transition-all duration-300 transform hover:scale-105 border-2 border-emerald-400">
-                <i class="fa-solid fa-landmark-dome text-[#fcd116] text-base"></i>
-                <span>Jelajahi Profil Lengkap Pesantren</span>
+            {{-- Button 2: Solid Islamic Green (Pendaftaran PSB Online) --}}
+            <a href="{{ route('ppdb.index') }}" class="inline-flex items-center gap-2.5 bg-[#00843d] hover:bg-[#006e33] text-white font-black text-xs sm:text-sm px-8 py-4 rounded-full shadow-2xl shadow-emerald-950/60 transition-all duration-300 transform hover:scale-105 border-2 border-emerald-400">
+                <i class="fa-solid fa-graduation-cap text-[#fcd116] text-base"></i>
+                <span>Pendaftaran PSB Online</span>
             </a>
         </div>
     </div>
