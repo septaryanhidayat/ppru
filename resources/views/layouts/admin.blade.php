@@ -461,6 +461,26 @@
             </div>
         </header>
 
+        {{-- Database Migration Notice if columns missing --}}
+        @if(!\Illuminate\Support\Facades\Schema::hasColumn('posts', 'is_featured'))
+            <div class="mx-6 sm:mx-8 mt-6 p-4 bg-amber-50 border-l-4 border-amber-500 rounded-r-2xl shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div class="flex items-center space-x-3">
+                    <i class="fa-solid fa-database text-amber-500 text-lg"></i>
+                    <div>
+                        <p class="text-xs sm:text-sm font-bold text-amber-900">Pembaruan Struktur Database Diperlukan</p>
+                        <p class="text-[11px] text-amber-700">Terdapat pembaruan kolom artikel (is_featured, author_name, featured_image_caption) yang belum dimigrasi di database MySQL server.</p>
+                    </div>
+                </div>
+                <form action="{{ route('admin.migrate') }}" method="POST" class="shrink-0" onsubmit="return confirm('Jalankan migrasi database sekarang?');">
+                    @csrf
+                    <button type="submit" class="bg-amber-600 hover:bg-amber-700 text-white text-xs font-bold px-4 py-2 rounded-xl shadow-xs transition flex items-center space-x-1.5 cursor-pointer">
+                        <i class="fa-solid fa-play text-[10px]"></i>
+                        <span>Jalankan Migrasi Sekarang</span>
+                    </button>
+                </form>
+            </div>
+        @endif
+
         {{-- Flash Messages --}}
         @if(session('success'))
             <div class="mx-6 sm:mx-8 mt-6 p-4 bg-emerald-50 border-l-4 border-emerald-500 rounded-r-2xl shadow-xs flex items-center justify-between">

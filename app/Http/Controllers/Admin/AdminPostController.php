@@ -10,7 +10,9 @@ use App\Models\User;
 use App\Services\WebpService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
 
 class AdminPostController extends Controller
@@ -109,23 +111,35 @@ class AdminPostController extends Controller
             ? Carbon::parse($validated['published_at'])
             : now();
 
-        $post = Post::create([
+        $this->ensureEditorialColumns();
+        $tableColumns = Schema::getColumnListing('posts');
+
+        $postData = [
             'title' => $validated['title'],
             'slug' => Str::slug($validated['title']).'-'.time(),
             'content' => $validated['content'],
             'excerpt' => ($validated['excerpt'] ?? null) ?: Str::limit(strip_tags($validated['content']), 180),
             'status' => $validated['status'],
-            'is_featured' => $request->boolean('is_featured'),
             'type' => $type,
             'featured_image' => $featuredImageUrl,
-            'featured_image_caption' => $validated['featured_image_caption'] ?? null,
             'author_id' => $validated['author_id'] ?? Auth::id(),
-            'author_name' => $validated['author_name'] ?? null,
             'published_at' => $publishedAt,
             'meta_title' => $validated['meta_title'] ?? null,
             'meta_description' => $validated['meta_description'] ?? null,
             'meta_keywords' => $validated['meta_keywords'] ?? null,
-        ]);
+        ];
+
+        if (in_array('is_featured', $tableColumns)) {
+            $postData['is_featured'] = $request->boolean('is_featured');
+        }
+        if (in_array('featured_image_caption', $tableColumns)) {
+            $postData['featured_image_caption'] = $validated['featured_image_caption'] ?? null;
+        }
+        if (in_array('author_name', $tableColumns)) {
+            $postData['author_name'] = $validated['author_name'] ?? null;
+        }
+
+        $post = Post::create($postData);
 
         // Kategori (gabungkan checklist + new_category jika diinput)
         $categoryIds = $request->input('categories', []);
@@ -221,22 +235,34 @@ class AdminPostController extends Controller
             ? Carbon::parse($validated['published_at'])
             : ($post->published_at ?? now());
 
-        $post->update([
+        $this->ensureEditorialColumns();
+        $tableColumns = Schema::getColumnListing('posts');
+
+        $updateData = [
             'title' => $validated['title'],
             'type' => $validated['type'] ?? $post->type,
             'content' => $validated['content'],
             'excerpt' => ($validated['excerpt'] ?? null) ?: Str::limit(strip_tags($validated['content']), 180),
             'status' => $validated['status'],
-            'is_featured' => $request->boolean('is_featured'),
             'featured_image' => $featuredImageUrl,
-            'featured_image_caption' => $validated['featured_image_caption'] ?? null,
             'author_id' => $validated['author_id'] ?? $post->author_id,
-            'author_name' => $validated['author_name'] ?? null,
             'published_at' => $publishedAt,
             'meta_title' => $validated['meta_title'] ?? null,
             'meta_description' => $validated['meta_description'] ?? null,
             'meta_keywords' => $validated['meta_keywords'] ?? null,
-        ]);
+        ];
+
+        if (in_array('is_featured', $tableColumns)) {
+            $updateData['is_featured'] = $request->boolean('is_featured');
+        }
+        if (in_array('featured_image_caption', $tableColumns)) {
+            $updateData['featured_image_caption'] = $validated['featured_image_caption'] ?? null;
+        }
+        if (in_array('author_name', $tableColumns)) {
+            $updateData['author_name'] = $validated['author_name'] ?? null;
+        }
+
+        $post->update($updateData);
 
         // Kategori (sinkronkan daftar terpilih + new_category jika diinput)
         $categoryIds = $request->input('categories', []);
@@ -281,5 +307,19 @@ class AdminPostController extends Controller
         $redirectParams = ($type === 'post') ? [] : ['type' => $type];
 
         return redirect()->route('admin.posts.index', $redirectParams)->with('success', 'Konten berhasil dihapus!');
+    }
+
+    /**
+     * Ensure editorial columns exist in the database; self-heal with migration if missing.
+     */
+    private function ensureEditorialColumns(): void
+    {
+        try {
+            if (! Schema::hasColumn('posts', 'is_featured')) {
+                Artisan::call('migrate', ['--force' => true]);
+            }
+        } catch (\Throwable $e) {
+            // Gracefully continue on web execution
+        }
     }
 }
