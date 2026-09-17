@@ -2,17 +2,17 @@
 deployment:
   tasks:
     # ==============================================================================
-    # KHUSUS DOMAIN PPRU.AC.ID
-    # PERINGATAN: JANGAN PERNAH MENGARAHKAN KE /home/pesonaas/public_html
-    # agar website utama cPanel Anda tidak terganggu/tertimpa sama sekali.
+    # PONDOK PESANTREN RAUDHATUL ULUM (PPRU) - CPANEL DEPLOYMENT CONFIGURATION
+    # Document Root domain ppru.ac.id : repositories/ppru/public
+    # Project Repository Root         : /home/pesonaas/repositories/ppru
+    #
+    # PERINGATAN: Konfigurasi ini HANYA bekerja di dalam repositories/ppru.
+    # SAMA SEKALI TIDAK MENYENTUH /home/pesonaas/public_html (web utama aman 100%).
     # ==============================================================================
-    - 'export DEPLOYPATH=/home/pesonaas/ppru.ac.id'
-    - 'if [ -d "/home/pesonaas/public_html/ppru.ac.id" ]; then export DEPLOYPATH=/home/pesonaas/public_html/ppru.ac.id; fi'
-    - 'if [ "$PWD" != "$DEPLOYPATH" ]; then /bin/mkdir -p $DEPLOYPATH; fi'
-    - 'if [ "$PWD" != "$DEPLOYPATH" ]; then /bin/mkdir -p $DEPLOYPATH/storage/framework/cache/data $DEPLOYPATH/storage/framework/sessions $DEPLOYPATH/storage/framework/views $DEPLOYPATH/storage/logs $DEPLOYPATH/bootstrap/cache $DEPLOYPATH/public/uploads; fi'
-    - 'if [ "$PWD" != "$DEPLOYPATH" ]; then /bin/cp -R app bootstrap config database public resources routes storage artisan composer.json composer.lock .htaccess $DEPLOYPATH/; fi'
-    - '/bin/chmod -R 775 $DEPLOYPATH/storage $DEPLOYPATH/bootstrap/cache'
-    - '/bin/chmod -R 755 $DEPLOYPATH/public/uploads'
-    - '/bin/touch $DEPLOYPATH/public/index.php'
-    - '(cd $DEPLOYPATH && (php artisan migrate --force || /usr/local/bin/php artisan migrate --force || /opt/cpanel/ea-php84/root/usr/bin/php artisan migrate --force || true))'
-    - '(cd $DEPLOYPATH && (php artisan optimize:clear || /usr/local/bin/php artisan optimize:clear || /opt/cpanel/ea-php84/root/usr/bin/php artisan optimize:clear || true))'
+    - "export DEPLOYPATH=/home/pesonaas/repositories/ppru"
+    - "/bin/mkdir -p $DEPLOYPATH/storage/framework/cache/data $DEPLOYPATH/storage/framework/sessions $DEPLOYPATH/storage/framework/views $DEPLOYPATH/storage/logs $DEPLOYPATH/bootstrap/cache $DEPLOYPATH/public/uploads"
+    - "/bin/chmod -R 775 $DEPLOYPATH/storage $DEPLOYPATH/bootstrap/cache"
+    - "/bin/chmod -R 755 $DEPLOYPATH/public/uploads"
+    - "(cd $DEPLOYPATH && (php artisan storage:link || true))"
+    - "(cd $DEPLOYPATH && (php artisan migrate --force || /usr/local/bin/php artisan migrate --force || /opt/cpanel/ea-php84/root/usr/bin/php artisan migrate --force || true))"
+    - "(cd $DEPLOYPATH && (php artisan optimize:clear || /usr/local/bin/php artisan optimize:clear || /opt/cpanel/ea-php84/root/usr/bin/php artisan optimize:clear || true))"
