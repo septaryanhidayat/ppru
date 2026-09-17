@@ -8,11 +8,15 @@ define('LARAVEL_START', microtime(true));
 // 1. Auto-detect Laravel repository root directory
 $possibleRoots = [
     __DIR__.'/..',
+    dirname(__DIR__).'/ppru.ac.id',
     dirname(__DIR__).'/sitrobbani.sch.id',
     dirname(__DIR__).'/repositories/ppru',
     dirname(__DIR__).'/ppru',
+    ($_SERVER['HOME'] ?? '').'/ppru.ac.id',
     ($_SERVER['HOME'] ?? '').'/sitrobbani.sch.id',
     ($_SERVER['HOME'] ?? '').'/repositories/ppru',
+    '/home/pesonaas/ppru.ac.id',
+    '/home/pesonaas/public_html/ppru.ac.id',
     '/home/pesonaas/sitrobbani.sch.id',
     '/home/pesonaas/repositories/ppru',
 ];

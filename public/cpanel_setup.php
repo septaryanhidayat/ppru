@@ -12,14 +12,17 @@ use Illuminate\Contracts\Console\Kernel;
 // 1. Auto-detect Laravel repository root directory
 $possibleRoots = [
     __DIR__.'/..',
+    dirname(__DIR__).'/ppru.ac.id',
     dirname(__DIR__).'/sitrobbani.sch.id',
     dirname(__DIR__).'/repositories/ppru',
     dirname(__DIR__).'/ppru',
+    ($_SERVER['HOME'] ?? '').'/ppru.ac.id',
     ($_SERVER['HOME'] ?? '').'/sitrobbani.sch.id',
     ($_SERVER['HOME'] ?? '').'/repositories/ppru',
+    '/home/pesonaas/ppru.ac.id',
+    '/home/pesonaas/public_html/ppru.ac.id',
     '/home/pesonaas/sitrobbani.sch.id',
     '/home/pesonaas/repositories/ppru',
-    '/home/pesonaas/public_html',
 ];
 
 $laravelRoot = null;
@@ -174,7 +177,7 @@ switch ($action) {
 
         // Langsung sinkronkan aset public ke folder web root cPanel jika terpisah
         $sourcePublic = $laravelRoot.'/public';
-        foreach (['/home/pesonaas/public_html', '/home/pesonaas/sitrobbani.sch.id/public'] as $targetDir) {
+        foreach (['/home/pesonaas/ppru.ac.id', '/home/pesonaas/ppru.ac.id/public', '/home/pesonaas/public_html/ppru.ac.id'] as $targetDir) {
             if (is_dir($targetDir) && is_dir($sourcePublic)) {
                 $iterator = new RecursiveIteratorIterator(
                     new RecursiveDirectoryIterator($sourcePublic, RecursiveDirectoryIterator::SKIP_DOTS),
@@ -263,11 +266,12 @@ switch ($action) {
                 $sourcePublic = $laravelRoot.'/public';
                 $synced = 0;
 
-                $targetDirs = array_unique([
+                $targetDirs = array_unique(array_filter([
                     $currentDir,
-                    '/home/pesonaas/public_html',
-                    '/home/pesonaas/sitrobbani.sch.id/public',
-                ]);
+                    '/home/pesonaas/ppru.ac.id',
+                    '/home/pesonaas/ppru.ac.id/public',
+                    '/home/pesonaas/public_html/ppru.ac.id',
+                ]));
 
                 foreach ($targetDirs as $targetDir) {
                     if (is_dir($targetDir) && is_dir($sourcePublic)) {
