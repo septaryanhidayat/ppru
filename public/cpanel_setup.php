@@ -4,22 +4,22 @@ use Illuminate\Contracts\Console\Kernel;
 
 /**
  * cPanel Setup, Maintenance & Diagnostic Helper for Laravel
- * DPD PKS Ogan Ilir
+ * Pondok Pesantren Raudhatul Ulum (PPRU)
  *
- * Akses: https://pksoganilir.com/cpanel_setup.php?token=PksOi2026Setup&action=status
+ * Akses: cpanel_setup.php?token=Ppru2026Setup&action=status
  */
 
 // 1. Auto-detect Laravel repository root directory
 $possibleRoots = [
     __DIR__.'/..',
-    dirname(__DIR__).'/repositories/pksoi',
-    dirname(__DIR__).'/laravel_pksoi',
-    dirname(__DIR__).'/pksoi',
-    ($_SERVER['HOME'] ?? '').'/repositories/pksoi',
-    ($_SERVER['HOME'] ?? '').'/laravel_pksoi',
-    '/home/berandad/repositories/pksoi',
-    '/home/berandad/laravel_pksoi',
-    '/home/berandad/pksoi',
+    dirname(__DIR__).'/sitrobbani.sch.id',
+    dirname(__DIR__).'/repositories/ppru',
+    dirname(__DIR__).'/ppru',
+    ($_SERVER['HOME'] ?? '').'/sitrobbani.sch.id',
+    ($_SERVER['HOME'] ?? '').'/repositories/ppru',
+    '/home/pesonaas/sitrobbani.sch.id',
+    '/home/pesonaas/repositories/ppru',
+    '/home/pesonaas/public_html',
 ];
 
 $laravelRoot = null;
@@ -34,7 +34,7 @@ if (! $laravelRoot) {
 }
 
 // 2. Secret Token Authentication
-$secretToken = 'PksOi2026Setup';
+$allowedTokens = ['Ppru2026Setup', 'PksOi2026Setup'];
 
 // Parse .env directly if it exists to get custom token if defined
 $envFile = $laravelRoot.'/.env';
@@ -52,18 +52,29 @@ if (file_exists($envFile)) {
         }
     }
     if (! empty($envVars['CPANEL_SETUP_TOKEN'])) {
-        $secretToken = $envVars['CPANEL_SETUP_TOKEN'];
+        $allowedTokens[] = $envVars['CPANEL_SETUP_TOKEN'];
     }
 }
 
-if (! isset($_GET['token']) || empty($_GET['token']) || ! hash_equals($secretToken, (string) $_GET['token'])) {
+$currentToken = (string) ($_GET['token'] ?? '');
+$isValidToken = false;
+foreach ($allowedTokens as $token) {
+    if (hash_equals($token, $currentToken)) {
+        $isValidToken = true;
+        break;
+    }
+}
+
+if (! $isValidToken) {
     http_response_code(403);
     echo '<!DOCTYPE html><html><body style="background:#0f172a;color:#ef4444;font-family:sans-serif;text-align:center;padding:50px;">';
     echo '<h2>403 Forbidden: Token Akses Tidak Valid!</h2>';
-    echo '<p style="color:#94a3b8;">Gunakan URL: <code>cpanel_setup.php?token=PksOi2026Setup&action=status</code></p>';
+    echo '<p style="color:#94a3b8;">Gunakan URL: <code>cpanel_setup.php?token=Ppru2026Setup&action=status</code></p>';
     echo '</body></html>';
     exit;
 }
+
+$secretToken = $currentToken ?: 'Ppru2026Setup';
 
 $action = $_GET['action'] ?? 'status';
 $results = [];
@@ -161,9 +172,9 @@ switch ($action) {
         @exec($cmd, $output, $returnCode);
         $results['Git Pull & Sync'] = empty($output) ? 'Perintah dieksekusi' : implode("\n", $output);
 
-        // Langsung sinkronkan aset public ke folder web root pksoganilir.com
+        // Langsung sinkronkan aset public ke folder web root cPanel jika terpisah
         $sourcePublic = $laravelRoot.'/public';
-        foreach (['/home/berandad/pksoganilir.com/public'] as $targetDir) {
+        foreach (['/home/pesonaas/public_html', '/home/pesonaas/sitrobbani.sch.id/public'] as $targetDir) {
             if (is_dir($targetDir) && is_dir($sourcePublic)) {
                 $iterator = new RecursiveIteratorIterator(
                     new RecursiveDirectoryIterator($sourcePublic, RecursiveDirectoryIterator::SKIP_DOTS),
@@ -254,7 +265,8 @@ switch ($action) {
 
                 $targetDirs = array_unique([
                     $currentDir,
-                    '/home/berandad/pksoganilir.com/public',
+                    '/home/pesonaas/public_html',
+                    '/home/pesonaas/sitrobbani.sch.id/public',
                 ]);
 
                 foreach ($targetDirs as $targetDir) {
@@ -278,7 +290,7 @@ switch ($action) {
                     }
                 }
 
-                $results['Asset Sync'] = "Berhasil menyinkronkan {$synced} file aset dari repositori public/ ke folder web document root pksoganilir.com!";
+                $results['Asset Sync'] = "Berhasil menyinkronkan {$synced} file aset dari repositori public/ ke folder web document root!";
                 $results['storage:link'] = runArtisanCmd($kernel, 'storage:link');
                 $results['cache:clear'] = runArtisanCmd($kernel, 'optimize:clear');
                 $results['config:cache'] = runArtisanCmd($kernel, 'config:cache');
@@ -295,7 +307,7 @@ switch ($action) {
         $results['Host Permintaan'] = $_SERVER['HTTP_HOST'] ?? 'Tidak diketahui';
         $results['Dokumen Root ($_SERVER[DOCUMENT_ROOT])'] = $_SERVER['DOCUMENT_ROOT'] ?? 'Tidak diketahui';
         $results['Folder Aktif File (__DIR__)'] = __DIR__;
-        $results['Folder di Home (/home/berandad/*)'] = implode("\n", glob('/home/berandad/*') ?: []);
+        $results['Folder di Home (/home/pesonaas/*)'] = implode("\n", glob('/home/pesonaas/*') ?: []);
         $results['Lokasi Root Laravel'] = $laravelRoot;
         $results['Versi PHP'] = PHP_VERSION.(version_compare(PHP_VERSION, '8.2.0', '>=') ? ' (OK)' : ' (TERLALU RENDAH - Butuh PHP 8.2+)');
         $results['Status vendor/'] = $hasVendor ? 'TERSEDIA (Autoloader Siap)' : 'BELUM ADA (Perlu composer install atau upload vendor.zip)';
@@ -335,31 +347,31 @@ switch ($action) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>cPanel Helper & Diagnostic - DPD PKS Ogan Ilir</title>
+    <title>cPanel Helper &amp; Diagnostic - Pondok Pesantren Raudhatul Ulum</title>
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #0f172a; padding: 2rem 1rem; color: #e2e8f0; margin: 0; }
-        .card { max-width: 800px; margin: 0 auto; background: #1e293b; border-radius: 12px; border: 1px solid #334155; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.5); padding: 2rem; }
-        h1 { font-size: 1.4rem; color: #f97316; margin-top: 0; margin-bottom: 1.5rem; border-bottom: 2px solid #ea580c; padding-bottom: 0.5rem; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #061e16; padding: 2rem 1rem; color: #e2e8f0; margin: 0; }
+        .card { max-width: 800px; margin: 0 auto; background: #0f2d22; border-radius: 16px; border: 1px solid #10b98140; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.5); padding: 2rem; }
+        h1 { font-size: 1.4rem; color: #10b981; margin-top: 0; margin-bottom: 1.5rem; border-bottom: 2px solid #059669; padding-bottom: 0.5rem; }
         .section-title { font-size: 0.95rem; font-weight: 700; color: #cbd5e1; margin-top: 1.5rem; margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; }
         .nav-links { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 1.5rem; }
-        .nav-links a { background: #ea580c; color: white; padding: 8px 14px; text-decoration: none; border-radius: 6px; font-size: 0.85rem; font-weight: 600; display: inline-block; transition: background 0.2s; }
-        .nav-links a:hover { background: #c2410c; }
+        .nav-links a { background: #047857; color: white; padding: 8px 14px; text-decoration: none; border-radius: 6px; font-size: 0.85rem; font-weight: 600; display: inline-block; transition: background 0.2s; }
+        .nav-links a:hover { background: #059669; }
         .nav-links a.green { background: #16a34a; }
         .nav-links a.green:hover { background: #15803d; }
-        .nav-links a.blue { background: #2563eb; }
-        .nav-links a.blue:hover { background: #1d4ed8; }
-        .nav-links a.gray { background: #475569; }
-        .nav-links a.gray:hover { background: #334155; }
+        .nav-links a.blue { background: #0284c7; }
+        .nav-links a.blue:hover { background: #0369a1; }
+        .nav-links a.gray { background: #334155; }
+        .nav-links a.gray:hover { background: #475569; }
         .result-box { background: #020617; border: 1px solid #334155; color: #38bdf8; padding: 1.25rem; border-radius: 8px; font-family: monospace; font-size: 0.85rem; overflow-x: auto; line-height: 1.6; }
-        .result-box strong { color: #f97316; }
+        .result-box strong { color: #10b981; }
         .warning { margin-top: 1.5rem; font-size: 0.85rem; color: #fca5a5; background: #450a0a; border: 1px solid #991b1b; padding: 1rem; border-radius: 6px; }
-        .terminal-box { background: #020617; border: 1px solid #1e3a8a; padding: 1rem; border-radius: 8px; margin-top: 1rem; font-size: 0.85rem; color: #93c5fd; }
-        .terminal-cmd { background: #0f172a; padding: 0.5rem; border-radius: 4px; color: #a5f3fc; font-family: monospace; margin: 0.5rem 0; word-break: break-all; }
+        .terminal-box { background: #020617; border: 1px solid #047857; padding: 1rem; border-radius: 8px; margin-top: 1rem; font-size: 0.85rem; color: #93c5fd; }
+        .terminal-cmd { background: #061e16; padding: 0.5rem; border-radius: 4px; color: #34d399; font-family: monospace; margin: 0.5rem 0; word-break: break-all; }
     </style>
 </head>
 <body>
     <div class="card">
-        <h1>🛠️ Helper &amp; Diagnostik cPanel - DPD PKS Ogan Ilir</h1>
+        <h1>🛠️ Helper &amp; Diagnostik cPanel - PPRU Sakatiga</h1>
         
         <div class="section-title">1. Diagnostik &amp; Persiapan Awal</div>
         <div class="nav-links">

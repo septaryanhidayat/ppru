@@ -48,32 +48,33 @@
     </div>
 
     {{-- 1.5 MAINTENANCE MODE CONTROL CARD --}}
-    <div class="rounded-3xl p-5 sm:p-6 shadow-lg border transition-all duration-300 {{ $isMaintenance ? 'bg-gradient-to-r from-amber-950/50 via-slate-900 to-amber-900/40 border-amber-500/50 shadow-amber-950/30 ring-1 ring-amber-500/30' : 'bg-slate-900/90 border-slate-800 shadow-slate-950/20' }}">
+    <div class="rounded-3xl p-5 sm:p-6 shadow-xl border-2 transition-all duration-300 {{ $isMaintenance ? 'border-amber-500 shadow-amber-950/40 ring-2 ring-amber-500/20' : 'border-emerald-500/50 shadow-slate-950/20' }}" style="{{ $isMaintenance ? 'background: linear-gradient(135deg, #1f1404 0%, #171717 60%, #0f172a 100%);' : 'background: linear-gradient(135deg, #022c22 0%, #064e3b 50%, #0f172a 100%);' }}">
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-5">
             <div class="flex items-start sm:items-center space-x-4">
-                <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl shrink-0 shadow-inner {{ $isMaintenance ? 'bg-amber-500/20 text-amber-400 border border-amber-500/40 animate-pulse' : 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' }}">
+                <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl shrink-0 shadow-md {{ $isMaintenance ? 'bg-amber-500 text-slate-950 border border-amber-400 font-black' : 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' }}">
                     <i class="fa-solid {{ $isMaintenance ? 'fa-triangle-exclamation' : 'fa-shield-halved' }}"></i>
                 </div>
                 <div>
                     <div class="flex items-center gap-2.5 flex-wrap">
-                        <h3 class="text-base sm:text-lg font-bold text-white tracking-tight">
+                        <h3 class="text-base sm:text-lg font-extrabold text-white tracking-tight drop-shadow-sm">
                             Mode Pemeliharaan (Maintenance Mode)
                         </h3>
                         @if($isMaintenance)
-                            <span class="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full text-xs font-black bg-amber-500 text-slate-950 uppercase tracking-wide shadow-sm animate-pulse">
-                                <i class="fa-solid fa-circle text-[8px]"></i>
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-black bg-amber-400 text-slate-950 uppercase tracking-wide shadow-md border border-amber-300 animate-pulse">
+                                <i class="fa-solid fa-circle text-[8px] text-red-600"></i>
                                 <span>Sedang Aktif (Website Ditutup)</span>
                             </span>
                         @else
-                            <span class="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full text-xs font-black bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 uppercase tracking-wide">
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-black bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 uppercase tracking-wide">
                                 <i class="fa-solid fa-circle-check text-[10px]"></i>
                                 <span>Nonaktif (Website Publik Normal)</span>
                             </span>
                         @endif
                     </div>
-                    <p class="text-xs sm:text-sm text-slate-300 mt-1 leading-relaxed">
+                    <p class="text-xs sm:text-sm text-slate-200 mt-1.5 leading-relaxed">
                         @if($isMaintenance)
-                            <span class="text-amber-300 font-semibold">Perhatian:</span> Pengunjung umum dialihkan ke halaman pemeliharaan (HTTP 503). <strong>Hanya Anda (Admin yang sedang login)</strong> yang dapat menjelajahi dan melihat tampilan website secara normal.
+                            <span class="text-amber-400 font-bold bg-amber-950/80 px-2 py-0.5 rounded border border-amber-500/40 mr-1">⚠️ Perhatian:</span>
+                            Pengunjung umum dialihkan ke halaman pemeliharaan (HTTP 503). <strong class="text-white font-semibold underline decoration-amber-400/50">Hanya Anda (Admin yang sedang login)</strong> yang dapat menjelajahi dan melihat tampilan website secara normal.
                         @else
                             Website beroperasi normal dan dapat diakses oleh seluruh pengunjung umum serta mesin pencari (Google).
                         @endif
@@ -85,12 +86,12 @@
                 <form action="{{ route('admin.maintenance.toggle') }}" method="POST" onsubmit="return confirm('{{ $isMaintenance ? 'Apakah Anda yakin ingin MENONAKTIFKAN mode maintenance dan membuka kembali website untuk publik?' : 'Apakah Anda yakin ingin MENGAKTIFKAN mode maintenance? Pengunjung umum tidak akan bisa melihat website sampai dinonaktifkan kembali.' }}')">
                     @csrf
                     @if($isMaintenance)
-                        <button type="submit" class="inline-flex items-center space-x-2 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold text-xs sm:text-sm px-5 py-3 rounded-2xl shadow-lg shadow-emerald-900/30 transition transform hover:-translate-y-0.5 cursor-pointer">
+                        <button type="submit" class="inline-flex items-center space-x-2 bg-emerald-600 hover:bg-emerald-500 text-white font-black text-xs sm:text-sm px-5 py-3.5 rounded-2xl shadow-xl shadow-emerald-950/50 transition transform hover:-translate-y-0.5 cursor-pointer border border-emerald-400/30">
                             <i class="fa-solid fa-power-off text-sm"></i>
                             <span>Buka Website (Nonaktifkan Maintenance)</span>
                         </button>
                     @else
-                        <button type="submit" class="inline-flex items-center space-x-2 bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-500 hover:to-amber-600 text-white font-bold text-xs sm:text-sm px-5 py-3 rounded-2xl shadow-lg shadow-amber-950/30 transition transform hover:-translate-y-0.5 cursor-pointer">
+                        <button type="submit" class="inline-flex items-center space-x-2 bg-amber-600 hover:bg-amber-500 text-white font-black text-xs sm:text-sm px-5 py-3.5 rounded-2xl shadow-xl shadow-amber-950/50 transition transform hover:-translate-y-0.5 cursor-pointer border border-amber-400/30">
                             <i class="fa-solid fa-screwdriver-wrench text-sm"></i>
                             <span>Aktifkan Mode Maintenance</span>
                         </button>

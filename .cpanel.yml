@@ -1,10 +1,10 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/pesonaas/public_html/
-    - /bin/cp -R * $DEPLOYPATH
-    - /bin/cp .htaccess $DEPLOYPATH
-    - /bin/mkdir -p $DEPLOYPATH/storage/framework/cache/data $DEPLOYPATH/storage/framework/sessions $DEPLOYPATH/storage/framework/views $DEPLOYPATH/storage/logs $DEPLOYPATH/bootstrap/cache
-    - /bin/chmod -R 775 $DEPLOYPATH/storage $DEPLOYPATH/bootstrap/cache
-    - /bin/chmod -R 755 $DEPLOYPATH/public/uploads
-    - /bin/touch $DEPLOYPATH/public/index.php
+    - "export DEPLOYPATH=/home/pesonaas/public_html"
+    - "/bin/mkdir -p $DEPLOYPATH"
+    - "/bin/mkdir -p $DEPLOYPATH/storage/framework/cache/data $DEPLOYPATH/storage/framework/sessions $DEPLOYPATH/storage/framework/views $DEPLOYPATH/storage/logs $DEPLOYPATH/bootstrap/cache $DEPLOYPATH/public/uploads"
+    - "/bin/cp -R app bootstrap config database public resources routes storage artisan composer.json composer.lock .htaccess $DEPLOYPATH/"
+    - "/bin/chmod -R 775 $DEPLOYPATH/storage $DEPLOYPATH/bootstrap/cache"
+    - "/bin/chmod -R 755 $DEPLOYPATH/public/uploads"
+    - "/bin/touch $DEPLOYPATH/public/index.php"

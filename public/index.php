@@ -8,9 +8,12 @@ define('LARAVEL_START', microtime(true));
 // 1. Auto-detect Laravel repository root directory
 $possibleRoots = [
     __DIR__.'/..',
+    dirname(__DIR__).'/sitrobbani.sch.id',
     dirname(__DIR__).'/repositories/ppru',
     dirname(__DIR__).'/ppru',
+    ($_SERVER['HOME'] ?? '').'/sitrobbani.sch.id',
     ($_SERVER['HOME'] ?? '').'/repositories/ppru',
+    '/home/pesonaas/sitrobbani.sch.id',
     '/home/pesonaas/repositories/ppru',
 ];
 
@@ -146,7 +149,7 @@ try {
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Error 500 - DPD PKS Ogan Ilir</title>
+        <title>Error 500 - Pondok Pesantren Raudhatul Ulum</title>
         <style>
             body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #0f172a; color: #e2e8f0; margin: 0; padding: 2rem 1rem; }
             .box { max-width: 800px; margin: 0 auto; background: #1e293b; border-radius: 12px; border: 1px solid #dc2626; padding: 2rem; box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
