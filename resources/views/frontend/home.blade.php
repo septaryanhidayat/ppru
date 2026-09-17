@@ -294,10 +294,10 @@
                  }, 1200);
              }
          ">
-    {{-- Top Convex Arc Divider (Smooth, symmetrical outward curve) --}}
-    <div class="absolute -top-px left-0 right-0 overflow-hidden leading-none z-10 pointer-events-none" style="top: -1px;">
-        <svg class="relative block w-full h-5 sm:h-7 md:h-9 text-gray-50 fill-current -translate-y-[1px]" viewBox="0 0 1200 120" preserveAspectRatio="none">
-            <path d="M0,0 L1200,0 L1200,120 Q600,-120 0,120 Z"></path>
+    {{-- Top Convex Arc Divider (Smooth, gentle outward curve with seamless white fill) --}}
+    <div class="absolute -top-1 left-0 right-0 overflow-hidden leading-none z-10 pointer-events-none" style="top: -2px;">
+        <svg class="relative block w-full h-3 sm:h-4 md:h-5 text-white fill-current" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path d="M0,0 L1200,0 L1200,120 Q600,60 0,120 Z"></path>
         </svg>
     </div>
 
@@ -433,10 +433,10 @@
         </div>
     </div>
 
-    {{-- Bottom Convex Arc Divider (Smooth, symmetrical outward curve into Section 3 pure white) --}}
-    <div class="absolute -bottom-px left-0 right-0 overflow-hidden leading-none z-10 pointer-events-none" style="bottom: -1px;">
-        <svg class="relative block w-full h-5 sm:h-7 md:h-9 text-white fill-current translate-y-[1px]" viewBox="0 0 1200 120" preserveAspectRatio="none">
-            <path d="M0,120 L1200,120 L1200,0 Q600,240 0,0 Z"></path>
+    {{-- Bottom Convex Arc Divider (Smooth, gentle outward curve into Section 3 pure white) --}}
+    <div class="absolute -bottom-1 left-0 right-0 overflow-hidden leading-none z-10 pointer-events-none" style="bottom: -2px;">
+        <svg class="relative block w-full h-3 sm:h-4 md:h-5 text-white fill-current" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path d="M0,120 L1200,120 L1200,0 Q600,60 0,0 Z"></path>
         </svg>
     </div>
 </section>
@@ -444,7 +444,7 @@
 {{-- ========================================================
      SECTION #3: TRISULA KEUNGGULAN SANTRI RAUDHATUL ULUM (BACKGROUND PUTIH KONTRAS)
      ======================================================== --}}
-<section class="w-full bg-white py-16 sm:py-24 border-b border-slate-200/80 relative -mt-px">
+<section class="w-full bg-white py-16 sm:py-24 border-t-0 border-b border-slate-200/80 relative -mt-1">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         <div class="text-center max-w-2xl mx-auto space-y-2">
             <span class="text-xs font-bold uppercase tracking-widest text-[#00843d] bg-emerald-50 border border-emerald-200 px-3.5 py-1 rounded-full inline-block">

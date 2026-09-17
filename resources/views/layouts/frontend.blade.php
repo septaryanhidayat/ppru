@@ -73,7 +73,7 @@
 
     @stack('styles')
 </head>
-<body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen font-sans selection:bg-school-green selection:text-white">
+<body class="bg-white text-gray-800 flex flex-col min-h-screen font-sans selection:bg-school-green selection:text-white">
 
     {{-- MAINTENANCE MODE BANNER FOR LOGGED IN ADMIN --}}
     @auth

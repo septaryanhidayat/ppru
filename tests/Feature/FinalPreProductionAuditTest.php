@@ -33,8 +33,8 @@ test('frontend homepage renders cinematic video background with top and bottom c
     $response->assertSee('embed/BG311kT-yXc', false);
     $response->assertSee('preserveAspectRatio="none"', false);
     $response->assertSee('viewBox="0 0 1200 120"', false);
-    $response->assertSee('Q600,-120 0,120', false);
-    $response->assertSee('Q600,240 0,0', false);
+    $response->assertSee('Q600,60 0,120', false);
+    $response->assertSee('Q600,60 0,0', false);
     $response->assertSee('absolute inset-0 z-0 overflow-hidden', false);
     $response->assertDontSee('absolute inset-0 -z-10', false);
 });
@@ -209,4 +209,26 @@ test('homepage includes x-cloak rule, hides video modal initially, and renders S
     $response->assertSee('id="ppruHomePopupModal"', false);
     $response->assertSee('z-[70]', false);
     $response->assertSee('/uploads/popup/popup-ppdb.webp', false);
+});
+
+test('downloadable assets preserve original formats PNG or JPG while web views load optimized webp', function () {
+    // 1. Logo download page serves original HD PNG masters
+    $logoPage = $this->get(route('download.logo'));
+    $logoPage->assertStatus(200);
+    $logoPage->assertSee('/uploads/official/master/logo-ru-berwarna.png', false);
+    $logoPage->assertSee('download="logo-resmi-ppru-berwarna.png"', false);
+    $logoPage->assertSee('download="logo-branding-raudhatul-ulum.png"', false);
+    $logoPage->assertSee('download="branding-ppru-monokrom.png"', false);
+    $logoPage->assertSee('download="logo-spmb-ppru-2027.png"', false);
+
+    // 2. PPDB landing page download does not force webp
+    $ppdbPage = $this->get(route('ppdb.index'));
+    $ppdbPage->assertStatus(200);
+    $ppdbPage->assertDontSee('download="Brosur-PSB-PPRU.webp"', false);
+
+    // 3. Header and footer load webp for display with png fallback
+    $homePage = $this->get('/');
+    $homePage->assertStatus(200);
+    $homePage->assertSee('/uploads/official/logo-web-ppru.webp', false);
+    $homePage->assertSee('/uploads/official/logo-ru-berwarna.webp', false);
 });

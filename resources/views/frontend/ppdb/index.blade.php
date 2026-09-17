@@ -244,7 +244,20 @@
                             <i class="fa-solid fa-expand"></i>
                             <span>Buka Ukuran Penuh</span>
                         </button>
-                        <a href="{{ $settings['flyer_image'] }}" download="Brosur-PSB-PPRU.webp" class="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white text-xs sm:text-sm font-bold px-5 py-3 rounded-xl transition border border-white/20">
+                        @php
+                            $downloadFlyerUrl = $settings['flyer_image'] ?? '';
+                            if (str_ends_with($downloadFlyerUrl, '.webp')) {
+                                $candidateJpg = substr($downloadFlyerUrl, 0, -5) . '.jpg';
+                                $candidatePng = substr($downloadFlyerUrl, 0, -5) . '.png';
+                                if (file_exists(public_path(ltrim($candidateJpg, '/')))) {
+                                    $downloadFlyerUrl = $candidateJpg;
+                                } elseif (file_exists(public_path(ltrim($candidatePng, '/')))) {
+                                    $downloadFlyerUrl = $candidatePng;
+                                }
+                            }
+                            $flyerExt = pathinfo($downloadFlyerUrl, PATHINFO_EXTENSION) ?: 'jpg';
+                        @endphp
+                        <a href="{{ $downloadFlyerUrl }}" download="Brosur-PSB-PPRU.{{ $flyerExt }}" class="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white text-xs sm:text-sm font-bold px-5 py-3 rounded-xl transition border border-white/20">
                             <i class="fa-solid fa-download"></i>
                             <span>Unduh Brosur</span>
                         </a>
