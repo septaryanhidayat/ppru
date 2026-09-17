@@ -79,7 +79,7 @@
 {{-- ========================================================
      SECTION #1: FLOATING QUICK ICONS / MENU UTAMA (8 Kartu Pesantren)
      ======================================================== --}}
-<div x-data="{ showDownloadModal: false }" class="max-w-6xl mx-auto px-4 sm:px-6 relative z-30 -mt-8 sm:-mt-10 mb-28 sm:mb-36 md:mb-44 reveal-fade-up">
+<div x-data="{ showDownloadModal: false }" class="max-w-6xl mx-auto px-4 sm:px-6 relative z-30 -mt-8 sm:-mt-10 mb-6 sm:mb-8 md:mb-10 reveal-fade-up">
     <div class="bg-white rounded-3xl shadow-2xl border border-gray-100 p-4 sm:p-6 md:p-7">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 mb-4 sm:mb-5 border-b border-gray-100">
             <div class="text-center sm:text-left">
@@ -289,8 +289,8 @@
              }
          ">
     {{-- Top Organic Wave Divider (Smooth, slim transition from page background) --}}
-    <div class="absolute top-0 left-0 right-0 overflow-hidden leading-none z-10 pointer-events-none">
-        <svg class="relative block w-full h-5 sm:h-6 md:h-7 text-gray-50 fill-current" viewBox="0 0 1200 120" preserveAspectRatio="none">
+    <div class="absolute -top-px left-0 right-0 overflow-hidden leading-none z-10 pointer-events-none" style="top: -1px;">
+        <svg class="relative block w-full h-5 sm:h-6 md:h-7 text-gray-50 fill-current -translate-y-[1px]" viewBox="0 0 1200 120" preserveAspectRatio="none">
             <path d="M0,0 L1200,0 L1200,40 C1050,85 850,-30 700,40 C550,110 300,15 0,35 Z"></path>
         </svg>
     </div>
@@ -427,8 +427,8 @@
     </div>
 
     {{-- Bottom Organic Wave Divider (Smooth transition into Section 3 pure white, slim profile) --}}
-    <div class="absolute bottom-0 left-0 right-0 overflow-hidden leading-none z-10 pointer-events-none">
-        <svg class="relative block w-full h-5 sm:h-6 md:h-7 text-white fill-current" viewBox="0 0 1200 120" preserveAspectRatio="none">
+    <div class="absolute -bottom-px left-0 right-0 overflow-hidden leading-none z-10 pointer-events-none" style="bottom: -1px;">
+        <svg class="relative block w-full h-5 sm:h-6 md:h-7 text-white fill-current translate-y-[1px]" viewBox="0 0 1200 120" preserveAspectRatio="none">
             <path d="M0,0 C150,85 350,-35 500,45 C650,120 900,10 1200,35 L1200,120 L0,120 Z"></path>
         </svg>
     </div>
@@ -437,7 +437,7 @@
 {{-- ========================================================
      SECTION #3: TRISULA KEUNGGULAN SANTRI RAUDHATUL ULUM (BACKGROUND PUTIH KONTRAS)
      ======================================================== --}}
-<section class="w-full bg-white py-16 sm:py-24 border-y border-slate-200/80 relative">
+<section class="w-full bg-white py-16 sm:py-24 border-b border-slate-200/80 relative -mt-px">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         <div class="text-center max-w-2xl mx-auto space-y-2">
             <span class="text-xs font-bold uppercase tracking-widest text-[#00843d] bg-emerald-50 border border-emerald-200 px-3.5 py-1 rounded-full inline-block">
