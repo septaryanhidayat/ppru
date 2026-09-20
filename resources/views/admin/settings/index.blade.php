@@ -889,18 +889,6 @@
             });
         }
 
-        // File size guard: warn and reset if any file exceeds 8MB
-        document.querySelectorAll('input[type="file"]').forEach(function(input) {
-            input.addEventListener('change', function() {
-                if (this.files && this.files[0]) {
-                    const fileSizeMb = (this.files[0].size / (1024 * 1024)).toFixed(2);
-                    if (this.files[0].size > 8 * 1024 * 1024) {
-                        alert('Ukuran berkas ' + this.files[0].name + ' (' + fileSizeMb + ' MB) terlalu besar! Batas maksimal server adalah 8 MB per berkas. Silakan kompres gambar sebelum mengunggah.');
-                        this.value = '';
-                    }
-                }
-            });
-        });
     });
 </script>
 @endsection

@@ -28,10 +28,10 @@ class AdminSettingController extends Controller
     public function update(Request $request)
     {
         $request->validate([
-            'og_image_file' => 'nullable|image|mimes:png,jpg,jpeg,webp,svg|max:4096',
-            'site_logo_file' => 'nullable|image|mimes:png,jpg,jpeg,webp,svg|max:4096',
-            'home_profile_poster_file' => 'nullable|image|mimes:png,jpg,jpeg,webp|max:8192',
-            'home_mudir_photo_file' => 'nullable|image|mimes:png,jpg,jpeg,webp|max:4096',
+            'og_image_file' => 'nullable|image|mimes:png,jpg,jpeg,webp,svg|max:20480',
+            'site_logo_file' => 'nullable|image|mimes:png,jpg,jpeg,webp,svg|max:20480',
+            'home_profile_poster_file' => 'nullable|image|mimes:png,jpg,jpeg,webp|max:20480',
+            'home_mudir_photo_file' => 'nullable|image|mimes:png,jpg,jpeg,webp|max:20480',
         ]);
 
         $allowedSettingKeys = [

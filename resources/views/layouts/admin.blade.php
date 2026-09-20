@@ -866,6 +866,8 @@
     </script>
     {{-- Local Storage Form Draft Auto-Save Engine --}}
     <script src="{{ asset('js/form-draft-saver.js') }}"></script>
+    {{-- Automatic Client-Side Image Compressor (~100 KB HD) --}}
+    <script src="{{ asset('js/admin-image-compressor.js') }}"></script>
     @stack('scripts')
 </body>
 </html>
