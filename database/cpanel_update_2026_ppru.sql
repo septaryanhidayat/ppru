@@ -416,11 +416,57 @@ WHERE t.slug = 'karya-alumni'
     'meneguhkan-khidmah-guru-alumni-di-pelosok-desa-jejak-langkah-dakwah-tanpa-pamrih'
   );
 
+-- ==============================================================================
+-- 7. BUAT 8 AKUN KHUSUS ADMIN UNIT PENDIDIKAN TERISOLASI
+-- Password default: AdminUnitPPRU2026!
+-- ==============================================================================
+INSERT INTO `users` (`name`, `email`, `password`, `role`, `unit_pendidikan_id`, `created_at`, `updated_at`)
+SELECT 'Admin MARU', 'admin.maru@ppru.ac.id', '$2y$12$Fnv7z3clAUXgnb2cjLWcSOt6qKyk0a69Q70frbxKfiJ5SBTziosI6', 'admin_unit', u.id, NOW(), NOW()
+FROM `unit_pendidikans` u WHERE u.short_name = 'MARU'
+ON DUPLICATE KEY UPDATE `unit_pendidikan_id` = VALUES(`unit_pendidikan_id`), `role` = VALUES(`role`);
+
+INSERT INTO `users` (`name`, `email`, `password`, `role`, `unit_pendidikan_id`, `created_at`, `updated_at`)
+SELECT 'Admin MATSARU', 'admin.matsaru@ppru.ac.id', '$2y$12$Fnv7z3clAUXgnb2cjLWcSOt6qKyk0a69Q70frbxKfiJ5SBTziosI6', 'admin_unit', u.id, NOW(), NOW()
+FROM `unit_pendidikans` u WHERE u.short_name = 'MATSARU'
+ON DUPLICATE KEY UPDATE `unit_pendidikan_id` = VALUES(`unit_pendidikan_id`), `role` = VALUES(`role`);
+
+INSERT INTO `users` (`name`, `email`, `password`, `role`, `unit_pendidikan_id`, `created_at`, `updated_at`)
+SELECT 'Admin MIRU', 'admin.miru@ppru.ac.id', '$2y$12$Fnv7z3clAUXgnb2cjLWcSOt6qKyk0a69Q70frbxKfiJ5SBTziosI6', 'admin_unit', u.id, NOW(), NOW()
+FROM `unit_pendidikans` u WHERE u.short_name = 'MIRU'
+ON DUPLICATE KEY UPDATE `unit_pendidikan_id` = VALUES(`unit_pendidikan_id`), `role` = VALUES(`role`);
+
+INSERT INTO `users` (`name`, `email`, `password`, `role`, `unit_pendidikan_id`, `created_at`, `updated_at`)
+SELECT 'Admin MATQULARU', 'admin.matqularu@ppru.ac.id', '$2y$12$Fnv7z3clAUXgnb2cjLWcSOt6qKyk0a69Q70frbxKfiJ5SBTziosI6', 'admin_unit', u.id, NOW(), NOW()
+FROM `unit_pendidikans` u WHERE u.short_name = 'MATQULARU'
+ON DUPLICATE KEY UPDATE `unit_pendidikan_id` = VALUES(`unit_pendidikan_id`), `role` = VALUES(`role`);
+
+INSERT INTO `users` (`name`, `email`, `password`, `role`, `unit_pendidikan_id`, `created_at`, `updated_at`)
+SELECT 'Admin TAKIRU', 'admin.takiru@ppru.ac.id', '$2y$12$Fnv7z3clAUXgnb2cjLWcSOt6qKyk0a69Q70frbxKfiJ5SBTziosI6', 'admin_unit', u.id, NOW(), NOW()
+FROM `unit_pendidikans` u WHERE u.short_name = 'TAKIRU'
+ON DUPLICATE KEY UPDATE `unit_pendidikan_id` = VALUES(`unit_pendidikan_id`), `role` = VALUES(`role`);
+
+INSERT INTO `users` (`name`, `email`, `password`, `role`, `unit_pendidikan_id`, `created_at`, `updated_at`)
+SELECT 'Admin SMPIT RU', 'admin.smpit@ppru.ac.id', '$2y$12$Fnv7z3clAUXgnb2cjLWcSOt6qKyk0a69Q70frbxKfiJ5SBTziosI6', 'admin_unit', u.id, NOW(), NOW()
+FROM `unit_pendidikans` u WHERE u.short_name = 'SMPIT RU'
+ON DUPLICATE KEY UPDATE `unit_pendidikan_id` = VALUES(`unit_pendidikan_id`), `role` = VALUES(`role`);
+
+INSERT INTO `users` (`name`, `email`, `password`, `role`, `unit_pendidikan_id`, `created_at`, `updated_at`)
+SELECT 'Admin SMAIT RU', 'admin.smait@ppru.ac.id', '$2y$12$Fnv7z3clAUXgnb2cjLWcSOt6qKyk0a69Q70frbxKfiJ5SBTziosI6', 'admin_unit', u.id, NOW(), NOW()
+FROM `unit_pendidikans` u WHERE u.short_name = 'SMAIT RU'
+ON DUPLICATE KEY UPDATE `unit_pendidikan_id` = VALUES(`unit_pendidikan_id`), `role` = VALUES(`role`);
+
+INSERT INTO `users` (`name`, `email`, `password`, `role`, `unit_pendidikan_id`, `created_at`, `updated_at`)
+SELECT 'Admin IAI NRU', 'admin.iainru@ppru.ac.id', '$2y$12$Fnv7z3clAUXgnb2cjLWcSOt6qKyk0a69Q70frbxKfiJ5SBTziosI6', 'admin_unit', u.id, NOW(), NOW()
+FROM `unit_pendidikans` u WHERE u.short_name = 'IAI NRU'
+ON DUPLICATE KEY UPDATE `unit_pendidikan_id` = VALUES(`unit_pendidikan_id`), `role` = VALUES(`role`);
+
 SET FOREIGN_KEY_CHECKS = 1;
 
 -- ==============================================================================
 -- UPDATE BERHASIL DILAKUKAN.
--- Database cPanel kini memuat arsip lengkap Berita & Tulisan Alumni IKARUS.
+-- Database cPanel kini memuat arsip lengkap Berita & Tulisan Alumni IKARUS
+-- serta 8 Akun Khusus Admin Unit Lembaga Terisolasi.
 -- ==============================================================================
+
 
 

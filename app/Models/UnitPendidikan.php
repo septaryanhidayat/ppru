@@ -69,4 +69,19 @@ class UnitPendidikan extends Model
 
         return 'fa-solid fa-graduation-cap';
     }
+
+    public function adminUser()
+    {
+        return $this->hasOne(User::class, 'unit_pendidikan_id')->where('role', 'admin_unit');
+    }
+
+    public function adminUsers()
+    {
+        return $this->hasMany(User::class, 'unit_pendidikan_id');
+    }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class, 'unit_pendidikan_id');
+    }
 }

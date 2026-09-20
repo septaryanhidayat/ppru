@@ -36,15 +36,43 @@
             </div>
 
             <div>
-                <label for="role" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Peran & Hak Akses (Multi-Role) *</label>
-                <select name="role" id="role" required class="w-full bg-slate-50 text-xs text-slate-800 rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#da251c] transition">
+                <label for="role" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Peran &amp; Hak Akses (Multi-Role) *</label>
+                <select name="role" id="role" required onchange="toggleUnitSelect(this.value)" class="w-full bg-slate-50 text-xs text-slate-800 rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#da251c] transition">
                     <option value="super_admin" {{ old('role') === 'super_admin' ? 'selected' : '' }}>Super Administrator - Hak akses penuh ke seluruh menu dan sistem</option>
                     <option value="admin" {{ old('role', 'admin') === 'admin' ? 'selected' : '' }}>Administrator - Pengelolaan seluruh konten dan pengaturan umum</option>
+                    <option value="admin_unit" {{ old('role') === 'admin_unit' ? 'selected' : '' }}>Admin Unit Pendidikan - Akses terbatas terisolasi khusus 1 Unit Lembaga</option>
                     <option value="editor" {{ old('role') === 'editor' ? 'selected' : '' }}>Editor Berita - Mengelola dan menerbitkan artikel berita serta media</option>
                     <option value="author" {{ old('role') === 'author' ? 'selected' : '' }}>Penulis / Kontributor - Hanya menulis draf berita baru</option>
                 </select>
                 @error('role') <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span> @enderror
             </div>
+
+            <div id="unit-select-box" class="{{ old('role') === 'admin_unit' ? '' : 'hidden' }}">
+                <label for="unit_pendidikan_id" class="block text-xs font-bold text-emerald-800 uppercase tracking-wider mb-2">Pilih Unit Lembaga Pendidikan *</label>
+                <select name="unit_pendidikan_id" id="unit_pendidikan_id" class="w-full bg-emerald-50/50 text-xs text-slate-800 rounded-xl px-4 py-3 border border-emerald-300 focus:outline-none focus:ring-2 focus:ring-[#00843d] transition">
+                    <option value="">-- Pilih Unit Lembaga Pendidikan --</option>
+                    @foreach($units as $u)
+                        <option value="{{ $u->id }}" {{ (string) old('unit_pendidikan_id') === (string) $u->id ? 'selected' : '' }}>
+                            {{ $u->name }} ({{ $u->short_name }})
+                        </option>
+                    @endforeach
+                </select>
+                <p class="text-[11px] text-emerald-700 mt-1">Akun ini hanya dapat mengelola data profil, berita, foto, dan video khusus untuk unit ini.</p>
+                @error('unit_pendidikan_id') <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span> @enderror
+            </div>
+
+            <script>
+                function toggleUnitSelect(val) {
+                    const box = document.getElementById('unit-select-box');
+                    if (box) {
+                        if (val === 'admin_unit') {
+                            box.classList.remove('hidden');
+                        } else {
+                            box.classList.add('hidden');
+                        }
+                    }
+                }
+            </script>
 
             <div class="pt-6 border-t border-slate-100 flex items-center justify-end space-x-3">
                 <a href="{{ route('admin.users.index') }}" class="px-5 py-2.5 rounded-xl border border-slate-200 text-slate-600 hover:bg-slate-50 text-xs font-bold transition">Batal</a>

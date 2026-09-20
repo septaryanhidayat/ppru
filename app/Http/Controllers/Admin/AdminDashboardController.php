@@ -19,6 +19,7 @@ use App\Models\UnitPendidikan;
 use App\Models\User;
 use App\Models\Video;
 use App\Models\VisitorLog;
+use App\Services\UnitAccountService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Cache;
@@ -153,6 +154,8 @@ class AdminDashboardController extends Controller
         $maintenanceTitle = Setting::get('maintenance_title', 'Pemeliharaan Sistem Berkala');
         $maintenanceMessage = Setting::get('maintenance_message', 'Mohon maaf atas ketidaknyamanannya. Website resmi Pondok Pesantren Raudhatul Ulum Sakatiga sedang dalam pemeliharaan sistem rutin untuk meningkatkan kualitas layanan dan performa. Kami akan segera kembali online.');
 
+        $unitAdmins = UnitAccountService::getUnitAdminsSummary();
+
         return view('admin.dashboard', compact(
             'stats',
             'systemInfo',
@@ -165,7 +168,8 @@ class AdminDashboardController extends Controller
             'hasVisitorLogs',
             'isMaintenance',
             'maintenanceTitle',
-            'maintenanceMessage'
+            'maintenanceMessage',
+            'unitAdmins'
         ));
     }
 

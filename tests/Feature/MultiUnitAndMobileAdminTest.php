@@ -136,3 +136,32 @@ test('legacy dpc route displays program unggulan page without party terms', func
     $response->assertDontSee('DPC');
     $response->assertDontSee('Partai');
 });
+
+test('super admin dashboard displays 8 unit accounts section and their credentials', function () {
+    $admin = User::whereIn('role', ['super_admin', 'admin'])->first() ?? User::factory()->create([
+        'role' => 'super_admin',
+        'name' => 'Super Administrator',
+        'email' => 'superadmin_test@ppru.ac.id',
+    ]);
+
+    $response = $this->actingAs($admin)->get(route('admin.dashboard'));
+    $response->assertStatus(200);
+    $response->assertSee('Akun Khusus &amp; Dashboard Terisolasi 8 Unit Lembaga', false);
+    $response->assertSee('admin.maru@ppru.ac.id');
+    $response->assertSee('admin.smait@ppru.ac.id');
+    $response->assertSee('AdminUnitPPRU2026!');
+});
+
+test('admin users index displays unit admin role badge and filters', function () {
+    $admin = User::whereIn('role', ['super_admin', 'admin'])->first() ?? User::factory()->create([
+        'role' => 'super_admin',
+        'name' => 'Super Administrator',
+        'email' => 'superadmin_test2@ppru.ac.id',
+    ]);
+
+    $response = $this->actingAs($admin)->get(route('admin.users.index', ['role' => 'admin_unit']));
+    $response->assertStatus(200);
+    $response->assertSee('8 Admin Unit Terisolasi');
+    $response->assertSee('admin.maru@ppru.ac.id');
+    $response->assertSee('Admin Unit: MARU');
+});

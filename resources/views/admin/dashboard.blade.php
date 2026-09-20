@@ -501,6 +501,142 @@
         </a>
     </div>
 
+    {{-- 3C. AKUN KHUSUS & DASHBOARD TERISOLASI 8 UNIT LEMBAGA (YAPIRUS PPRU) --}}
+    <div class="bg-white rounded-3xl p-5 sm:p-7 border border-slate-200/80 shadow-xs space-y-5">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-slate-100">
+            <div class="space-y-1">
+                <div class="inline-flex items-center space-x-1.5 px-3 py-0.5 rounded-full bg-emerald-50 border border-emerald-200 text-[11px] font-bold text-emerald-800">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    <span>Multi-Unit Scoped Isolation Active (Middleware: unit.access)</span>
+                </div>
+                <h3 class="text-lg sm:text-xl font-black text-slate-900 tracking-tight flex items-center space-x-2">
+                    <i class="fa-solid fa-graduation-cap text-[#00843d]"></i>
+                    <span>Akun Khusus &amp; Dashboard Terisolasi 8 Unit Lembaga</span>
+                </h3>
+                <p class="text-xs text-slate-500 max-w-3xl leading-relaxed">
+                    Setiap unit pendidikan di bawah Yayasan Pesantren Raudhatul Ulum (YAPIRUS) memiliki akun admin mandiri dengan hak akses terisolasi ketat. Admin unit hanya dapat mengelola profil dan konten milik unitnya sendiri, serta diblokir otomatis jika mencoba mengakses pengaturan sistem global atau unit lain.
+                </p>
+            </div>
+            <div class="flex items-center gap-2 shrink-0">
+                <a href="{{ route('admin.users.index', ['role' => 'admin_unit']) }}" class="inline-flex items-center space-x-1.5 bg-slate-800 hover:bg-slate-900 text-white text-xs font-bold px-3.5 py-2 rounded-xl transition shadow-xs">
+                    <i class="fa-solid fa-users-gear text-xs text-amber-400"></i>
+                    <span>Kelola Semua Akun</span>
+                </a>
+                <a href="{{ route('admin.unit-pendidikan.index') }}" class="inline-flex items-center space-x-1.5 bg-[#00843d] hover:bg-emerald-800 text-white text-xs font-bold px-3.5 py-2 rounded-xl transition shadow-xs">
+                    <i class="fa-solid fa-landmark text-xs"></i>
+                    <span>Kelola 8 Unit</span>
+                </a>
+            </div>
+        </div>
+
+        {{-- Highlight Ketentuan Hak Akses Terisolasi --}}
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs bg-slate-50 p-4 rounded-2xl border border-slate-200/70">
+            <div class="flex items-start space-x-2.5">
+                <div class="w-6 h-6 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center text-xs shrink-0 mt-0.5 font-bold">1</div>
+                <div>
+                    <strong class="text-slate-800 font-bold block">Profil Unit Terbatas</strong>
+                    <span class="text-slate-500 text-[11px] leading-snug block">Hanya mengedit profil unit sendiri (nama pimpinan, kontak, kurikulum, akreditasi).</span>
+                </div>
+            </div>
+            <div class="flex items-start space-x-2.5">
+                <div class="w-6 h-6 rounded-lg bg-blue-100 text-blue-700 flex items-center justify-center text-xs shrink-0 mt-0.5 font-bold">2</div>
+                <div>
+                    <strong class="text-slate-800 font-bold block">Konten Terisolasi</strong>
+                    <span class="text-slate-500 text-[11px] leading-snug block">Hanya membuat &amp; mengedit berita, foto galeri, dan video milik unitnya sendiri.</span>
+                </div>
+            </div>
+            <div class="flex items-start space-x-2.5">
+                <div class="w-6 h-6 rounded-lg bg-amber-100 text-amber-700 flex items-center justify-center text-xs shrink-0 mt-0.5 font-bold">3</div>
+                <div>
+                    <strong class="text-slate-800 font-bold block">Proteksi Otomatis (HTTP 403)</strong>
+                    <span class="text-slate-500 text-[11px] leading-snug block">Otomatis diblokir jika mencoba akses pengaturan global, hero slider, atau unit lain.</span>
+                </div>
+            </div>
+        </div>
+
+        {{-- Tabel 8 Akun Admin Unit --}}
+        <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs text-slate-700">
+                <thead class="bg-slate-50 text-[11px] font-bold text-slate-400 uppercase tracking-wider border-b border-slate-200/80">
+                    <tr>
+                        <th class="py-3 px-3.5">Unit Lembaga</th>
+                        <th class="py-3 px-3.5">Email Akun Unit</th>
+                        <th class="py-3 px-3.5">Password Default</th>
+                        <th class="py-3 px-3.5">Konten Terdaftar</th>
+                        <th class="py-3 px-3.5">Status Akses</th>
+                        <th class="py-3 px-3.5 text-center">Aksi Cepat</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100">
+                    @forelse($unitAdmins ?? [] as $ua)
+                        <tr class="hover:bg-slate-50/80 transition">
+                            <td class="py-3.5 px-3.5">
+                                <div class="flex items-center space-x-2.5">
+                                    <div class="w-8 h-8 rounded-xl bg-emerald-100 text-[#00843d] flex items-center justify-center font-bold text-xs shrink-0">
+                                        {{ $ua['short_name'] }}
+                                    </div>
+                                    <div class="min-w-0">
+                                        <span class="font-extrabold text-slate-900 text-xs sm:text-sm block truncate">{{ $ua['name'] }}</span>
+                                        <span class="text-[10px] text-slate-400 block">{{ $ua['category_type'] }} &bull; Pimpinan: {{ $ua['head_name'] ?: '-' }}</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="py-3.5 px-3.5 font-mono text-xs font-semibold text-emerald-800">
+                                <div class="flex items-center space-x-1.5">
+                                    <span>{{ $ua['email'] }}</span>
+                                    <button type="button" onclick="navigator.clipboard.writeText('{{ $ua['email'] }}'); alert('Email berhasil disalin: {{ $ua['email'] }}');" class="text-slate-400 hover:text-emerald-700 p-1" title="Salin Email">
+                                        <i class="fa-regular fa-copy text-[11px]"></i>
+                                    </button>
+                                </div>
+                            </td>
+                            <td class="py-3.5 px-3.5 font-mono text-xs text-slate-600">
+                                <div class="flex items-center space-x-1.5">
+                                    <span class="bg-slate-100 px-2 py-0.5 rounded text-[11px]">AdminUnitPPRU2026!</span>
+                                    <button type="button" onclick="navigator.clipboard.writeText('AdminUnitPPRU2026!'); alert('Password default disalin: AdminUnitPPRU2026!');" class="text-slate-400 hover:text-amber-700 p-1" title="Salin Password">
+                                        <i class="fa-regular fa-copy text-[11px]"></i>
+                                    </button>
+                                </div>
+                            </td>
+                            <td class="py-3.5 px-3.5 text-xs text-slate-600">
+                                <div class="flex items-center space-x-2">
+                                    <span class="inline-flex items-center text-[11px] font-semibold text-slate-700">
+                                        <i class="fa-regular fa-newspaper text-emerald-600 mr-1"></i>{{ $ua['posts_count'] }} Berita
+                                    </span>
+                                    <span>&bull;</span>
+                                    <span class="inline-flex items-center text-[11px] font-semibold text-slate-700">
+                                        <i class="fa-solid fa-photo-film text-sky-600 mr-1"></i>{{ $ua['photos_count'] + $ua['videos_count'] }} Media
+                                    </span>
+                                </div>
+                            </td>
+                            <td class="py-3.5 px-3.5">
+                                <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-300">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 mr-1"></span>
+                                    Terisolasi Aktif
+                                </span>
+                            </td>
+                            <td class="py-3.5 px-3.5 text-center">
+                                <div class="inline-flex items-center space-x-1.5">
+                                    @if(isset($ua['unit']))
+                                        <a href="{{ route('admin.unit-pendidikan.edit', $ua['unit']) }}" class="px-2.5 py-1 text-xs font-semibold bg-slate-100 hover:bg-emerald-100 hover:text-emerald-800 rounded-lg transition" title="Edit Data Unit">
+                                            <i class="fa-solid fa-pen-to-square mr-1"></i>Profil
+                                        </a>
+                                        <a href="{{ route('pendidikan.show', $ua['unit']->slug) }}" target="_blank" class="p-1.5 text-slate-400 hover:text-emerald-700 rounded-lg transition" title="Lihat Halaman Publik">
+                                            <i class="fa-solid fa-arrow-up-right-from-square text-[11px]"></i>
+                                        </a>
+                                    @endif
+                                </div>
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="6" class="py-6 text-center text-xs text-slate-400">Data akun unit sedang diinisialisasi...</td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
+    </div>
+
     {{-- 4. TWO COLUMN DATA GRID (Berita Terbaru & Log Aktivitas) --}}
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8">
         {{-- KOLOM KIRI: Berita Terbaru (7 Cols) --}}
