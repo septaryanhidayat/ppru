@@ -130,15 +130,22 @@ class UnitPendidikanController extends Controller
             }
         }
 
-        // Unit-specific videos
+        // Unit-specific videos (Kanal Resmi YouTube TVRU Sakatiga @tvrusakatiga)
         $unitVideos = collect();
         if (Schema::hasTable('videos')) {
+            // Self-heal: hapus residu video placeholder demo lama jika masih ada
+            Video::where('youtube_id', 'dQw4w9WgXcQ')->delete();
+
             $hasVideoUnitCol = Schema::hasColumn('videos', 'unit_pendidikan_id');
             if ($hasVideoUnitCol) {
-                $unitVideos = Video::where('unit_pendidikan_id', $unit->id)->latest()->take(2)->get();
+                $unitVideos = Video::where('unit_pendidikan_id', $unit->id)
+                    ->where('youtube_id', '!=', 'dQw4w9WgXcQ')
+                    ->latest()
+                    ->take(2)
+                    ->get();
             }
             if ($unitVideos->isEmpty()) {
-                $unitVideos = Video::latest()->take(2)->get();
+                $unitVideos = Video::where('youtube_id', '!=', 'dQw4w9WgXcQ')->latest()->take(2)->get();
             }
         }
 

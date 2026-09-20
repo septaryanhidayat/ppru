@@ -151,15 +151,10 @@ class HomeController extends Controller
             $daerahPosts = $allPosts->sortByDesc('published_at')->slice(2, 6);
         }
 
-        // 8. Pengurus Yayasan (YAPIRUS) & Pimpinan Pesantren (Section 8)
-        $dewan = AnggotaDewan::whereIn('fraction', ['Yayasan', 'Pimpinan Pesantren'])
-            ->orderBy('order', 'asc')
+        // 8. Pengurus Yayasan (YAPIRUS) & Dewan Guru (Section 8 - 8 Tokoh Utama)
+        $dewan = AnggotaDewan::orderBy('order', 'asc')
             ->take(8)
             ->get();
-
-        if ($dewan->isEmpty()) {
-            $dewan = AnggotaDewan::orderBy('order', 'asc')->take(8)->get();
-        }
 
         // 9. Video Profil & Kegiatan Sekolah (Section 10 - 6 videos)
         $videos = Video::latest()->take(6)->get();
