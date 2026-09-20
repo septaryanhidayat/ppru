@@ -42,7 +42,6 @@ class EnsureUnitAccess
                 'admin/bidang',
                 'admin/program-unggulan',
                 'admin/dpc',
-                'admin/dewan',
                 'admin/layanan',
                 'admin/popup',
                 'admin/categories',

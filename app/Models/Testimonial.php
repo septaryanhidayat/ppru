@@ -10,12 +10,18 @@ class Testimonial extends Model
     use HasFactory;
 
     protected $fillable = [
+        'unit_pendidikan_id',
         'name',
         'profession',
         'content',
         'photo',
         'status',
     ];
+
+    public function unit()
+    {
+        return $this->belongsTo(UnitPendidikan::class, 'unit_pendidikan_id');
+    }
 
     public function getPhotoUrlAttribute(): string
     {

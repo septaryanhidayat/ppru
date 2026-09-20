@@ -2,11 +2,13 @@
 
 namespace App\Services;
 
+use App\Models\AnggotaDewan;
 use App\Models\HeroSlide;
 use App\Models\NavMenu;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Str;
 
 class CmsAutoHealService
 {
@@ -34,6 +36,38 @@ class CmsAutoHealService
             // If empty, seed default menu items
             if (NavMenu::count() === 0) {
                 self::seedDefaultNavMenus();
+            } else {
+                // Ensure no orphaned standalone Khutbah or Ikarus at top-level header
+                NavMenu::where('location', 'header')
+                    ->whereNull('parent_id')
+                    ->whereIn('url', ['/khutbah', '/ikarus'])
+                    ->delete();
+
+                // Ensure Profil dropdown contains IKARUS if missing
+                $profil = NavMenu::where('location', 'header')->whereNull('parent_id')->where('name', 'Profil')->first();
+                if ($profil && ! NavMenu::where('parent_id', $profil->id)->where('url', '/ikarus')->exists()) {
+                    NavMenu::create([
+                        'parent_id' => $profil->id,
+                        'name' => 'Ikatan Alumni (IKARUS)',
+                        'url' => '/ikarus',
+                        'icon' => 'fa-solid fa-user-graduate',
+                        'location' => 'header',
+                        'order' => 9,
+                    ]);
+                }
+
+                // Ensure Informasi dropdown contains Khutbah if missing
+                $info = NavMenu::where('location', 'header')->whereNull('parent_id')->where('name', 'Informasi')->first();
+                if ($info && ! NavMenu::where('parent_id', $info->id)->where('url', '/khutbah')->exists()) {
+                    NavMenu::create([
+                        'parent_id' => $info->id,
+                        'name' => 'Khutbah Jum\'at & Tausiyah',
+                        'url' => '/khutbah',
+                        'icon' => 'fa-solid fa-microphone-lines',
+                        'location' => 'header',
+                        'order' => 6,
+                    ]);
+                }
             }
         } catch (\Throwable $e) {
             Log::error('CmsAutoHealService::ensureNavMenusTableExists error: '.$e->getMessage());
@@ -72,12 +106,116 @@ class CmsAutoHealService
     }
 
     /**
+     * Ensure core 8 leaders of Yayasan YAPIRUS & Pesantren exist in dewan_asatidz.
+     */
+    public static function ensureDewanAsatidzSeeded(): void
+    {
+        try {
+            if (! Schema::hasTable('dewan_asatidz')) {
+                return;
+            }
+
+            $leaders = [
+                [
+                    'name' => 'Drs. KH. Karim Kasim',
+                    'position' => 'Ketua Dewan Pembina YAPIRUS',
+                    'fraction' => 'Yayasan',
+                    'order' => 1,
+                    'profile_summary' => 'Pendiri & Ketua Dewan Pembina Yayasan Perguruan Islam Raudhatul Ulum Sakatiga.',
+                    'education' => 'S1 IAIN Raden Fatah',
+                ],
+                [
+                    'name' => 'H. Faisal Abdullah, S.T.',
+                    'position' => 'Ketua Umum Pengurus YAPIRUS',
+                    'fraction' => 'Yayasan',
+                    'order' => 2,
+                    'profile_summary' => 'Ketua Umum Pengurus Harian Yayasan Perguruan Islam Raudhatul Ulum Sakatiga.',
+                    'education' => 'S1 Teknik Universitas Sriwijaya',
+                ],
+                [
+                    'name' => "KH. Tol'at Wafa Ahmad, Lc.",
+                    'position' => 'Mudir Pondok Pesantren Raudhatul Ulum',
+                    'fraction' => 'Yayasan',
+                    'order' => 3,
+                    'profile_summary' => 'Pimpinan Utama (Mudir Ma\'had) Pondok Pesantren Raudhatul Ulum Sakatiga sejak 1986.',
+                    'education' => 'S1 Universitas Al-Azhar Kairo Mesir',
+                ],
+                [
+                    'name' => 'Ustadz H. Ahmad Dailami, S.Pd.I.',
+                    'position' => 'Sekretaris Yayasan YAPIRUS',
+                    'fraction' => 'Yayasan',
+                    'order' => 4,
+                    'profile_summary' => 'Sekretaris Pengurus Yayasan Perguruan Islam Raudhatul Ulum Sakatiga.',
+                    'education' => 'S1 Pendidikan Islam',
+                ],
+                [
+                    'name' => 'H. M. Husin, M.Si.',
+                    'position' => 'Bendahara Yayasan YAPIRUS',
+                    'fraction' => 'Yayasan',
+                    'order' => 5,
+                    'profile_summary' => 'Bendahara Umum Yayasan Perguruan Islam Raudhatul Ulum Sakatiga.',
+                    'education' => 'S2 Manajemen',
+                ],
+                [
+                    'name' => 'Ustadz H. Abdul Halim, Lc.',
+                    'position' => 'Wakil Mudir Bidang Pendidikan & Pengajaran',
+                    'fraction' => 'Yayasan',
+                    'order' => 6,
+                    'profile_summary' => 'Wakil Mudir I Bidang Pendidikan, Kurikulum Nasional & Muadalah Al-Azhar.',
+                    'education' => 'S1 Universitas Al-Azhar Kairo Mesir',
+                ],
+                [
+                    'name' => 'Ustadz H. Syamsuddin, S.Ag.',
+                    'position' => 'Wakil Mudir Bidang Kepengasuhan Santri',
+                    'fraction' => 'Yayasan',
+                    'order' => 7,
+                    'profile_summary' => 'Wakil Mudir II Bidang Pengasuhan, Kedisiplinan Asrama & Karakter Santri.',
+                    'education' => 'S1 IAIN Raden Fatah',
+                ],
+                [
+                    'name' => 'Ir. H. Ahmad Fauzi',
+                    'position' => 'Wakil Mudir Bidang Pembangunan & Sarana',
+                    'fraction' => 'Yayasan',
+                    'order' => 8,
+                    'profile_summary' => 'Wakil Mudir III Bidang Sarana Prasarana, Infrastruktur & Aset Wakaf.',
+                    'education' => 'S1 Teknik Sipil',
+                ],
+            ];
+
+            foreach ($leaders as $leader) {
+                $existing = AnggotaDewan::where('name', $leader['name'])->first();
+                if (! $existing) {
+                    AnggotaDewan::create([
+                        'name' => $leader['name'],
+                        'slug' => Str::slug($leader['name']),
+                        'position' => $leader['position'],
+                        'fraction' => $leader['fraction'],
+                        'order' => $leader['order'],
+                        'profile_summary' => $leader['profile_summary'],
+                        'education' => $leader['education'],
+                        'photo' => '/uploads/default-avatar.webp',
+                    ]);
+                } else {
+                    $existing->update([
+                        'position' => $existing->position ?: $leader['position'],
+                        'fraction' => 'Yayasan',
+                        'order' => $leader['order'],
+                    ]);
+                }
+            }
+        } catch (\Throwable $e) {
+            Log::error('CmsAutoHealService::ensureDewanAsatidzSeeded error: '.$e->getMessage());
+        }
+    }
+
+    /**
      * Ensure all core CMS tables exist (fail-safe for cPanel).
      */
     public static function ensureAllCoreTablesExist(): void
     {
         self::ensureHeroSlidesTableExists();
         self::ensureNavMenusTableExists();
+        self::ensureDewanAsatidzSeeded();
     }
 
     /**
@@ -112,6 +250,7 @@ class CmsAutoHealService
         NavMenu::create(['parent_id' => $profil->id, 'name' => 'Struktur Organisasi & Pengasuh', 'url' => '/struktur-organisasi', 'icon' => 'fa-solid fa-sitemap', 'location' => 'header', 'order' => 6]);
         NavMenu::create(['parent_id' => $profil->id, 'name' => 'Sarana & Fasilitas Pondok', 'url' => '/fasilitas', 'icon' => 'fa-solid fa-layer-group', 'location' => 'header', 'order' => 7]);
         NavMenu::create(['parent_id' => $profil->id, 'name' => 'Program Unggulan Pesantren', 'url' => '/program-unggulan', 'icon' => 'fa-solid fa-star-and-crescent', 'location' => 'header', 'order' => 8]);
+        NavMenu::create(['parent_id' => $profil->id, 'name' => 'Ikatan Alumni (IKARUS)', 'url' => '/ikarus', 'icon' => 'fa-solid fa-user-graduate', 'location' => 'header', 'order' => 9]);
 
         // 3. Pendidikan
         NavMenu::create([
@@ -139,53 +278,33 @@ class CmsAutoHealService
         NavMenu::create(['parent_id' => $info->id, 'name' => 'Karya Santri & Asatidz', 'url' => '/karya-santri', 'icon' => 'fa-solid fa-feather-pointed', 'location' => 'header', 'order' => 5]);
         NavMenu::create(['parent_id' => $info->id, 'name' => 'Khutbah Jum\'at & Tausiyah', 'url' => '/khutbah', 'icon' => 'fa-solid fa-microphone-lines', 'location' => 'header', 'order' => 6]);
 
-        // 5. Khutbah & Dakwah (Menu Navigasi Khusus)
-        NavMenu::create([
-            'name' => 'Khutbah',
-            'url' => '/khutbah',
-            'icon' => 'fa-solid fa-microphone-lines',
-            'location' => 'header',
-            'order' => 5,
-            'is_active' => true,
-        ]);
-
-        // 6. Portal IKARUS Alumni
-        NavMenu::create([
-            'name' => 'IKARUS Alumni',
-            'url' => '/ikarus',
-            'icon' => 'fa-solid fa-user-graduate',
-            'location' => 'header',
-            'order' => 6,
-            'is_active' => true,
-        ]);
-
-        // 7. Layanan
+        // 5. Layanan
         NavMenu::create([
             'name' => 'Layanan',
             'url' => '/layanan',
             'icon' => 'fa-solid fa-handshake-angle',
             'location' => 'header',
-            'order' => 7,
+            'order' => 5,
             'is_active' => true,
         ]);
 
-        // 8. Kontak
+        // 6. Kontak
         NavMenu::create([
             'name' => 'Kontak',
             'url' => '/kontak',
             'icon' => 'fa-solid fa-address-book',
             'location' => 'header',
-            'order' => 8,
+            'order' => 6,
             'is_active' => true,
         ]);
 
-        // 9. PSB / PPDB
+        // 7. PSB / PPDB
         NavMenu::create([
             'name' => 'PPDB Online',
             'url' => '/ppdb',
             'icon' => 'fa-solid fa-user-plus',
             'location' => 'header',
-            'order' => 9,
+            'order' => 7,
             'is_active' => true,
         ]);
 

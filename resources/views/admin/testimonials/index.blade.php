@@ -22,9 +22,16 @@
                 <div class="bg-slate-50 rounded-2xl p-5 border border-slate-200/80 flex flex-col justify-between space-y-4 hover:shadow-md transition">
                     <div class="space-y-3">
                         <div class="flex items-center justify-between">
-                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-extrabold uppercase {{ $t->status === 'publish' ? 'bg-emerald-100 text-emerald-700' : 'bg-slate-200 text-slate-600' }}">
-                                {{ $t->status === 'publish' ? 'Tayang' : 'Draft' }}
-                            </span>
+                            <div class="flex items-center space-x-1.5">
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-extrabold uppercase {{ $t->status === 'publish' ? 'bg-emerald-100 text-emerald-700' : 'bg-slate-200 text-slate-600' }}">
+                                    {{ $t->status === 'publish' ? 'Tayang' : 'Draft' }}
+                                </span>
+                                @if($t->unit)
+                                    <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-800">
+                                        {{ $t->unit->short_name ?: $t->unit->name }}
+                                    </span>
+                                @endif
+                            </div>
                             <span class="text-[10px] text-slate-400">ID: #{{ $t->id }}</span>
                         </div>
 

@@ -61,7 +61,10 @@ class PageController extends Controller
         } elseif (Schema::hasTable('dpcs')) {
             $dpcs = Dpc::orderBy('order', 'asc')->get();
         }
-        $dewan = AnggotaDewan::orderBy('order', 'asc')->get();
+        $dewan = AnggotaDewan::whereIn('fraction', ['Yayasan', 'Pimpinan Pesantren'])->orderBy('order', 'asc')->get();
+        if ($dewan->isEmpty()) {
+            $dewan = AnggotaDewan::orderBy('order', 'asc')->get();
+        }
         $tree = AnggotaDewan::getHierarchyTree();
 
         return view('frontend.pages.struktur', compact('page', 'bidangs', 'dpcs', 'dewan', 'tree'));

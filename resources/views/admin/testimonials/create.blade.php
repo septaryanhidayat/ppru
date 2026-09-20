@@ -17,7 +17,7 @@
 
         <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-xs border border-slate-200/80 space-y-5">
             
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div>
                     <label for="name" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Nama Pemberi Testimoni *</label>
                     <input type="text" name="name" id="name" required value="{{ old('name') }}" placeholder="Contoh: Ahmad Fauzi, S.Pd" class="w-full bg-slate-50 text-xs text-slate-800 rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#da251c]">
@@ -25,8 +25,25 @@
                 </div>
 
                 <div>
-                    <label for="profession" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Profesi / Asal Daerah</label>
+                    <label for="profession" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Profesi / Status</label>
                     <input type="text" name="profession" id="profession" value="{{ old('profession') }}" placeholder="Contoh: Wali Santri Ogan Ilir" class="w-full bg-slate-50 text-xs text-slate-800 rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00843d]">
+                </div>
+
+                <div>
+                    <label for="unit_pendidikan_id" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Unit Pendidikan</label>
+                    @if(auth()->user()?->isUnitAdmin())
+                        <input type="hidden" name="unit_pendidikan_id" value="{{ auth()->user()->unit_pendidikan_id }}">
+                        <div class="w-full bg-emerald-50 text-xs text-[#00843d] font-bold rounded-xl px-4 py-3 border border-emerald-200">
+                            {{ auth()->user()->unit?->name ?? 'Unit Saya' }}
+                        </div>
+                    @else
+                        <select name="unit_pendidikan_id" id="unit_pendidikan_id" class="w-full bg-slate-50 text-xs text-slate-800 rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00843d]">
+                            <option value="">-- Umum / Seluruh Pesantren --</option>
+                            @foreach($units as $u)
+                                <option value="{{ $u->id }}" {{ old('unit_pendidikan_id') == $u->id ? 'selected' : '' }}>{{ $u->name }}</option>
+                            @endforeach
+                        </select>
+                    @endif
                 </div>
             </div>
 

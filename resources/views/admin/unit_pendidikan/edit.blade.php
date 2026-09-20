@@ -89,6 +89,70 @@
                 </div>
             </div>
 
+            {{-- UPLOAD HERO BANNER UNIT --}}
+            <div class="p-5 bg-sky-50/50 rounded-2xl border border-sky-200/80 space-y-3">
+                <label class="block text-xs font-bold text-sky-900 uppercase tracking-wider">
+                    Banner Hero Latar Belakang Unit (Header)
+                </label>
+                <p class="text-[11px] text-slate-500">Banner lanskap lebar resolusi tinggi untuk bagian atas halaman profil unit (JPG, PNG, WebP).</p>
+                @if($unit->hero_image)
+                    <div class="flex items-center space-x-3 mb-2">
+                        <img src="{{ $unit->hero_image_url }}" alt="Hero {{ $unit->name }}" class="h-20 w-40 object-cover rounded-xl border border-sky-300 shadow-2xs">
+                        <span class="text-xs text-slate-500 font-mono break-all">{{ $unit->hero_image }}</span>
+                    </div>
+                @endif
+                <div>
+                    <input type="file" name="hero_image_file" accept="image/*" class="w-full text-xs text-slate-600 file:mr-3 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-sky-600 file:text-white hover:file:bg-sky-700 bg-white rounded-xl border border-slate-200 cursor-pointer shadow-2xs">
+                    <input type="hidden" name="hero_image" id="hero_image" value="{{ old('hero_image', $unit->hero_image) }}">
+                </div>
+            </div>
+
+            {{-- FOTO & DATA KEPALA UNIT --}}
+            <div class="p-5 bg-purple-50/40 rounded-2xl border border-purple-200/80 space-y-4">
+                <label class="block text-xs font-bold text-purple-900 uppercase tracking-wider">
+                    Pimpinan / Kepala Unit Pendidikan
+                </label>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label for="head_name" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Nama Kepala / Mudir</label>
+                        <input type="text" name="head_name" id="head_name" value="{{ old('head_name', $unit->head_name) }}" placeholder="Contoh: Ustadz Ahmad, M.Pd." class="w-full bg-white text-xs text-slate-800 rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00843d]">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Foto Resmi Kepala Unit</label>
+                        @if($unit->head_photo)
+                            <div class="flex items-center space-x-3 mb-2">
+                                <img src="{{ $unit->head_photo_url }}" alt="Kepala {{ $unit->name }}" class="h-14 w-14 object-cover rounded-xl border border-purple-300 shadow-2xs">
+                                <span class="text-[11px] text-slate-500 font-mono truncate max-w-[150px]">{{ $unit->head_photo }}</span>
+                            </div>
+                        @endif
+                        <input type="file" name="head_photo_file" accept="image/*" class="w-full text-xs text-slate-600 file:mr-3 file:py-2 file:px-3 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-purple-600 file:text-white hover:file:bg-purple-700 bg-white rounded-xl border border-slate-200 cursor-pointer shadow-2xs">
+                        <input type="hidden" name="head_photo" id="head_photo" value="{{ old('head_photo', $unit->head_photo) }}">
+                    </div>
+                </div>
+                <div>
+                    <label for="sambutan" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
+                        Teks Sambutan Kepala / Mudir Unit
+                    </label>
+                    <textarea name="sambutan" id="sambutan" rows="4" placeholder="Tuliskan kata sambutan resmi kepala unit untuk menyambut santri dan wali..." class="w-full bg-white text-xs text-slate-800 rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00843d] leading-relaxed">{{ old('sambutan', $unit->sambutan) }}</textarea>
+                </div>
+            </div>
+
+            {{-- VISI & MISI UNIT --}}
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                    <label for="visi" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
+                        Visi Unit Pendidikan
+                    </label>
+                    <textarea name="visi" id="visi" rows="4" placeholder="Visi utama unit..." class="w-full bg-slate-50 text-xs text-slate-800 rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00843d] leading-relaxed">{{ old('visi', $unit->visi) }}</textarea>
+                </div>
+                <div>
+                    <label for="misi" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
+                        Misi Unit Pendidikan
+                    </label>
+                    <textarea name="misi" id="misi" rows="4" placeholder="Misi unit (bisa berupa poin-poin)..." class="w-full bg-slate-50 text-xs text-slate-800 rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00843d] leading-relaxed">{{ old('misi', $unit->misi) }}</textarea>
+                </div>
+            </div>
+
             <div>
                 <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
                     Deskripsi &amp; Profil Lengkap Unit Pendidikan
@@ -97,11 +161,7 @@
                 <div id="unit_editor" data-quill="unit_description_input" class="bg-white min-h-[260px] rounded-b-xl border border-slate-200"></div>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                <div>
-                    <label for="head_name" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Kepala Madrasah / Mudir</label>
-                    <input type="text" name="head_name" id="head_name" value="{{ old('head_name', $unit->head_name) }}" class="w-full bg-slate-50 text-xs text-slate-800 rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00843d]">
-                </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                     <label for="phone" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Telepon / WhatsApp Unit</label>
                     <input type="text" name="phone" id="phone" value="{{ old('phone', $unit->phone) }}" class="w-full bg-slate-50 text-xs text-slate-800 rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00843d]">

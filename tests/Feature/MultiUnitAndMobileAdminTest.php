@@ -1,6 +1,8 @@
 <?php
 
+use App\Models\AnggotaDewan;
 use App\Models\Post;
+use App\Models\Testimonial;
 use App\Models\UnitPendidikan;
 use App\Models\User;
 
@@ -177,4 +179,106 @@ test('admin nav menus index loads successfully with auto-healed menus', function
     $response->assertStatus(200);
     $response->assertSee('Menu Navigasi Header &amp; Footer', false);
     $response->assertSee('IKARUS');
+});
+
+test('unit admin can manage scoped teachers and cannot delete yayasan leaders', function () {
+    $maruUser = User::where('email', 'admin.maru@ppru.ac.id')->first();
+    $matsaruUser = User::where('email', 'admin.matsaru@ppru.ac.id')->first();
+
+    // 1. Can access dewan index
+    $response = $this->actingAs($maruUser)->get(route('admin.dewan.index'));
+    $response->assertStatus(200);
+    $response->assertSee('Dewan Guru &amp; Tenaga Pendidik', false);
+
+    // 2. Can create teacher for MARU
+    $createResponse = $this->actingAs($maruUser)->post(route('admin.dewan.store'), [
+        'name' => 'Ustadz Zaidul Akbar, S.Pd.',
+        'position' => 'Guru Bahasa Arab MARU',
+        'profile_summary' => 'Pengajar bahasa Arab dan Nahwu Shorof.',
+        'education' => 'S1 Universitas Islam Madinah',
+        'order' => 10,
+    ]);
+    $createResponse->assertRedirect(route('admin.dewan.index'));
+
+    $teacher = AnggotaDewan::where('name', 'Ustadz Zaidul Akbar, S.Pd.')->first();
+    expect($teacher)->not->toBeNull()
+        ->and($teacher->unit_pendidikan_id)->toBe($maruUser->unit_pendidikan_id);
+
+    // 3. Other unit admin cannot edit or delete this teacher
+    $this->actingAs($matsaruUser)->get(route('admin.dewan.edit', $teacher))->assertStatus(403);
+    $this->actingAs($matsaruUser)->delete(route('admin.dewan.destroy', $teacher))->assertStatus(403);
+
+    // 4. Cannot delete Yayasan leader
+    $yayasanLeader = AnggotaDewan::where('fraction', 'Yayasan')->first();
+    if ($yayasanLeader) {
+        $this->actingAs($maruUser)->delete(route('admin.dewan.destroy', $yayasanLeader))->assertStatus(403);
+    }
+
+    // 5. MARU admin can delete their teacher
+    $this->actingAs($maruUser)->delete(route('admin.dewan.destroy', $teacher))->assertRedirect(route('admin.dewan.index'));
+    expect(AnggotaDewan::find($teacher->id))->toBeNull();
+});
+
+test('unit admin can manage scoped testimonials', function () {
+    $maruUser = User::where('email', 'admin.maru@ppru.ac.id')->first();
+    $matsaruUser = User::where('email', 'admin.matsaru@ppru.ac.id')->first();
+
+    // 1. Can access testimonials index
+    $response = $this->actingAs($maruUser)->get(route('admin.testimonials.index'));
+    $response->assertStatus(200);
+
+    // 2. Can create testimonial for MARU
+    $createResponse = $this->actingAs($maruUser)->post(route('admin.testimonials.store'), [
+        'name' => 'Wali Santri MARU Hebat',
+        'profession' => 'Wali Santri Kelas XI',
+        'content' => 'Pendidikan di MARU sangat berbobot dan asatidznya ramah.',
+        'status' => 'publish',
+    ]);
+    $createResponse->assertRedirect(route('admin.testimonials.index'));
+
+    $testi = Testimonial::where('name', 'Wali Santri MARU Hebat')->first();
+    expect($testi)->not->toBeNull()
+        ->and($testi->unit_pendidikan_id)->toBe($maruUser->unit_pendidikan_id);
+
+    // 3. Other unit admin cannot edit or delete
+    $this->actingAs($matsaruUser)->get(route('admin.testimonials.edit', $testi))->assertStatus(403);
+    $this->actingAs($matsaruUser)->delete(route('admin.testimonials.destroy', $testi))->assertStatus(403);
+
+    // 4. MARU admin can delete
+    $this->actingAs($maruUser)->delete(route('admin.testimonials.destroy', $testi))->assertRedirect(route('admin.testimonials.index'));
+    expect(Testimonial::find($testi->id))->toBeNull();
+});
+
+test('unit admin can update hero banner, sambutan, visi, and misi', function () {
+    $maruUser = User::where('email', 'admin.maru@ppru.ac.id')->first();
+    $maruUnit = UnitPendidikan::where('id', $maruUser->unit_pendidikan_id)->first();
+
+    $response = $this->actingAs($maruUser)->put(route('admin.unit-pendidikan.update', $maruUnit), [
+        'name' => $maruUnit->name,
+        'short_name' => $maruUnit->short_name,
+        'category_type' => $maruUnit->category_type,
+        'head_name' => 'Drs. H. M. Husin',
+        'sambutan' => 'Selamat datang di Kampus Keunggulan MARU Sakatiga.',
+        'visi' => 'Mencetak generasi unggul dalam sains dan hafizh Al-Quran.',
+        'misi' => "1. Meningkatkan kualitas akademik.\n2. Menguatkan karakter santri.",
+    ]);
+    $response->assertRedirect(route('admin.unit-pendidikan.edit', $maruUnit->id));
+
+    $maruUnit->refresh();
+    expect($maruUnit->sambutan)->toBe('Selamat datang di Kampus Keunggulan MARU Sakatiga.')
+        ->and($maruUnit->visi)->toBe('Mencetak generasi unggul dalam sains dan hafizh Al-Quran.');
+});
+
+test('header navigation displays ikarus only once and khutbah in sub-menus without duplicate standalone buttons', function () {
+    $response = $this->get('/');
+    $response->assertStatus(200);
+
+    // Test header contains route('ikarus.index')
+    $response->assertSee(route('ikarus.index'));
+    $response->assertSee(route('khutbah.index'));
+
+    // Check that standalone top-level button 'Khutbah' was removed from top header nav
+    $content = $response->getContent();
+    // In desktop nav, Khutbah is inside the Informasi dropdown
+    expect($content)->toContain('Tausiyah &amp; Khutbah');
 });

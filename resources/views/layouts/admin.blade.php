@@ -233,6 +233,16 @@
                         <i class="fa-solid fa-people-group text-xs w-4 text-center text-emerald-400"></i>
                         <span class="sidebar-label">Ekstrakurikuler</span>
                     </a>
+
+                    <a href="{{ route('admin.dewan.index') }}" class="sidebar-item flex items-center space-x-3 px-3 py-1.5 rounded-lg transition {{ request()->routeIs('admin.dewan*') ? 'bg-gradient-to-r from-[#00843d] to-[#05a849] text-white font-bold shadow-md' : 'hover:bg-slate-800/70 text-slate-300 hover:text-white' }}" title="Dewan Guru Unit">
+                        <i class="fa-solid fa-chalkboard-user text-xs w-4 text-center text-teal-300"></i>
+                        <span class="sidebar-label">Dewan Guru Unit</span>
+                    </a>
+
+                    <a href="{{ route('admin.testimonials.index') }}" class="sidebar-item flex items-center space-x-3 px-3 py-1.5 rounded-lg transition {{ request()->routeIs('admin.testimonials*') ? 'bg-gradient-to-r from-[#da251c] to-[#ef4444] text-white font-bold shadow-md shadow-red-500/20' : 'hover:bg-slate-800/70 text-slate-300 hover:text-white' }}" title="Testimoni Unit">
+                        <i class="fa-solid fa-comments text-xs w-4 text-center text-amber-300"></i>
+                        <span class="sidebar-label">Testimoni Unit</span>
+                    </a>
                 </div>
                 @else
                 {{-- SECTION 1: DASHBOARD & ANALITIK --}}

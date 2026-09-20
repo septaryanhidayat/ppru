@@ -18,11 +18,16 @@ class UnitPendidikan extends Model
         'curriculum',
         'badge',
         'description',
+        'sambutan',
+        'visi',
+        'misi',
         'head_name',
+        'head_photo',
         'phone',
         'email',
         'website_url',
         'thumbnail',
+        'hero_image',
         'logo',
         'icon',
         'order',
@@ -70,6 +75,28 @@ class UnitPendidikan extends Model
         return 'fa-solid fa-graduation-cap';
     }
 
+    public function getHeroImageUrlAttribute(): string
+    {
+        if (! empty($this->hero_image)) {
+            $path = parse_url($this->hero_image, PHP_URL_PATH);
+
+            return '/'.ltrim($path, '/');
+        }
+
+        return $this->thumbnail_url;
+    }
+
+    public function getHeadPhotoUrlAttribute(): string
+    {
+        if (! empty($this->head_photo)) {
+            $path = parse_url($this->head_photo, PHP_URL_PATH);
+
+            return '/'.ltrim($path, '/');
+        }
+
+        return '/uploads/avatar-neutral-gray.svg';
+    }
+
     public function adminUser()
     {
         return $this->hasOne(User::class, 'unit_pendidikan_id')->where('role', 'admin_unit');
@@ -83,5 +110,20 @@ class UnitPendidikan extends Model
     public function posts()
     {
         return $this->hasMany(Post::class, 'unit_pendidikan_id');
+    }
+
+    public function teachers()
+    {
+        return $this->hasMany(AnggotaDewan::class, 'unit_pendidikan_id');
+    }
+
+    public function testimonials()
+    {
+        return $this->hasMany(Testimonial::class, 'unit_pendidikan_id');
+    }
+
+    public function videos()
+    {
+        return $this->hasMany(Video::class, 'unit_pendidikan_id');
     }
 }

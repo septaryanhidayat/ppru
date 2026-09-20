@@ -23,7 +23,7 @@
                 @error('name') <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span> @enderror
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div>
                     <label for="position" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Jabatan / Amanah *</label>
                     <input type="text" name="position" id="position" required value="{{ old('position') }}" placeholder="Contoh: Guru Matematika / Pembina Tahfidz" class="w-full bg-slate-50 text-xs text-slate-800 rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00913e] transition">
@@ -31,8 +31,25 @@
                 </div>
 
                 <div>
-                    <label for="fraction" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Bidang Studi / Tugas Tambahan</label>
-                    <input type="text" name="fraction" id="fraction" value="{{ old('fraction', 'Dewan Guru & GTK') }}" placeholder="Contoh: Pengampu MIPA & Sains" class="w-full bg-slate-50 text-xs text-slate-800 rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00913e] transition">
+                    <label for="fraction" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Bidang / Fraksi</label>
+                    <input type="text" name="fraction" id="fraction" value="{{ old('fraction', auth()->user()?->isUnitAdmin() ? auth()->user()->unit?->short_name : 'Dewan Guru & GTK') }}" placeholder="Contoh: Dewan Guru MARU" class="w-full bg-slate-50 text-xs text-slate-800 rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00913e] transition">
+                </div>
+
+                <div>
+                    <label for="unit_pendidikan_id" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Unit Pendidikan</label>
+                    @if(auth()->user()?->isUnitAdmin())
+                        <input type="hidden" name="unit_pendidikan_id" value="{{ auth()->user()->unit_pendidikan_id }}">
+                        <div class="w-full bg-emerald-50 text-xs text-[#00843d] font-bold rounded-xl px-4 py-3 border border-emerald-200">
+                            {{ auth()->user()->unit?->name ?? 'Unit Saya' }}
+                        </div>
+                    @else
+                        <select name="unit_pendidikan_id" id="unit_pendidikan_id" class="w-full bg-slate-50 text-xs text-slate-800 rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
+                            <option value="">-- Pimpinan Yayasan / Umum --</option>
+                            @foreach($units as $u)
+                                <option value="{{ $u->id }}" {{ old('unit_pendidikan_id') == $u->id ? 'selected' : '' }}>{{ $u->name }}</option>
+                            @endforeach
+                        </select>
+                    @endif
                 </div>
             </div>
 

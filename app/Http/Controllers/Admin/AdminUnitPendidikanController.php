@@ -147,11 +147,18 @@ class AdminUnitPendidikanController extends Controller
             'email' => 'nullable|email|max:100',
             'website_url' => 'nullable|string|max:255',
             'description' => 'nullable|string',
+            'sambutan' => 'nullable|string',
+            'visi' => 'nullable|string',
+            'misi' => 'nullable|string',
             'icon' => 'nullable|string|max:100',
             'thumbnail' => 'nullable|string',
             'thumbnail_file' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
             'logo' => 'nullable|string',
             'logo_file' => 'nullable|image|mimes:jpeg,png,jpg,webp,svg|max:3072',
+            'hero_image' => 'nullable|string',
+            'hero_image_file' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
+            'head_photo' => 'nullable|string',
+            'head_photo_file' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
             'order' => 'nullable|integer',
             'is_active' => 'nullable|boolean',
         ]);
@@ -176,6 +183,26 @@ class AdminUnitPendidikanController extends Controller
             $logoPath = $validated['logo'];
         }
 
+        $heroImagePath = $unitPendidikan->hero_image;
+        if ($request->hasFile('hero_image_file')) {
+            $converted = $this->webpService->processUploadedFile($request->file('hero_image_file'), 'unit_hero', 85, 1920);
+            if ($converted['success']) {
+                $heroImagePath = $converted['url'];
+            }
+        } elseif (! empty($validated['hero_image'])) {
+            $heroImagePath = $validated['hero_image'];
+        }
+
+        $headPhotoPath = $unitPendidikan->head_photo;
+        if ($request->hasFile('head_photo_file')) {
+            $converted = $this->webpService->processUploadedFile($request->file('head_photo_file'), 'unit_head', 85, 800);
+            if ($converted['success']) {
+                $headPhotoPath = $converted['url'];
+            }
+        } elseif (! empty($validated['head_photo'])) {
+            $headPhotoPath = $validated['head_photo'];
+        }
+
         if ($unitPendidikan->name !== $validated['name']) {
             $baseSlug = Str::slug($validated['name']);
             $slug = $baseSlug;
@@ -198,9 +225,14 @@ class AdminUnitPendidikanController extends Controller
             'email' => $validated['email'] ?? null,
             'website_url' => $validated['website_url'] ?? null,
             'description' => $validated['description'] ?? '',
+            'sambutan' => $validated['sambutan'] ?? '',
+            'visi' => $validated['visi'] ?? '',
+            'misi' => $validated['misi'] ?? '',
             'icon' => $validated['icon'] ?? $unitPendidikan->icon,
             'thumbnail' => $thumbnailPath,
             'logo' => $logoPath,
+            'hero_image' => $heroImagePath,
+            'head_photo' => $headPhotoPath,
             'order' => $validated['order'] ?? 0,
             'is_active' => $request->has('is_active'),
         ]);

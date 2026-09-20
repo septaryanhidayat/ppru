@@ -12,6 +12,7 @@ class AnggotaDewan extends Model
     protected $table = 'dewan_asatidz';
 
     protected $fillable = [
+        'unit_pendidikan_id',
         'name',
         'slug',
         'position',
@@ -21,6 +22,11 @@ class AnggotaDewan extends Model
         'photo',
         'order',
     ];
+
+    public function unit()
+    {
+        return $this->belongsTo(UnitPendidikan::class, 'unit_pendidikan_id');
+    }
 
     public function getPhotoUrlAttribute(): string
     {
@@ -46,7 +52,17 @@ class AnggotaDewan extends Model
         $sekretaris = $all->first(fn ($d) => str_contains(strtolower($d->position), 'sekretaris'));
         $bendahara = $all->first(fn ($d) => str_contains(strtolower($d->position), 'bendahara'));
 
-        $wakilMudir = $all->filter(fn ($d) => str_contains(strtolower($d->position), 'wakil mudir') || str_contains(strtolower($d->position), 'asisten mudir'))->values();
+        $wadirPendidikan = $all->first(fn ($d) => (str_contains(strtolower($d->position), 'wakil') || str_contains(strtolower($d->position), 'wadir')) && (str_contains(strtolower($d->position), 'pendidikan') || str_contains(strtolower($d->position), 'pengajaran')));
+        $wadirPengasuhan = $all->first(fn ($d) => (str_contains(strtolower($d->position), 'wakil') || str_contains(strtolower($d->position), 'wadir')) && (str_contains(strtolower($d->position), 'pengasuhan') || str_contains(strtolower($d->position), 'santri') || str_contains(strtolower($d->position), 'kesantrian')));
+        $wadirSarpras = $all->first(fn ($d) => (str_contains(strtolower($d->position), 'wakil') || str_contains(strtolower($d->position), 'wadir')) && (str_contains(strtolower($d->position), 'sarana') || str_contains(strtolower($d->position), 'sarpras') || str_contains(strtolower($d->position), 'pembangunan')));
+
+        $allWadir = $all->filter(fn ($d) => str_contains(strtolower($d->position), 'wakil mudir') || str_contains(strtolower($d->position), 'asisten mudir'))->values();
+
+        $wakilMudir = collect([
+            $wadirPendidikan ?: $allWadir->get(0),
+            $wadirPengasuhan ?: $allWadir->get(1),
+            $wadirSarpras ?: $allWadir->get(2),
+        ])->filter()->values();
 
         $kepalaUnit = $all->filter(fn ($d) => (str_contains(strtolower($d->position), 'kepala') || str_contains(strtolower($d->position), 'ketua stit') || str_contains(strtolower($d->position), 'rektor') || str_contains(strtolower($d->position), 'mudir tahfiz')) && $d->id !== $mudir?->id)->values();
 
@@ -56,6 +72,9 @@ class AnggotaDewan extends Model
             'mudir' => $mudir ?: (object) ['name' => "KH. Tol'at Wafa Ahmad, Lc.", 'position' => 'Mudir Pondok Pesantren Raudhatul Ulum'],
             'sekretaris' => $sekretaris ?: (object) ['name' => 'Ustadz H. Ahmad Dailami, S.Pd.I.', 'position' => 'Sekretaris Yayasan YAPIRUS'],
             'bendahara' => $bendahara ?: (object) ['name' => 'H. M. Husin, M.Si.', 'position' => 'Bendahara Yayasan YAPIRUS'],
+            'wadir_pendidikan' => $wadirPendidikan ?: $wakilMudir->get(0),
+            'wadir_pengasuhan' => $wadirPengasuhan ?: $wakilMudir->get(1),
+            'wadir_sarpras' => $wadirSarpras ?: $wakilMudir->get(2),
             'wakil_mudir' => $wakilMudir,
             'kepala_unit' => $kepalaUnit,
             'all' => $all,

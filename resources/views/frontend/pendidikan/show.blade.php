@@ -6,6 +6,12 @@
 @section('content')
 {{-- 1. HERO BANNER (Full Width, Islamic Aesthetic) --}}
 <section class="relative bg-gradient-to-br from-[#005a28] via-[#00843d] to-[#043317] text-white py-14 sm:py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    @if($unit->hero_image)
+        <div class="absolute inset-0 z-0">
+            <img src="{{ $unit->hero_image_url }}" alt="Banner {{ $unit->name }}" class="w-full h-full object-cover opacity-25 filter brightness-90">
+            <div class="absolute inset-0 bg-gradient-to-r from-[#003d1b]/95 via-[#005a28]/90 to-[#00843d]/85"></div>
+        </div>
+    @endif
     <div class="absolute -right-16 -bottom-16 w-96 h-96 bg-white/5 rounded-full blur-3xl pointer-events-none"></div>
     <div class="absolute -left-16 -top-16 w-96 h-96 bg-[#f59e0b]/10 rounded-full blur-3xl pointer-events-none"></div>
 
@@ -178,8 +184,9 @@
                 {{-- Foto Kepala Sekolah (Memanjang Vertikal Sejajar Informasi Sambutan) --}}
                 <div class="lg:col-span-4 flex flex-col justify-between items-center text-center bg-gradient-to-b from-slate-50 via-white to-emerald-50/30 p-5 sm:p-6 rounded-3xl border border-slate-200/80 shadow-xs h-full">
                     <div class="relative w-full flex-1 min-h-[260px] sm:min-h-[300px] rounded-2xl overflow-hidden shadow-sm border border-slate-200/80 bg-white p-4 flex items-center justify-center group">
-                        <img src="/uploads/avatar-neutral-gray.svg" 
+                        <img src="{{ $unit->head_photo_url }}" 
                              alt="Kepala {{ $unit->name }}" 
+                             onerror="this.src='/uploads/avatar-neutral-gray.svg'"
                              class="w-full h-full max-h-56 sm:max-h-64 object-contain transform group-hover:scale-105 transition duration-500">
                         <span class="absolute bottom-3 left-3 right-3 bg-slate-900/85 backdrop-blur-xs text-white text-[11px] font-bold py-1.5 px-3 rounded-full shadow text-center">
                             Kepala {{ $unit->short_name ?: 'Unit' }}
@@ -202,18 +209,26 @@
                         Mendidik Generasi Qur'ani yang Unggul Ilmu, Kokoh Iman, dan Berakhlak Mulia
                     </h2>
                     <div class="prose-content text-gray-600 text-sm sm:text-base leading-relaxed space-y-3">
-                        <p>
-                            <em>Assalamu’alaikum Warahmatullahi Wabarakatuh.</em>
-                        </p>
-                        <p>
-                            Ahlan wa sahlan di laman resmi <strong>{{ $unit->name }}</strong> Pondok Pesantren Raudhatul Ulum Sakatiga. Kami berkomitmen menyelenggarakan ekosistem pendidikan Islam terpadu yang memadukan kedalaman ilmu syar'i (kitab kuning), tahfidzul Qur'an mutqin, kecakapan dwi-bahasa (Arab &amp; Inggris), serta keunggulan sains dan teknologi modern.
-                        </p>
-                        <p>
-                            Melalui bimbingan penuh asatidz dan musyrif asrama selama 24 jam, para santri kami tempa agar memiliki karakter kepemimpinan, kemandirian hidup, dan wawasan global, siap mengemban estafet dakwah Islamiyyah dan berprestasi di kancah nasional maupun internasional.
-                        </p>
-                        <p class="font-semibold text-gray-800">
-                            <em>Wassalamu’alaikum Warahmatullahi Wabarakatuh.</em>
-                        </p>
+                        @if($unit->sambutan)
+                            @if(strip_tags($unit->sambutan) !== $unit->sambutan)
+                                {!! strip_tags($unit->sambutan, '<p><br><b><strong><i><em><u><ul><ol><li>') !!}
+                            @else
+                                {!! nl2br(e($unit->sambutan)) !!}
+                            @endif
+                        @else
+                            <p>
+                                <em>Assalamu’alaikum Warahmatullahi Wabarakatuh.</em>
+                            </p>
+                            <p>
+                                Ahlan wa sahlan di laman resmi <strong>{{ $unit->name }}</strong> Pondok Pesantren Raudhatul Ulum Sakatiga. Kami berkomitmen menyelenggarakan ekosistem pendidikan Islam terpadu yang memadukan kedalaman ilmu syar'i (kitab kuning), tahfidzul Qur'an mutqin, kecakapan dwi-bahasa (Arab &amp; Inggris), serta keunggulan sains dan teknologi modern.
+                            </p>
+                            <p>
+                                Melalui bimbingan penuh asatidz dan musyrif asrama selama 24 jam, para santri kami tempa agar memiliki karakter kepemimpinan, kemandirian hidup, dan wawasan global, siap mengemban estafet dakwah Islamiyyah dan berprestasi di kancah nasional maupun internasional.
+                            </p>
+                            <p class="font-semibold text-gray-800">
+                                <em>Wassalamu’alaikum Warahmatullahi Wabarakatuh.</em>
+                            </p>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -286,17 +301,23 @@
                     <div class="bg-white/10 p-4 rounded-2xl border border-white/15 backdrop-blur-xs">
                         <h5 class="font-black text-amber-300 uppercase tracking-wide text-xs">Visi:</h5>
                         <p class="text-white mt-1 leading-relaxed">
-                            Terwujudnya lembaga pendidikan Islam terpadu yang melahirkan kader ulama, intelektual muslim yang berakhlak mulia, cerdas, berwawasan global, dan berpegang teguh pada Al-Qur'an dan As-Sunnah.
+                            {{ $unit->visi ?: 'Terwujudnya lembaga pendidikan Islam terpadu yang melahirkan kader ulama, intelektual muslim yang berakhlak mulia, cerdas, berwawasan global, dan berpegang teguh pada Al-Qur\'an dan As-Sunnah.' }}
                         </p>
                     </div>
                     <div class="bg-white/10 p-4 rounded-2xl border border-white/15 backdrop-blur-xs">
                         <h5 class="font-black text-amber-300 uppercase tracking-wide text-xs">Misi Utama:</h5>
-                        <ul class="text-emerald-100 mt-1 space-y-2 list-disc pl-4 leading-relaxed text-xs">
-                            <li>Menyelenggarakan pendidikan tahfidzul Qur'an dan penguasaan kitab-kitab mu'tabarah.</li>
-                            <li>Mengembangkan penguasaan sains, teknologi, dan bahasa asing secara komprehensif.</li>
-                            <li>Menanamkan kedisiplinan dan adab islami melalui pembinaan kepengasuhan 24 jam.</li>
-                            <li>Mempersiapkan santri melanjutkan studi ke universitas ternama di Timur Tengah dan PTN favorit.</li>
-                        </ul>
+                        @if($unit->misi)
+                            <div class="text-emerald-100 mt-1 space-y-1.5 leading-relaxed text-xs">
+                                {!! nl2br(e($unit->misi)) !!}
+                            </div>
+                        @else
+                            <ul class="text-emerald-100 mt-1 space-y-2 list-disc pl-4 leading-relaxed text-xs">
+                                <li>Menyelenggarakan pendidikan tahfidzul Qur'an dan penguasaan kitab-kitab mu'tabarah.</li>
+                                <li>Mengembangkan penguasaan sains, teknologi, dan bahasa asing secara komprehensif.</li>
+                                <li>Menanamkan kedisiplinan dan adab islami melalui pembinaan kepengasuhan 24 jam.</li>
+                                <li>Mempersiapkan santri melanjutkan studi ke universitas ternama di Timur Tengah dan PTN favorit.</li>
+                            </ul>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -441,6 +462,54 @@
             @endif
         </section>
 
+        {{-- 8. KABAR & BERITA TERBARU UNIT --}}
+        @if(isset($unitPosts) && $unitPosts->isNotEmpty())
+            <section class="bg-white rounded-3xl p-6 sm:p-10 shadow-sm border border-gray-100 space-y-6 reveal-fade-up">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-gray-100 pb-4">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-[#00843d] bg-emerald-50 px-3 py-1 rounded-full">
+                            Kabar Terkini
+                        </span>
+                        <h2 class="text-2xl sm:text-3xl font-black text-gray-900 mt-2 tracking-tight">
+                            Berita &amp; Artikel {{ $unit->short_name ?: $unit->name }}
+                        </h2>
+                        <p class="text-xs text-gray-500 mt-0.5">Informasi kegiatan akademik, santri, dan dinamika pembelajaran di unit ini</p>
+                    </div>
+                    <a href="{{ route('artikel.index') }}" class="text-xs font-bold text-[#00843d] hover:underline flex items-center gap-1 shrink-0">
+                        <span>Semua Berita</span>
+                        <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                    </a>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                    @foreach($unitPosts as $post)
+                        <article class="bg-slate-50/70 rounded-2xl overflow-hidden border border-gray-100 hover:shadow-md hover:border-emerald-200 transition group flex flex-col justify-between">
+                            <div>
+                                <div class="aspect-video w-full bg-gray-200 overflow-hidden relative">
+                                    <img src="{{ $post->featured_image_url }}" alt="{{ $post->title }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='/uploads/campus-ppru-sakatiga.webp'">
+                                    <span class="absolute top-2.5 left-2.5 bg-[#00843d] text-white text-[9px] font-black px-2 py-0.5 rounded-full shadow">
+                                        {{ $unit->short_name ?: 'Unit' }}
+                                    </span>
+                                </div>
+                                <div class="p-4 space-y-2">
+                                    <h4 class="font-bold text-xs sm:text-sm text-gray-900 line-clamp-2 group-hover:text-[#00843d] transition">
+                                        <a href="{{ route('artikel.show', $post->slug) }}">{{ $post->title }}</a>
+                                    </h4>
+                                    <p class="text-xs text-gray-500 line-clamp-2 leading-relaxed">
+                                        {{ Str::limit(strip_tags($post->content), 80) }}
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="px-4 pb-4 pt-1 border-t border-gray-100 flex items-center justify-between text-[10px] text-gray-400">
+                                <span><i class="fa-solid fa-calendar mr-1"></i> {{ $post->created_at ? $post->created_at->translatedFormat('d M Y') : 'Terbaru' }}</span>
+                                <a href="{{ route('artikel.show', $post->slug) }}" class="text-[#00843d] font-bold hover:underline">Baca &rarr;</a>
+                            </div>
+                        </article>
+                    @endforeach
+                </div>
+            </section>
+        @endif
+
         {{-- 9. PRESTASI SANTRI & GURU UNIT --}}
         @if(isset($prestasi) && $prestasi->isNotEmpty())
             <section class="bg-white rounded-3xl p-6 sm:p-10 shadow-sm border border-gray-100 space-y-6 reveal-fade-up">
@@ -483,67 +552,147 @@
             </section>
         @endif
 
-        {{-- 10. ALUMNI SUKSES & KIPRAH LULUSAN --}}
+        {{-- EKSTRAKURIKULER & PENGEMBANGAN MINAT BAKAT --}}
+        @if(isset($ekskuls) && $ekskuls->isNotEmpty())
+            <section class="bg-white rounded-3xl p-6 sm:p-10 shadow-sm border border-gray-100 space-y-6 reveal-fade-up">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-gray-100 pb-4">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full">
+                            Minat &amp; Bakat Santri
+                        </span>
+                        <h2 class="text-2xl sm:text-3xl font-black text-gray-900 mt-2 tracking-tight">
+                            Ekstrakurikuler Unggulan
+                        </h2>
+                        <p class="text-xs text-gray-500 mt-0.5">Wadah pembinaan karakter, ketangkasan fisik, dan kepemimpinan santri</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                    @foreach($ekskuls as $ek)
+                        <div class="bg-slate-50/80 rounded-2xl p-5 border border-slate-200/80 hover:border-emerald-300 hover:bg-white hover:shadow-md transition duration-300 group flex items-start space-x-4">
+                            <div class="w-12 h-12 rounded-2xl bg-emerald-100 text-[#00843d] flex items-center justify-center text-xl shrink-0 group-hover:scale-105 transition shadow-2xs">
+                                <i class="fa-solid fa-people-group"></i>
+                            </div>
+                            <div class="min-w-0 flex-1 space-y-1">
+                                <h4 class="font-extrabold text-sm text-gray-900 group-hover:text-[#00843d] transition">{{ $ek->title }}</h4>
+                                <p class="text-xs text-gray-600 line-clamp-2 leading-relaxed">{{ Str::limit(strip_tags($ek->content), 100) }}</p>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </section>
+        @endif
+
+        {{-- 10. ALUMNI SUKSES & TESTIMONI UNIT --}}
         <section class="bg-gradient-to-br from-emerald-900 via-[#005a28] to-[#043317] text-white rounded-3xl p-6 sm:p-10 shadow-xl space-y-6 reveal-fade-up">
             <div class="border-b border-white/20 pb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                 <div>
                     <span class="text-xs font-black uppercase tracking-wider text-amber-300 bg-black/20 px-3 py-1 rounded-full">
-                        Jejaring Alumni
+                        Testimoni &amp; Alumni
                     </span>
                     <h2 class="text-2xl sm:text-3xl font-black text-white mt-2 tracking-tight">
-                        Kiprah Alumni {{ $unit->short_name ?: $unit->name }}
+                        Testimoni &amp; Kiprah Santri {{ $unit->short_name ?: $unit->name }}
                     </h2>
-                    <p class="text-xs text-emerald-100 mt-1">Lulusan Raudhatul Ulum tersebar di berbagai universitas terbaik dunia dan berkiprah di masyarakat</p>
+                    <p class="text-xs text-emerald-100 mt-1">Pengalaman berharga santri, wali santri, dan alumni Pondok Pesantren Raudhatul Ulum Sakatiga</p>
                 </div>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs">
-                <div class="bg-white/10 backdrop-blur-xs p-5 rounded-2xl border border-white/15 space-y-3">
-                    <div class="flex items-center space-x-3">
-                        <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-amber-400 bg-white/20 shrink-0">
-                            <img src="/uploads/default-avatar.webp" alt="Alumni Al-Azhar" class="w-full h-full object-cover">
+                @if(isset($unitTestimonials) && $unitTestimonials->isNotEmpty())
+                    @foreach($unitTestimonials as $testi)
+                        <div class="bg-white/10 backdrop-blur-xs p-5 rounded-2xl border border-white/15 space-y-3 flex flex-col justify-between">
+                            <div class="space-y-3">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-amber-400 bg-white/20 shrink-0">
+                                        <img src="{{ $testi->photo_url }}" alt="{{ $testi->name }}" class="w-full h-full object-cover" onerror="this.src='/uploads/default-avatar.webp'">
+                                    </div>
+                                    <div>
+                                        <h4 class="font-black text-white text-sm">{{ $testi->name }}</h4>
+                                        <p class="text-amber-300 text-[11px] font-semibold">{{ $testi->profession ?: 'Alumni / Wali Santri' }}</p>
+                                    </div>
+                                </div>
+                                <p class="text-emerald-100 text-[11px] leading-relaxed italic">
+                                    "{{ $testi->content }}"
+                                </p>
+                            </div>
                         </div>
-                        <div>
-                            <h4 class="font-black text-white text-sm">Ust. Ahmad Fauzan, Lc.</h4>
-                            <p class="text-amber-300 text-[11px] font-semibold">Alumni Al-Azhar Cairo Mesir</p>
+                    @endforeach
+                @else
+                    <div class="bg-white/10 backdrop-blur-xs p-5 rounded-2xl border border-white/15 space-y-3">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-amber-400 bg-white/20 shrink-0">
+                                <img src="/uploads/default-avatar.webp" alt="Alumni Al-Azhar" class="w-full h-full object-cover">
+                            </div>
+                            <div>
+                                <h4 class="font-black text-white text-sm">Ust. Ahmad Fauzan, Lc.</h4>
+                                <p class="text-amber-300 text-[11px] font-semibold">Alumni Al-Azhar Cairo Mesir</p>
+                            </div>
                         </div>
+                        <p class="text-emerald-100 text-[11px] leading-relaxed italic">
+                            "Pondok Pesantren Raudhatul Ulum Sakatiga membekali saya kemampuan bahasa Arab fusha dan pemahaman kitab kuning yang sangat kuat, sehingga sangat memudahkan studi saya di Fakultas Ushuluddin Universitas Al-Azhar Kairo."
+                        </p>
                     </div>
-                    <p class="text-emerald-100 text-[11px] leading-relaxed italic">
-                        "Pondok Pesantren Raudhatul Ulum Sakatiga membekali saya kemampuan bahasa Arab fusha dan pemahaman kitab kuning yang sangat kuat, sehingga sangat memudahkan studi saya di Fakultas Ushuluddin Universitas Al-Azhar Kairo."
-                    </p>
-                </div>
 
-                <div class="bg-white/10 backdrop-blur-xs p-5 rounded-2xl border border-white/15 space-y-3">
-                    <div class="flex items-center space-x-3">
-                        <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-amber-400 bg-white/20 shrink-0">
-                            <img src="/uploads/default-avatar.webp" alt="Alumni Madinah" class="w-full h-full object-cover">
+                    <div class="bg-white/10 backdrop-blur-xs p-5 rounded-2xl border border-white/15 space-y-3">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-amber-400 bg-white/20 shrink-0">
+                                <img src="/uploads/default-avatar.webp" alt="Alumni Madinah" class="w-full h-full object-cover">
+                            </div>
+                            <div>
+                                <h4 class="font-black text-white text-sm">Ust. Muhammad Ihsan, Lc.</h4>
+                                <p class="text-amber-300 text-[11px] font-semibold">Alumni Universitas Islam Madinah</p>
+                            </div>
                         </div>
-                        <div>
-                            <h4 class="font-black text-white text-sm">Ust. Muhammad Ihsan, Lc.</h4>
-                            <p class="text-amber-300 text-[11px] font-semibold">Alumni Universitas Islam Madinah</p>
-                        </div>
+                        <p class="text-emerald-100 text-[11px] leading-relaxed italic">
+                            "Kedisiplinan ibadah, hafalan mutqin Al-Qur'an, dan penanaman adab di PPRU menjadi modal utama saya meraih beasiswa penuh di Kota Madinah Nabawiyyah."
+                        </p>
                     </div>
-                    <p class="text-emerald-100 text-[11px] leading-relaxed italic">
-                        "Kedisiplinan ibadah, hafalan mutqin Al-Qur'an, dan penanaman adab di PPRU menjadi modal utama saya meraih beasiswa penuh di Kota Madinah Nabawiyyah."
-                    </p>
-                </div>
 
-                <div class="bg-white/10 backdrop-blur-xs p-5 rounded-2xl border border-white/15 space-y-3">
-                    <div class="flex items-center space-x-3">
-                        <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-amber-400 bg-white/20 shrink-0">
-                            <img src="/uploads/default-avatar.webp" alt="Alumni PTN" class="w-full h-full object-cover">
+                    <div class="bg-white/10 backdrop-blur-xs p-5 rounded-2xl border border-white/15 space-y-3">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-amber-400 bg-white/20 shrink-0">
+                                <img src="/uploads/default-avatar.webp" alt="Alumni PTN" class="w-full h-full object-cover">
+                            </div>
+                            <div>
+                                <h4 class="font-black text-white text-sm">dr. Fatimah Zahra</h4>
+                                <p class="text-amber-300 text-[11px] font-semibold">Alumni Kedokteran PTN &amp; Hafidzah 30 Juz</p>
+                            </div>
                         </div>
-                        <div>
-                            <h4 class="font-black text-white text-sm">dr. Fatimah Zahra</h4>
-                            <p class="text-amber-300 text-[11px] font-semibold">Alumni Kedokteran PTN &amp; Hafidzah 30 Juz</p>
-                        </div>
+                        <p class="text-emerald-100 text-[11px] leading-relaxed italic">
+                            "Di Raudhatul Ulum, saya belajar bahwa sains dan Al-Qur'an saling menguatkan. Menghafal Al-Qur'an 30 juz membuka pintu kecerdasan untuk menyelesaikan studi kedokteran."
+                        </p>
                     </div>
-                    <p class="text-emerald-100 text-[11px] leading-relaxed italic">
-                        "Di Raudhatul Ulum, saya belajar bahwa sains dan Al-Qur'an saling menguatkan. Menghafal Al-Qur'an 30 juz membuka pintu kecerdasan untuk menyelesaikan studi kedokteran."
-                    </p>
-                </div>
+                @endif
             </div>
         </section>
+
+        {{-- VIDEO PROFIL & KEGIATAN UNIT --}}
+        @if(isset($unitVideos) && $unitVideos->isNotEmpty())
+            <section class="bg-white rounded-3xl p-6 sm:p-10 shadow-sm border border-gray-100 space-y-6 reveal-fade-up">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-gray-100 pb-4">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-[#da251c] bg-red-50 px-3 py-1 rounded-full">
+                            Video Profil
+                        </span>
+                        <h2 class="text-2xl sm:text-3xl font-black text-gray-900 mt-2 tracking-tight">
+                            Video Dokumentasi &amp; Profil {{ $unit->short_name ?: $unit->name }}
+                        </h2>
+                        <p class="text-xs text-gray-500 mt-0.5">Saksikan gambaran langsung kehidupan santri dan suasana pembelajaran</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    @foreach($unitVideos as $vid)
+                        <div class="bg-slate-50 rounded-2xl overflow-hidden border border-slate-200 shadow-xs space-y-3 p-4">
+                            <div class="aspect-video w-full rounded-xl overflow-hidden bg-black shadow-inner">
+                                <iframe src="{{ $vid->youtube_embed_url ?? ('https://www.youtube-nocookie.com/embed/'.$vid->youtube_id) }}" title="{{ $vid->title }}" class="w-full h-full" allowfullscreen loading="lazy"></iframe>
+                            </div>
+                            <h4 class="font-extrabold text-sm text-gray-900 line-clamp-2 leading-snug">{{ $vid->title }}</h4>
+                        </div>
+                    @endforeach
+                </div>
+            </section>
+        @endif
 
         {{-- 11. GALERI FOTO KEGIATAN KHUSUS UNIT --}}
         <section class="bg-white rounded-3xl p-6 sm:p-10 shadow-sm border border-gray-100 space-y-6 reveal-fade-up">
