@@ -176,66 +176,141 @@
         </div>
     @endif
 
-    {{-- SECTION HEADER & FILTER STATUS --}}
-    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-gray-200">
-        <div>
-            <h2 class="text-2xl font-black text-gray-900 tracking-tight flex items-center space-x-2">
-                <i class="fa-solid fa-feather-pointed text-[#f59e0b]"></i>
-                <span>Arsip Tulisan &amp; Berita IKARUS</span>
-            </h2>
-            <p class="text-xs text-gray-500 mt-1">
-                @if(request('q'))
-                    Hasil pencarian untuk kata kunci: <strong class="text-emerald-700 font-bold">"{{ request('q') }}"</strong> (Ditemukan {{ $posts->total() }} karya)
-                @else
-                    Koleksi tulisan, gagasan ilmiah, resensi, dan kabar reuni alumni Pondok Pesantren Raudhatul Ulum.
-                @endif
-            </p>
+    {{-- SECTION HEADER & INTERACTIVE ARCHIVE FILTERS --}}
+    <div class="space-y-6 pb-6 border-b border-gray-200">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+            <div>
+                <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-[11px] font-bold text-amber-800 mb-2">
+                    <i class="fa-solid fa-box-archive text-amber-600"></i>
+                    <span>Koleksi Terbuka Alumni Raudhatul Ulum</span>
+                </div>
+                <h2 class="text-2xl sm:text-3xl font-black text-gray-900 tracking-tight flex items-center space-x-2.5">
+                    <i class="fa-solid fa-feather-pointed text-[#00843d]"></i>
+                    <span>Arsip Tulisan &amp; Berita IKARUS</span>
+                </h2>
+                <p class="text-xs sm:text-sm text-gray-500 mt-1 max-w-2xl font-light">
+                    @if(request('q'))
+                        Hasil pencarian untuk kata kunci: <strong class="text-emerald-700 font-bold">"{{ request('q') }}"</strong> (Ditemukan {{ $posts->total() }} arsip)
+                    @else
+                        Dokumentasi lengkap berita kegiatan, reuni akbar, opini keummatan, kajian turots, dan karya tulis pemikiran alumni lintas generasi.
+                    @endif
+                </p>
+            </div>
+
+            {{-- Reset Filter Button if Active --}}
+            @if(request('q') || request('jenis') || request('tahun'))
+                <div>
+                    <a href="{{ route('ikarus.index') }}" class="inline-flex items-center space-x-1.5 bg-slate-800 hover:bg-slate-900 text-white text-xs font-bold px-4 py-2 rounded-xl transition shadow-sm">
+                        <i class="fa-solid fa-rotate-left text-[11px]"></i>
+                        <span>Reset Semua Filter</span>
+                    </a>
+                </div>
+            @endif
         </div>
 
-        <div class="flex items-center space-x-2 text-xs">
-            <span class="text-gray-500">Kategori:</span>
-            <span class="bg-emerald-100 text-emerald-800 font-bold px-3 py-1 rounded-full border border-emerald-300 flex items-center space-x-1">
-                <i class="fa-solid fa-tag text-[10px] text-emerald-600"></i>
-                <span>IKARUS</span>
-            </span>
+        {{-- Filter Tabs Bar: Jenis/Rubrik & Tahun Arsip --}}
+        <div class="bg-gray-50/80 rounded-2xl p-3 border border-gray-200/80 flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+            {{-- Tabs 1: Rubrik Konten --}}
+            <div class="flex flex-wrap items-center gap-1.5 sm:gap-2">
+                <span class="text-xs font-bold text-gray-500 mr-1 hidden sm:inline">Rubrik:</span>
+                
+                {{-- Semua Arsip --}}
+                <a href="{{ route('ikarus.index', array_merge(request()->except(['jenis', 'page']), ['jenis' => null])) }}"
+                   class="px-3.5 py-1.5 rounded-xl text-xs font-bold transition flex items-center space-x-1.5 {{ empty($jenis) ? 'bg-[#00843d] text-white shadow-md' : 'bg-white text-gray-600 hover:bg-gray-100 border border-gray-200' }}">
+                    <i class="fa-solid fa-layer-group text-[10px]"></i>
+                    <span>Semua Arsip</span>
+                    <span class="text-[10px] px-1.5 py-0.2 rounded-full {{ empty($jenis) ? 'bg-white/20 text-white' : 'bg-gray-100 text-gray-600' }}">{{ $totalKarya }}</span>
+                </a>
+
+                {{-- Berita IKARUS --}}
+                <a href="{{ route('ikarus.index', array_merge(request()->except(['jenis', 'page']), ['jenis' => 'berita'])) }}"
+                   class="px-3.5 py-1.5 rounded-xl text-xs font-bold transition flex items-center space-x-1.5 {{ $jenis === 'berita' ? 'bg-blue-600 text-white shadow-md' : 'bg-white text-gray-600 hover:bg-blue-50 border border-gray-200' }}">
+                    <i class="fa-solid fa-bullhorn text-[10px] {{ $jenis === 'berita' ? 'text-amber-300' : 'text-blue-500' }}"></i>
+                    <span>Berita &amp; Agenda</span>
+                    <span class="text-[10px] px-1.5 py-0.2 rounded-full {{ $jenis === 'berita' ? 'bg-white/20 text-white' : 'bg-gray-100 text-gray-600' }}">{{ $countBerita }}</span>
+                </a>
+
+                {{-- Tulisan & Opini Alumni --}}
+                <a href="{{ route('ikarus.index', array_merge(request()->except(['jenis', 'page']), ['jenis' => 'tulisan'])) }}"
+                   class="px-3.5 py-1.5 rounded-xl text-xs font-bold transition flex items-center space-x-1.5 {{ $jenis === 'tulisan' ? 'bg-amber-600 text-white shadow-md' : 'bg-white text-gray-600 hover:bg-amber-50 border border-gray-200' }}">
+                    <i class="fa-solid fa-feather-pointed text-[10px] {{ $jenis === 'tulisan' ? 'text-amber-200' : 'text-amber-500' }}"></i>
+                    <span>Tulisan &amp; Opini</span>
+                    <span class="text-[10px] px-1.5 py-0.2 rounded-full {{ $jenis === 'tulisan' ? 'bg-white/20 text-white' : 'bg-gray-100 text-gray-600' }}">{{ $countTulisan }}</span>
+                </a>
+            </div>
+
+            {{-- Tabs 2: Filter Tahun Arsip --}}
+            <div class="flex items-center space-x-2 self-start lg:self-auto">
+                <span class="text-xs font-bold text-gray-500 hidden sm:inline"><i class="fa-regular fa-calendar mr-1"></i>Tahun:</span>
+                <div class="flex items-center gap-1.5">
+                    <a href="{{ route('ikarus.index', array_merge(request()->except(['tahun', 'page']), ['tahun' => null])) }}"
+                       class="px-2.5 py-1 rounded-lg text-xs font-bold transition {{ empty($tahun) ? 'bg-slate-800 text-white' : 'bg-white text-gray-500 hover:bg-gray-100 border border-gray-200' }}">
+                        Semua
+                    </a>
+                    @foreach($yearsList as $yr => $cnt)
+                        <a href="{{ route('ikarus.index', array_merge(request()->except(['tahun', 'page']), ['tahun' => $yr])) }}"
+                           class="px-2.5 py-1 rounded-lg text-xs font-bold transition {{ $tahun == $yr ? 'bg-emerald-700 text-white' : 'bg-white text-gray-600 hover:bg-gray-100 border border-gray-200' }}">
+                            {{ $yr }} <span class="text-[10px] opacity-75">({{ $cnt }})</span>
+                        </a>
+                    @endforeach
+                </div>
+            </div>
         </div>
     </div>
 
     {{-- 4. GRID KARYA & BERITA ALUMNI --}}
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         @forelse($posts as $post)
+            @php
+                $isBeritaItem = $post->tags->contains('slug', 'berita-ikarus') 
+                    || Str::contains(strtolower($post->title), ['reuni', 'pelantikan', 'penyaluran', 'beasiswa', 'silaturahmi', 'peluncuran', 'munas', 'bantuan']);
+                $pubDate = $post->published_at ?: $post->created_at;
+                $yearStr = $pubDate ? $pubDate->format('Y') : '2026';
+            @endphp
             <article class="bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition duration-300 flex flex-col group reveal-fade-up">
                 {{-- Gambar Cover --}}
                 <a href="{{ route('artikel.show', $post->slug) }}" class="block relative h-52 overflow-hidden bg-slate-900">
                     <img src="{{ $post->featured_image ?: '/uploads/campus-ppru-sakatiga.webp' }}" alt="{{ $post->title }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='/uploads/campus-ppru-sakatiga.webp'">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
                     
-                    {{-- Badge Kategori IKARUS --}}
-                    <span class="absolute top-3 left-3 bg-[#00843d] text-white text-[10px] font-black px-2.5 py-1 rounded-full shadow-md flex items-center space-x-1">
-                        <i class="fa-solid fa-graduation-cap text-[9px] text-amber-300"></i>
-                        <span>IKARUS</span>
-                    </span>
-
-                    {{-- Badge Unit jika ada --}}
-                    @if($post->unitPendidikan)
-                        <span class="absolute top-3 right-3 bg-amber-400 text-slate-950 text-[10px] font-extrabold px-2 py-0.5 rounded-md shadow-sm">
-                            {{ $post->unitPendidikan->short_name }}
+                    {{-- Badge Rubrik Berita vs Tulisan --}}
+                    @if($isBeritaItem)
+                        <span class="absolute top-3 left-3 bg-gradient-to-r from-blue-700 to-cyan-700 text-white text-[10px] font-black px-2.5 py-1 rounded-full shadow-md flex items-center space-x-1 border border-blue-400/30">
+                            <i class="fa-solid fa-bullhorn text-[9px] text-amber-300"></i>
+                            <span>Berita IKARUS</span>
+                        </span>
+                    @else
+                        <span class="absolute top-3 left-3 bg-gradient-to-r from-[#00843d] to-emerald-700 text-white text-[10px] font-black px-2.5 py-1 rounded-full shadow-md flex items-center space-x-1 border border-emerald-400/30">
+                            <i class="fa-solid fa-pen-nib text-[9px] text-amber-300"></i>
+                            <span>Karya Alumni</span>
                         </span>
                     @endif
 
+                    {{-- Badge Tahun Arsip --}}
+                    <span class="absolute top-3 right-3 bg-slate-950/80 backdrop-blur-md text-amber-300 text-[10px] font-black px-2.5 py-0.5 rounded-lg border border-amber-400/40 shadow-sm">
+                        {{ $yearStr }}
+                    </span>
+
                     {{-- Penulis --}}
-                    <span class="absolute bottom-2.5 left-3 text-[11px] text-white/95 font-semibold drop-shadow-md truncate max-w-[90%]">
-                        <i class="fa-solid fa-pen-nib mr-1 text-amber-300"></i>{{ $post->author_name ?: ($post->author?->name ?: 'Alumni PPRU') }}
+                    <span class="absolute bottom-2.5 left-3 text-[11px] text-white/95 font-semibold drop-shadow-md truncate max-w-[90%] flex items-center">
+                        <i class="fa-solid fa-user-pen mr-1.5 text-amber-300 text-xs"></i>
+                        <span>{{ $post->author_name ?: ($post->author?->name ?: 'Alumni PPRU') }}</span>
                     </span>
                 </a>
 
                 {{-- Konten Ringkas --}}
                 <div class="p-6 flex-grow flex flex-col justify-between space-y-4">
-                    <div class="space-y-2">
-                        <div class="flex items-center space-x-3 text-[11px] text-gray-400">
-                            <span><i class="fa-regular fa-calendar mr-1"></i>{{ $post->published_at ? $post->published_at->format('d M Y') : $post->created_at->format('d M Y') }}</span>
-                            <span>&bull;</span>
-                            <span><i class="fa-regular fa-eye mr-1"></i>{{ $post->views_count }} views</span>
+                    <div class="space-y-2.5">
+                        <div class="flex items-center justify-between text-[11px] text-gray-400">
+                            <span class="flex items-center">
+                                <i class="fa-regular fa-calendar mr-1 text-emerald-600"></i>
+                                {{ $pubDate ? $pubDate->format('d M Y') : 'Terbaru' }}
+                            </span>
+                            <span class="flex items-center space-x-2">
+                                <span><i class="fa-regular fa-eye mr-1"></i>{{ number_format($post->views_count) }}</span>
+                                <span>&bull;</span>
+                                <span class="text-emerald-700 font-semibold">IKARUS</span>
+                            </span>
                         </div>
 
                         <h3 class="font-black text-gray-900 text-base group-hover:text-[#00843d] transition line-clamp-2 leading-snug">
@@ -250,11 +325,13 @@
                     </div>
 
                     <div class="pt-3 border-t border-gray-100 flex items-center justify-between">
-                        <a href="{{ route('artikel.show', $post->slug) }}" class="text-xs font-black text-[#00843d] hover:text-emerald-800 inline-flex items-center space-x-1 group-hover:translate-x-1 transition-transform">
-                            <span>Baca Tulisan</span>
+                        <a href="{{ route('artikel.show', $post->slug) }}" class="text-xs font-black text-[#00843d] hover:text-emerald-800 inline-flex items-center space-x-1.5 group-hover:translate-x-1 transition-transform">
+                            <span>{{ $isBeritaItem ? 'Baca Berita' : 'Baca Tulisan' }}</span>
                             <i class="fa-solid fa-arrow-right text-[10px]"></i>
                         </a>
-                        <span class="text-[10px] text-gray-400">Artikel Alumni</span>
+                        <span class="text-[10px] text-gray-400 font-medium">
+                            {{ $isBeritaItem ? 'Agenda Alumni' : 'Karya Ilmiah/Opini' }}
+                        </span>
                     </div>
                 </div>
             </article>
@@ -263,20 +340,20 @@
                 <div class="w-16 h-16 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center mx-auto text-2xl">
                     <i class="fa-solid fa-feather-pointed"></i>
                 </div>
-                <h3 class="text-lg font-bold text-gray-800">Belum Ada Tulisan Karya Alumni</h3>
+                <h3 class="text-lg font-bold text-gray-800">Tidak Ada Arsip yang Sesuai</h3>
                 <p class="text-xs text-gray-500 max-w-md mx-auto">
-                    @if(request('q'))
-                        Tidak ditemukan artikel alumni dengan kata kunci "{{ request('q') }}". Silakan coba kata kunci lain atau reset filter pencarian.
+                    @if(request('q') || request('jenis') || request('tahun'))
+                        Tidak ditemukan artikel alumni untuk kriteria filter yang dipilih. Silakan reset filter untuk melihat seluruh arsip.
                     @else
                         Saat ini belum ada tulisan berkategori IKARUS yang diterbitkan. Jadilah alumni pertama yang mengirimkan karya dan opini Anda ke almamater!
                     @endif
                 </p>
-                @if(request('q'))
-                    <a href="{{ route('ikarus.index') }}" class="inline-flex items-center space-x-2 bg-emerald-600 text-white text-xs font-bold px-4 py-2 rounded-xl mt-2">
+                <div class="pt-2">
+                    <a href="{{ route('ikarus.index') }}" class="inline-flex items-center space-x-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-4 py-2 rounded-xl transition shadow-md">
                         <i class="fa-solid fa-rotate-left"></i>
-                        <span>Lihat Seluruh Tulisan</span>
+                        <span>Lihat Seluruh Arsip IKARUS</span>
                     </a>
-                @endif
+                </div>
             </div>
         @endforelse
     </div>

@@ -116,8 +116,33 @@ test('search query filters posts on ikarus page', function () {
 
     $emptySearchResponse = $this->get(route('ikarus.index', ['q' => 'KeywordNonExistentStringXYZ123']));
     $emptySearchResponse->assertStatus(200);
-    $emptySearchResponse->assertSee('Belum Ada Tulisan Karya Alumni');
+    $emptySearchResponse->assertSee('Tidak Ada Arsip yang Sesuai');
     $emptySearchResponse->assertDontSee($matchedTitle);
+});
+
+test('ikarus archive filters by rubrik berita and tulisan correctly', function () {
+    $responseBerita = $this->get(route('ikarus.index', ['jenis' => 'berita']));
+    $responseBerita->assertStatus(200);
+    $responseBerita->assertSee('Berita IKARUS');
+
+    $responseTulisan = $this->get(route('ikarus.index', ['jenis' => 'tulisan']));
+    $responseTulisan->assertStatus(200);
+    $responseTulisan->assertSee('Karya Alumni');
+});
+
+test('ikarus archive filters by year correctly', function () {
+    $response2026 = $this->get(route('ikarus.index', ['tahun' => '2026']));
+    $response2026->assertStatus(200);
+
+    $response2025 = $this->get(route('ikarus.index', ['tahun' => '2025']));
+    $response2025->assertStatus(200);
+});
+
+test('ikarus demo articles can be viewed on detail page without 404', function () {
+    $demoSlug = 'reuni-akbar-2026-dan-musyawarah-nasional-ikarus-luncurkan-dana-abadi-santri';
+    $response = $this->get(route('artikel.show', $demoSlug));
+    $response->assertStatus(200);
+    $response->assertSee('Reuni Akbar 2026');
 });
 
 test('ikarus navigation menu is present on public pages', function () {

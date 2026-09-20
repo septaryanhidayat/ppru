@@ -32,6 +32,7 @@ test('articles page renders successfully', function () {
         'content' => '<p>Konten artikel pengujian sekolah.</p>',
         'status' => 'publish',
         'type' => 'post',
+        'published_at' => now()->addMinutes(5),
     ]);
     $post->categories()->attach($category->id);
 

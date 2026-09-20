@@ -74,12 +74,12 @@ class Post extends Model
 
     public function scopePosts($query)
     {
-        return $query->where('type', 'post');
+        return $query->whereIn('type', ['post', 'ikarus']);
     }
 
     public function scopeArticles($query)
     {
-        return $query->where('type', 'post');
+        return $query->whereIn('type', ['post', 'ikarus']);
     }
 
     public function scopeAgendas($query)

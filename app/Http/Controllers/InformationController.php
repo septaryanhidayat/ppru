@@ -11,6 +11,7 @@ use App\Models\ServiceSubmission;
 use App\Models\Setting;
 use App\Models\Testimonial;
 use App\Models\Video;
+use App\Services\IkarusDemoService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -126,17 +127,45 @@ class InformationController extends Controller
 
     public function ikarus(Request $request)
     {
-        $search = $request->input('q');
+        // Pastikan sample demo data IKARUS tersedia jika database masih kosong
+        IkarusDemoService::seedIfEmpty();
 
-        $query = Post::whereIn('status', ['publish', 'published'])
+        $search = $request->input('q');
+        $jenis = $request->input('jenis'); // 'berita', 'tulisan', atau null/semua
+        $tahun = $request->input('tahun'); // '2026', '2025', '2024', atau null/semua
+
+        $baseQuery = Post::whereIn('status', ['publish', 'published'])
             ->where(function ($q) {
                 $q->whereHas('categories', function ($catQ) {
                     $catQ->where('slug', 'ikarus')
                         ->orWhere('name', 'like', '%ikarus%');
                 })->orWhere('type', 'ikarus');
-            })
-            ->with(['categories', 'author', 'unitPendidikan']);
+            });
 
+        // Hitung total dan statistik arsip sebelum filter spesifik
+        $totalKarya = (clone $baseQuery)->count();
+        $countBerita = (clone $baseQuery)->where(function ($q) {
+            $q->whereHas('tags', function ($tq) {
+                $tq->where('slug', 'berita-ikarus');
+            })->orWhere('title', 'like', '%Reuni%')
+                ->orWhere('title', 'like', '%Pelantikan%')
+                ->orWhere('title', 'like', '%Penyaluran%')
+                ->orWhere('title', 'like', '%Beasiswa%')
+                ->orWhere('title', 'like', '%Silaturahmi%')
+                ->orWhere('title', 'like', '%Peluncuran%');
+        })->count();
+        $countTulisan = max(0, $totalKarya - $countBerita);
+
+        // Daftar tahun arsip yang tersedia beserta jumlahnya
+        $yearsList = [
+            '2026' => (clone $baseQuery)->whereYear('published_at', 2026)->count(),
+            '2025' => (clone $baseQuery)->whereYear('published_at', 2025)->count(),
+            '2024' => (clone $baseQuery)->whereYear('published_at', 2024)->count(),
+        ];
+
+        $query = (clone $baseQuery)->with(['categories', 'tags', 'author', 'unitPendidikan']);
+
+        // Filter kata kunci pencarian
         if ($search) {
             $query->where(function ($q) use ($search) {
                 $q->where('title', 'like', "%{$search}%")
@@ -145,20 +174,46 @@ class InformationController extends Controller
             });
         }
 
+        // Filter jenis / rubrik (Berita vs Tulisan Alumni)
+        if ($jenis === 'berita') {
+            $query->where(function ($q) {
+                $q->whereHas('tags', function ($tq) {
+                    $tq->where('slug', 'berita-ikarus');
+                })->orWhere('title', 'like', '%Reuni%')
+                    ->orWhere('title', 'like', '%Pelantikan%')
+                    ->orWhere('title', 'like', '%Penyaluran%')
+                    ->orWhere('title', 'like', '%Beasiswa%')
+                    ->orWhere('title', 'like', '%Silaturahmi%')
+                    ->orWhere('title', 'like', '%Peluncuran%');
+            });
+        } elseif ($jenis === 'tulisan') {
+            $query->where(function ($q) {
+                $q->whereHas('tags', function ($tq) {
+                    $tq->where('slug', 'karya-alumni');
+                })->orWhere(function ($subQ) {
+                    $subQ->whereDoesntHave('tags', function ($tq) {
+                        $tq->where('slug', 'berita-ikarus');
+                    })->where('title', 'not like', '%Reuni%')
+                        ->where('title', 'not like', '%Pelantikan%')
+                        ->where('title', 'not like', '%Penyaluran%')
+                        ->where('title', 'not like', '%Beasiswa%')
+                        ->where('title', 'not like', '%Silaturahmi%')
+                        ->where('title', 'not like', '%Peluncuran%');
+                });
+            });
+        }
+
+        // Filter tahun arsip
+        if ($tahun && in_array($tahun, ['2026', '2025', '2024'])) {
+            $query->whereYear('published_at', (int) $tahun);
+        }
+
         $featured = (clone $query)->where('is_featured', true)->latest('published_at')->first();
-        if (! $featured && ! $search) {
+        if (! $featured && ! $search && ! $jenis && ! $tahun) {
             $featured = (clone $query)->latest('published_at')->first();
         }
 
         $posts = $query->latest('published_at')->latest('id')->paginate(9)->withQueryString();
-
-        $totalKarya = Post::whereIn('status', ['publish', 'published'])
-            ->where(function ($q) {
-                $q->whereHas('categories', function ($catQ) {
-                    $catQ->where('slug', 'ikarus')
-                        ->orWhere('name', 'like', '%ikarus%');
-                })->orWhere('type', 'ikarus');
-            })->count();
 
         $alumniProfilesCount = Post::where('type', 'alumni')->whereIn('status', ['publish', 'published'])->count();
 
@@ -166,7 +221,12 @@ class InformationController extends Controller
             'posts',
             'featured',
             'search',
+            'jenis',
+            'tahun',
             'totalKarya',
+            'countBerita',
+            'countTulisan',
+            'yearsList',
             'alumniProfilesCount'
         ));
     }
