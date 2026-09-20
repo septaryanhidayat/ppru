@@ -72,6 +72,19 @@ class CmsAutoHealService
                         $table->string('head_photo')->nullable();
                     }
                 });
+
+                // Auto-heal: reset head_photo to neutral gray avatar if empty or pointing to activity photos
+                UnitPendidikan::query()->each(function ($unit) {
+                    if (empty($unit->head_photo)
+                        || str_contains($unit->head_photo, '/uploads/official/')
+                        || str_contains($unit->head_photo, 'kbm-santri')
+                        || str_contains($unit->head_photo, 'kegiatan-santri')
+                        || str_contains($unit->head_photo, 'panahan-santri')
+                        || str_contains($unit->head_photo, 'drone-')
+                        || str_contains($unit->head_photo, 'ngaji-sore')) {
+                        $unit->update(['head_photo' => '/uploads/avatar-neutral-gray.svg']);
+                    }
+                });
             }
         } catch (\Throwable $e) {
             Log::error('CmsAutoHealService::ensureUnitPendidikanSchemaExists error: '.$e->getMessage());
@@ -103,10 +116,17 @@ class CmsAutoHealService
             if (NavMenu::count() === 0) {
                 self::seedDefaultNavMenus();
             } else {
-                // Ensure no orphaned standalone Khutbah or Ikarus at top-level header
+                // Ensure no orphaned standalone Khutbah, Ikarus, Kontak, or PPDB at top-level header
                 NavMenu::where('location', 'header')
                     ->whereNull('parent_id')
-                    ->whereIn('url', ['/khutbah', '/ikarus'])
+                    ->where(function ($q) {
+                        $q->whereIn('url', ['/khutbah', '/ikarus', '/kontak', '/hubungi', '/ppdb'])
+                            ->orWhere('name', 'like', '%Khutbah%')
+                            ->orWhere('name', 'like', '%IKARUS%')
+                            ->orWhere('name', 'like', '%Kontak%')
+                            ->orWhere('name', 'like', '%PPDB%')
+                            ->orWhere('name', 'like', '%PSB%');
+                    })
                     ->delete();
 
                 // Ensure Profil dropdown contains IKARUS if missing
@@ -132,6 +152,19 @@ class CmsAutoHealService
                         'icon' => 'fa-solid fa-microphone-lines',
                         'location' => 'header',
                         'order' => 6,
+                    ]);
+                }
+
+                // Ensure Layanan dropdown contains Kontak if missing
+                $layanan = NavMenu::where('location', 'header')->whereNull('parent_id')->where('name', 'Layanan')->first();
+                if ($layanan && ! NavMenu::where('parent_id', $layanan->id)->whereIn('url', ['/hubungi', '/kontak'])->exists()) {
+                    NavMenu::create([
+                        'parent_id' => $layanan->id,
+                        'name' => 'Kontak & Lokasi Humas',
+                        'url' => '/hubungi',
+                        'icon' => 'fa-solid fa-address-book',
+                        'location' => 'header',
+                        'order' => 7,
                     ]);
                 }
 
@@ -381,7 +414,7 @@ class CmsAutoHealService
         NavMenu::create(['parent_id' => $info->id, 'name' => 'Khutbah Jum\'at & Tausiyah', 'url' => '/khutbah', 'icon' => 'fa-solid fa-microphone-lines', 'location' => 'header', 'order' => 6]);
 
         // 5. Layanan
-        NavMenu::create([
+        $layanan = NavMenu::create([
             'name' => 'Layanan',
             'url' => '/layanan',
             'icon' => 'fa-solid fa-handshake-angle',
@@ -389,26 +422,13 @@ class CmsAutoHealService
             'order' => 5,
             'is_active' => true,
         ]);
-
-        // 6. Kontak
-        NavMenu::create([
-            'name' => 'Kontak',
-            'url' => '/kontak',
-            'icon' => 'fa-solid fa-address-book',
-            'location' => 'header',
-            'order' => 6,
-            'is_active' => true,
-        ]);
-
-        // 7. PSB / PPDB
-        NavMenu::create([
-            'name' => 'PPDB Online',
-            'url' => '/ppdb',
-            'icon' => 'fa-solid fa-user-plus',
-            'location' => 'header',
-            'order' => 7,
-            'is_active' => true,
-        ]);
+        NavMenu::create(['parent_id' => $layanan->id, 'name' => 'Portal Layanan Terpadu', 'url' => '/layanan', 'icon' => 'fa-solid fa-handshake-angle', 'location' => 'header', 'order' => 1]);
+        NavMenu::create(['parent_id' => $layanan->id, 'name' => 'Permohonan Izin Santri', 'url' => '/layanan/izin', 'icon' => 'fa-solid fa-id-card-clip', 'location' => 'header', 'order' => 2]);
+        NavMenu::create(['parent_id' => $layanan->id, 'name' => 'Permohonan Kerja Sama', 'url' => '/layanan/kerjasama', 'icon' => 'fa-solid fa-handshake', 'location' => 'header', 'order' => 3]);
+        NavMenu::create(['parent_id' => $layanan->id, 'name' => 'Sewa Fasilitas Pesantren', 'url' => '/layanan/sewa', 'icon' => 'fa-solid fa-building-user', 'location' => 'header', 'order' => 4]);
+        NavMenu::create(['parent_id' => $layanan->id, 'name' => 'Brosur & Rincian Biaya', 'url' => '/download', 'icon' => 'fa-solid fa-file-pdf', 'location' => 'header', 'order' => 5]);
+        NavMenu::create(['parent_id' => $layanan->id, 'name' => 'Download Logo Resmi', 'url' => '/download/logo-ppru', 'icon' => 'fa-solid fa-image', 'location' => 'header', 'order' => 6]);
+        NavMenu::create(['parent_id' => $layanan->id, 'name' => 'Kontak & Lokasi Humas', 'url' => '/hubungi', 'icon' => 'fa-solid fa-address-book', 'location' => 'header', 'order' => 7]);
 
         // Footer Menus
         NavMenu::create(['name' => 'Tentang PPRU', 'url' => '/tentang-kami', 'location' => 'footer_quick', 'order' => 1]);

@@ -54,109 +54,16 @@
                      onerror="this.src='/uploads/official/logo-web-ppru.png'">
             </a>
 
-            {{-- DESKTOP NAVIGATION --}}
-            <nav class="hidden lg:flex items-center space-x-1 xl:space-x-1.5 font-semibold text-[13px] xl:text-[14px] text-white" aria-label="Navigasi Utama">
-                @if(isset($headerNavMenus) && $headerNavMenus->isNotEmpty())
-                    @foreach($headerNavMenus as $m)
-                        @php
-                            $isPendidikanItem = ($m->url === '/pendidikan' || \Illuminate\Support\Str::contains(strtolower($m->title), 'pendidikan'));
-                        @endphp
-                        @if($isPendidikanItem)
-                            <div class="relative group py-2">
-                                <button type="button" aria-haspopup="true" aria-expanded="false" class="px-3 py-1.5 rounded-lg inline-flex items-center hover:bg-black/15 transition {{ request()->is('pendidikan*') ? 'bg-black/20 text-[#fcd116]' : '' }}">
-                                    @if($m->icon)
-                                        <i class="{{ $m->icon }} text-xs mr-1.5 text-[#fcd116]"></i>
-                                    @else
-                                        <i class="fa-solid fa-building-columns text-xs mr-1.5 text-[#fcd116]"></i>
-                                    @endif
-                                    <span>{{ $m->title }}</span>
-                                    <i class="fa-solid fa-chevron-down text-[10px] ml-1.5 transition-transform duration-200 group-hover:rotate-180"></i>
-                                </button>
-                                <div class="absolute left-0 top-full pt-1 w-80 hidden group-hover:block transition-all duration-150 z-50">
-                                    <div class="bg-white rounded-2xl shadow-2xl border border-gray-100 py-2.5 text-gray-800 animate-fadeIn max-h-[75vh] overflow-y-auto">
-                                        <div class="px-4 py-2 border-b border-gray-100 flex items-center justify-between">
-                                            <span class="text-[11px] font-black text-[#00843d] uppercase tracking-wider">Unit Pendidikan PPRU</span>
-                                            <a href="{{ route('pendidikan.index') }}" class="text-[10px] font-bold text-[#00843d] hover:underline">Semua Unit &rarr;</a>
-                                        </div>
-
-                                        @if(isset($headerUnits) && $headerUnits->isNotEmpty())
-                                            @foreach($headerUnits as $nu)
-                                                @php
-                                                    $cleanNuName = trim(preg_replace('/\s*\([^)]*\)\s*$/', '', $nu->name));
-                                                @endphp
-                                                <a href="{{ route('pendidikan.show', $nu->slug) }}" class="block px-4 py-2 text-xs font-semibold text-gray-700 hover:bg-emerald-50 hover:text-[#00843d] transition">
-                                                    <div class="flex items-center justify-between">
-                                                        <span class="font-bold truncate">{{ $cleanNuName }}</span>
-                                                        @if($nu->short_name)
-                                                            <span class="text-[9px] bg-emerald-100 text-[#00843d] px-1.5 py-0.5 rounded font-bold shrink-0 ml-1.5">{{ $nu->short_name }}</span>
-                                                        @endif
-                                                    </div>
-                                                    @if($nu->category_type)
-                                                        <span class="text-[10px] text-gray-400 font-normal block">{{ $nu->category_type }}</span>
-                                                    @endif
-                                                </a>
-                                            @endforeach
-                                        @elseif($m->children->isNotEmpty())
-                                            @foreach($m->children as $child)
-                                                <a href="{{ $child->url }}" target="{{ $child->target }}" class="block px-4 py-2 text-xs font-semibold text-gray-700 hover:bg-emerald-50 hover:text-[#00843d] transition">
-                                                    <div class="flex items-center justify-between">
-                                                        <span class="font-bold truncate">{{ $child->title }}</span>
-                                                    </div>
-                                                </a>
-                                            @endforeach
-                                        @endif
-
-                                        <div class="border-t border-gray-100 mt-1 pt-1 px-4 py-1.5 bg-emerald-50/50">
-                                            <a href="{{ route('pendidikan.index') }}" class="text-xs font-black text-[#00843d] hover:underline flex items-center justify-between">
-                                                <span>Lihat Semua Kurikulum &amp; Jenjang</span>
-                                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        @elseif($m->children->isNotEmpty())
-                            <div class="relative group py-2">
-                                <button type="button" aria-haspopup="true" aria-expanded="false" class="px-3 py-1.5 rounded-lg inline-flex items-center hover:bg-black/15 transition">
-                                    @if($m->icon)
-                                        <i class="{{ $m->icon }} text-xs mr-1.5 text-[#fcd116]"></i>
-                                    @endif
-                                    <span>{{ $m->title }}</span>
-                                    <i class="fa-solid fa-chevron-down text-[10px] ml-1.5 transition-transform duration-200 group-hover:rotate-180"></i>
-                                </button>
-                                <div class="absolute left-0 top-full pt-1 w-64 hidden group-hover:block transition-all duration-150 z-50">
-                                    <div class="bg-white rounded-2xl shadow-2xl border border-gray-100 py-2.5 text-gray-800 animate-fadeIn">
-                                        @foreach($m->children as $child)
-                                            <a href="{{ $child->url }}" target="{{ $child->target }}" class="block px-4 py-2.5 text-xs font-semibold text-gray-700 hover:bg-emerald-50 hover:text-[#00843d] transition flex items-center">
-                                                @if($child->icon)
-                                                    <i class="{{ $child->icon }} w-5 text-[#00843d] mr-2 text-sm"></i>
-                                                @else
-                                                    <i class="fa-solid fa-angle-right w-5 text-emerald-500 mr-2 text-xs"></i>
-                                                @endif
-                                                <span>{{ $child->title }}</span>
-                                            </a>
-                                        @endforeach
-                                    </div>
-                                </div>
-                            </div>
-                        @else
-                            <a href="{{ $m->url }}" target="{{ $m->target }}" class="px-3 py-1.5 rounded-lg hover:bg-black/15 transition flex items-center">
-                                @if($m->icon)
-                                    <i class="{{ $m->icon }} text-xs mr-1.5 text-[#fcd116]"></i>
-                                @endif
-                                <span>{{ $m->title }}</span>
-                            </a>
-                        @endif
-                    @endforeach
-                @else
-                    {{-- 1. Beranda --}}
-                    <a href="{{ route('home') }}" class="px-3 py-1.5 rounded-lg hover:bg-black/15 transition {{ request()->routeIs('home') ? 'bg-black/20 text-[#fcd116]' : '' }}">
-                        Beranda
-                    </a>
+            {{-- DESKTOP NAVIGATION (Elegan, Bersih, Sempurna untuk Layar Desktop) --}}
+            <nav class="hidden lg:flex items-center space-x-1 xl:space-x-2 font-semibold text-[13px] xl:text-[14px] text-white" aria-label="Navigasi Utama">
+                {{-- 1. Beranda --}}
+                <a href="{{ route('home') }}" class="px-3 py-1.5 rounded-lg hover:bg-black/15 transition whitespace-nowrap {{ request()->routeIs('home') ? 'bg-black/20 text-[#fcd116]' : '' }}">
+                    Beranda
+                </a>
 
                 {{-- 2. Profil Dropdown --}}
                 <div class="relative group py-2">
-                    <button type="button" aria-haspopup="true" aria-expanded="false" class="px-3 py-1.5 rounded-lg inline-flex items-center hover:bg-black/15 transition {{ request()->is('sambutan*', 'tentang*', 'visi*', 'sejarah*', 'anggota*', 'struktur*', 'bidang*', 'program-unggulan*', 'dewan*') ? 'bg-black/20 text-[#fcd116]' : '' }}">
+                    <button type="button" aria-haspopup="true" aria-expanded="false" class="px-3 py-1.5 rounded-lg inline-flex items-center hover:bg-black/15 transition whitespace-nowrap {{ request()->is('sambutan*', 'tentang*', 'visi*', 'sejarah*', 'anggota*', 'struktur*', 'bidang*', 'program-unggulan*', 'dewan*', 'ikarus*') ? 'bg-black/20 text-[#fcd116]' : '' }}">
                         <span>Profil</span>
                         <i class="fa-solid fa-chevron-down text-[10px] ml-1.5 transition-transform duration-200 group-hover:rotate-180"></i>
                     </button>
@@ -188,16 +95,16 @@
                                 <i class="fa-solid fa-star-and-crescent w-5 text-[#00843d] mr-2 text-sm"></i> Program Unggulan Pesantren
                             </a>
                             <div class="border-t border-gray-100 my-1"></div>
-                            <a href="{{ route('ikarus.index') }}" class="block px-4 py-2.5 text-xs font-semibold text-gray-700 hover:bg-emerald-50 hover:text-[#00843d] transition flex items-center">
-                                <i class="fa-solid fa-user-graduate w-5 text-[#00843d] mr-2 text-sm"></i> Ikatan Alumni (IKARUS)
+                            <a href="{{ route('ikarus.index') }}" class="block px-4 py-2.5 text-xs font-semibold text-[#00843d] hover:bg-emerald-50 transition flex items-center font-bold">
+                                <i class="fa-solid fa-user-graduate w-5 text-amber-500 mr-2 text-sm"></i> Ikatan Alumni (IKARUS)
                             </a>
                         </div>
                     </div>
                 </div>
 
-                {{-- 3. Pendidikan Dropdown --}}
+                {{-- 3. Pendidikan Dropdown (Semua 8 Unit Lengkap & Tepat Rute) --}}
                 <div class="relative group py-2">
-                    <button type="button" aria-haspopup="true" aria-expanded="false" class="px-3 py-1.5 rounded-lg inline-flex items-center hover:bg-black/15 transition {{ request()->is('pendidikan*') ? 'bg-black/20 text-[#fcd116]' : '' }}">
+                    <button type="button" aria-haspopup="true" aria-expanded="false" class="px-3 py-1.5 rounded-lg inline-flex items-center hover:bg-black/15 transition whitespace-nowrap {{ request()->is('pendidikan*') ? 'bg-black/20 text-[#fcd116]' : '' }}">
                         <span>Pendidikan</span>
                         <i class="fa-solid fa-chevron-down text-[10px] ml-1.5 transition-transform duration-200 group-hover:rotate-180"></i>
                     </button>
@@ -220,7 +127,9 @@
                                                 <span class="text-[9px] bg-emerald-100 text-[#00843d] px-1.5 py-0.5 rounded font-bold shrink-0 ml-1.5">{{ $nu->short_name }}</span>
                                             @endif
                                         </div>
-                                        <span class="text-[10px] text-gray-400 font-normal block">{{ $nu->category_type }}</span>
+                                        @if($nu->category_type)
+                                            <span class="text-[10px] text-gray-400 font-normal block">{{ $nu->category_type }}</span>
+                                        @endif
                                     </a>
                                 @endforeach
                             @endif
@@ -235,9 +144,9 @@
                     </div>
                 </div>
 
-                {{-- 4. Informasi Dropdown (Berita, Prestasi, Agenda, Pengumuman, Galeri, Video) --}}
+                {{-- 4. Informasi Dropdown (Berita, Prestasi, Agenda, Pengumuman, Galeri, Video, Khutbah) --}}
                 <div class="relative group py-2">
-                    <button type="button" aria-haspopup="true" aria-expanded="false" class="px-3 py-1.5 rounded-lg inline-flex items-center hover:bg-black/15 transition {{ request()->is('artikel*', 'agenda*', 'pengumuman*', 'kategori*', 'prestasi*', 'galeri*', 'video*') ? 'bg-black/20 text-[#fcd116]' : '' }}">
+                    <button type="button" aria-haspopup="true" aria-expanded="false" class="px-3 py-1.5 rounded-lg inline-flex items-center hover:bg-black/15 transition whitespace-nowrap {{ request()->is('artikel*', 'agenda*', 'pengumuman*', 'kategori*', 'prestasi*', 'galeri*', 'video*', 'khutbah*') ? 'bg-black/20 text-[#fcd116]' : '' }}">
                         <span>Informasi</span>
                         <i class="fa-solid fa-chevron-down text-[10px] ml-1.5 transition-transform duration-200 group-hover:rotate-180"></i>
                     </button>
@@ -271,7 +180,7 @@
 
                 {{-- 5. Layanan & Unduhan Dropdown --}}
                 <div class="relative group py-2">
-                    <button type="button" aria-haspopup="true" aria-expanded="false" class="px-3 py-1.5 rounded-lg inline-flex items-center hover:bg-black/15 transition {{ request()->is('layanan*', 'download*', 'e-book*', 'hymne*', 'logo*', 'hubungi*') ? 'bg-black/20 text-[#fcd116]' : '' }}">
+                    <button type="button" aria-haspopup="true" aria-expanded="false" class="px-3 py-1.5 rounded-lg inline-flex items-center hover:bg-black/15 transition whitespace-nowrap {{ request()->is('layanan*', 'download*', 'e-book*', 'hymne*', 'logo*', 'hubungi*') ? 'bg-black/20 text-[#fcd116]' : '' }}">
                         <span>Layanan</span>
                         <i class="fa-solid fa-chevron-down text-[10px] ml-1.5 transition-transform duration-200 group-hover:rotate-180"></i>
                     </button>
@@ -303,7 +212,6 @@
                         </div>
                     </div>
                 </div>
-                @endif
             </nav>
 
             {{-- TOMBOL AKSI: DAFTAR PSB (EMAS/KUNING MENCOLOK KHAS LOGO) & LOGIN --}}
@@ -334,84 +242,16 @@
             <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-gray-400 text-xs"></i>
         </form>
 
-        @if(isset($headerNavMenus) && $headerNavMenus->isNotEmpty())
-            @foreach($headerNavMenus as $m)
-                @php
-                    $isPendidikanMobile = ($m->url === '/pendidikan' || \Illuminate\Support\Str::contains(strtolower($m->title), 'pendidikan'));
-                @endphp
-                @if($isPendidikanMobile)
-                    <details class="group">
-                        <summary class="flex justify-between items-center px-3 py-2 rounded-lg font-bold text-gray-900 hover:bg-emerald-50 cursor-pointer list-none">
-                            <span>
-                                <i class="{{ $m->icon ?: 'fa-solid fa-building-columns' }} mr-2 text-[#00843d]"></i>
-                                {{ $m->title }}
-                            </span>
-                            <i class="fa-solid fa-chevron-down text-xs group-open:rotate-180 transition"></i>
-                        </summary>
-                        <div class="pl-6 pt-1 space-y-1 text-xs">
-                            <a href="{{ route('pendidikan.index') }}" class="block py-1.5 font-bold text-[#00843d]">Katalog Semua Unit</a>
-                            @if(isset($headerUnits) && $headerUnits->isNotEmpty())
-                                @foreach($headerUnits as $nu)
-                                    <a href="{{ route('pendidikan.show', $nu->slug) }}" class="block py-1.5 text-gray-600 hover:text-[#00843d] truncate flex items-center justify-between">
-                                        <span>{{ trim(preg_replace('/\s*\([^)]*\)\s*$/', '', $nu->name)) }}</span>
-                                        @if($nu->short_name)
-                                            <span class="text-[9px] bg-emerald-100 text-[#00843d] px-1.5 py-0.5 rounded font-bold shrink-0 ml-1">{{ $nu->short_name }}</span>
-                                        @endif
-                                    </a>
-                                @endforeach
-                            @elseif($m->children->isNotEmpty())
-                                @foreach($m->children as $child)
-                                    <a href="{{ $child->url }}" class="block py-1.5 text-gray-600 hover:text-[#00843d] truncate">{{ $child->title }}</a>
-                                @endforeach
-                            @endif
-                        </div>
-                    </details>
-                @elseif($m->children->isNotEmpty())
-                    <details class="group">
-                        <summary class="flex justify-between items-center px-3 py-2 rounded-lg font-bold text-gray-900 hover:bg-emerald-50 cursor-pointer list-none">
-                            <span>
-                                @if($m->icon)
-                                    <i class="{{ $m->icon }} mr-2 text-[#00843d]"></i>
-                                @else
-                                    <i class="fa-solid fa-layer-group mr-2 text-[#00843d]"></i>
-                                @endif
-                                {{ $m->title }}
-                            </span>
-                            <i class="fa-solid fa-chevron-down text-xs group-open:rotate-180 transition"></i>
-                        </summary>
-                        <div class="pl-6 pt-1 space-y-1 text-xs">
-                            @foreach($m->children as $child)
-                                <a href="{{ $child->url }}" target="{{ $child->target }}" class="block py-1.5 text-gray-600 hover:text-[#00843d] flex items-center">
-                                    @if($child->icon)
-                                        <i class="{{ $child->icon }} mr-2 text-[11px] text-[#00843d]"></i>
-                                    @else
-                                        <i class="fa-solid fa-angle-right mr-2 text-[10px] text-emerald-500"></i>
-                                    @endif
-                                    <span>{{ $child->title }}</span>
-                                </a>
-                            @endforeach
-                        </div>
-                    </details>
-                @else
-                    <a href="{{ $m->url }}" target="{{ $m->target }}" class="block px-3 py-2 rounded-lg font-bold text-gray-900 hover:bg-emerald-50 hover:text-[#00843d] transition">
-                        @if($m->icon)
-                            <i class="{{ $m->icon }} mr-2 text-[#00843d]"></i>
-                        @endif
-                        {{ $m->title }}
-                    </a>
-                @endif
-            @endforeach
-        @else
-            <a href="{{ route('home') }}" class="block px-3 py-2 rounded-lg font-bold text-gray-900 hover:bg-emerald-50 hover:text-[#00843d] transition {{ request()->routeIs('home') ? 'bg-emerald-50 text-[#00843d]' : '' }}">
-                <i class="fa-solid fa-house mr-2 text-[#00843d]"></i> Beranda
-            </a>
+        <a href="{{ route('home') }}" class="block px-3 py-2 rounded-lg font-bold text-gray-900 hover:bg-emerald-50 hover:text-[#00843d] transition {{ request()->routeIs('home') ? 'bg-emerald-50 text-[#00843d]' : '' }}">
+            <i class="fa-solid fa-house mr-2 text-[#00843d]"></i> Beranda
+        </a>
 
-            {{-- Mobile Profil --}}
-            <details class="group">
-                <summary class="flex justify-between items-center px-3 py-2 rounded-lg font-bold text-gray-900 hover:bg-emerald-50 cursor-pointer list-none">
-                    <span><i class="fa-solid fa-landmark-dome mr-2 text-[#00843d]"></i> Profil</span>
-                    <i class="fa-solid fa-chevron-down text-xs group-open:rotate-180 transition"></i>
-                </summary>
+        {{-- Mobile Profil --}}
+        <details class="group">
+            <summary class="flex justify-between items-center px-3 py-2 rounded-lg font-bold text-gray-900 hover:bg-emerald-50 cursor-pointer list-none">
+                <span><i class="fa-solid fa-landmark-dome mr-2 text-[#00843d]"></i> Profil</span>
+                <i class="fa-solid fa-chevron-down text-xs group-open:rotate-180 transition"></i>
+            </summary>
                 <div class="pl-6 pt-1 space-y-1 text-xs">
                     <a href="{{ route('page.sambutan') }}" class="block py-1.5 text-gray-600 hover:text-[#00843d]">Sambutan Mudir PPRU</a>
                     <a href="{{ route('page.tentang-kami') }}" class="block py-1.5 text-gray-600 hover:text-[#00843d]">Profil Singkat Pesantren</a>
@@ -483,7 +323,6 @@
                     <a href="{{ route('hubungi') }}" class="block py-1.5 text-gray-600 hover:text-[#00843d]">Kontak &amp; Lokasi Humas</a>
                 </div>
             </details>
-        @endif
 
         <div class="pt-3 border-t border-gray-100 flex flex-col space-y-2">
             <a href="{{ route('ppdb.index') }}" class="block w-full text-center bg-[#f59e0b] hover:bg-[#d97706] text-slate-900 font-black py-2.5 rounded-full text-xs shadow">

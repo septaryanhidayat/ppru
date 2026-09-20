@@ -3,6 +3,7 @@
 use App\Models\Category;
 use App\Models\Download;
 use App\Models\Dpc;
+use App\Models\NavMenu;
 use App\Models\Post;
 use App\Models\UnitPendidikan;
 
@@ -121,4 +122,46 @@ test('artikel page renders redesigned modern kategori pilihan widget', function 
     $response->assertSee('fa-shapes');
     $response->assertSee('Jelajahi rubrik &amp; topik', false);
     $response->assertSee(route('artikel.index', ['kategori' => $category->slug]));
+});
+
+test('unit education heads use neutral gray avatar and ignore random activity photos', function () {
+    $units = UnitPendidikan::active()->get();
+    expect($units->isNotEmpty())->toBeTrue();
+
+    foreach ($units as $unit) {
+        // Assert that the head_photo_url returns neutral gray avatar
+        expect($unit->head_photo_url)->toContain('avatar-neutral-gray.svg');
+
+        // Assert that visiting the unit page displays the neutral gray avatar
+        $page = $this->get(route('pendidikan.show', $unit->slug));
+        $page->assertStatus(200);
+        $page->assertSee('avatar-neutral-gray.svg');
+    }
+
+    // Verify fallback when head_photo was set to a santri activity photo
+    $testUnit = $units->first();
+    $testUnit->head_photo = '/uploads/official/panahan-santri.webp';
+    expect($testUnit->head_photo_url)->toBe('/uploads/avatar-neutral-gray.svg');
+});
+
+test('header navigation maintains clean 5 core desktop sections and daftar psb button', function () {
+    $response = $this->get(route('home'));
+    $response->assertStatus(200);
+
+    // Desktop nav must have the 5 canonical sections
+    $response->assertSee('Beranda');
+    $response->assertSee('Profil');
+    $response->assertSee('Pendidikan');
+    $response->assertSee('Informasi');
+    $response->assertSee('Layanan');
+    $response->assertSee('Daftar PSB');
+
+    // Root items in database must not have standalone Khutbah or Ikarus at top level
+    $rootMenus = NavMenu::where('location', 'header')->whereNull('parent_id')->get();
+    foreach ($rootMenus as $rm) {
+        expect($rm->name)->not->toContain('Khutbah')
+            ->and($rm->name)->not->toContain('IKARUS Alumni')
+            ->and($rm->url)->not->toBe('/khutbah')
+            ->and($rm->url)->not->toBe('/ikarus');
+    }
 });

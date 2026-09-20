@@ -89,6 +89,16 @@ class UnitPendidikan extends Model
     public function getHeadPhotoUrlAttribute(): string
     {
         if (! empty($this->head_photo)) {
+            // Never use random activity photos for kepala unit; use neutral gray avatar
+            if (str_contains($this->head_photo, '/uploads/official/')
+                || str_contains($this->head_photo, 'kbm-santri')
+                || str_contains($this->head_photo, 'kegiatan-santri')
+                || str_contains($this->head_photo, 'panahan-santri')
+                || str_contains($this->head_photo, 'ngaji-sore')
+                || str_contains($this->head_photo, 'drone-')) {
+                return '/uploads/avatar-neutral-gray.svg';
+            }
+
             $path = parse_url($this->head_photo, PHP_URL_PATH);
 
             return '/'.ltrim($path, '/');
