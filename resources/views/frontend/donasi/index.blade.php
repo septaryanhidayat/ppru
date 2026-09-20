@@ -72,7 +72,7 @@
         <p class="text-sm sm:text-base text-gray-800 italic font-medium leading-relaxed max-w-4xl mx-auto">
             "{{ $siteSettings['donation_quote_text'] ?? 'Perumpamaan orang-orang yang menafkahkan hartanya di jalan Allah adalah serupa dengan sebutir benih yang menumbuhkan tujuh bulir, pada tiap-tiap bulir seratus biji. Allah melipatgandakan bagi siapa yang Dia kehendaki.' }}"
         </p>
-        <span class="block text-xs font-bold text-[#00913e] tracking-wider uppercase mt-3">{{ $siteSettings['donation_quote_ref'] ?? '— QS. Al-Baqarah: 261 —' }}</span>
+        <span class="block text-xs font-bold text-[#00913e] tracking-wider uppercase mt-3">{{ $siteSettings['donation_quote_ref'] ?? '(QS. Al-Baqarah: 261)' }}</span>
     </div>
 
     {{-- KARTU REKENING BANK & KONFIRMASI --}}

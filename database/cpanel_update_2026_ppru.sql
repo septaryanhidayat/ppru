@@ -308,10 +308,48 @@ INSERT INTO `nav_menus` (`name`, `url`, `target`, `icon`, `parent_id`, `location
 SELECT 'Alumni RU (IKARUS)', '/ikarus', '_self', 'fa-solid fa-graduation-cap', NULL, 'footer', 5, 1, NOW(), NOW()
 FROM DUAL WHERE NOT EXISTS (SELECT 1 FROM `nav_menus` WHERE `url` = '/ikarus' AND `location` = 'footer');
 
+-- ------------------------------------------------------------------------------
+-- 10. PEMBERSIHAN SIMBOL AI (EM-DASH & EN-DASH) & SAMPLE DATA DEMO IKARUS
+-- ------------------------------------------------------------------------------
+UPDATE `posts` SET 
+  `content` = REPLACE(REPLACE(`content`, '—', ' - '), '–', '-'), 
+  `excerpt` = REPLACE(REPLACE(`excerpt`, '—', ' - '), '–', '-'), 
+  `title` = REPLACE(REPLACE(`title`, '—', ' - '), '–', '-');
+
+UPDATE `settings` SET 
+  `value` = REPLACE(REPLACE(`value`, '—', ' - '), '–', '-');
+
+-- Insert Demo Alumni Articles
+INSERT INTO `posts` (`title`, `slug`, `author_name`, `excerpt`, `content`, `featured_image`, `is_featured`, `published_at`, `status`, `type`, `author_id`, `views_count`, `created_at`, `updated_at`)
+SELECT 
+  'Kiprah Alumni MARU Menempuh Studi di Universitas Al-Azhar Kairo Mesir',
+  'kiprah-alumni-maru-menempuh-studi-di-universitas-al-azhar-kairo-mesir',
+  'Ustadz Ahmad Farhan, Lc.',
+  'Catatan inspiratif alumni Madrasah Aliyah Raudhatul Ulum Sakatiga yang kini menempuh studi sarjana Fakultas Ushuluddin di Universitas Al-Azhar Kairo, Mesir.',
+  '<p><strong>Kairo, Mesir</strong> - Perjalanan menuntut ilmu ke negeri para anbiya adalah impian banyak santri di tanah air. Bagi kami para alumni Madrasah Aliyah Raudhatul Ulum (MARU) Sakatiga, bekal bahasa Arab fusha dan pemahaman dasar kitab turots yang dipelajari selama bertahun-tahun di asrama menjadi modal berharga saat pertama kali menginjakkan kaki di Universitas Al-Azhar Kairo.</p><p>Alhamdulillah, berkat piagam muadalah resmi yang telah lama terjalin antara Al-Azhar Asy-Syarif dengan Pondok Pesantren Raudhatul Ulum Sakatiga, adaptasi akademik santri alumni berjalan sangat lancar.</p>',
+  '/uploads/official/kbm-santri-0098.webp',
+  1,
+  NOW(),
+  'publish',
+  'ikarus',
+  1,
+  350,
+  NOW(),
+  NOW()
+FROM DUAL WHERE NOT EXISTS (SELECT 1 FROM `posts` WHERE `slug` = 'kiprah-alumni-maru-menempuh-studi-di-universitas-al-azhar-kairo-mesir');
+
+-- Hubungkan post ke kategori IKARUS
+INSERT IGNORE INTO `post_category` (`post_id`, `category_id`)
+SELECT p.id, c.id
+FROM `posts` p
+JOIN `categories` c ON c.slug = 'ikarus'
+WHERE p.type = 'ikarus';
+
 SET FOREIGN_KEY_CHECKS = 1;
 
 -- ==============================================================================
 -- UPDATE BERHASIL DILAKUKAN.
 -- Database cPanel kini kompatibel penuh dengan Multi-Unit Admin & Portal IKARUS PPRU.
 -- ==============================================================================
+
 

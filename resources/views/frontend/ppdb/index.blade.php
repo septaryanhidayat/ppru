@@ -563,8 +563,8 @@
                             </div>
                             <div>
                                 <strong class="block text-white">Jam Kerja Pelayanan:</strong>
-                                <span>{{ $settings['operational_weekday'] ?? "Senin – Jum'at: Pukul 08.00 – 15.00 WIB" }}</span><br>
-                                <span>{{ $settings['operational_weekend'] ?? 'Sabtu: Pukul 08.00 – 12.00 WIB' }}</span>
+                                <span>{{ $settings['operational_weekday'] ?? "Senin - Jum'at: Pukul 08.00 - 15.00 WIB" }}</span><br>
+                                <span>{{ $settings['operational_weekend'] ?? 'Sabtu: Pukul 08.00 - 12.00 WIB' }}</span>
                             </div>
                         </div>
 

@@ -66,7 +66,7 @@
                 </div>
                 <div>
                     <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Sumber / Surah</label>
-                    <input type="text" name="donation_quote_source" value="{{ $settings['donation_quote_source'] ?? '— QS. Al-Baqarah: 261 —' }}" class="w-full bg-slate-50 text-xs font-semibold text-slate-800 rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00843d]">
+                    <input type="text" name="donation_quote_source" value="{{ $settings['donation_quote_source'] ?? '(QS. Al-Baqarah: 261)' }}" class="w-full bg-slate-50 text-xs font-semibold text-slate-800 rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00843d]">
                 </div>
             </div>
         </div>

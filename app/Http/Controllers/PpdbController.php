@@ -82,8 +82,8 @@ class PpdbController extends Controller
             'alumni' => Setting::get('ppdb_alumni', 'Khusus bagi lulusan MTs Raudhatul Ulum dan SMPIT Raudhatul Ulum yang melanjutkan studi ke MARU atau SMAIT RU dengan potongan biaya uang pangkal.'),
 
             // Rekening & Kontak
-            'operational_weekday' => Setting::get('ppdb_operational_weekday', "Senin – Jum'at: Pukul 08.00 – 15.00 WIB"),
-            'operational_weekend' => Setting::get('ppdb_operational_weekend', 'Sabtu: Pukul 08.00 – 12.00 WIB'),
+            'operational_weekday' => Setting::get('ppdb_operational_weekday', "Senin - Jum'at: Pukul 08.00 - 15.00 WIB"),
+            'operational_weekend' => Setting::get('ppdb_operational_weekend', 'Sabtu: Pukul 08.00 - 12.00 WIB'),
             'secretariat' => Setting::get('ppdb_secretariat', 'Kompleks Pondok Pesantren Raudhatul Ulum, Desa Sakatiga, Kecamatan Indralaya, Ogan Ilir, Sumatera Selatan'),
             'registration_fee' => Setting::get('ppdb_registration_fee', 'Rp 250.000,-'),
             'bank_name' => Setting::get('ppdb_bank_name', 'Bank Syariah Indonesia (BSI)'),

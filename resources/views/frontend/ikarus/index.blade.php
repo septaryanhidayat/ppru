@@ -25,8 +25,8 @@
                     <span class="font-bold tracking-wider uppercase text-[11px]">Portal Resmi Alumni • YAPIRUS PPRU</span>
                 </div>
 
-                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight">
-                    <span class="text-white">IKARUS</span> — <span class="text-[#f59e0b]">Ikatan Keluarga Alumni</span> <br class="hidden sm:inline">Raudhatul Ulum
+                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight">
+                    <span class="text-white">IKARUS</span> - <span class="text-[#f59e0b]">Ikatan Keluarga Alumni</span> <br class="hidden sm:inline">Raudhatul Ulum
                 </h1>
 
                 <p class="text-sm sm:text-base text-emerald-100/90 leading-relaxed max-w-2xl font-light">
