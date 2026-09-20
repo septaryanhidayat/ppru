@@ -8,6 +8,7 @@ use App\Http\Middleware\SecurityMonitorMiddleware;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
+use Illuminate\Http\Exceptions\PostTooLargeException;
 use Illuminate\Http\Request;
 
 return Application::configure(basePath: dirname(__DIR__))
@@ -29,6 +30,17 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->trustProxies(at: '*');
     })
     ->withExceptions(function (Exceptions $exceptions): void {
+        $exceptions->render(function (PostTooLargeException $e, Request $request) {
+            $maxPost = ini_get('post_max_size') ?: '8M';
+            $message = "Ukuran total berkas yang Anda unggah terlalu besar (melebihi batas server {$maxPost}). Silakan gunakan berkas gambar dengan ukuran lebih ringkas atau naikkan post_max_size di cPanel.";
+
+            if ($request->expectsJson()) {
+                return response()->json(['message' => $message], 413);
+            }
+
+            return back()->with('error', $message);
+        });
+
         $exceptions->shouldRenderJsonWhen(
             fn (Request $request) => $request->is('api/*') || $request->expectsJson(),
         );

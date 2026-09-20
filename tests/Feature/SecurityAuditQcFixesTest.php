@@ -5,7 +5,10 @@ use App\Models\PpdbRegistration;
 use App\Models\Setting;
 use App\Models\User;
 use App\Services\HtmlSanitizer;
+use Illuminate\Contracts\Debug\ExceptionHandler;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Http\Exceptions\PostTooLargeException;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 uses(RefreshDatabase::class);
@@ -193,4 +196,17 @@ test('security headers middleware attaches content security policy', function ()
     $response = $this->get('/');
     $response->assertHeader('Content-Security-Policy');
     expect($response->headers->get('Content-Security-Policy'))->toContain("default-src 'self'");
+});
+
+test('post too large exception is handled gracefully with error flash message', function () {
+    $request = Request::create('/admin/settings', 'POST');
+    $session = app('session.store');
+    $request->setLaravelSession($session);
+
+    $e = new PostTooLargeException('Content Too Large');
+    $handler = app(ExceptionHandler::class);
+    $rendered = $handler->render($request, $e);
+
+    expect($rendered->getStatusCode())->toBe(302);
+    expect($session->get('error'))->toContain('Ukuran total berkas yang Anda unggah terlalu besar');
 });
