@@ -227,6 +227,7 @@ Route::get('/khutbah', [KhutbahController::class, 'index'])->name('khutbah.index
 Route::get('/khutbah/{slug}', [KhutbahController::class, 'show'])->name('khutbah.show');
 Route::get('/tausiyah', fn () => redirect()->route('khutbah.index'));
 Route::get('/khutbah-jumat', fn () => redirect()->route('khutbah.index'));
+Route::get('/layanan', fn () => redirect()->route('layanan.index'));
 Route::get('/layanan-terpadu', [InformationController::class, 'layanan'])->name('layanan.index');
 Route::get('/layanan-terpadu-2', [InformationController::class, 'layananTerpadu'])->name('layanan.terpadu');
 Route::get('/izin-sekolah', [InformationController::class, 'izinSekolah'])->name('layanan.izin');

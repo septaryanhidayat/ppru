@@ -178,36 +178,80 @@
                     </div>
                 </div>
 
-                {{-- 5. Layanan & Unduhan Dropdown --}}
+                {{-- 5. Layanan & Unduhan Dropdown (Termasuk 3 Layanan Publik Utama) --}}
                 <div class="relative group py-2">
-                    <button type="button" aria-haspopup="true" aria-expanded="false" class="px-3 py-1.5 rounded-lg inline-flex items-center hover:bg-black/15 transition whitespace-nowrap {{ request()->is('layanan*', 'download*', 'e-book*', 'hymne*', 'logo*', 'hubungi*') ? 'bg-black/20 text-[#fcd116]' : '' }}">
+                    <button type="button" aria-haspopup="true" aria-expanded="false" class="px-3 py-1.5 rounded-lg inline-flex items-center hover:bg-black/15 transition whitespace-nowrap {{ request()->is('layanan*', 'izin-sekolah*', 'permohonan-kerja-sama*', 'sewa-barang*', 'download*', 'e-book*', 'hymne*', 'logo*', 'hubungi*') ? 'bg-black/20 text-[#fcd116]' : '' }}">
                         <span>Layanan</span>
                         <i class="fa-solid fa-chevron-down text-[10px] ml-1.5 transition-transform duration-200 group-hover:rotate-180"></i>
                     </button>
-                    <div class="absolute left-0 top-full pt-1 w-64 hidden group-hover:block transition-all duration-150 z-50">
+                    <div class="absolute right-0 xl:right-auto xl:left-0 top-full pt-1 w-72 sm:w-80 hidden group-hover:block transition-all duration-150 z-50">
                         <div class="bg-white rounded-2xl shadow-2xl border border-gray-100 py-2.5 text-gray-800 animate-fadeIn">
-                            <a href="{{ route('layanan.index') }}" class="block px-4 py-2.5 text-xs font-semibold text-gray-700 hover:bg-emerald-50 hover:text-[#00843d] transition flex items-center">
-                                <i class="fa-solid fa-handshake-angle w-5 text-[#00843d] mr-2 text-sm"></i> Portal Layanan Terpadu
+                            {{-- Header Label: 3 Layanan Publik --}}
+                            <div class="px-4 py-2 bg-emerald-50/80 border-b border-gray-100 flex items-center justify-between">
+                                <span class="text-[11px] font-black text-[#00843d] uppercase tracking-wider flex items-center">
+                                    <i class="fa-solid fa-handshake-angle mr-1.5 text-amber-500"></i>
+                                    3 Layanan Publik
+                                </span>
+                                <span class="text-[9px] bg-[#00843d] text-white px-2 py-0.5 rounded-full font-bold uppercase tracking-wider">Online</span>
+                            </div>
+
+                            {{-- 1. Izin Kunjungan Sekolah --}}
+                            <a href="{{ route('layanan.izin') }}" class="block px-4 py-2.5 text-xs text-gray-700 hover:bg-emerald-50 hover:text-[#00843d] transition group/item">
+                                <div class="flex items-start">
+                                    <div class="w-7 h-7 rounded-lg bg-emerald-100 text-[#00843d] flex items-center justify-center shrink-0 mr-2.5 mt-0.5 group-hover/item:bg-[#00843d] group-hover/item:text-white transition">
+                                        <i class="fa-solid fa-school text-xs"></i>
+                                    </div>
+                                    <div>
+                                        <span class="font-bold block text-gray-800 group-hover/item:text-[#00843d]">Izin Kunjungan Sekolah</span>
+                                        <span class="text-[10px] text-gray-400 font-normal block">Studi banding, rombongan &amp; kunjungan dinas</span>
+                                    </div>
+                                </div>
                             </a>
+
+                            {{-- 2. Permohonan Kerja Sama --}}
+                            <a href="{{ route('layanan.kerjasama') }}" class="block px-4 py-2.5 text-xs text-gray-700 hover:bg-emerald-50 hover:text-[#00843d] transition group/item">
+                                <div class="flex items-start">
+                                    <div class="w-7 h-7 rounded-lg bg-emerald-100 text-[#00843d] flex items-center justify-center shrink-0 mr-2.5 mt-0.5 group-hover/item:bg-[#00843d] group-hover/item:text-white transition">
+                                        <i class="fa-solid fa-handshake text-xs"></i>
+                                    </div>
+                                    <div>
+                                        <span class="font-bold block text-gray-800 group-hover/item:text-[#00843d]">Permohonan Kerja Sama</span>
+                                        <span class="text-[10px] text-gray-400 font-normal block">Kemitraan, magang &amp; MoU lembaga</span>
+                                    </div>
+                                </div>
+                            </a>
+
+                            {{-- 3. Sewa Fasilitas & Sarana --}}
+                            <a href="{{ route('layanan.sewa') }}" class="block px-4 py-2.5 text-xs text-gray-700 hover:bg-emerald-50 hover:text-[#00843d] transition group/item">
+                                <div class="flex items-start">
+                                    <div class="w-7 h-7 rounded-lg bg-emerald-100 text-[#00843d] flex items-center justify-center shrink-0 mr-2.5 mt-0.5 group-hover/item:bg-[#00843d] group-hover/item:text-white transition">
+                                        <i class="fa-solid fa-building-user text-xs"></i>
+                                    </div>
+                                    <div>
+                                        <span class="font-bold block text-gray-800 group-hover/item:text-[#00843d]">Sewa Fasilitas &amp; Sarana</span>
+                                        <span class="text-[10px] text-gray-400 font-normal block">Aula, gedung, perlengkapan &amp; sarana</span>
+                                    </div>
+                                </div>
+                            </a>
+
                             <div class="border-t border-gray-100 my-1"></div>
-                            <a href="{{ route('layanan.izin') }}" class="block px-4 py-2.5 text-xs font-semibold text-gray-700 hover:bg-emerald-50 hover:text-[#00843d] transition flex items-center">
-                                <i class="fa-solid fa-id-card-clip w-5 text-[#00843d] mr-2 text-sm"></i> Permohonan Izin Santri
+
+                            {{-- Layanan Terpadu & Unduhan --}}
+                            <a href="{{ route('layanan.index') }}" class="block px-4 py-2 text-xs font-semibold text-gray-700 hover:bg-emerald-50 hover:text-[#00843d] transition flex items-center">
+                                <i class="fa-solid fa-circle-nodes w-5 text-[#00843d] mr-2.5 text-sm"></i>
+                                <span>Portal Layanan Terpadu</span>
                             </a>
-                            <a href="{{ route('layanan.kerjasama') }}" class="block px-4 py-2.5 text-xs font-semibold text-gray-700 hover:bg-emerald-50 hover:text-[#00843d] transition flex items-center">
-                                <i class="fa-solid fa-handshake w-5 text-[#00843d] mr-2 text-sm"></i> Permohonan Kerja Sama
+                            <a href="{{ route('download.index') }}" class="block px-4 py-2 text-xs font-semibold text-gray-700 hover:bg-emerald-50 hover:text-[#00843d] transition flex items-center">
+                                <i class="fa-solid fa-file-pdf w-5 text-[#00843d] mr-2.5 text-sm"></i>
+                                <span>Brosur &amp; Rincian Biaya</span>
                             </a>
-                            <a href="{{ route('layanan.sewa') }}" class="block px-4 py-2.5 text-xs font-semibold text-gray-700 hover:bg-emerald-50 hover:text-[#00843d] transition flex items-center">
-                                <i class="fa-solid fa-building-user w-5 text-[#00843d] mr-2 text-sm"></i> Sewa Fasilitas Pesantren
+                            <a href="{{ route('download.logo') }}" class="block px-4 py-2 text-xs font-semibold text-gray-700 hover:bg-emerald-50 hover:text-[#00843d] transition flex items-center">
+                                <i class="fa-solid fa-image w-5 text-[#00843d] mr-2.5 text-sm"></i>
+                                <span>Download Logo Resmi</span>
                             </a>
-                            <div class="border-t border-gray-100 my-1"></div>
-                            <a href="{{ route('download.index') }}" class="block px-4 py-2.5 text-xs font-semibold text-gray-700 hover:bg-emerald-50 hover:text-[#00843d] transition flex items-center">
-                                <i class="fa-solid fa-file-pdf w-5 text-[#00843d] mr-2 text-sm"></i> Brosur &amp; Rincian Biaya
-                            </a>
-                            <a href="{{ route('download.logo') }}" class="block px-4 py-2.5 text-xs font-semibold text-gray-700 hover:bg-emerald-50 hover:text-[#00843d] transition flex items-center">
-                                <i class="fa-solid fa-image w-5 text-[#00843d] mr-2 text-sm"></i> Download Logo Resmi
-                            </a>
-                            <a href="{{ route('hubungi') }}" class="block px-4 py-2.5 text-xs font-semibold text-gray-700 hover:bg-emerald-50 hover:text-[#00843d] transition flex items-center">
-                                <i class="fa-solid fa-address-book w-5 text-[#00843d] mr-2 text-sm"></i> Kontak &amp; Lokasi Humas
+                            <a href="{{ route('hubungi') }}" class="block px-4 py-2 text-xs font-semibold text-gray-700 hover:bg-emerald-50 hover:text-[#00843d] transition flex items-center">
+                                <i class="fa-solid fa-address-book w-5 text-[#00843d] mr-2.5 text-sm"></i>
+                                <span>Kontak &amp; Lokasi Humas</span>
                             </a>
                         </div>
                     </div>
@@ -314,13 +358,23 @@
                     <i class="fa-solid fa-chevron-down text-xs group-open:rotate-180 transition"></i>
                 </summary>
                 <div class="pl-6 pt-1 space-y-1 text-xs">
-                    <a href="{{ route('layanan.index') }}" class="block py-1.5 text-gray-600 hover:text-[#00843d]">Portal Layanan Terpadu</a>
-                    <a href="{{ route('layanan.izin') }}" class="block py-1.5 text-gray-600 hover:text-[#00843d]">Permohonan Izin Santri</a>
-                    <a href="{{ route('layanan.kerjasama') }}" class="block py-1.5 text-gray-600 hover:text-[#00843d]">Permohonan Kerja Sama</a>
-                    <a href="{{ route('layanan.sewa') }}" class="block py-1.5 text-gray-600 hover:text-[#00843d]">Sewa Fasilitas Pesantren</a>
-                    <a href="{{ route('download.index') }}" class="block py-1.5 text-gray-600 hover:text-[#00843d]">Brosur &amp; Berkas Resmi</a>
-                    <a href="{{ route('download.logo') }}" class="block py-1.5 text-gray-600 hover:text-[#00843d]">Download Logo Resmi</a>
-                    <a href="{{ route('hubungi') }}" class="block py-1.5 text-gray-600 hover:text-[#00843d]">Kontak &amp; Lokasi Humas</a>
+                    <div class="pt-1 pb-1 text-[10px] font-black uppercase text-[#00843d] tracking-wider flex items-center">
+                        <i class="fa-solid fa-star text-amber-500 mr-1 text-[9px]"></i> 3 Layanan Publik
+                    </div>
+                    <a href="{{ route('layanan.izin') }}" class="block py-1.5 text-gray-800 font-bold hover:text-[#00843d] flex items-center">
+                        <i class="fa-solid fa-school w-5 text-[#00843d] mr-1.5 text-xs"></i> Izin Kunjungan Sekolah
+                    </a>
+                    <a href="{{ route('layanan.kerjasama') }}" class="block py-1.5 text-gray-800 font-bold hover:text-[#00843d] flex items-center">
+                        <i class="fa-solid fa-handshake w-5 text-[#00843d] mr-1.5 text-xs"></i> Permohonan Kerja Sama
+                    </a>
+                    <a href="{{ route('layanan.sewa') }}" class="block py-1.5 text-gray-800 font-bold hover:text-[#00843d] flex items-center">
+                        <i class="fa-solid fa-building-user w-5 text-[#00843d] mr-1.5 text-xs"></i> Sewa Fasilitas &amp; Sarana
+                    </a>
+                    <div class="border-t border-gray-100 my-1 pt-1 text-[10px] font-black uppercase text-gray-400 tracking-wider">Layanan Lainnya</div>
+                    <a href="{{ route('layanan.index') }}" class="block py-1 text-gray-600 hover:text-[#00843d]">Portal Layanan Terpadu</a>
+                    <a href="{{ route('download.index') }}" class="block py-1 text-gray-600 hover:text-[#00843d]">Brosur &amp; Berkas Resmi</a>
+                    <a href="{{ route('download.logo') }}" class="block py-1 text-gray-600 hover:text-[#00843d]">Download Logo Resmi</a>
+                    <a href="{{ route('hubungi') }}" class="block py-1 text-gray-600 hover:text-[#00843d]">Kontak &amp; Lokasi Humas</a>
                 </div>
             </details>
 

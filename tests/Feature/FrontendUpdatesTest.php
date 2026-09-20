@@ -165,3 +165,46 @@ test('header navigation maintains clean 5 core desktop sections and daftar psb b
             ->and($rm->url)->not->toBe('/ikarus');
     }
 });
+
+test('header navigation includes Layanan with 3 public service submenus', function () {
+    $response = $this->get(route('home'));
+    $response->assertStatus(200);
+
+    // 3 Layanan Publik must be rendered in Layanan menu
+    $response->assertSee('3 Layanan Publik');
+    $response->assertSee('Izin Kunjungan Sekolah');
+    $response->assertSee(route('layanan.izin'));
+    $response->assertSee('Permohonan Kerja Sama');
+    $response->assertSee(route('layanan.kerjasama'));
+    $response->assertSee('Sewa Fasilitas &amp; Sarana', false);
+    $response->assertSee(route('layanan.sewa'));
+    $response->assertSee('Portal Layanan Terpadu');
+    $response->assertSee(route('layanan.index'));
+
+    // Test that redirect from /layanan works
+    $redirectResponse = $this->get('/layanan');
+    $redirectResponse->assertRedirect(route('layanan.index'));
+
+    // Test that all 3 public service pages load successfully
+    $izinPage = $this->get(route('layanan.izin'));
+    $izinPage->assertStatus(200);
+
+    $kerjasamaPage = $this->get(route('layanan.kerjasama'));
+    $kerjasamaPage->assertStatus(200);
+
+    $sewaPage = $this->get(route('layanan.sewa'));
+    $sewaPage->assertStatus(200);
+
+    // Database test: Layanan root menu has 3 public services as children
+    $layananMenu = NavMenu::where('location', 'header')
+        ->whereNull('parent_id')
+        ->where('name', 'Layanan')
+        ->with('children')
+        ->first();
+
+    expect($layananMenu)->not->toBeNull();
+    $childUrls = $layananMenu->children->pluck('url')->all();
+    expect($childUrls)->toContain('/izin-sekolah')
+        ->and($childUrls)->toContain('/permohonan-kerja-sama')
+        ->and($childUrls)->toContain('/sewa-barang');
+});

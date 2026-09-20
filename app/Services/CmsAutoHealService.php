@@ -155,17 +155,97 @@ class CmsAutoHealService
                     ]);
                 }
 
-                // Ensure Layanan dropdown contains Kontak if missing
-                $layanan = NavMenu::where('location', 'header')->whereNull('parent_id')->where('name', 'Layanan')->first();
-                if ($layanan && ! NavMenu::where('parent_id', $layanan->id)->whereIn('url', ['/hubungi', '/kontak'])->exists()) {
-                    NavMenu::create([
-                        'parent_id' => $layanan->id,
+                // Ensure Layanan exists at root level (order 5)
+                $layanan = NavMenu::where('location', 'header')->whereNull('parent_id')->where(function ($q) {
+                    $q->where('name', 'like', '%Layanan%')->orWhere('url', 'like', '%layanan%');
+                })->first();
+
+                if (! $layanan) {
+                    $layanan = NavMenu::create([
+                        'name' => 'Layanan',
+                        'url' => '/layanan-terpadu',
+                        'icon' => 'fa-solid fa-handshake-angle',
+                        'location' => 'header',
+                        'order' => 5,
+                        'is_active' => true,
+                    ]);
+                } else {
+                    $layanan->update(['order' => 5, 'name' => 'Layanan', 'url' => '/layanan-terpadu', 'is_active' => true]);
+                }
+
+                // Ensure 3 Layanan Publik & Layanan Terpadu exist as children of Layanan
+                $layananItems = [
+                    [
+                        'name' => 'Permohonan Izin Kunjungan Sekolah',
+                        'url' => '/izin-sekolah',
+                        'icon' => 'fa-solid fa-school',
+                        'order' => 1,
+                    ],
+                    [
+                        'name' => 'Permohonan Kerja Sama',
+                        'url' => '/permohonan-kerja-sama',
+                        'icon' => 'fa-solid fa-handshake',
+                        'order' => 2,
+                    ],
+                    [
+                        'name' => 'Permohonan Sewa Fasilitas & Sarana',
+                        'url' => '/sewa-barang',
+                        'icon' => 'fa-solid fa-building-user',
+                        'order' => 3,
+                    ],
+                    [
+                        'name' => 'Portal Layanan Terpadu',
+                        'url' => '/layanan-terpadu',
+                        'icon' => 'fa-solid fa-circle-nodes',
+                        'order' => 4,
+                    ],
+                    [
+                        'name' => 'Brosur & Rincian Biaya',
+                        'url' => '/download',
+                        'icon' => 'fa-solid fa-file-pdf',
+                        'order' => 5,
+                    ],
+                    [
+                        'name' => 'Download Logo Resmi',
+                        'url' => '/logo',
+                        'icon' => 'fa-solid fa-image',
+                        'order' => 6,
+                    ],
+                    [
                         'name' => 'Kontak & Lokasi Humas',
                         'url' => '/hubungi',
                         'icon' => 'fa-solid fa-address-book',
-                        'location' => 'header',
                         'order' => 7,
-                    ]);
+                    ],
+                ];
+
+                foreach ($layananItems as $item) {
+                    $child = NavMenu::where('parent_id', $layanan->id)
+                        ->where(function ($q) use ($item) {
+                            $q->where('url', $item['url'])
+                                ->orWhere('name', $item['name'])
+                                ->orWhere('url', 'like', '%'.trim($item['url'], '/').'%');
+                        })->first();
+
+                    if (! $child) {
+                        NavMenu::create([
+                            'parent_id' => $layanan->id,
+                            'name' => $item['name'],
+                            'url' => $item['url'],
+                            'icon' => $item['icon'],
+                            'location' => 'header',
+                            'order' => $item['order'],
+                            'is_active' => true,
+                        ]);
+                    } else {
+                        $child->update([
+                            'name' => $item['name'],
+                            'url' => $item['url'],
+                            'icon' => $item['icon'],
+                            'order' => $item['order'],
+                            'is_active' => true,
+                        ]);
+                    }
                 }
 
                 // Ensure Pendidikan dropdown contains all active unit pendidikans
@@ -416,18 +496,18 @@ class CmsAutoHealService
         // 5. Layanan
         $layanan = NavMenu::create([
             'name' => 'Layanan',
-            'url' => '/layanan',
+            'url' => '/layanan-terpadu',
             'icon' => 'fa-solid fa-handshake-angle',
             'location' => 'header',
             'order' => 5,
             'is_active' => true,
         ]);
-        NavMenu::create(['parent_id' => $layanan->id, 'name' => 'Portal Layanan Terpadu', 'url' => '/layanan', 'icon' => 'fa-solid fa-handshake-angle', 'location' => 'header', 'order' => 1]);
-        NavMenu::create(['parent_id' => $layanan->id, 'name' => 'Permohonan Izin Santri', 'url' => '/layanan/izin', 'icon' => 'fa-solid fa-id-card-clip', 'location' => 'header', 'order' => 2]);
-        NavMenu::create(['parent_id' => $layanan->id, 'name' => 'Permohonan Kerja Sama', 'url' => '/layanan/kerjasama', 'icon' => 'fa-solid fa-handshake', 'location' => 'header', 'order' => 3]);
-        NavMenu::create(['parent_id' => $layanan->id, 'name' => 'Sewa Fasilitas Pesantren', 'url' => '/layanan/sewa', 'icon' => 'fa-solid fa-building-user', 'location' => 'header', 'order' => 4]);
+        NavMenu::create(['parent_id' => $layanan->id, 'name' => 'Permohonan Izin Kunjungan Sekolah', 'url' => '/izin-sekolah', 'icon' => 'fa-solid fa-school', 'location' => 'header', 'order' => 1]);
+        NavMenu::create(['parent_id' => $layanan->id, 'name' => 'Permohonan Kerja Sama', 'url' => '/permohonan-kerja-sama', 'icon' => 'fa-solid fa-handshake', 'location' => 'header', 'order' => 2]);
+        NavMenu::create(['parent_id' => $layanan->id, 'name' => 'Permohonan Sewa Fasilitas & Sarana', 'url' => '/sewa-barang', 'icon' => 'fa-solid fa-building-user', 'location' => 'header', 'order' => 3]);
+        NavMenu::create(['parent_id' => $layanan->id, 'name' => 'Portal Layanan Terpadu', 'url' => '/layanan-terpadu', 'icon' => 'fa-solid fa-circle-nodes', 'location' => 'header', 'order' => 4]);
         NavMenu::create(['parent_id' => $layanan->id, 'name' => 'Brosur & Rincian Biaya', 'url' => '/download', 'icon' => 'fa-solid fa-file-pdf', 'location' => 'header', 'order' => 5]);
-        NavMenu::create(['parent_id' => $layanan->id, 'name' => 'Download Logo Resmi', 'url' => '/download/logo-ppru', 'icon' => 'fa-solid fa-image', 'location' => 'header', 'order' => 6]);
+        NavMenu::create(['parent_id' => $layanan->id, 'name' => 'Download Logo Resmi', 'url' => '/logo', 'icon' => 'fa-solid fa-image', 'location' => 'header', 'order' => 6]);
         NavMenu::create(['parent_id' => $layanan->id, 'name' => 'Kontak & Lokasi Humas', 'url' => '/hubungi', 'icon' => 'fa-solid fa-address-book', 'location' => 'header', 'order' => 7]);
 
         // Footer Menus
