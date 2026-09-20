@@ -24,6 +24,7 @@ class Post extends Model
         'views_count',
         'author_id',
         'author_name',
+        'unit_pendidikan_id',
         'published_at',
         'meta_title',
         'meta_description',
@@ -34,11 +35,26 @@ class Post extends Model
         'published_at' => 'datetime',
         'views_count' => 'integer',
         'is_featured' => 'boolean',
+        'unit_pendidikan_id' => 'integer',
     ];
 
     public function author(): BelongsTo
     {
         return $this->belongsTo(User::class, 'author_id');
+    }
+
+    public function unitPendidikan(): BelongsTo
+    {
+        return $this->belongsTo(UnitPendidikan::class, 'unit_pendidikan_id');
+    }
+
+    public function scopeForUnit($query, ?int $unitId)
+    {
+        if (! empty($unitId)) {
+            return $query->where('unit_pendidikan_id', $unitId);
+        }
+
+        return $query;
     }
 
     public function categories(): BelongsToMany
@@ -53,7 +69,7 @@ class Post extends Model
 
     public function scopePublished($query)
     {
-        return $query->where('status', 'publish');
+        return $query->whereIn('status', ['publish', 'published']);
     }
 
     public function scopePosts($query)

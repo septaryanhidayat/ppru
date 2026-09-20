@@ -112,6 +112,70 @@
                 </div>
             @endif
 
+            @if(in_array($page->slug, ['sejarah', 'sejarah-pesantren']))
+                {{-- KHUSUS HALAMAN SEJARAH: FOTO & SUBTITLE --}}
+                <div class="p-6 rounded-2xl bg-amber-50/70 border border-amber-200 space-y-4">
+                    <div class="flex items-center space-x-3 pb-3 border-b border-amber-200/80">
+                        <div class="w-9 h-9 rounded-xl bg-amber-600 text-white flex items-center justify-center text-sm shadow-xs">
+                            <i class="fa-solid fa-landmark"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-slate-900 text-sm">Pengaturan Khusus Halaman Sejarah</h3>
+                            <p class="text-[11px] text-amber-800">Atur foto ilustrasi sejarah pesantren dan sub-judul pengantar.</p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Sub-Judul Sejarah</label>
+                            <input type="text" name="sejarah_subtitle" value="{{ old('sejarah_subtitle', $settings['sejarah_subtitle'] ?? 'Menegakkan Risalah Islam di Bumi Sakatiga Mekkah Kecil') }}" class="w-full bg-white text-xs font-semibold rounded-xl px-3.5 py-2.5 border border-slate-200 focus:ring-2 focus:ring-amber-500">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Unggah Foto Banner Sejarah (JPG/PNG/WEBP)</label>
+                            <input type="file" name="sejarah_image_file" accept="image/*" class="w-full text-xs text-slate-600 file:mr-3 file:py-2 file:px-3.5 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-amber-600 file:text-white hover:file:bg-amber-700 cursor-pointer">
+                        </div>
+
+                        <div class="md:col-span-2">
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Atau Path URL Gambar Banner</label>
+                            <input type="text" name="sejarah_image_url" value="{{ old('sejarah_image_url', $settings['sejarah_image_url'] ?? '/uploads/logo-ppru-banner.png') }}" placeholder="/uploads/..." class="w-full bg-white text-xs font-mono rounded-xl px-3.5 py-2.5 border border-slate-200 focus:ring-2 focus:ring-amber-500">
+                        </div>
+                    </div>
+                </div>
+            @endif
+
+            @if(in_array($page->slug, ['struktur', 'struktur-organisasi', 'struktur-kepengurusan']))
+                {{-- KHUSUS HALAMAN STRUKTUR ORGANISASI --}}
+                <div class="p-6 rounded-2xl bg-teal-50/70 border border-teal-200 space-y-4">
+                    <div class="flex items-center space-x-3 pb-3 border-b border-teal-200/80">
+                        <div class="w-9 h-9 rounded-xl bg-teal-700 text-white flex items-center justify-center text-sm shadow-xs">
+                            <i class="fa-solid fa-sitemap"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-slate-900 text-sm">Pengaturan Khusus Struktur Organisasi</h3>
+                            <p class="text-[11px] text-teal-800">Tambahkan gambar bagan kepengurusan dan intro pengantar.</p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Unggah Bagan Gambar Struktur (Opsional)</label>
+                            <input type="file" name="struktur_chart_image_file" accept="image/*" class="w-full text-xs text-slate-600 file:mr-3 file:py-2 file:px-3.5 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-teal-700 file:text-white hover:file:bg-teal-800 cursor-pointer">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Atau Path URL Bagan Gambar</label>
+                            <input type="text" name="struktur_chart_image_url" value="{{ old('struktur_chart_image_url', $settings['struktur_chart_image_url'] ?? '') }}" placeholder="/uploads/..." class="w-full bg-white text-xs font-mono rounded-xl px-3.5 py-2.5 border border-slate-200 focus:ring-2 focus:ring-teal-700">
+                        </div>
+
+                        <div class="md:col-span-2">
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Teks Pengantar Struktur</label>
+                            <textarea name="struktur_intro" rows="2" class="w-full bg-white text-xs rounded-xl p-3 border border-slate-200 focus:ring-2 focus:ring-teal-700">{{ old('struktur_intro', $settings['struktur_intro'] ?? '') }}</textarea>
+                        </div>
+                    </div>
+                </div>
+            @endif
+
             {{-- RICH TEXT WYSIWYG EDITOR (WordPress Style Toolbox) --}}
             <div>
                 <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">

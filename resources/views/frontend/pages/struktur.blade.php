@@ -237,7 +237,7 @@
                 </h2>
                 <p class="text-xs sm:text-sm text-gray-500 mt-1 font-light">Mengasah kecakapan santri menjadi pribadi cerdas, mandiri, dan berjiwa pelopor.</p>
             </div>
-            <a href="{{ route('dpc.index') }}" class="inline-flex items-center text-xs font-bold text-[#00913e] hover:text-emerald-800 flex-shrink-0 transition">
+            <a href="{{ route('program-unggulan.index') }}" class="inline-flex items-center text-xs font-bold text-[#00913e] hover:text-emerald-800 flex-shrink-0 transition">
                 <span>Lihat Semua Program</span>
                 <i class="fa-solid fa-arrow-right ml-1.5 text-[10px]"></i>
             </a>

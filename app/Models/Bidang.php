@@ -32,7 +32,7 @@ class Bidang extends Model
             return '/'.ltrim($path, '/');
         }
 
-        return '/uploads/lab-robbani.jpg';
+        return '/uploads/official/drone-raudhatul-ulum.webp';
     }
 
     public function getIsImageIconAttribute(): bool
@@ -57,6 +57,6 @@ class Bidang extends Model
             return '/'.ltrim($path, '/');
         }
 
-        return '/uploads/logo-robbani-emblem.svg';
+        return '/uploads/official/logo-ru-berwarna.png';
     }
 }

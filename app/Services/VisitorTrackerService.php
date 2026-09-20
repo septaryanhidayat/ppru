@@ -208,7 +208,7 @@ class VisitorTrackerService
 
         $host = strtolower(parse_url($referer, PHP_URL_HOST) ?? '');
 
-        if (empty($host) || $host === strtolower($currentHost) || str_contains($host, 'robbani.sch.id') || str_contains($host, 'localhost') || str_contains($host, '127.0.0.1')) {
+        if (empty($host) || $host === strtolower($currentHost) || str_contains($host, 'ppru.ac.id') || str_contains($host, 'localhost') || str_contains($host, '127.0.0.1')) {
             return 'Direct / Langsung';
         }
 
@@ -317,24 +317,23 @@ class VisitorTrackerService
             'tentang-kami' => 'Profil & Tentang Kami',
             'sambutan-ketua-dpd' => 'Sambutan Kepala Sekolah',
             'sambutan-kepala-sekolah' => 'Sambutan Kepala Sekolah',
-            'struktur-kepengurusan' => 'Struktur Organisasi Sekolah',
-            'anggota-dewan' => 'Dewan Guru & GTK',
-            'dewan-guru' => 'Dewan Guru & GTK',
-            'artikel' => 'Kabar & Berita Sekolah',
+            'struktur-kepengurusan' => 'Struktur Organisasi Pesantren',
+            'anggota-dewan' => 'Dewan Guru & Asatidz',
+            'dewan-guru' => 'Dewan Guru & Asatidz',
+            'artikel' => 'Kabar & Berita Pesantren',
             'bidang' => 'Fasilitas & Sarana Kampus',
             'fasilitas' => 'Fasilitas & Sarana Kampus',
             'agenda' => 'Agenda & Kalender Akademik',
-            'pengumuman' => 'Pengumuman Resmi Sekolah',
+            'pengumuman' => 'Pengumuman Resmi Pesantren',
             'video' => 'Galeri Video Santri',
             'galeri' => 'Galeri Foto Kegiatan',
             'download' => 'Pusat Unduhan Berkas',
             'e-book' => 'Download Modul & E-Book',
-            'hymne-mars' => 'Hymne & Mars Robbani',
-            'hymne-mars' => 'Hymne & Mars Robbani',
-            'hubungi' => 'Konsultasi & Informasi PPDB',
-            'donasi' => 'Infaq & Beasiswa Robbani',
-            'dpc' => 'Program Unggulan Sekolah',
-            'program-unggulan' => 'Program Unggulan Sekolah',
+            'hymne-mars' => 'Mars & Hymne PPRU',
+            'hubungi' => 'Konsultasi & Informasi PSB',
+            'donasi' => 'Infaq & Wakaf PPRU',
+            'dpc' => 'Program Unggulan Pesantren',
+            'program-unggulan' => 'Program Unggulan Pesantren',
         ];
 
         if (isset($routes[$p])) {

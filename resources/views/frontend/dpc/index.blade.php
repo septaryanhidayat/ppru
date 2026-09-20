@@ -38,7 +38,7 @@
                 <div>
                     {{-- FOTO DOKUMENTASI PROGRAM --}}
                     <div class="h-48 sm:h-52 w-full overflow-hidden bg-slate-100 relative">
-                        <img src="{{ $dpc->thumbnail_url }}" alt="{{ $dpc->name }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='/uploads/activities-robbani.webp'">
+                        <img src="{{ $dpc->thumbnail_url }}" alt="{{ $dpc->name }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='/images/hero-1.webp'">
                         <span class="absolute top-3.5 left-3.5 bg-[#00913e] text-white text-[10px] font-bold px-3 py-1 rounded-full shadow-md uppercase tracking-wider">
                             {{ $dpc->address ?: 'Program Unggulan' }}
                         </span>
@@ -69,7 +69,7 @@
                         <i class="fa-solid fa-star text-amber-400 text-xs"></i>
                         <span>Unggulan Terpadu</span>
                     </span>
-                    <span class="text-[11px] text-gray-400 font-medium">SMA IT PPRU</span>
+                    <span class="text-[11px] text-gray-400 font-medium">PPRU Sakatiga</span>
                 </div>
             </div>
         @empty

@@ -8,7 +8,7 @@
     <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-xs border border-slate-200/80">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-100">
             <div>
-                <h2 class="text-lg font-black text-slate-800">Daftar Menu Cepat (Quick Action)</h2>
+                <h2 class="text-lg font-black text-slate-800">Menu Akses Cepat (Quick Action)</h2>
                 <p class="text-xs text-slate-500 mt-0.5">Kelola kartu icon, judul, tautan (link), dan status aktif. 8 menu aktif teratas otomatis tampil di bawah Hero Beranda.</p>
             </div>
             <a href="{{ route('admin.quick-menus.create') }}" class="inline-flex items-center space-x-2 bg-[#00843d] hover:bg-emerald-800 text-white font-bold text-xs px-5 py-2.5 rounded-xl shadow-md transition self-start sm:self-auto">

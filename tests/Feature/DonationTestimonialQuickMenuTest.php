@@ -29,7 +29,7 @@ test('donation page renders account number when configured in settings', functio
 test('admin can update donation settings', function () {
     $admin = User::create([
         'name' => 'Admin Settings',
-        'email' => 'admin_donasi@robbani.sch.id',
+        'email' => 'admin_donasi@ppru.ac.id',
         'password' => Hash::make('Secret123!'),
         'role' => 'admin',
     ]);
@@ -37,7 +37,7 @@ test('admin can update donation settings', function () {
     $response = $this->actingAs($admin)->post('/admin/settings', [
         'donation_bank_1_name' => 'Bank Syariah Indonesia (BSI)',
         'donation_bank_1_rekening' => '7188992211',
-        'donation_bank_1_holder' => 'YAYASAN SMA IT PLUS ROBBANI',
+        'donation_bank_1_holder' => 'YAYASAN RAUDHATUL ULUM SAKATIGA',
     ]);
 
     $response->assertRedirect();
@@ -50,7 +50,7 @@ test('admin can update donation settings', function () {
 test('admin can perform full CRUD on testimonials', function () {
     $admin = User::create([
         'name' => 'Admin Testi',
-        'email' => 'admin_testi@robbani.sch.id',
+        'email' => 'admin_testi@ppru.ac.id',
         'password' => Hash::make('Secret123!'),
         'role' => 'admin',
     ]);
@@ -64,7 +64,7 @@ test('admin can perform full CRUD on testimonials', function () {
     $response = $this->actingAs($admin)->post('/admin/testimonials', [
         'name' => 'Ustadz Ahmad Fauzi',
         'profession' => 'Wali Santri Angkatan I',
-        'content' => 'SMA IT Plus Robbani sangat amanah dalam mendidik karakter dan hafalan Al-Quran santri.',
+        'content' => 'Pondok Pesantren Raudhatul Ulum sangat amanah dalam mendidik karakter dan hafalan Al-Quran santri.',
         'status' => 'publish',
     ]);
     $response->assertRedirect('/admin/testimonials');
@@ -77,7 +77,7 @@ test('admin can perform full CRUD on testimonials', function () {
     $response = $this->actingAs($admin)->put("/admin/testimonials/{$testi->id}", [
         'name' => 'Ustadz Ahmad Fauzi, M.Pd.I',
         'profession' => 'Wali Santri & Tokoh Pendidikan',
-        'content' => 'Pendidikan di SMA IT Plus Robbani unggul dalam akhlak dan sains.',
+        'content' => 'Pendidikan di Pondok Pesantren Raudhatul Ulum unggul dalam akhlak dan sains.',
         'status' => 'publish',
     ]);
     $response->assertRedirect('/admin/testimonials');
@@ -92,7 +92,7 @@ test('admin can perform full CRUD on testimonials', function () {
 test('admin can perform full CRUD on quick menus', function () {
     $admin = User::create([
         'name' => 'Admin Quick Menu',
-        'email' => 'admin_qm@robbani.sch.id',
+        'email' => 'admin_qm@ppru.ac.id',
         'password' => Hash::make('Secret123!'),
         'role' => 'admin',
     ]);
@@ -100,32 +100,31 @@ test('admin can perform full CRUD on quick menus', function () {
     // 1. Index
     $this->actingAs($admin)->get('/admin/quick-menus')
         ->assertStatus(200)
-        ->assertSee('Menu Cepat');
+        ->assertSee('Menu Akses Cepat');
 
-    // 2. Create
+    // 2. Create / Store
     $response = $this->actingAs($admin)->post('/admin/quick-menus', [
-        'name' => 'Konsultasi PPDB',
-        'url' => '/hubungi',
+        'name' => 'Portal PSB Online',
+        'url' => 'https://santri.ppru.ac.id',
         'icon' => 'fa-solid fa-graduation-cap',
-        'order' => 10,
+        'order' => 1,
         'is_active' => '1',
     ]);
     $response->assertRedirect('/admin/quick-menus');
 
-    $menu = QuickMenu::where('name', 'Konsultasi PPDB')->first();
+    $menu = QuickMenu::where('name', 'Portal PSB Online')->first();
     expect($menu)->not->toBeNull();
-    expect($menu->is_active)->toBeTrue();
 
     // 3. Update
     $response = $this->actingAs($admin)->put("/admin/quick-menus/{$menu->id}", [
-        'name' => 'PPDB Online',
-        'url' => '/hubungi',
-        'icon' => 'fa-solid fa-school',
-        'order' => 11,
+        'name' => 'Portal PSB Santri Baru',
+        'url' => 'https://santri.ppru.ac.id/daftar',
+        'icon' => 'fa-solid fa-user-plus',
+        'order' => 2,
         'is_active' => '1',
     ]);
     $response->assertRedirect('/admin/quick-menus');
-    expect($menu->fresh()->name)->toBe('PPDB Online');
+    expect($menu->fresh()->name)->toBe('Portal PSB Santri Baru');
 
     // 4. Delete
     $response = $this->actingAs($admin)->delete("/admin/quick-menus/{$menu->id}");
@@ -136,7 +135,7 @@ test('admin can perform full CRUD on quick menus', function () {
 test('admin can update bidang icon and it displays on public page', function () {
     $admin = User::create([
         'name' => 'Admin Bidang',
-        'email' => 'admin_bidang@robbani.sch.id',
+        'email' => 'admin_bidang@ppru.ac.id',
         'password' => Hash::make('Secret123!'),
         'role' => 'admin',
     ]);

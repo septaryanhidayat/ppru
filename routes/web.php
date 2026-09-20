@@ -8,14 +8,16 @@ use App\Http\Controllers\Admin\AdminCategoryController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AdminDewanController;
 use App\Http\Controllers\Admin\AdminDownloadController;
-use App\Http\Controllers\Admin\AdminDpcController;
 use App\Http\Controllers\Admin\AdminFeedbackController;
+use App\Http\Controllers\Admin\AdminHeroSlideController;
 use App\Http\Controllers\Admin\AdminLayananController;
 use App\Http\Controllers\Admin\AdminMediaController;
+use App\Http\Controllers\Admin\AdminNavMenuController;
 use App\Http\Controllers\Admin\AdminPageController;
 use App\Http\Controllers\Admin\AdminPopupController;
 use App\Http\Controllers\Admin\AdminPostController;
 use App\Http\Controllers\Admin\AdminPpdbController;
+use App\Http\Controllers\Admin\AdminProgramUnggulanController;
 use App\Http\Controllers\Admin\AdminQuickMenuController;
 use App\Http\Controllers\Admin\AdminSecurityController;
 use App\Http\Controllers\Admin\AdminSettingController;
@@ -42,7 +44,7 @@ Route::post('/login', [AuthController::class, 'login'])->name('login.post');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // === ADMIN CMS PANEL ROUTES (PROTECTED) ===
-Route::prefix('admin')->middleware('auth')->name('admin.')->group(function () {
+Route::prefix('admin')->middleware(['auth', 'unit.access'])->name('admin.')->group(function () {
     Route::get('/', [AdminDashboardController::class, 'index'])->name('dashboard');
     Route::post('/maintenance/toggle', [AdminDashboardController::class, 'toggleMaintenance'])->name('maintenance.toggle');
 
@@ -55,7 +57,15 @@ Route::prefix('admin')->middleware('auth')->name('admin.')->group(function () {
     Route::resource('categories', AdminCategoryController::class);
     Route::resource('posts', AdminPostController::class);
 
-    // Static Pages Management (Profil, Visi Misi, Sejarah, Sambutan, Struktur, Privacy Policy)
+    // Hero Banner Slider Beranda
+    Route::resource('hero-slides', AdminHeroSlideController::class);
+
+    // Nav Menus (Header & Footer Dynamic Links)
+    Route::resource('nav-menus', AdminNavMenuController::class);
+
+    // Static Pages Management (Profil, Visi Misi, Sejarah, Sambutan, Struktur, Privacy Policy, Halaman Baru)
+    Route::get('/pages/create', [AdminPageController::class, 'create'])->name('pages.create');
+    Route::post('/pages', [AdminPageController::class, 'store'])->name('pages.store');
     Route::get('/pages', [AdminPageController::class, 'index'])->name('pages.index');
     Route::get('/pages/donasi', [AdminStaticPageController::class, 'donasi'])->name('pages.donasi');
     Route::post('/pages/donasi', [AdminStaticPageController::class, 'updateDonasi'])->name('pages.donasi.update');
@@ -65,8 +75,10 @@ Route::prefix('admin')->middleware('auth')->name('admin.')->group(function () {
     Route::post('/pages/logo', [AdminStaticPageController::class, 'updateLogo'])->name('pages.logo.update');
     Route::get('/pages/{page}/edit', [AdminPageController::class, 'edit'])->name('pages.edit');
     Route::put('/pages/{page}', [AdminPageController::class, 'update'])->name('pages.update');
+    Route::delete('/pages/{page}', [AdminPageController::class, 'destroy'])->name('pages.destroy');
 
     // Unit Pendidikan PPRU
+    Route::get('/profil-unit', [AdminUnitPendidikanController::class, 'myUnit'])->name('profil-unit');
     Route::resource('unit-pendidikan', AdminUnitPendidikanController::class);
 
     // Dewan Guru & GTK
@@ -76,7 +88,8 @@ Route::prefix('admin')->middleware('auth')->name('admin.')->group(function () {
     Route::resource('bidang', AdminBidangController::class);
 
     // Program Unggulan
-    Route::resource('dpc', AdminDpcController::class);
+    Route::resource('program-unggulan', AdminProgramUnggulanController::class);
+    Route::resource('dpc', AdminProgramUnggulanController::class);
 
     // Galeri Foto & Video YouTube
     Route::get('/media', [AdminMediaController::class, 'index'])->name('media.index');
@@ -171,7 +184,7 @@ Route::get('/sambutan', [PageController::class, 'sambutan'])->name('page.sambuta
 Route::get('/sambutan-mudir', [PageController::class, 'sambutan']);
 Route::get('/sambutan-kepala-sekolah', [PageController::class, 'sambutan']);
 Route::get('/sambutan-pimpinan', [PageController::class, 'sambutan']);
-Route::get('/sambutan-ketua-dpd', [PageController::class, 'sambutan']);
+Route::get('/sambutan-ketua-dpd', fn () => redirect()->route('page.sambutan', [], 301));
 Route::get('/tentang-kami', [PageController::class, 'tentangKami'])->name('page.tentang-kami');
 Route::get('/visi-dan-misi', [PageController::class, 'visiMisi'])->name('page.visi-misi');
 Route::get('/sejarah', [PageController::class, 'sejarah'])->name('page.sejarah');
@@ -200,8 +213,12 @@ Route::get('/pengumuman/{slug}', [InformationController::class, 'pengumumanShow'
 Route::get('/prestasi', [InformationController::class, 'prestasi'])->name('prestasi.index');
 Route::get('/prestasi/{slug}', [InformationController::class, 'prestasiShow'])->name('prestasi.show');
 Route::get('/ekstrakurikuler', [InformationController::class, 'ekskul'])->name('ekskul.index');
-Route::get('/ekskul', fn () => redirect()->route('ekskul.index'));
 Route::get('/data-alumni', [InformationController::class, 'alumni'])->name('alumni.index');
+Route::get('/ikarus', [InformationController::class, 'ikarus'])->name('ikarus.index');
+Route::get('/alumni', fn () => redirect()->route('ikarus.index'));
+Route::get('/alumni-ru', fn () => redirect()->route('ikarus.index'));
+Route::get('/karya-alumni', fn () => redirect()->route('ikarus.index'));
+Route::get('/alumni-ikarus', fn () => redirect()->route('ikarus.index'));
 Route::get('/layanan-terpadu', [InformationController::class, 'layanan'])->name('layanan.index');
 Route::get('/layanan-terpadu-2', [InformationController::class, 'layananTerpadu'])->name('layanan.terpadu');
 Route::get('/izin-sekolah', [InformationController::class, 'izinSekolah'])->name('layanan.izin');
@@ -241,9 +258,9 @@ Route::get('/download/file/{id}', [DownloadController::class, 'downloadFile'])->
 Route::get('/download-file/{id}', [DownloadController::class, 'downloadFile']);
 
 // Program Unggulan
-Route::get('/program-unggulan', [PageController::class, 'dpc'])->name('dpc.index');
-Route::get('/unggulan', fn () => redirect()->route('dpc.index'));
-Route::get('/dpc', [PageController::class, 'dpc']);
+Route::get('/program-unggulan', [PageController::class, 'programUnggulan'])->name('program-unggulan.index');
+Route::get('/program-unggulan-santri', fn () => redirect()->route('program-unggulan.index'));
+Route::get('/dpc', [PageController::class, 'programUnggulan'])->name('dpc.index');
 
 // Dewan Guru & GTK Alias
 Route::get('/guru', fn () => redirect()->route('dewan.index'));

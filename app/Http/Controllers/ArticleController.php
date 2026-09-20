@@ -103,6 +103,10 @@ class ArticleController extends Controller
 
     public function category(string $slug)
     {
+        if (strtolower($slug) === 'ikarus') {
+            return redirect()->route('ikarus.index');
+        }
+
         return redirect()->route('artikel.index', ['kategori' => $slug]);
     }
 

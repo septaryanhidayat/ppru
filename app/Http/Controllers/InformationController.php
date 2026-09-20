@@ -124,6 +124,53 @@ class InformationController extends Controller
         return view('frontend.ekskul.index', compact('ekskul'));
     }
 
+    public function ikarus(Request $request)
+    {
+        $search = $request->input('q');
+
+        $query = Post::whereIn('status', ['publish', 'published'])
+            ->where(function ($q) {
+                $q->whereHas('categories', function ($catQ) {
+                    $catQ->where('slug', 'ikarus')
+                        ->orWhere('name', 'like', '%ikarus%');
+                })->orWhere('type', 'ikarus');
+            })
+            ->with(['categories', 'author', 'unitPendidikan']);
+
+        if ($search) {
+            $query->where(function ($q) use ($search) {
+                $q->where('title', 'like', "%{$search}%")
+                    ->orWhere('content', 'like', "%{$search}%")
+                    ->orWhere('author_name', 'like', "%{$search}%");
+            });
+        }
+
+        $featured = (clone $query)->where('is_featured', true)->latest('published_at')->first();
+        if (! $featured && ! $search) {
+            $featured = (clone $query)->latest('published_at')->first();
+        }
+
+        $posts = $query->latest('published_at')->latest('id')->paginate(9)->withQueryString();
+
+        $totalKarya = Post::whereIn('status', ['publish', 'published'])
+            ->where(function ($q) {
+                $q->whereHas('categories', function ($catQ) {
+                    $catQ->where('slug', 'ikarus')
+                        ->orWhere('name', 'like', '%ikarus%');
+                })->orWhere('type', 'ikarus');
+            })->count();
+
+        $alumniProfilesCount = Post::where('type', 'alumni')->whereIn('status', ['publish', 'published'])->count();
+
+        return view('frontend.ikarus.index', compact(
+            'posts',
+            'featured',
+            'search',
+            'totalKarya',
+            'alumniProfilesCount'
+        ));
+    }
+
     public function alumni()
     {
         $alumni = Post::where('type', 'alumni')
@@ -401,7 +448,7 @@ class InformationController extends Controller
     }
 
     /**
-     * Default detailed accordions from original Elementor SMAIT ISHUM portal
+     * Default detailed accordions for PPRU portal
      */
     public static function getDefaultAccordions(string $type): array
     {

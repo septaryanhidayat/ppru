@@ -26,6 +26,7 @@ class AdminPostController extends Controller
 
     public function index(Request $request)
     {
+        $user = $request->user();
         $type = $request->input('type', 'post');
         $allowedTypes = ['post', 'prestasi', 'ekskul', 'alumni'];
         if (! in_array($type, $allowedTypes)) {
@@ -33,6 +34,10 @@ class AdminPostController extends Controller
         }
 
         $query = Post::where('type', $type)->with(['categories', 'author']);
+
+        if ($user?->isUnitAdmin()) {
+            $query->where('unit_pendidikan_id', $user->unit_pendidikan_id);
+        }
 
         if ($search = $request->input('q')) {
             $query->where('title', 'like', "%{$search}%");
@@ -44,11 +49,12 @@ class AdminPostController extends Controller
 
         $posts = $query->latest('published_at')->latest('id')->paginate(15)->withQueryString();
 
+        $unitId = $user?->isUnitAdmin() ? $user->unit_pendidikan_id : null;
         $counts = [
-            'post' => Post::where('type', 'post')->count(),
-            'prestasi' => Post::where('type', 'prestasi')->count(),
-            'ekskul' => Post::where('type', 'ekskul')->count(),
-            'alumni' => Post::where('type', 'alumni')->count(),
+            'post' => Post::where('type', 'post')->when($unitId, fn ($q) => $q->where('unit_pendidikan_id', $unitId))->count(),
+            'prestasi' => Post::where('type', 'prestasi')->when($unitId, fn ($q) => $q->where('unit_pendidikan_id', $unitId))->count(),
+            'ekskul' => Post::where('type', 'ekskul')->when($unitId, fn ($q) => $q->where('unit_pendidikan_id', $unitId))->count(),
+            'alumni' => Post::where('type', 'alumni')->when($unitId, fn ($q) => $q->where('unit_pendidikan_id', $unitId))->count(),
         ];
 
         $categories = Category::orderBy('name', 'asc')->get();
@@ -114,6 +120,7 @@ class AdminPostController extends Controller
         $this->ensureEditorialColumns();
         $tableColumns = Schema::getColumnListing('posts');
 
+        $user = $request->user();
         $postData = [
             'title' => $validated['title'],
             'slug' => Str::slug($validated['title']).'-'.time(),
@@ -127,6 +134,7 @@ class AdminPostController extends Controller
             'meta_title' => $validated['meta_title'] ?? null,
             'meta_description' => $validated['meta_description'] ?? null,
             'meta_keywords' => $validated['meta_keywords'] ?? null,
+            'unit_pendidikan_id' => $user?->isUnitAdmin() ? $user->unit_pendidikan_id : ($request->input('unit_pendidikan_id') ?: null),
         ];
 
         if (in_array('is_featured', $tableColumns)) {
@@ -179,8 +187,13 @@ class AdminPostController extends Controller
         return redirect()->route('admin.posts.index', $redirectParams)->with('success', 'Konten berhasil disimpan dan diterbitkan!');
     }
 
-    public function edit(Post $post)
+    public function edit(Request $request, Post $post)
     {
+        $user = $request->user();
+        if ($user?->isUnitAdmin() && (int) $post->unit_pendidikan_id !== (int) $user->unit_pendidikan_id) {
+            abort(403, 'Anda tidak memiliki izin mengedit konten unit lain.');
+        }
+
         $type = $post->type;
         $categories = Category::orderBy('name', 'asc')->get();
         $tags = Tag::orderBy('name', 'asc')->get();
@@ -193,6 +206,11 @@ class AdminPostController extends Controller
 
     public function update(Request $request, Post $post)
     {
+        $user = $request->user();
+        if ($user?->isUnitAdmin() && (int) $post->unit_pendidikan_id !== (int) $user->unit_pendidikan_id) {
+            abort(403, 'Anda tidak memiliki izin mengedit konten unit lain.');
+        }
+
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'type' => 'nullable|in:post,prestasi,ekskul,alumni',
@@ -252,6 +270,12 @@ class AdminPostController extends Controller
             'meta_keywords' => $validated['meta_keywords'] ?? null,
         ];
 
+        if ($user?->isUnitAdmin()) {
+            $updateData['unit_pendidikan_id'] = $user->unit_pendidikan_id;
+        } elseif ($request->filled('unit_pendidikan_id')) {
+            $updateData['unit_pendidikan_id'] = $request->input('unit_pendidikan_id');
+        }
+
         if (in_array('is_featured', $tableColumns)) {
             $updateData['is_featured'] = $request->boolean('is_featured');
         }
@@ -299,8 +323,13 @@ class AdminPostController extends Controller
         return redirect()->route('admin.posts.index', $redirectParams)->with('success', 'Konten berhasil diperbarui!');
     }
 
-    public function destroy(Post $post)
+    public function destroy(Request $request, Post $post)
     {
+        $user = $request->user();
+        if ($user?->isUnitAdmin() && (int) $post->unit_pendidikan_id !== (int) $user->unit_pendidikan_id) {
+            abort(403, 'Anda tidak memiliki izin menghapus konten unit lain.');
+        }
+
         $type = $post->type;
         $post->delete();
 

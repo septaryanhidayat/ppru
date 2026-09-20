@@ -57,10 +57,10 @@ class AdminDewanController extends Controller
             'name' => $validated['name'],
             'slug' => Str::slug($validated['name']),
             'position' => $validated['position'],
-            'fraction' => $validated['fraction'] ?? 'Dewan Guru & GTK Robbani',
+            'fraction' => $validated['fraction'] ?? 'Dewan Guru & Asatidz PPRU',
             'profile_summary' => $validated['profile_summary'] ?? '',
             'education' => $validated['education'] ?? '',
-            'photo' => $photoPath ?? '/uploads/logo-robbani-emblem.svg',
+            'photo' => $photoPath ?? '/uploads/official/logo-ru-berwarna.png',
             'order' => $validated['order'] ?? 0,
         ]);
 
@@ -102,7 +102,7 @@ class AdminDewanController extends Controller
 
         $dewan->name = $validated['name'];
         $dewan->position = $validated['position'];
-        $dewan->fraction = $validated['fraction'] ?? 'Dewan Guru & GTK Robbani';
+        $dewan->fraction = $validated['fraction'] ?? 'Dewan Guru & Asatidz PPRU';
         $dewan->profile_summary = $validated['profile_summary'] ?? '';
         $dewan->education = $validated['education'] ?? '';
         $dewan->order = $validated['order'] ?? 0;

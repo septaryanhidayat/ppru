@@ -27,8 +27,8 @@ test('home page renders all authentic school sections successfully', function ()
 test('articles page renders successfully', function () {
     $category = Category::firstOrCreate(['name' => 'Akademik'], ['slug' => 'akademik']);
     $post = Post::create([
-        'title' => 'Uji Coba Prestasi Siswa Robbani',
-        'slug' => 'uji-coba-prestasi-siswa-robbani',
+        'title' => 'Prestasi Santri PPRU Unggulan',
+        'slug' => 'prestasi-santri-ppru-unggulan',
         'content' => '<p>Konten artikel pengujian sekolah.</p>',
         'status' => 'publish',
         'type' => 'post',
@@ -37,9 +37,9 @@ test('articles page renders successfully', function () {
 
     $response = $this->get('/artikel');
     $response->assertStatus(200);
-    $response->assertSee('Uji Coba Prestasi Siswa Robbani');
+    $response->assertSee('Prestasi Santri PPRU Unggulan');
 
-    $detailResponse = $this->get('/artikel/uji-coba-prestasi-siswa-robbani');
+    $detailResponse = $this->get('/artikel/prestasi-santri-ppru-unggulan');
     $detailResponse->assertStatus(200);
     $detailResponse->assertSee('Konten artikel pengujian sekolah.');
 });
@@ -74,8 +74,8 @@ test('static profil pages render successfully', function () {
         'type' => 'page',
     ]);
     Post::create([
-        'title' => 'Berita Terkini Robbani',
-        'slug' => 'berita-terkini-robbani',
+        'title' => 'Berita Terkini PPRU Sakatiga',
+        'slug' => 'berita-terkini-ppru-sakatiga',
         'content' => 'Konten berita',
         'status' => 'publish',
         'type' => 'post',
@@ -90,15 +90,15 @@ test('static profil pages render successfully', function () {
 
     $this->get('/sambutan-kepala-sekolah')->assertStatus(200);
     $this->get('/tentang-kami')->assertStatus(200);
-    $this->get('/visi-dan-misi')->assertStatus(200)->assertSee('Berita Terkini Robbani')->assertSee('Ujian Tasmi Al-Quran');
-    $this->get('/sejarah')->assertStatus(200)->assertSee('Berita Terkini Robbani')->assertSee('Ujian Tasmi Al-Quran');
+    $this->get('/visi-dan-misi')->assertStatus(200)->assertSee('Berita Terkini PPRU Sakatiga')->assertSee('Ujian Tasmi Al-Quran');
+    $this->get('/sejarah')->assertStatus(200)->assertSee('Berita Terkini PPRU Sakatiga')->assertSee('Ujian Tasmi Al-Quran');
     $this->get('/struktur-organisasi')->assertStatus(200);
 });
 
 test('dewan, bidang, agenda, and pengumuman pages render successfully', function () {
     AnggotaDewan::create([
-        'name' => 'Ustadz Ahmad Robbani',
-        'slug' => 'ustadz-ahmad-robbani',
+        'name' => 'Ustadz Ahmad Sakatiga',
+        'slug' => 'ustadz-ahmad-sakatiga',
         'position' => 'Kepala Sekolah',
     ]);
 
@@ -120,7 +120,7 @@ test('dewan, bidang, agenda, and pengumuman pages render successfully', function
         'status' => 'publish',
     ]);
 
-    $this->get('/dewan-guru')->assertStatus(200)->assertSee('Ustadz Ahmad Robbani');
+    $this->get('/dewan-guru')->assertStatus(200)->assertSee('Ustadz Ahmad Sakatiga');
     $this->get('/fasilitas')->assertStatus(200)->assertSee('Laboratorium Biologi Modern');
     $this->get('/bidang/laboratorium-biologi-modern')->assertStatus(200);
     $this->get('/agenda')->assertStatus(200)->assertSee('Olimpiade Sains Sekolah');
@@ -134,7 +134,7 @@ test('feedback form submission works', function () {
         'nama' => 'Ahmad Calon Santri',
         'email' => 'ahmad@example.com',
         'whatsapp' => '081234567890',
-        'saran_kritik' => 'Mohon informasi jadwal tes masuk PPDB SMA IT Plus Robbani.',
+        'saran_kritik' => 'Mohon informasi jadwal tes masuk PSB Pondok Pesantren Raudhatul Ulum.',
     ]);
 
     $response->assertRedirect('/hubungi');
@@ -171,8 +171,8 @@ test('footer has visitor counter with data-target and responsive mobile center a
 
 test('site settings update dynamically reflects across header, footer, and contact page', function () {
     Setting::updateOrCreate(['key' => 'contact_phone'], ['value' => '0821-7788-9900', 'group' => 'general']);
-    Setting::updateOrCreate(['key' => 'contact_email'], ['value' => 'info@smaitplusrobbani.sch.id', 'group' => 'general']);
-    Setting::updateOrCreate(['key' => 'contact_address'], ['value' => 'Kampus Terpadu SMA IT Plus Robbani Ogan Ilir', 'group' => 'general']);
+    Setting::updateOrCreate(['key' => 'contact_email'], ['value' => 'sekretariat@ppru.ac.id', 'group' => 'general']);
+    Setting::updateOrCreate(['key' => 'contact_address'], ['value' => 'Kampus Utama Pondok Pesantren Raudhatul Ulum Sakatiga', 'group' => 'general']);
 
     // Re-share to simulate fresh request
     $settings = Setting::all()->pluck('value', 'key')->toArray();
@@ -180,13 +180,13 @@ test('site settings update dynamically reflects across header, footer, and conta
 
     $home = $this->get('/');
     $home->assertSee('0821-7788-9900');
-    $home->assertSee('info@smaitplusrobbani.sch.id');
-    $home->assertSee('Kampus Terpadu SMA IT Plus Robbani Ogan Ilir');
+    $home->assertSee('sekretariat@ppru.ac.id');
+    $home->assertSee('Kampus Utama Pondok Pesantren Raudhatul Ulum Sakatiga');
 
     $contact = $this->get('/hubungi');
     $contact->assertSee('0821-7788-9900');
-    $contact->assertSee('info@smaitplusrobbani.sch.id');
-    $contact->assertSee('Kampus Terpadu SMA IT Plus Robbani Ogan Ilir');
+    $contact->assertSee('sekretariat@ppru.ac.id');
+    $contact->assertSee('Kampus Utama Pondok Pesantren Raudhatul Ulum Sakatiga');
 });
 
 test('sambutan page renders dynamic content from database', function () {

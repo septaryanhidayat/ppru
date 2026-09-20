@@ -199,7 +199,7 @@
                         <span>Sambutan Pimpinan Unit</span>
                     </div>
                     <h2 class="text-2xl sm:text-3xl font-black text-gray-900 tracking-tight leading-tight">
-                        Mendidik Generasi Robbani yang Unggul Ilmu, Kokoh Iman, dan Berakhlak Mulia
+                        Mendidik Generasi Qur'ani yang Unggul Ilmu, Kokoh Iman, dan Berakhlak Mulia
                     </h2>
                     <div class="prose-content text-gray-600 text-sm sm:text-base leading-relaxed space-y-3">
                         <p>

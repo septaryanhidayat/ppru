@@ -108,7 +108,7 @@
                     (object)['name' => 'Pendidikan', 'icon' => 'fa-solid fa-building-columns', 'url' => route('pendidikan.index'), 'is_image' => false],
                     (object)['name' => 'Asatidz', 'icon' => 'fa-solid fa-chalkboard-user', 'url' => route('dewan.index'), 'is_image' => false],
                     (object)['name' => 'Sarana', 'icon' => 'fa-solid fa-layer-group', 'url' => route('bidang.index'), 'is_image' => false],
-                    (object)['name' => 'Unggulan', 'icon' => 'fa-solid fa-award', 'url' => route('dpc.index'), 'is_image' => false],
+                    (object)['name' => 'Unggulan', 'icon' => 'fa-solid fa-award', 'url' => route('program-unggulan.index'), 'is_image' => false],
                     (object)['name' => 'Prestasi', 'icon' => 'fa-solid fa-trophy', 'url' => route('prestasi.index'), 'is_image' => false],
                     (object)['name' => 'Kabar', 'icon' => 'fa-solid fa-newspaper', 'url' => route('artikel.index'), 'is_image' => false],
                 ]);
@@ -450,13 +450,13 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         <div class="text-center max-w-2xl mx-auto space-y-2">
             <span class="text-xs font-bold uppercase tracking-widest text-[#00843d] bg-emerald-50 border border-emerald-200 px-3.5 py-1 rounded-full inline-block">
-                3 Prioritas Utama Pembelajaran
+                {{ $siteSettings['home_trisula_badge'] ?? '3 Prioritas Utama Pembelajaran' }}
             </span>
             <h3 class="text-2xl sm:text-3xl md:text-4xl font-black text-gray-900 tracking-tight">
-                Trisula Keunggulan Santri Raudhatul Ulum
+                {{ $siteSettings['home_trisula_title'] ?? 'Trisula Keunggulan Santri Raudhatul Ulum' }}
             </h3>
             <p class="text-xs sm:text-sm text-gray-600 font-normal">
-                Kurikulum komprehensif yang dirancang untuk mengantarkan santri berprestasi di kancah nasional maupun dunia.
+                {{ $siteSettings['home_trisula_subtitle'] ?? 'Kurikulum komprehensif yang dirancang untuk mengantarkan santri berprestasi di kancah nasional maupun dunia.' }}
             </p>
         </div>
 
@@ -466,20 +466,20 @@
             <div class="bg-slate-50/90 hover:bg-white rounded-3xl p-7 sm:p-8 border border-slate-200/90 hover:border-amber-400/90 transition-all duration-300 transform hover:-translate-y-2 flex flex-col justify-between group shadow-xs hover:shadow-2xl">
                 <div class="space-y-4">
                     <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-400 to-amber-600 text-slate-950 flex items-center justify-center text-2xl font-black shadow-lg shadow-amber-500/20 group-hover:scale-110 transition duration-300">
-                        <i class="fa-solid fa-book-quran"></i>
+                        <i class="{{ $siteSettings['home_trisula_1_icon'] ?? 'fa-solid fa-book-quran' }}"></i>
                     </div>
                     <div>
-                        <span class="text-[10px] font-black uppercase tracking-wider text-amber-700 block">Prioritas I &bull; Keagamaan &amp; Karakter</span>
+                        <span class="text-[10px] font-black uppercase tracking-wider text-amber-700 block">{{ $siteSettings['home_trisula_1_badge'] ?? 'Prioritas I • Keagamaan & Karakter' }}</span>
                         <h4 class="text-xl font-black text-gray-900 mt-1 group-hover:text-amber-700 transition">
-                            Karakter Qur'ani (Quranic Insight)
+                            {{ $siteSettings['home_trisula_1_title'] ?? 'Karakter Qur\'ani (Quranic Insight)' }}
                         </h4>
                     </div>
                     <p class="text-xs sm:text-sm text-gray-600 leading-relaxed font-normal">
-                        Bimbingan intensif tahsin dan tahfidzul Qur'an mutqin hingga 30 juz bersanad lewat unit khusus MATQULARU, kajian kitab kuning (turats), serta pembiasaan ibadah sunnah 24 jam dan penempaan 10 Jati Diri Santri Raudhatul Ulum.
+                        {{ $siteSettings['home_trisula_1_desc'] ?? 'Bimbingan intensif tahsin dan tahfidzul Qur\'an mutqin hingga 30 juz bersanad lewat unit khusus MATQULARU, kajian kitab kuning (turats), serta pembiasaan ibadah sunnah 24 jam dan penempaan 10 Jati Diri Santri Raudhatul Ulum.' }}
                     </p>
                 </div>
                 <div class="pt-5 mt-6 border-t border-slate-200/80 flex items-center justify-between text-xs font-bold text-amber-700">
-                    <span>Target Mutqin 30 Juz &amp; Sanad</span>
+                    <span>{{ $siteSettings['home_trisula_1_footer'] ?? 'Target Mutqin 30 Juz & Sanad' }}</span>
                     <i class="fa-solid fa-circle-check text-amber-500 text-sm"></i>
                 </div>
             </div>
@@ -488,20 +488,20 @@
             <div class="bg-slate-50/90 hover:bg-white rounded-3xl p-7 sm:p-8 border border-slate-200/90 hover:border-[#00843d] transition-all duration-300 transform hover:-translate-y-2 flex flex-col justify-between group shadow-xs hover:shadow-2xl">
                 <div class="space-y-4">
                     <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#00843d] to-emerald-600 text-white flex items-center justify-center text-2xl font-black shadow-lg shadow-emerald-500/20 group-hover:scale-110 transition duration-300">
-                        <i class="fa-solid fa-microscope"></i>
+                        <i class="{{ $siteSettings['home_trisula_2_icon'] ?? 'fa-solid fa-microscope' }}"></i>
                     </div>
                     <div>
-                        <span class="text-[10px] font-black uppercase tracking-wider text-emerald-800 block">Prioritas II &bull; Sains &amp; Teknologi</span>
+                        <span class="text-[10px] font-black uppercase tracking-wider text-emerald-800 block">{{ $siteSettings['home_trisula_2_badge'] ?? 'Prioritas II • Sains & Teknologi' }}</span>
                         <h4 class="text-xl font-black text-gray-900 mt-1 group-hover:text-[#00843d] transition">
-                            Nalar Ilmiah (Scientific Insight)
+                            {{ $siteSettings['home_trisula_2_title'] ?? 'Nalar Ilmiah (Scientific Insight)' }}
                         </h4>
                     </div>
                     <p class="text-xs sm:text-sm text-gray-600 leading-relaxed font-normal">
-                        Penguatan logika berpikir kritis melalui integrasi kurikulum sains nasional, laboratorium terpadu, olimpiade riset (KSM/OSN), pengenalan literasi digital modern, coding, robotika pesantren, dan karya tulis ilmiah santri.
+                        {{ $siteSettings['home_trisula_2_desc'] ?? 'Penguatan logika berpikir kritis melalui integrasi kurikulum sains nasional, laboratorium terpadu, olimpiade riset (KSM/OSN), pengenalan literasi digital modern, coding, robotika pesantren, dan karya tulis ilmiah santri.' }}
                     </p>
                 </div>
                 <div class="pt-5 mt-6 border-t border-slate-200/80 flex items-center justify-between text-xs font-bold text-[#00843d]">
-                    <span>Laboratorium Modern &amp; Robotika</span>
+                    <span>{{ $siteSettings['home_trisula_2_footer'] ?? 'Laboratorium Modern & Robotika' }}</span>
                     <i class="fa-solid fa-circle-check text-emerald-600 text-sm"></i>
                 </div>
             </div>
@@ -510,20 +510,20 @@
             <div class="bg-slate-50/90 hover:bg-white rounded-3xl p-7 sm:p-8 border border-slate-200/90 hover:border-sky-500 transition-all duration-300 transform hover:-translate-y-2 flex flex-col justify-between group shadow-xs hover:shadow-2xl">
                 <div class="space-y-4">
                     <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-sky-500 to-blue-600 text-white flex items-center justify-center text-2xl font-black shadow-lg shadow-sky-500/20 group-hover:scale-110 transition duration-300">
-                        <i class="fa-solid fa-globe"></i>
+                        <i class="{{ $siteSettings['home_trisula_3_icon'] ?? 'fa-solid fa-globe' }}"></i>
                     </div>
                     <div>
-                        <span class="text-[10px] font-black uppercase tracking-wider text-sky-700 block">Prioritas III &bull; Bahasa &amp; Kepemimpinan</span>
+                        <span class="text-[10px] font-black uppercase tracking-wider text-sky-700 block">{{ $siteSettings['home_trisula_3_badge'] ?? 'Prioritas III • Bahasa & Kepemimpinan' }}</span>
                         <h4 class="text-xl font-black text-gray-900 mt-1 group-hover:text-blue-700 transition">
-                            Kepemimpinan Global (Global Leadership)
+                            {{ $siteSettings['home_trisula_3_title'] ?? 'Kepemimpinan Global (Global Leadership)' }}
                         </h4>
                     </div>
                     <p class="text-xs sm:text-sm text-gray-600 leading-relaxed font-normal">
-                        Ekosistem dwi-bahasa aktif (Arab &amp; Inggris harian), kurikulum muadalah yang diakui resmi di Universitas Al-Azhar Kairo Mesir, organisasi kepemimpinan santri (OSPRU), kepanduan pramuka, serta kemandirian hidup berasrama 24 jam.
+                        {{ $siteSettings['home_trisula_3_desc'] ?? 'Ekosistem dwi-bahasa aktif (Arab & Inggris harian), kurikulum muadalah yang diakui resmi di Universitas Al-Azhar Kairo Mesir, organisasi kepemimpinan santri (OSPRU), kepanduan pramuka, serta kemandirian hidup berasrama 24 jam.' }}
                     </p>
                 </div>
                 <div class="pt-5 mt-6 border-t border-slate-200/80 flex items-center justify-between text-xs font-bold text-sky-700">
-                    <span>Dwi-Bahasa &amp; Muadalah Al-Azhar</span>
+                    <span>{{ $siteSettings['home_trisula_3_footer'] ?? 'Dwi-Bahasa & Muadalah Al-Azhar' }}</span>
                     <i class="fa-solid fa-circle-check text-sky-500 text-sm"></i>
                 </div>
             </div>
@@ -553,7 +553,7 @@
                     Pilihan program akselerasi minat dan bakat untuk melahirkan generasi santri yang berprestasi dan berwawasan luas.
                 </p>
             </div>
-            <a href="{{ route('dpc.index') }}" class="inline-flex items-center text-xs font-bold text-amber-400 hover:text-amber-300 transition flex-shrink-0">
+            <a href="{{ route('program-unggulan.index') }}" class="inline-flex items-center text-xs font-bold text-amber-400 hover:text-amber-300 transition flex-shrink-0">
                 <span>Lihat Seluruh Program</span>
                 <i class="fa-solid fa-arrow-right ml-1.5 text-[10px]"></i>
             </a>
@@ -605,16 +605,16 @@
                     <div class="absolute -bottom-4 -right-4 w-20 h-20 border-b-4 border-r-4 border-school-green rounded-br-3xl -z-0"></div>
                     
                     <div class="relative z-10 rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-gradient-to-b from-emerald-50 to-emerald-100 aspect-[4/5]">
-                        <img src="/uploads/official/foto-mudir.webp" alt="KH. Tol'at Wafa Ahmad, Lc. - Mudir Pondok Pesantren Raudhatul Ulum" class="w-full h-full object-cover object-top transform hover:scale-105 transition duration-500" onerror="this.src='/uploads/official/logo-ru-berwarna.png'">
+                        <img src="{{ $siteSettings['home_mudir_photo'] ?? ($siteSettings['mudir_photo'] ?? '/uploads/official/foto-mudir.webp') }}" alt="{{ $siteSettings['home_mudir_name'] ?? ($siteSettings['mudir_name'] ?? 'KH. Tol\'at Wafa Ahmad, Lc.') }}" class="w-full h-full object-cover object-top transform hover:scale-105 transition duration-500" onerror="this.src='/uploads/official/logo-ru-berwarna.png'">
                         <div class="absolute inset-0 bg-gradient-to-t from-gray-950/80 via-transparent to-transparent flex items-end p-5">
                             <div class="text-white">
                                 <span class="inline-block px-2.5 py-0.5 bg-school-gold text-gray-950 rounded-full text-[10px] font-black uppercase tracking-wider mb-1">
-                                    Pimpinan Pesantren
+                                    {{ $siteSettings['mudir_badge'] ?? 'Pimpinan Pesantren' }}
                                 </span>
                                 <p class="font-extrabold text-base sm:text-lg leading-tight">
-                                    KH. Tol'at Wafa Ahmad, Lc.
+                                    {{ $siteSettings['home_mudir_name'] ?? ($siteSettings['mudir_name'] ?? 'KH. Tol\'at Wafa Ahmad, Lc.') }}
                                 </p>
-                                <p class="text-xs text-emerald-200 mt-0.5">Mudir Pondok Pesantren Raudhatul Ulum Sakatiga</p>
+                                <p class="text-xs text-emerald-200 mt-0.5">{{ $siteSettings['home_mudir_role'] ?? ($siteSettings['mudir_position'] ?? 'Mudir Pondok Pesantren Raudhatul Ulum Sakatiga') }}</p>
                             </div>
                         </div>
                     </div>
@@ -625,11 +625,11 @@
             <div class="lg:col-span-7 space-y-4 reveal-fade-up delay-2 text-center lg:text-left">
                 <div class="inline-flex items-center space-x-2 text-xs font-bold uppercase tracking-wider text-school-green bg-emerald-50 px-3 py-1 rounded-full">
                     <i class="fa-solid fa-quote-left text-xs"></i>
-                    <span>Kata Sambutan Mudir / Sambutan Kepala Sekolah</span>
+                    <span>{{ $siteSettings['home_sambutan_badge'] ?? 'Kata Sambutan Mudir PPRU' }}<span class="sr-only"> Sambutan Kepala Sekolah</span></span>
                 </div>
                 
                 <h2 class="text-2xl sm:text-3xl lg:text-4xl font-black text-gray-900 tracking-tight leading-tight">
-                    Mendidik Generasi Khairu Ummah, Menegakkan Risalah Islam
+                    {{ $siteSettings['home_sambutan_title'] ?? 'Mendidik Generasi Khairu Ummah, Menegakkan Risalah Islam' }}
                 </h2>
 
                 <p class="font-arabic text-lg sm:text-xl text-school-green leading-relaxed text-center lg:text-left" dir="rtl">
@@ -637,19 +637,19 @@
                 </p>
 
                 <p class="text-xs sm:text-sm text-gray-700 leading-relaxed font-normal">
-                    Assalamu'alaikum Warahmatullahi Wabarakatuh. Selamat datang di website resmi Pondok Pesantren Raudhatul Ulum (PPRU) Sakatiga. Sejak dirintisnya madrasah cikal bakal pada tahun 1930 hingga resmi berdirinya pesantren pada 1 Agustus 1950, PPRU senantiasa istiqomah membina putra-putri umat dalam lingkungan asrama yang asri, disiplin, dan sarat nilai-nilai perjuangan Islam.
+                    {{ $siteSettings['home_sambutan_text_1'] ?? 'Assalamu\'alaikum Warahmatullahi Wabarakatuh. Selamat datang di website resmi Pondok Pesantren Raudhatul Ulum (PPRU) Sakatiga. Sejak dirintisnya madrasah cikal bakal pada tahun 1930 hingga resmi berdirinya pesantren pada 1 Agustus 1950, PPRU senantiasa istiqomah membina putra-putri umat dalam lingkungan asrama yang asri, disiplin, dan sarat nilai-nilai perjuangan Islam.' }}
                 </p>
                 <p class="text-xs sm:text-sm text-gray-700 leading-relaxed font-normal hidden sm:block">
-                    Kami berkomitmen memadukan kurikulum kepesantrenan terpadu Gontor, Kementerian Agama, dan Diknas, sehingga alumni kami siap melanjutkan studi ke universitas ternama di Timur Tengah (Al-Azhar Kairo, Madinah) maupun perguruan tinggi umum terkemuka di dalam dan luar negeri.
+                    {{ $siteSettings['home_sambutan_text_2'] ?? 'Kami berkomitmen memadukan kurikulum kepesantrenan terpadu Gontor, Kementerian Agama, dan Diknas, sehingga alumni kami siap melanjutkan studi ke universitas ternama di Timur Tengah (Al-Azhar Kairo, Madinah) maupun perguruan tinggi umum terkemuka di dalam dan luar negeri.' }}
                 </p>
 
                 <div class="w-20 h-1 bg-school-green mx-auto lg:mx-0 my-4 rounded-full"></div>
 
                 {{-- Tombol Tindakan --}}
                 <div class="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-2">
-                    <a href="{{ route('page.sambutan') }}" class="bg-school-green hover:bg-emerald-800 text-white px-6 py-2.5 rounded-full font-bold text-xs sm:text-sm shadow-md hover:shadow-lg transition flex items-center space-x-2">
+                    <a href="{{ $siteSettings['home_sambutan_btn_url'] ?? route('page.sambutan') }}" class="bg-school-green hover:bg-emerald-800 text-white px-6 py-2.5 rounded-full font-bold text-xs sm:text-sm shadow-md hover:shadow-lg transition flex items-center space-x-2">
                         <i class="fa-solid fa-book-open text-xs"></i>
-                        <span>Sambutan Lengkap</span>
+                        <span>{{ $siteSettings['home_sambutan_btn_text'] ?? 'Sambutan Lengkap' }}</span>
                     </a>
                     <a href="{{ route('page.visi-misi') }}" class="bg-gray-900 hover:bg-black text-white px-6 py-2.5 rounded-full font-bold text-xs sm:text-sm shadow-md hover:shadow-lg transition flex items-center space-x-2">
                         <span>Visi, Misi &amp; 10 Jati Diri</span>
@@ -795,13 +795,13 @@
         {{-- Section Header --}}
         <div class="text-center max-w-3xl mx-auto mb-12 reveal-fade-up">
             <span class="inline-block px-3.5 py-1 bg-school-gold/20 text-school-gold border border-school-gold/30 rounded-full text-xs font-black uppercase tracking-widest mb-3">
-                PSB T.P. 2026 / 2027 Telah Dibuka
+                {{ $siteSettings['home_psb_badge'] ?? 'PSB T.P. 2026 / 2027 Telah Dibuka' }}
             </span>
             <h2 class="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white leading-tight">
-                Penerimaan Santri Baru (PSB) Online
+                {{ $siteSettings['home_psb_title'] ?? 'Penerimaan Santri Baru (PSB) Online' }}
             </h2>
             <p class="text-xs sm:text-base text-gray-300 mt-3 font-normal max-w-2xl mx-auto leading-relaxed">
-                Bergabunglah bersama ribuan santri dari seluruh penjuru nusantara dalam lingkungan kaderisasi Islam yang unggul, disiplin, dan berwawasan global.
+                {{ $siteSettings['home_psb_desc'] ?? 'Bergabunglah bersama ribuan santri dari seluruh penjuru nusantara dalam lingkungan kaderisasi Islam yang unggul, disiplin, dan berwawasan global.' }}
             </p>
             <div class="w-16 h-1 bg-school-gold mx-auto mt-4 rounded-full"></div>
         </div>
@@ -969,7 +969,7 @@
             <div class="lg:col-span-7 reveal-fade-up delay-1">
                 <article class="bg-white rounded-3xl shadow-sm hover:shadow-xl overflow-hidden border border-gray-100 h-full flex flex-col group transition duration-300">
                     <div class="relative h-64 sm:h-84 overflow-hidden bg-gray-100">
-                        <img src="{{ $featuredPost->featured_image_url }}" alt="{{ $featuredPost->title }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='/uploads/campus-robbani.webp'">
+                        <img src="{{ $featuredPost->featured_image_url }}" alt="{{ $featuredPost->title }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='/images/hero-1.webp'">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
                         @if($featuredPost->categories->isNotEmpty())
                         <span class="absolute top-4 left-4 bg-school-green text-white text-[11px] font-bold px-3 py-1 rounded-full shadow-md">
@@ -1011,7 +1011,7 @@
                 @foreach($sidePosts as $index => $sp)
                 <article class="bg-white rounded-2xl p-3.5 sm:p-4 shadow-xs hover:shadow-md border border-gray-100 hover:border-school-green/40 transition-all duration-300 flex items-center space-x-3.5 group reveal-fade-up delay-{{ $index + 2 }}">
                     <div class="w-24 h-24 sm:w-28 sm:h-24 rounded-2xl overflow-hidden bg-gray-100 flex-shrink-0 relative">
-                        <img src="{{ $sp->featured_image_url }}" alt="{{ $sp->title }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" onerror="this.src='/uploads/activities-robbani.webp'">
+                        <img src="{{ $sp->featured_image_url }}" alt="{{ $sp->title }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" onerror="this.src='/images/hero-2.webp'">
                     </div>
                     <div class="flex-1 min-w-0 space-y-1">
                         <div class="text-[11px] text-gray-400 flex items-center space-x-2">
@@ -1054,11 +1054,11 @@
 
         {{-- 4 Kolom di Desktop, 2 Kolom di Tablet, 1 Kolom di Mobile --}}
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            @foreach($fraksiPosts as $index => $post)
+            @foreach($prestasiPosts as $index => $post)
             <article class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-xs hover:shadow-lg transition-all duration-300 flex flex-col group reveal-fade-up delay-{{ ($index % 4) + 1 }}">
                 <div class="aspect-[16/10] overflow-hidden rounded-t-2xl bg-gray-100 relative">
                     <a href="{{ route('artikel.show', $post->slug) }}" class="block w-full h-full" aria-label="Baca berita: {{ $post->title }}">
-                        <img src="{{ $post->featured_image_url }}" alt="{{ $post->title }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" onerror="this.src='/uploads/activities-robbani.webp'">
+                        <img src="{{ $post->featured_image_url }}" alt="{{ $post->title }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" onerror="this.src='/images/hero-2.webp'">
                     </a>
                     <span class="absolute bottom-2.5 left-2.5 bg-black/75 backdrop-blur-xs text-white text-[10px] font-bold px-2.5 py-0.5 rounded-md flex items-center">
                         <i class="fa-solid fa-medal text-amber-400 mr-1.5"></i> Prestasi
@@ -1160,24 +1160,24 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 text-center">
             <div class="p-4 sm:p-6 bg-white/10 backdrop-blur-xs rounded-3xl border border-white/10 reveal-fade-up delay-1">
-                <div class="text-3xl sm:text-5xl font-black text-amber-400 mb-1">75+</div>
-                <div class="text-xs sm:text-sm font-bold uppercase tracking-wider text-emerald-100">Tahun Mengabdi</div>
-                <p class="text-[11px] text-emerald-200/80 mt-1">Berdiri sejak 1 Agustus 1950</p>
+                <div class="text-3xl sm:text-5xl font-black text-amber-400 mb-1">{{ $siteSettings['home_stat_1_number'] ?? '75+' }}</div>
+                <div class="text-xs sm:text-sm font-bold uppercase tracking-wider text-emerald-100">{{ $siteSettings['home_stat_1_label'] ?? 'Tahun Mengabdi' }}</div>
+                <p class="text-[11px] text-emerald-200/80 mt-1">{{ $siteSettings['home_stat_1_desc'] ?? 'Berdiri sejak 1 Agustus 1950' }}</p>
             </div>
             <div class="p-4 sm:p-6 bg-white/10 backdrop-blur-xs rounded-3xl border border-white/10 reveal-fade-up delay-2">
-                <div class="text-3xl sm:text-5xl font-black text-amber-400 mb-1">8</div>
-                <div class="text-xs sm:text-sm font-bold uppercase tracking-wider text-emerald-100">Unit Pendidikan</div>
-                <p class="text-[11px] text-emerald-200/80 mt-1">TK hingga Perguruan Tinggi</p>
+                <div class="text-3xl sm:text-5xl font-black text-amber-400 mb-1">{{ $siteSettings['home_stat_2_number'] ?? '8' }}</div>
+                <div class="text-xs sm:text-sm font-bold uppercase tracking-wider text-emerald-100">{{ $siteSettings['home_stat_2_label'] ?? 'Unit Pendidikan' }}</div>
+                <p class="text-[11px] text-emerald-200/80 mt-1">{{ $siteSettings['home_stat_2_desc'] ?? 'TK hingga Perguruan Tinggi' }}</p>
             </div>
             <div class="p-4 sm:p-6 bg-white/10 backdrop-blur-xs rounded-3xl border border-white/10 reveal-fade-up delay-3">
-                <div class="text-3xl sm:text-5xl font-black text-amber-400 mb-1">3.500+</div>
-                <div class="text-xs sm:text-sm font-bold uppercase tracking-wider text-emerald-100">Santri &amp; Mahasiswa</div>
-                <p class="text-[11px] text-emerald-200/80 mt-1">Dari berbagai penjuru Indonesia</p>
+                <div class="text-3xl sm:text-5xl font-black text-amber-400 mb-1">{{ $siteSettings['home_stat_3_number'] ?? '3.500+' }}</div>
+                <div class="text-xs sm:text-sm font-bold uppercase tracking-wider text-emerald-100">{{ $siteSettings['home_stat_3_label'] ?? 'Santri & Mahasiswa' }}</div>
+                <p class="text-[11px] text-emerald-200/80 mt-1">{{ $siteSettings['home_stat_3_desc'] ?? 'Dari berbagai penjuru Indonesia' }}</p>
             </div>
             <div class="p-4 sm:p-6 bg-white/10 backdrop-blur-xs rounded-3xl border border-white/10 reveal-fade-up delay-4">
-                <div class="text-3xl sm:text-5xl font-black text-amber-400 mb-1">15.000+</div>
-                <div class="text-xs sm:text-sm font-bold uppercase tracking-wider text-emerald-100">Alumni Berkhidmat</div>
-                <p class="text-[11px] text-emerald-200/80 mt-1">Kiprah dakwah di dalam &amp; luar negeri</p>
+                <div class="text-3xl sm:text-5xl font-black text-amber-400 mb-1">{{ $siteSettings['home_stat_4_number'] ?? '15.000+' }}</div>
+                <div class="text-xs sm:text-sm font-bold uppercase tracking-wider text-emerald-100">{{ $siteSettings['home_stat_4_label'] ?? 'Alumni Berkhidmat' }}</div>
+                <p class="text-[11px] text-emerald-200/80 mt-1">{{ $siteSettings['home_stat_4_desc'] ?? 'Kiprah dakwah di dalam & luar negeri' }}</p>
             </div>
         </div>
     </div>
@@ -1241,7 +1241,7 @@
                         <template x-for="(item, idx) in items" :key="idx">
                             <div class="flex-shrink-0 px-2 sm:px-3" :style="'width: ' + (100 / perView) + '%'">
                                 <div class="relative h-64 sm:h-80 md:h-96 lg:h-[360px] rounded-3xl overflow-hidden shadow-2xl bg-neutral-900 border border-neutral-800/80 group">
-                                    <img :src="item.url" :alt="item.title" class="w-full h-full object-cover group-hover:scale-105 transition duration-700 ease-out" onerror="this.src='/uploads/campus-robbani.webp'">
+                                    <img :src="item.url" :alt="item.title" class="w-full h-full object-cover group-hover:scale-105 transition duration-700 ease-out" onerror="this.src='/images/hero-1.webp'">
                                     <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-5">
                                         <span class="text-xs sm:text-sm font-bold text-white leading-snug drop-shadow-md" x-text="item.title"></span>
                                     </div>
@@ -1301,7 +1301,7 @@
                         <template x-for="(item, idx) in items" :key="idx">
                             <div class="flex-shrink-0 px-2 sm:px-2.5" :style="'width: ' + (100 / perView) + '%'">
                                 <div class="relative h-52 sm:h-64 md:h-72 lg:h-76 rounded-2xl overflow-hidden shadow-xl bg-neutral-900 border border-neutral-800/80 group">
-                                    <img :src="item.url" :alt="item.title" class="w-full h-full object-cover group-hover:scale-105 transition duration-700 ease-out" onerror="this.src='/uploads/activities-robbani.webp'">
+                                    <img :src="item.url" :alt="item.title" class="w-full h-full object-cover group-hover:scale-105 transition duration-700 ease-out" onerror="this.src='/images/hero-2.webp'">
                                     <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-4">
                                         <span class="text-xs font-bold text-white leading-snug drop-shadow-md" x-text="item.title"></span>
                                     </div>
@@ -1510,13 +1510,13 @@
             <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
                 <div class="lg:col-span-8 space-y-3 text-center lg:text-left">
                     <span class="inline-block px-3 py-1 bg-amber-400 text-gray-950 rounded-full text-xs font-black uppercase tracking-wider">
-                        Investasi Akhirat
+                        {{ $siteSettings['home_infaq_badge'] ?? 'Investasi Akhirat' }}
                     </span>
                     <h2 class="text-2xl sm:text-3xl font-black tracking-tight leading-tight">
-                        Wakaf Pembangunan &amp; Beasiswa Penghafal Al-Qur'an
+                        {{ $siteSettings['home_infaq_title'] ?? 'Wakaf Pembangunan & Beasiswa Penghafal Al-Qur\'an' }}
                     </h2>
                     <p class="text-xs sm:text-sm text-emerald-100 leading-relaxed max-w-2xl">
-                        Mari alirkan pahala jariyah tanpa putus dengan berdonasi untuk perluasan sarana ibadah santri, asrama, ruang kelas, dan beasiswa santri dhuafa penghafal Al-Qur'an di Pondok Pesantren Raudhatul Ulum Sakatiga.
+                        {{ $siteSettings['home_infaq_desc'] ?? 'Mari alirkan pahala jariyah tanpa putus dengan berdonasi untuk perluasan sarana ibadah santri, asrama, ruang kelas, dan beasiswa santri dhuafa penghafal Al-Qur\'an di Pondok Pesantren Raudhatul Ulum Sakatiga.' }}
                     </p>
                     <div class="pt-2 flex flex-wrap items-center justify-center lg:justify-start gap-4 text-xs font-semibold text-amber-200">
                         <span class="flex items-center"><i class="fa-solid fa-shield-halved mr-1.5"></i> Amanah &amp; Transparan</span>
@@ -1525,13 +1525,13 @@
                     </div>
                 </div>
                 <div class="lg:col-span-4 flex flex-col items-center justify-center space-y-3">
-                    <a href="{{ route('donasi') }}" class="w-full sm:w-auto text-center bg-school-gold hover:bg-amber-400 text-gray-950 font-black text-xs sm:text-sm px-8 py-3.5 rounded-2xl shadow-xl transition transform hover:scale-105">
+                    <a href="{{ $siteSettings['home_infaq_btn1_url'] ?? route('donasi') }}" class="w-full sm:w-auto text-center bg-school-gold hover:bg-amber-400 text-gray-950 font-black text-xs sm:text-sm px-8 py-3.5 rounded-2xl shadow-xl transition transform hover:scale-105">
                         <i class="fa-solid fa-hand-holding-heart mr-2"></i>
-                        <span>Salurkan Infaq &amp; Wakaf</span>
+                        <span>{{ $siteSettings['home_infaq_btn1_text'] ?? 'Salurkan Infaq & Wakaf' }}</span>
                     </a>
-                    <a href="https://wa.me/{{ $waHelpNumber }}?text={{ urlencode('Assalamu\'alaikum, saya ingin konfirmasi infaq/wakaf untuk Pondok Pesantren Raudhatul Ulum Sakatiga.') }}" target="_blank" class="w-full sm:w-auto text-center bg-white/10 hover:bg-white/20 text-white font-bold text-xs px-6 py-2.5 rounded-xl border border-white/20 transition">
+                    <a href="{{ $siteSettings['home_infaq_btn2_url'] ?? ('https://wa.me/' . $waHelpNumber . '?text=' . urlencode('Assalamu\'alaikum, saya ingin konfirmasi infaq/wakaf untuk Pondok Pesantren Raudhatul Ulum Sakatiga.')) }}" target="_blank" class="w-full sm:w-auto text-center bg-white/10 hover:bg-white/20 text-white font-bold text-xs px-6 py-2.5 rounded-xl border border-white/20 transition">
                         <i class="fa-brands fa-whatsapp mr-1.5"></i>
-                        <span>Konfirmasi via WhatsApp</span>
+                        <span>{{ $siteSettings['home_infaq_btn2_text'] ?? 'Konfirmasi via WhatsApp' }}</span>
                     </a>
                 </div>
             </div>

@@ -14,15 +14,33 @@ class AdminUnitPendidikanController extends Controller
 {
     public function __construct(protected WebpService $webpService) {}
 
-    public function index()
+    public function myUnit(Request $request)
     {
+        $user = $request->user();
+        if (! $user->unit_pendidikan_id) {
+            abort(404, 'Unit pendidikan tidak ditemukan untuk akun ini.');
+        }
+
+        return redirect()->route('admin.unit-pendidikan.edit', $user->unit_pendidikan_id);
+    }
+
+    public function index(Request $request)
+    {
+        if ($request->user()?->isUnitAdmin()) {
+            return redirect()->route('admin.unit-pendidikan.edit', $request->user()->unit_pendidikan_id);
+        }
+
         $units = UnitPendidikan::orderBy('order', 'asc')->get();
 
         return view('admin.unit_pendidikan.index', compact('units'));
     }
 
-    public function create()
+    public function create(Request $request)
     {
+        if ($request->user()?->isUnitAdmin()) {
+            abort(403, 'Anda tidak memiliki izin untuk membuat unit baru.');
+        }
+
         return view('admin.unit_pendidikan.create');
     }
 
@@ -104,13 +122,20 @@ class AdminUnitPendidikanController extends Controller
         return redirect()->route('admin.unit-pendidikan.index')->with('success', 'Unit Pendidikan berhasil ditambahkan.');
     }
 
-    public function edit(UnitPendidikan $unitPendidikan)
+    public function edit(Request $request, UnitPendidikan $unitPendidikan)
     {
+        if ($request->user()?->isUnitAdmin() && (int) $unitPendidikan->id !== (int) $request->user()->unit_pendidikan_id) {
+            abort(403, 'Anda tidak memiliki izin untuk mengedit profil unit lain.');
+        }
+
         return view('admin.unit_pendidikan.edit', ['unit' => $unitPendidikan]);
     }
 
     public function update(Request $request, UnitPendidikan $unitPendidikan)
     {
+        if ($request->user()?->isUnitAdmin() && (int) $unitPendidikan->id !== (int) $request->user()->unit_pendidikan_id) {
+            abort(403, 'Anda tidak memiliki izin untuk mengedit profil unit lain.');
+        }
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'short_name' => 'nullable|string|max:50',
@@ -190,11 +215,18 @@ class AdminUnitPendidikanController extends Controller
             'status' => 'info',
         ]);
 
+        if ($request->user()?->isUnitAdmin()) {
+            return redirect()->route('admin.unit-pendidikan.edit', $unitPendidikan->id)->with('success', 'Profil Unit berhasil diperbarui.');
+        }
+
         return redirect()->route('admin.unit-pendidikan.index')->with('success', 'Unit Pendidikan berhasil diperbarui.');
     }
 
     public function destroy(Request $request, UnitPendidikan $unitPendidikan)
     {
+        if ($request->user()?->isUnitAdmin()) {
+            abort(403, 'Anda tidak memiliki izin untuk menghapus unit pendidikan.');
+        }
         $name = $unitPendidikan->name;
         $unitPendidikan->delete();
 

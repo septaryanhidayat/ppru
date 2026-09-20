@@ -41,11 +41,11 @@
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch">
             <div class="lg:col-span-5 flex flex-col">
                 <div class="w-full h-full min-h-[360px] sm:min-h-[420px] rounded-3xl overflow-hidden shadow-xl border-4 border-white ring-4 ring-emerald-100 bg-emerald-50 relative group flex flex-col">
-                    <img src="/uploads/official/foto-mudir.webp" alt="KH. Tol'at Wafa Ahmad, Lc. - Mudir Pesantren" class="w-full h-full object-cover object-top group-hover:scale-105 transition duration-500" onerror="this.src='/uploads/official/logo-ru-berwarna.png'">
+                    <img src="{{ $siteSettings['mudir_photo'] ?? '/uploads/official/foto-mudir.webp' }}" alt="{{ $siteSettings['mudir_name'] ?? 'KH. Tol\'at Wafa Ahmad, Lc.' }} - Mudir Pesantren" class="w-full h-full object-cover object-top group-hover:scale-105 transition duration-500" onerror="this.src='/uploads/official/logo-ru-berwarna.png'">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none"></div>
                     <div class="absolute bottom-4 left-4 right-4 text-white">
-                        <span class="block text-base sm:text-lg font-extrabold drop-shadow">KH. Tol'at Wafa Ahmad, Lc.</span>
-                        <span class="text-xs text-emerald-300 font-semibold drop-shadow">Mudir Pondok Pesantren Raudhatul Ulum</span>
+                        <span class="block text-base sm:text-lg font-extrabold drop-shadow">{{ $siteSettings['mudir_name'] ?? 'KH. Tol\'at Wafa Ahmad, Lc.' }}</span>
+                        <span class="text-xs text-emerald-300 font-semibold drop-shadow">{{ $siteSettings['mudir_position'] ?? 'Mudir Pondok Pesantren Raudhatul Ulum' }}</span>
                     </div>
                 </div>
             </div>

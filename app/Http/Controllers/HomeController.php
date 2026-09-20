@@ -5,9 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Agenda;
 use App\Models\AnggotaDewan;
 use App\Models\Download;
-use App\Models\Dpc;
+use App\Models\HeroSlide;
 use App\Models\Pengumuman;
 use App\Models\Post;
+use App\Models\ProgramUnggulan;
 use App\Models\Setting;
 use App\Models\Testimonial;
 use App\Models\UnitPendidikan;
@@ -17,33 +18,57 @@ class HomeController extends Controller
 {
     public function index()
     {
-        // 1. Hero slides data - Pondok Pesantren Raudhatul Ulum Sakatiga
-        $heroSlides = [
-            [
-                'title' => 'Pondok Pesantren Raudhatul Ulum',
-                'subtitle' => 'Basis Kaderisasi Generasi Terbaik (Khoiru Ummah) yang Bermanfaat Luas dan Berdaya Saing Global di Sakatiga Ogan Ilir.',
-                'image' => '/uploads/official/drone-raudhatul-ulum.webp',
-                'btn_text' => 'Profil Singkat Pesantren',
-                'btn_link' => route('page.tentang-kami', [], false),
-            ],
-            [
-                'title' => 'Penerimaan Santri Baru (PSB) 2026/2027',
-                'subtitle' => 'Mari Bergabung dengan Pesantren Modern Terpadu Berasrama: Al-Qur\'an, Dwi-Bahasa, dan Dirasah Islamiyah.',
-                'image' => '/uploads/official/drone-danau-telok-putih.webp',
-                'btn_text' => 'Daftar PSB Online',
-                'btn_link' => route('ppdb.index', [], false),
-            ],
-            [
-                'title' => 'Kurikulum Terpadu & Muadalah Al-Azhar',
-                'subtitle' => 'Memadukan Kurikulum Pondok Modern Gontor, Kementerian Agama, dan Dinas Pendidikan Nasional.',
-                'image' => '/uploads/official/ngaji-sore.webp',
-                'btn_text' => 'Sambutan Mudir PPRU',
-                'btn_link' => route('page.sambutan', [], false),
-            ],
-        ];
+        // 1. Dynamic Hero Slides from Database
+        $dbHeroSlides = HeroSlide::active()->orderBy('order', 'asc')->get();
+
+        if ($dbHeroSlides->isNotEmpty()) {
+            $heroSlides = $dbHeroSlides->map(fn ($s) => [
+                'title' => $s->title,
+                'subtitle' => $s->subtitle,
+                'badge' => $s->badge ?: (Setting::get('home_hero_badge', 'Pondok Pesantren Raudhatul Ulum Sakatiga')),
+                'image' => $s->image_url,
+                'btn_text' => $s->btn_primary_text ?: 'Profil Singkat Pesantren',
+                'btn_link' => $s->btn_primary_url ?: route('page.tentang-kami', [], false),
+                'btn_sec_text' => $s->btn_secondary_text ?: 'Pendaftaran PSB',
+                'btn_sec_link' => $s->btn_secondary_url ?: route('ppdb.index', [], false),
+            ])->toArray();
+        } else {
+            $heroSlides = [
+                [
+                    'title' => 'Pondok Pesantren Raudhatul Ulum',
+                    'subtitle' => 'Basis Kaderisasi Generasi Terbaik (Khoiru Ummah) yang Bermanfaat Luas dan Berdaya Saing Global di Sakatiga Ogan Ilir.',
+                    'badge' => 'Pondok Pesantren Raudhatul Ulum Sakatiga',
+                    'image' => '/uploads/official/drone-raudhatul-ulum.webp',
+                    'btn_text' => 'Profil Singkat Pesantren',
+                    'btn_link' => route('page.tentang-kami', [], false),
+                    'btn_sec_text' => 'Pendaftaran PSB',
+                    'btn_sec_link' => route('ppdb.index', [], false),
+                ],
+                [
+                    'title' => 'Penerimaan Santri Baru (PSB) 2026/2027',
+                    'subtitle' => 'Mari Bergabung dengan Pesantren Modern Terpadu Berasrama: Al-Qur\'an, Dwi-Bahasa, dan Dirasah Islamiyah.',
+                    'badge' => 'PSB Gelombang 1 Dibuka',
+                    'image' => '/uploads/official/drone-danau-telok-putih.webp',
+                    'btn_text' => 'Daftar PSB Online',
+                    'btn_link' => route('ppdb.index', [], false),
+                    'btn_sec_text' => 'Brosur & Biaya',
+                    'btn_sec_link' => route('download.index', [], false),
+                ],
+                [
+                    'title' => 'Kurikulum Terpadu & Muadalah Al-Azhar',
+                    'subtitle' => 'Memadukan Kurikulum Pondok Modern Gontor, Kementerian Agama, dan Dinas Pendidikan Nasional.',
+                    'badge' => 'Muadalah Al-Azhar Kairo Mesir',
+                    'image' => '/uploads/official/ngaji-sore.webp',
+                    'btn_text' => 'Sambutan Mudir PPRU',
+                    'btn_link' => route('page.sambutan', [], false),
+                    'btn_sec_text' => 'Unit Pendidikan',
+                    'btn_sec_link' => route('pendidikan.index', [], false),
+                ],
+            ];
+        }
 
         // 2. Sambutan Mudir Pesantren
-        $sambutan = Post::where('type', 'page')->where('slug', 'sambutan-kepala-sekolah')->first();
+        $sambutan = Post::where('type', 'page')->whereIn('slug', ['sambutan-mudir', 'sambutan-kepala-sekolah'])->first();
 
         // 3. Ambil semua post publik untuk fallback
         $allPosts = Post::posts()
@@ -75,7 +100,7 @@ class HomeController extends Controller
         }
 
         // 5. Berita Prestasi Siswa (Section 3 - 8 posts)
-        $fraksiPosts = Post::posts()
+        $prestasiPosts = Post::posts()
             ->published()
             ->with(['categories'])
             ->where(function ($q) {
@@ -88,9 +113,9 @@ class HomeController extends Controller
             ->take(8)
             ->get();
 
-        if ($fraksiPosts->count() < 8) {
+        if ($prestasiPosts->count() < 8) {
             $fallbackPosts = $allPosts->whereNotIn('id', $senayanPosts->pluck('id'));
-            $fraksiPosts = $fraksiPosts->merge($fallbackPosts)->unique('id')->take(8);
+            $prestasiPosts = $prestasiPosts->merge($fallbackPosts)->unique('id')->take(8);
         }
 
         // 6. Kabar Akademik & Kurikulum (Section 4 Kolom 1 - 6 posts)
@@ -227,15 +252,15 @@ class HomeController extends Controller
             'button_text' => Setting::get('popup_button_text', 'Daftar PSB Sekarang'),
         ];
 
-        // 18. Program Unggulan Pesantren (Dpc)
-        $programUnggulan = Dpc::orderBy('order', 'asc')->get();
+        // 18. Program Unggulan Pesantren
+        $programUnggulan = ProgramUnggulan::orderBy('order', 'asc')->get();
 
         return view('frontend.home', compact(
             'heroSlides',
             'sambutan',
             'featuredPost',
             'sidePosts',
-            'fraksiPosts',
+            'prestasiPosts',
             'nasionalPosts',
             'daerahPosts',
             'senayanPosts',

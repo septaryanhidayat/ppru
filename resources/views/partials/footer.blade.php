@@ -102,16 +102,23 @@
                     <span>Tautan Cepat</span>
                 </h3>
                 <ul class="space-y-2 text-xs text-gray-300 w-full text-center md:text-left">
-                    <li><a href="{{ route('page.sambutan') }}" class="hover:text-[#fcd116] transition block">Sambutan Mudir</a></li>
-                    <li><a href="{{ route('page.tentang-kami') }}" class="hover:text-[#fcd116] transition block">Profil Pesantren</a></li>
-                    <li><a href="{{ route('page.visi-misi') }}" class="hover:text-[#fcd116] transition block">Visi, Misi &amp; Jati Diri</a></li>
-                    <li><a href="{{ route('page.sejarah') }}" class="hover:text-[#fcd116] transition block">Sejarah Sejak 1950</a></li>
-                    <li><a href="{{ route('dewan.index') }}" class="hover:text-[#fcd116] transition block">Dewan Asatidz &amp; Guru</a></li>
-                    <li><a href="{{ route('ppdb.index') }}" class="hover:text-[#fcd116] transition font-bold text-emerald-400 block">Pendaftaran PSB Online</a></li>
-                    <li><a href="{{ route('download.index') }}" class="hover:text-[#fcd116] transition block">Unduh Brosur PSB</a></li>
-                    <li><a href="{{ route('donasi') }}" class="hover:text-[#fcd116] transition text-amber-300 block">Wakaf &amp; Infaq Sarana</a></li>
-                    <li><a href="{{ route('page.privacy-policy') }}" class="hover:text-[#fcd116] transition block">Kebijakan Privasi</a></li>
-                    <li><a href="{{ route('hubungi') }}" class="hover:text-[#fcd116] transition block">Hubungi Kami</a></li>
+                    @if(isset($footerNavMenus) && $footerNavMenus->isNotEmpty())
+                        @foreach($footerNavMenus as $fm)
+                            <li><a href="{{ $fm->url }}" target="{{ $fm->target }}" class="hover:text-[#fcd116] transition block">{{ $fm->title }}</a></li>
+                        @endforeach
+                    @else
+                        <li><a href="{{ route('page.sambutan') }}" class="hover:text-[#fcd116] transition block">Sambutan Mudir</a></li>
+                        <li><a href="{{ route('page.tentang-kami') }}" class="hover:text-[#fcd116] transition block">Profil Pesantren</a></li>
+                        <li><a href="{{ route('page.visi-misi') }}" class="hover:text-[#fcd116] transition block">Visi, Misi &amp; Jati Diri</a></li>
+                        <li><a href="{{ route('page.sejarah') }}" class="hover:text-[#fcd116] transition block">Sejarah Sejak 1950</a></li>
+                        <li><a href="{{ route('dewan.index') }}" class="hover:text-[#fcd116] transition block">Dewan Asatidz &amp; Guru</a></li>
+                        <li><a href="{{ route('ikarus.index') }}" class="hover:text-[#fcd116] transition text-amber-300 font-semibold block">Alumni RU (IKARUS)</a></li>
+                        <li><a href="{{ route('ppdb.index') }}" class="hover:text-[#fcd116] transition font-bold text-emerald-400 block">Pendaftaran PSB Online</a></li>
+                        <li><a href="{{ route('download.index') }}" class="hover:text-[#fcd116] transition block">Unduh Brosur PSB</a></li>
+                        <li><a href="{{ route('donasi') }}" class="hover:text-[#fcd116] transition text-amber-300 block">Wakaf &amp; Infaq Sarana</a></li>
+                        <li><a href="{{ route('page.privacy-policy') }}" class="hover:text-[#fcd116] transition block">Kebijakan Privasi</a></li>
+                        <li><a href="{{ route('hubungi') }}" class="hover:text-[#fcd116] transition block">Hubungi Kami</a></li>
+                    @endif
                 </ul>
             </div>
 

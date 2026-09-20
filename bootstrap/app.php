@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Middleware\CheckMaintenanceMode;
+use App\Http\Middleware\EnsureUnitAccess;
 use App\Http\Middleware\IncrementVisitorCounter;
 use App\Http\Middleware\SecurityHeaders;
 use App\Http\Middleware\SecurityMonitorMiddleware;
@@ -16,6 +17,9 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
+        $middleware->alias([
+            'unit.access' => EnsureUnitAccess::class,
+        ]);
         $middleware->web(append: [
             CheckMaintenanceMode::class,
             IncrementVisitorCounter::class,

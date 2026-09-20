@@ -6,7 +6,7 @@
 @section('og_description', $post->meta_description ?: Str::limit(strip_tags($post->content), 160))
 @section('meta_keywords', $post->meta_keywords)
 @section('og_type', 'article')
-@section('og_image', $post->featured_image ? asset($post->featured_image) : asset('/uploads/campus-robbani.webp'))
+@section('og_image', $post->featured_image ? asset($post->featured_image) : asset('/images/hero-1.webp'))
 
 @section('content')
 {{-- BREADCRUMB HEADER --}}
@@ -143,9 +143,9 @@
                             <a href="{{ route('artikel.show', $rPost->slug) }}" class="group block">
                                 <div class="h-36 rounded-xl overflow-hidden bg-gray-100 mb-3 shadow-sm">
                                     @if($rPost->featured_image)
-                                        <img src="{{ $rPost->featured_image }}" alt="{{ $rPost->title }}" class="w-full h-full object-cover group-hover:scale-105 transition" onerror="this.src='/uploads/campus-robbani.webp'">
+                                        <img src="{{ $rPost->featured_image }}" alt="{{ $rPost->title }}" class="w-full h-full object-cover group-hover:scale-105 transition" onerror="this.src='/images/hero-1.webp'">
                                     @else
-                                        <img src="/uploads/campus-robbani.webp" alt="{{ $rPost->title }}" class="w-full h-full object-cover">
+                                        <img src="/images/hero-1.webp" alt="{{ $rPost->title }}" class="w-full h-full object-cover">
                                     @endif
                                 </div>
                                 <span class="text-[10px] text-gray-400 block mb-1">
@@ -201,9 +201,9 @@
                         <div class="flex items-start space-x-3 group">
                             <a href="{{ route('artikel.show', $rPost->slug) }}" class="w-16 h-16 rounded-xl overflow-hidden bg-gray-100 flex-shrink-0">
                                 @if($rPost->featured_image)
-                                    <img src="{{ $rPost->featured_image }}" alt="{{ $rPost->title }}" class="w-full h-full object-cover group-hover:scale-105 transition" onerror="this.src='/uploads/campus-robbani.webp'">
+                                    <img src="{{ $rPost->featured_image }}" alt="{{ $rPost->title }}" class="w-full h-full object-cover group-hover:scale-105 transition" onerror="this.src='/images/hero-1.webp'">
                                 @else
-                                    <img src="/uploads/campus-robbani.webp" alt="{{ $rPost->title }}" class="w-full h-full object-cover">
+                                    <img src="/images/hero-1.webp" alt="{{ $rPost->title }}" class="w-full h-full object-cover">
                                 @endif
                             </a>
                             <div class="flex-grow">

@@ -20,10 +20,21 @@ class AdminMediaController extends Controller
         $this->webpService = $webpService;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $photos = Post::where('type', 'gallery')->latest('created_at')->paginate(18, ['*'], 'photos_page');
-        $videos = Video::latest()->paginate(10, ['*'], 'videos_page');
+        $user = $request->user();
+        $unitId = $user?->isUnitAdmin() ? $user->unit_pendidikan_id : null;
+
+        $photoQuery = Post::where('type', 'gallery');
+        $videoQuery = Video::query();
+
+        if ($unitId) {
+            $photoQuery->where('unit_pendidikan_id', $unitId);
+            $videoQuery->where('unit_pendidikan_id', $unitId);
+        }
+
+        $photos = $photoQuery->latest('created_at')->paginate(18, ['*'], 'photos_page');
+        $videos = $videoQuery->latest()->paginate(10, ['*'], 'videos_page');
 
         return view('admin.media.index', compact('photos', 'videos'));
     }
@@ -45,6 +56,7 @@ class AdminMediaController extends Controller
             $photoUrl = '/uploads/galeri/'.$filename;
         }
 
+        $user = $request->user();
         $photo = Post::create([
             'title' => $request->input('title'),
             'slug' => Str::slug($request->input('title')).'-'.time(),
@@ -54,6 +66,7 @@ class AdminMediaController extends Controller
             'content' => $request->input('description') ?? '',
             'author_id' => Auth::id(),
             'published_at' => now(),
+            'unit_pendidikan_id' => $user?->isUnitAdmin() ? $user->unit_pendidikan_id : null,
         ]);
 
         ActivityLog::create([
@@ -71,6 +84,11 @@ class AdminMediaController extends Controller
 
     public function updatePhoto(Request $request, Post $photo)
     {
+        $user = $request->user();
+        if ($user?->isUnitAdmin() && (int) $photo->unit_pendidikan_id !== (int) $user->unit_pendidikan_id) {
+            abort(403, 'Anda tidak memiliki izin mengedit foto unit lain.');
+        }
+
         $request->validate([
             'title' => 'required|string|max:255',
             'image' => 'nullable|image|max:5120',
@@ -102,6 +120,11 @@ class AdminMediaController extends Controller
 
     public function destroyPhoto(Request $request, Post $photo)
     {
+        $user = $request->user();
+        if ($user?->isUnitAdmin() && (int) $photo->unit_pendidikan_id !== (int) $user->unit_pendidikan_id) {
+            abort(403, 'Anda tidak memiliki izin menghapus foto unit lain.');
+        }
+
         $title = $photo->title;
         $photo->delete();
 
@@ -130,12 +153,14 @@ class AdminMediaController extends Controller
         preg_match('/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([\w-]{11})/', $validated['youtube_url'], $matches);
         $youtubeId = $matches[1] ?? '';
 
+        $user = $request->user();
         $video = Video::create([
             'title' => $validated['title'],
             'slug' => Str::slug($validated['title']).'-'.time(),
             'youtube_url' => $validated['youtube_url'],
             'youtube_id' => $youtubeId,
             'description' => $validated['description'] ?? '',
+            'unit_pendidikan_id' => $user?->isUnitAdmin() ? $user->unit_pendidikan_id : null,
         ]);
 
         ActivityLog::create([
@@ -153,6 +178,11 @@ class AdminMediaController extends Controller
 
     public function destroyVideo(Request $request, Video $video)
     {
+        $user = $request->user();
+        if ($user?->isUnitAdmin() && (int) $video->unit_pendidikan_id !== (int) $user->unit_pendidikan_id) {
+            abort(403, 'Anda tidak memiliki izin menghapus video unit lain.');
+        }
+
         $title = $video->title;
         $video->delete();
 

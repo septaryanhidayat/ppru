@@ -8,16 +8,16 @@ use Illuminate\Support\Facades\Hash;
 
 test('login page renders and allows user authentication', function () {
     $user = User::create([
-        'name' => 'Admin Robbani',
-        'email' => 'admin@robbani.sch.id',
-        'password' => Hash::make('AdminRobbani2026!'),
+        'name' => 'Admin PPRU',
+        'email' => 'admin@ppru.ac.id',
+        'password' => Hash::make('AdminPPRU2026!'),
     ]);
 
     $this->get('/login')->assertStatus(200)->assertSee('Panel Administrator');
 
     // Wrong password fails
     $failResponse = $this->post('/login', [
-        'email' => 'admin@robbani.sch.id',
+        'email' => 'admin@ppru.ac.id',
         'password' => 'wrongpassword',
     ]);
     $failResponse->assertSessionHasErrors('email');
@@ -25,8 +25,8 @@ test('login page renders and allows user authentication', function () {
 
     // Correct password succeeds
     $successResponse = $this->post('/login', [
-        'email' => 'admin@robbani.sch.id',
-        'password' => 'AdminRobbani2026!',
+        'email' => 'admin@ppru.ac.id',
+        'password' => 'AdminPPRU2026!',
     ]);
     $successResponse->assertRedirect('/admin');
     $this->assertAuthenticatedAs($user);
@@ -41,9 +41,9 @@ test('unauthenticated users are redirected from admin routes', function () {
 
 test('admin can manage posts and convert images to webp on upload', function () {
     $admin = User::create([
-        'name' => 'Admin Robbani',
-        'email' => 'admin@robbani.sch.id',
-        'password' => Hash::make('AdminRobbani2026!'),
+        'name' => 'Admin PPRU',
+        'email' => 'admin@ppru.ac.id',
+        'password' => Hash::make('AdminPPRU2026!'),
     ]);
 
     $this->actingAs($admin);
@@ -56,7 +56,7 @@ test('admin can manage posts and convert images to webp on upload', function () 
 
     // Create post
     $response = $this->post('/admin/posts', [
-        'title' => 'Prestasi Santri Robbani Juara Sains',
+        'title' => 'Prestasi Santri PPRU Juara Sains',
         'content' => '<p>Konten artikel pengujian baru.</p>',
         'excerpt' => 'Ringkasan artikel pengujian',
         'status' => 'publish',
@@ -66,7 +66,7 @@ test('admin can manage posts and convert images to webp on upload', function () 
     $response->assertRedirect('/admin/posts');
     $response->assertSessionHas('success');
 
-    $post = Post::where('title', 'Prestasi Santri Robbani Juara Sains')->first();
+    $post = Post::where('title', 'Prestasi Santri PPRU Juara Sains')->first();
     expect($post)->not->toBeNull();
     expect($post->featured_image)->toEndWith('.webp');
 
@@ -79,14 +79,14 @@ test('admin can manage posts and convert images to webp on upload', function () 
     $this->get("/admin/posts/{$post->id}/edit")->assertStatus(200);
 
     $updateResponse = $this->put("/admin/posts/{$post->id}", [
-        'title' => 'Prestasi Santri Robbani Juara Sains Diperbarui',
+        'title' => 'Prestasi Santri PPRU Juara Sains Diperbarui',
         'content' => '<p>Konten yang sudah diedit.</p>',
         'status' => 'publish',
     ]);
     $updateResponse->assertRedirect('/admin/posts');
 
     $post->refresh();
-    expect($post->title)->toBe('Prestasi Santri Robbani Juara Sains Diperbarui');
+    expect($post->title)->toBe('Prestasi Santri PPRU Juara Sains Diperbarui');
 
     // Delete post
     $this->delete("/admin/posts/{$post->id}")->assertRedirect('/admin/posts');
@@ -95,15 +95,15 @@ test('admin can manage posts and convert images to webp on upload', function () 
 
 test('admin can manage feedbacks and settings', function () {
     $admin = User::create([
-        'name' => 'Admin Robbani',
-        'email' => 'admin@robbani.sch.id',
-        'password' => Hash::make('AdminRobbani2026!'),
+        'name' => 'Admin PPRU',
+        'email' => 'admin@ppru.ac.id',
+        'password' => Hash::make('AdminPPRU2026!'),
     ]);
 
     $feedback = Feedback::create([
         'name' => 'Wali Santri',
         'email' => 'wali@gmail.com',
-        'message' => 'Alhamdulillah pendidikan di Robbani sangat memuaskan.',
+        'message' => 'Alhamdulillah pendidikan di PPRU sangat memuaskan.',
         'status' => 'unread',
     ]);
 
@@ -121,12 +121,12 @@ test('admin can manage feedbacks and settings', function () {
 
     // Update settings
     $this->post('/admin/settings', [
-        'site_name' => 'SMA IT PLUS ROBBANI JUARA',
+        'site_name' => 'Pondok Pesantren Raudhatul Ulum Sakatiga',
         'contact_phone' => '08999999999',
     ])->assertRedirect();
 
     $this->assertDatabaseHas('settings', [
         'key' => 'site_name',
-        'value' => 'SMA IT PLUS ROBBANI JUARA',
+        'value' => 'Pondok Pesantren Raudhatul Ulum Sakatiga',
     ]);
 });

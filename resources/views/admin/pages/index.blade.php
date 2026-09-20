@@ -11,6 +11,10 @@
                 <h2 class="text-lg font-black text-slate-800">Daftar Halaman Profil & Informasi</h2>
                 <p class="text-xs text-slate-500 mt-0.5">Edit konten narasi, teks sambutan, visi misi, sejarah, struktur, dan kebijakan privasi langsung di sini.</p>
             </div>
+            <a href="{{ route('admin.pages.create') }}" class="inline-flex items-center space-x-2 bg-[#00913e] hover:bg-[#094d28] text-white font-bold text-xs px-5 py-2.5 rounded-xl shadow-md transition self-start sm:self-auto">
+                <i class="fa-solid fa-plus"></i>
+                <span>Tambah Halaman Baru</span>
+            </a>
         </div>
 
         {{-- QUICK ACCESS CARDS UNTUK HALAMAN STATIS KHUSUS --}}
@@ -142,6 +146,15 @@
                                     <a href="{{ $editUrl }}" class="w-8 h-8 rounded-xl bg-[#da251c] hover:bg-[#b91c1c] text-white flex items-center justify-center shadow-xs transition text-xs" title="Edit Konten">
                                         <i class="fa-solid fa-pen-to-square text-xs"></i>
                                     </a>
+                                    @if(!in_array($page->slug, ['tentang-kami', 'visi-misi', 'visi-dan-misi', 'sejarah', 'struktur', 'struktur-organisasi', 'sambutan', 'sambutan-kepala-sekolah', 'sambutan-mudir', 'privacy-policy', 'donasi', 'hymne-mars', 'logo', 'layanan-terpadu']))
+                                        <form action="{{ route('admin.pages.destroy', $page) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus halaman \'{{ $page->title }}\'?');" class="inline">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="w-8 h-8 rounded-xl bg-slate-100 hover:bg-red-50 text-slate-400 hover:text-red-500 flex items-center justify-center border border-slate-200 transition text-xs shadow-xs cursor-pointer" title="Hapus Halaman">
+                                                <i class="fa-solid fa-trash text-xs"></i>
+                                            </button>
+                                        </form>
+                                    @endif
                                 </div>
                             </td>
                         </tr>

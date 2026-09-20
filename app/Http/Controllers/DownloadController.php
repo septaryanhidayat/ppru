@@ -24,7 +24,7 @@ class DownloadController extends Controller
 
     public function hymneMars()
     {
-        $page = Post::pages()->whereIn('slug', ['hymne-mars', 'hymne-mars-robbani'])->first();
+        $page = Post::pages()->whereIn('slug', ['hymne-mars', 'hymne-mars-ppru', 'hymne-mars-pesantren'])->first();
         $audioFiles = Download::where('file_type', 'MP3')->orWhere('title', 'like', '%Mars%')->orWhere('title', 'like', '%Hymne%')->get();
 
         return view('frontend.download.hymne-mars', compact('page', 'audioFiles'));

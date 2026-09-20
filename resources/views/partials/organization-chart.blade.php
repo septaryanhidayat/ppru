@@ -482,29 +482,20 @@
 
                 <div class="w-[1120px] mx-auto grid grid-cols-8 gap-2">
                     @php
-                        $unitLeaders = [
-                            ['code' => 'MARU', 'unit' => 'Madrasah Aliyah', 'leader' => 'Ust. H. M. Said, S.Ag.', 'color' => 'border-emerald-500 text-emerald-800', 'bg' => 'bg-emerald-50'],
-                            ['code' => 'SMAIT', 'unit' => 'SMA Islam Terpadu', 'leader' => 'Ust. Ahmad Fauzi, M.Pd.', 'color' => 'border-teal-500 text-teal-800', 'bg' => 'bg-teal-50'],
-                            ['code' => 'MATSARU', 'unit' => 'Madrasah Tsanawiyah', 'leader' => 'Ust. Drs. H. Syamsuddin', 'color' => 'border-green-500 text-green-800', 'bg' => 'bg-green-50'],
-                            ['code' => 'SMPIT', 'unit' => 'SMP Islam Terpadu', 'leader' => 'Ust. Ridwan, S.Pd.I.', 'color' => 'border-sky-500 text-sky-800', 'bg' => 'bg-sky-50'],
-                            ['code' => 'MATQULARU', 'unit' => 'Tahfizhul Qur\'an', 'leader' => 'Ust. H. Abdul Halim', 'color' => 'border-amber-500 text-amber-800', 'bg' => 'bg-amber-50'],
-                            ['code' => 'MIRU', 'unit' => 'Madrasah Ibtidaiyah', 'leader' => 'Usth. Hj. Maryam, S.Pd.I.', 'color' => 'border-lime-500 text-lime-800', 'bg' => 'bg-lime-50'],
-                            ['code' => 'TAKIRU', 'unit' => 'TK Islam RU', 'leader' => 'Usth. Fatimah, S.Pd.', 'color' => 'border-orange-500 text-orange-800', 'bg' => 'bg-orange-50'],
-                            ['code' => 'IAI NRU', 'unit' => 'Institut Agama Islam', 'leader' => 'Dr. H. M. Husin, M.A.', 'color' => 'border-indigo-500 text-indigo-800', 'bg' => 'bg-indigo-50'],
-                        ];
+                        $unitModels = \App\Models\UnitPendidikan::active()->orderBy('order', 'asc')->get();
                     @endphp
 
-                    @foreach($unitLeaders as $ul)
-                        <div class="rounded-xl bg-white border {{ $ul['color'] }} shadow-xs p-2 text-center flex flex-col justify-between min-h-[76px]">
-                            <span class="inline-block {{ $ul['bg'] }} {{ $ul['color'] }} text-[9px] font-black px-1.5 py-0.5 rounded uppercase tracking-wider mx-auto">
-                                {{ $ul['code'] }}
+                    @foreach($unitModels as $u)
+                        <div class="rounded-xl bg-white border border-emerald-500 shadow-xs p-2 text-center flex flex-col justify-between min-h-[76px]">
+                            <span class="inline-block bg-emerald-50 text-emerald-800 text-[9px] font-black px-1.5 py-0.5 rounded uppercase tracking-wider mx-auto">
+                                {{ $u->short_name ?: 'UNIT' }}
                             </span>
                             <div>
-                                <h5 class="text-[10px] font-black text-slate-900 leading-tight truncate w-full mt-1">
-                                    {{ $ul['leader'] }}
+                                <h5 class="text-[10px] font-black text-slate-900 leading-tight truncate w-full mt-1" title="{{ $u->head_name }}">
+                                    {{ $u->head_name ?: 'Kepala Lembaga' }}
                                 </h5>
-                                <p class="text-[8.5px] text-slate-500 font-medium truncate w-full leading-none mt-0.5">
-                                    {{ $ul['unit'] }}
+                                <p class="text-[8.5px] text-slate-500 font-medium truncate w-full leading-none mt-0.5" title="{{ $u->name }}">
+                                    {{ Str::limit($u->name, 22) }}
                                 </p>
                             </div>
                         </div>

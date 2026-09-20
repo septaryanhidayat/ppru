@@ -13,7 +13,7 @@ $dumpFile = __DIR__.'/cpanel_school_mysql_dump.sql';
 $fp = fopen($dumpFile, 'w');
 
 fwrite($fp, "-- ==========================================================\n");
-fwrite($fp, "-- SMA IT ISHLAHUL UMMAH PRABUMULIH - DATABASE MYSQL EXPORT\n");
+fwrite($fp, "-- PONDOK PESANTREN RAUDHATUL ULUM (PPRU) - DATABASE MYSQL EXPORT\n");
 fwrite($fp, '-- Export Date: '.date('Y-m-d H:i:s')."\n");
 fwrite($fp, "-- Compatible: MySQL 5.7+, MySQL 8.0+, MariaDB 10.3+\n");
 fwrite($fp, "-- For cPanel phpMyAdmin Import & Git Deployments\n");

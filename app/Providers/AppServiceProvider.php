@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Category;
+use App\Models\NavMenu;
 use App\Models\Setting;
 use App\Models\UnitPendidikan;
 use Illuminate\Pagination\Paginator;
@@ -61,9 +62,19 @@ class AppServiceProvider extends ServiceProvider
             } else {
                 View::share('navUnitPendidikans', collect());
             }
+
+            if (Schema::hasTable('nav_menus')) {
+                View::share('headerNavMenus', NavMenu::header()->active()->root()->with('children.children')->orderBy('order', 'asc')->get());
+                View::share('footerNavMenus', NavMenu::footer()->active()->root()->with('children.children')->orderBy('order', 'asc')->get());
+            } else {
+                View::share('headerNavMenus', collect());
+                View::share('footerNavMenus', collect());
+            }
         } catch (\Throwable $e) {
             View::share('headerCategories', collect());
             View::share('navUnitPendidikans', collect());
+            View::share('headerNavMenus', collect());
+            View::share('footerNavMenus', collect());
         }
     }
 }

@@ -178,7 +178,7 @@ class ExportMySQLDatabaseCommand extends Command
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `position` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `fraction` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT 'Dewan Guru & GTK Robbani',
+  `fraction` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT 'Dewan Guru & Asatidz PPRU',
   `profile_summary` text COLLATE utf8mb4_unicode_ci,
   `education` text COLLATE utf8mb4_unicode_ci,
   `photo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -300,7 +300,7 @@ class ExportMySQLDatabaseCommand extends Command
         ];
 
         $out = "-- ========================================================\n";
-        $out .= "-- Database Clean Production Dump: SMA IT PLUS ROBBANI\n";
+        $out .= "-- Database Clean Production Dump: PONDOK PESANTREN RAUDHATUL ULUM (PPRU)\n";
         $out .= "-- Generated for cPanel / phpMyAdmin Import\n";
         $out .= "-- Target Engine: MySQL 8.x / MariaDB 10.x\n";
         $out .= '-- Date: '.date('Y-m-d H:i:s')."\n";

@@ -26,8 +26,43 @@ use Illuminate\Support\Facades\Schema;
 
 class AdminDashboardController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $user = $request->user();
+
+        // Dedicated scoped dashboard for Unit Admins
+        if ($user?->isUnitAdmin()) {
+            $unit = $user->unit;
+            $unitId = $user->unit_pendidikan_id;
+
+            $stats = [
+                'total_posts' => Post::where('type', 'post')->where('unit_pendidikan_id', $unitId)->count(),
+                'total_views' => Post::where('type', 'post')->where('unit_pendidikan_id', $unitId)->sum('views_count'),
+                'total_photos' => Post::where('type', 'gallery')->where('unit_pendidikan_id', $unitId)->count(),
+                'total_videos' => Video::where('unit_pendidikan_id', $unitId)->count(),
+                'total_prestasi' => Post::where('type', 'prestasi')->where('unit_pendidikan_id', $unitId)->count(),
+                'total_ekskul' => Post::where('type', 'ekskul')->where('unit_pendidikan_id', $unitId)->count(),
+                'total_ppdb' => PpdbRegistration::where(function ($q) use ($unit) {
+                    if ($unit) {
+                        $q->where('program_type', 'like', "%{$unit->short_name}%")
+                            ->orWhere('program_type', 'like', "%{$unit->name}%");
+                    }
+                })->count(),
+            ];
+
+            $recentPosts = Post::where('type', 'post')->where('unit_pendidikan_id', $unitId)->latest()->take(6)->get();
+            $recentPhotos = Post::where('type', 'gallery')->where('unit_pendidikan_id', $unitId)->latest()->take(4)->get();
+            $recentVideos = Video::where('unit_pendidikan_id', $unitId)->latest()->take(4)->get();
+
+            return view('admin.dashboard', compact(
+                'unit',
+                'stats',
+                'recentPosts',
+                'recentPhotos',
+                'recentVideos'
+            ));
+        }
+
         $hasVisitorLogs = false;
         $todayVisitors = 0;
         $todayPageviews = 0;
@@ -86,7 +121,7 @@ class AdminDashboardController extends Controller
             'pending_services' => ServiceSubmission::where('status', 'pending')->count(),
             'total_dewan' => AnggotaDewan::count(),
             'total_bidang' => Bidang::count(),
-            'total_dpc' => Dpc::count(),
+            'total_programs' => Dpc::count(),
             'total_agendas' => Agenda::count(),
             'total_pengumuman' => Pengumuman::count(),
             'total_downloads' => Download::count(),

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Video extends Model
 {
@@ -15,7 +16,22 @@ class Video extends Model
         'youtube_url',
         'youtube_id',
         'description',
+        'unit_pendidikan_id',
     ];
+
+    public function unitPendidikan(): BelongsTo
+    {
+        return $this->belongsTo(UnitPendidikan::class, 'unit_pendidikan_id');
+    }
+
+    public function scopeForUnit($query, ?int $unitId)
+    {
+        if (! empty($unitId)) {
+            return $query->where('unit_pendidikan_id', $unitId);
+        }
+
+        return $query;
+    }
 
     /**
      * Otomatis ambil YouTube ID dari kolom youtube_id atau parsing dari youtube_url jika kosong.

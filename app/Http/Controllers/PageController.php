@@ -5,18 +5,19 @@ namespace App\Http\Controllers;
 use App\Models\Agenda;
 use App\Models\AnggotaDewan;
 use App\Models\Bidang;
-use App\Models\Dpc;
 use App\Models\Post;
+use App\Models\ProgramUnggulan;
 use App\Models\Testimonial;
 
 class PageController extends Controller
 {
     public function sambutan()
     {
-        $page = Post::pages()->whereIn('slug', ['sambutan-kepala-sekolah', 'sambutan-ketua-dpd'])->first();
+        $page = Post::pages()->whereIn('slug', ['sambutan-mudir', 'sambutan-kepala-sekolah', 'sambutan-ketua-dpd'])->first();
 
-        $kepsek = AnggotaDewan::where('position', 'like', '%Kepala Sekolah%')
-            ->orWhere('position', 'like', '%Kepala SMA%')
+        $kepsek = AnggotaDewan::where('position', 'like', '%Mudir%')
+            ->orWhere('position', 'like', '%Pimpinan%')
+            ->orWhere('position', 'like', '%Kepala%')
             ->first();
 
         return view('frontend.pages.sambutan', compact('page', 'kepsek'));
@@ -52,7 +53,7 @@ class PageController extends Controller
     {
         $page = Post::pages()->whereIn('slug', ['struktur-organisasi', 'struktur-kepengurusan'])->first();
         $bidangs = Bidang::orderBy('order', 'asc')->get();
-        $dpcs = Dpc::orderBy('order', 'asc')->get();
+        $dpcs = ProgramUnggulan::orderBy('order', 'asc')->get();
         $dewan = AnggotaDewan::orderBy('order', 'asc')->get();
         $tree = AnggotaDewan::getHierarchyTree();
 
@@ -66,11 +67,19 @@ class PageController extends Controller
         return view('frontend.pages.privacy-policy', compact('page'));
     }
 
+    public function programUnggulan()
+    {
+        $programs = ProgramUnggulan::orderBy('order', 'asc')->get();
+
+        return view('frontend.program-unggulan.index', compact('programs'));
+    }
+
+    /**
+     * Backward compatibility route handler for /dpc
+     */
     public function dpc()
     {
-        $dpcs = Dpc::orderBy('order', 'asc')->get();
-
-        return view('frontend.dpc.index', compact('dpcs'));
+        return redirect()->route('program-unggulan.index', [], 301);
     }
 
     public function show(string $slug)

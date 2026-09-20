@@ -1,36 +1,37 @@
-# SMA IT Plus Robbani - Website Resmi Sekolah
+# Pondok Pesantren Raudhatul Ulum (PPRU) Sakatiga - Website Resmi
 
-Website resmi profil dan portal informasi **SMA IT Plus Robbani**, dibangun menggunakan Laravel 12 dan Tailwind CSS v4 dengan arsitektur modern, responsif, dan elegan.
+Website resmi profil dan portal informasi **Pondok Pesantren Raudhatul Ulum (PPRU) Sakatiga**, dibangun menggunakan Laravel 12 dan Tailwind CSS dengan arsitektur modern, responsif, dan dinamis berbasis CMS penuh.
 
 ## 🌿 Identitas & Tema
-- **Warna Dominan**: Hijau Robbani (`#0d6b38` / `#15803d`)
-- **Warna Sekunder**: Oranye Robbani (`#f97316` / `#ea580c`)
-- **Visi**: Mewujudkan Generasi Qur'ani, Berakhlak Mulia, Unggul dalam Sains, Teknologi, dan Berwawasan Global.
+- **Warna Dominan**: Hijau PPRU (`#00913e` / `#00843d`)
+- **Warna Aksen**: Emas / Kuning Keemasan (`#f59e0b` / `#d97706`)
+- **Motto**: Berilmu Amaliah, Beramal Ilmiah, Berakhlakul Karimah.
 
 ## 🚀 Fitur Utama
-1. **Beranda Interaktif**:
-   - Hero Slider & Sambutan Kepala Sekolah
-   - Quick Access Menu & Counter Statistik Akademik
-   - Program Unggulan (Tahfidz, Sains & Riset, Bilingual English & Arabic, IT & Robotika)
-   - Dewan Guru & Tenaga Kependidikan (GTK)
-   - Galeri Kegiatan & Fasilitas Kampus
-   - Berita & Pengumuman Resmi
-   - Testimonial Wali Santri & Alumni
-   - Live Visitor Counter (Pengunjung Online & Total Kunjungan)
-2. **Halaman Profil Lengkap**:
-   - Sambutan Kepala Sekolah
-   - Profil Sekolah, Akreditasi, & Sarana Prasarana
-   - Visi, Misi, & Tujuan Pendidikan
-   - Sejarah Pendirian & Nilai Luhur
-   - Struktur Organisasi & Pengelola
+1. **Beranda Interaktif (100% Dynamic CRUD)**:
+   - Dynamic Hero Banner Slider (Judul, Subjudul, Gambar WebP, Tombol & Tautan)
+   - Dynamic Navigation Menu (Header & Footer)
+   - Video Profil Pesantren & Sambutan Mudir Pesantren
+   - Trisula Keunggulan (Bahasa, Al-Qur'an, Kitab Kuning)
+   - Statistik Santri, Asatidz, Alumni, & Penghafal Al-Qur'an
+   - Program Unggulan Pesantren & Unit Pendidikan
+   - Galeri Kegiatan 2-Row Slider & Prestasi Santri
+   - Portal PSB Online & Infaq/Wakaf Pembangunan
+   - Live Visitor Counter Real-Time
+2. **Halaman Statis Dinamis (Full CMS)**:
+   - Tentang Kami & Profil Pesantren
+   - Visi, Misi, & Falsafah Hidup Pesantren
+   - Sejarah Pendirian & Genealogi Ulama Pendiri
+   - Struktur Organisasi & Majelis Pimpinan
+   - Sambutan Mudir / Pimpinan Pondok
+   - Kebijakan Privasi
 3. **Portal Informasi & Download**:
-   - Modul Ajar & E-Book Siswa
-   - Hymne & Mars Robbani
-   - Pedoman & Panduan Akademik
-   - Unduhan Logo Resmi & Pedoman Identitas Visual
-4. **PPDB & Donasi**:
-   - Alur & Formulir Konsultasi PPDB Online
-   - Portal Infaq Pembangunan & Beasiswa Pendidikan Robbani
+   - Berita & Prestasi Santri
+   - Kalender Agenda & Pengumuman
+   - Unduhan Berkas & Brosur PSB Online
+4. **PSB & Infaq/Wakaf**:
+   - Formulir & Alur Pendaftaran Santri Baru (PSB)
+   - Kanal Donasi & Infaq Pengembangan Sarana Pesantren
 
 ## 🛠️ Tech Stack
 - **Framework Backend**: Laravel 12 (PHP 8.4)
@@ -64,4 +65,4 @@ php artisan serve
 ```
 
 ---
-Dikelola dengan bangga oleh **SMA IT Plus Robbani**.
+Dikelola dengan bangga oleh **Pondok Pesantren Raudhatul Ulum (PPRU) Sakatiga**.

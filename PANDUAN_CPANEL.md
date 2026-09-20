@@ -1,12 +1,12 @@
-# 🚀 Panduan Deployment Laravel SMA IT Plus Robbani ke cPanel
+# 🚀 Panduan Deployment Laravel Pondok Pesantren Raudhatul Ulum (PPRU) ke cPanel
 
-Panduan lengkap langkah demi langkah untuk mengunggah dan mengaktifkan website Laravel 12 (PHP 8.4) SMA IT Plus Robbani ke hosting cPanel dengan database MySQL.
+Panduan lengkap langkah demi langkah untuk mengunggah dan mengaktifkan website Laravel 12 (PHP 8.4) Pondok Pesantren Raudhatul Ulum ke hosting cPanel dengan database MySQL.
 
 ---
 
 ## 📋 1. Persyaratan Server / Hosting cPanel & Solusi PHP
 
-Website SMA IT Plus Robbani dibangun menggunakan Laravel modern yang membutuhkan PHP 8.2+ (direkomendasikan **PHP 8.4**).
+Website PPRU dibangun menggunakan Laravel modern yang membutuhkan PHP 8.2+ (direkomendasikan **PHP 8.4**).
 
 ### A. Solusi Web (Otomatis via `.htaccess`)
 Web server (Apache / LiteSpeed) di cPanel dapat dipaksa menggunakan PHP 8.4 secara lokal untuk folder website Anda melalui file `.htaccess`. Baris berikut sudah terpasang di file `.htaccess` dan `public/.htaccess`:
@@ -32,8 +32,8 @@ source ~/.bashrc
 ## 🗄️ 2. Persiapan Database MySQL
 
 1. Buka cPanel dan pilih menu **MySQL® Databases**.
-2. Buat database baru, contoh: `username_robbani`.
-3. Buat pengguna MySQL baru, contoh: `username_robbaniuser` dengan kata sandi yang kuat.
+2. Buat database baru, contoh: `username_ppru`.
+3. Buat pengguna MySQL baru, contoh: `username_ppruuser` dengan kata sandi yang kuat.
 4. Hubungkan pengguna tersebut ke database dengan memberikan **All Privileges** (Semua Hak Akses).
 5. Jalankan migrasi & seeder via Terminal cPanel:
    ```bash
@@ -48,16 +48,16 @@ source ~/.bashrc
 1. Buka cPanel Anda dan klik menu **Git™ Version Control**.
 2. Klik tombol **Create**.
 3. Masukkan informasi repositori:
-   - **Clone URL**: `https://github.com/septaryanhidayat/school.git`
-   - **Repository Path**: `/home/username/laravel_school`
-   - **Repository Name**: `school`
+   - **Clone URL**: URL repositori GitHub PPRU Anda
+   - **Repository Path**: `/home/username/ppru`
+   - **Repository Name**: `ppru`
 4. Klik tombol **Create**.
 
 ### Langkah Konfigurasi Awal (.env & Vendor):
 1. Buka menu **Terminal** di cPanel Anda.
 2. Masuk ke folder repositori:
    ```bash
-   cd ~/laravel_school
+   cd ~/ppru
    cp .env.example .env
    php artisan key:generate
    ```
@@ -75,9 +75,9 @@ source ~/.bashrc
 
 ## 🔐 4. Akses Panel Admin Website
 
-- **URL Login**: `https://domain-anda.com/login`
-- **Email Administrator**: `admin@robbani.sch.id`
-- **Password**: Password default seeder yang Anda tetapkan
+- **URL Login**: `https://ppru.ac.id/login`
+- **Email Administrator**: `admin@ppru.ac.id`
+- **Password**: Password default administrator PPRU Anda
 
 ---
-Dikelola dengan bangga oleh **SMA IT Plus Robbani**.
+Dikelola dengan bangga oleh **Pondok Pesantren Raudhatul Ulum (PPRU) Sakatiga**.

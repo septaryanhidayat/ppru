@@ -504,7 +504,7 @@ class AdminPpdbController extends Controller
     public function exportExcel()
     {
         $registrations = PpdbRegistration::latest()->get();
-        $filename = 'Data_Pendaftar_PPDB_SMAIT_Ishlahul_Ummah_'.date('Ymd_His').'.csv';
+        $filename = 'Data_Pendaftar_PSB_PPRU_'.date('Ymd_His').'.csv';
 
         $headers = [
             'Content-Type' => 'text/csv; charset=UTF-8',

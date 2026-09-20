@@ -56,7 +56,7 @@ class ContactController extends Controller
             'status' => 'unread',
         ]);
 
-        return redirect()->route('hubungi')->with('success', 'Terima kasih! Pesan dan formulir konsultasi Anda telah berhasil dikirimkan kepada SMA IT Plus Robbani.');
+        return redirect()->route('hubungi')->with('success', 'Terima kasih! Pesan dan formulir konsultasi Anda telah berhasil dikirimkan kepada Pondok Pesantren Raudhatul Ulum Sakatiga.');
     }
 
     public function donasi()

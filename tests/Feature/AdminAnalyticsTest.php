@@ -31,7 +31,7 @@ test('authenticated admin can view analytics dashboard with real metrics', funct
     VisitorLog::create([
         'ip_address' => '202.67.40.10',
         'path' => '/sejarah',
-        'page_title' => 'Sejarah Partai',
+        'page_title' => 'Sejarah Pesantren',
         'referer' => 'https://www.google.com/',
         'referer_source' => 'Google Search',
         'device_type' => 'Mobile',
