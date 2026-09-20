@@ -655,6 +655,8 @@
                     }
                 });
 
+                editorEl.__quill = quill;
+
                 // Attach Indonesian tooltips to toolbar buttons
                 setTimeout(function() {
                     const toolbarEl = editorEl.previousElementSibling;

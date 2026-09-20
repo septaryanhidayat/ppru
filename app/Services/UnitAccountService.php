@@ -159,10 +159,11 @@ class UnitAccountService
                         'is_active' => true,
                     ]);
                 } else {
+                    $isFulan = ! $unit->head_name || str_contains(strtolower((string) $unit->head_name), 'fulan');
                     $unit->update([
                         'order' => $cfg['order'],
                         'category_type' => $cfg['category_type'],
-                        'head_name' => $unit->head_name ?: $cfg['head_name'],
+                        'head_name' => $isFulan ? $cfg['head_name'] : $unit->head_name,
                     ]);
                 }
 
@@ -242,7 +243,11 @@ class UnitAccountService
                     'name' => $unit->name,
                     'slug' => $unit->slug,
                     'category_type' => $unit->category_type,
-                    'head_name' => $unit->head_name,
+                    'head_name' => (! $unit->head_name || str_contains(strtolower((string) $unit->head_name), 'fulan'))
+                        ? (collect(self::getUnitsConfig())->firstWhere('slug', $unit->slug)['head_name']
+                            ?? collect(self::getUnitsConfig())->firstWhere('short_name', $unit->short_name)['head_name']
+                            ?? $unit->head_name)
+                        : $unit->head_name,
                     'email' => $user?->email ?: ('admin.'.strtolower(str_replace(' ', '', (string) $unit->short_name)).'@ppru.ac.id'),
                     'password_default' => 'AdminUnitPPRU2026!',
                     'posts_count' => $postsCount,

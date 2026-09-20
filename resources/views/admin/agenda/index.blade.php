@@ -3,6 +3,39 @@
 @section('title', 'Agenda, Info & Pengumuman')
 @section('header_title', 'Manajemen Agenda Kegiatan, Info & Pengumuman')
 
+@push('styles')
+<style>
+    .modal-quill .ql-toolbar.ql-snow {
+        border-top-left-radius: 0.875rem;
+        border-top-right-radius: 0.875rem;
+        border-color: #e2e8f0;
+        background: #f8fafc;
+        padding: 8px 12px;
+    }
+    .modal-quill .ql-container.ql-snow {
+        border-bottom-left-radius: 0.875rem;
+        border-bottom-right-radius: 0.875rem;
+        border-color: #e2e8f0;
+        font-family: 'Poppins', sans-serif;
+        font-size: 0.8125rem;
+        background-color: #ffffff;
+        min-height: 160px;
+        max-height: 380px;
+        overflow-y: auto;
+    }
+    .modal-quill .ql-editor {
+        min-height: 160px;
+        max-height: 380px;
+        line-height: 1.7 !important;
+        padding: 14px 18px !important;
+        color: #1e293b;
+    }
+    .modal-quill .ql-editor p {
+        margin-bottom: 0.75rem !important;
+    }
+</style>
+@endpush
+
 @section('content')
 <div class="space-y-6" x-data="{
     activeTab: '{{ $tab ?? 'agenda' }}',
@@ -20,6 +53,11 @@
             status: item.status || 'upcoming'
         };
         this.editAgendaModal = true;
+        this.$nextTick(() => {
+            if (typeof window.syncQuillEditorContent === 'function') {
+                window.syncQuillEditorContent('agenda_edit_editor', 'agenda_edit_content', item.content || '');
+            }
+        });
     },
     openEditPengumuman(item) {
         this.pengumumanToEdit = {
@@ -29,6 +67,11 @@
             status: item.status || 'publish'
         };
         this.editPengumumanModal = true;
+        this.$nextTick(() => {
+            if (typeof window.syncQuillEditorContent === 'function') {
+                window.syncQuillEditorContent('pengumuman_edit_editor', 'pengumuman_edit_content', item.content || '');
+            }
+        });
     }
 }">
 
@@ -76,14 +119,14 @@
                     </h2>
                     <p class="text-xs text-slate-500 mt-0.5">Kelola jadwal ujian, wisuda, perlombaan, seminar, dan kalender kegiatan santri.</p>
                 </div>
-                <button type="button" @click="openAdd = !openAdd" class="bg-[#00843d] hover:bg-emerald-800 text-white text-xs font-bold px-4 py-2 rounded-xl transition flex items-center gap-2 shadow-xs cursor-pointer">
+                <button type="button" @click="openAdd = !openAdd; $nextTick(() => { if (openAdd && typeof window.syncQuillEditorContent === 'function') window.syncQuillEditorContent('agenda_create_editor', 'agenda_create_content', document.getElementById('agenda_create_content').value); })" class="bg-[#00843d] hover:bg-emerald-800 text-white text-xs font-bold px-4 py-2 rounded-xl transition flex items-center gap-2 shadow-xs cursor-pointer">
                     <i :class="openAdd ? 'fa-solid fa-minus' : 'fa-solid fa-plus'"></i>
                     <span x-text="openAdd ? 'Tutup Form' : 'Tambah Agenda Baru'"></span>
                 </button>
             </div>
 
             <div x-show="openAdd" x-collapse x-cloak>
-                <form action="{{ route('admin.agenda.store') }}" method="POST" enctype="multipart/form-data" class="bg-slate-50 p-5 rounded-2xl border border-slate-200/80 space-y-4 mt-4">
+                <form action="{{ route('admin.agenda.store') }}" method="POST" enctype="multipart/form-data" class="bg-slate-50 p-5 rounded-2xl border border-slate-200/80 space-y-4 mt-4" onsubmit="const ed = document.getElementById('agenda_create_editor'); if (ed && ed.__quill) document.getElementById('agenda_create_content').value = ed.__quill.root.innerHTML;">
                     @csrf
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                         <div class="lg:col-span-2">
@@ -117,8 +160,16 @@
                     </div>
 
                     <div>
-                        <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">Catatan / Rincian Agenda (Opsional)</label>
-                        <textarea name="content" rows="2" placeholder="Tuliskan susunan acara, pakaian/dresscode, atau instruksi khusus untuk peserta/santri..." class="w-full bg-white text-xs text-slate-800 rounded-xl p-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00843d]"></textarea>
+                        <div class="flex items-center justify-between mb-1.5">
+                            <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider">
+                                <i class="fa-solid fa-file-lines text-[#00843d] mr-1"></i> Catatan / Rincian Agenda Kegiatan (Opsional)
+                            </label>
+                            <span class="text-[11px] text-slate-400 font-medium">Toolbar teks lengkap (WYSIWYG)</span>
+                        </div>
+                        <input type="hidden" name="content" id="agenda_create_content" value="{{ old('content') }}">
+                        <div class="border border-slate-200 rounded-2xl overflow-hidden shadow-2xs bg-white modal-quill">
+                            <div id="agenda_create_editor" data-quill="agenda_create_content" class="bg-white min-h-[160px]"></div>
+                        </div>
                     </div>
 
                     <div class="flex justify-end pt-2">
@@ -228,14 +279,14 @@
                     </h2>
                     <p class="text-xs text-slate-500 mt-0.5">Publikasikan informasi akademik, kelulusan PPDB, surat edaran mudir, dan pemberitahuan penting.</p>
                 </div>
-                <button type="button" @click="openAddP = !openAddP" class="bg-[#da251c] hover:bg-red-700 text-white text-xs font-bold px-4 py-2 rounded-xl transition flex items-center gap-2 shadow-xs cursor-pointer">
+                <button type="button" @click="openAddP = !openAddP; $nextTick(() => { if (openAddP && typeof window.syncQuillEditorContent === 'function') window.syncQuillEditorContent('pengumuman_create_editor', 'pengumuman_create_content', document.getElementById('pengumuman_create_content').value); })" class="bg-[#da251c] hover:bg-red-700 text-white text-xs font-bold px-4 py-2 rounded-xl transition flex items-center gap-2 shadow-xs cursor-pointer">
                     <i :class="openAddP ? 'fa-solid fa-minus' : 'fa-solid fa-plus'"></i>
                     <span x-text="openAddP ? 'Tutup Form' : 'Terbitkan Pengumuman / Info Baru'"></span>
                 </button>
             </div>
 
             <div x-show="openAddP" x-collapse x-cloak>
-                <form action="{{ route('admin.pengumuman.store') }}" method="POST" enctype="multipart/form-data" class="bg-slate-50 p-5 rounded-2xl border border-slate-200/80 space-y-4 mt-4">
+                <form action="{{ route('admin.pengumuman.store') }}" method="POST" enctype="multipart/form-data" class="bg-slate-50 p-5 rounded-2xl border border-slate-200/80 space-y-4 mt-4" onsubmit="const ed = document.getElementById('pengumuman_create_editor'); if (ed && ed.__quill) document.getElementById('pengumuman_create_content').value = ed.__quill.root.innerHTML;">
                     @csrf
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                         <div class="sm:col-span-2">
@@ -252,8 +303,16 @@
                     </div>
 
                     <div>
-                        <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">Isi Pesan Pengumuman <span class="text-red-500">*</span></label>
-                        <textarea name="content" required rows="4" placeholder="Tuliskan detail surat edaran atau rincian pengumuman di sini..." class="w-full bg-white text-xs text-slate-800 rounded-xl p-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#da251c] leading-relaxed"></textarea>
+                        <div class="flex items-center justify-between mb-1.5">
+                            <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider">
+                                <i class="fa-solid fa-file-lines text-[#da251c] mr-1"></i> Isi Pesan Pengumuman / Surat Edaran <span class="text-red-500">*</span>
+                            </label>
+                            <span class="text-[11px] text-slate-400 font-medium">Toolbar teks lengkap (WYSIWYG)</span>
+                        </div>
+                        <input type="hidden" name="content" id="pengumuman_create_content" value="{{ old('content') }}">
+                        <div class="border border-slate-200 rounded-2xl overflow-hidden shadow-2xs bg-white modal-quill">
+                            <div id="pengumuman_create_editor" data-quill="pengumuman_create_content" class="bg-white min-h-[220px]"></div>
+                        </div>
                     </div>
 
                     <div>
@@ -346,7 +405,7 @@
 
     {{-- MODAL EDIT AGENDA --}}
     <div x-show="editAgendaModal" x-cloak class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs">
-        <div @click.away="editAgendaModal = false" class="bg-white rounded-3xl shadow-2xl border border-slate-200 max-w-2xl w-full p-6 sm:p-7 space-y-5 animate-scale-in">
+        <div @click.away="editAgendaModal = false" class="bg-white rounded-3xl shadow-2xl border border-slate-200 max-w-3xl w-full p-6 sm:p-7 space-y-5 animate-scale-in max-h-[92vh] overflow-y-auto">
             <div class="flex items-center justify-between border-b border-slate-100 pb-3">
                 <h3 class="text-base font-extrabold text-slate-900 flex items-center gap-2">
                     <i class="fa-solid fa-pen-to-square text-[#00843d]"></i>
@@ -357,7 +416,7 @@
                 </button>
             </div>
 
-            <form :action="'{{ url('admin/agenda') }}/' + agendaToEdit.id" method="POST" enctype="multipart/form-data" class="space-y-4">
+            <form :action="'{{ url('admin/agenda') }}/' + agendaToEdit.id" method="POST" enctype="multipart/form-data" class="space-y-4" onsubmit="const ed = document.getElementById('agenda_edit_editor'); if (ed && ed.__quill) document.getElementById('agenda_edit_content').value = ed.__quill.root.innerHTML;">
                 @csrf
                 @method('PUT')
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -389,8 +448,16 @@
                 </div>
 
                 <div>
-                    <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">Rincian Agenda Kegiatan</label>
-                    <textarea name="content" x-model="agendaToEdit.content" rows="3" class="w-full bg-slate-50 text-xs text-slate-800 rounded-xl p-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00843d]"></textarea>
+                    <div class="flex items-center justify-between mb-1.5">
+                        <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider">
+                            <i class="fa-solid fa-file-lines text-[#00843d] mr-1"></i> Rincian Agenda Kegiatan
+                        </label>
+                        <span class="text-[11px] text-slate-400 font-medium">Toolbar teks lengkap (WYSIWYG)</span>
+                    </div>
+                    <input type="hidden" name="content" id="agenda_edit_content" :value="agendaToEdit.content">
+                    <div class="border border-slate-200 rounded-2xl overflow-hidden shadow-2xs bg-white modal-quill">
+                        <div id="agenda_edit_editor" data-quill="agenda_edit_content" class="bg-white min-h-[180px]"></div>
+                    </div>
                 </div>
 
                 <div class="flex justify-end space-x-2 pt-3 border-t border-slate-100">
@@ -408,7 +475,7 @@
 
     {{-- MODAL EDIT PENGUMUMAN --}}
     <div x-show="editPengumumanModal" x-cloak class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs">
-        <div @click.away="editPengumumanModal = false" class="bg-white rounded-3xl shadow-2xl border border-slate-200 max-w-2xl w-full p-6 sm:p-7 space-y-5 animate-scale-in">
+        <div @click.away="editPengumumanModal = false" class="bg-white rounded-3xl shadow-2xl border border-slate-200 max-w-3xl w-full p-6 sm:p-7 space-y-5 animate-scale-in max-h-[92vh] overflow-y-auto">
             <div class="flex items-center justify-between border-b border-slate-100 pb-3">
                 <h3 class="text-base font-extrabold text-slate-900 flex items-center gap-2">
                     <i class="fa-solid fa-pen-to-square text-[#da251c]"></i>
@@ -419,7 +486,7 @@
                 </button>
             </div>
 
-            <form :action="'{{ url('admin/pengumuman') }}/' + pengumumanToEdit.id" method="POST" enctype="multipart/form-data" class="space-y-4">
+            <form :action="'{{ url('admin/pengumuman') }}/' + pengumumanToEdit.id" method="POST" enctype="multipart/form-data" class="space-y-4" onsubmit="const ed = document.getElementById('pengumuman_edit_editor'); if (ed && ed.__quill) document.getElementById('pengumuman_edit_content').value = ed.__quill.root.innerHTML;">
                 @csrf
                 @method('PUT')
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -437,8 +504,16 @@
                 </div>
 
                 <div>
-                    <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">Isi Rincian Pengumuman <span class="text-red-500">*</span></label>
-                    <textarea name="content" x-model="pengumumanToEdit.content" rows="5" required class="w-full bg-slate-50 text-xs text-slate-800 rounded-xl p-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#da251c] leading-relaxed"></textarea>
+                    <div class="flex items-center justify-between mb-1.5">
+                        <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider">
+                            <i class="fa-solid fa-file-lines text-[#da251c] mr-1"></i> Isi Rincian Pengumuman <span class="text-red-500">*</span>
+                        </label>
+                        <span class="text-[11px] text-slate-400 font-medium">Toolbar teks lengkap (WYSIWYG)</span>
+                    </div>
+                    <input type="hidden" name="content" id="pengumuman_edit_content" :value="pengumumanToEdit.content">
+                    <div class="border border-slate-200 rounded-2xl overflow-hidden shadow-2xs bg-white modal-quill">
+                        <div id="pengumuman_edit_editor" data-quill="pengumuman_edit_content" class="bg-white min-h-[220px]"></div>
+                    </div>
                 </div>
 
                 <div>
@@ -461,3 +536,48 @@
 
 </div>
 @endsection
+
+@push('scripts')
+<script>
+    window.syncQuillEditorContent = function(editorId, inputId, content) {
+        const input = document.getElementById(inputId);
+        if (input) input.value = content || '';
+        const editorEl = document.getElementById(editorId);
+        if (!editorEl) return;
+
+        if (editorEl.__quill) {
+            editorEl.__quill.root.innerHTML = content || '';
+        } else if (typeof Quill !== 'undefined') {
+            const quill = new Quill(editorEl, {
+                theme: 'snow',
+                modules: {
+                    toolbar: [
+                        [{ 'font': [] }, { 'size': ['small', false, 'large', 'huge'] }],
+                        [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+                        ['bold', 'italic', 'underline', 'strike'],
+                        [{ 'color': [] }, { 'background': [] }],
+                        [{ 'script': 'sub'}, { 'script': 'super' }],
+                        [{ 'align': '' }, { 'align': 'center' }, { 'align': 'right' }, { 'align': 'justify' }],
+                        [{ 'list': 'ordered'}, { 'list': 'bullet' }, { 'indent': '-1'}, { 'indent': '+1' }],
+                        ['blockquote', 'code-block'],
+                        ['link', 'image', 'video'],
+                        ['clean']
+                    ]
+                }
+            });
+            editorEl.__quill = quill;
+            quill.root.innerHTML = content || '';
+            quill.on('text-change', function() {
+                if (input) input.value = quill.root.innerHTML;
+            });
+
+            const form = editorEl.closest('form');
+            if (form) {
+                form.addEventListener('submit', function() {
+                    if (input) input.value = quill.root.innerHTML;
+                });
+            }
+        }
+    };
+</script>
+@endpush

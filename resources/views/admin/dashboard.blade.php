@@ -819,13 +819,15 @@
                     @forelse($unitAdmins ?? [] as $ua)
                         <tr class="hover:bg-slate-50/80 transition">
                             <td class="py-3.5 px-3.5">
-                                <div class="flex items-center gap-3">
-                                    <span class="inline-flex items-center justify-center px-2.5 py-1 rounded-lg bg-emerald-50 text-emerald-800 border border-emerald-300 font-black text-[11px] shrink-0 whitespace-nowrap min-w-[74px] text-center shadow-2xs">
-                                        {{ $ua['short_name'] }}
-                                    </span>
+                                <div class="flex items-center gap-3.5">
+                                    <div class="w-28 shrink-0 flex items-center justify-center py-1.5 px-2 rounded-xl bg-emerald-50 text-[#00843d] border border-emerald-300 font-black text-xs tracking-tight text-center shadow-2xs">
+                                        <span class="whitespace-nowrap">{{ $ua['short_name'] }}</span>
+                                    </div>
                                     <div class="min-w-0 flex-1">
                                         <span class="font-extrabold text-slate-900 text-xs sm:text-sm block leading-snug break-words">{{ $ua['name'] }}</span>
-                                        <span class="text-[10px] text-slate-500 block leading-tight mt-0.5">{{ $ua['category_type'] }} &bull; Pimpinan: {{ $ua['head_name'] ?: '-' }}</span>
+                                        <span class="text-[11px] text-slate-500 block leading-tight mt-0.5">
+                                            <span class="font-semibold text-emerald-700">{{ $ua['category_type'] }}</span> &bull; Pimpinan: <span class="font-medium text-slate-700">{{ $ua['head_name'] ?: '-' }}</span>
+                                        </span>
                                     </div>
                                 </div>
                             </td>

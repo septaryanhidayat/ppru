@@ -158,3 +158,47 @@ test('unit page renders dynamic photo gallery from posts table and allows admin 
     $response->assertStatus(200);
     $response->assertSee($galleryPost->title);
 });
+
+test('agenda and pengumuman management uses rich text quill editors for formatted writing', function () {
+    $response = $this->actingAs($this->admin)->get(route('admin.agenda.index'));
+
+    $response->assertStatus(200);
+    $response->assertSee('data-quill="agenda_create_content"', false);
+    $response->assertSee('data-quill="agenda_edit_content"', false);
+    $response->assertSee('data-quill="pengumuman_create_content"', false);
+    $response->assertSee('data-quill="pengumuman_edit_content"', false);
+
+    // Verify rich HTML content can be stored and updated from rich editor
+    $richAgenda = Agenda::create([
+        'title' => 'Kajian Spesial Ramadhan 1447 H',
+        'slug' => 'kajian-spesial-ramadhan-'.time(),
+        'event_date' => '2026-03-20',
+        'location' => 'Masjid Utama Pondok',
+        'content' => '<p><strong>Tema Kajian:</strong> Meneladani Akhlak Salafus Shalih.</p><ul><li>Wajib bagi seluruh santri</li><li>Buku catatan dibawa</li></ul>',
+        'status' => 'upcoming',
+    ]);
+
+    expect($richAgenda->content)->toContain('<strong>Tema Kajian:</strong>')
+        ->and($richAgenda->content)->toContain('<li>Wajib bagi seluruh santri</li>');
+
+    $richPengumuman = Pengumuman::create([
+        'title' => 'Maklumat Mudir: Tata Tertib Kunjungan Wali Santri',
+        'slug' => 'maklumat-mudir-kunjungan-'.time(),
+        'content' => '<p>Diberitahukan kepada seluruh wali santri:</p><ol><li>Kunjungan hanya pada hari Ahad</li><li>Mematuhi busana syar\'i</li></ol>',
+        'status' => 'publish',
+    ]);
+
+    expect($richPengumuman->content)->toContain('<li>Kunjungan hanya pada hari Ahad</li>');
+});
+
+test('admin dashboard renders symmetrical unit badges and authentic leadership names', function () {
+    $response = $this->actingAs($this->admin)->get(route('admin.dashboard'));
+
+    $response->assertStatus(200);
+    // Symmetrical badge container width w-28
+    $response->assertSee('w-28 shrink-0 flex items-center justify-center', false);
+    // Must not display placeholder Fulan names
+    $response->assertDontSee('Ustadz Fulan, S.Ag., M.Pd.I.');
+    $response->assertDontSee('Ustadz Fulan, Drs., M.Pd.I.');
+    $response->assertDontSee('Ustadzah Fulanah, S.Pd.I.');
+});

@@ -46,6 +46,10 @@ class AdminAgendaController extends Controller
 
     public function storeAgenda(Request $request)
     {
+        if ($request->has('content') && trim(strip_tags((string) $request->input('content'))) === '') {
+            $request->merge(['content' => null]);
+        }
+
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'event_date' => 'required|date',
@@ -88,6 +92,10 @@ class AdminAgendaController extends Controller
 
     public function updateAgenda(Request $request, Agenda $agenda)
     {
+        if ($request->has('content') && trim(strip_tags((string) $request->input('content'))) === '') {
+            $request->merge(['content' => null]);
+        }
+
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'event_date' => 'required|date',
@@ -147,6 +155,10 @@ class AdminAgendaController extends Controller
 
     public function storePengumuman(Request $request)
     {
+        if ($request->has('content') && trim(strip_tags((string) $request->input('content'))) === '') {
+            $request->merge(['content' => null]);
+        }
+
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'content' => 'required|string',
@@ -189,6 +201,10 @@ class AdminAgendaController extends Controller
 
     public function updatePengumuman(Request $request, Pengumuman $pengumuman)
     {
+        if ($request->has('content') && trim(strip_tags((string) $request->input('content'))) === '') {
+            $request->merge(['content' => null]);
+        }
+
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'content' => 'required|string',
