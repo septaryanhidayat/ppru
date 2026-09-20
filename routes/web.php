@@ -101,11 +101,13 @@ Route::prefix('admin')->middleware(['auth', 'unit.access'])->name('admin.')->gro
     Route::post('/media/video', [AdminMediaController::class, 'storeVideo'])->name('media.video.store');
     Route::delete('/media/video/{video}', [AdminMediaController::class, 'destroyVideo'])->name('media.video.destroy');
 
-    // Agenda & Pengumuman
+    // Agenda & Pengumuman / Info Resmi
     Route::get('/agenda', [AdminAgendaController::class, 'index'])->name('agenda.index');
     Route::post('/agenda', [AdminAgendaController::class, 'storeAgenda'])->name('agenda.store');
+    Route::put('/agenda/{agenda}', [AdminAgendaController::class, 'updateAgenda'])->name('agenda.update');
     Route::delete('/agenda/{agenda}', [AdminAgendaController::class, 'destroyAgenda'])->name('agenda.destroy');
     Route::post('/pengumuman', [AdminAgendaController::class, 'storePengumuman'])->name('pengumuman.store');
+    Route::put('/pengumuman/{pengumuman}', [AdminAgendaController::class, 'updatePengumuman'])->name('pengumuman.update');
     Route::delete('/pengumuman/{pengumuman}', [AdminAgendaController::class, 'destroyPengumuman'])->name('pengumuman.destroy');
 
     // Download Center Management

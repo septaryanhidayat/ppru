@@ -472,22 +472,41 @@ class UnitDemoContentService
     }
 
     /**
-     * Seed official YouTube video for the unit.
+     * Seed official YouTube video for the unit from official channel @tvrusakatiga.
      */
     protected static function seedUnitVideos(UnitPendidikan $unit): void
     {
         $short = $unit->short_name ?: $unit->name;
-        $title = "Profil Kegiatan dan Kiprah Santri {$short} Raudhatul Ulum";
+
+        $officialVideos = [
+            ['id' => 'BG311kT-yXc', 'title' => "Upacara Kemerdekaan dan Kiprah Santri {$short} Raudhatul Ulum"],
+            ['id' => 'cFXK5Of-IzQ', 'title' => "Sarasehan & Temu Orientasi Santri Baru {$short} Raudhatul Ulum"],
+            ['id' => 'mRdb_kGhbiQ', 'title' => "Arahan Mudir & Pembinaan Karakter Santri {$short} Raudhatul Ulum"],
+            ['id' => 'p8B8wKu5o4c', 'title' => "Peringatan Hari Besar & Semarak Prestasi {$short} Raudhatul Ulum"],
+            ['id' => 'iSL5Rw9f0ds', 'title' => "Disiplin Kepanduan dan Apel Akbar Santri {$short} Raudhatul Ulum"],
+            ['id' => '1HpIwqboDFg', 'title' => "Pertemuan Pimpinan & Pengasuhan Santri {$short} Raudhatul Ulum"],
+            ['id' => 'UGc6hUcwSXk', 'title' => "Gema Prestasi & Semarak Pembelajaran {$short} Raudhatul Ulum"],
+            ['id' => 'fvSzJDVyNCE', 'title' => "Atraksi Seni Bela Diri & Kreativitas Santri {$short} Raudhatul Ulum"],
+        ];
+
+        $selected = $officialVideos[($unit->id - 1) % count($officialVideos)];
 
         $video = Video::where('unit_pendidikan_id', $unit->id)->first();
         if (! $video) {
             Video::create([
                 'unit_pendidikan_id' => $unit->id,
-                'title' => $title,
-                'slug' => Str::slug($title),
-                'youtube_url' => 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-                'youtube_id' => 'dQw4w9WgXcQ',
-                'description' => "Video dokumentasi ragam kegiatan pembelajaran dan kedisiplinan santri di unit {$unit->name} Pondok Pesantren Raudhatul Ulum Sakatiga.",
+                'title' => $selected['title'],
+                'slug' => Str::slug($selected['title']).'-'.$unit->id,
+                'youtube_url' => 'https://www.youtube.com/watch?v='.$selected['id'],
+                'youtube_id' => $selected['id'],
+                'description' => "Dokumentasi video resmi dari kanal YouTube TVRU Sakatiga (@tvrusakatiga) untuk unit {$unit->name} Pondok Pesantren Raudhatul Ulum Sakatiga.",
+            ]);
+        } elseif ($video->youtube_id === 'dQw4w9WgXcQ') {
+            $video->update([
+                'title' => $selected['title'],
+                'youtube_url' => 'https://www.youtube.com/watch?v='.$selected['id'],
+                'youtube_id' => $selected['id'],
+                'description' => "Dokumentasi video resmi dari kanal YouTube TVRU Sakatiga (@tvrusakatiga) untuk unit {$unit->name} Pondok Pesantren Raudhatul Ulum Sakatiga.",
             ]);
         }
     }

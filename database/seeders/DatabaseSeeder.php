@@ -30,6 +30,7 @@ class DatabaseSeeder extends Seeder
             DownloadSeeder::class,
             PpruDataSeeder::class,
             PpruMediaAndNewsSeeder::class,
+            PpruDemoContentSeeder::class,
         ]);
     }
 }
