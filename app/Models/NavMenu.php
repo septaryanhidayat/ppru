@@ -40,6 +40,21 @@ class NavMenu extends Model
         return $query->where('location', $location);
     }
 
+    public function scopeHeader(Builder $query): Builder
+    {
+        return $query->where('location', 'header');
+    }
+
+    public function scopeFooter(Builder $query): Builder
+    {
+        return $query->whereIn('location', ['footer', 'footer_quick']);
+    }
+
+    public function scopeRoot(Builder $query): Builder
+    {
+        return $query->whereNull('parent_id');
+    }
+
     public function parent(): BelongsTo
     {
         return $this->belongsTo(NavMenu::class, 'parent_id');

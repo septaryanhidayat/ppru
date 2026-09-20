@@ -1,3 +1,8 @@
+@php
+    $headerUnits = (isset($navUnitPendidikans) && $navUnitPendidikans->isNotEmpty())
+        ? $navUnitPendidikans
+        : \App\Models\UnitPendidikan::active()->orderBy('order', 'asc')->get();
+@endphp
 {{-- TOP MINI BAR (Elegan: Kontak Telepon, Email, Alamat & Medsos PPRU Sakatiga) --}}
 <div class="bg-[#053d1c] text-white text-xs py-2 border-b border-green-900/70 hidden sm:block">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
@@ -74,8 +79,8 @@
                                             <a href="{{ route('pendidikan.index') }}" class="text-[10px] font-bold text-[#00843d] hover:underline">Semua Unit &rarr;</a>
                                         </div>
 
-                                        @if(isset($navUnitPendidikans) && $navUnitPendidikans->isNotEmpty())
-                                            @foreach($navUnitPendidikans as $nu)
+                                        @if(isset($headerUnits) && $headerUnits->isNotEmpty())
+                                            @foreach($headerUnits as $nu)
                                                 @php
                                                     $cleanNuName = trim(preg_replace('/\s*\([^)]*\)\s*$/', '', $nu->name));
                                                 @endphp
@@ -86,6 +91,9 @@
                                                             <span class="text-[9px] bg-emerald-100 text-[#00843d] px-1.5 py-0.5 rounded font-bold shrink-0 ml-1.5">{{ $nu->short_name }}</span>
                                                         @endif
                                                     </div>
+                                                    @if($nu->category_type)
+                                                        <span class="text-[10px] text-gray-400 font-normal block">{{ $nu->category_type }}</span>
+                                                    @endif
                                                 </a>
                                             @endforeach
                                         @elseif($m->children->isNotEmpty())
@@ -97,6 +105,13 @@
                                                 </a>
                                             @endforeach
                                         @endif
+
+                                        <div class="border-t border-gray-100 mt-1 pt-1 px-4 py-1.5 bg-emerald-50/50">
+                                            <a href="{{ route('pendidikan.index') }}" class="text-xs font-black text-[#00843d] hover:underline flex items-center justify-between">
+                                                <span>Lihat Semua Kurikulum &amp; Jenjang</span>
+                                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -193,8 +208,8 @@
                                 <a href="{{ route('pendidikan.index') }}" class="text-[10px] font-bold text-[#00843d] hover:underline">Semua Unit &rarr;</a>
                             </div>
 
-                            @if(isset($navUnitPendidikans) && $navUnitPendidikans->isNotEmpty())
-                                @foreach($navUnitPendidikans as $nu)
+                            @if(isset($headerUnits) && $headerUnits->isNotEmpty())
+                                @foreach($headerUnits as $nu)
                                     @php
                                         $cleanNuName = trim(preg_replace('/\s*\([^)]*\)\s*$/', '', $nu->name));
                                     @endphp
@@ -208,19 +223,6 @@
                                         <span class="text-[10px] text-gray-400 font-normal block">{{ $nu->category_type }}</span>
                                     </a>
                                 @endforeach
-                            @else
-                                <a href="{{ route('pendidikan.index') }}" class="block px-4 py-2 text-xs font-semibold text-gray-700 hover:bg-emerald-50 hover:text-[#00843d] transition">
-                                    Madrasah Aliyah Raudhatul Ulum (MARU)
-                                </a>
-                                <a href="{{ route('pendidikan.index') }}" class="block px-4 py-2 text-xs font-semibold text-gray-700 hover:bg-emerald-50 hover:text-[#00843d] transition">
-                                    Madrasah Tsanawiyah Raudhatul Ulum (MATSARU)
-                                </a>
-                                <a href="{{ route('pendidikan.index') }}" class="block px-4 py-2 text-xs font-semibold text-gray-700 hover:bg-emerald-50 hover:text-[#00843d] transition">
-                                    Madrasah Ibtidaiyah Raudhatul Ulum (MIRU)
-                                </a>
-                                <a href="{{ route('pendidikan.index') }}" class="block px-4 py-2 text-xs font-semibold text-gray-700 hover:bg-emerald-50 hover:text-[#00843d] transition">
-                                    Tahfizhul Qur'an Lil Aulad (MATQULARU)
-                                </a>
                             @endif
 
                             <div class="border-t border-gray-100 mt-1 pt-1 px-4 py-1.5 bg-emerald-50/50">
@@ -348,8 +350,8 @@
                         </summary>
                         <div class="pl-6 pt-1 space-y-1 text-xs">
                             <a href="{{ route('pendidikan.index') }}" class="block py-1.5 font-bold text-[#00843d]">Katalog Semua Unit</a>
-                            @if(isset($navUnitPendidikans) && $navUnitPendidikans->isNotEmpty())
-                                @foreach($navUnitPendidikans as $nu)
+                            @if(isset($headerUnits) && $headerUnits->isNotEmpty())
+                                @foreach($headerUnits as $nu)
                                     <a href="{{ route('pendidikan.show', $nu->slug) }}" class="block py-1.5 text-gray-600 hover:text-[#00843d] truncate flex items-center justify-between">
                                         <span>{{ trim(preg_replace('/\s*\([^)]*\)\s*$/', '', $nu->name)) }}</span>
                                         @if($nu->short_name)
@@ -433,9 +435,14 @@
                 </summary>
                 <div class="pl-6 pt-1 space-y-1 text-xs">
                     <a href="{{ route('pendidikan.index') }}" class="block py-1.5 font-bold text-[#00843d]">Katalog Semua Unit</a>
-                    @if(isset($navUnitPendidikans))
-                        @foreach($navUnitPendidikans as $nu)
-                            <a href="{{ route('pendidikan.show', $nu->slug) }}" class="block py-1.5 text-gray-600 hover:text-[#00843d] truncate">{{ trim(preg_replace('/\s*\([^)]*\)\s*$/', '', $nu->name)) }}</a>
+                    @if(isset($headerUnits) && $headerUnits->isNotEmpty())
+                        @foreach($headerUnits as $nu)
+                            <a href="{{ route('pendidikan.show', $nu->slug) }}" class="block py-1.5 text-gray-600 hover:text-[#00843d] truncate flex items-center justify-between">
+                                <span>{{ trim(preg_replace('/\s*\([^)]*\)\s*$/', '', $nu->name)) }}</span>
+                                @if($nu->short_name)
+                                    <span class="text-[9px] bg-emerald-100 text-[#00843d] px-1.5 py-0.5 rounded font-bold shrink-0 ml-1">{{ $nu->short_name }}</span>
+                                @endif
+                            </a>
                         @endforeach
                     @endif
                 </div>

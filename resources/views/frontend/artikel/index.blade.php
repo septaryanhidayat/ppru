@@ -127,21 +127,86 @@
                 </form>
             </div>
 
-            {{-- Categories Widget --}}
-            <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-                <h3 class="font-bold text-sm text-gray-900 mb-4 uppercase tracking-wider pb-2 border-b border-gray-100">
-                    Kategori Pilihan
-                </h3>
-                <ul class="space-y-2 text-xs">
-                    @foreach($categories->take(12) as $cat)
-                        <li>
-                            <a href="{{ route('artikel.index', ['kategori' => $cat->slug]) }}" class="flex items-center justify-between py-1.5 px-2 rounded-lg hover:bg-emerald-50 hover:text-[#00913e] transition {{ request('kategori') == $cat->slug ? 'text-[#00913e] font-bold bg-emerald-50' : 'text-gray-600' }}">
-                                <span class="flex items-center"><i class="fa-solid fa-folder-open mr-2 text-emerald-400"></i>{{ $cat->name }}</span>
-                                <span class="text-gray-400 text-[11px] bg-gray-100 px-2 py-0.5 rounded-full">{{ $cat->posts_count }}</span>
-                            </a>
-                        </li>
-                    @endforeach
-                </ul>
+            {{-- Modern Categories Widget --}}
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-100/90 overflow-hidden relative group/card">
+                <div class="h-1 bg-gradient-to-r from-[#00843d] via-emerald-400 to-[#f59e0b]"></div>
+                <div class="p-5 sm:p-6">
+                    <div class="flex items-center justify-between mb-4 pb-3 border-b border-gray-100">
+                        <div class="flex items-center space-x-2.5">
+                            <div class="w-8 h-8 rounded-xl bg-emerald-50 text-[#00843d] flex items-center justify-center text-xs shadow-inner">
+                                <i class="fa-solid fa-shapes"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-extrabold text-xs tracking-wider uppercase text-gray-900">Kategori Pilihan</h3>
+                                <p class="text-[10px] text-gray-400 font-medium">Jelajahi rubrik &amp; topik</p>
+                            </div>
+                        </div>
+                        <span class="text-[10px] font-bold text-emerald-700 bg-emerald-50/80 px-2.5 py-0.5 rounded-full border border-emerald-100">
+                            {{ $categories->count() }} Topik
+                        </span>
+                    </div>
+
+                    @php
+                        $catIcons = [
+                            'ikarus' => ['icon' => 'fa-solid fa-graduation-cap', 'color' => 'text-sky-600', 'bg' => 'bg-sky-50'],
+                            'berita' => ['icon' => 'fa-solid fa-newspaper', 'color' => 'text-emerald-600', 'bg' => 'bg-emerald-50'],
+                            'khutbah' => ['icon' => 'fa-solid fa-microphone-lines', 'color' => 'text-teal-600', 'bg' => 'bg-teal-50'],
+                            'taujih' => ['icon' => 'fa-solid fa-scroll', 'color' => 'text-teal-600', 'bg' => 'bg-teal-50'],
+                            'prestasi' => ['icon' => 'fa-solid fa-trophy', 'color' => 'text-amber-600', 'bg' => 'bg-amber-50'],
+                            'pendidikan' => ['icon' => 'fa-solid fa-school', 'color' => 'text-indigo-600', 'bg' => 'bg-indigo-50'],
+                            'tahfidz' => ['icon' => 'fa-solid fa-book-quran', 'color' => 'text-emerald-700', 'bg' => 'bg-emerald-50'],
+                            'kegiatan' => ['icon' => 'fa-solid fa-users', 'color' => 'text-cyan-600', 'bg' => 'bg-cyan-50'],
+                            'ekstrakurikuler' => ['icon' => 'fa-solid fa-futbol', 'color' => 'text-orange-600', 'bg' => 'bg-orange-50'],
+                            'ekskul' => ['icon' => 'fa-solid fa-futbol', 'color' => 'text-orange-600', 'bg' => 'bg-orange-50'],
+                            'kesiswaan' => ['icon' => 'fa-solid fa-person-chalkboard', 'color' => 'text-rose-600', 'bg' => 'bg-rose-50'],
+                            'kampus' => ['icon' => 'fa-solid fa-landmark', 'color' => 'text-violet-600', 'bg' => 'bg-violet-50'],
+                        ];
+                    @endphp
+
+                    <div class="space-y-1.5 text-xs">
+                        @foreach($categories->take(12) as $cat)
+                            @php
+                                $cSlug = strtolower($cat->slug . ' ' . $cat->name);
+                                $iconData = ['icon' => 'fa-solid fa-tag', 'color' => 'text-emerald-600', 'bg' => 'bg-emerald-50'];
+                                foreach($catIcons as $key => $val) {
+                                    if (str_contains($cSlug, $key)) {
+                                        $iconData = $val;
+                                        break;
+                                    }
+                                }
+                                $isActive = request('kategori') == $cat->slug;
+                            @endphp
+
+                            @if($isActive)
+                                <a href="{{ route('artikel.index') }}" class="group flex items-center justify-between p-2 rounded-xl bg-gradient-to-r from-emerald-600 to-[#00843d] text-white shadow-sm shadow-emerald-700/20 border border-emerald-600 transition-all duration-200" title="Klik untuk hapus filter kategori">
+                                    <div class="flex items-center space-x-2.5 min-w-0">
+                                        <span class="w-7 h-7 rounded-lg bg-white/20 text-white flex items-center justify-center shrink-0 text-xs shadow-sm">
+                                            <i class="{{ $iconData['icon'] }}"></i>
+                                        </span>
+                                        <span class="font-bold text-xs truncate">{{ $cat->name }}</span>
+                                    </div>
+                                    <div class="flex items-center space-x-1.5 shrink-0 ml-2">
+                                        <span class="text-[10px] font-extrabold bg-white/25 text-white px-2 py-0.5 rounded-full">{{ $cat->posts_count }}</span>
+                                        <i class="fa-solid fa-circle-xmark text-white/80 text-xs group-hover:text-white transition"></i>
+                                    </div>
+                                </a>
+                            @else
+                                <a href="{{ route('artikel.index', ['kategori' => $cat->slug]) }}" class="group flex items-center justify-between p-2 rounded-xl bg-white hover:bg-emerald-50/60 border border-gray-100 hover:border-emerald-200 text-gray-700 hover:text-[#00843d] transition-all duration-200">
+                                    <div class="flex items-center space-x-2.5 min-w-0">
+                                        <span class="w-7 h-7 rounded-lg {{ $iconData['bg'] }} {{ $iconData['color'] }} group-hover:bg-white flex items-center justify-center shrink-0 text-xs transition-colors shadow-none group-hover:shadow-sm">
+                                            <i class="{{ $iconData['icon'] }}"></i>
+                                        </span>
+                                        <span class="font-semibold text-xs text-gray-700 group-hover:text-[#00843d] truncate group-hover:translate-x-0.5 transition-transform">{{ $cat->name }}</span>
+                                    </div>
+                                    <div class="flex items-center space-x-1 shrink-0 ml-2">
+                                        <span class="text-[11px] font-bold text-gray-400 bg-gray-100 group-hover:bg-emerald-100 group-hover:text-[#00843d] px-2 py-0.5 rounded-full transition-colors">{{ $cat->posts_count }}</span>
+                                        <i class="fa-solid fa-chevron-right text-[9px] text-gray-300 group-hover:text-emerald-500 group-hover:translate-x-0.5 transition-all"></i>
+                                    </div>
+                                </a>
+                            @endif
+                        @endforeach
+                    </div>
+                </div>
             </div>
 
             {{-- Recent Posts Widget --}}

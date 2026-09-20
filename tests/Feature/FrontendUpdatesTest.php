@@ -4,6 +4,7 @@ use App\Models\Category;
 use App\Models\Download;
 use App\Models\Dpc;
 use App\Models\Post;
+use App\Models\UnitPendidikan;
 
 test('halaman program unggulan / dpc menampilkan program sekolah', function () {
     Dpc::create([
@@ -91,4 +92,33 @@ test('footer memuat live counter pengunjung dan identitas pesantren', function (
     $response->assertSee('Pondok Pesantren Raudhatul Ulum');
     $response->assertSee('Pengunjung');
     $response->assertSee('Galeri');
+});
+
+test('header navigation renders all 8 educational units linking directly to unit profile', function () {
+    $units = UnitPendidikan::active()->orderBy('order', 'asc')->get();
+    expect($units->count())->toBeGreaterThanOrEqual(8);
+
+    $response = $this->get(route('home'));
+    $response->assertStatus(200);
+
+    foreach ($units as $unit) {
+        $expectedUrl = route('pendidikan.show', $unit->slug);
+        $response->assertSee($expectedUrl, false);
+
+        // Verify that navigating to the unit profile page succeeds
+        $unitPage = $this->get($expectedUrl);
+        $unitPage->assertStatus(200);
+        $unitPage->assertSee($unit->name);
+    }
+});
+
+test('artikel page renders redesigned modern kategori pilihan widget', function () {
+    $category = Category::firstOrCreate(['name' => 'Kabar Kampus'], ['slug' => 'kabar-kampus']);
+
+    $response = $this->get(route('artikel.index'));
+    $response->assertStatus(200);
+    $response->assertSee('Kategori Pilihan');
+    $response->assertSee('fa-shapes');
+    $response->assertSee('Jelajahi rubrik &amp; topik', false);
+    $response->assertSee(route('artikel.index', ['kategori' => $category->slug]));
 });

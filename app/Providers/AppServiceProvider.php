@@ -50,23 +50,30 @@ class AppServiceProvider extends ServiceProvider
             $view->with('siteSettings', []);
         });
 
+        // 1. Shared Categories
         try {
             if (Schema::hasTable('categories')) {
-                $headerCategories = Category::withCount('posts')
-                    ->orderBy('posts_count', 'desc')
-                    ->take(8)
-                    ->get();
-                View::share('headerCategories', $headerCategories);
+                View::share('headerCategories', Category::withCount('posts')->orderBy('posts_count', 'desc')->take(8)->get());
             } else {
                 View::share('headerCategories', collect());
             }
+        } catch (\Throwable $e) {
+            View::share('headerCategories', collect());
+        }
 
+        // 2. Shared Unit Pendidikan (All 8 Active Units)
+        try {
             if (Schema::hasTable('unit_pendidikans')) {
                 View::share('navUnitPendidikans', UnitPendidikan::active()->orderBy('order', 'asc')->get());
             } else {
                 View::share('navUnitPendidikans', collect());
             }
+        } catch (\Throwable $e) {
+            View::share('navUnitPendidikans', collect());
+        }
 
+        // 3. Shared Nav Menus (Header & Footer)
+        try {
             if (Schema::hasTable('nav_menus')) {
                 View::share('headerNavMenus', NavMenu::header()->active()->root()->with('children.children')->orderBy('order', 'asc')->get());
                 View::share('footerNavMenus', NavMenu::footer()->active()->root()->with('children.children')->orderBy('order', 'asc')->get());
@@ -75,8 +82,6 @@ class AppServiceProvider extends ServiceProvider
                 View::share('footerNavMenus', collect());
             }
         } catch (\Throwable $e) {
-            View::share('headerCategories', collect());
-            View::share('navUnitPendidikans', collect());
             View::share('headerNavMenus', collect());
             View::share('footerNavMenus', collect());
         }
