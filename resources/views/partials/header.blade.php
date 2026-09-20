@@ -213,8 +213,8 @@
                             <a href="{{ route('video.index') }}" class="block px-4 py-2.5 text-xs font-semibold text-gray-700 hover:bg-emerald-50 hover:text-[#00843d] transition flex items-center">
                                 <i class="fa-brands fa-youtube w-5 text-red-600 mr-2 text-sm"></i> Video Kegiatan &amp; Podcast
                             </a>
-                            <a href="{{ route('kategori.show', 'taujih') }}" class="block px-4 py-2.5 text-xs font-semibold text-gray-700 hover:bg-emerald-50 hover:text-[#00843d] transition flex items-center">
-                                <i class="fa-solid fa-book-quran w-5 text-[#00843d] mr-2 text-sm"></i> Tausiyah &amp; Khutbah
+                            <a href="{{ route('khutbah.index') }}" class="block px-4 py-2.5 text-xs font-semibold text-gray-700 hover:bg-emerald-50 hover:text-[#00843d] transition flex items-center">
+                                <i class="fa-solid fa-microphone-lines w-5 text-[#00843d] mr-2 text-sm"></i> Tausiyah &amp; Khutbah Jum'at
                             </a>
                             <div class="border-t border-gray-100 my-1"></div>
                             <a href="{{ route('ikarus.index') }}" class="block px-4 py-2.5 text-xs font-semibold text-gray-700 hover:bg-emerald-50 hover:text-[#00843d] transition flex items-center">
@@ -259,7 +259,13 @@
                     </div>
                 </div>
 
-                {{-- 6. IKARUS (Alumni RU) --}}
+                {{-- 6. Khutbah Jum'at (Portal Naskah Khutbah & Dakwah) --}}
+                <a href="{{ route('khutbah.index') }}" class="px-3 py-1.5 rounded-lg hover:bg-black/15 transition flex items-center space-x-1.5 {{ request()->is('khutbah*') ? 'bg-black/20 text-[#fcd116]' : '' }}" title="Mimbar Khutbah Jum'at & Tausiyah">
+                    <i class="fa-solid fa-microphone-lines text-xs text-[#fcd116]"></i>
+                    <span class="font-bold">Khutbah</span>
+                </a>
+
+                {{-- 7. IKARUS (Alumni RU) --}}
                 <a href="{{ route('ikarus.index') }}" class="px-3 py-1.5 rounded-lg hover:bg-black/15 transition flex items-center space-x-1.5 {{ request()->is('ikarus*') ? 'bg-black/20 text-[#fcd116]' : '' }}" title="Ikatan Keluarga Alumni Raudhatul Ulum">
                     <i class="fa-solid fa-graduation-cap text-xs text-[#fcd116]"></i>
                     <span class="font-bold">IKARUS</span>
@@ -387,7 +393,9 @@
                     <a href="{{ route('pengumuman.index') }}" class="block py-1.5 text-gray-600 hover:text-[#00843d]">Pengumuman Resmi</a>
                     <a href="{{ route('galeri.index') }}" class="block py-1.5 text-gray-600 hover:text-[#00843d]">Galeri Foto Kegiatan</a>
                     <a href="{{ route('video.index') }}" class="block py-1.5 text-gray-600 hover:text-[#00843d]">Video Kegiatan &amp; Podcast</a>
-                    <a href="{{ route('kategori.show', 'taujih') }}" class="block py-1.5 text-gray-600 hover:text-[#00843d]">Tausiyah &amp; Khutbah Jum'at</a>
+                    <a href="{{ route('khutbah.index') }}" class="block py-1.5 text-gray-600 hover:text-[#00843d] flex items-center">
+                        <i class="fa-solid fa-microphone-lines text-xs mr-1.5 text-[#00843d]"></i> Tausiyah &amp; Khutbah Jum'at
+                    </a>
                     <a href="{{ route('ikarus.index') }}" class="block py-1.5 text-[#00843d] font-semibold hover:underline flex items-center">
                         <i class="fa-solid fa-graduation-cap text-xs mr-1.5 text-[#f59e0b]"></i> Berita &amp; Karya Alumni (IKARUS)
                     </a>
@@ -410,6 +418,14 @@
                     <a href="{{ route('hubungi') }}" class="block py-1.5 text-gray-600 hover:text-[#00843d]">Kontak &amp; Lokasi Humas</a>
                 </div>
             </details>
+
+            {{-- Mobile Khutbah Quick Access --}}
+            <a href="{{ route('khutbah.index') }}" class="block px-3 py-2.5 rounded-lg font-bold text-gray-900 hover:bg-emerald-50 hover:text-[#00843d] transition flex items-center justify-between border border-emerald-100 bg-emerald-50/40 {{ request()->is('khutbah*') ? 'bg-emerald-50 text-[#00843d] border-emerald-300' : '' }}">
+                <span class="flex items-center">
+                    <i class="fa-solid fa-microphone-lines mr-2 text-[#00843d]"></i> Mimbar Khutbah Jum'at
+                </span>
+                <span class="text-[10px] bg-[#00843d] text-white font-bold px-2 py-0.5 rounded-full">Naskah</span>
+            </a>
 
             {{-- Mobile IKARUS Alumni Quick Access --}}
             <a href="{{ route('ikarus.index') }}" class="block px-3 py-2.5 rounded-lg font-bold text-gray-900 hover:bg-emerald-50 hover:text-[#00843d] transition flex items-center justify-between border border-emerald-100 bg-emerald-50/40 {{ request()->is('ikarus*') ? 'bg-emerald-50 text-[#00843d] border-emerald-300' : '' }}">

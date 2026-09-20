@@ -112,6 +112,7 @@
                         <li><a href="{{ route('page.visi-misi') }}" class="hover:text-[#fcd116] transition block">Visi, Misi &amp; Jati Diri</a></li>
                         <li><a href="{{ route('page.sejarah') }}" class="hover:text-[#fcd116] transition block">Sejarah Sejak 1950</a></li>
                         <li><a href="{{ route('dewan.index') }}" class="hover:text-[#fcd116] transition block">Dewan Asatidz &amp; Guru</a></li>
+                        <li><a href="{{ route('khutbah.index') }}" class="hover:text-[#fcd116] transition text-emerald-300 font-semibold block">Khutbah Jum'at &amp; Dakwah</a></li>
                         <li><a href="{{ route('ikarus.index') }}" class="hover:text-[#fcd116] transition text-amber-300 font-semibold block">Alumni RU (IKARUS)</a></li>
                         <li><a href="{{ route('ppdb.index') }}" class="hover:text-[#fcd116] transition font-bold text-emerald-400 block">Pendaftaran PSB Online</a></li>
                         <li><a href="{{ route('download.index') }}" class="hover:text-[#fcd116] transition block">Unduh Brosur PSB</a></li>

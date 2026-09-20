@@ -119,12 +119,26 @@
                     {{-- Checkbox Kategori --}}
                     <div id="categories-checkbox-list" class="bg-white p-3 rounded-xl border border-slate-200 max-h-48 overflow-y-auto space-y-2 text-xs">
                         @foreach($categories as $cat)
-                            <label class="flex items-center space-x-2 text-slate-700 hover:text-[#00843d] cursor-pointer py-0.5">
-                                <input type="checkbox" name="categories[]" value="{{ $cat->id }}" {{ in_array($cat->id, old('categories', [])) ? 'checked' : '' }} class="rounded border-slate-300 text-[#00843d] focus:ring-[#00843d]">
-                                <span class="font-medium">{{ $cat->name }}</span>
+                            @php
+                                $isKhutbah = in_array($cat->slug, ['khutbah', 'khutbah-jumat', 'taujih']) || str_contains(strtolower($cat->name), 'khutbah');
+                            @endphp
+                            <label class="flex items-center justify-between text-slate-700 hover:text-[#00843d] cursor-pointer py-0.5 {{ $isKhutbah ? 'bg-emerald-50/60 p-1.5 rounded-lg border border-emerald-200/80' : '' }}">
+                                <div class="flex items-center space-x-2">
+                                    <input type="checkbox" name="categories[]" value="{{ $cat->id }}" {{ in_array($cat->id, old('categories', [])) ? 'checked' : '' }} class="rounded border-slate-300 text-[#00843d] focus:ring-[#00843d]">
+                                    <span class="font-medium {{ $isKhutbah ? 'text-[#00843d] font-bold' : '' }}">{{ $cat->name }}</span>
+                                </div>
+                                @if($isKhutbah)
+                                    <span class="text-[10px] font-bold text-amber-700 bg-amber-100 border border-amber-300 px-2 py-0.5 rounded-full flex items-center gap-1 shrink-0">
+                                        <i class="fa-solid fa-microphone-lines text-[9px]"></i> Otomatis Tampil di Khutbah
+                                    </span>
+                                @endif
                             </label>
                         @endforeach
                     </div>
+                    <p class="text-[11px] text-emerald-700 mt-1.5 flex items-center gap-1">
+                        <i class="fa-solid fa-circle-info text-emerald-600"></i>
+                        <span>Cukup centang kategori <strong>Khutbah Jum'at</strong> agar tulisan otomatis tampil pada halaman khusus Khutbah.</span>
+                    </p>
                 </div>
 
                 {{-- Inline Quick Add Kategori Baru --}}

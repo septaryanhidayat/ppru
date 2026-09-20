@@ -33,6 +33,7 @@ use App\Http\Controllers\DewanController;
 use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InformationController;
+use App\Http\Controllers\KhutbahController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PpdbController;
 use App\Http\Controllers\UnitPendidikanController;
@@ -219,6 +220,12 @@ Route::get('/alumni', fn () => redirect()->route('ikarus.index'));
 Route::get('/alumni-ru', fn () => redirect()->route('ikarus.index'));
 Route::get('/karya-alumni', fn () => redirect()->route('ikarus.index'));
 Route::get('/alumni-ikarus', fn () => redirect()->route('ikarus.index'));
+
+// Mimbar Khutbah Jum'at & Kajian Dakwah PPRU
+Route::get('/khutbah', [KhutbahController::class, 'index'])->name('khutbah.index');
+Route::get('/khutbah/{slug}', [KhutbahController::class, 'show'])->name('khutbah.show');
+Route::get('/tausiyah', fn () => redirect()->route('khutbah.index'));
+Route::get('/khutbah-jumat', fn () => redirect()->route('khutbah.index'));
 Route::get('/layanan-terpadu', [InformationController::class, 'layanan'])->name('layanan.index');
 Route::get('/layanan-terpadu-2', [InformationController::class, 'layananTerpadu'])->name('layanan.terpadu');
 Route::get('/izin-sekolah', [InformationController::class, 'izinSekolah'])->name('layanan.izin');

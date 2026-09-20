@@ -137,45 +137,55 @@ class CmsAutoHealService
         NavMenu::create(['parent_id' => $info->id, 'name' => 'Agenda & Kalender', 'url' => '/agenda', 'icon' => 'fa-solid fa-calendar-days', 'location' => 'header', 'order' => 3]);
         NavMenu::create(['parent_id' => $info->id, 'name' => 'Pengumuman Resmi', 'url' => '/pengumuman', 'icon' => 'fa-solid fa-bullhorn', 'location' => 'header', 'order' => 4]);
         NavMenu::create(['parent_id' => $info->id, 'name' => 'Karya Santri & Asatidz', 'url' => '/karya-santri', 'icon' => 'fa-solid fa-feather-pointed', 'location' => 'header', 'order' => 5]);
-        NavMenu::create(['parent_id' => $info->id, 'name' => 'Tausiyah & Khutbah', 'url' => '/tausiyah', 'icon' => 'fa-solid fa-book-quran', 'location' => 'header', 'order' => 6]);
+        NavMenu::create(['parent_id' => $info->id, 'name' => 'Khutbah Jum\'at & Tausiyah', 'url' => '/khutbah', 'icon' => 'fa-solid fa-microphone-lines', 'location' => 'header', 'order' => 6]);
 
-        // 5. Portal IKARUS Alumni
+        // 5. Khutbah & Dakwah (Menu Navigasi Khusus)
         NavMenu::create([
-            'name' => 'IKARUS Alumni',
-            'url' => '/ikarus',
-            'icon' => 'fa-solid fa-user-graduate',
+            'name' => 'Khutbah',
+            'url' => '/khutbah',
+            'icon' => 'fa-solid fa-microphone-lines',
             'location' => 'header',
             'order' => 5,
             'is_active' => true,
         ]);
 
-        // 6. Layanan
+        // 6. Portal IKARUS Alumni
         NavMenu::create([
-            'name' => 'Layanan',
-            'url' => '/layanan',
-            'icon' => 'fa-solid fa-handshake-angle',
+            'name' => 'IKARUS Alumni',
+            'url' => '/ikarus',
+            'icon' => 'fa-solid fa-user-graduate',
             'location' => 'header',
             'order' => 6,
             'is_active' => true,
         ]);
 
-        // 7. Kontak
+        // 7. Layanan
         NavMenu::create([
-            'name' => 'Kontak',
-            'url' => '/kontak',
-            'icon' => 'fa-solid fa-address-book',
+            'name' => 'Layanan',
+            'url' => '/layanan',
+            'icon' => 'fa-solid fa-handshake-angle',
             'location' => 'header',
             'order' => 7,
             'is_active' => true,
         ]);
 
-        // 8. PSB / PPDB
+        // 8. Kontak
+        NavMenu::create([
+            'name' => 'Kontak',
+            'url' => '/kontak',
+            'icon' => 'fa-solid fa-address-book',
+            'location' => 'header',
+            'order' => 8,
+            'is_active' => true,
+        ]);
+
+        // 9. PSB / PPDB
         NavMenu::create([
             'name' => 'PPDB Online',
             'url' => '/ppdb',
             'icon' => 'fa-solid fa-user-plus',
             'location' => 'header',
-            'order' => 8,
+            'order' => 9,
             'is_active' => true,
         ]);
 
@@ -183,9 +193,10 @@ class CmsAutoHealService
         NavMenu::create(['name' => 'Tentang PPRU', 'url' => '/tentang-kami', 'location' => 'footer_quick', 'order' => 1]);
         NavMenu::create(['name' => 'Unit Pendidikan', 'url' => '/pendidikan', 'location' => 'footer_quick', 'order' => 2]);
         NavMenu::create(['name' => 'Pendaftaran PPDB', 'url' => '/ppdb', 'location' => 'footer_quick', 'order' => 3]);
-        NavMenu::create(['name' => 'Portal Alumni IKARUS', 'url' => '/ikarus', 'location' => 'footer_quick', 'order' => 4]);
-        NavMenu::create(['name' => 'Pusat Unduhan', 'url' => '/unduhan', 'location' => 'footer_quick', 'order' => 5]);
-        NavMenu::create(['name' => 'Layanan Pesantren', 'url' => '/layanan', 'location' => 'footer_quick', 'order' => 6]);
+        NavMenu::create(['name' => 'Khutbah & Dakwah', 'url' => '/khutbah', 'location' => 'footer_quick', 'order' => 4]);
+        NavMenu::create(['name' => 'Portal Alumni IKARUS', 'url' => '/ikarus', 'location' => 'footer_quick', 'order' => 5]);
+        NavMenu::create(['name' => 'Pusat Unduhan', 'url' => '/unduhan', 'location' => 'footer_quick', 'order' => 6]);
+        NavMenu::create(['name' => 'Layanan Pesantren', 'url' => '/layanan', 'location' => 'footer_quick', 'order' => 7]);
     }
 
     /**

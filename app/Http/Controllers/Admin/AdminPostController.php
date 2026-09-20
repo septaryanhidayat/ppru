@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
 use App\Models\User;
+use App\Services\KhutbahService;
 use App\Services\WebpService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -64,6 +65,8 @@ class AdminPostController extends Controller
 
     public function create()
     {
+        KhutbahService::ensureCategoryAndDemos();
+
         $type = request('type', 'post');
         $categories = Category::orderBy('name', 'asc')->get();
         $tags = Tag::orderBy('name', 'asc')->get();
@@ -193,6 +196,8 @@ class AdminPostController extends Controller
         if ($user?->isUnitAdmin() && (int) $post->unit_pendidikan_id !== (int) $user->unit_pendidikan_id) {
             abort(403, 'Anda tidak memiliki izin mengedit konten unit lain.');
         }
+
+        KhutbahService::ensureCategoryAndDemos();
 
         $type = $post->type;
         $categories = Category::orderBy('name', 'asc')->get();
