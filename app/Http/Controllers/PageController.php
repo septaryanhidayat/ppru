@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Agenda;
 use App\Models\AnggotaDewan;
 use App\Models\Bidang;
+use App\Models\Dpc;
 use App\Models\Post;
 use App\Models\ProgramUnggulan;
 use App\Models\Testimonial;
+use Illuminate\Support\Facades\Schema;
 
 class PageController extends Controller
 {
@@ -53,7 +55,12 @@ class PageController extends Controller
     {
         $page = Post::pages()->whereIn('slug', ['struktur-organisasi', 'struktur-kepengurusan'])->first();
         $bidangs = Bidang::orderBy('order', 'asc')->get();
-        $dpcs = ProgramUnggulan::orderBy('order', 'asc')->get();
+        $dpcs = collect();
+        if (Schema::hasTable('program_unggulans')) {
+            $dpcs = ProgramUnggulan::orderBy('order', 'asc')->get();
+        } elseif (Schema::hasTable('dpcs')) {
+            $dpcs = Dpc::orderBy('order', 'asc')->get();
+        }
         $dewan = AnggotaDewan::orderBy('order', 'asc')->get();
         $tree = AnggotaDewan::getHierarchyTree();
 
@@ -69,7 +76,12 @@ class PageController extends Controller
 
     public function programUnggulan()
     {
-        $programs = ProgramUnggulan::orderBy('order', 'asc')->get();
+        $programs = collect();
+        if (Schema::hasTable('program_unggulans')) {
+            $programs = ProgramUnggulan::orderBy('order', 'asc')->get();
+        } elseif (Schema::hasTable('dpcs')) {
+            $programs = Dpc::orderBy('order', 'asc')->get();
+        }
 
         return view('frontend.program-unggulan.index', compact('programs'));
     }

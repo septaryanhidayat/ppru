@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Agenda;
 use App\Models\AnggotaDewan;
 use App\Models\Download;
+use App\Models\Dpc;
 use App\Models\HeroSlide;
 use App\Models\Pengumuman;
 use App\Models\Post;
@@ -13,13 +14,17 @@ use App\Models\Setting;
 use App\Models\Testimonial;
 use App\Models\UnitPendidikan;
 use App\Models\Video;
+use Illuminate\Support\Facades\Schema;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        // 1. Dynamic Hero Slides from Database
-        $dbHeroSlides = HeroSlide::active()->orderBy('order', 'asc')->get();
+        // 1. Dynamic Hero Slides from Database (Defensive fallback if migration pending)
+        $dbHeroSlides = collect();
+        if (Schema::hasTable('hero_slides')) {
+            $dbHeroSlides = HeroSlide::active()->orderBy('order', 'asc')->get();
+        }
 
         if ($dbHeroSlides->isNotEmpty()) {
             $heroSlides = $dbHeroSlides->map(fn ($s) => [
@@ -253,7 +258,12 @@ class HomeController extends Controller
         ];
 
         // 18. Program Unggulan Pesantren
-        $programUnggulan = ProgramUnggulan::orderBy('order', 'asc')->get();
+        $programUnggulan = collect();
+        if (Schema::hasTable('program_unggulans')) {
+            $programUnggulan = ProgramUnggulan::orderBy('order', 'asc')->get();
+        } elseif (Schema::hasTable('dpcs')) {
+            $programUnggulan = Dpc::orderBy('order', 'asc')->get();
+        }
 
         return view('frontend.home', compact(
             'heroSlides',
