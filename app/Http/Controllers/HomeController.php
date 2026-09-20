@@ -14,7 +14,6 @@ use App\Models\Setting;
 use App\Models\Testimonial;
 use App\Models\UnitPendidikan;
 use App\Models\Video;
-use App\Services\CmsAutoHealService;
 use Illuminate\Support\Facades\Schema;
 
 class HomeController extends Controller
@@ -152,14 +151,21 @@ class HomeController extends Controller
             $daerahPosts = $allPosts->sortByDesc('published_at')->slice(2, 6);
         }
 
-        // 8. Pengurus Yayasan (YAPIRUS) & Dewan Guru (Section 8 - 8 Tokoh Utama)
-        CmsAutoHealService::ensureOfficialDemoContentsSeeded();
-
-        $dewan = AnggotaDewan::where('name', 'not like', '%Ustadz Fulan%')
-            ->where('name', 'not like', '%Ustadzah Fulanah%')
+        // 8. Pengurus Yayasan (YAPIRUS) & Pimpinan Pesantren (Section 8 - 8 Tokoh Utama)
+        $dewan = AnggotaDewan::where('fraction', 'Yayasan')
+            ->whereNull('unit_pendidikan_id')
             ->orderBy('order', 'asc')
             ->take(8)
             ->get();
+
+        if ($dewan->count() < 8) {
+            $dewan = AnggotaDewan::whereNull('unit_pendidikan_id')
+                ->where('name', 'not like', '%Ustadz Fulan%')
+                ->where('name', 'not like', '%Ustadzah Fulanah%')
+                ->orderBy('order', 'asc')
+                ->take(8)
+                ->get();
+        }
 
         // 9. Video Profil & Kegiatan Sekolah (Section 10 - 6 videos)
         $videos = Video::where('youtube_id', '!=', 'dQw4w9WgXcQ')->latest()->take(6)->get();

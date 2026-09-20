@@ -43,13 +43,15 @@ class UnitDemoContentService
         try {
             CmsAutoHealService::ensureUnitPendidikanSchemaExists();
 
-            $hasPosts = Post::where('unit_pendidikan_id', $unit->id)->where('type', 'post')->exists();
-            $hasPhotos = Post::where('unit_pendidikan_id', $unit->id)->where('type', 'gallery')->exists();
-            $hasTeachers = AnggotaDewan::where('unit_pendidikan_id', $unit->id)->exists();
-            $hasTestimonials = Testimonial::where('unit_pendidikan_id', $unit->id)->exists();
+            $teachersCount = AnggotaDewan::where('unit_pendidikan_id', $unit->id)->count();
+            $postsCount = Post::where('unit_pendidikan_id', $unit->id)->where('type', 'post')->count();
+            $prestasiCount = Post::where('unit_pendidikan_id', $unit->id)->where('type', 'prestasi')->count();
+            $ekskulCount = Post::where('unit_pendidikan_id', $unit->id)->where('type', 'ekskul')->count();
+            $testimonialsCount = Testimonial::where('unit_pendidikan_id', $unit->id)->count();
+            $videosCount = Video::where('unit_pendidikan_id', $unit->id)->where('youtube_id', '!=', 'dQw4w9WgXcQ')->count();
 
-            if (! $hasPosts || ! $hasPhotos || ! $hasTeachers || ! $hasTestimonials) {
-                self::seedSingleUnit($unit, false);
+            if ($teachersCount < 8 || $postsCount < 4 || $prestasiCount < 4 || $ekskulCount < 4 || $testimonialsCount < 4 || $videosCount < 4) {
+                self::seedSingleUnit($unit, true);
             }
         } catch (\Throwable $e) {
             Log::error("UnitDemoContentService::seedUnitIfEmpty for {$unit->name} error: ".$e->getMessage());
@@ -267,7 +269,7 @@ class UnitDemoContentService
         ];
 
         foreach ($postsData as $p) {
-            $slug = Str::slug($p['title']);
+            $slug = Str::slug($p['title']).'-unit-'.$unit->id;
             $post = Post::where('unit_pendidikan_id', $unit->id)->where('slug', $slug)->first();
             if (! $post) {
                 $created = Post::create([
@@ -315,7 +317,7 @@ class UnitDemoContentService
         ];
 
         foreach ($photosData as $p) {
-            $slug = Str::slug($p['title']);
+            $slug = Str::slug($p['title']).'-unit-'.$unit->id;
             $post = Post::where('unit_pendidikan_id', $unit->id)->where('slug', $slug)->first();
             if (! $post) {
                 Post::create([
@@ -336,7 +338,7 @@ class UnitDemoContentService
     }
 
     /**
-     * Seed 2 realistic achievements for the unit.
+     * Seed 4 realistic achievements for the unit.
      */
     protected static function seedUnitPrestasi(UnitPendidikan $unit, int $authorId, Category $catPrestasi): void
     {
@@ -349,14 +351,24 @@ class UnitDemoContentService
                 'image' => '/uploads/official/kbm-santri-0098.webp',
             ],
             [
-                'title' => "Delegasi Santri {$short} Harumkan Almamater pada Musabaqah Hifzhil Qur'an",
+                'title' => "Delegasi Santri {$short} Harumkan Almamater pada Musabaqah Hifzhil Qur'an Nasional",
                 'content' => "<p>Melalui perjuangan dan latihan intensif bersama musyrif, santri <strong>{$unit->name}</strong> berhasil menyabet predikat terbaik pada ajang Musabaqah Hifzhil Qur'an bergengsi.</p><p>Pimpinan unit menyampaikan rasa syukur dan berharap pencapaian ini memotivasi seluruh santri untuk istiqomah menghafal Al-Qur'an.</p>",
                 'image' => '/uploads/official/ngaji-sore.webp',
+            ],
+            [
+                'title' => "Medali Emas Olimpiade Riset & Sains Terapan Madrasah {$short}",
+                'content' => "<p>Tim riset santri <strong>{$unit->name}</strong> menorehkan prestasi gemilang dengan merebut medali emas pada ajang Olimpiade Riset Sains Terapan. Karya ilmiah berbasis integrasi sains dan nilai Qur'ani ini menuai apresiasi tinggi dari dewan juri.</p>",
+                'image' => '/uploads/official/kbm-santri-0054.webp',
+            ],
+            [
+                'title' => "Juara Umum Kejuaraan Seni Bela Diri Tapak Suci Santri {$short}",
+                'content' => "<p>Pendekar santri <strong>{$unit->name}</strong> membuktikan ketangkasan fisik dan sportivitas tinggi dengan menyabet gelar Juara Umum pada Kejuaraan Seni Bela Diri Tapak Suci Antar-Pondok Pesantren se-Sumatera.</p>",
+                'image' => '/uploads/official/panahan-santri.webp',
             ],
         ];
 
         foreach ($prestasiData as $p) {
-            $slug = Str::slug($p['title']);
+            $slug = Str::slug($p['title']).'-unit-'.$unit->id;
             $post = Post::where('unit_pendidikan_id', $unit->id)->where('slug', $slug)->first();
             if (! $post) {
                 $created = Post::create([
@@ -378,7 +390,7 @@ class UnitDemoContentService
     }
 
     /**
-     * Seed 2 featured extracurriculars for the unit.
+     * Seed 4 featured extracurriculars for the unit.
      */
     protected static function seedUnitEkskul(UnitPendidikan $unit, int $authorId, Category $catEkskul): void
     {
@@ -395,10 +407,20 @@ class UnitDemoContentService
                 'content' => "<p>Kegiatan khitobah melatih rasa percaya diri dan keterampilan retorika dakwah santri dalam bahasa Arab, Inggris, dan Indonesia. Program mingguan ini membentuk santri agar siap menjadi da'i dan orator berbobot di tengah masyarakat.</p>",
                 'image' => '/uploads/official/kbm-santri-0152.webp',
             ],
+            [
+                'title' => "Seni Bela Diri Tapak Suci Putera Pesantren {$short}",
+                'content' => '<p>Melatih ketahanan fisik, pembentukan mental ksatria, dan teknik bela diri santri dengan menjunjung tinggi nilai-nilai akhlakul karimah dan persaudaraan sesama santri.</p>',
+                'image' => '/uploads/official/kegiatan-santri-waw1985.webp',
+            ],
+            [
+                'title' => "Kelompok Ilmiah Remaja (KIR) & Robotika Terapan {$short}",
+                'content' => '<p>Wadah eksplorasi sains, teknologi informasi, dan eksperimen ilmiah santri guna mengasah daya nalar kritis dan kemampuan riset pemecahan masalah di lingkungan madrasah.</p>',
+                'image' => '/uploads/official/kbm-santri-0098.webp',
+            ],
         ];
 
         foreach ($ekskulData as $e) {
-            $slug = Str::slug($e['title']);
+            $slug = Str::slug($e['title']).'-unit-'.$unit->id;
             $post = Post::where('unit_pendidikan_id', $unit->id)->where('slug', $slug)->first();
             if (! $post) {
                 $created = Post::create([
@@ -420,99 +442,150 @@ class UnitDemoContentService
     }
 
     /**
-     * Seed 2-3 dedicated teachers in dewan_asatidz for the unit.
+     * Seed exactly 8 dedicated teachers in dewan_asatidz for the unit.
+     * Guaranteed professional avatars, strictly avoiding student/activity photos.
      */
     protected static function seedUnitTeachers(UnitPendidikan $unit): void
     {
         $short = $unit->short_name ?: $unit->name;
 
+        // Clean up any old bogus teacher records that used student photos
+        AnggotaDewan::where('unit_pendidikan_id', $unit->id)->whereIn('photo', [
+            '/uploads/official/kbm-santri-0054.webp',
+            '/uploads/official/kbm-santri-0098.webp',
+            '/uploads/official/kbm-santri-0152.webp',
+            '/uploads/official/ngaji-sore.webp',
+            '/uploads/official/panahan-santri.webp',
+            '/uploads/official/kegiatan-santri-waw1985.webp',
+        ])->delete();
+
         $teachers = [
             [
-                'name' => "Ustadz {$short} Al-Hafizh, S.Pd.I.",
-                'position' => "Koordinator Tahfidz & Keasramaan {$short}",
-                'education' => 'S1 Pendidikan Agama Islam',
+                'name' => $unit->head_name ?: "Ustadz H. {$short}, Lc., M.Pd.I.",
+                'position' => "Kepala / Mudir {$unit->name}",
+                'education' => "S2 Manajemen Pendidikan Islam & Ma'had Aly",
                 'order' => 1,
             ],
             [
-                'name' => "Ustadz {$short} M.Pd.",
-                'position' => "Waka Kurikulum & Pembelajaran {$short}",
-                'education' => 'S2 Manajemen Pendidikan',
+                'name' => "Ustadz M. Syakir, M.Pd. ({$short})",
+                'position' => "Wakil Kepala Bidang Kurikulum & Pengajaran {$short}",
+                'education' => 'S2 Manajemen Kurikulum Pendidikan',
                 'order' => 2,
             ],
             [
-                'name' => "Ustadzah {$short} S.Si.",
-                'position' => "Pembina Sains & Bimbingan Minat Bakat {$short}",
-                'education' => 'S1 Sains & Matematika',
+                'name' => "Ustadz Rahmat Hidayat, S.Pd.I. ({$short})",
+                'position' => "Wakil Kepala Bidang Kesiswaan & Kedisiplinan {$short}",
+                'education' => 'S1 Pendidikan Agama Islam',
                 'order' => 3,
+            ],
+            [
+                'name' => "Ustadz Ahmad Faizul, Al-Hafizh, S.Q. ({$short})",
+                'position' => "Koordinator Tahfidzul Qur'an & Pembinaan Ibadah {$short}",
+                'education' => "Hafizh 30 Juz Bersanad, S1 Ilmu Al-Qur'an & Tafsir",
+                'order' => 4,
+            ],
+            [
+                'name' => "Ustadz H. Abdul Malik, Lc. ({$short})",
+                'position' => "Pembina Bi'ah Lughawiyyah (Bahasa Arab & Inggris) {$short}",
+                'education' => 'S1 Bahasa & Sastra Arab Al-Azhar Mesir',
+                'order' => 5,
+            ],
+            [
+                'name' => "Ustadzah Siti Maryam, S.Si., M.Pd. ({$short})",
+                'position' => "Pembina Sains Terpadu, Riset & Laboratorium {$short}",
+                'education' => 'S2 Pendidikan Sains Matematika',
+                'order' => 6,
+            ],
+            [
+                'name' => "Ustadz Abdullah As-Sayuti, S.Pd.I. ({$short})",
+                'position' => "Koordinator Pengasuhan Asrama & Bimbingan Santri {$short}",
+                'education' => 'S1 Bimbingan Konseling Islam',
+                'order' => 7,
+            ],
+            [
+                'name' => "Ustadzah Fatimah Azzahra, S.Ag. ({$short})",
+                'position' => "Guru Pengajar Dirasah Islamiyyah & Kitab Kuning {$short}",
+                'education' => 'S1 Dirasah Islamiyah & Tarbiyah',
+                'order' => 8,
             ],
         ];
 
         foreach ($teachers as $t) {
-            $existing = AnggotaDewan::where('name', $t['name'])->first();
-            if (! $existing) {
-                AnggotaDewan::create([
+            $slug = Str::slug($t['name']).'-unit-'.$unit->id;
+            AnggotaDewan::updateOrCreate(
+                [
+                    'unit_pendidikan_id' => $unit->id,
+                    'order' => $t['order'],
+                ],
+                [
                     'unit_pendidikan_id' => $unit->id,
                     'name' => $t['name'],
-                    'slug' => Str::slug($t['name']),
+                    'slug' => $slug,
                     'position' => $t['position'],
                     'fraction' => $short,
                     'education' => $t['education'],
-                    'profile_summary' => "Tenaga pendidik profesional berdedikasi tinggi di unit {$unit->name}.",
+                    'profile_summary' => "Tenaga pendidik profesional dan berdedikasi tinggi di lingkungan {$unit->name} Pondok Pesantren Raudhatul Ulum Sakatiga.",
                     'photo' => '/uploads/avatar-neutral-gray.svg',
                     'order' => $t['order'],
-                ]);
-            } else {
-                $existing->update([
-                    'unit_pendidikan_id' => $unit->id,
-                    'fraction' => $short,
-                    'position' => $t['position'],
-                ]);
-            }
+                ]
+            );
         }
     }
 
     /**
-     * Seed official YouTube video for the unit from official channel @tvrusakatiga.
+     * Seed 4 official YouTube videos for the unit from official channel @tvrusakatiga.
      */
     protected static function seedUnitVideos(UnitPendidikan $unit): void
     {
         $short = $unit->short_name ?: $unit->name;
 
+        // Clean up rickroll and non-official videos
+        Video::where('unit_pendidikan_id', $unit->id)->where('youtube_id', 'dQw4w9WgXcQ')->delete();
+
         $officialVideos = [
-            ['id' => 'BG311kT-yXc', 'title' => "Upacara Kemerdekaan dan Kiprah Santri {$short} Raudhatul Ulum"],
-            ['id' => 'cFXK5Of-IzQ', 'title' => "Sarasehan & Temu Orientasi Santri Baru {$short} Raudhatul Ulum"],
-            ['id' => 'mRdb_kGhbiQ', 'title' => "Arahan Mudir & Pembinaan Karakter Santri {$short} Raudhatul Ulum"],
-            ['id' => 'p8B8wKu5o4c', 'title' => "Peringatan Hari Besar & Semarak Prestasi {$short} Raudhatul Ulum"],
-            ['id' => 'iSL5Rw9f0ds', 'title' => "Disiplin Kepanduan dan Apel Akbar Santri {$short} Raudhatul Ulum"],
-            ['id' => '1HpIwqboDFg', 'title' => "Pertemuan Pimpinan & Pengasuhan Santri {$short} Raudhatul Ulum"],
-            ['id' => 'UGc6hUcwSXk', 'title' => "Gema Prestasi & Semarak Pembelajaran {$short} Raudhatul Ulum"],
-            ['id' => 'fvSzJDVyNCE', 'title' => "Atraksi Seni Bela Diri & Kreativitas Santri {$short} Raudhatul Ulum"],
+            [
+                'id' => 'BG311kT-yXc',
+                'title' => "Upacara Kemerdekaan RI & Apel Akbar Santri {$short} Raudhatul Ulum",
+                'description' => "Dokumentasi video resmi dari kanal YouTube TVRU Sakatiga (@tvrusakatiga): Khidmatnya upacara bendera dan apel santri {$unit->name} PPRU Sakatiga.",
+            ],
+            [
+                'id' => 'cFXK5Of-IzQ',
+                'title' => "Sarasehan & Orientasi Wali Santri Baru {$short} Raudhatul Ulum",
+                'description' => "Dokumentasi video resmi dari kanal YouTube TVRU Sakatiga (@tvrusakatiga): Pengenalan tata tertib kepesantrenan dan pembinaan santri di {$unit->name}.",
+            ],
+            [
+                'id' => 'mRdb_kGhbiQ',
+                'title' => "Sarasehan Wali Santri Bersama Mudir KH. Tol'at Wafa Ahmad ({$short})",
+                'description' => "Dokumentasi video resmi dari kanal YouTube TVRU Sakatiga (@tvrusakatiga): Arahan mendalam seputar sinergi pendidikan pesantren dan wali santri {$unit->name}.",
+            ],
+            [
+                'id' => 'p8B8wKu5o4c',
+                'title' => "Peringatan Hari Besar Islam & Semarak Prestasi Santri {$short}",
+                'description' => "Dokumentasi video resmi dari kanal YouTube TVRU Sakatiga (@tvrusakatiga): Semarak tabligh akbar, lomba bahasa, dan kreasi santri {$unit->name}.",
+            ],
         ];
 
-        $selected = $officialVideos[($unit->id - 1) % count($officialVideos)];
-
-        $video = Video::where('unit_pendidikan_id', $unit->id)->first();
-        if (! $video) {
-            Video::create([
-                'unit_pendidikan_id' => $unit->id,
-                'title' => $selected['title'],
-                'slug' => Str::slug($selected['title']).'-'.$unit->id,
-                'youtube_url' => 'https://www.youtube.com/watch?v='.$selected['id'],
-                'youtube_id' => $selected['id'],
-                'description' => "Dokumentasi video resmi dari kanal YouTube TVRU Sakatiga (@tvrusakatiga) untuk unit {$unit->name} Pondok Pesantren Raudhatul Ulum Sakatiga.",
-            ]);
-        } elseif ($video->youtube_id === 'dQw4w9WgXcQ') {
-            $video->update([
-                'title' => $selected['title'],
-                'youtube_url' => 'https://www.youtube.com/watch?v='.$selected['id'],
-                'youtube_id' => $selected['id'],
-                'description' => "Dokumentasi video resmi dari kanal YouTube TVRU Sakatiga (@tvrusakatiga) untuk unit {$unit->name} Pondok Pesantren Raudhatul Ulum Sakatiga.",
-            ]);
+        foreach ($officialVideos as $v) {
+            $vSlug = Str::slug($v['title']).'-unit-'.$unit->id;
+            Video::updateOrCreate(
+                [
+                    'unit_pendidikan_id' => $unit->id,
+                    'youtube_id' => $v['id'],
+                ],
+                [
+                    'unit_pendidikan_id' => $unit->id,
+                    'title' => $v['title'],
+                    'slug' => $vSlug,
+                    'youtube_url' => 'https://www.youtube.com/watch?v='.$v['id'],
+                    'youtube_id' => $v['id'],
+                    'description' => $v['description'],
+                ]
+            );
         }
     }
 
     /**
-     * Seed 2 authentic testimonials for the unit.
+     * Seed 4 authentic testimonials for the unit (2 parents, 2 alumni).
      */
     protected static function seedUnitTestimonials(UnitPendidikan $unit): void
     {
@@ -520,14 +593,28 @@ class UnitDemoContentService
 
         $testimonials = [
             [
-                'name' => "H. Ahmad Fauzi (Wali Santri {$short})",
+                'name' => "H. Ahmad Fauzi, S.E. (Wali Santri {$short})",
                 'profession' => "Wali Santri {$short}",
                 'content' => "Alhamdulillah, ananda mengalami perubahan karakter yang luar biasa sejak menempuh pendidikan di {$unit->name}. Ibadahnya tertib, adabnya santun, dan hafalannya terus bertambah.",
+                'photo' => '/uploads/avatar-neutral-gray.svg',
             ],
             [
-                'name' => "Muhammad Syakir, S.T. (Alumni {$short})",
-                'profession' => "Alumni {$short} & Profesional",
-                'content' => "Fondasi kedisiplinan, bahasa asing, dan pemahaman agama yang saya dapatkan di {$unit->name} menjadi modal berharga dalam meniti karier profesional.",
+                'name' => "dr. Hj. Nurul Hidayah, Sp.A. (Wali Santri {$short})",
+                'profession' => "Wali Santri {$short} & Praktisi Kesehatan",
+                'content' => "Sistem pendidikan asrama 24 jam dengan bimbingan asatidz yang amanah memberi ketenangan bagi kami sebagai orang tua. Anak kami mandiri, cerdas akademik, dan memiliki kecintaan mendalam pada Al-Qur'an.",
+                'photo' => '/uploads/avatar-neutral-gray.svg',
+            ],
+            [
+                'name' => "Ust. Muhammad Syakir, Lc. (Alumni {$short})",
+                'profession' => "Alumni {$short} & Mahasiswa Univ. Al-Azhar Kairo",
+                'content' => "Fondasi kedisiplinan, bahasa asing fusha, dan pemahaman kitab kuning yang saya dapatkan di {$unit->name} menjadi modal berharga dalam meraih beasiswa studi di Timur Tengah.",
+                'photo' => '/uploads/avatar-neutral-gray.svg',
+            ],
+            [
+                'name' => "Fadhil Pratama, S.T. (Alumni {$short})",
+                'profession' => "Alumni {$short} & Software Engineer",
+                'content' => "Pendidikan karakter dan kemandirian di {$unit->name} membekali kami ketangguhan mental dan integritas moral dalam berkarier di industri modern tanpa melupakan nilai-nilai Islam.",
+                'photo' => '/uploads/avatar-neutral-gray.svg',
             ],
         ];
 
@@ -539,8 +626,14 @@ class UnitDemoContentService
                     'name' => $t['name'],
                     'profession' => $t['profession'],
                     'content' => $t['content'],
-                    'photo' => '/uploads/avatar-neutral-gray.svg',
+                    'photo' => $t['photo'],
                     'status' => 'publish',
+                ]);
+            } else {
+                $existing->update([
+                    'profession' => $t['profession'],
+                    'content' => $t['content'],
+                    'photo' => $t['photo'],
                 ]);
             }
         }

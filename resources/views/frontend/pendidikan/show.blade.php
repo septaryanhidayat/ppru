@@ -567,7 +567,7 @@
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
                     @foreach($ekskuls as $ek)
                         <div class="bg-slate-50/80 rounded-2xl p-5 border border-slate-200/80 hover:border-emerald-300 hover:bg-white hover:shadow-md transition duration-300 group flex items-start space-x-4">
                             <div class="w-12 h-12 rounded-2xl bg-emerald-100 text-[#00843d] flex items-center justify-center text-xl shrink-0 group-hover:scale-105 transition shadow-2xs">
@@ -597,14 +597,14 @@
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 text-xs">
                 @if(isset($unitTestimonials) && $unitTestimonials->isNotEmpty())
                     @foreach($unitTestimonials as $testi)
                         <div class="bg-white/10 backdrop-blur-xs p-5 rounded-2xl border border-white/15 space-y-3 flex flex-col justify-between">
                             <div class="space-y-3">
                                 <div class="flex items-center space-x-3">
                                     <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-amber-400 bg-white/20 shrink-0">
-                                        <img src="{{ $testi->photo_url }}" alt="{{ $testi->name }}" class="w-full h-full object-cover" onerror="this.src='/uploads/default-avatar.webp'">
+                                        <img src="{{ $testi->photo_url }}" alt="{{ $testi->name }}" class="w-full h-full object-cover" onerror="this.src='/uploads/avatar-neutral-gray.svg'">
                                     </div>
                                     <div>
                                         <h4 class="font-black text-white text-sm">{{ $testi->name }}</h4>
@@ -621,7 +621,7 @@
                     <div class="bg-white/10 backdrop-blur-xs p-5 rounded-2xl border border-white/15 space-y-3">
                         <div class="flex items-center space-x-3">
                             <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-amber-400 bg-white/20 shrink-0">
-                                <img src="/uploads/default-avatar.webp" alt="Alumni Al-Azhar" class="w-full h-full object-cover">
+                                <img src="/uploads/avatar-neutral-gray.svg" alt="Alumni Al-Azhar" class="w-full h-full object-cover">
                             </div>
                             <div>
                                 <h4 class="font-black text-white text-sm">Ust. Ahmad Fauzan, Lc.</h4>
@@ -636,7 +636,7 @@
                     <div class="bg-white/10 backdrop-blur-xs p-5 rounded-2xl border border-white/15 space-y-3">
                         <div class="flex items-center space-x-3">
                             <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-amber-400 bg-white/20 shrink-0">
-                                <img src="/uploads/default-avatar.webp" alt="Alumni Madinah" class="w-full h-full object-cover">
+                                <img src="/uploads/avatar-neutral-gray.svg" alt="Alumni Madinah" class="w-full h-full object-cover">
                             </div>
                             <div>
                                 <h4 class="font-black text-white text-sm">Ust. Muhammad Ihsan, Lc.</h4>
@@ -651,7 +651,7 @@
                     <div class="bg-white/10 backdrop-blur-xs p-5 rounded-2xl border border-white/15 space-y-3">
                         <div class="flex items-center space-x-3">
                             <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-amber-400 bg-white/20 shrink-0">
-                                <img src="/uploads/default-avatar.webp" alt="Alumni PTN" class="w-full h-full object-cover">
+                                <img src="/uploads/avatar-neutral-gray.svg" alt="Alumni PTN" class="w-full h-full object-cover">
                             </div>
                             <div>
                                 <h4 class="font-black text-white text-sm">dr. Fatimah Zahra</h4>
@@ -677,17 +677,17 @@
                         <h2 class="text-2xl sm:text-3xl font-black text-gray-900 mt-2 tracking-tight">
                             Video Dokumentasi &amp; Profil {{ $unit->short_name ?: $unit->name }}
                         </h2>
-                        <p class="text-xs text-gray-500 mt-0.5">Saksikan gambaran langsung kehidupan santri dan suasana pembelajaran</p>
+                        <p class="text-xs text-gray-500 mt-0.5">Saksikan gambaran langsung kehidupan santri dan suasana pembelajaran dari TVRU Sakatiga</p>
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
                     @foreach($unitVideos as $vid)
-                        <div class="bg-slate-50 rounded-2xl overflow-hidden border border-slate-200 shadow-xs space-y-3 p-4">
+                        <div class="bg-slate-50 rounded-2xl overflow-hidden border border-slate-200 shadow-xs space-y-2.5 p-3 flex flex-col justify-between">
                             <div class="aspect-video w-full rounded-xl overflow-hidden bg-black shadow-inner">
                                 <iframe src="{{ $vid->youtube_embed_url ?? ('https://www.youtube-nocookie.com/embed/'.$vid->youtube_id) }}" title="{{ $vid->title }}" class="w-full h-full" allowfullscreen loading="lazy"></iframe>
                             </div>
-                            <h4 class="font-extrabold text-sm text-gray-900 line-clamp-2 leading-snug">{{ $vid->title }}</h4>
+                            <h4 class="font-extrabold text-xs text-gray-900 line-clamp-2 leading-snug">{{ $vid->title }}</h4>
                         </div>
                     @endforeach
                 </div>

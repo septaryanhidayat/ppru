@@ -10,6 +10,7 @@ use App\Models\Testimonial;
 use App\Models\UnitPendidikan;
 use App\Models\Video;
 use App\Services\CmsAutoHealService;
+use App\Services\UnitDemoContentService;
 use Illuminate\Support\Facades\Schema;
 
 class UnitPendidikanController extends Controller
@@ -28,6 +29,9 @@ class UnitPendidikanController extends Controller
 
         $unit = UnitPendidikan::where('slug', $slug)->firstOrFail();
 
+        // Ensure this unit is fully seeded with 8 teachers, 4 videos, 4 prestasi, 4 ekskul, 4 testimoni, 4 posts
+        UnitDemoContentService::seedUnitIfEmpty($unit);
+
         $hasDewanUnitCol = Schema::hasTable('dewan_asatidz') && Schema::hasColumn('dewan_asatidz', 'unit_pendidikan_id');
         $teacherQuery = AnggotaDewan::query();
         if ($hasDewanUnitCol) {
@@ -42,7 +46,7 @@ class UnitPendidikanController extends Controller
                     ->orWhere('fraction', $unit->name);
             });
         }
-        $teachers = $teacherQuery->orderBy('order', 'asc')->get();
+        $teachers = $teacherQuery->orderBy('order', 'asc')->take(8)->get();
 
         $otherUnits = UnitPendidikan::active()->where('id', '!=', $unit->id)->orderBy('order', 'asc')->get();
 
@@ -54,7 +58,7 @@ class UnitPendidikanController extends Controller
 
         $hasPostUnitCol = Schema::hasTable('posts') && Schema::hasColumn('posts', 'unit_pendidikan_id');
 
-        // Unit-specific news / posts
+        // Unit-specific news / posts (4 items)
         $unitPosts = collect();
         if ($hasPostUnitCol) {
             $unitPosts = Post::where('type', 'post')
@@ -73,7 +77,7 @@ class UnitPendidikanController extends Controller
                 ->get();
         }
 
-        // Unit-specific or latest achievements
+        // Unit-specific achievements (4 items)
         $prestasi = collect();
         if ($hasPostUnitCol) {
             $prestasi = Post::where('type', 'prestasi')
@@ -99,22 +103,22 @@ class UnitPendidikanController extends Controller
             })->latest()->take(4)->get();
         }
 
-        // Unit-specific extracurriculars
+        // Unit-specific extracurriculars (4 items)
         $ekskuls = collect();
         if ($hasPostUnitCol) {
             $ekskuls = Post::where('type', 'ekskul')
                 ->where('unit_pendidikan_id', $unit->id)
                 ->where('status', 'publish')
                 ->latest()
-                ->take(6)
+                ->take(4)
                 ->get();
         }
 
         if ($ekskuls->isEmpty()) {
-            $ekskuls = Post::where('type', 'ekskul')->where('status', 'publish')->take(6)->get();
+            $ekskuls = Post::where('type', 'ekskul')->where('status', 'publish')->take(4)->get();
         }
 
-        // Unit-specific testimonials
+        // Unit-specific testimonials (4 items)
         $unitTestimonials = collect();
         if (Schema::hasTable('testimonials')) {
             $hasTestimonialUnitCol = Schema::hasColumn('testimonials', 'unit_pendidikan_id');
@@ -122,15 +126,15 @@ class UnitPendidikanController extends Controller
                 $unitTestimonials = Testimonial::where('unit_pendidikan_id', $unit->id)
                     ->where('status', 'publish')
                     ->latest()
-                    ->take(3)
+                    ->take(4)
                     ->get();
             }
             if ($unitTestimonials->isEmpty()) {
-                $unitTestimonials = Testimonial::where('status', 'publish')->take(3)->get();
+                $unitTestimonials = Testimonial::where('status', 'publish')->take(4)->get();
             }
         }
 
-        // Unit-specific videos (Kanal Resmi YouTube TVRU Sakatiga @tvrusakatiga)
+        // Unit-specific videos (Kanal Resmi YouTube TVRU Sakatiga @tvrusakatiga - 4 items)
         $unitVideos = collect();
         if (Schema::hasTable('videos')) {
             // Self-heal: hapus residu video placeholder demo lama jika masih ada
@@ -141,11 +145,11 @@ class UnitPendidikanController extends Controller
                 $unitVideos = Video::where('unit_pendidikan_id', $unit->id)
                     ->where('youtube_id', '!=', 'dQw4w9WgXcQ')
                     ->latest()
-                    ->take(2)
+                    ->take(4)
                     ->get();
             }
             if ($unitVideos->isEmpty()) {
-                $unitVideos = Video::where('youtube_id', '!=', 'dQw4w9WgXcQ')->latest()->take(2)->get();
+                $unitVideos = Video::where('youtube_id', '!=', 'dQw4w9WgXcQ')->latest()->take(4)->get();
             }
         }
 

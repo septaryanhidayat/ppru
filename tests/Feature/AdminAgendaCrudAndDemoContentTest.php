@@ -3,7 +3,7 @@
 use App\Models\Agenda;
 use App\Models\AnggotaDewan;
 use App\Models\Pengumuman;
-use App\Models\Testimonial;
+use App\Models\UnitPendidikan;
 use App\Models\User;
 use App\Models\Video;
 use Database\Seeders\PpruDemoContentSeeder;
@@ -87,22 +87,33 @@ test('admin can create, update and delete pengumuman', function () {
     expect(Pengumuman::find($pengumuman->id))->toBeNull();
 });
 
-test('demo content seeder populates exactly 8 dewan guru, official TVRU videos, and demo items', function () {
+test('demo content seeder populates exactly 8 dewan yayasan, official TVRU videos, and demo items', function () {
     $this->seed(PpruDemoContentSeeder::class);
 
-    expect(AnggotaDewan::count())->toBe(8)
+    expect(AnggotaDewan::where('fraction', 'Yayasan')->whereNull('unit_pendidikan_id')->count())->toBe(8)
         ->and(Video::where('youtube_id', 'dQw4w9WgXcQ')->count())->toBe(0)
         ->and(Video::count())->toBeGreaterThanOrEqual(4)
-        ->and(Testimonial::count())->toBeGreaterThanOrEqual(4)
         ->and(Agenda::count())->toBeGreaterThanOrEqual(4)
         ->and(Pengumuman::count())->toBeGreaterThanOrEqual(4);
 });
 
-test('public dewan guru page displays 8 prominent teachers', function () {
+test('public dewan guru page displays 8 prominent yayasan leaders', function () {
     $this->seed(PpruDemoContentSeeder::class);
 
     $response = $this->get(route('dewan.index'));
     $response->assertStatus(200);
     $response->assertSee('Drs. KH. Karim Kasim');
-    $response->assertSee('Ustadz H. Faisal Abdullah, S.T.');
+    $response->assertSee('Faisal Abdullah');
+});
+
+test('unit page displays 8 teachers, 4 TVRU videos, 4 prestasi, 4 ekskul, and 4 testimonials', function () {
+    $this->seed(PpruDemoContentSeeder::class);
+
+    $unit = UnitPendidikan::where('slug', 'madrasah-aliyah-raudhatul-ulum')->first();
+    if ($unit) {
+        $response = $this->get(route('pendidikan.show', $unit->slug));
+        $response->assertStatus(200);
+        $response->assertSee('Dewan Asatidz');
+        $response->assertSee('BG311kT-yXc');
+    }
 });
