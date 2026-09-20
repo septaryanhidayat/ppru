@@ -30,6 +30,16 @@ class SecurityHeaders
         $response->headers->set('Referrer-Policy', 'strict-origin-when-cross-origin');
         $response->headers->set('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');
 
+        // Content Security Policy (compatible with Tailwind, Alpine.js, Quill/TinyMCE, CDNs, and YouTube embeds)
+        $csp = "default-src 'self' https: data:; "
+            ."script-src 'self' 'unsafe-inline' 'unsafe-eval' https:; "
+            ."style-src 'self' 'unsafe-inline' https:; "
+            ."img-src 'self' data: https: blob:; "
+            ."font-src 'self' data: https:; "
+            ."frame-src 'self' https://www.youtube.com https://youtube-nocookie.com https://www.youtube-nocookie.com https://www.google.com https://maps.google.com; "
+            ."connect-src 'self' https:;";
+        $response->headers->set('Content-Security-Policy', $csp);
+
         // If request is over HTTPS, enforce HSTS (HTTP Strict Transport Security)
         if ($request->isSecure()) {
             $response->headers->set('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload');

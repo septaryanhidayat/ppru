@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\ActivityLog;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
 use App\Models\User;
+use App\Services\HtmlSanitizer;
 use App\Services\KhutbahService;
 use App\Services\WebpService;
 use Carbon\Carbon;
@@ -123,12 +125,22 @@ class AdminPostController extends Controller
         $this->ensureEditorialColumns();
         $tableColumns = Schema::getColumnListing('posts');
 
+        $baseSlug = Str::slug($validated['title']);
+        $slug = $baseSlug;
+        $counter = 1;
+        while (Post::where('slug', $slug)->exists()) {
+            $slug = "{$baseSlug}-{$counter}";
+            $counter++;
+        }
+
+        $sanitizedContent = HtmlSanitizer::clean($validated['content'] ?? '');
+
         $user = $request->user();
         $postData = [
             'title' => $validated['title'],
-            'slug' => Str::slug($validated['title']).'-'.time(),
-            'content' => $validated['content'],
-            'excerpt' => ($validated['excerpt'] ?? null) ?: Str::limit(strip_tags($validated['content']), 180),
+            'slug' => $slug,
+            'content' => $sanitizedContent,
+            'excerpt' => ($validated['excerpt'] ?? null) ?: Str::limit(strip_tags($sanitizedContent), 180),
             'status' => $validated['status'],
             'type' => $type,
             'featured_image' => $featuredImageUrl,
@@ -261,11 +273,13 @@ class AdminPostController extends Controller
         $this->ensureEditorialColumns();
         $tableColumns = Schema::getColumnListing('posts');
 
+        $sanitizedContent = HtmlSanitizer::clean($validated['content'] ?? '');
+
         $updateData = [
             'title' => $validated['title'],
             'type' => $validated['type'] ?? $post->type,
-            'content' => $validated['content'],
-            'excerpt' => ($validated['excerpt'] ?? null) ?: Str::limit(strip_tags($validated['content']), 180),
+            'content' => $sanitizedContent,
+            'excerpt' => ($validated['excerpt'] ?? null) ?: Str::limit(strip_tags($sanitizedContent), 180),
             'status' => $validated['status'],
             'featured_image' => $featuredImageUrl,
             'author_id' => $validated['author_id'] ?? $post->author_id,
@@ -335,8 +349,29 @@ class AdminPostController extends Controller
             abort(403, 'Anda tidak memiliki izin menghapus konten unit lain.');
         }
 
+        $title = $post->title;
         $type = $post->type;
+
+        // Cleanup local uploaded image if exists
+        $imagePath = $post->featured_image;
+        if ($imagePath && str_starts_with($imagePath, '/uploads/')) {
+            $fullPath = public_path(ltrim($imagePath, '/'));
+            if (is_file($fullPath)) {
+                @unlink($fullPath);
+            }
+        }
+
         $post->delete();
+
+        ActivityLog::create([
+            'user_id' => Auth::id(),
+            'user_name' => Auth::user()?->name ?? 'Administrator',
+            'action' => 'post_delete',
+            'description' => "Menghapus konten: {$title}",
+            'ip_address' => $request->ip(),
+            'user_agent' => $request->userAgent(),
+            'status' => 'warning',
+        ]);
 
         $redirectParams = ($type === 'post') ? [] : ['type' => $type];
 

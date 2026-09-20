@@ -49,7 +49,6 @@ class DownloadController extends Controller
         $allowedRoots = [
             realpath(public_path('uploads')),
             realpath(storage_path('app/public')),
-            realpath(public_path()),
         ];
         // Filter out false values if directories don't exist
         $allowedRoots = array_filter($allowedRoots);

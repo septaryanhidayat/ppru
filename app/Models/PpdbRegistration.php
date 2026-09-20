@@ -65,9 +65,25 @@ class PpdbRegistration extends Model
     public static function generateRegistrationNumber(): string
     {
         $year = date('Y');
-        $count = static::whereYear('created_at', $year)->count() + 1;
+        $prefix = "PPDB-{$year}-";
 
-        return sprintf('PPDB-%s-%04d', $year, $count);
+        $lastNumber = static::where('registration_number', 'like', "{$prefix}%")
+            ->orderBy('id', 'desc')
+            ->value('registration_number');
+
+        $nextSequence = 1;
+        if ($lastNumber && preg_match('/-(\d+)$/', $lastNumber, $matches)) {
+            $nextSequence = ((int) $matches[1]) + 1;
+        }
+
+        $regNumber = sprintf('PPDB-%s-%04d', $year, $nextSequence);
+
+        while (static::where('registration_number', $regNumber)->exists()) {
+            $nextSequence++;
+            $regNumber = sprintf('PPDB-%s-%04d', $year, $nextSequence);
+        }
+
+        return $regNumber;
     }
 
     public function getStatusBadgeAttribute(): string

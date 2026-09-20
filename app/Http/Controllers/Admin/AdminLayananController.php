@@ -150,7 +150,69 @@ class AdminLayananController extends Controller
         $type = $request->input('service_type');
 
         if ($type === 'portal') {
-            foreach ($request->except(['_token', 'service_type']) as $field => $val) {
+            $allowedLayananKeys = [
+                'layanan_portal_hero_badge',
+                'layanan_portal_hero_title',
+                'layanan_portal_hero_desc',
+                'layanan_section_badge',
+                'layanan_section_title',
+                'layanan_section_desc',
+                'layanan_card_1_badge',
+                'layanan_card_1_title',
+                'layanan_card_1_desc',
+                'layanan_card_1_benefits',
+                'layanan_card_1_btn_text',
+                'layanan_card_2_badge',
+                'layanan_card_2_title',
+                'layanan_card_2_desc',
+                'layanan_card_2_benefits',
+                'layanan_card_2_btn_text',
+                'layanan_card_3_badge',
+                'layanan_card_3_title',
+                'layanan_card_3_desc',
+                'layanan_card_3_benefits',
+                'layanan_card_3_btn_text',
+                'layanan_ptsp_hours',
+                'layanan_ptsp_wa',
+                'layanan_ptsp_email',
+                'layanan_ptsp_note',
+                'ptsp_page_title',
+                'ptsp_hero_subtitle',
+                'ptsp_section_tag',
+                'ptsp_section_title',
+                'ptsp_section_desc',
+                'ptsp_card1_tag',
+                'ptsp_card1_title',
+                'ptsp_card1_desc',
+                'ptsp_card1_point1',
+                'ptsp_card1_point2',
+                'ptsp_card1_point3',
+                'ptsp_card1_btn',
+                'ptsp_card2_tag',
+                'ptsp_card2_title',
+                'ptsp_card2_desc',
+                'ptsp_card2_point1',
+                'ptsp_card2_point2',
+                'ptsp_card2_point3',
+                'ptsp_card2_btn',
+                'ptsp_card3_tag',
+                'ptsp_card3_title',
+                'ptsp_card3_desc',
+                'ptsp_card3_point1',
+                'ptsp_card3_point2',
+                'ptsp_card3_point3',
+                'ptsp_card3_btn',
+                'ptsp_helpdesk_tag',
+                'ptsp_helpdesk_title',
+                'ptsp_helpdesk_desc',
+                'ptsp_helpdesk_phone',
+                'ptsp_helpdesk_btn_text',
+                'ptsp_helpdesk_wa_template',
+            ];
+
+            $portalData = $request->only($allowedLayananKeys);
+
+            foreach ($portalData as $field => $val) {
                 Setting::set($field, $val ?? '', 'layanan');
             }
 

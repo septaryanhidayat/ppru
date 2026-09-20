@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\ActivityLog;
 use App\Models\Post;
 use App\Models\Setting;
+use App\Services\HtmlSanitizer;
 use App\Services\WebpService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -53,12 +54,13 @@ class AdminPageController extends Controller
             'title' => $validated['title'],
             'slug' => $slug,
             'excerpt' => $validated['excerpt'] ?? '',
-            'content' => $validated['content'] ?? '',
+            'content' => HtmlSanitizer::clean($validated['content'] ?? ''),
             'meta_title' => $validated['meta_title'] ?? null,
             'meta_description' => $validated['meta_description'] ?? null,
             'status' => $validated['status'] ?? 'publish',
             'type' => 'page',
-            'user_id' => Auth::id() ?? 1,
+            'author_id' => Auth::id() ?? 1,
+            'author_name' => Auth::user()->name ?? 'Administrator',
             'published_at' => now(),
         ]);
 
@@ -127,7 +129,7 @@ class AdminPageController extends Controller
 
         $page->update([
             'title' => $validated['title'],
-            'content' => $validated['content'] ?? '',
+            'content' => HtmlSanitizer::clean($validated['content'] ?? ''),
             'excerpt' => $validated['excerpt'] ?? '',
             'meta_title' => $validated['meta_title'] ?? null,
             'meta_description' => $validated['meta_description'] ?? null,

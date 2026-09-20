@@ -142,6 +142,14 @@ class AdminHeroSlideController extends Controller
     public function destroy(Request $request, HeroSlide $heroSlide)
     {
         $title = $heroSlide->title;
+
+        if ($heroSlide->image && str_starts_with($heroSlide->image, '/uploads/')) {
+            $fullPath = public_path(ltrim($heroSlide->image, '/'));
+            if (is_file($fullPath)) {
+                @unlink($fullPath);
+            }
+        }
+
         $heroSlide->delete();
 
         ActivityLog::create([

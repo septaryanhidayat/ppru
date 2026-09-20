@@ -24,6 +24,7 @@ use App\Services\UnitAccountService;
 use App\Services\UnitDemoContentService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Schema;
 
@@ -232,6 +233,10 @@ class AdminDashboardController extends Controller
      */
     public function runMigration()
     {
+        if (! Auth::user()?->isGlobalAdmin() && ! Auth::user()?->isSuperAdmin()) {
+            abort(403, 'Akses dibatasi. Hanya Administrator Pondok yang berhak menjalankan migrasi database.');
+        }
+
         try {
             Artisan::call('migrate', ['--force' => true]);
             $output = Artisan::output();

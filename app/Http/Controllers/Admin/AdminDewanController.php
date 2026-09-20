@@ -99,6 +99,7 @@ class AdminDewanController extends Controller
             'action' => 'dewan_create',
             'description' => 'Menambahkan anggota dewan guru baru: '.$dewan->name,
             'ip_address' => $request->ip(),
+            'user_agent' => $request->userAgent(),
         ]);
 
         return redirect()->route('admin.dewan.index')->with('success', 'Data tenaga pendidik berhasil ditambahkan!');

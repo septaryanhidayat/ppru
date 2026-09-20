@@ -13,6 +13,10 @@ class AdminBackupController extends Controller
 {
     public function index()
     {
+        if (! Auth::user()?->isGlobalAdmin() && ! Auth::user()?->isSuperAdmin()) {
+            abort(403, 'Akses dibatasi. Hanya Administrator yang berhak melihat ringkasan basis data.');
+        }
+
         $tables = Schema::getTableListing();
         $totalRecords = 0;
         $tableDetails = [];
@@ -40,6 +44,10 @@ class AdminBackupController extends Controller
 
     public function download(Request $request)
     {
+        if (! Auth::user()?->isGlobalAdmin() && ! Auth::user()?->isSuperAdmin()) {
+            abort(403, 'Akses dibatasi. Hanya Administrator yang berhak mengunduh cadangan basis data.');
+        }
+
         ActivityLog::create([
             'user_id' => Auth::id(),
             'user_name' => Auth::user()->name,
@@ -69,10 +77,17 @@ class AdminBackupController extends Controller
             echo "/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;\n";
             echo "/*!40101 SET NAMES utf8mb4 */;\n\n";
 
-            $tableObjects = DB::select("SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%' ORDER BY name ASC");
+            $driver = DB::connection()->getDriverName();
+            if ($driver === 'sqlite') {
+                $tableObjects = DB::select("SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%' ORDER BY name ASC");
+                $tableNames = array_map(fn ($t) => $t->name, $tableObjects);
+            } else {
+                $rawTables = Schema::getTableListing();
+                $tableNames = array_map(fn ($t) => str_replace('main.', '', $t), $rawTables);
+                sort($tableNames);
+            }
 
-            foreach ($tableObjects as $tObj) {
-                $table = $tObj->name;
+            foreach ($tableNames as $table) {
                 $cols = Schema::getColumns($table);
                 $indexes = Schema::getIndexes($table);
 
