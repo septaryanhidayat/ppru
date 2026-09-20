@@ -6,7 +6,9 @@ use App\Models\Post;
 use App\Models\UnitPendidikan;
 use App\Models\User;
 use App\Models\Video;
+use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Schema;
 
 class UnitAccountService
@@ -99,44 +101,88 @@ class UnitAccountService
      */
     public static function ensureUnitAccountsExist(): void
     {
-        if (! Schema::hasTable('unit_pendidikans') || ! Schema::hasTable('users')) {
-            return;
-        }
-
-        $defaultPassword = Hash::make('AdminUnitPPRU2026!');
-
-        foreach (self::getUnitsConfig() as $cfg) {
-            $unit = UnitPendidikan::where('short_name', $cfg['short_name'])
-                ->orWhere('slug', $cfg['slug'])
-                ->first();
-
-            if (! $unit) {
-                $unit = UnitPendidikan::create([
-                    'name' => $cfg['name'],
-                    'short_name' => $cfg['short_name'],
-                    'slug' => $cfg['slug'],
-                    'category_type' => $cfg['category_type'],
-                    'head_name' => $cfg['head_name'],
-                    'order' => $cfg['order'],
-                    'is_active' => true,
-                ]);
-            } else {
-                $unit->update([
-                    'order' => $cfg['order'],
-                    'category_type' => $cfg['category_type'],
-                    'head_name' => $unit->head_name ?: $cfg['head_name'],
-                ]);
+        try {
+            if (! Schema::hasTable('unit_pendidikans') || ! Schema::hasTable('users')) {
+                return;
             }
 
-            User::updateOrCreate(
-                ['email' => $cfg['email']],
-                [
+            // Auto-heal missing columns if migrations were interrupted or skipped on server
+            if (! Schema::hasColumn('users', 'unit_pendidikan_id')) {
+                try {
+                    Schema::table('users', function (Blueprint $table) {
+                        $table->unsignedBigInteger('unit_pendidikan_id')->nullable()->after('role');
+                        $table->index('unit_pendidikan_id');
+                    });
+                } catch (\Throwable $e) {
+                    Log::warning('Auto-add unit_pendidikan_id to users: '.$e->getMessage());
+                }
+            }
+
+            if (Schema::hasTable('posts') && ! Schema::hasColumn('posts', 'unit_pendidikan_id')) {
+                try {
+                    Schema::table('posts', function (Blueprint $table) {
+                        $table->unsignedBigInteger('unit_pendidikan_id')->nullable()->after('author_id');
+                        $table->index('unit_pendidikan_id');
+                    });
+                } catch (\Throwable $e) {
+                    Log::warning('Auto-add unit_pendidikan_id to posts: '.$e->getMessage());
+                }
+            }
+
+            if (Schema::hasTable('videos') && ! Schema::hasColumn('videos', 'unit_pendidikan_id')) {
+                try {
+                    Schema::table('videos', function (Blueprint $table) {
+                        $table->unsignedBigInteger('unit_pendidikan_id')->nullable()->after('id');
+                        $table->index('unit_pendidikan_id');
+                    });
+                } catch (\Throwable $e) {
+                    Log::warning('Auto-add unit_pendidikan_id to videos: '.$e->getMessage());
+                }
+            }
+
+            $hasUnitCol = Schema::hasColumn('users', 'unit_pendidikan_id');
+            $defaultPassword = Hash::make('AdminUnitPPRU2026!');
+
+            foreach (self::getUnitsConfig() as $cfg) {
+                $unit = UnitPendidikan::where('short_name', $cfg['short_name'])
+                    ->orWhere('slug', $cfg['slug'])
+                    ->first();
+
+                if (! $unit) {
+                    $unit = UnitPendidikan::create([
+                        'name' => $cfg['name'],
+                        'short_name' => $cfg['short_name'],
+                        'slug' => $cfg['slug'],
+                        'category_type' => $cfg['category_type'],
+                        'head_name' => $cfg['head_name'],
+                        'order' => $cfg['order'],
+                        'is_active' => true,
+                    ]);
+                } else {
+                    $unit->update([
+                        'order' => $cfg['order'],
+                        'category_type' => $cfg['category_type'],
+                        'head_name' => $unit->head_name ?: $cfg['head_name'],
+                    ]);
+                }
+
+                $userData = [
                     'name' => 'Admin '.$cfg['short_name'],
                     'password' => $defaultPassword,
                     'role' => 'admin_unit',
-                    'unit_pendidikan_id' => $unit->id,
-                ]
-            );
+                ];
+
+                if ($hasUnitCol) {
+                    $userData['unit_pendidikan_id'] = $unit->id;
+                }
+
+                User::updateOrCreate(
+                    ['email' => $cfg['email']],
+                    $userData
+                );
+            }
+        } catch (\Throwable $e) {
+            Log::error('UnitAccountService::ensureUnitAccountsExist error: '.$e->getMessage());
         }
     }
 
@@ -147,37 +193,67 @@ class UnitAccountService
      */
     public static function getUnitAdminsSummary(): array
     {
-        self::ensureUnitAccountsExist();
+        try {
+            self::ensureUnitAccountsExist();
 
-        $units = UnitPendidikan::orderBy('order', 'asc')->get();
-        $summary = [];
+            if (! Schema::hasTable('unit_pendidikans')) {
+                return [];
+            }
 
-        foreach ($units as $unit) {
-            $user = User::where('unit_pendidikan_id', $unit->id)
-                ->where('role', 'admin_unit')
-                ->first();
+            $units = UnitPendidikan::orderBy('order', 'asc')->get();
+            $summary = [];
 
-            $postsCount = Post::where('unit_pendidikan_id', $unit->id)->where('type', 'post')->count();
-            $photosCount = Post::where('unit_pendidikan_id', $unit->id)->where('type', 'gallery')->count();
-            $videosCount = Video::where('unit_pendidikan_id', $unit->id)->count();
+            $hasUnitCol = Schema::hasTable('users') && Schema::hasColumn('users', 'unit_pendidikan_id');
+            $hasPostUnitCol = Schema::hasTable('posts') && Schema::hasColumn('posts', 'unit_pendidikan_id');
+            $hasVideoUnitCol = Schema::hasTable('videos') && Schema::hasColumn('videos', 'unit_pendidikan_id');
 
-            $summary[] = [
-                'unit' => $unit,
-                'user' => $user,
-                'short_name' => $unit->short_name ?: $unit->name,
-                'name' => $unit->name,
-                'slug' => $unit->slug,
-                'category_type' => $unit->category_type,
-                'head_name' => $unit->head_name,
-                'email' => $user?->email ?: ('admin.'.strtolower(str_replace(' ', '', $unit->short_name)).'@ppru.ac.id'),
-                'password_default' => 'AdminUnitPPRU2026!',
-                'posts_count' => $postsCount,
-                'photos_count' => $photosCount,
-                'videos_count' => $videosCount,
-                'is_active' => $unit->is_active,
-            ];
+            foreach ($units as $unit) {
+                $user = null;
+                if ($hasUnitCol) {
+                    $user = User::where('unit_pendidikan_id', $unit->id)
+                        ->where('role', 'admin_unit')
+                        ->first();
+                }
+
+                if (! $user && Schema::hasTable('users')) {
+                    $user = User::where('email', 'admin.'.strtolower(str_replace(' ', '', (string) $unit->short_name)).'@ppru.ac.id')->first();
+                }
+
+                $postsCount = 0;
+                $photosCount = 0;
+                $videosCount = 0;
+
+                if ($hasPostUnitCol) {
+                    $postsCount = Post::where('unit_pendidikan_id', $unit->id)->where('type', 'post')->count();
+                    $photosCount = Post::where('unit_pendidikan_id', $unit->id)->where('type', 'gallery')->count();
+                }
+
+                if ($hasVideoUnitCol) {
+                    $videosCount = Video::where('unit_pendidikan_id', $unit->id)->count();
+                }
+
+                $summary[] = [
+                    'unit' => $unit,
+                    'user' => $user,
+                    'short_name' => $unit->short_name ?: $unit->name,
+                    'name' => $unit->name,
+                    'slug' => $unit->slug,
+                    'category_type' => $unit->category_type,
+                    'head_name' => $unit->head_name,
+                    'email' => $user?->email ?: ('admin.'.strtolower(str_replace(' ', '', (string) $unit->short_name)).'@ppru.ac.id'),
+                    'password_default' => 'AdminUnitPPRU2026!',
+                    'posts_count' => $postsCount,
+                    'photos_count' => $photosCount,
+                    'videos_count' => $videosCount,
+                    'is_active' => $unit->is_active,
+                ];
+            }
+
+            return $summary;
+        } catch (\Throwable $e) {
+            Log::error('UnitAccountService::getUnitAdminsSummary error: '.$e->getMessage());
+
+            return [];
         }
-
-        return $summary;
     }
 }

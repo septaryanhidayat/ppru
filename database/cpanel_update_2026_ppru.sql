@@ -417,9 +417,51 @@ WHERE t.slug = 'karya-alumni'
   );
 
 -- ==============================================================================
--- 7. BUAT 8 AKUN KHUSUS ADMIN UNIT PENDIDIKAN TERISOLASI
+-- 7. PASTIKAN KOLOM unit_pendidikan_id TERSEDIA & BUAT 8 AKUN KHUSUS ADMIN UNIT
 -- Password default: AdminUnitPPRU2026!
 -- ==============================================================================
+SET @dbname = DATABASE();
+
+SET @tablename = "users";
+SET @columnname = "unit_pendidikan_id";
+SET @preparedStatement = (SELECT IF(
+  (
+    SELECT COUNT(*) FROM INFORMATION_SCHEMA.COLUMNS
+    WHERE TABLE_SCHEMA = @dbname AND TABLE_NAME = @tablename AND COLUMN_NAME = @columnname
+  ) > 0,
+  "SELECT 1",
+  CONCAT("ALTER TABLE `", @tablename, "` ADD COLUMN `", @columnname, "` BIGINT UNSIGNED NULL AFTER `role`;")
+));
+PREPARE alterIfNotExistsUsers FROM @preparedStatement;
+EXECUTE alterIfNotExistsUsers;
+DEALLOCATE PREPARE alterIfNotExistsUsers;
+
+SET @tablename = "posts";
+SET @preparedStatement = (SELECT IF(
+  (
+    SELECT COUNT(*) FROM INFORMATION_SCHEMA.COLUMNS
+    WHERE TABLE_SCHEMA = @dbname AND TABLE_NAME = @tablename AND COLUMN_NAME = @columnname
+  ) > 0,
+  "SELECT 1",
+  CONCAT("ALTER TABLE `", @tablename, "` ADD COLUMN `", @columnname, "` BIGINT UNSIGNED NULL AFTER `author_id`;")
+));
+PREPARE alterIfNotExistsPosts FROM @preparedStatement;
+EXECUTE alterIfNotExistsPosts;
+DEALLOCATE PREPARE alterIfNotExistsPosts;
+
+SET @tablename = "videos";
+SET @preparedStatement = (SELECT IF(
+  (
+    SELECT COUNT(*) FROM INFORMATION_SCHEMA.COLUMNS
+    WHERE TABLE_SCHEMA = @dbname AND TABLE_NAME = @tablename AND COLUMN_NAME = @columnname
+  ) > 0,
+  "SELECT 1",
+  CONCAT("ALTER TABLE `", @tablename, "` ADD COLUMN `", @columnname, "` BIGINT UNSIGNED NULL AFTER `id`;")
+));
+PREPARE alterIfNotExistsVideos FROM @preparedStatement;
+EXECUTE alterIfNotExistsVideos;
+DEALLOCATE PREPARE alterIfNotExistsVideos;
+
 INSERT INTO `users` (`name`, `email`, `password`, `role`, `unit_pendidikan_id`, `created_at`, `updated_at`)
 SELECT 'Admin MARU', 'admin.maru@ppru.ac.id', '$2y$12$Fnv7z3clAUXgnb2cjLWcSOt6qKyk0a69Q70frbxKfiJ5SBTziosI6', 'admin_unit', u.id, NOW(), NOW()
 FROM `unit_pendidikans` u WHERE u.short_name = 'MARU'

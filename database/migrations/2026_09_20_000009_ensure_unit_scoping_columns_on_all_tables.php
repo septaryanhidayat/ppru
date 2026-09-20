@@ -12,6 +12,7 @@ return new class extends Migration
      */
     public function up(): void
     {
+        // 1. Users table
         if (Schema::hasTable('users') && ! Schema::hasColumn('users', 'unit_pendidikan_id')) {
             Schema::table('users', function (Blueprint $table) {
                 $table->unsignedBigInteger('unit_pendidikan_id')->nullable()->after('role');
@@ -19,6 +20,7 @@ return new class extends Migration
             });
         }
 
+        // 2. Posts table
         if (Schema::hasTable('posts') && ! Schema::hasColumn('posts', 'unit_pendidikan_id')) {
             Schema::table('posts', function (Blueprint $table) {
                 $table->unsignedBigInteger('unit_pendidikan_id')->nullable()->after('author_id');
@@ -26,6 +28,7 @@ return new class extends Migration
             });
         }
 
+        // 3. Videos table
         if (Schema::hasTable('videos') && ! Schema::hasColumn('videos', 'unit_pendidikan_id')) {
             Schema::table('videos', function (Blueprint $table) {
                 $table->unsignedBigInteger('unit_pendidikan_id')->nullable()->after('id');
@@ -33,6 +36,7 @@ return new class extends Migration
             });
         }
 
+        // 4. Ensure all 8 unit admin accounts exist
         UnitAccountService::ensureUnitAccountsExist();
     }
 
@@ -41,6 +45,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        // No destructive reversal needed for unit accounts
+        // Safe migration
     }
 };

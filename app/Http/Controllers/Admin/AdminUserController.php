@@ -10,6 +10,8 @@ use App\Services\UnitAccountService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Validation\Rule;
 
 class AdminUserController extends Controller
@@ -17,10 +19,15 @@ class AdminUserController extends Controller
     public function index(Request $request)
     {
         // Pastikan 8 akun admin unit terisi otomatis jika belum ada di database
-        UnitAccountService::ensureUnitAccountsExist();
+        try {
+            UnitAccountService::ensureUnitAccountsExist();
+        } catch (\Throwable $e) {
+            Log::warning('UnitAccountService::ensureUnitAccountsExist skipped: '.$e->getMessage());
+        }
 
         $roleFilter = $request->input('role');
-        $query = User::with('unit');
+        $hasUnitColumn = Schema::hasTable('users') && Schema::hasColumn('users', 'unit_pendidikan_id');
+        $query = $hasUnitColumn ? User::with('unit') : User::query();
 
         if ($roleFilter === 'admin_unit') {
             $query->where('role', 'admin_unit');
@@ -61,13 +68,18 @@ class AdminUserController extends Controller
             'unit_pendidikan_id' => 'nullable|exists:unit_pendidikans,id',
         ]);
 
-        $user = User::create([
+        $userData = [
             'name' => $validated['name'],
             'email' => $validated['email'],
             'password' => Hash::make($validated['password']),
             'role' => $validated['role'],
-            'unit_pendidikan_id' => $validated['role'] === 'admin_unit' ? ($validated['unit_pendidikan_id'] ?? null) : null,
-        ]);
+        ];
+
+        if (Schema::hasColumn('users', 'unit_pendidikan_id')) {
+            $userData['unit_pendidikan_id'] = $validated['role'] === 'admin_unit' ? ($validated['unit_pendidikan_id'] ?? null) : null;
+        }
+
+        $user = User::create($userData);
 
         ActivityLog::create([
             'user_id' => Auth::id(),
@@ -102,7 +114,10 @@ class AdminUserController extends Controller
         $user->name = $validated['name'];
         $user->email = $validated['email'];
         $user->role = $validated['role'];
-        $user->unit_pendidikan_id = $validated['role'] === 'admin_unit' ? ($validated['unit_pendidikan_id'] ?? null) : null;
+
+        if (Schema::hasColumn('users', 'unit_pendidikan_id')) {
+            $user->unit_pendidikan_id = $validated['role'] === 'admin_unit' ? ($validated['unit_pendidikan_id'] ?? null) : null;
+        }
 
         if (! empty($validated['password'])) {
             $user->password = Hash::make($validated['password']);
