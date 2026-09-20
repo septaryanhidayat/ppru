@@ -157,7 +157,7 @@ test('public web correctly displays custom date, author, reading time, caption, 
         ['name' => 'Prestasi Internasional Test']
     );
 
-    $publishedDate = Carbon::create(2026, 8, 17, 10, 30, 0);
+    $publishedDate = now()->addHour();
 
     $post = Post::create([
         'title' => 'Santri PPRU Raih Medali Emas Kompetisi Robotik Turki',

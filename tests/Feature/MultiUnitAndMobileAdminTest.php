@@ -309,3 +309,47 @@ test('ikarus portal page renders with high contrast author badges and elements',
     // Ensure high contrast pill badge or author class is rendered
     $response->assertSee('fa-user-pen');
 });
+
+test('unit admin dashboard auto-seeds and renders complete demo content modules', function () {
+    $maruUser = User::where('email', 'admin.maru@ppru.ac.id')->first();
+    expect($maruUser)->not->toBeNull();
+
+    $response = $this->actingAs($maruUser)->get(route('admin.dashboard'));
+    $response->assertStatus(200);
+    $response->assertSee('Dashboard Unit: MARU');
+    $response->assertSee('Muat Demo Unit');
+    $response->assertSee('Dewan Asatidz &amp; GTK Unit', false);
+    $response->assertSee('Testimoni Unit');
+    $response->assertSee('Media Galeri &amp; Video', false);
+    $response->assertSee('Prestasi Santri MARU');
+    $response->assertSee('Ekstrakurikuler MARU');
+});
+
+test('unit admin and super admin can trigger seed-demo endpoint to regenerate unit demo content', function () {
+    $maruUser = User::where('email', 'admin.maru@ppru.ac.id')->first();
+    $admin = User::whereIn('role', ['super_admin', 'admin'])->first() ?? User::factory()->create([
+        'role' => 'super_admin',
+        'name' => 'Super Administrator Test',
+        'email' => 'superadmin_seed_test@ppru.ac.id',
+    ]);
+
+    // 1. Unit admin re-seeds their unit
+    $response = $this->actingAs($maruUser)->post(route('admin.unit.seed-demo'));
+    $response->assertRedirect();
+    $response->assertSessionHas('success');
+
+    $postCount = Post::where('unit_pendidikan_id', $maruUser->unit_pendidikan_id)->where('type', 'post')->count();
+    $photoCount = Post::where('unit_pendidikan_id', $maruUser->unit_pendidikan_id)->where('type', 'gallery')->count();
+    $teacherCount = AnggotaDewan::where('unit_pendidikan_id', $maruUser->unit_pendidikan_id)->count();
+    $testiCount = Testimonial::where('unit_pendidikan_id', $maruUser->unit_pendidikan_id)->count();
+
+    expect($postCount)->toBeGreaterThanOrEqual(4)
+        ->and($photoCount)->toBeGreaterThanOrEqual(4)
+        ->and($teacherCount)->toBeGreaterThanOrEqual(3)
+        ->and($testiCount)->toBeGreaterThanOrEqual(2);
+
+    // 2. Super admin re-seeds all 8 units
+    $adminResponse = $this->actingAs($admin)->post(route('admin.unit.seed-demo'));
+    $adminResponse->assertRedirect();
+    $adminResponse->assertSessionHas('success');
+});

@@ -15,11 +15,13 @@ use App\Models\Post;
 use App\Models\PpdbRegistration;
 use App\Models\ServiceSubmission;
 use App\Models\Setting;
+use App\Models\Testimonial;
 use App\Models\UnitPendidikan;
 use App\Models\User;
 use App\Models\Video;
 use App\Models\VisitorLog;
 use App\Services\UnitAccountService;
+use App\Services\UnitDemoContentService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Cache;
@@ -36,11 +38,18 @@ class AdminDashboardController extends Controller
             $unit = $user->unit;
             $unitId = $user->unit_pendidikan_id;
 
+            // Auto-heal and seed demo content if unit data is missing
+            if ($unit) {
+                UnitDemoContentService::seedUnitIfEmpty($unit);
+            }
+
             $stats = [
                 'total_posts' => Post::where('type', 'post')->where('unit_pendidikan_id', $unitId)->count(),
                 'total_views' => Post::where('type', 'post')->where('unit_pendidikan_id', $unitId)->sum('views_count'),
                 'total_photos' => Post::where('type', 'gallery')->where('unit_pendidikan_id', $unitId)->count(),
                 'total_videos' => Video::where('unit_pendidikan_id', $unitId)->count(),
+                'total_teachers' => AnggotaDewan::where('unit_pendidikan_id', $unitId)->count(),
+                'total_testimonials' => Testimonial::where('unit_pendidikan_id', $unitId)->count(),
                 'total_prestasi' => Post::where('type', 'prestasi')->where('unit_pendidikan_id', $unitId)->count(),
                 'total_ekskul' => Post::where('type', 'ekskul')->where('unit_pendidikan_id', $unitId)->count(),
                 'total_ppdb' => PpdbRegistration::where(function ($q) use ($unit) {
@@ -52,15 +61,23 @@ class AdminDashboardController extends Controller
             ];
 
             $recentPosts = Post::where('type', 'post')->where('unit_pendidikan_id', $unitId)->latest()->take(6)->get();
-            $recentPhotos = Post::where('type', 'gallery')->where('unit_pendidikan_id', $unitId)->latest()->take(4)->get();
+            $recentPhotos = Post::where('type', 'gallery')->where('unit_pendidikan_id', $unitId)->latest()->take(6)->get();
             $recentVideos = Video::where('unit_pendidikan_id', $unitId)->latest()->take(4)->get();
+            $recentTeachers = AnggotaDewan::where('unit_pendidikan_id', $unitId)->orderBy('order', 'asc')->take(6)->get();
+            $recentTestimonials = Testimonial::where('unit_pendidikan_id', $unitId)->latest()->take(4)->get();
+            $recentPrestasi = Post::where('type', 'prestasi')->where('unit_pendidikan_id', $unitId)->latest()->take(4)->get();
+            $recentEkskul = Post::where('type', 'ekskul')->where('unit_pendidikan_id', $unitId)->latest()->take(4)->get();
 
             return view('admin.dashboard', compact(
                 'unit',
                 'stats',
                 'recentPosts',
                 'recentPhotos',
-                'recentVideos'
+                'recentVideos',
+                'recentTeachers',
+                'recentTestimonials',
+                'recentPrestasi',
+                'recentEkskul'
             ));
         }
 
@@ -248,6 +265,62 @@ class AdminDashboardController extends Controller
             return back()->with('success', 'Migrasi database & sinkronisasi aset berhasil dijalankan! '.(trim($output) ?: 'Tabel berhasil dibuat.'));
         } catch (\Throwable $e) {
             return back()->with('error', 'Gagal menjalankan migrasi: '.$e->getMessage());
+        }
+    }
+
+    /**
+     * Muat ulang konten demo khusus untuk unit admin atau seluruh unit pendidikan.
+     */
+    public function seedUnitDemo(Request $request)
+    {
+        $user = $request->user();
+
+        try {
+            if ($user?->isUnitAdmin()) {
+                $unit = $user->unit;
+                if ($unit) {
+                    UnitDemoContentService::seedSingleUnit($unit, true);
+
+                    ActivityLog::create([
+                        'user_id' => $user->id,
+                        'user_name' => $user->name,
+                        'action' => 'seed_unit_demo',
+                        'description' => "Memuat ulang seluruh konten demo unit: {$unit->name}",
+                        'ip_address' => $request->ip(),
+                        'user_agent' => $request->userAgent(),
+                        'status' => 'info',
+                    ]);
+
+                    return back()->with('success', "Konten demo lengkap untuk {$unit->name} berhasil dimuat ulang!");
+                }
+            } elseif ($user?->isSuperAdmin() || $user?->isGlobalAdmin()) {
+                if ($request->filled('unit_id')) {
+                    $unit = UnitPendidikan::find($request->input('unit_id'));
+                    if ($unit) {
+                        UnitDemoContentService::seedSingleUnit($unit, true);
+
+                        return back()->with('success', "Konten demo untuk {$unit->name} berhasil dimuat ulang!");
+                    }
+                }
+
+                UnitDemoContentService::seedAllUnitsDemo(true);
+
+                ActivityLog::create([
+                    'user_id' => $user?->id ?? 1,
+                    'user_name' => $user?->name ?? 'Administrator',
+                    'action' => 'seed_all_units_demo',
+                    'description' => 'Memuat ulang seluruh konten demo untuk 8 unit pendidikan YAPIRUS PPRU',
+                    'ip_address' => $request->ip(),
+                    'user_agent' => $request->userAgent(),
+                    'status' => 'info',
+                ]);
+
+                return back()->with('success', 'Seluruh konten demo untuk 8 unit pendidikan berhasil dimuat ulang!');
+            }
+
+            return back()->with('error', 'Gagal memuat konten demo unit.');
+        } catch (\Throwable $e) {
+            return back()->with('error', 'Gagal memuat konten demo: '.$e->getMessage());
         }
     }
 }

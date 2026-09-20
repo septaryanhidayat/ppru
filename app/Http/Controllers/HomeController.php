@@ -173,7 +173,7 @@ class HomeController extends Controller
             ->where('status', 'publish')
             ->whereNotNull('featured_image')
             ->where('featured_image', '!=', '')
-            ->latest('created_at')
+            ->orderByDesc('id')
             ->take(16)
             ->get()
             ->map(fn ($p) => ['url' => $p->featured_image, 'title' => $p->title])

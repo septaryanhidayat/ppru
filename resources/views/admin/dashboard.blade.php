@@ -29,35 +29,42 @@
                 <h2 class="text-xl sm:text-2xl lg:text-3xl font-black tracking-tight" style="color: #ffffff; text-shadow: 0 2px 4px rgba(0,0,0,0.5);">
                     {{ $unit?->name ?: 'Unit Lembaga Pendidikan' }}
                 </h2>
-                <p class="text-xs sm:text-sm max-w-xl font-normal leading-relaxed" style="color: #d1fae5;">
-                    Kelola informasi profil, publikasi berita, dokumentasi foto, dan video kegiatan khusus untuk unit {{ $unit?->short_name ?: 'Anda' }}.
+                <p class="text-xs sm:text-sm max-w-2xl font-normal leading-relaxed" style="color: #d1fae5;">
+                    Kelola identitas profil, publikasi berita, galeri foto, video YouTube, dewan asatidz, testimoni, prestasi, dan ekstrakurikuler khusus unit {{ $unit?->short_name ?: 'Anda' }}.
                 </p>
             </div>
 
             <div class="flex flex-wrap items-center gap-2 sm:gap-2.5 shrink-0">
-                <a href="{{ route('admin.profil-unit') }}" class="inline-flex items-center space-x-1.5 text-xs font-bold px-4 py-2.5 rounded-xl shadow-md transition" style="background-color: #f59e0b; color: #0f172a;">
+                <a href="{{ route('admin.profil-unit') }}" class="inline-flex items-center space-x-1.5 text-xs font-bold px-3.5 py-2.5 rounded-xl shadow-md transition" style="background-color: #f59e0b; color: #0f172a;">
                     <i class="fa-solid fa-pen-to-square text-xs"></i>
                     <span>Edit Profil Unit</span>
                 </a>
-                <a href="{{ route('admin.posts.create') }}" class="inline-flex items-center space-x-1.5 text-xs font-bold px-4 py-2.5 rounded-xl shadow-md transition" style="background-color: #10b981; color: #ffffff;">
+                <a href="{{ route('admin.posts.create') }}" class="inline-flex items-center space-x-1.5 text-xs font-bold px-3.5 py-2.5 rounded-xl shadow-md transition" style="background-color: #10b981; color: #ffffff;">
                     <i class="fa-solid fa-plus text-xs"></i>
                     <span>Tulis Berita</span>
                 </a>
-                <a href="{{ route('admin.media.index') }}" class="inline-flex items-center space-x-1.5 text-xs font-semibold px-3.5 py-2.5 rounded-xl transition" style="background-color: #1e293b; color: #ffffff; border: 1px solid #334155;">
+                <a href="{{ route('admin.media.index') }}" class="inline-flex items-center space-x-1.5 text-xs font-semibold px-3 py-2.5 rounded-xl transition" style="background-color: #1e293b; color: #ffffff; border: 1px solid #334155;">
                     <i class="fa-solid fa-photo-film text-xs" style="color: #fde047;"></i>
                     <span>Galeri &amp; Video</span>
                 </a>
+                <form action="{{ route('admin.unit.seed-demo') }}" method="POST" class="inline" onsubmit="return confirm('Muat ulang seluruh konten demo unit ini (berita, foto galeri, dewan guru, testimoni, prestasi, dan ekskul)?');">
+                    @csrf
+                    <button type="submit" class="inline-flex items-center space-x-1.5 text-xs font-bold px-3.5 py-2.5 rounded-xl shadow-md transition cursor-pointer" style="background-color: #3b82f6; color: #ffffff;" title="Klik untuk melengkapi atau memuat ulang data demo unit jika kosong">
+                        <i class="fa-solid fa-arrows-rotate text-xs"></i>
+                        <span>Muat Demo Unit</span>
+                    </button>
+                </form>
             </div>
         </div>
     </div>
 
-    {{-- 2. KPI METRICS (4 CARDS KHUSUS UNIT) --}}
-    <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
+    {{-- 2. KPI METRICS (6 CARDS KHUSUS UNIT) --}}
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
         {{-- Card 1: Berita Unit --}}
-        <div class="text-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-md border border-emerald-400/30" style="background: linear-gradient(135deg, #059669 0%, #047857 100%); color: #ffffff;">
-            <div class="flex items-center justify-between mb-2 sm:mb-3">
+        <div class="text-white rounded-2xl sm:rounded-3xl p-4 shadow-md border border-emerald-400/30" style="background: linear-gradient(135deg, #059669 0%, #047857 100%); color: #ffffff;">
+            <div class="flex items-center justify-between mb-2">
                 <span class="text-[10px] sm:text-xs font-bold uppercase tracking-wider truncate" style="color: #d1fae5;">Berita Unit</span>
-                <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-white/20 text-white flex items-center justify-center text-sm sm:text-lg">
+                <div class="w-8 h-8 rounded-xl bg-white/20 text-white flex items-center justify-center text-sm">
                     <i class="fa-solid fa-newspaper"></i>
                 </div>
             </div>
@@ -70,10 +77,10 @@
         </div>
 
         {{-- Card 2: Dokumentasi Media --}}
-        <div class="text-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-md border border-sky-400/30" style="background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%); color: #ffffff;">
-            <div class="flex items-center justify-between mb-2 sm:mb-3">
-                <span class="text-[10px] sm:text-xs font-bold uppercase tracking-wider truncate" style="color: #e0f2fe;">Foto &amp; Video</span>
-                <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-white/20 text-white flex items-center justify-center text-sm sm:text-lg">
+        <div class="text-white rounded-2xl sm:rounded-3xl p-4 shadow-md border border-sky-400/30" style="background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%); color: #ffffff;">
+            <div class="flex items-center justify-between mb-2">
+                <span class="text-[10px] sm:text-xs font-bold uppercase tracking-wider truncate" style="color: #e0f2fe;">Media Galeri</span>
+                <div class="w-8 h-8 rounded-xl bg-white/20 text-white flex items-center justify-center text-sm">
                     <i class="fa-solid fa-photo-film"></i>
                 </div>
             </div>
@@ -85,11 +92,43 @@
             </p>
         </div>
 
-        {{-- Card 3: Prestasi & Ekskul --}}
-        <div class="text-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-md border border-amber-400/30" style="background: linear-gradient(135deg, #d97706 0%, #b45309 100%); color: #ffffff;">
-            <div class="flex items-center justify-between mb-2 sm:mb-3">
+        {{-- Card 3: Dewan Asatidz / Guru --}}
+        <div class="text-white rounded-2xl sm:rounded-3xl p-4 shadow-md border border-purple-400/30" style="background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%); color: #ffffff;">
+            <div class="flex items-center justify-between mb-2">
+                <span class="text-[10px] sm:text-xs font-bold uppercase tracking-wider truncate" style="color: #ede9fe;">Dewan Guru</span>
+                <div class="w-8 h-8 rounded-xl bg-white/20 text-white flex items-center justify-center text-sm">
+                    <i class="fa-solid fa-chalkboard-user"></i>
+                </div>
+            </div>
+            <div class="text-2xl sm:text-3xl font-black text-white">
+                {{ $stats['total_teachers'] ?? 0 }}
+            </div>
+            <p class="text-[10px] sm:text-xs font-medium mt-1 truncate" style="color: #ede9fe;">
+                Asatidz &amp; GTK unit
+            </p>
+        </div>
+
+        {{-- Card 4: Testimoni --}}
+        <div class="text-white rounded-2xl sm:rounded-3xl p-4 shadow-md border border-teal-400/30" style="background: linear-gradient(135deg, #0d9488 0%, #0f766e 100%); color: #ffffff;">
+            <div class="flex items-center justify-between mb-2">
+                <span class="text-[10px] sm:text-xs font-bold uppercase tracking-wider truncate" style="color: #ccfbf1;">Testimoni</span>
+                <div class="w-8 h-8 rounded-xl bg-white/20 text-white flex items-center justify-center text-sm">
+                    <i class="fa-solid fa-comments"></i>
+                </div>
+            </div>
+            <div class="text-2xl sm:text-3xl font-black text-white">
+                {{ $stats['total_testimonials'] ?? 0 }}
+            </div>
+            <p class="text-[10px] sm:text-xs font-medium mt-1 truncate" style="color: #ccfbf1;">
+                Ulasan wali &amp; alumni
+            </p>
+        </div>
+
+        {{-- Card 5: Prestasi & Ekskul --}}
+        <div class="text-white rounded-2xl sm:rounded-3xl p-4 shadow-md border border-amber-400/30" style="background: linear-gradient(135deg, #d97706 0%, #b45309 100%); color: #ffffff;">
+            <div class="flex items-center justify-between mb-2">
                 <span class="text-[10px] sm:text-xs font-bold uppercase tracking-wider truncate" style="color: #fef3c7;">Prestasi &amp; Ekskul</span>
-                <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-white/20 text-white flex items-center justify-center text-sm sm:text-lg">
+                <div class="w-8 h-8 rounded-xl bg-white/20 text-white flex items-center justify-center text-sm">
                     <i class="fa-solid fa-trophy"></i>
                 </div>
             </div>
@@ -97,15 +136,15 @@
                 {{ ($stats['total_prestasi'] ?? 0) + ($stats['total_ekskul'] ?? 0) }}
             </div>
             <p class="text-[10px] sm:text-xs font-medium mt-1 truncate" style="color: #fef3c7;">
-                {{ $stats['total_prestasi'] ?? 0 }} prestasi &bull; {{ $stats['total_ekskul'] ?? 0 }} ekskul
+                {{ $stats['total_prestasi'] ?? 0 }} p &bull; {{ $stats['total_ekskul'] ?? 0 }} e
             </p>
         </div>
 
-        {{-- Card 4: Calon Santri PSB --}}
-        <div class="text-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-md border border-indigo-400/30" style="background: linear-gradient(135deg, #4f46e5 0%, #3730a3 100%); color: #ffffff;">
-            <div class="flex items-center justify-between mb-2 sm:mb-3">
+        {{-- Card 6: Calon Santri PSB --}}
+        <div class="text-white rounded-2xl sm:rounded-3xl p-4 shadow-md border border-indigo-400/30" style="background: linear-gradient(135deg, #4f46e5 0%, #3730a3 100%); color: #ffffff;">
+            <div class="flex items-center justify-between mb-2">
                 <span class="text-[10px] sm:text-xs font-bold uppercase tracking-wider truncate" style="color: #e0e7ff;">Calon Santri</span>
-                <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-white/20 text-white flex items-center justify-center text-sm sm:text-lg">
+                <div class="w-8 h-8 rounded-xl bg-white/20 text-white flex items-center justify-center text-sm">
                     <i class="fa-solid fa-user-graduate"></i>
                 </div>
             </div>
@@ -113,7 +152,7 @@
                 {{ $stats['total_ppdb'] ?? 0 }}
             </div>
             <p class="text-[10px] sm:text-xs font-medium mt-1 truncate" style="color: #e0e7ff;">
-                Pendaftar jenjang unit
+                Pendaftar jenjang
             </p>
         </div>
     </div>
@@ -127,13 +166,15 @@
                 </div>
                 <div>
                     <h3 class="font-extrabold text-slate-800 text-sm sm:text-base">Informasi Profil {{ $unit?->short_name ?: 'Unit' }}</h3>
-                    <p class="text-xs text-slate-400">Data identitas, kontak, dan narasi yang tampil pada halaman web unit</p>
+                    <p class="text-xs text-slate-400">Data identitas, kurikulum, kontak, dan sambutan yang tampil pada halaman web unit</p>
                 </div>
             </div>
-            <a href="{{ route('admin.profil-unit') }}" class="inline-flex items-center space-x-1.5 bg-[#00843d] hover:bg-[#00632e] text-white text-xs font-bold px-4 py-2 rounded-xl transition shadow-xs">
-                <i class="fa-solid fa-sliders text-xs"></i>
-                <span>Perbarui Data Unit</span>
-            </a>
+            <div class="flex items-center gap-2">
+                <a href="{{ route('admin.profil-unit') }}" class="inline-flex items-center space-x-1.5 bg-[#00843d] hover:bg-[#00632e] text-white text-xs font-bold px-4 py-2 rounded-xl transition shadow-xs">
+                    <i class="fa-solid fa-sliders text-xs"></i>
+                    <span>Perbarui Data Unit</span>
+                </a>
+            </div>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4 text-xs">
@@ -157,9 +198,16 @@
                 </span>
             </div>
         </div>
+
+        @if($unit?->sambutan)
+            <div class="mt-4 p-3.5 rounded-2xl bg-emerald-50/50 border border-emerald-200/60 text-xs text-slate-700">
+                <span class="font-bold text-emerald-800 block text-[11px] mb-1">Kutipan Sambutan Kepala Unit:</span>
+                <p class="line-clamp-2 italic text-slate-600">"{{ \Illuminate\Support\Str::limit(strip_tags($unit->sambutan), 220) }}"</p>
+            </div>
+        @endif
     </div>
 
-    {{-- 4. TWO COLUMNS (Berita Unit & Media Unit) --}}
+    {{-- 4. KONTEN MODUL 1: BERITA & MEDIA DOKUMENTASI --}}
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8">
         {{-- KOLOM KIRI: Berita Terbaru Unit (7 Cols) --}}
         <div class="lg:col-span-7 bg-white p-5 sm:p-6 rounded-3xl shadow-xs border border-slate-200/80 space-y-4">
@@ -167,10 +215,18 @@
                 <div class="flex items-center space-x-2">
                     <i class="fa-solid fa-newspaper text-[#00843d]"></i>
                     <h3 class="font-extrabold text-sm text-slate-800">Berita &amp; Artikel Unit</h3>
+                    <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                        {{ $recentPosts->count() }} Terbit
+                    </span>
                 </div>
-                <a href="{{ route('admin.posts.index') }}" class="text-xs font-bold text-[#00843d] hover:underline">
-                    Semua Berita &rarr;
-                </a>
+                <div class="flex items-center space-x-3">
+                    <a href="{{ route('admin.posts.create') }}" class="text-xs font-bold text-[#00843d] hover:underline">
+                        + Tulis
+                    </a>
+                    <a href="{{ route('admin.posts.index') }}" class="text-xs font-bold text-slate-500 hover:text-slate-800 hover:underline">
+                        Semua &rarr;
+                    </a>
+                </div>
             </div>
 
             <div class="divide-y divide-slate-100">
@@ -211,18 +267,20 @@
             <div class="flex items-center justify-between pb-3 border-b border-slate-100">
                 <div class="flex items-center space-x-2">
                     <i class="fa-solid fa-camera text-sky-600"></i>
-                    <h3 class="font-extrabold text-sm text-slate-800">Media &amp; Dokumentasi</h3>
+                    <h3 class="font-extrabold text-sm text-slate-800">Media Galeri &amp; Video</h3>
                 </div>
-                <a href="{{ route('admin.media.index') }}" class="text-xs font-bold text-sky-600 hover:underline">
-                    Kelola Media &rarr;
-                </a>
+                <div class="flex items-center space-x-3">
+                    <a href="{{ route('admin.media.index') }}" class="text-xs font-bold text-sky-600 hover:underline">
+                        Kelola Media &rarr;
+                    </a>
+                </div>
             </div>
 
             <div class="grid grid-cols-2 gap-2.5">
                 @forelse($recentPhotos as $photo)
                     <div class="rounded-xl overflow-hidden aspect-video bg-slate-100 relative group border border-slate-200">
                         <img src="{{ $photo->featured_image }}" alt="{{ $photo->title }}" class="w-full h-full object-cover">
-                        <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex items-end p-2">
+                        <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition flex items-end p-2">
                             <p class="text-[10px] text-white font-medium truncate">{{ $photo->title }}</p>
                         </div>
                     </div>
@@ -239,14 +297,197 @@
             @if(isset($recentVideos) && $recentVideos->count() > 0)
                 <div class="pt-2 border-t border-slate-100 space-y-2">
                     <span class="text-[11px] font-bold text-slate-600 block">Video YouTube Unit</span>
-                    @foreach($recentVideos->take(2) as $v)
-                        <div class="flex items-center space-x-2 text-xs text-slate-700 bg-slate-50 p-2 rounded-xl">
-                            <i class="fa-brands fa-youtube text-red-600 text-sm"></i>
-                            <span class="truncate font-medium">{{ $v->title }}</span>
+                    @foreach($recentVideos->take(3) as $v)
+                        <div class="flex items-center space-x-2 text-xs text-slate-700 bg-slate-50 p-2 rounded-xl border border-slate-200/60">
+                            <i class="fa-brands fa-youtube text-red-600 text-sm shrink-0"></i>
+                            <span class="truncate font-medium flex-1">{{ $v->title }}</span>
                         </div>
                     @endforeach
                 </div>
             @endif
+        </div>
+    </div>
+
+    {{-- 5. KONTEN MODUL 2: DEWAN GURU & ASATIDZ UNIT + TESTIMONI UNIT --}}
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8">
+        {{-- KOLOM KIRI: Dewan Guru / Asatidz Unit (7 Cols) --}}
+        <div class="lg:col-span-7 bg-white p-5 sm:p-6 rounded-3xl shadow-xs border border-slate-200/80 space-y-4">
+            <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+                <div class="flex items-center space-x-2">
+                    <i class="fa-solid fa-chalkboard-user text-purple-600"></i>
+                    <h3 class="font-extrabold text-sm text-slate-800">Dewan Asatidz &amp; GTK Unit</h3>
+                    <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-purple-50 text-purple-700 border border-purple-200">
+                        {{ $recentTeachers->count() }} Guru
+                    </span>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <a href="{{ route('admin.dewan.create') }}" class="text-xs font-bold text-purple-600 hover:underline">
+                        + Tambah
+                    </a>
+                    <a href="{{ route('admin.dewan.index') }}" class="text-xs font-bold text-slate-500 hover:text-slate-800 hover:underline">
+                        Semua Asatidz &rarr;
+                    </a>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                @forelse($recentTeachers as $teacher)
+                    <div class="p-3 rounded-2xl bg-slate-50 border border-slate-200/70 flex flex-col items-center text-center relative group hover:bg-purple-50/40 hover:border-purple-300 transition">
+                        <div class="w-14 h-14 rounded-full overflow-hidden bg-white border border-slate-200 shadow-xs mb-2">
+                            <img src="{{ $teacher->photo_url }}" alt="{{ $teacher->name }}" class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="font-bold text-xs text-slate-800 line-clamp-1 group-hover:text-purple-700">
+                            {{ $teacher->name }}
+                        </h4>
+                        <p class="text-[11px] font-medium text-emerald-700 line-clamp-1 mt-0.5">
+                            {{ $teacher->position }}
+                        </p>
+                        @if($teacher->education)
+                            <span class="text-[9px] text-slate-500 mt-1 line-clamp-1">
+                                {{ $teacher->education }}
+                            </span>
+                        @endif
+                        <a href="{{ route('admin.dewan.edit', $teacher) }}" class="mt-2 text-[10px] font-bold text-purple-600 hover:underline inline-flex items-center space-x-1">
+                            <i class="fa-solid fa-pen-to-square text-[9px]"></i>
+                            <span>Edit</span>
+                        </a>
+                    </div>
+                @empty
+                    <div class="col-span-3 py-8 text-center text-xs text-slate-400">
+                        <p>Belum ada data dewan guru untuk unit ini.</p>
+                        <a href="{{ route('admin.dewan.create') }}" class="inline-block mt-2 font-bold text-purple-600 hover:underline">
+                            + Tambah Asatidz Pertama
+                        </a>
+                    </div>
+                @endforelse
+            </div>
+        </div>
+
+        {{-- KOLOM KANAN: Testimoni Santri & Wali Unit (5 Cols) --}}
+        <div class="lg:col-span-5 bg-white p-5 sm:p-6 rounded-3xl shadow-xs border border-slate-200/80 space-y-4">
+            <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+                <div class="flex items-center space-x-2">
+                    <i class="fa-solid fa-comments text-teal-600"></i>
+                    <h3 class="font-extrabold text-sm text-slate-800">Testimoni Unit</h3>
+                    <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-teal-50 text-teal-700 border border-teal-200">
+                        {{ $recentTestimonials->count() }} Ulasan
+                    </span>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <a href="{{ route('admin.testimonials.create') }}" class="text-xs font-bold text-teal-600 hover:underline">
+                        + Tambah
+                    </a>
+                    <a href="{{ route('admin.testimonials.index') }}" class="text-xs font-bold text-slate-500 hover:text-slate-800 hover:underline">
+                        Semua &rarr;
+                    </a>
+                </div>
+            </div>
+
+            <div class="space-y-3">
+                @forelse($recentTestimonials as $testi)
+                    <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200/70 hover:bg-teal-50/30 transition">
+                        <div class="flex items-start justify-between gap-2">
+                            <div class="flex items-center space-x-2.5">
+                                <div class="w-8 h-8 rounded-full overflow-hidden bg-white border border-slate-200 shrink-0">
+                                    <img src="{{ $testi->photo_url }}" alt="{{ $testi->name }}" class="w-full h-full object-cover">
+                                </div>
+                                <div>
+                                    <h5 class="font-bold text-xs text-slate-800 leading-snug">{{ $testi->name }}</h5>
+                                    <span class="text-[10px] text-teal-700 font-medium block">{{ $testi->profession ?: 'Wali Santri' }}</span>
+                                </div>
+                            </div>
+                            <a href="{{ route('admin.testimonials.edit', $testi) }}" class="text-slate-400 hover:text-teal-600 p-1" title="Edit Testimoni">
+                                <i class="fa-solid fa-pen-to-square text-xs"></i>
+                            </a>
+                        </div>
+                        <p class="text-xs text-slate-600 mt-2 line-clamp-2 italic leading-relaxed">
+                            "{{ $testi->content }}"
+                        </p>
+                    </div>
+                @empty
+                    <div class="py-8 text-center text-xs text-slate-400">
+                        <p>Belum ada ulasan testimoni untuk unit ini.</p>
+                        <a href="{{ route('admin.testimonials.create') }}" class="inline-block mt-2 font-bold text-teal-600 hover:underline">
+                            + Tambah Testimoni Pertama
+                        </a>
+                    </div>
+                @endforelse
+            </div>
+        </div>
+    </div>
+
+    {{-- 6. KONTEN MODUL 3: PRESTASI & EKSTRAKURIKULER UNIT --}}
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8">
+        {{-- Prestasi Santri (6 Cols) --}}
+        <div class="lg:col-span-6 bg-white p-5 sm:p-6 rounded-3xl shadow-xs border border-slate-200/80 space-y-4">
+            <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+                <div class="flex items-center space-x-2">
+                    <i class="fa-solid fa-trophy text-amber-500"></i>
+                    <h3 class="font-extrabold text-sm text-slate-800">Prestasi Santri {{ $unit?->short_name }}</h3>
+                </div>
+                <a href="{{ route('admin.posts.create') }}?type=prestasi" class="text-xs font-bold text-amber-600 hover:underline">
+                    + Tambah Prestasi
+                </a>
+            </div>
+
+            <div class="space-y-3">
+                @forelse($recentPrestasi as $pres)
+                    <div class="flex items-center justify-between p-3 rounded-2xl bg-amber-50/40 border border-amber-200/60 gap-3">
+                        <div class="flex items-center space-x-3 min-w-0">
+                            <div class="w-10 h-10 rounded-xl bg-white overflow-hidden shrink-0 border border-amber-200">
+                                <img src="{{ $pres->featured_image }}" alt="{{ $pres->title }}" class="w-full h-full object-cover">
+                            </div>
+                            <div class="min-w-0">
+                                <h5 class="font-bold text-xs text-slate-800 truncate block">{{ $pres->title }}</h5>
+                                <span class="text-[10px] text-amber-800">{{ $pres->created_at->format('d M Y') }}</span>
+                            </div>
+                        </div>
+                        <a href="{{ route('admin.posts.edit', $pres) }}" class="p-1.5 text-slate-400 hover:text-amber-600">
+                            <i class="fa-solid fa-pen-to-square text-xs"></i>
+                        </a>
+                    </div>
+                @empty
+                    <div class="py-6 text-center text-xs text-slate-400">
+                        <p>Belum ada publikasi prestasi unit.</p>
+                    </div>
+                @endforelse
+            </div>
+        </div>
+
+        {{-- Ekstrakurikuler Unggulan (6 Cols) --}}
+        <div class="lg:col-span-6 bg-white p-5 sm:p-6 rounded-3xl shadow-xs border border-slate-200/80 space-y-4">
+            <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+                <div class="flex items-center space-x-2">
+                    <i class="fa-solid fa-shapes text-indigo-600"></i>
+                    <h3 class="font-extrabold text-sm text-slate-800">Ekstrakurikuler {{ $unit?->short_name }}</h3>
+                </div>
+                <a href="{{ route('admin.posts.create') }}?type=ekskul" class="text-xs font-bold text-indigo-600 hover:underline">
+                    + Tambah Ekskul
+                </a>
+            </div>
+
+            <div class="space-y-3">
+                @forelse($recentEkskul as $ekskul)
+                    <div class="flex items-center justify-between p-3 rounded-2xl bg-indigo-50/40 border border-indigo-200/60 gap-3">
+                        <div class="flex items-center space-x-3 min-w-0">
+                            <div class="w-10 h-10 rounded-xl bg-white overflow-hidden shrink-0 border border-indigo-200">
+                                <img src="{{ $ekskul->featured_image }}" alt="{{ $ekskul->title }}" class="w-full h-full object-cover">
+                            </div>
+                            <div class="min-w-0">
+                                <h5 class="font-bold text-xs text-slate-800 truncate block">{{ $ekskul->title }}</h5>
+                                <span class="text-[10px] text-indigo-800">Kegiatan Rutin</span>
+                            </div>
+                        </div>
+                        <a href="{{ route('admin.posts.edit', $ekskul) }}" class="p-1.5 text-slate-400 hover:text-indigo-600">
+                            <i class="fa-solid fa-pen-to-square text-xs"></i>
+                        </a>
+                    </div>
+                @empty
+                    <div class="py-6 text-center text-xs text-slate-400">
+                        <p>Belum ada publikasi ekstrakurikuler unit.</p>
+                    </div>
+                @endforelse
+            </div>
         </div>
     </div>
 
@@ -518,6 +759,13 @@
                 </p>
             </div>
             <div class="flex items-center gap-2 shrink-0">
+                <form action="{{ route('admin.unit.seed-demo') }}" method="POST" class="inline" onsubmit="return confirm('Muat ulang seluruh konten demo (berita, galeri, dewan asatidz, testimoni, prestasi, dan ekskul) untuk seluruh 8 unit pendidikan?');">
+                    @csrf
+                    <button type="submit" class="inline-flex items-center space-x-1.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold px-3.5 py-2 rounded-xl transition shadow-xs cursor-pointer" title="Inisialisasi atau lengkapi data demo seluruh 8 unit">
+                        <i class="fa-solid fa-arrows-rotate text-xs"></i>
+                        <span>Muat Demo 8 Unit</span>
+                    </button>
+                </form>
                 <a href="{{ route('admin.users.index', ['role' => 'admin_unit']) }}" class="inline-flex items-center space-x-1.5 bg-slate-800 hover:bg-slate-900 text-white text-xs font-bold px-3.5 py-2 rounded-xl transition shadow-xs">
                     <i class="fa-solid fa-users-gear text-xs text-amber-400"></i>
                     <span>Kelola Semua Akun</span>

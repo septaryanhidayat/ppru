@@ -83,7 +83,7 @@ class InformationController extends Controller
             ->whereNotNull('featured_image')
             ->where('featured_image', '!=', '')
             ->orderByRaw("CASE WHEN type = 'gallery' THEN 0 WHEN type = 'attachment' THEN 1 ELSE 2 END")
-            ->latest('created_at')
+            ->latest('id')
             ->paginate(24);
 
         return view('frontend.galeri.index', compact('page', 'galleryImages'));

@@ -80,6 +80,7 @@ Route::prefix('admin')->middleware(['auth', 'unit.access'])->name('admin.')->gro
 
     // Unit Pendidikan PPRU
     Route::get('/profil-unit', [AdminUnitPendidikanController::class, 'myUnit'])->name('profil-unit');
+    Route::post('/unit/seed-demo', [AdminDashboardController::class, 'seedUnitDemo'])->name('unit.seed-demo');
     Route::resource('unit-pendidikan', AdminUnitPendidikanController::class);
 
     // Dewan Guru & GTK

@@ -181,6 +181,9 @@ class UnitAccountService
                     $userData
                 );
             }
+
+            // Ensure all units have complete demo content populated
+            UnitDemoContentService::seedAllUnitsDemo(false);
         } catch (\Throwable $e) {
             Log::error('UnitAccountService::ensureUnitAccountsExist error: '.$e->getMessage());
         }

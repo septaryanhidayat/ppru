@@ -17,31 +17,18 @@ class UnitDemoContentService
     /**
      * Seed comprehensive demo content for all 8 educational units under YAPIRUS.
      */
-    public static function seedAllUnitsDemo(): void
+    public static function seedAllUnitsDemo(bool $force = false): void
     {
         try {
+            CmsAutoHealService::ensureUnitPendidikanSchemaExists();
+
             $units = UnitPendidikan::all();
             if ($units->isEmpty()) {
                 return;
             }
 
-            // Ensure categories exist
-            $catBerita = Category::firstOrCreate(['slug' => 'berita'], ['name' => 'Berita']);
-            $catPrestasi = Category::firstOrCreate(['slug' => 'prestasi'], ['name' => 'Prestasi']);
-            $catEkskul = Category::firstOrCreate(['slug' => 'ekskul'], ['name' => 'Ekstrakurikuler']);
-            $catPendidikan = Category::firstOrCreate(['slug' => 'pendidikan'], ['name' => 'Pendidikan']);
-
-            $defaultAuthor = User::whereIn('role', ['super_admin', 'admin'])->first() ?? User::first();
-            $authorId = $defaultAuthor?->id ?? 1;
-
             foreach ($units as $unit) {
-                self::seedUnitProfile($unit);
-                self::seedUnitPosts($unit, $authorId, $catBerita, $catPendidikan);
-                self::seedUnitPrestasi($unit, $authorId, $catPrestasi);
-                self::seedUnitEkskul($unit, $authorId, $catEkskul);
-                self::seedUnitTeachers($unit);
-                self::seedUnitVideos($unit);
-                self::seedUnitTestimonials($unit);
+                self::seedSingleUnit($unit, $force);
             }
         } catch (\Throwable $e) {
             Log::error('UnitDemoContentService::seedAllUnitsDemo error: '.$e->getMessage());
@@ -49,9 +36,62 @@ class UnitDemoContentService
     }
 
     /**
+     * Check if a specific unit has empty demo content, and seed if needed.
+     */
+    public static function seedUnitIfEmpty(UnitPendidikan $unit): void
+    {
+        try {
+            CmsAutoHealService::ensureUnitPendidikanSchemaExists();
+
+            $hasPosts = Post::where('unit_pendidikan_id', $unit->id)->where('type', 'post')->exists();
+            $hasPhotos = Post::where('unit_pendidikan_id', $unit->id)->where('type', 'gallery')->exists();
+            $hasTeachers = AnggotaDewan::where('unit_pendidikan_id', $unit->id)->exists();
+            $hasTestimonials = Testimonial::where('unit_pendidikan_id', $unit->id)->exists();
+
+            if (! $hasPosts || ! $hasPhotos || ! $hasTeachers || ! $hasTestimonials) {
+                self::seedSingleUnit($unit, false);
+            }
+        } catch (\Throwable $e) {
+            Log::error("UnitDemoContentService::seedUnitIfEmpty for {$unit->name} error: ".$e->getMessage());
+        }
+    }
+
+    /**
+     * Seed comprehensive demo content for a single unit.
+     */
+    public static function seedSingleUnit(UnitPendidikan $unit, bool $force = false): void
+    {
+        try {
+            CmsAutoHealService::ensureUnitPendidikanSchemaExists();
+
+            // Ensure categories exist
+            $catBerita = Category::firstOrCreate(['slug' => 'berita'], ['name' => 'Berita']);
+            $catPrestasi = Category::firstOrCreate(['slug' => 'prestasi'], ['name' => 'Prestasi']);
+            $catEkskul = Category::firstOrCreate(['slug' => 'ekskul'], ['name' => 'Ekstrakurikuler']);
+            $catPendidikan = Category::firstOrCreate(['slug' => 'pendidikan'], ['name' => 'Pendidikan']);
+
+            $defaultAuthor = User::where('unit_pendidikan_id', $unit->id)->first()
+                ?? User::whereIn('role', ['super_admin', 'admin'])->first()
+                ?? User::first();
+            $authorId = $defaultAuthor?->id ?? 1;
+
+            self::seedUnitProfile($unit, $force);
+            self::seedUnitPosts($unit, $authorId, $catBerita, $catPendidikan);
+            self::seedUnitPhotos($unit, $authorId);
+            self::seedUnitPrestasi($unit, $authorId, $catPrestasi);
+            self::seedUnitEkskul($unit, $authorId, $catEkskul);
+            self::seedUnitTeachers($unit);
+            self::seedUnitVideos($unit);
+            self::seedUnitTestimonials($unit);
+        } catch (\Throwable $e) {
+            Log::error("UnitDemoContentService::seedSingleUnit for {$unit->name} error: ".$e->getMessage());
+        }
+    }
+
+    /**
      * Seed detailed profile data (sambutan, visi, misi, hero, head photo) for a unit.
      */
-    protected static function seedUnitProfile(UnitPendidikan $unit): void
+    protected static function seedUnitProfile(UnitPendidikan $unit, bool $force = false): void
     {
         $short = $unit->short_name ?: $unit->name;
 
@@ -167,22 +207,37 @@ class UnitDemoContentService
             'misi' => "1. Menyelenggarakan pendidikan Islam terpadu.\n2. Membina kedisiplinan dan adab islami santri.",
         ];
 
-        $unit->update([
-            'head_name' => $data['head_name'],
-            'curriculum' => $data['curriculum'],
-            'badge' => $data['badge'],
-            'phone' => $data['phone'],
-            'email' => $data['email'],
-            'hero_image' => $unit->hero_image ?: $data['hero_image'],
-            'head_photo' => $unit->head_photo ?: $data['head_photo'],
-            'sambutan' => $unit->sambutan ?: $data['sambutan'],
-            'visi' => $unit->visi ?: $data['visi'],
-            'misi' => $unit->misi ?: $data['misi'],
-        ]);
+        if ($force) {
+            $unit->update([
+                'head_name' => $data['head_name'],
+                'curriculum' => $data['curriculum'],
+                'badge' => $data['badge'],
+                'phone' => $data['phone'],
+                'email' => $data['email'],
+                'hero_image' => $data['hero_image'],
+                'head_photo' => $data['head_photo'],
+                'sambutan' => $data['sambutan'],
+                'visi' => $data['visi'],
+                'misi' => $data['misi'],
+            ]);
+        } else {
+            $unit->update([
+                'head_name' => $unit->head_name ?: $data['head_name'],
+                'curriculum' => $unit->curriculum ?: $data['curriculum'],
+                'badge' => $unit->badge ?: $data['badge'],
+                'phone' => $unit->phone ?: $data['phone'],
+                'email' => $unit->email ?: $data['email'],
+                'hero_image' => $unit->hero_image ?: $data['hero_image'],
+                'head_photo' => $unit->head_photo ?: $data['head_photo'],
+                'sambutan' => $unit->sambutan ?: $data['sambutan'],
+                'visi' => $unit->visi ?: $data['visi'],
+                'misi' => $unit->misi ?: $data['misi'],
+            ]);
+        }
     }
 
     /**
-     * Seed 2-3 realistic news posts for the unit.
+     * Seed realistic news posts for the unit.
      */
     protected static function seedUnitPosts(UnitPendidikan $unit, int $authorId, Category $catBerita, Category $catPendidikan): void
     {
@@ -198,6 +253,16 @@ class UnitDemoContentService
                 'title' => "Pekan Kreativitas dan Asah Bakat Kepemimpinan Santri {$short} Tahun 2026",
                 'content' => "<p>Unit <strong>{$unit->name}</strong> sukses menyelenggarakan Pekan Kreativitas Santri. Ajang tahunan ini menghadirkan beragam lomba kepemimpinan, debat ilmiah, seni kaligrafi, dan olahraga ketangkasan.</p><p>Kepala unit mengapresiasi tingginya partisipasi santri yang menunjukkan kemandirian dan sportifitas tinggi.</p>",
                 'image' => '/uploads/official/kegiatan-santri-waw1985.webp',
+            ],
+            [
+                'title' => "Program Penguatan Karakter, Disiplin, dan Bahasa Asing Santri {$short}",
+                'content' => "<p>Untuk menunjang wawasan global, unit <strong>{$unit->name}</strong> mengintensifkan program bi'ah lughawiyyah (lingkungan berbahasa Arab dan Inggris). Santri dibimbing berbicara secara natural dalam percakapan formal maupun pergaulan asrama.</p><p>Penerapan disiplin positif ini menjadi ciri khas pesantren dalam melahirkan lulusan berdaya saing tinggi.</p>",
+                'image' => '/uploads/official/kbm-santri-0098.webp',
+            ],
+            [
+                'title' => "Studi Kolaboratif dan Pengayaan Wawasan Akademik Terpadu di {$short}",
+                'content' => "<p>Guna memperkaya literasi keilmuan, asatidz di unit <strong>{$unit->name}</strong> menerapkan model pembelajaran aktif berbasis studi kasus dan kolaborasi kelompok. Santri diajak berpikir kritis terhadap materi kurikulum dan menghubungkannya dengan pengamalan ibadah sehari-hari.</p>",
+                'image' => '/uploads/official/kbm-santri-0152.webp',
             ],
         ];
 
@@ -219,6 +284,53 @@ class UnitDemoContentService
                     'published_at' => now()->subDays(rand(1, 14)),
                 ]);
                 $created->categories()->syncWithoutDetaching([$catBerita->id, $catPendidikan->id]);
+            }
+        }
+    }
+
+    /**
+     * Seed 4 realistic gallery photos for the unit.
+     */
+    protected static function seedUnitPhotos(UnitPendidikan $unit, int $authorId): void
+    {
+        $short = $unit->short_name ?: $unit->name;
+
+        $photosData = [
+            [
+                'title' => "Dokumentasi Pembelajaran Terpadu Santri {$short}",
+                'image' => '/uploads/official/kbm-santri-0054.webp',
+            ],
+            [
+                'title' => "Suasana Santri Menyimak Pelajaran di Kelas {$short}",
+                'image' => '/uploads/official/kbm-santri-0098.webp',
+            ],
+            [
+                'title' => "Kegiatan Pembiasaan Adab dan Halaqah Sore {$short}",
+                'image' => '/uploads/official/ngaji-sore.webp',
+            ],
+            [
+                'title' => "Latihan Ketangkasan Jasmani dan Olahraga Santri {$short}",
+                'image' => '/uploads/official/panahan-santri.webp',
+            ],
+        ];
+
+        foreach ($photosData as $p) {
+            $slug = Str::slug($p['title']);
+            $post = Post::where('unit_pendidikan_id', $unit->id)->where('slug', $slug)->first();
+            if (! $post) {
+                Post::create([
+                    'unit_pendidikan_id' => $unit->id,
+                    'title' => $p['title'],
+                    'slug' => $slug,
+                    'content' => "<p>Dokumentasi foto kegiatan belajar dan pembinaan santri di lingkungan {$unit->name} Pondok Pesantren Raudhatul Ulum Sakatiga.</p>",
+                    'excerpt' => "Dokumentasi foto kegiatan di lingkungan {$unit->name}.",
+                    'type' => 'gallery',
+                    'status' => 'publish',
+                    'featured_image' => $p['image'],
+                    'author_id' => $authorId,
+                    'author_name' => "Dokumentasi {$short}",
+                    'published_at' => now()->subDays(rand(1, 10)),
+                ]);
             }
         }
     }
