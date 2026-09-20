@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\AnggotaDewan;
 use App\Models\HeroSlide;
 use App\Models\NavMenu;
+use App\Models\UnitPendidikan;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Schema;
@@ -12,6 +13,71 @@ use Illuminate\Support\Str;
 
 class CmsAutoHealService
 {
+    /**
+     * Ensure schema columns for multi-unit education content exist (fail-safe for cPanel).
+     */
+    public static function ensureUnitPendidikanSchemaExists(): void
+    {
+        try {
+            if (Schema::hasTable('dewan_asatidz') && ! Schema::hasColumn('dewan_asatidz', 'unit_pendidikan_id')) {
+                Schema::table('dewan_asatidz', function (Blueprint $table) {
+                    $table->unsignedBigInteger('unit_pendidikan_id')->nullable()->after('id');
+                    $table->index('unit_pendidikan_id');
+                });
+            }
+
+            if (Schema::hasTable('testimonials') && ! Schema::hasColumn('testimonials', 'unit_pendidikan_id')) {
+                Schema::table('testimonials', function (Blueprint $table) {
+                    $table->unsignedBigInteger('unit_pendidikan_id')->nullable()->after('id');
+                    $table->index('unit_pendidikan_id');
+                });
+            }
+
+            if (Schema::hasTable('posts') && ! Schema::hasColumn('posts', 'unit_pendidikan_id')) {
+                Schema::table('posts', function (Blueprint $table) {
+                    $table->unsignedBigInteger('unit_pendidikan_id')->nullable()->after('author_id');
+                    $table->index('unit_pendidikan_id');
+                });
+            }
+
+            if (Schema::hasTable('videos') && ! Schema::hasColumn('videos', 'unit_pendidikan_id')) {
+                Schema::table('videos', function (Blueprint $table) {
+                    $table->unsignedBigInteger('unit_pendidikan_id')->nullable()->after('id');
+                    $table->index('unit_pendidikan_id');
+                });
+            }
+
+            if (Schema::hasTable('users') && ! Schema::hasColumn('users', 'unit_pendidikan_id')) {
+                Schema::table('users', function (Blueprint $table) {
+                    $table->unsignedBigInteger('unit_pendidikan_id')->nullable()->after('role');
+                    $table->index('unit_pendidikan_id');
+                });
+            }
+
+            if (Schema::hasTable('unit_pendidikans')) {
+                Schema::table('unit_pendidikans', function (Blueprint $table) {
+                    if (! Schema::hasColumn('unit_pendidikans', 'sambutan')) {
+                        $table->text('sambutan')->nullable();
+                    }
+                    if (! Schema::hasColumn('unit_pendidikans', 'visi')) {
+                        $table->text('visi')->nullable();
+                    }
+                    if (! Schema::hasColumn('unit_pendidikans', 'misi')) {
+                        $table->text('misi')->nullable();
+                    }
+                    if (! Schema::hasColumn('unit_pendidikans', 'hero_image')) {
+                        $table->string('hero_image')->nullable();
+                    }
+                    if (! Schema::hasColumn('unit_pendidikans', 'head_photo')) {
+                        $table->string('head_photo')->nullable();
+                    }
+                });
+            }
+        } catch (\Throwable $e) {
+            Log::error('CmsAutoHealService::ensureUnitPendidikanSchemaExists error: '.$e->getMessage());
+        }
+    }
+
     /**
      * Ensure nav_menus table exists and is populated with default pesantren navigation.
      */
@@ -67,6 +133,26 @@ class CmsAutoHealService
                         'location' => 'header',
                         'order' => 6,
                     ]);
+                }
+
+                // Ensure Pendidikan dropdown contains all active unit pendidikans
+                $pendidikan = NavMenu::where('location', 'header')->whereNull('parent_id')->where('name', 'Pendidikan')->first();
+                if ($pendidikan && Schema::hasTable('unit_pendidikans')) {
+                    $hasChildren = NavMenu::where('parent_id', $pendidikan->id)->exists();
+                    if (! $hasChildren) {
+                        $units = UnitPendidikan::active()->orderBy('order', 'asc')->get();
+                        foreach ($units as $u) {
+                            $cleanName = trim(preg_replace('/\s*\([^)]*\)\s*$/', '', $u->name));
+                            NavMenu::create([
+                                'parent_id' => $pendidikan->id,
+                                'name' => $cleanName,
+                                'url' => '/pendidikan/'.$u->slug,
+                                'icon' => 'fa-solid fa-graduation-cap',
+                                'location' => 'header',
+                                'order' => $u->order ?: 1,
+                            ]);
+                        }
+                    }
                 }
             }
         } catch (\Throwable $e) {
@@ -213,6 +299,7 @@ class CmsAutoHealService
      */
     public static function ensureAllCoreTablesExist(): void
     {
+        self::ensureUnitPendidikanSchemaExists();
         self::ensureHeroSlidesTableExists();
         self::ensureNavMenusTableExists();
         self::ensureDewanAsatidzSeeded();
@@ -252,8 +339,8 @@ class CmsAutoHealService
         NavMenu::create(['parent_id' => $profil->id, 'name' => 'Program Unggulan Pesantren', 'url' => '/program-unggulan', 'icon' => 'fa-solid fa-star-and-crescent', 'location' => 'header', 'order' => 8]);
         NavMenu::create(['parent_id' => $profil->id, 'name' => 'Ikatan Alumni (IKARUS)', 'url' => '/ikarus', 'icon' => 'fa-solid fa-user-graduate', 'location' => 'header', 'order' => 9]);
 
-        // 3. Pendidikan
-        NavMenu::create([
+        // 3. Pendidikan (Dropdown with all units)
+        $pendidikan = NavMenu::create([
             'name' => 'Pendidikan',
             'url' => '/pendidikan',
             'icon' => 'fa-solid fa-building-columns',
@@ -261,6 +348,21 @@ class CmsAutoHealService
             'order' => 3,
             'is_active' => true,
         ]);
+
+        if (Schema::hasTable('unit_pendidikans')) {
+            $units = UnitPendidikan::active()->orderBy('order', 'asc')->get();
+            foreach ($units as $u) {
+                $cleanName = trim(preg_replace('/\s*\([^)]*\)\s*$/', '', $u->name));
+                NavMenu::create([
+                    'parent_id' => $pendidikan->id,
+                    'name' => $cleanName,
+                    'url' => '/pendidikan/'.$u->slug,
+                    'icon' => 'fa-solid fa-graduation-cap',
+                    'location' => 'header',
+                    'order' => $u->order ?: 1,
+                ]);
+            }
+        }
 
         // 4. Informasi (Dropdown)
         $info = NavMenu::create([

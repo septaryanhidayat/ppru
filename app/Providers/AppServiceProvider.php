@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\NavMenu;
 use App\Models\Setting;
 use App\Models\UnitPendidikan;
+use App\Services\CmsAutoHealService;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\URL;
@@ -32,6 +33,9 @@ class AppServiceProvider extends ServiceProvider
         if (config('app.env') === 'production' || str_starts_with((string) config('app.url'), 'https://')) {
             URL::forceScheme('https');
         }
+
+        // Auto-heal unit schema if database migration is pending
+        CmsAutoHealService::ensureUnitPendidikanSchemaExists();
 
         View::composer('*', function ($view) {
             try {

@@ -282,3 +282,30 @@ test('header navigation displays ikarus only once and khutbah in sub-menus witho
     // In desktop nav, Khutbah is inside the Informasi dropdown
     expect($content)->toContain('Tausiyah &amp; Khutbah');
 });
+
+test('public unit education show page loads smoothly for units without QueryException', function () {
+    $units = UnitPendidikan::active()->take(4)->get();
+    foreach ($units as $unit) {
+        $response = $this->get(route('pendidikan.show', $unit->slug));
+        $response->assertStatus(200);
+        $response->assertSee($unit->name);
+    }
+});
+
+test('header navigation includes educational unit names in Pendidikan menu', function () {
+    $response = $this->get('/');
+    $response->assertStatus(200);
+
+    $units = UnitPendidikan::active()->get();
+    foreach ($units as $unit) {
+        $response->assertSee(route('pendidikan.show', $unit->slug));
+    }
+});
+
+test('ikarus portal page renders with high contrast author badges and elements', function () {
+    $response = $this->get(route('ikarus.index'));
+    $response->assertStatus(200);
+    $response->assertSee('Portal resmi IKARUS');
+    // Ensure high contrast pill badge or author class is rendered
+    $response->assertSee('fa-user-pen');
+});

@@ -53,7 +53,54 @@
             <nav class="hidden lg:flex items-center space-x-1 xl:space-x-1.5 font-semibold text-[13px] xl:text-[14px] text-white" aria-label="Navigasi Utama">
                 @if(isset($headerNavMenus) && $headerNavMenus->isNotEmpty())
                     @foreach($headerNavMenus as $m)
-                        @if($m->children->isNotEmpty())
+                        @php
+                            $isPendidikanItem = ($m->url === '/pendidikan' || \Illuminate\Support\Str::contains(strtolower($m->title), 'pendidikan'));
+                        @endphp
+                        @if($isPendidikanItem)
+                            <div class="relative group py-2">
+                                <button type="button" aria-haspopup="true" aria-expanded="false" class="px-3 py-1.5 rounded-lg inline-flex items-center hover:bg-black/15 transition {{ request()->is('pendidikan*') ? 'bg-black/20 text-[#fcd116]' : '' }}">
+                                    @if($m->icon)
+                                        <i class="{{ $m->icon }} text-xs mr-1.5 text-[#fcd116]"></i>
+                                    @else
+                                        <i class="fa-solid fa-building-columns text-xs mr-1.5 text-[#fcd116]"></i>
+                                    @endif
+                                    <span>{{ $m->title }}</span>
+                                    <i class="fa-solid fa-chevron-down text-[10px] ml-1.5 transition-transform duration-200 group-hover:rotate-180"></i>
+                                </button>
+                                <div class="absolute left-0 top-full pt-1 w-80 hidden group-hover:block transition-all duration-150 z-50">
+                                    <div class="bg-white rounded-2xl shadow-2xl border border-gray-100 py-2.5 text-gray-800 animate-fadeIn max-h-[75vh] overflow-y-auto">
+                                        <div class="px-4 py-2 border-b border-gray-100 flex items-center justify-between">
+                                            <span class="text-[11px] font-black text-[#00843d] uppercase tracking-wider">Unit Pendidikan PPRU</span>
+                                            <a href="{{ route('pendidikan.index') }}" class="text-[10px] font-bold text-[#00843d] hover:underline">Semua Unit &rarr;</a>
+                                        </div>
+
+                                        @if(isset($navUnitPendidikans) && $navUnitPendidikans->isNotEmpty())
+                                            @foreach($navUnitPendidikans as $nu)
+                                                @php
+                                                    $cleanNuName = trim(preg_replace('/\s*\([^)]*\)\s*$/', '', $nu->name));
+                                                @endphp
+                                                <a href="{{ route('pendidikan.show', $nu->slug) }}" class="block px-4 py-2 text-xs font-semibold text-gray-700 hover:bg-emerald-50 hover:text-[#00843d] transition">
+                                                    <div class="flex items-center justify-between">
+                                                        <span class="font-bold truncate">{{ $cleanNuName }}</span>
+                                                        @if($nu->short_name)
+                                                            <span class="text-[9px] bg-emerald-100 text-[#00843d] px-1.5 py-0.5 rounded font-bold shrink-0 ml-1.5">{{ $nu->short_name }}</span>
+                                                        @endif
+                                                    </div>
+                                                </a>
+                                            @endforeach
+                                        @elseif($m->children->isNotEmpty())
+                                            @foreach($m->children as $child)
+                                                <a href="{{ $child->url }}" target="{{ $child->target }}" class="block px-4 py-2 text-xs font-semibold text-gray-700 hover:bg-emerald-50 hover:text-[#00843d] transition">
+                                                    <div class="flex items-center justify-between">
+                                                        <span class="font-bold truncate">{{ $child->title }}</span>
+                                                    </div>
+                                                </a>
+                                            @endforeach
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                        @elseif($m->children->isNotEmpty())
                             <div class="relative group py-2">
                                 <button type="button" aria-haspopup="true" aria-expanded="false" class="px-3 py-1.5 rounded-lg inline-flex items-center hover:bg-black/15 transition">
                                     @if($m->icon)
@@ -287,7 +334,37 @@
 
         @if(isset($headerNavMenus) && $headerNavMenus->isNotEmpty())
             @foreach($headerNavMenus as $m)
-                @if($m->children->isNotEmpty())
+                @php
+                    $isPendidikanMobile = ($m->url === '/pendidikan' || \Illuminate\Support\Str::contains(strtolower($m->title), 'pendidikan'));
+                @endphp
+                @if($isPendidikanMobile)
+                    <details class="group">
+                        <summary class="flex justify-between items-center px-3 py-2 rounded-lg font-bold text-gray-900 hover:bg-emerald-50 cursor-pointer list-none">
+                            <span>
+                                <i class="{{ $m->icon ?: 'fa-solid fa-building-columns' }} mr-2 text-[#00843d]"></i>
+                                {{ $m->title }}
+                            </span>
+                            <i class="fa-solid fa-chevron-down text-xs group-open:rotate-180 transition"></i>
+                        </summary>
+                        <div class="pl-6 pt-1 space-y-1 text-xs">
+                            <a href="{{ route('pendidikan.index') }}" class="block py-1.5 font-bold text-[#00843d]">Katalog Semua Unit</a>
+                            @if(isset($navUnitPendidikans) && $navUnitPendidikans->isNotEmpty())
+                                @foreach($navUnitPendidikans as $nu)
+                                    <a href="{{ route('pendidikan.show', $nu->slug) }}" class="block py-1.5 text-gray-600 hover:text-[#00843d] truncate flex items-center justify-between">
+                                        <span>{{ trim(preg_replace('/\s*\([^)]*\)\s*$/', '', $nu->name)) }}</span>
+                                        @if($nu->short_name)
+                                            <span class="text-[9px] bg-emerald-100 text-[#00843d] px-1.5 py-0.5 rounded font-bold shrink-0 ml-1">{{ $nu->short_name }}</span>
+                                        @endif
+                                    </a>
+                                @endforeach
+                            @elseif($m->children->isNotEmpty())
+                                @foreach($m->children as $child)
+                                    <a href="{{ $child->url }}" class="block py-1.5 text-gray-600 hover:text-[#00843d] truncate">{{ $child->title }}</a>
+                                @endforeach
+                            @endif
+                        </div>
+                    </details>
+                @elseif($m->children->isNotEmpty())
                     <details class="group">
                         <summary class="flex justify-between items-center px-3 py-2 rounded-lg font-bold text-gray-900 hover:bg-emerald-50 cursor-pointer list-none">
                             <span>

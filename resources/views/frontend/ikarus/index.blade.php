@@ -143,15 +143,15 @@
 
             <div class="lg:w-1/2 p-6 sm:p-8 lg:p-10 flex flex-col justify-between space-y-4">
                 <div class="space-y-3">
-                    <div class="flex flex-wrap items-center gap-2 text-xs text-gray-400">
-                        <span class="text-emerald-700 font-bold flex items-center">
-                            <i class="fa-solid fa-user-pen mr-1.5"></i>
+                    <div class="flex flex-wrap items-center gap-2 text-xs">
+                        <span class="text-slate-950 font-black flex items-center bg-amber-100 px-3 py-1 rounded-md border border-amber-300 shadow-sm">
+                            <i class="fa-solid fa-user-pen mr-1.5 text-amber-700"></i>
                             {{ $featured->author_name ?: ($featured->author?->name ?: 'Alumni Raudhatul Ulum') }}
                         </span>
-                        <span>&bull;</span>
-                        <span><i class="fa-regular fa-calendar mr-1"></i>{{ $featured->published_at ? $featured->published_at->format('d M Y') : $featured->created_at->format('d M Y') }}</span>
-                        <span>&bull;</span>
-                        <span><i class="fa-regular fa-eye mr-1"></i>{{ $featured->views_count }} views</span>
+                        <span class="text-gray-400">&bull;</span>
+                        <span class="text-gray-700 font-semibold"><i class="fa-regular fa-calendar mr-1 text-emerald-600"></i>{{ $featured->published_at ? $featured->published_at->format('d M Y') : $featured->created_at->format('d M Y') }}</span>
+                        <span class="text-gray-400">&bull;</span>
+                        <span class="text-gray-700 font-semibold"><i class="fa-regular fa-eye mr-1 text-blue-600"></i>{{ $featured->views_count }} views</span>
                     </div>
 
                     <h2 class="text-xl sm:text-2xl font-extrabold text-gray-900 group-hover:text-[#00843d] transition leading-snug">
@@ -291,26 +291,27 @@
                         {{ $yearStr }}
                     </span>
 
-                    {{-- Penulis --}}
-                    <span class="absolute bottom-2.5 left-3 text-[11px] text-white/95 font-semibold drop-shadow-md truncate max-w-[90%] flex items-center">
-                        <i class="fa-solid fa-user-pen mr-1.5 text-amber-300 text-xs"></i>
-                        <span>{{ $post->author_name ?: ($post->author?->name ?: 'Alumni PPRU') }}</span>
-                    </span>
+                    {{-- Penulis (Pill badge gelap berlatar solid dengan kontras tinggi) --}}
+                    <div class="absolute bottom-2.5 left-3 bg-slate-950/90 backdrop-blur-md px-3 py-1 rounded-lg border border-white/20 shadow-lg flex items-center max-w-[90%]">
+                        <i class="fa-solid fa-user-pen mr-1.5 text-[#f59e0b] text-xs shrink-0"></i>
+                        <span class="text-xs font-bold text-white truncate">{{ $post->author_name ?: ($post->author?->name ?: 'Alumni PPRU') }}</span>
+                    </div>
                 </a>
 
                 {{-- Konten Ringkas --}}
                 <div class="p-6 flex-grow flex flex-col justify-between space-y-4">
                     <div class="space-y-2.5">
-                        <div class="flex items-center justify-between text-[11px] text-gray-400">
-                            <span class="flex items-center">
-                                <i class="fa-regular fa-calendar mr-1 text-emerald-600"></i>
-                                {{ $pubDate ? $pubDate->format('d M Y') : 'Terbaru' }}
-                            </span>
-                            <span class="flex items-center space-x-2">
-                                <span><i class="fa-regular fa-eye mr-1"></i>{{ number_format($post->views_count) }}</span>
+                        {{-- Meta Bar: Penulis & Info Tanggal --}}
+                        <div class="flex items-center justify-between text-xs pb-2 border-b border-gray-100">
+                            <div class="flex items-center space-x-1.5 font-bold text-slate-900 bg-amber-50 text-amber-900 border border-amber-200 px-2.5 py-0.5 rounded-md">
+                                <i class="fa-solid fa-user-graduate text-[#00843d]"></i>
+                                <span class="truncate max-w-[150px]">{{ $post->author_name ?: ($post->author?->name ?: 'Alumni PPRU') }}</span>
+                            </div>
+                            <div class="flex items-center space-x-2 text-[11px] text-gray-500">
+                                <span><i class="fa-regular fa-calendar mr-1 text-emerald-600"></i>{{ $pubDate ? $pubDate->format('d M Y') : 'Terbaru' }}</span>
                                 <span>&bull;</span>
-                                <span class="text-emerald-700 font-semibold">IKARUS</span>
-                            </span>
+                                <span><i class="fa-regular fa-eye mr-1"></i>{{ number_format($post->views_count) }}</span>
+                            </div>
                         </div>
 
                         <h3 class="font-black text-gray-900 text-base group-hover:text-[#00843d] transition line-clamp-2 leading-snug">

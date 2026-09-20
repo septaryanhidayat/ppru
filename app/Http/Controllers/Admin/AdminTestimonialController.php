@@ -6,20 +6,26 @@ use App\Http\Controllers\Controller;
 use App\Models\ActivityLog;
 use App\Models\Testimonial;
 use App\Models\UnitPendidikan;
+use App\Services\CmsAutoHealService;
 use App\Services\WebpService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Schema;
 
 class AdminTestimonialController extends Controller
 {
-    public function __construct(protected WebpService $webpService) {}
+    public function __construct(protected WebpService $webpService)
+    {
+        CmsAutoHealService::ensureUnitPendidikanSchemaExists();
+    }
 
     public function index(Request $request)
     {
         $user = $request->user();
         $query = Testimonial::query();
+        $hasUnitCol = Schema::hasTable('testimonials') && Schema::hasColumn('testimonials', 'unit_pendidikan_id');
 
-        if ($user?->isUnitAdmin()) {
+        if ($user?->isUnitAdmin() && $hasUnitCol) {
             $query->where('unit_pendidikan_id', $user->unit_pendidikan_id);
         }
 

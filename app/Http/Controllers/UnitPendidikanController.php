@@ -9,6 +9,8 @@ use App\Models\Post;
 use App\Models\Testimonial;
 use App\Models\UnitPendidikan;
 use App\Models\Video;
+use App\Services\CmsAutoHealService;
+use Illuminate\Support\Facades\Schema;
 
 class UnitPendidikanController extends Controller
 {
@@ -21,13 +23,26 @@ class UnitPendidikanController extends Controller
 
     public function show(string $slug)
     {
+        // Auto-heal schema if running on an unmigrated database
+        CmsAutoHealService::ensureUnitPendidikanSchemaExists();
+
         $unit = UnitPendidikan::where('slug', $slug)->firstOrFail();
 
-        $teachers = AnggotaDewan::where('unit_pendidikan_id', $unit->id)
-            ->orWhere('fraction', $unit->short_name)
-            ->orWhere('fraction', $unit->name)
-            ->orderBy('order', 'asc')
-            ->get();
+        $hasDewanUnitCol = Schema::hasTable('dewan_asatidz') && Schema::hasColumn('dewan_asatidz', 'unit_pendidikan_id');
+        $teacherQuery = AnggotaDewan::query();
+        if ($hasDewanUnitCol) {
+            $teacherQuery->where(function ($q) use ($unit) {
+                $q->where('unit_pendidikan_id', $unit->id)
+                    ->orWhere('fraction', $unit->short_name)
+                    ->orWhere('fraction', $unit->name);
+            });
+        } else {
+            $teacherQuery->where(function ($q) use ($unit) {
+                $q->where('fraction', $unit->short_name)
+                    ->orWhere('fraction', $unit->name);
+            });
+        }
+        $teachers = $teacherQuery->orderBy('order', 'asc')->get();
 
         $otherUnits = UnitPendidikan::active()->where('id', '!=', $unit->id)->orderBy('order', 'asc')->get();
 
@@ -37,13 +52,18 @@ class UnitPendidikanController extends Controller
         // Unit-specific or latest authentic pesantren announcements
         $pengumumen = Pengumuman::orderBy('created_at', 'desc')->take(3)->get();
 
+        $hasPostUnitCol = Schema::hasTable('posts') && Schema::hasColumn('posts', 'unit_pendidikan_id');
+
         // Unit-specific news / posts
-        $unitPosts = Post::where('type', 'post')
-            ->where('unit_pendidikan_id', $unit->id)
-            ->where('status', 'publish')
-            ->latest()
-            ->take(4)
-            ->get();
+        $unitPosts = collect();
+        if ($hasPostUnitCol) {
+            $unitPosts = Post::where('type', 'post')
+                ->where('unit_pendidikan_id', $unit->id)
+                ->where('status', 'publish')
+                ->latest()
+                ->take(4)
+                ->get();
+        }
 
         if ($unitPosts->isEmpty()) {
             $unitPosts = Post::where('type', 'post')
@@ -54,12 +74,15 @@ class UnitPendidikanController extends Controller
         }
 
         // Unit-specific or latest achievements
-        $prestasi = Post::where('type', 'prestasi')
-            ->where('unit_pendidikan_id', $unit->id)
-            ->where('status', 'publish')
-            ->latest()
-            ->take(4)
-            ->get();
+        $prestasi = collect();
+        if ($hasPostUnitCol) {
+            $prestasi = Post::where('type', 'prestasi')
+                ->where('unit_pendidikan_id', $unit->id)
+                ->where('status', 'publish')
+                ->latest()
+                ->take(4)
+                ->get();
+        }
 
         if ($prestasi->isEmpty()) {
             $prestasi = Post::whereHas('categories', function ($q) {
@@ -77,32 +100,46 @@ class UnitPendidikanController extends Controller
         }
 
         // Unit-specific extracurriculars
-        $ekskuls = Post::where('type', 'ekskul')
-            ->where('unit_pendidikan_id', $unit->id)
-            ->where('status', 'publish')
-            ->latest()
-            ->take(6)
-            ->get();
+        $ekskuls = collect();
+        if ($hasPostUnitCol) {
+            $ekskuls = Post::where('type', 'ekskul')
+                ->where('unit_pendidikan_id', $unit->id)
+                ->where('status', 'publish')
+                ->latest()
+                ->take(6)
+                ->get();
+        }
 
         if ($ekskuls->isEmpty()) {
             $ekskuls = Post::where('type', 'ekskul')->where('status', 'publish')->take(6)->get();
         }
 
         // Unit-specific testimonials
-        $unitTestimonials = Testimonial::where('unit_pendidikan_id', $unit->id)
-            ->where('status', 'publish')
-            ->latest()
-            ->take(3)
-            ->get();
-
-        if ($unitTestimonials->isEmpty()) {
-            $unitTestimonials = Testimonial::where('status', 'publish')->take(3)->get();
+        $unitTestimonials = collect();
+        if (Schema::hasTable('testimonials')) {
+            $hasTestimonialUnitCol = Schema::hasColumn('testimonials', 'unit_pendidikan_id');
+            if ($hasTestimonialUnitCol) {
+                $unitTestimonials = Testimonial::where('unit_pendidikan_id', $unit->id)
+                    ->where('status', 'publish')
+                    ->latest()
+                    ->take(3)
+                    ->get();
+            }
+            if ($unitTestimonials->isEmpty()) {
+                $unitTestimonials = Testimonial::where('status', 'publish')->take(3)->get();
+            }
         }
 
         // Unit-specific videos
-        $unitVideos = Video::where('unit_pendidikan_id', $unit->id)->latest()->take(2)->get();
-        if ($unitVideos->isEmpty()) {
-            $unitVideos = Video::latest()->take(2)->get();
+        $unitVideos = collect();
+        if (Schema::hasTable('videos')) {
+            $hasVideoUnitCol = Schema::hasColumn('videos', 'unit_pendidikan_id');
+            if ($hasVideoUnitCol) {
+                $unitVideos = Video::where('unit_pendidikan_id', $unit->id)->latest()->take(2)->get();
+            }
+            if ($unitVideos->isEmpty()) {
+                $unitVideos = Video::latest()->take(2)->get();
+            }
         }
 
         $unitGalleriesMap = [

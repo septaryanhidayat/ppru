@@ -6,9 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Models\ActivityLog;
 use App\Models\AnggotaDewan;
 use App\Models\UnitPendidikan;
+use App\Services\CmsAutoHealService;
 use App\Services\WebpService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
 
 class AdminDewanController extends Controller
@@ -18,16 +20,23 @@ class AdminDewanController extends Controller
     public function __construct(WebpService $webpService)
     {
         $this->webpService = $webpService;
+        CmsAutoHealService::ensureUnitPendidikanSchemaExists();
     }
 
     public function index(Request $request)
     {
         $user = $request->user();
+        $hasUnitCol = Schema::hasTable('dewan_asatidz') && Schema::hasColumn('dewan_asatidz', 'unit_pendidikan_id');
+
         if ($user?->isUnitAdmin()) {
-            $dewan = AnggotaDewan::where('unit_pendidikan_id', $user->unit_pendidikan_id)
-                ->orWhere('fraction', $user->unit?->short_name)
-                ->orderBy('order', 'asc')
-                ->get();
+            $query = AnggotaDewan::query();
+            if ($hasUnitCol) {
+                $query->where('unit_pendidikan_id', $user->unit_pendidikan_id)
+                    ->orWhere('fraction', $user->unit?->short_name);
+            } else {
+                $query->where('fraction', $user->unit?->short_name);
+            }
+            $dewan = $query->orderBy('order', 'asc')->get();
             $tree = null;
         } else {
             $dewan = AnggotaDewan::orderBy('order', 'asc')->get();
