@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\ActivityLog;
 use App\Models\HeroSlide;
+use App\Services\CmsAutoHealService;
 use App\Services\WebpService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,6 +16,8 @@ class AdminHeroSlideController extends Controller
 
     public function index()
     {
+        CmsAutoHealService::ensureHeroSlidesTableExists();
+
         $slides = HeroSlide::orderBy('order', 'asc')->get();
 
         return view('admin.hero-slides.index', compact('slides'));

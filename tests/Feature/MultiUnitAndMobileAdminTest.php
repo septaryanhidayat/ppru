@@ -165,3 +165,16 @@ test('admin users index displays unit admin role badge and filters', function ()
     $response->assertSee('admin.maru@ppru.ac.id');
     $response->assertSee('Admin Unit: MARU');
 });
+
+test('admin nav menus index loads successfully with auto-healed menus', function () {
+    $admin = User::whereIn('role', ['super_admin', 'admin'])->first() ?? User::factory()->create([
+        'role' => 'super_admin',
+        'name' => 'Super Administrator',
+        'email' => 'superadmin_nav@ppru.ac.id',
+    ]);
+
+    $response = $this->actingAs($admin)->get(route('admin.nav-menus.index'));
+    $response->assertStatus(200);
+    $response->assertSee('Menu Navigasi Header &amp; Footer', false);
+    $response->assertSee('IKARUS');
+});

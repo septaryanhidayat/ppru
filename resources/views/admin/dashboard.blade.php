@@ -12,39 +12,39 @@
     {{-- ============================================================ --}}
 
     {{-- 1. HERO UNIT CARD --}}
-    <div class="bg-gradient-to-r from-[#032b18] via-[#064e3b] to-slate-900 rounded-3xl p-5 sm:p-7 text-white shadow-xl relative overflow-hidden border border-emerald-800/60">
+    <div class="rounded-3xl p-5 sm:p-7 text-white shadow-xl relative overflow-hidden border border-emerald-800/60" style="background: linear-gradient(135deg, #022c19 0%, #064e3b 50%, #0f172a 100%); color: #ffffff;">
         <div class="absolute -right-10 -bottom-10 w-60 h-60 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
         <div class="relative z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-5">
             <div class="space-y-2 min-w-0">
                 <div class="flex flex-wrap items-center gap-2">
-                    <span class="inline-flex items-center space-x-1.5 bg-amber-400/20 border border-amber-400/40 px-2.5 py-0.5 rounded-full text-xs text-amber-300 font-bold">
+                    <span class="inline-flex items-center space-x-1.5 px-2.5 py-0.5 rounded-full text-xs font-bold" style="background: rgba(251, 191, 36, 0.2); border: 1px solid rgba(251, 191, 36, 0.5); color: #fde68a;">
                         <i class="fa-solid fa-graduation-cap text-[11px]"></i>
                         <span>Unit: {{ $unit?->short_name ?: 'Lembaga' }}</span>
                     </span>
-                    <span class="inline-flex items-center space-x-1.5 bg-emerald-950/80 border border-emerald-500/40 px-2.5 py-0.5 rounded-full text-xs text-emerald-300 font-semibold">
-                        <i class="fa-solid fa-circle-check text-emerald-400 text-[9px]"></i>
+                    <span class="inline-flex items-center space-x-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold" style="background: rgba(6, 78, 59, 0.9); border: 1px solid rgba(16, 185, 129, 0.5); color: #6ee7b7;">
+                        <i class="fa-solid fa-circle-check text-[9px]" style="color: #34d399;"></i>
                         <span>Panel Khusus Unit</span>
                     </span>
                 </div>
-                <h2 class="text-xl sm:text-2xl lg:text-3xl font-black text-white tracking-tight">
+                <h2 class="text-xl sm:text-2xl lg:text-3xl font-black tracking-tight" style="color: #ffffff; text-shadow: 0 2px 4px rgba(0,0,0,0.5);">
                     {{ $unit?->name ?: 'Unit Lembaga Pendidikan' }}
                 </h2>
-                <p class="text-xs sm:text-sm text-emerald-100/80 max-w-xl font-light leading-relaxed">
+                <p class="text-xs sm:text-sm max-w-xl font-normal leading-relaxed" style="color: #d1fae5;">
                     Kelola informasi profil, publikasi berita, dokumentasi foto, dan video kegiatan khusus untuk unit {{ $unit?->short_name ?: 'Anda' }}.
                 </p>
             </div>
 
             <div class="flex flex-wrap items-center gap-2 sm:gap-2.5 shrink-0">
-                <a href="{{ route('admin.profil-unit') }}" class="inline-flex items-center space-x-1.5 bg-amber-500 hover:bg-amber-400 text-slate-950 text-xs font-bold px-3.5 sm:px-4 py-2.5 rounded-xl shadow-md transition">
+                <a href="{{ route('admin.profil-unit') }}" class="inline-flex items-center space-x-1.5 text-xs font-bold px-4 py-2.5 rounded-xl shadow-md transition" style="background-color: #f59e0b; color: #0f172a;">
                     <i class="fa-solid fa-pen-to-square text-xs"></i>
                     <span>Edit Profil Unit</span>
                 </a>
-                <a href="{{ route('admin.posts.create') }}" class="inline-flex items-center space-x-1.5 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold px-3.5 sm:px-4 py-2.5 rounded-xl shadow-md transition">
+                <a href="{{ route('admin.posts.create') }}" class="inline-flex items-center space-x-1.5 text-xs font-bold px-4 py-2.5 rounded-xl shadow-md transition" style="background-color: #10b981; color: #ffffff;">
                     <i class="fa-solid fa-plus text-xs"></i>
                     <span>Tulis Berita</span>
                 </a>
-                <a href="{{ route('admin.media.index') }}" class="inline-flex items-center space-x-1.5 bg-slate-800 hover:bg-slate-700 text-white text-xs font-semibold px-3 sm:px-3.5 py-2.5 rounded-xl border border-slate-700 transition">
-                    <i class="fa-solid fa-photo-film text-xs text-amber-300"></i>
+                <a href="{{ route('admin.media.index') }}" class="inline-flex items-center space-x-1.5 text-xs font-semibold px-3.5 py-2.5 rounded-xl transition" style="background-color: #1e293b; color: #ffffff; border: 1px solid #334155;">
+                    <i class="fa-solid fa-photo-film text-xs" style="color: #fde047;"></i>
                     <span>Galeri &amp; Video</span>
                 </a>
             </div>
@@ -54,9 +54,9 @@
     {{-- 2. KPI METRICS (4 CARDS KHUSUS UNIT) --}}
     <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
         {{-- Card 1: Berita Unit --}}
-        <div class="bg-gradient-to-br from-[#00843d] to-[#05a849] text-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-md border border-emerald-400/30">
+        <div class="text-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-md border border-emerald-400/30" style="background: linear-gradient(135deg, #059669 0%, #047857 100%); color: #ffffff;">
             <div class="flex items-center justify-between mb-2 sm:mb-3">
-                <span class="text-[10px] sm:text-xs font-bold text-emerald-100 uppercase tracking-wider truncate">Berita Unit</span>
+                <span class="text-[10px] sm:text-xs font-bold uppercase tracking-wider truncate" style="color: #d1fae5;">Berita Unit</span>
                 <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-white/20 text-white flex items-center justify-center text-sm sm:text-lg">
                     <i class="fa-solid fa-newspaper"></i>
                 </div>
@@ -64,15 +64,15 @@
             <div class="text-2xl sm:text-3xl font-black text-white">
                 {{ number_format($stats['total_posts'] ?? 0) }}
             </div>
-            <p class="text-[10px] sm:text-xs text-emerald-100 font-medium mt-1 truncate">
+            <p class="text-[10px] sm:text-xs font-medium mt-1 truncate" style="color: #d1fae5;">
                 {{ number_format($stats['total_views'] ?? 0) }} kali dibaca
             </p>
         </div>
 
         {{-- Card 2: Dokumentasi Media --}}
-        <div class="bg-gradient-to-br from-[#0284c7] to-[#0ea5e9] text-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-md border border-sky-400/30">
+        <div class="text-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-md border border-sky-400/30" style="background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%); color: #ffffff;">
             <div class="flex items-center justify-between mb-2 sm:mb-3">
-                <span class="text-[10px] sm:text-xs font-bold text-sky-100 uppercase tracking-wider truncate">Foto &amp; Video</span>
+                <span class="text-[10px] sm:text-xs font-bold uppercase tracking-wider truncate" style="color: #e0f2fe;">Foto &amp; Video</span>
                 <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-white/20 text-white flex items-center justify-center text-sm sm:text-lg">
                     <i class="fa-solid fa-photo-film"></i>
                 </div>
@@ -80,15 +80,15 @@
             <div class="text-2xl sm:text-3xl font-black text-white">
                 {{ ($stats['total_photos'] ?? 0) + ($stats['total_videos'] ?? 0) }}
             </div>
-            <p class="text-[10px] sm:text-xs text-sky-100 font-medium mt-1 truncate">
+            <p class="text-[10px] sm:text-xs font-medium mt-1 truncate" style="color: #e0f2fe;">
                 {{ $stats['total_photos'] ?? 0 }} foto &bull; {{ $stats['total_videos'] ?? 0 }} video
             </p>
         </div>
 
         {{-- Card 3: Prestasi & Ekskul --}}
-        <div class="bg-gradient-to-br from-[#d97706] to-[#f59e0b] text-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-md border border-amber-400/30">
+        <div class="text-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-md border border-amber-400/30" style="background: linear-gradient(135deg, #d97706 0%, #b45309 100%); color: #ffffff;">
             <div class="flex items-center justify-between mb-2 sm:mb-3">
-                <span class="text-[10px] sm:text-xs font-bold text-amber-100 uppercase tracking-wider truncate">Prestasi &amp; Ekskul</span>
+                <span class="text-[10px] sm:text-xs font-bold uppercase tracking-wider truncate" style="color: #fef3c7;">Prestasi &amp; Ekskul</span>
                 <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-white/20 text-white flex items-center justify-center text-sm sm:text-lg">
                     <i class="fa-solid fa-trophy"></i>
                 </div>
@@ -96,15 +96,15 @@
             <div class="text-2xl sm:text-3xl font-black text-white">
                 {{ ($stats['total_prestasi'] ?? 0) + ($stats['total_ekskul'] ?? 0) }}
             </div>
-            <p class="text-[10px] sm:text-xs text-amber-100 font-medium mt-1 truncate">
+            <p class="text-[10px] sm:text-xs font-medium mt-1 truncate" style="color: #fef3c7;">
                 {{ $stats['total_prestasi'] ?? 0 }} prestasi &bull; {{ $stats['total_ekskul'] ?? 0 }} ekskul
             </p>
         </div>
 
         {{-- Card 4: Calon Santri PSB --}}
-        <div class="bg-gradient-to-br from-[#4f46e5] to-[#6366f1] text-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-md border border-indigo-400/30">
+        <div class="text-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-md border border-indigo-400/30" style="background: linear-gradient(135deg, #4f46e5 0%, #3730a3 100%); color: #ffffff;">
             <div class="flex items-center justify-between mb-2 sm:mb-3">
-                <span class="text-[10px] sm:text-xs font-bold text-indigo-100 uppercase tracking-wider truncate">Calon Santri</span>
+                <span class="text-[10px] sm:text-xs font-bold uppercase tracking-wider truncate" style="color: #e0e7ff;">Calon Santri</span>
                 <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-white/20 text-white flex items-center justify-center text-sm sm:text-lg">
                     <i class="fa-solid fa-user-graduate"></i>
                 </div>
@@ -112,7 +112,7 @@
             <div class="text-2xl sm:text-3xl font-black text-white">
                 {{ $stats['total_ppdb'] ?? 0 }}
             </div>
-            <p class="text-[10px] sm:text-xs text-indigo-100 font-medium mt-1 truncate">
+            <p class="text-[10px] sm:text-xs font-medium mt-1 truncate" style="color: #e0e7ff;">
                 Pendaftar jenjang unit
             </p>
         </div>
@@ -137,21 +137,21 @@
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4 text-xs">
-            <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200/60">
+            <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200/70">
                 <span class="text-slate-400 text-[10px] uppercase font-bold block">Kepala Lembaga</span>
-                <span class="font-bold text-slate-800 mt-0.5 block truncate">{{ $unit?->head_name ?: 'Belum diisi' }}</span>
+                <span class="font-bold text-slate-800 mt-1 block text-xs leading-snug break-words">{{ $unit?->head_name ?: 'Belum diisi' }}</span>
             </div>
-            <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200/60">
+            <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200/70">
                 <span class="text-slate-400 text-[10px] uppercase font-bold block">Kurikulum</span>
-                <span class="font-bold text-slate-800 mt-0.5 block truncate">{{ $unit?->curriculum ?: 'Kurikulum Pesantren' }}</span>
+                <span class="font-bold text-slate-800 mt-1 block text-xs leading-snug break-words">{{ $unit?->curriculum ?: 'Kurikulum Pesantren' }}</span>
             </div>
-            <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200/60">
+            <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200/70">
                 <span class="text-slate-400 text-[10px] uppercase font-bold block">Kontak / Telepon</span>
-                <span class="font-bold text-slate-800 mt-0.5 block truncate">{{ $unit?->phone ?: '-' }}</span>
+                <span class="font-bold text-slate-800 mt-1 block text-xs leading-snug break-words">{{ $unit?->phone ?: '-' }}</span>
             </div>
-            <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200/60">
+            <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200/70">
                 <span class="text-slate-400 text-[10px] uppercase font-bold block">Status Halaman</span>
-                <span class="inline-flex items-center space-x-1 text-emerald-700 font-bold mt-0.5">
+                <span class="inline-flex items-center space-x-1.5 text-emerald-700 font-bold mt-1 text-xs">
                     <i class="fa-solid fa-circle text-[8px] text-emerald-500"></i>
                     <span>{{ ($unit?->is_active ?? true) ? 'Aktif & Tayang' : 'Nonaktif' }}</span>
                 </span>
@@ -312,7 +312,7 @@
     </div>
 
     {{-- 1.5 MAINTENANCE MODE CONTROL CARD --}}
-    <div class="rounded-3xl p-4 sm:p-5 shadow-lg border-2 transition-all duration-300 {{ $isMaintenance ? 'border-amber-500 bg-amber-950/40' : 'border-emerald-500/40 bg-slate-900' }}">
+    <div class="rounded-3xl p-4 sm:p-5 shadow-lg border-2 transition-all duration-300 text-white {{ $isMaintenance ? 'border-amber-500' : 'border-emerald-500/40' }}" style="background: {{ $isMaintenance ? 'linear-gradient(135deg, #451a03 0%, #1e1b4b 100%)' : 'linear-gradient(135deg, #091e2b 0%, #0f172a 100%)' }}; color: #ffffff;">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div class="flex items-center space-x-3">
                 <div class="w-10 h-10 rounded-2xl flex items-center justify-center text-lg shrink-0 {{ $isMaintenance ? 'bg-amber-500 text-slate-950 font-black' : 'bg-emerald-500/20 text-emerald-400' }}">
@@ -335,7 +335,7 @@
 
             <form action="{{ route('admin.maintenance.toggle') }}" method="POST" onsubmit="return confirm('{{ $isMaintenance ? 'Buka kembali website untuk umum?' : 'Aktifkan mode maintenance? Pengunjung umum tidak dapat mengakses.' }}')">
                 @csrf
-                <button type="submit" class="inline-flex items-center space-x-1.5 text-xs font-bold px-3.5 py-2 rounded-xl transition cursor-pointer {{ $isMaintenance ? 'bg-emerald-600 hover:bg-emerald-500 text-white' : 'bg-amber-600 hover:bg-amber-500 text-white' }}">
+                <button type="submit" class="inline-flex items-center space-x-1.5 text-xs font-bold px-4 py-2.5 rounded-xl transition cursor-pointer shadow-md" style="background-color: {{ $isMaintenance ? '#10b981' : '#f59e0b' }}; color: {{ $isMaintenance ? '#ffffff' : '#0f172a' }};">
                     <i class="fa-solid {{ $isMaintenance ? 'fa-power-off' : 'fa-screwdriver-wrench' }} text-xs"></i>
                     <span>{{ $isMaintenance ? 'Buka Website' : 'Aktifkan Maintenance' }}</span>
                 </button>
@@ -362,9 +362,9 @@
     {{-- 3. KPI ANALYTICS GRID (4 Cards) --}}
     <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
         {{-- Card 1: Berita & Views --}}
-        <div class="bg-gradient-to-br from-[#da251c] to-[#b91c1c] text-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-md border border-red-300/30">
+        <div class="text-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-md border border-red-400/30" style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: #ffffff;">
             <div class="flex items-center justify-between mb-2 sm:mb-3">
-                <span class="text-[10px] sm:text-xs font-bold text-red-100 uppercase tracking-wider truncate">Artikel Berita</span>
+                <span class="text-[10px] sm:text-xs font-bold uppercase tracking-wider truncate" style="color: #fee2e2;">Artikel Berita</span>
                 <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-white/20 text-white flex items-center justify-center text-sm sm:text-lg">
                     <i class="fa-solid fa-newspaper"></i>
                 </div>
@@ -372,15 +372,15 @@
             <div class="text-2xl sm:text-3xl font-black text-white">
                 {{ number_format($stats['total_posts'] ?? 0) }}
             </div>
-            <p class="text-[10px] sm:text-xs text-red-100 font-medium mt-1 truncate">
+            <p class="text-[10px] sm:text-xs font-medium mt-1 truncate" style="color: #fee2e2;">
                 {{ number_format($stats['total_views'] ?? 0) }} pembaca
             </p>
         </div>
 
         {{-- Card 2: Pengunjung Web --}}
-        <div class="bg-gradient-to-br from-[#0284c7] to-[#0ea5e9] text-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-md border border-sky-300/30">
+        <div class="text-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-md border border-sky-400/30" style="background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%); color: #ffffff;">
             <div class="flex items-center justify-between mb-2 sm:mb-3">
-                <span class="text-[10px] sm:text-xs font-bold text-sky-100 uppercase tracking-wider truncate">Pengunjung</span>
+                <span class="text-[10px] sm:text-xs font-bold uppercase tracking-wider truncate" style="color: #e0f2fe;">Pengunjung</span>
                 <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-white/20 text-white flex items-center justify-center text-sm sm:text-lg">
                     <i class="fa-solid fa-chart-line"></i>
                 </div>
@@ -388,39 +388,39 @@
             <div class="text-2xl sm:text-3xl font-black text-white">
                 {{ number_format($stats['visitor_hits'] ?? 0) }}
             </div>
-            <p class="text-[10px] sm:text-xs text-sky-100 font-medium mt-1 truncate">
+            <p class="text-[10px] sm:text-xs font-medium mt-1 truncate" style="color: #e0f2fe;">
                 Hits pelacak aktif
             </p>
         </div>
 
         {{-- Card 3: Guru & Fasilitas --}}
-        <div class="bg-gradient-to-br from-[#6366f1] to-[#7c3aed] text-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-md border border-purple-300/30">
+        <div class="text-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-md border border-purple-400/30" style="background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%); color: #ffffff;">
             <div class="flex items-center justify-between mb-2 sm:mb-3">
-                <span class="text-[10px] sm:text-xs font-bold text-purple-100 uppercase tracking-wider truncate">Guru &amp; Asatidz</span>
+                <span class="text-[10px] sm:text-xs font-bold uppercase tracking-wider truncate" style="color: #f3e8ff;">Guru &amp; Asatidz</span>
                 <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-white/20 text-white flex items-center justify-center text-sm sm:text-lg">
                     <i class="fa-solid fa-chalkboard-user"></i>
                 </div>
             </div>
             <div class="text-2xl sm:text-3xl font-black text-white">
-                {{ $stats['total_dewan'] ?? 0 }} <span class="text-xs font-medium text-purple-200">Asatidz</span>
+                {{ $stats['total_dewan'] ?? 0 }} <span class="text-xs font-medium" style="color: #e9d5ff;">Asatidz</span>
             </div>
-            <p class="text-[10px] sm:text-xs text-purple-100 font-medium mt-1 truncate">
+            <p class="text-[10px] sm:text-xs font-medium mt-1 truncate" style="color: #f3e8ff;">
                 {{ $stats['total_bidang'] ?? 0 }} Sarana &bull; {{ $stats['total_programs'] ?? 0 }} Unggulan
             </p>
         </div>
 
         {{-- Card 4: Keamanan --}}
-        <div class="bg-gradient-to-br from-[#059669] to-[#10b981] text-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-md border border-emerald-300/30">
+        <div class="text-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-md border border-emerald-400/30" style="background: linear-gradient(135deg, #059669 0%, #047857 100%); color: #ffffff;">
             <div class="flex items-center justify-between mb-2 sm:mb-3">
-                <span class="text-[10px] sm:text-xs font-bold text-emerald-100 uppercase tracking-wider truncate">Keamanan</span>
+                <span class="text-[10px] sm:text-xs font-bold uppercase tracking-wider truncate" style="color: #d1fae5;">Keamanan</span>
                 <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-white/20 text-white flex items-center justify-center text-sm sm:text-lg">
                     <i class="fa-solid fa-shield-halved"></i>
                 </div>
             </div>
             <div class="text-2xl sm:text-3xl font-black text-white">
-                {{ $stats['security_threats'] ?? 0 }} <span class="text-xs font-medium text-emerald-200">ancaman</span>
+                {{ $stats['security_threats'] ?? 0 }} <span class="text-xs font-medium" style="color: #a7f3d0;">ancaman</span>
             </div>
-            <p class="text-[10px] sm:text-xs text-emerald-100 font-medium mt-1 truncate">
+            <p class="text-[10px] sm:text-xs font-medium mt-1 truncate" style="color: #d1fae5;">
                 Firewall &amp; WAF aktif
             </p>
         </div>
@@ -571,13 +571,13 @@
                     @forelse($unitAdmins ?? [] as $ua)
                         <tr class="hover:bg-slate-50/80 transition">
                             <td class="py-3.5 px-3.5">
-                                <div class="flex items-center space-x-2.5">
-                                    <div class="w-8 h-8 rounded-xl bg-emerald-100 text-[#00843d] flex items-center justify-center font-bold text-xs shrink-0">
+                                <div class="flex items-center gap-3">
+                                    <span class="inline-flex items-center justify-center px-2.5 py-1 rounded-lg bg-emerald-50 text-emerald-800 border border-emerald-300 font-black text-[11px] shrink-0 whitespace-nowrap min-w-[74px] text-center shadow-2xs">
                                         {{ $ua['short_name'] }}
-                                    </div>
-                                    <div class="min-w-0">
-                                        <span class="font-extrabold text-slate-900 text-xs sm:text-sm block truncate">{{ $ua['name'] }}</span>
-                                        <span class="text-[10px] text-slate-400 block">{{ $ua['category_type'] }} &bull; Pimpinan: {{ $ua['head_name'] ?: '-' }}</span>
+                                    </span>
+                                    <div class="min-w-0 flex-1">
+                                        <span class="font-extrabold text-slate-900 text-xs sm:text-sm block leading-snug break-words">{{ $ua['name'] }}</span>
+                                        <span class="text-[10px] text-slate-500 block leading-tight mt-0.5">{{ $ua['category_type'] }} &bull; Pimpinan: {{ $ua['head_name'] ?: '-' }}</span>
                                     </div>
                                 </div>
                             </td>
@@ -591,13 +591,13 @@
                             </td>
                             <td class="py-3.5 px-3.5 font-mono text-xs text-slate-600">
                                 <div class="flex items-center space-x-1.5">
-                                    <span class="bg-slate-100 px-2 py-0.5 rounded text-[11px]">AdminUnitPPRU2026!</span>
+                                    <span class="bg-slate-100 border border-slate-200 px-2.5 py-0.5 rounded-lg text-[11px] font-semibold text-slate-700 select-all">AdminUnitPPRU2026!</span>
                                     <button type="button" onclick="navigator.clipboard.writeText('AdminUnitPPRU2026!'); alert('Password default disalin: AdminUnitPPRU2026!');" class="text-slate-400 hover:text-amber-700 p-1" title="Salin Password">
                                         <i class="fa-regular fa-copy text-[11px]"></i>
                                     </button>
                                 </div>
                             </td>
-                            <td class="py-3.5 px-3.5 text-xs text-slate-600">
+                            <td class="py-3.5 px-3.5 text-xs text-slate-600 whitespace-nowrap">
                                 <div class="flex items-center space-x-2">
                                     <span class="inline-flex items-center text-[11px] font-semibold text-slate-700">
                                         <i class="fa-regular fa-newspaper text-emerald-600 mr-1"></i>{{ $ua['posts_count'] }} Berita
@@ -608,20 +608,21 @@
                                     </span>
                                 </div>
                             </td>
-                            <td class="py-3.5 px-3.5">
+                            <td class="py-3.5 px-3.5 whitespace-nowrap">
                                 <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-300">
                                     <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 mr-1"></span>
                                     Terisolasi Aktif
                                 </span>
                             </td>
                             <td class="py-3.5 px-3.5 text-center">
-                                <div class="inline-flex items-center space-x-1.5">
+                                <div class="flex items-center justify-center gap-1.5 whitespace-nowrap">
                                     @if(isset($ua['unit']))
-                                        <a href="{{ route('admin.unit-pendidikan.edit', $ua['unit']) }}" class="px-2.5 py-1 text-xs font-semibold bg-slate-100 hover:bg-emerald-100 hover:text-emerald-800 rounded-lg transition" title="Edit Data Unit">
-                                            <i class="fa-solid fa-pen-to-square mr-1"></i>Profil
+                                        <a href="{{ route('admin.unit-pendidikan.edit', $ua['unit']) }}" class="inline-flex items-center gap-1 px-2.5 py-1.5 text-xs font-bold text-slate-700 bg-slate-100 hover:bg-emerald-600 hover:text-white rounded-lg transition shadow-2xs" title="Kelola Profil &amp; Data Unit">
+                                            <i class="fa-solid fa-pen-to-square text-[11px]"></i>
+                                            <span>Kelola</span>
                                         </a>
-                                        <a href="{{ route('pendidikan.show', $ua['unit']->slug) }}" target="_blank" class="p-1.5 text-slate-400 hover:text-emerald-700 rounded-lg transition" title="Lihat Halaman Publik">
-                                            <i class="fa-solid fa-arrow-up-right-from-square text-[11px]"></i>
+                                        <a href="{{ route('pendidikan.show', $ua['unit']->slug) }}" target="_blank" class="inline-flex items-center justify-center w-7 h-7 text-slate-400 hover:text-emerald-700 hover:bg-emerald-50 rounded-lg transition border border-slate-200/70" title="Kunjungi Halaman Publik">
+                                            <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
                                         </a>
                                     @endif
                                 </div>

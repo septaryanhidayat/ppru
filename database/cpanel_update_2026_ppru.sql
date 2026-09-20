@@ -17,14 +17,14 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ------------------------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS `hero_slides` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `badge` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `badge` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT 'Pondok Pesantren Raudhatul Ulum Sakatiga',
   `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `subtitle` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `button_text_1` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `button_url_1` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `button_text_2` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `button_url_2` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '/uploads/official/drone-raudhatul-ulum.webp',
+  `btn_primary_text` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT 'Profil Singkat Pesantren',
+  `btn_primary_url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '/tentang-kami',
+  `btn_secondary_text` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT 'Pendaftaran PSB',
+  `btn_secondary_url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '/ppdb',
   `order` int(11) NOT NULL DEFAULT '0',
   `is_active` tinyint(1) NOT NULL DEFAULT '1',
   `created_at` timestamp NULL DEFAULT NULL,
@@ -37,19 +37,18 @@ CREATE TABLE IF NOT EXISTS `hero_slides` (
 -- ------------------------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS `nav_menus` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `url` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `target` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '_self',
-  `icon` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `parent_id` bigint(20) unsigned DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `url` varchar(500) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `icon` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `location` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'header',
+  `target` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '_self',
   `order` int(11) NOT NULL DEFAULT '0',
   `is_active` tinyint(1) NOT NULL DEFAULT '1',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `nav_menus_parent_id_foreign` (`parent_id`),
-  CONSTRAINT `nav_menus_parent_id_foreign` FOREIGN KEY (`parent_id`) REFERENCES `nav_menus` (`id`) ON DELETE CASCADE
+  KEY `nav_menus_parent_id_foreign` (`parent_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ------------------------------------------------------------------------------
@@ -77,17 +76,17 @@ UPDATE `posts` SET `featured_image` = '/images/hero-1.webp'
 WHERE `featured_image` LIKE '%robbani%' OR `featured_image` LIKE '%ishum%';
 
 -- ------------------------------------------------------------------------------
--- 4. INSERT DATA AWAL HERO SLIDES (Jika Masih Kosong)
+-- 4. INSERT DATA AWAL SLIDER HERO BERANDA (Jika Masih Kosong)
 -- ------------------------------------------------------------------------------
-INSERT INTO `hero_slides` (`id`, `badge`, `title`, `subtitle`, `image`, `button_text_1`, `button_url_1`, `button_text_2`, `button_url_2`, `order`, `is_active`, `created_at`, `updated_at`)
+INSERT INTO `hero_slides` (`id`, `badge`, `title`, `subtitle`, `image`, `btn_primary_text`, `btn_primary_url`, `btn_secondary_text`, `btn_secondary_url`, `order`, `is_active`, `created_at`, `updated_at`)
 SELECT 1, 'Pondok Pesantren Raudhatul Ulum Sakatiga', 'Mencetak Generasi Ulama, Pemimpin, & Intelektual Muslim Berakhlakul Karimah', 'Pendidikan pesantren modern terpadu dengan kedalaman kitab kuning, hafalan Al-Qur\'an 30 Juz mutqin, dan kecakapan dwibahasa Arab & Inggris aktif.', '/images/hero-1.webp', 'Daftar Santri Baru (PSB)', 'https://santri.ppru.ac.id', 'Jelajahi Profil Pondok', '/tentang-kami', 1, 1, NOW(), NOW()
 FROM DUAL WHERE NOT EXISTS (SELECT 1 FROM `hero_slides` WHERE `id` = 1);
 
-INSERT INTO `hero_slides` (`id`, `badge`, `title`, `subtitle`, `image`, `button_text_1`, `button_url_1`, `button_text_2`, `button_url_2`, `order`, `is_active`, `created_at`, `updated_at`)
+INSERT INTO `hero_slides` (`id`, `badge`, `title`, `subtitle`, `image`, `btn_primary_text`, `btn_primary_url`, `btn_secondary_text`, `btn_secondary_url`, `order`, `is_active`, `created_at`, `updated_at`)
 SELECT 2, 'Pusat Keunggulan Islam Sumatera Selatan', 'Perpaduan Turots Kitab Kuning, Tahfidzul Qur\'an, & Sains Modern', 'Membina ribuan santri dari seluruh penjuru nusantara dalam suasana asri, disiplin 24 jam, dan penuh kekeluargaan.', '/images/hero-2.webp', 'Unit Pendidikan', '/pendidikan', 'Program Unggulan', '/program-unggulan', 2, 1, NOW(), NOW()
 FROM DUAL WHERE NOT EXISTS (SELECT 1 FROM `hero_slides` WHERE `id` = 2);
 
-INSERT INTO `hero_slides` (`id`, `badge`, `title`, `subtitle`, `image`, `button_text_1`, `button_url_1`, `button_text_2`, `button_url_2`, `order`, `is_active`, `created_at`, `updated_at`)
+INSERT INTO `hero_slides` (`id`, `badge`, `title`, `subtitle`, `image`, `btn_primary_text`, `btn_primary_url`, `btn_secondary_text`, `btn_secondary_url`, `order`, `is_active`, `created_at`, `updated_at`)
 SELECT 3, 'Penerimaan Santri Baru', 'Pendaftaran Santri Baru (PSB) Tahun Ajaran Resmi Dibuka', 'Mari bergabung bersama keluarga besar Pondok Pesantren Raudhatul Ulum Sakatiga. Kuota terbatas untuk setiap jenjang pendidikan.', '/images/hero-3.webp', 'Daftar Sekarang', 'https://santri.ppru.ac.id', 'Informasi PSB', '/informasi/brosur-psb', 3, 1, NOW(), NOW()
 FROM DUAL WHERE NOT EXISTS (SELECT 1 FROM `hero_slides` WHERE `id` = 3);
 

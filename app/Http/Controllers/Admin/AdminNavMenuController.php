@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\ActivityLog;
 use App\Models\NavMenu;
+use App\Services\CmsAutoHealService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -12,6 +13,8 @@ class AdminNavMenuController extends Controller
 {
     public function index()
     {
+        CmsAutoHealService::ensureNavMenusTableExists();
+
         $headerMenus = NavMenu::where('location', 'header')
             ->whereNull('parent_id')
             ->with(['children'])
