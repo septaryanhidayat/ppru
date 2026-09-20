@@ -347,7 +347,7 @@ class CmsAutoHealService
                     'slug' => 'drs-kh-karim-kasim',
                     'position' => 'Ketua Dewan Pembina YAPIRUS',
                     'fraction' => 'Yayasan',
-                    'photo' => '/uploads/default-avatar.webp',
+                    'photo' => '/uploads/avatar-neutral-gray.svg',
                     'profile_summary' => 'Ketua Dewan Pembina Yayasan Perguruan Islam Raudhatul Ulum Sakatiga (YAPIRUS). Dedikasi lebih dari 40 tahun dalam pembinaan akhlak dan tarbiyah.',
                     'education' => 'Sarjana Pendidikan Islam',
                     'order' => 2,
@@ -357,7 +357,7 @@ class CmsAutoHealService
                     'slug' => 'h-faisal-abdullah-st',
                     'position' => 'Ketua Umum Pengurus YAPIRUS',
                     'fraction' => 'Yayasan',
-                    'photo' => '/uploads/default-avatar.webp',
+                    'photo' => '/uploads/avatar-neutral-gray.svg',
                     'profile_summary' => 'Ketua Umum Badan Pengurus Yayasan Perguruan Islam Raudhatul Ulum Sakatiga.',
                     'education' => 'Sarjana Teknik',
                     'order' => 3,
@@ -367,7 +367,7 @@ class CmsAutoHealService
                     'slug' => 'ustadz-h-ahmad-dailami-spdi',
                     'position' => 'Sekretaris Yayasan YAPIRUS',
                     'fraction' => 'Yayasan',
-                    'photo' => '/uploads/default-avatar.webp',
+                    'photo' => '/uploads/avatar-neutral-gray.svg',
                     'profile_summary' => 'Sekretaris Umum Yayasan Perguruan Islam Raudhatul Ulum Sakatiga.',
                     'education' => 'S1 Pendidikan Agama Islam',
                     'order' => 4,
@@ -377,7 +377,7 @@ class CmsAutoHealService
                     'slug' => 'h-m-husin-msi',
                     'position' => 'Bendahara Yayasan YAPIRUS',
                     'fraction' => 'Yayasan',
-                    'photo' => '/uploads/default-avatar.webp',
+                    'photo' => '/uploads/avatar-neutral-gray.svg',
                     'profile_summary' => 'Bendahara Umum Yayasan Perguruan Islam Raudhatul Ulum Sakatiga.',
                     'education' => 'Magister Sains Manajemen',
                     'order' => 5,
@@ -387,7 +387,7 @@ class CmsAutoHealService
                     'slug' => 'ustadz-h-abdul-halim-lc',
                     'position' => 'Wakil Mudir Bidang Pendidikan & Pengajaran',
                     'fraction' => 'Yayasan',
-                    'photo' => '/uploads/default-avatar.webp',
+                    'photo' => '/uploads/avatar-neutral-gray.svg',
                     'profile_summary' => 'Wakil Mudir PPRU membidangi kurikulum pesantren, Kemenag, dan muadalah Al-Azhar Kairo.',
                     'education' => 'Alumni Universitas Al-Azhar Kairo',
                     'order' => 6,
@@ -397,7 +397,7 @@ class CmsAutoHealService
                     'slug' => 'ustadz-h-syamsuddin-sag',
                     'position' => 'Wakil Mudir Bidang Kepengasuhan Santri',
                     'fraction' => 'Yayasan',
-                    'photo' => '/uploads/default-avatar.webp',
+                    'photo' => '/uploads/avatar-neutral-gray.svg',
                     'profile_summary' => 'Wakil Mudir PPRU membidangi kedisiplinan asrama, bahasa Arab & Inggris, dan pengasuhan santri.',
                     'education' => 'Sarjana Agama',
                     'order' => 7,
@@ -407,7 +407,7 @@ class CmsAutoHealService
                     'slug' => 'ir-h-ahmad-fauzi',
                     'position' => 'Wakil Mudir Bidang Pembangunan & Sarana',
                     'fraction' => 'Yayasan',
-                    'photo' => '/uploads/default-avatar.webp',
+                    'photo' => '/uploads/avatar-neutral-gray.svg',
                     'profile_summary' => 'Wakil Mudir PPRU membidangi perencanaan fisik kampus, sarana prasarana, dan unit usaha pesantren.',
                     'education' => 'Sarjana Teknik Sipil',
                     'order' => 8,
@@ -423,6 +423,25 @@ class CmsAutoHealService
                     array_merge($d, ['unit_pendidikan_id' => null])
                 );
             }
+
+            // Sanitasi ketat: Seluruh anggota dewan selain Mudir yang fotonya acak/santri/placeholder diubah ke avatar abu-abu
+            AnggotaDewan::where('slug', '!=', 'kh-tolat-wafa-ahmad-lc')
+                ->where(function ($q) {
+                    $q->whereNull('photo')
+                        ->orWhere('photo', '')
+                        ->orWhere('photo', 'like', '%default-avatar%')
+                        ->orWhere('photo', 'like', '%santri%')
+                        ->orWhere('photo', 'like', '%kbm%')
+                        ->orWhere('photo', 'like', '%ngaji%')
+                        ->orWhere('photo', 'like', '%panahan%')
+                        ->orWhere('photo', 'like', '%waw19%')
+                        ->orWhere('photo', 'like', '%upacara%')
+                        ->orWhere('photo', 'like', '%kepala-sekolah%')
+                        ->orWhere('photo', 'like', '%kepsek%')
+                        ->orWhere('photo', 'like', '%drone%')
+                        ->orWhere('photo', 'like', '%logo%');
+                })
+                ->update(['photo' => '/uploads/avatar-neutral-gray.svg']);
         } catch (\Throwable $e) {
             Log::error('CmsAutoHealService::ensureDewanAsatidzSeeded error: '.$e->getMessage());
         }

@@ -3,6 +3,7 @@
 use App\Models\Agenda;
 use App\Models\AnggotaDewan;
 use App\Models\Pengumuman;
+use App\Models\Post;
 use App\Models\UnitPendidikan;
 use App\Models\User;
 use App\Models\Video;
@@ -116,4 +117,44 @@ test('unit page displays 8 teachers, 4 TVRU videos, 4 prestasi, 4 ekskul, and 4 
         $response->assertSee('Dewan Asatidz');
         $response->assertSee('BG311kT-yXc');
     }
+});
+
+test('dewan members without genuine portraits strictly return neutral gray avatar', function () {
+    $this->seed(PpruDemoContentSeeder::class);
+
+    $mudir = AnggotaDewan::where('slug', 'kh-tolat-wafa-ahmad-lc')->first();
+    expect($mudir)->not->toBeNull()
+        ->and($mudir->photo_url)->toBe('/uploads/kh-tolat-wafa-ahmad.webp');
+
+    $otherYayasan = AnggotaDewan::where('fraction', 'Yayasan')
+        ->where('slug', '!=', 'kh-tolat-wafa-ahmad-lc')
+        ->get();
+
+    expect($otherYayasan->count())->toBe(7);
+    foreach ($otherYayasan as $d) {
+        expect($d->photo_url)->toBe('/uploads/avatar-neutral-gray.svg');
+    }
+
+    // Even if photo column has random activity image, accessor must protect and sanitize it
+    $bogus = AnggotaDewan::create([
+        'name' => 'Guru Percobaan',
+        'slug' => 'guru-percobaan-'.time(),
+        'position' => 'Pengajar',
+        'photo' => '/uploads/official/kbm-santri-0054.webp',
+    ]);
+    expect($bogus->photo_url)->toBe('/uploads/avatar-neutral-gray.svg');
+});
+
+test('unit page renders dynamic photo gallery from posts table and allows admin CRUD', function () {
+    $this->seed(PpruDemoContentSeeder::class);
+
+    $unit = UnitPendidikan::where('slug', 'madrasah-aliyah-raudhatul-ulum')->first();
+    expect($unit)->not->toBeNull();
+
+    $galleryPost = Post::where('type', 'gallery')->where('unit_pendidikan_id', $unit->id)->first();
+    expect($galleryPost)->not->toBeNull();
+
+    $response = $this->get(route('pendidikan.show', $unit->slug));
+    $response->assertStatus(200);
+    $response->assertSee($galleryPost->title);
 });

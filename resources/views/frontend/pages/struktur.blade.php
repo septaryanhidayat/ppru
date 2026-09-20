@@ -91,7 +91,7 @@
                         <div>
                             <div class="flex items-center gap-4 mb-4">
                                 <div class="w-16 h-16 rounded-2xl bg-emerald-50 text-slate-700 flex items-center justify-center font-bold text-lg shadow-sm ring-2 ring-emerald-200 overflow-hidden shrink-0 aspect-square">
-                                    <img src="{{ $d->photo_url }}" alt="{{ $d->name }}" width="64" height="64" loading="lazy" decoding="async" class="w-full h-full object-cover object-top" onerror="this.src='/uploads/default-avatar.webp'">
+                                    <img src="{{ $d->photo_url }}" alt="{{ $d->name }}" width="64" height="64" loading="lazy" decoding="async" class="w-full h-full object-cover object-top" onerror="this.src='/uploads/avatar-neutral-gray.svg'">
                                 </div>
                                 <div class="min-w-0 flex-1">
                                     <h4 class="text-sm font-black text-gray-900 truncate group-hover:text-[#00843d] transition-colors leading-snug">{{ $d->name }}</h4>
@@ -158,7 +158,7 @@
                                     </td>
                                     <td class="py-3.5 px-4">
                                         <div class="flex items-center gap-3">
-                                            <img src="{{ $d->photo_url }}" alt="{{ $d->name }}" class="w-10 h-10 rounded-xl object-cover object-top border border-emerald-200 shadow-xs shrink-0" onerror="this.src='/uploads/default-avatar.webp'">
+                                            <img src="{{ $d->photo_url }}" alt="{{ $d->name }}" class="w-10 h-10 rounded-xl object-cover object-top border border-emerald-200 shadow-xs shrink-0" onerror="this.src='/uploads/avatar-neutral-gray.svg'">
                                             <div>
                                                 <div class="font-extrabold text-gray-900 text-sm">{{ $d->name }}</div>
                                                 <span class="text-[10px] text-emerald-700 font-semibold">{{ $d->fraction ?: 'Yayasan YAPIRUS' }}</span>

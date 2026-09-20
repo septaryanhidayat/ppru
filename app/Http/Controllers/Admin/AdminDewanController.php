@@ -89,7 +89,7 @@ class AdminDewanController extends Controller
             'unit_pendidikan_id' => $unitId,
             'profile_summary' => $validated['profile_summary'] ?? '',
             'education' => $validated['education'] ?? '',
-            'photo' => $photoPath ?? '/uploads/official/logo-ru-berwarna.png',
+            'photo' => $photoPath ?? '/uploads/avatar-neutral-gray.svg',
             'order' => $validated['order'] ?? 0,
         ]);
 

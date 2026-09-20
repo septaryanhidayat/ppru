@@ -1111,7 +1111,7 @@
             @foreach($dewan as $index => $d)
             <div class="bg-white rounded-3xl p-4 shadow-xs hover:shadow-xl border border-gray-100 text-center group transition transform hover:-translate-y-1.5 reveal-fade-up delay-{{ $index + 1 }}">
                 <div class="h-68 rounded-2xl overflow-hidden mb-3.5 bg-gray-100 relative">
-                    <img src="{{ $d->photo_url }}" alt="Foto {{ $d->name }} - {{ $d->position }}" class="w-full h-full object-cover object-top group-hover:scale-105 transition duration-300" onerror="this.src='/uploads/default-avatar.webp'">
+                    <img src="{{ $d->photo_url }}" alt="Foto {{ $d->name }} - {{ $d->position }}" class="w-full h-full object-cover object-top group-hover:scale-105 transition duration-300" onerror="this.src='/uploads/avatar-neutral-gray.svg'">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end justify-center p-3">
                         <span class="text-white text-xs font-bold">{{ $d->position }}</span>
                     </div>
@@ -1131,7 +1131,7 @@
             @foreach($dewan as $index => $d)
             <div class="bg-white rounded-2xl p-2.5 shadow-xs border border-gray-100 text-center reveal-fade-up delay-{{ $index + 1 }}">
                 <div class="h-44 rounded-xl overflow-hidden mb-2 bg-gray-100">
-                    <img src="{{ $d->photo_url }}" alt="Foto {{ $d->name }} - {{ $d->position }}" class="w-full h-full object-cover object-top" onerror="this.src='/uploads/default-avatar.webp'">
+                    <img src="{{ $d->photo_url }}" alt="Foto {{ $d->name }} - {{ $d->position }}" class="w-full h-full object-cover object-top" onerror="this.src='/uploads/avatar-neutral-gray.svg'">
                 </div>
                 <h3 class="font-extrabold text-xs text-gray-900 leading-tight">
                     {{ $d->name }}

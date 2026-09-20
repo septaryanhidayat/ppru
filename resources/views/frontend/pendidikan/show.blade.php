@@ -712,17 +712,22 @@
                 </a>
             </div>
 
-            @if(isset($unitGallery) && !empty($unitGallery))
+            @if(isset($unitGallery) && (is_iterable($unitGallery) ? count($unitGallery) > 0 : !empty($unitGallery)))
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                     @foreach($unitGallery as $g)
+                        @php
+                            $gImage = $g instanceof \App\Models\Post ? $g->featured_image_url : ($g['image'] ?? '/uploads/official/kbm-santri-0054.webp');
+                            $gTitle = $g instanceof \App\Models\Post ? $g->title : ($g['title'] ?? 'Dokumentasi Santri');
+                            $gBadge = $g instanceof \App\Models\Post ? ($unit->short_name ?: 'Aktivitas') : ($g['badge'] ?? 'Aktivitas');
+                        @endphp
                         <div class="aspect-4/3 rounded-2xl overflow-hidden group relative shadow-xs bg-slate-100 border border-slate-200/60">
-                            <img src="{{ $g['image'] }}" 
-                                 alt="{{ $g['title'] }}" 
+                            <img src="{{ $gImage }}" 
+                                 alt="{{ $gTitle }}" 
                                  onerror="this.onerror=null;this.src='/uploads/official/kbm-santri-0054.webp'"
                                  class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
                             <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex flex-col justify-end p-3.5">
-                                <span class="text-amber-300 text-[10px] font-black uppercase tracking-wider mb-0.5">{{ $g['badge'] }}</span>
-                                <span class="text-white text-xs font-bold line-clamp-2 leading-snug">{{ $g['title'] }}</span>
+                                <span class="text-amber-300 text-[10px] font-black uppercase tracking-wider mb-0.5">{{ $gBadge }}</span>
+                                <span class="text-white text-xs font-bold line-clamp-2 leading-snug">{{ $gTitle }}</span>
                             </div>
                         </div>
                     @endforeach

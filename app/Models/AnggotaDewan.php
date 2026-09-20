@@ -30,13 +30,27 @@ class AnggotaDewan extends Model
 
     public function getPhotoUrlAttribute(): string
     {
-        if (! empty($this->photo)) {
-            $path = parse_url($this->photo, PHP_URL_PATH);
+        $neutralGray = '/uploads/avatar-neutral-gray.svg';
 
-            return '/'.ltrim($path, '/');
+        if (empty($this->photo)) {
+            return $neutralGray;
         }
 
-        return '/uploads/default-avatar.webp';
+        $path = parse_url($this->photo, PHP_URL_PATH);
+        $normalized = '/'.ltrim($path, '/');
+
+        // Only Mudir KH. Tol'at Wafa Ahmad has an authentic official portrait
+        if (str_contains($normalized, 'kh-tolat-wafa-ahmad') || str_contains($normalized, 'mudir-ppru')) {
+            return $normalized;
+        }
+
+        // Genuine custom teacher uploads in /uploads/dewan/
+        if (str_starts_with($normalized, '/uploads/dewan/')) {
+            return $normalized;
+        }
+
+        // Strictly reject random student/ceremony/activity/drone/placeholder images for teachers and leaders
+        return $neutralGray;
     }
 
     /**
