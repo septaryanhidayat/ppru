@@ -122,7 +122,7 @@
                     </div>
                     <div class="min-w-0 flex-1">
                         <span class="text-[10px] font-extrabold uppercase tracking-wider text-amber-800 block">Kepala / Mudir Unit</span>
-                        <h3 class="text-sm font-black text-gray-900 mt-0.5 leading-snug line-clamp-2">{{ $unit->head_name ?? 'Ustadz Fulan' }}</h3>
+                        <h3 class="text-sm font-black text-gray-900 mt-0.5 leading-snug line-clamp-2">{{ $unit->head_name ?: 'Pimpinan Lembaga' }}</h3>
                     </div>
                 </div>
                 <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
@@ -193,7 +193,7 @@
                         </span>
                     </div>
                     <div class="w-full pt-4 mt-2 border-t border-slate-200/70">
-                        <h3 class="font-black text-base sm:text-lg text-gray-900 leading-snug">{{ $unit->head_name ?? 'Ustadz Fulan' }}</h3>
+                        <h3 class="font-black text-base sm:text-lg text-gray-900 leading-snug">{{ $unit->head_name ?: 'Pimpinan Lembaga' }}</h3>
                         <p class="text-xs text-[#00843d] font-bold mt-1">Kepala {{ $unit->name }}</p>
                         <p class="text-[11px] text-gray-400 mt-0.5">Pondok Pesantren Raudhatul Ulum Sakatiga</p>
                     </div>

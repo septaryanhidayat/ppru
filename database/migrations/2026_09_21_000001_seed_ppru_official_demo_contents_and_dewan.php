@@ -1,6 +1,6 @@
 <?php
 
-use Database\Seeders\PpruDemoContentSeeder;
+use App\Services\CmsAutoHealService;
 use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration
@@ -10,8 +10,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        // Jalankan seeder resmi agar langsung aktif di MySQL cPanel saat `php artisan migrate --force`
-        (new PpruDemoContentSeeder)->run();
+        // Jalankan auto-heal resmi agar langsung aktif di MySQL cPanel saat `php artisan migrate --force`
+        CmsAutoHealService::ensureOfficialDemoContentsSeeded();
     }
 
     /**

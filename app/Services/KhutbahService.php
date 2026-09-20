@@ -33,9 +33,9 @@ class KhutbahService
         }
 
         // 2. Cek apakah ada naskah khutbah di database
-        $existingCount = Post::whereHas('categories', function ($q) {
-            $q->whereIn('slug', ['khutbah', 'khutbah-jumat', 'taujih'])
-                ->orWhere('name', 'like', '%khutbah%');
+        $existingCount = Post::whereHas('categories', function ($q) use ($category) {
+            $q->where('categories.id', $category->id)
+                ->orWhereIn('categories.slug', ['khutbah', 'khutbah-jumat']);
         })->orWhere('type', 'khutbah')->count();
 
         if ($existingCount < 3) {
