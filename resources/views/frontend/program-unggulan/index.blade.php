@@ -38,7 +38,7 @@
                 <div>
                     {{-- FOTO DOKUMENTASI PROGRAM --}}
                     <div class="h-48 sm:h-52 w-full overflow-hidden bg-slate-100 relative">
-                        <img src="{{ $p->thumbnail_url }}" alt="{{ $p->name }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='/images/hero-1.webp'">
+                        <img src="{{ $p->thumbnail_url }}" alt="{{ $p->name }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.onerror=null;this.src='/images/hero-1.webp'">
                         <span class="absolute top-3.5 left-3.5 bg-[#00913e] text-white text-[10px] font-bold px-3 py-1 rounded-full shadow-md uppercase tracking-wider">
                             {{ $p->address ?: 'Program Unggulan' }}
                         </span>

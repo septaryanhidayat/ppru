@@ -42,7 +42,7 @@
                 </div>
                 <div class="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left space-y-3 sm:space-y-0 sm:space-x-3 pt-4 border-t border-gray-50">
                     <div class="w-12 h-12 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center flex-shrink-0 overflow-hidden shadow-inner mx-auto sm:mx-0">
-                        <img src="{{ $testi->photo_url }}" alt="{{ $testi->name }}" class="w-full h-full object-cover" onerror="this.src='/uploads/avatar-neutral-gray.svg'">
+                        <img src="{{ $testi->photo_url }}" alt="{{ $testi->name }}" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='/uploads/avatar-neutral-gray.svg'">
                     </div>
                     <div class="min-w-0">
                         <span class="block font-bold text-sm text-gray-900 text-center sm:text-left">{{ $testi->name }}</span>

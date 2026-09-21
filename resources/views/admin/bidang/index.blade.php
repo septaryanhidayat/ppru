@@ -23,7 +23,7 @@
                     <div>
                         {{-- Foto Thumbnail Fasilitas --}}
                         <div class="h-44 w-full bg-slate-200 relative overflow-hidden">
-                            <img src="{{ $b->thumbnail_url }}" alt="{{ $b->name }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='/images/hero-1.webp'">
+                            <img src="{{ $b->thumbnail_url }}" alt="{{ $b->name }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.onerror=null;this.src='/images/hero-1.webp'">
                             <span class="absolute top-2.5 left-2.5 bg-black/60 backdrop-blur-xs text-white text-[10px] font-bold px-2.5 py-1 rounded-lg">
                                 #{{ $b->order }}
                             </span>
@@ -33,7 +33,7 @@
                             <div class="flex items-center space-x-3">
                                 <div class="w-10 h-10 rounded-xl bg-emerald-100 text-[#00913e] flex items-center justify-center text-sm shrink-0 overflow-hidden border border-emerald-200">
                                     @if($b->is_image_icon)
-                                        <img src="{{ $b->icon }}" alt="{{ $b->name }}" class="w-full h-full object-contain p-1" onerror="this.src='/uploads/2025/09/logo-thumbnail.webp'">
+                                        <img src="{{ $b->icon }}" alt="{{ $b->name }}" class="w-full h-full object-contain p-1" onerror="this.onerror=null;this.src='/uploads/2025/09/logo-thumbnail.webp'">
                                     @else
                                         <i class="{{ $b->icon ?: 'fa-solid fa-school' }}"></i>
                                     @endif

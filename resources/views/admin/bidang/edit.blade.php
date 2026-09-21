@@ -28,7 +28,7 @@
             <div class="p-5 bg-emerald-50/40 rounded-2xl border border-emerald-100 space-y-4">
                 <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
                     <div class="w-28 h-20 rounded-xl overflow-hidden bg-slate-200 border border-slate-300 shrink-0 shadow-sm">
-                        <img src="{{ $bidang->thumbnail_url }}" alt="{{ $bidang->name }}" class="w-full h-full object-cover" onerror="this.src='/images/hero-1.webp'">
+                        <img src="{{ $bidang->thumbnail_url }}" alt="{{ $bidang->name }}" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='/images/hero-1.webp'">
                     </div>
                     <div class="flex-1">
                         <label class="block text-xs font-bold text-[#00913e] uppercase tracking-wider mb-1">
@@ -56,7 +56,7 @@
             <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200 flex items-center space-x-4">
                 <div class="w-12 h-12 rounded-xl bg-emerald-100 text-[#00913e] flex items-center justify-center text-lg shrink-0 overflow-hidden border border-emerald-200">
                     @if($bidang->is_image_icon)
-                        <img src="{{ $bidang->icon }}" alt="{{ $bidang->name }}" class="w-full h-full object-contain p-1" onerror="this.src='/uploads/2025/09/logo-thumbnail.webp'">
+                        <img src="{{ $bidang->icon }}" alt="{{ $bidang->name }}" class="w-full h-full object-contain p-1" onerror="this.onerror=null;this.src='/uploads/2025/09/logo-thumbnail.webp'">
                     @else
                         <i class="{{ $bidang->icon ?: 'fa-solid fa-school' }}"></i>
                     @endif

@@ -56,7 +56,7 @@
                 <div class="md:col-span-5 space-y-3">
                     <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider">Pratinjau Gambar Banner Saat Ini</label>
                     <div class="rounded-2xl overflow-hidden border-2 border-slate-200 bg-slate-900 shadow-md aspect-square flex items-center justify-center p-2 group relative">
-                        <img id="popupPreviewImg" src="{{ asset($popup['image']) }}" alt="Preview Popup" class="max-h-full max-w-full object-contain rounded-xl" onerror="this.src='/uploads/logo-ppru-square.png'">
+                        <img id="popupPreviewImg" src="{{ asset($popup['image']) }}" alt="Preview Popup" class="max-h-full max-w-full object-contain rounded-xl" onerror="this.onerror=null;this.src='/uploads/logo-ppru-square.png'">
                         <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center text-white text-xs font-bold pointer-events-none">
                             Pratinjau Banner
                         </div>

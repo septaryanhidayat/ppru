@@ -42,7 +42,7 @@
                         <div class="flex items-center space-x-3 pt-3 border-t border-slate-200/60">
                             <div class="w-10 h-10 rounded-full bg-red-100 text-[#da251c] font-bold flex items-center justify-center flex-shrink-0 overflow-hidden text-xs shadow-xs">
                                 @if($t->photo)
-                                    <img src="{{ $t->photo_url }}" alt="{{ $t->name }}" class="w-full h-full object-cover" onerror="this.src='/uploads/2023/08/user-2.webp'">
+                                    <img src="{{ $t->photo_url }}" alt="{{ $t->name }}" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='/uploads/2023/08/user-2.webp'">
                                 @else
                                     {{ substr($t->name, 0, 1) }}
                                 @endif

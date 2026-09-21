@@ -42,7 +42,7 @@
                         <img src="{{ $eb->cover_image ?: '/uploads/covers/cover-tahfidz-mutqin.webp' }}" 
                              alt="{{ $eb->title }}" 
                              class="h-full w-full object-cover object-center group-hover:scale-105 transition duration-500"
-                             onerror="this.src='/uploads/covers/cover-tahfidz-mutqin.webp'">
+                             onerror="this.onerror=null;this.src='/uploads/covers/cover-tahfidz-mutqin.webp'">
                         <span class="absolute top-3 left-3 bg-[#00913e] text-white text-[10px] font-bold px-3 py-1 rounded-full shadow-md">
                             {{ $eb->category_type ?? 'E-Book Resmi' }}
                         </span>

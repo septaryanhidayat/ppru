@@ -38,7 +38,7 @@
                              alt="Thumbnail video: {{ $vid->title }}" 
                              class="absolute top-0 left-0 w-full h-full object-cover transition-transform duration-500 group-hover/vid:scale-105"
                              loading="lazy"
-                             onerror="this.src='https://img.youtube.com/vi/{{ $vid->youtube_id }}/hqdefault.jpg'">
+                             onerror="this.onerror=null;this.src='https://img.youtube.com/vi/{{ $vid->youtube_id }}/hqdefault.jpg'">
                         <div class="absolute inset-0 bg-black/30 group-hover/vid:bg-black/10 transition flex items-center justify-center" aria-hidden="true">
                             <div class="w-14 h-14 rounded-full bg-red-600/90 text-white flex items-center justify-center shadow-xl group-hover/vid:scale-110 group-hover/vid:bg-red-600 transition-all">
                                 <i class="fa-solid fa-play text-xl ml-1"></i>

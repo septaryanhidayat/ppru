@@ -41,7 +41,7 @@
         {{-- PROFIL PIMPINAN HEADER --}}
         <div class="flex flex-col md:flex-row items-center gap-8 mb-8 pb-8 border-b border-gray-100 text-center md:text-left">
             <div class="w-48 h-56 sm:w-56 sm:h-68 rounded-3xl overflow-hidden shadow-2xl border-4 border-white ring-4 ring-emerald-100 flex-shrink-0 bg-emerald-50 mx-auto md:mx-0">
-                <img src="{{ asset($kepsekPhoto) }}" alt="{{ $kepsekName }} - {{ $kepsekPos }}" class="w-full h-full object-cover object-top" onerror="this.src='/uploads/logo-ppru-square.png'">
+                <img src="{{ asset($kepsekPhoto) }}" alt="{{ $kepsekName }} - {{ $kepsekPos }}" class="w-full h-full object-cover object-top" onerror="this.onerror=null;this.src='/uploads/logo-ppru-square.png'">
             </div>
             <div class="space-y-2 text-center md:text-left">
                 <span class="inline-block bg-emerald-100 text-school-green text-xs font-black px-3.5 py-1.5 rounded-full uppercase tracking-wider">

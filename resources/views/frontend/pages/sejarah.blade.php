@@ -85,7 +85,7 @@
                     @forelse($latestPosts ?? [] as $lp)
                         <a href="{{ route('artikel.show', $lp->slug) }}" class="flex items-center space-x-3 group">
                             <div class="w-16 h-16 rounded-xl overflow-hidden bg-gray-100 flex-shrink-0">
-                                <img src="{{ $lp->featured_image }}" alt="{{ $lp->title }}" class="w-full h-full object-cover group-hover:scale-110 transition duration-300" onerror="this.src='/uploads/logo-ppru-banner.png'">
+                                <img src="{{ $lp->featured_image }}" alt="{{ $lp->title }}" class="w-full h-full object-cover group-hover:scale-110 transition duration-300" onerror="this.onerror=null;this.src='/uploads/logo-ppru-banner.png'">
                             </div>
                             <div>
                                 <h4 class="text-xs font-bold text-gray-800 group-hover:text-[#00913e] transition line-clamp-2 leading-snug">

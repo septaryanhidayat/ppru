@@ -67,7 +67,7 @@
                 <div class="bg-slate-50 rounded-2xl p-5 border border-slate-200/80 flex flex-col justify-between space-y-4 hover:shadow-md transition">
                     <div class="text-center space-y-3">
                         <div class="w-24 h-24 mx-auto rounded-2xl bg-white p-1 shadow-xs border border-slate-200 overflow-hidden">
-                            <img src="{{ $d->photo }}" alt="{{ $d->name }}" class="w-full h-full object-cover object-top rounded-xl" onerror="this.src='/uploads/logo-ppru-square.png'">
+                            <img src="{{ $d->photo }}" alt="{{ $d->name }}" class="w-full h-full object-cover object-top rounded-xl" onerror="this.onerror=null;this.src='/uploads/logo-ppru-square.png'">
                         </div>
                         <div>
                             <h3 class="font-extrabold text-sm text-slate-900">{{ $d->name }}</h3>

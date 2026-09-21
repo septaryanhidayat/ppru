@@ -186,7 +186,7 @@
                     <div class="relative w-full flex-1 min-h-[260px] sm:min-h-[300px] rounded-2xl overflow-hidden shadow-sm border border-slate-200/80 bg-white p-4 flex items-center justify-center group">
                         <img src="{{ $unit->head_photo_url }}" 
                              alt="Kepala {{ $unit->name }}" 
-                             onerror="this.src='/uploads/avatar-neutral-gray.svg'"
+                             onerror="this.onerror=null;this.src='/uploads/avatar-neutral-gray.svg'"
                              class="w-full h-full max-h-56 sm:max-h-64 object-contain transform group-hover:scale-105 transition duration-500">
                         <span class="absolute bottom-3 left-3 right-3 bg-slate-900/85 backdrop-blur-xs text-white text-[11px] font-bold py-1.5 px-3 rounded-full shadow text-center">
                             Kepala {{ $unit->short_name ?: 'Unit' }}
@@ -443,7 +443,7 @@
                         <div class="bg-slate-50/80 rounded-2xl p-5 border border-slate-200/80 text-center hover:border-emerald-300 hover:bg-white hover:shadow-md transition duration-300 group flex flex-col justify-between h-full">
                             <div>
                                 <div class="w-24 h-24 mx-auto rounded-full overflow-hidden mb-3.5 bg-slate-100 shadow-xs border-2 border-slate-200 p-1 flex items-center justify-center">
-                                    <img src="{{ $t->photo_url }}" alt="{{ $t->name }}" class="w-full h-full object-contain rounded-full group-hover:scale-105 transition" onerror="this.src='/uploads/avatar-neutral-gray.svg'">
+                                    <img src="{{ $t->photo_url }}" alt="{{ $t->name }}" class="w-full h-full object-contain rounded-full group-hover:scale-105 transition" onerror="this.onerror=null;this.src='/uploads/avatar-neutral-gray.svg'">
                                 </div>
                                 <span class="inline-block px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 text-[10px] font-bold mb-1.5 border border-emerald-100">
                                     Jabatan #{{ $t->order }}
@@ -486,7 +486,7 @@
                         <article class="bg-slate-50/70 rounded-2xl overflow-hidden border border-gray-100 hover:shadow-md hover:border-emerald-200 transition group flex flex-col justify-between">
                             <div>
                                 <div class="aspect-video w-full bg-gray-200 overflow-hidden relative">
-                                    <img src="{{ $post->featured_image_url }}" alt="{{ $post->title }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='/uploads/campus-ppru-sakatiga.webp'">
+                                    <img src="{{ $post->featured_image_url }}" alt="{{ $post->title }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.onerror=null;this.src='/uploads/campus-ppru-sakatiga.webp'">
                                     <span class="absolute top-2.5 left-2.5 bg-[#00843d] text-white text-[9px] font-black px-2 py-0.5 rounded-full shadow">
                                         {{ $unit->short_name ?: 'Unit' }}
                                     </span>
@@ -533,7 +533,7 @@
                     @foreach($prestasi as $p)
                         <article class="bg-slate-50/70 rounded-2xl overflow-hidden border border-gray-100 hover:shadow-md hover:border-emerald-200 transition group flex flex-col">
                             <div class="aspect-video w-full bg-gray-200 overflow-hidden relative">
-                                <img src="{{ $p->featured_image_url }}" alt="{{ $p->title }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='/uploads/campus-ppru-sakatiga.webp'">
+                                <img src="{{ $p->featured_image_url }}" alt="{{ $p->title }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.onerror=null;this.src='/uploads/campus-ppru-sakatiga.webp'">
                                 <span class="absolute top-2.5 left-2.5 bg-amber-500 text-white text-[9px] font-black px-2 py-0.5 rounded-full shadow">
                                     Prestasi
                                 </span>
@@ -604,7 +604,7 @@
                             <div class="space-y-3">
                                 <div class="flex items-center space-x-3">
                                     <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-amber-400 bg-white/20 shrink-0">
-                                        <img src="{{ $testi->photo_url }}" alt="{{ $testi->name }}" class="w-full h-full object-cover" onerror="this.src='/uploads/avatar-neutral-gray.svg'">
+                                        <img src="{{ $testi->photo_url }}" alt="{{ $testi->name }}" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='/uploads/avatar-neutral-gray.svg'">
                                     </div>
                                     <div>
                                         <h4 class="font-black text-white text-sm">{{ $testi->name }}</h4>

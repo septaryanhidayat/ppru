@@ -23,7 +23,7 @@
                     <div>
                         {{-- Foto Cover Program --}}
                         <div class="h-44 w-full bg-slate-200 relative overflow-hidden">
-                            <img src="{{ $d->thumbnail_url }}" alt="{{ $d->name }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='/images/hero-1.webp'">
+                            <img src="{{ $d->thumbnail_url }}" alt="{{ $d->name }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.onerror=null;this.src='/images/hero-1.webp'">
                             <span class="absolute top-2.5 left-2.5 bg-[#00913e] text-white text-[10px] font-bold px-2.5 py-1 rounded-lg shadow-sm">
                                 {{ $d->address ?: 'Unggulan' }}
                             </span>

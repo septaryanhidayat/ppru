@@ -27,7 +27,7 @@
                     <img src="/uploads/official/logo-ru-berwarna.webp" 
                          alt="Logo Pondok Pesantren Raudhatul Ulum" 
                          class="h-14 w-auto object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)]" 
-                         onerror="this.src='/uploads/official/logo-ru-berwarna.png'">
+                         onerror="this.onerror=null;this.src='/uploads/official/logo-ru-berwarna.png'">
                     <div class="text-left">
                         <span class="text-[10px] uppercase font-bold tracking-widest text-emerald-400 block leading-tight">Pondok Pesantren</span>
                         <span class="text-lg font-black tracking-tight text-white block leading-tight">Raudhatul Ulum</span>

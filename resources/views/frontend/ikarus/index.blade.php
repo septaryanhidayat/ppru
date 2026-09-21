@@ -128,7 +128,7 @@
     @if(isset($featured) && !request('q'))
         <div class="bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-xl flex flex-col lg:flex-row group hover:shadow-2xl transition duration-300">
             <div class="lg:w-1/2 relative h-64 sm:h-80 lg:h-auto overflow-hidden bg-slate-900">
-                <img src="{{ $featured->featured_image ?: '/uploads/campus-ppru-sakatiga.webp' }}" alt="{{ $featured->title }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='/uploads/campus-ppru-sakatiga.webp'">
+                <img src="{{ $featured->featured_image ?: '/uploads/campus-ppru-sakatiga.webp' }}" alt="{{ $featured->title }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.onerror=null;this.src='/uploads/campus-ppru-sakatiga.webp'">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
                 <span class="absolute top-4 left-4 bg-gradient-to-r from-[#f59e0b] to-[#d97706] text-slate-950 font-black text-xs px-3.5 py-1 rounded-full shadow-md flex items-center space-x-1.5">
                     <i class="fa-solid fa-star"></i>
@@ -270,7 +270,7 @@
             <article class="bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition duration-300 flex flex-col group reveal-fade-up">
                 {{-- Gambar Cover --}}
                 <a href="{{ route('artikel.show', $post->slug) }}" class="block relative h-52 overflow-hidden bg-slate-900">
-                    <img src="{{ $post->featured_image ?: '/uploads/campus-ppru-sakatiga.webp' }}" alt="{{ $post->title }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='/uploads/campus-ppru-sakatiga.webp'">
+                    <img src="{{ $post->featured_image ?: '/uploads/campus-ppru-sakatiga.webp' }}" alt="{{ $post->title }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.onerror=null;this.src='/uploads/campus-ppru-sakatiga.webp'">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
                     
                     {{-- Badge Rubrik Berita vs Tulisan --}}

@@ -38,7 +38,7 @@
                     <div>
                         {{-- Photo Thumbnail --}}
                         <div class="relative h-52 w-full overflow-hidden bg-emerald-950">
-                            <img src="{{ $unit->thumbnail_url }}" alt="{{ $unit->name }}" class="w-full h-full object-cover group-hover:scale-108 transition duration-700 brightness-95" onerror="this.src='/uploads/logo-ppru-banner.png'">
+                            <img src="{{ $unit->thumbnail_url }}" alt="{{ $unit->name }}" class="w-full h-full object-cover group-hover:scale-108 transition duration-700 brightness-95" onerror="this.onerror=null;this.src='/uploads/logo-ppru-banner.png'">
                             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                             
                             {{-- Badges --}}

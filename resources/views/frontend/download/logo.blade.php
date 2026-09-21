@@ -52,7 +52,7 @@
 
         {{-- DISPLAY EMBLEM LOGO --}}
         <div class="w-64 h-64 sm:w-80 sm:h-80 mx-auto rounded-3xl bg-emerald-50/50 p-8 shadow-inner border border-emerald-100 flex items-center justify-center relative group">
-            <img src="{{ asset($masterPreview) }}" alt="{{ $logoSectionTitle }}" class="max-h-full max-w-full object-contain group-hover:scale-105 transition duration-500" onerror="this.src='/uploads/official/logo-ru-berwarna.png'">
+            <img src="{{ asset($masterPreview) }}" alt="{{ $logoSectionTitle }}" class="max-h-full max-w-full object-contain group-hover:scale-105 transition duration-500" onerror="this.onerror=null;this.src='/uploads/official/logo-ru-berwarna.png'">
         </div>
 
         <div>
@@ -187,7 +187,7 @@
             <div class="p-6 rounded-2xl bg-gray-50/90 border border-gray-200 flex flex-col justify-between gap-5 hover:border-emerald-300 transition">
                 <div class="flex items-center space-x-4">
                     <div class="w-20 h-20 rounded-2xl bg-white p-2 border border-gray-200 flex items-center justify-center flex-shrink-0 shadow-sm">
-                        <img src="{{ asset($v1Preview) }}" alt="{{ $v1Title }}" class="max-h-full max-w-full object-contain" onerror="this.src='/uploads/official/logo-branding-ru.png'">
+                        <img src="{{ asset($v1Preview) }}" alt="{{ $v1Title }}" class="max-h-full max-w-full object-contain" onerror="this.onerror=null;this.src='/uploads/official/logo-branding-ru.png'">
                     </div>
                     <div>
                         <h4 class="font-bold text-sm text-gray-900 leading-snug">{{ $v1Title }}</h4>
@@ -213,7 +213,7 @@
             <div class="p-6 rounded-2xl bg-gray-50/90 border border-gray-200 flex flex-col justify-between gap-5 hover:border-gray-400 transition">
                 <div class="flex items-center space-x-4">
                     <div class="w-20 h-20 rounded-2xl bg-white p-2 border border-gray-200 flex items-center justify-center flex-shrink-0 shadow-sm">
-                        <img src="{{ asset($v2Preview) }}" alt="{{ $v2Title }}" class="max-h-full max-w-full object-contain" onerror="this.src='/uploads/official/branding-ru-monokrom.png'">
+                        <img src="{{ asset($v2Preview) }}" alt="{{ $v2Title }}" class="max-h-full max-w-full object-contain" onerror="this.onerror=null;this.src='/uploads/official/branding-ru-monokrom.png'">
                     </div>
                     <div>
                         <h4 class="font-bold text-sm text-gray-900 leading-snug">{{ $v2Title }}</h4>
@@ -239,7 +239,7 @@
             <div class="p-6 rounded-2xl bg-amber-50/50 border border-amber-200 flex flex-col justify-between gap-5 hover:border-amber-400 transition">
                 <div class="flex items-center space-x-4">
                     <div class="w-20 h-20 rounded-2xl bg-white p-2 border border-amber-200 flex items-center justify-center flex-shrink-0 shadow-sm">
-                        <img src="{{ asset($v3Preview) }}" alt="{{ $v3Title }}" class="max-h-full max-w-full object-contain" onerror="this.src='/uploads/official/logo-spmb-2027.png'">
+                        <img src="{{ asset($v3Preview) }}" alt="{{ $v3Title }}" class="max-h-full max-w-full object-contain" onerror="this.onerror=null;this.src='/uploads/official/logo-spmb-2027.png'">
                     </div>
                     <div>
                         <h4 class="font-bold text-sm text-gray-900 leading-snug">{{ $v3Title }}</h4>
@@ -265,7 +265,7 @@
             <div class="p-6 rounded-2xl bg-emerald-50/50 border border-emerald-200 flex flex-col justify-between gap-5 hover:border-emerald-400 transition">
                 <div class="flex items-center space-x-4">
                     <div class="w-20 h-20 rounded-2xl bg-white p-2 border border-emerald-200 flex items-center justify-center flex-shrink-0 shadow-sm">
-                        <img src="{{ asset($v4Preview) }}" alt="{{ $v4Title }}" class="max-h-full max-w-full object-contain" onerror="this.src='/uploads/official/logo-ru-berwarna.png'">
+                        <img src="{{ asset($v4Preview) }}" alt="{{ $v4Title }}" class="max-h-full max-w-full object-contain" onerror="this.onerror=null;this.src='/uploads/official/logo-ru-berwarna.png'">
                     </div>
                     <div>
                         <h4 class="font-bold text-sm text-gray-900 leading-snug">{{ $v4Title }}</h4>

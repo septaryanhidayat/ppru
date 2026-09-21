@@ -484,7 +484,7 @@
                             <img src="{{ $settings['home_profile_poster_image'] ?? '/uploads/campus-ppru-sakatiga.webp' }}" 
                                  alt="Preview Poster Video" 
                                  class="w-full h-full object-cover"
-                                 onerror="this.src='/uploads/campus-ppru-sakatiga.webp'">
+                                 onerror="this.onerror=null;this.src='/uploads/campus-ppru-sakatiga.webp'">
                         </div>
                         <div class="flex-1 w-full space-y-2">
                             <input type="file" name="home_profile_poster_file" accept="image/*"

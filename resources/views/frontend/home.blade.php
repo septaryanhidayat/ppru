@@ -126,7 +126,7 @@
                aria-label="Menu {{ $qm->name }}">
                 <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-emerald-50 border border-emerald-200 group-hover:border-emerald-400 text-[#00843d] group-hover:bg-[#00843d] group-hover:text-white flex items-center justify-center mx-auto mb-1.5 sm:mb-2 shadow-xs group-hover:shadow-md group-hover:scale-110 transition-all duration-300">
                     @if(!empty($qm->is_image) && $qm->is_image)
-                        <img src="{{ $qm->icon }}" alt="Ikon {{ $qm->name }}" class="w-6 h-6 sm:w-6 sm:h-6 md:w-7 md:h-7 object-contain group-hover:scale-105 transition" onerror="this.src='/uploads/logo-ppru-square.png'">
+                        <img src="{{ $qm->icon }}" alt="Ikon {{ $qm->name }}" class="w-6 h-6 sm:w-6 sm:h-6 md:w-7 md:h-7 object-contain group-hover:scale-105 transition" onerror="this.onerror=null;this.src='/uploads/logo-ppru-square.png'">
                     @else
                         <i class="{{ $qm->icon }} text-base sm:text-lg md:text-xl transition-transform duration-300 group-hover:scale-105" aria-hidden="true"></i>
                     @endif
@@ -565,7 +565,7 @@
                 <div class="bg-white/10 rounded-3xl overflow-hidden border border-white/15 hover:border-amber-400/80 transition-all duration-300 group hover:-translate-y-1 shadow-lg flex flex-col justify-between">
                     <div>
                         <div class="h-48 w-full overflow-hidden bg-slate-800 relative">
-                            <img src="{{ $p->thumbnail_url }}" alt="{{ $p->name }}" class="w-full h-full object-cover group-hover:scale-108 transition duration-500" onerror="this.src='/uploads/logo-ppru-banner.png'">
+                            <img src="{{ $p->thumbnail_url }}" alt="{{ $p->name }}" class="w-full h-full object-cover group-hover:scale-108 transition duration-500" onerror="this.onerror=null;this.src='/uploads/logo-ppru-banner.png'">
                             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                             <span class="absolute top-3 left-3 bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 text-[10px] font-black px-3 py-1 rounded-full shadow">
                                 {{ $p->address ?: 'Program Unggulan' }}
@@ -606,7 +606,7 @@
                     <div class="absolute -bottom-4 -right-4 w-20 h-20 border-b-4 border-r-4 border-school-green rounded-br-3xl -z-0"></div>
                     
                     <div class="relative z-10 rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-gradient-to-b from-emerald-50 to-emerald-100 aspect-[4/5]">
-                        <img src="{{ $siteSettings['home_mudir_photo'] ?? ($siteSettings['mudir_photo'] ?? '/uploads/official/foto-mudir.webp') }}" alt="{{ $siteSettings['home_mudir_name'] ?? ($siteSettings['mudir_name'] ?? 'KH. Tol\'at Wafa Ahmad, Lc.') }}" class="w-full h-full object-cover object-top transform hover:scale-105 transition duration-500" onerror="this.src='/uploads/official/logo-ru-berwarna.png'">
+                        <img src="{{ $siteSettings['home_mudir_photo'] ?? ($siteSettings['mudir_photo'] ?? '/uploads/official/foto-mudir.webp') }}" alt="{{ $siteSettings['home_mudir_name'] ?? ($siteSettings['mudir_name'] ?? 'KH. Tol\'at Wafa Ahmad, Lc.') }}" class="w-full h-full object-cover object-top transform hover:scale-105 transition duration-500" onerror="this.onerror=null;this.src='/uploads/official/logo-ru-berwarna.png'">
                         <div class="absolute inset-0 bg-gradient-to-t from-gray-950/80 via-transparent to-transparent flex items-end p-5">
                             <div class="text-white">
                                 <span class="inline-block px-2.5 py-0.5 bg-school-gold text-gray-950 rounded-full text-[10px] font-black uppercase tracking-wider mb-1">
@@ -970,7 +970,7 @@
             <div class="lg:col-span-7 reveal-fade-up delay-1">
                 <article class="bg-white rounded-3xl shadow-sm hover:shadow-xl overflow-hidden border border-gray-100 h-full flex flex-col group transition duration-300">
                     <div class="relative h-64 sm:h-84 overflow-hidden bg-gray-100">
-                        <img src="{{ $featuredPost->featured_image_url }}" alt="{{ $featuredPost->title }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='/images/hero-1.webp'">
+                        <img src="{{ $featuredPost->featured_image_url }}" alt="{{ $featuredPost->title }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.onerror=null;this.src='/images/hero-1.webp'">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
                         @if($featuredPost->categories->isNotEmpty())
                         <span class="absolute top-4 left-4 bg-school-green text-white text-[11px] font-bold px-3 py-1 rounded-full shadow-md">
@@ -1012,7 +1012,7 @@
                 @foreach($sidePosts as $index => $sp)
                 <article class="bg-white rounded-2xl p-3.5 sm:p-4 shadow-xs hover:shadow-md border border-gray-100 hover:border-school-green/40 transition-all duration-300 flex items-center space-x-3.5 group reveal-fade-up delay-{{ $index + 2 }}">
                     <div class="w-24 h-24 sm:w-28 sm:h-24 rounded-2xl overflow-hidden bg-gray-100 flex-shrink-0 relative">
-                        <img src="{{ $sp->featured_image_url }}" alt="{{ $sp->title }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" onerror="this.src='/images/hero-2.webp'">
+                        <img src="{{ $sp->featured_image_url }}" alt="{{ $sp->title }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" onerror="this.onerror=null;this.src='/images/hero-2.webp'">
                     </div>
                     <div class="flex-1 min-w-0 space-y-1">
                         <div class="text-[11px] text-gray-400 flex items-center space-x-2">
@@ -1059,7 +1059,7 @@
             <article class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-xs hover:shadow-lg transition-all duration-300 flex flex-col group reveal-fade-up delay-{{ ($index % 4) + 1 }}">
                 <div class="aspect-[16/10] overflow-hidden rounded-t-2xl bg-gray-100 relative">
                     <a href="{{ route('artikel.show', $post->slug) }}" class="block w-full h-full" aria-label="Baca berita: {{ $post->title }}">
-                        <img src="{{ $post->featured_image_url }}" alt="{{ $post->title }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" onerror="this.src='/images/hero-2.webp'">
+                        <img src="{{ $post->featured_image_url }}" alt="{{ $post->title }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" onerror="this.onerror=null;this.src='/images/hero-2.webp'">
                     </a>
                     <span class="absolute bottom-2.5 left-2.5 bg-black/75 backdrop-blur-xs text-white text-[10px] font-bold px-2.5 py-0.5 rounded-md flex items-center">
                         <i class="fa-solid fa-medal text-amber-400 mr-1.5"></i> Prestasi
@@ -1112,7 +1112,7 @@
             @foreach($dewan as $index => $d)
             <div class="bg-white rounded-3xl p-4 shadow-xs hover:shadow-xl border border-gray-100 text-center group transition transform hover:-translate-y-1.5 reveal-fade-up delay-{{ $index + 1 }}">
                 <div class="h-68 rounded-2xl overflow-hidden mb-3.5 bg-gray-100 relative">
-                    <img src="{{ $d->photo_url }}" alt="Foto {{ $d->name }} - {{ $d->position }}" class="w-full h-full object-cover object-top group-hover:scale-105 transition duration-300" onerror="this.src='/uploads/avatar-neutral-gray.svg'">
+                    <img src="{{ $d->photo_url }}" alt="Foto {{ $d->name }} - {{ $d->position }}" class="w-full h-full object-cover object-top group-hover:scale-105 transition duration-300" onerror="this.onerror=null;this.src='/uploads/avatar-neutral-gray.svg'">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end justify-center p-3">
                         <span class="text-white text-xs font-bold">{{ $d->position }}</span>
                     </div>
@@ -1132,7 +1132,7 @@
             @foreach($dewan as $index => $d)
             <div class="bg-white rounded-2xl p-2.5 shadow-xs border border-gray-100 text-center reveal-fade-up delay-{{ $index + 1 }}">
                 <div class="h-44 rounded-xl overflow-hidden mb-2 bg-gray-100">
-                    <img src="{{ $d->photo_url }}" alt="Foto {{ $d->name }} - {{ $d->position }}" class="w-full h-full object-cover object-top" onerror="this.src='/uploads/avatar-neutral-gray.svg'">
+                    <img src="{{ $d->photo_url }}" alt="Foto {{ $d->name }} - {{ $d->position }}" class="w-full h-full object-cover object-top" onerror="this.onerror=null;this.src='/uploads/avatar-neutral-gray.svg'">
                 </div>
                 <h3 class="font-extrabold text-xs text-gray-900 leading-tight">
                     {{ $d->name }}
@@ -1242,7 +1242,7 @@
                         <template x-for="(item, idx) in items" :key="idx">
                             <div class="flex-shrink-0 px-2 sm:px-3" :style="'width: ' + (100 / perView) + '%'">
                                 <div class="relative h-64 sm:h-80 md:h-96 lg:h-[360px] rounded-3xl overflow-hidden shadow-2xl bg-neutral-900 border border-neutral-800/80 group">
-                                    <img :src="item.url" :alt="item.title" class="w-full h-full object-cover group-hover:scale-105 transition duration-700 ease-out" onerror="this.src='/images/hero-1.webp'">
+                                    <img :src="item.url" :alt="item.title" class="w-full h-full object-cover group-hover:scale-105 transition duration-700 ease-out" onerror="this.onerror=null;this.src='/images/hero-1.webp'">
                                     <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-5">
                                         <span class="text-xs sm:text-sm font-bold text-white leading-snug drop-shadow-md" x-text="item.title"></span>
                                     </div>
@@ -1302,7 +1302,7 @@
                         <template x-for="(item, idx) in items" :key="idx">
                             <div class="flex-shrink-0 px-2 sm:px-2.5" :style="'width: ' + (100 / perView) + '%'">
                                 <div class="relative h-52 sm:h-64 md:h-72 lg:h-76 rounded-2xl overflow-hidden shadow-xl bg-neutral-900 border border-neutral-800/80 group">
-                                    <img :src="item.url" :alt="item.title" class="w-full h-full object-cover group-hover:scale-105 transition duration-700 ease-out" onerror="this.src='/images/hero-2.webp'">
+                                    <img :src="item.url" :alt="item.title" class="w-full h-full object-cover group-hover:scale-105 transition duration-700 ease-out" onerror="this.onerror=null;this.src='/images/hero-2.webp'">
                                     <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-4">
                                         <span class="text-xs font-bold text-white leading-snug drop-shadow-md" x-text="item.title"></span>
                                     </div>
@@ -1479,7 +1479,7 @@
                 </div>
                 <div class="pt-4 mt-4 border-t border-gray-100 flex items-center space-x-3">
                     <div class="w-10 h-10 rounded-full overflow-hidden bg-slate-100 border border-slate-200 flex items-center justify-center flex-shrink-0 shadow-inner">
-                        <img src="{{ $t->photo_url }}" alt="Foto {{ $t->name }}" class="w-full h-full object-cover" onerror="this.src='/uploads/avatar-neutral-gray.svg'">
+                        <img src="{{ $t->photo_url }}" alt="Foto {{ $t->name }}" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='/uploads/avatar-neutral-gray.svg'">
                     </div>
                     <div class="min-w-0">
                         <h3 class="font-bold text-xs text-gray-900 truncate">{{ $t->name }}</h3>

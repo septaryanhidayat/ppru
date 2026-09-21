@@ -51,7 +51,7 @@
                 <img src="/uploads/official/logo-web-ppru.webp" 
                      alt="Pondok Pesantren Raudhatul Ulum Sakatiga" 
                      class="h-11 sm:h-12 md:h-14 w-auto object-contain transform group-hover:scale-105 transition duration-300 drop-shadow-md" 
-                     onerror="this.src='/uploads/official/logo-web-ppru.png'">
+                     onerror="this.onerror=null;this.src='/uploads/official/logo-web-ppru.png'">
             </a>
 
             {{-- DESKTOP NAVIGATION (Elegan, Bersih, Sempurna untuk Layar Desktop) --}}

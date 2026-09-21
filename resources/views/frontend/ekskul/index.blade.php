@@ -30,7 +30,7 @@
         @forelse($ekskul as $idx => $item)
             <div class="bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group reveal-fade-up">
                 <div class="relative h-56 overflow-hidden bg-gray-100">
-                    <img src="{{ $item->featured_image ?: '/images/hero-1.webp' }}" alt="{{ $item->title }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='/images/hero-1.webp'">
+                    <img src="{{ $item->featured_image ?: '/images/hero-1.webp' }}" alt="{{ $item->title }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.onerror=null;this.src='/images/hero-1.webp'">
                     <span class="absolute top-3 left-3 bg-[#00913e] text-white text-[11px] font-bold px-3 py-1 rounded-full shadow-md flex items-center space-x-1.5">
                         <i class="fa-solid fa-star text-amber-300 text-xs"></i>
                         <span>Club Unggulan</span>

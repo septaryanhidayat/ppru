@@ -181,7 +181,7 @@
         <div class="sidebar-header h-16 flex items-center justify-between px-4 border-b border-emerald-900/60 bg-[#041910] flex-shrink-0">
             <a href="{{ route('admin.dashboard') }}" class="flex items-center space-x-2.5 group min-w-0" title="Admin PPRU Control Center">
                 <div class="w-9 h-9 flex items-center justify-center group-hover:scale-105 transition flex-shrink-0">
-                    <img src="/uploads/logo-ppru-transparent.png" alt="Logo PPRU" class="h-9 w-auto object-contain" onerror="this.src='/uploads/logo-ppru-square.png'">
+                    <img src="/uploads/logo-ppru-transparent.png" alt="Logo PPRU" class="h-9 w-auto object-contain" onerror="this.onerror=null;this.src='/uploads/logo-ppru-square.png'">
                 </div>
                 <div class="sidebar-brand-text min-w-0">
                     <span class="font-black text-white text-sm tracking-tight block truncate">ADMIN PPRU</span>

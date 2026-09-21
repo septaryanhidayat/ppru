@@ -57,7 +57,7 @@
                     <article class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col group reveal-fade-up delay-{{ $idx % 4 }}">
                         <a href="{{ route('artikel.show', $post->slug) }}" class="block relative h-48 overflow-hidden bg-gray-100">
                             @if($post->featured_image)
-                                <img src="{{ $post->featured_image }}" alt="{{ $post->title }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='/images/hero-1.webp'">
+                                <img src="{{ $post->featured_image }}" alt="{{ $post->title }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.onerror=null;this.src='/images/hero-1.webp'">
                             @else
                                 <img src="/images/hero-1.webp" alt="{{ $post->title }}" class="w-full h-full object-cover">
                             @endif
@@ -219,7 +219,7 @@
                         <div class="flex items-start space-x-3 group">
                             <a href="{{ route('artikel.show', $rPost->slug) }}" class="w-16 h-16 rounded-xl overflow-hidden bg-gray-100 flex-shrink-0">
                                 @if($rPost->featured_image)
-                                    <img src="{{ $rPost->featured_image }}" alt="{{ $rPost->title }}" class="w-full h-full object-cover group-hover:scale-105 transition" onerror="this.src='/images/hero-1.webp'">
+                                    <img src="{{ $rPost->featured_image }}" alt="{{ $rPost->title }}" class="w-full h-full object-cover group-hover:scale-105 transition" onerror="this.onerror=null;this.src='/images/hero-1.webp'">
                                 @else
                                     <img src="/images/hero-1.webp" alt="{{ $rPost->title }}" class="w-full h-full object-cover">
                                 @endif
