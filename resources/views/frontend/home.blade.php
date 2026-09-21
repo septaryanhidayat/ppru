@@ -11,6 +11,7 @@
     activeSlide: 0,
     slides: {{ Js::from($heroSlides) }},
     autoSlide() {
+        if (!this.slides || this.slides.length <= 1) return;
         setInterval(() => {
             this.activeSlide = (this.activeSlide + 1) % this.slides.length;
         }, 6500);
@@ -61,15 +62,15 @@
     </div>
 
     {{-- Carousel Controls (Panah Samping) --}}
-    <button @click="activeSlide = (activeSlide - 1 + slides.length) % slides.length" class="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-school-green text-white w-9 h-9 sm:w-11 sm:h-11 rounded-full flex items-center justify-center transition backdrop-blur z-20 shadow-lg cursor-pointer" aria-label="Slide sebelumnya">
+    <button x-show="slides && slides.length > 1" @click="activeSlide = (activeSlide - 1 + slides.length) % slides.length" class="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-school-green text-white w-9 h-9 sm:w-11 sm:h-11 rounded-full flex items-center justify-center transition backdrop-blur z-20 shadow-lg cursor-pointer" aria-label="Slide sebelumnya">
         <i class="fa-solid fa-chevron-left text-xs sm:text-sm" aria-hidden="true"></i>
     </button>
-    <button @click="activeSlide = (activeSlide + 1) % slides.length" class="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-school-green text-white w-9 h-9 sm:w-11 sm:h-11 rounded-full flex items-center justify-center transition backdrop-blur z-20 shadow-lg cursor-pointer" aria-label="Slide berikutnya">
+    <button x-show="slides && slides.length > 1" @click="activeSlide = (activeSlide + 1) % slides.length" class="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-school-green text-white w-9 h-9 sm:w-11 sm:h-11 rounded-full flex items-center justify-center transition backdrop-blur z-20 shadow-lg cursor-pointer" aria-label="Slide berikutnya">
         <i class="fa-solid fa-chevron-right text-xs sm:text-sm" aria-hidden="true"></i>
     </button>
 
     {{-- Dots Pagination di Tengah --}}
-    <div class="absolute bottom-9 sm:bottom-12 left-1/2 -translate-x-1/2 flex space-x-1.5 z-20">
+    <div x-show="slides && slides.length > 1" class="absolute bottom-9 sm:bottom-12 left-1/2 -translate-x-1/2 flex space-x-1.5 z-20">
         <template x-for="(slide, idx) in slides" :key="idx">
             <button @click="activeSlide = idx" class="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center cursor-pointer" :aria-label="'Pilih slide ' + (idx + 1)">
                 <span class="h-2 sm:h-2.5 rounded-full transition-all duration-300" :class="activeSlide === idx ? 'w-6 sm:w-8 bg-amber-400' : 'w-2 sm:w-2.5 bg-white/70 hover:bg-white'"></span>

@@ -2,9 +2,11 @@
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
 
 uses(RefreshDatabase::class);
 
@@ -170,4 +172,92 @@ test('authenticated admin can access all admin panel pages', function () {
         $response = $this->actingAs($admin)->get($uri);
         expect($response->status())->toBe(200, "Admin route '{$uri}' failed with status {$response->status()}");
     }
+});
+
+test('cpanel_setup script does not leak master token in unauthorized error response', function () {
+    $cpanelScript = public_path('cpanel_setup.php');
+    if (! File::exists($cpanelScript)) {
+        return;
+    }
+
+    $content = File::get($cpanelScript);
+    expect($content)->not->toContain('token=Ppru2026Setup');
+    expect($content)->not->toContain('token=PksOi2026Setup');
+});
+
+test('non super-admin cannot escalate privileges to super-admin or modify super-admin accounts', function () {
+    $superAdmin = User::create([
+        'name' => 'Root Super Admin',
+        'email' => 'superadmin@ishum.sch.id',
+        'password' => Hash::make('Password123!'),
+        'role' => 'super_admin',
+    ]);
+
+    $regularAdmin = User::create([
+        'name' => 'Regular Admin',
+        'email' => 'regularadmin@ishum.sch.id',
+        'password' => Hash::make('Password123!'),
+        'role' => 'admin',
+    ]);
+
+    // Regular admin tries to create a super_admin user -> forbidden (403)
+    $createResponse = $this->actingAs($regularAdmin)->post(route('admin.users.store'), [
+        'name' => 'Hacker Admin',
+        'email' => 'hacker@ishum.sch.id',
+        'password' => 'HackedPassword123!',
+        'password_confirmation' => 'HackedPassword123!',
+        'role' => 'super_admin',
+    ]);
+    expect($createResponse->status())->toBe(403);
+
+    // Regular admin tries to edit super_admin account -> forbidden (403)
+    $editResponse = $this->actingAs($regularAdmin)->get(route('admin.users.edit', $superAdmin));
+    expect($editResponse->status())->toBe(403);
+
+    // Regular admin tries to delete super_admin account -> forbidden (403)
+    $deleteResponse = $this->actingAs($regularAdmin)->delete(route('admin.users.destroy', $superAdmin));
+    expect($deleteResponse->status())->toBe(403);
+});
+
+test('admin download upload blocks dangerous executable files', function () {
+    $admin = User::create([
+        'name' => 'Admin Download Tester',
+        'email' => 'admin_download@ishum.sch.id',
+        'password' => Hash::make('Password123!'),
+        'role' => 'admin',
+    ]);
+
+    Storage::fake('public');
+
+    $dangerousFile = UploadedFile::fake()->create('malicious.php', 10, 'application/x-php');
+
+    $response = $this->actingAs($admin)->post(route('admin.downloads.store'), [
+        'title' => 'Malicious File',
+        'file' => $dangerousFile,
+        'category' => 'dokumen',
+    ]);
+
+    $response->assertSessionHasErrors('file');
+});
+
+test('all registered controller routes map to valid callable methods', function () {
+    $routes = Route::getRoutes()->getRoutes();
+    $invalidRoutes = [];
+
+    foreach ($routes as $route) {
+        $action = $route->getAction();
+        if (isset($action['controller'])) {
+            $controllerAction = $action['controller'];
+            if (is_string($controllerAction) && str_contains($controllerAction, '@')) {
+                [$controller, $method] = explode('@', $controllerAction);
+                if (! class_exists($controller)) {
+                    $invalidRoutes[] = "Class missing: {$controller} for route {$route->uri()}";
+                } elseif (! method_exists($controller, $method)) {
+                    $invalidRoutes[] = "Method missing: {$controller}@{$method} for route {$route->uri()}";
+                }
+            }
+        }
+    }
+
+    expect($invalidRoutes)->toBeEmpty();
 });

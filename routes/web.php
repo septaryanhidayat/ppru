@@ -55,14 +55,14 @@ Route::prefix('admin')->middleware(['auth', 'unit.access'])->name('admin.')->gro
 
     // Posts & Categories Management
     Route::post('/categories/quick', [AdminCategoryController::class, 'quickStore'])->name('categories.quick');
-    Route::resource('categories', AdminCategoryController::class);
-    Route::resource('posts', AdminPostController::class);
+    Route::resource('categories', AdminCategoryController::class)->except(['create', 'show', 'edit']);
+    Route::resource('posts', AdminPostController::class)->except(['show']);
 
     // Hero Banner Slider Beranda
-    Route::resource('hero-slides', AdminHeroSlideController::class);
+    Route::resource('hero-slides', AdminHeroSlideController::class)->except(['show']);
 
     // Nav Menus (Header & Footer Dynamic Links)
-    Route::resource('nav-menus', AdminNavMenuController::class);
+    Route::resource('nav-menus', AdminNavMenuController::class)->except(['create', 'show', 'edit']);
 
     // Static Pages Management (Profil, Visi Misi, Sejarah, Sambutan, Struktur, Privacy Policy, Halaman Baru)
     Route::get('/pages/create', [AdminPageController::class, 'create'])->name('pages.create');
@@ -81,17 +81,17 @@ Route::prefix('admin')->middleware(['auth', 'unit.access'])->name('admin.')->gro
     // Unit Pendidikan PPRU
     Route::get('/profil-unit', [AdminUnitPendidikanController::class, 'myUnit'])->name('profil-unit');
     Route::post('/unit/seed-demo', [AdminDashboardController::class, 'seedUnitDemo'])->name('unit.seed-demo');
-    Route::resource('unit-pendidikan', AdminUnitPendidikanController::class);
+    Route::resource('unit-pendidikan', AdminUnitPendidikanController::class)->except(['show']);
 
     // Dewan Guru & GTK
-    Route::resource('dewan', AdminDewanController::class);
+    Route::resource('dewan', AdminDewanController::class)->except(['show']);
 
     // Fasilitas Sekolah
-    Route::resource('bidang', AdminBidangController::class);
+    Route::resource('bidang', AdminBidangController::class)->except(['show']);
 
     // Program Unggulan
-    Route::resource('program-unggulan', AdminProgramUnggulanController::class);
-    Route::resource('dpc', AdminProgramUnggulanController::class);
+    Route::resource('program-unggulan', AdminProgramUnggulanController::class)->except(['show']);
+    Route::resource('dpc', AdminProgramUnggulanController::class)->except(['show']);
 
     // Galeri Foto & Video YouTube
     Route::get('/media', [AdminMediaController::class, 'index'])->name('media.index');
@@ -111,10 +111,10 @@ Route::prefix('admin')->middleware(['auth', 'unit.access'])->name('admin.')->gro
     Route::delete('/pengumuman/{pengumuman}', [AdminAgendaController::class, 'destroyPengumuman'])->name('pengumuman.destroy');
 
     // Download Center Management
-    Route::resource('downloads', AdminDownloadController::class);
+    Route::resource('downloads', AdminDownloadController::class)->except(['show']);
 
     // Quick Menus (Menu Utama Beranda)
-    Route::resource('quick-menus', AdminQuickMenuController::class);
+    Route::resource('quick-menus', AdminQuickMenuController::class)->except(['show']);
 
     // PPDB Online Management
     Route::get('/ppdb', [AdminPpdbController::class, 'index'])->name('ppdb.index');
@@ -137,10 +137,10 @@ Route::prefix('admin')->middleware(['auth', 'unit.access'])->name('admin.')->gro
     Route::post('/popup', [AdminPopupController::class, 'update'])->name('popup.update');
 
     // Testimonials Management
-    Route::resource('testimonials', AdminTestimonialController::class);
+    Route::resource('testimonials', AdminTestimonialController::class)->except(['show']);
 
     // Users & Multi-Role Management
-    Route::resource('users', AdminUserController::class);
+    Route::resource('users', AdminUserController::class)->except(['show']);
 
     // Feedbacks / Aspirasi Inbox
     Route::get('/feedbacks', [AdminFeedbackController::class, 'index'])->name('feedbacks.index');

@@ -60,11 +60,20 @@ class AdminUserController extends Controller
 
     public function store(Request $request)
     {
+        $isSuperAdmin = Auth::user()?->isSuperAdmin();
+        if ($request->input('role') === 'super_admin' && ! $isSuperAdmin) {
+            abort(403, 'Akses dibatasi. Hanya Super Administrator yang berhak menetapkan peran Super Administrator.');
+        }
+
+        $allowedRoles = $isSuperAdmin
+            ? ['super_admin', 'admin', 'admin_unit', 'editor', 'author']
+            : ['admin', 'admin_unit', 'editor', 'author'];
+
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255|unique:users,email',
             'password' => 'required|string|min:8',
-            'role' => ['required', Rule::in(['super_admin', 'admin', 'admin_unit', 'editor', 'author'])],
+            'role' => ['required', Rule::in($allowedRoles)],
             'unit_pendidikan_id' => 'nullable|exists:unit_pendidikans,id',
         ]);
 
@@ -96,6 +105,10 @@ class AdminUserController extends Controller
 
     public function edit(User $user)
     {
+        if ($user->isSuperAdmin() && ! Auth::user()?->isSuperAdmin()) {
+            abort(403, 'Akses dibatasi. Hanya Super Administrator yang berhak mengelola akun Super Administrator.');
+        }
+
         $units = UnitPendidikan::orderBy('order', 'asc')->get();
 
         return view('admin.users.edit', compact('user', 'units'));
@@ -103,11 +116,24 @@ class AdminUserController extends Controller
 
     public function update(Request $request, User $user)
     {
+        $isSuperAdmin = Auth::user()?->isSuperAdmin();
+        if ($user->isSuperAdmin() && ! $isSuperAdmin) {
+            abort(403, 'Akses dibatasi. Hanya Super Administrator yang berhak mengubah akun Super Administrator.');
+        }
+
+        if ($request->input('role') === 'super_admin' && ! $isSuperAdmin) {
+            abort(403, 'Akses dibatasi. Hanya Super Administrator yang berhak menetapkan peran Super Administrator.');
+        }
+
+        $allowedRoles = $isSuperAdmin
+            ? ['super_admin', 'admin', 'admin_unit', 'editor', 'author']
+            : ['admin', 'admin_unit', 'editor', 'author'];
+
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
             'password' => 'nullable|string|min:8',
-            'role' => ['required', Rule::in(['super_admin', 'admin', 'admin_unit', 'editor', 'author'])],
+            'role' => ['required', Rule::in($allowedRoles)],
             'unit_pendidikan_id' => 'nullable|exists:unit_pendidikans,id',
         ]);
 
@@ -142,6 +168,10 @@ class AdminUserController extends Controller
     {
         if ($user->id === Auth::id()) {
             return back()->with('error', 'Anda tidak dapat menghapus akun Anda sendiri.');
+        }
+
+        if ($user->isSuperAdmin() && ! Auth::user()?->isSuperAdmin()) {
+            abort(403, 'Akses dibatasi. Akun Super Administrator tidak dapat dihapus oleh Administrator biasa.');
         }
 
         $userName = $user->name;

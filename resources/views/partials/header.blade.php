@@ -62,7 +62,7 @@
                 </a>
 
                 {{-- 2. Profil Dropdown --}}
-                <div class="relative group py-2">
+                <div id="nav-dropdown-profil" class="relative group py-2">
                     <button type="button" aria-haspopup="true" aria-expanded="false" class="px-3 py-1.5 rounded-lg inline-flex items-center hover:bg-black/15 transition whitespace-nowrap {{ request()->is('sambutan*', 'tentang*', 'visi*', 'sejarah*', 'anggota*', 'struktur*', 'bidang*', 'program-unggulan*', 'dewan*', 'ikarus*') ? 'bg-black/20 text-[#fcd116]' : '' }}">
                         <span>Profil</span>
                         <i class="fa-solid fa-chevron-down text-[10px] ml-1.5 transition-transform duration-200 group-hover:rotate-180"></i>
@@ -103,7 +103,7 @@
                 </div>
 
                 {{-- 3. Pendidikan Dropdown (Semua 8 Unit Lengkap & Tepat Rute) --}}
-                <div class="relative group py-2">
+                <div id="nav-dropdown-pendidikan" class="relative group py-2">
                     <button type="button" aria-haspopup="true" aria-expanded="false" class="px-3 py-1.5 rounded-lg inline-flex items-center hover:bg-black/15 transition whitespace-nowrap {{ request()->is('pendidikan*') ? 'bg-black/20 text-[#fcd116]' : '' }}">
                         <span>Pendidikan</span>
                         <i class="fa-solid fa-chevron-down text-[10px] ml-1.5 transition-transform duration-200 group-hover:rotate-180"></i>
@@ -145,7 +145,7 @@
                 </div>
 
                 {{-- 4. Informasi Dropdown (Berita, Prestasi, Agenda, Pengumuman, Galeri, Video, Khutbah) --}}
-                <div class="relative group py-2">
+                <div id="nav-dropdown-informasi" class="relative group py-2">
                     <button type="button" aria-haspopup="true" aria-expanded="false" class="px-3 py-1.5 rounded-lg inline-flex items-center hover:bg-black/15 transition whitespace-nowrap {{ request()->is('artikel*', 'agenda*', 'pengumuman*', 'kategori*', 'prestasi*', 'galeri*', 'video*', 'khutbah*') ? 'bg-black/20 text-[#fcd116]' : '' }}">
                         <span>Informasi</span>
                         <i class="fa-solid fa-chevron-down text-[10px] ml-1.5 transition-transform duration-200 group-hover:rotate-180"></i>
@@ -179,7 +179,7 @@
                 </div>
 
                 {{-- 5. Layanan & Unduhan Dropdown (Termasuk 3 Layanan Publik Utama) --}}
-                <div class="relative group py-2">
+                <div id="nav-dropdown-layanan" class="relative group py-2">
                     <button type="button" aria-haspopup="true" aria-expanded="false" class="px-3 py-1.5 rounded-lg inline-flex items-center hover:bg-black/15 transition whitespace-nowrap {{ request()->is('layanan*', 'izin-sekolah*', 'permohonan-kerja-sama*', 'sewa-barang*', 'download*', 'e-book*', 'hymne*', 'logo*', 'hubungi*') ? 'bg-black/20 text-[#fcd116]' : '' }}">
                         <span>Layanan</span>
                         <i class="fa-solid fa-chevron-down text-[10px] ml-1.5 transition-transform duration-200 group-hover:rotate-180"></i>

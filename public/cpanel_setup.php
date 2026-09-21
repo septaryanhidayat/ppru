@@ -6,7 +6,7 @@ use Illuminate\Contracts\Console\Kernel;
  * cPanel Setup, Maintenance & Diagnostic Helper for Laravel
  * Pondok Pesantren Raudhatul Ulum (PPRU)
  *
- * Akses: cpanel_setup.php?token=Ppru2026Setup&action=status
+ * Akses: cpanel_setup.php?token=<SETUP_TOKEN>&action=status
  */
 
 // 1. Auto-detect Laravel repository root directory
@@ -34,7 +34,7 @@ if (! $laravelRoot) {
 }
 
 // 2. Secret Token Authentication
-$allowedTokens = ['Ppru2026Setup', 'PksOi2026Setup'];
+$allowedTokens = ['Ppru2026Setup'];
 
 // Parse .env directly if it exists to get custom token if defined
 $envFile = $laravelRoot.'/.env';
@@ -58,18 +58,20 @@ if (file_exists($envFile)) {
 
 $currentToken = (string) ($_GET['token'] ?? '');
 $isValidToken = false;
-foreach ($allowedTokens as $token) {
-    if (hash_equals($token, $currentToken)) {
-        $isValidToken = true;
-        break;
+if (! empty($currentToken)) {
+    foreach ($allowedTokens as $token) {
+        if (hash_equals($token, $currentToken)) {
+            $isValidToken = true;
+            break;
+        }
     }
 }
 
 if (! $isValidToken) {
     http_response_code(403);
-    echo '<!DOCTYPE html><html><body style="background:#0f172a;color:#ef4444;font-family:sans-serif;text-align:center;padding:50px;">';
-    echo '<h2>403 Forbidden: Token Akses Tidak Valid!</h2>';
-    echo '<p style="color:#94a3b8;">Gunakan URL: <code>cpanel_setup.php?token=Ppru2026Setup&action=status</code></p>';
+    echo '<!DOCTYPE html><html lang="id"><head><meta charset="UTF-8"><title>403 Forbidden</title></head><body style="background:#0f172a;color:#ef4444;font-family:sans-serif;text-align:center;padding:60px 20px;">';
+    echo '<h1 style="font-size:1.5rem;margin-bottom:10px;">403 Forbidden</h1>';
+    echo '<p style="color:#94a3b8;font-size:0.95rem;">Akses Ditolak. Anda tidak memiliki izin untuk mengakses halaman diagnostik ini.</p>';
     echo '</body></html>';
     exit;
 }

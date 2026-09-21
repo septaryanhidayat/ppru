@@ -33,11 +33,14 @@ class AdminDownloadController extends Controller
 
     public function store(Request $request)
     {
+        $allowedMimes = 'mimes:pdf,doc,docx,xls,xlsx,ppt,pptx,zip,rar,7z,mp3,jpg,jpeg,png,webp';
+        $safeExtensions = ['pdf', 'doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx', 'zip', 'rar', '7z', 'mp3', 'jpg', 'jpeg', 'png', 'webp'];
+
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'category_type' => 'required|string|max:100',
             'description' => 'nullable|string',
-            'file' => 'required_without:file_path|nullable|file|max:30720', // max 30MB
+            'file' => "required_without:file_path|nullable|file|{$allowedMimes}|max:30720", // max 30MB
             'file_path' => 'nullable|string|max:255',
             'cover_image' => 'nullable|image|max:5120',
         ]);
@@ -50,6 +53,9 @@ class AdminDownloadController extends Controller
             $uploaded = $request->file('file');
             $originalName = pathinfo($uploaded->getClientOriginalName(), PATHINFO_FILENAME);
             $ext = strtolower($uploaded->getClientOriginalExtension());
+            if (! in_array($ext, $safeExtensions, true)) {
+                $ext = 'pdf';
+            }
             $filename = Str::slug($originalName).'-'.time().'.'.$ext;
 
             $targetDir = public_path('uploads/downloads');
@@ -103,11 +109,14 @@ class AdminDownloadController extends Controller
 
     public function update(Request $request, Download $download)
     {
+        $allowedMimes = 'mimes:pdf,doc,docx,xls,xlsx,ppt,pptx,zip,rar,7z,mp3,jpg,jpeg,png,webp';
+        $safeExtensions = ['pdf', 'doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx', 'zip', 'rar', '7z', 'mp3', 'jpg', 'jpeg', 'png', 'webp'];
+
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'category_type' => 'required|string|max:100',
             'description' => 'nullable|string',
-            'file' => 'nullable|file|max:30720',
+            'file' => "nullable|file|{$allowedMimes}|max:30720",
             'file_path' => 'nullable|string|max:255',
             'cover_image' => 'nullable|image|max:5120',
         ]);
@@ -116,6 +125,9 @@ class AdminDownloadController extends Controller
             $uploaded = $request->file('file');
             $originalName = pathinfo($uploaded->getClientOriginalName(), PATHINFO_FILENAME);
             $ext = strtolower($uploaded->getClientOriginalExtension());
+            if (! in_array($ext, $safeExtensions, true)) {
+                $ext = 'pdf';
+            }
             $filename = Str::slug($originalName).'-'.time().'.'.$ext;
 
             $targetDir = public_path('uploads/downloads');

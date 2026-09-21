@@ -113,7 +113,7 @@ if (! $hasVendor || ! $phpOk || ! $hasEnv) {
                 </div>
 
                 <div class="actions">
-                    <a href="cpanel_setup.php?token=PksOi2026Setup&amp;action=status" class="btn">Buka cPanel Setup Helper &rarr;</a>
+                    <a href="cpanel_setup.php?action=status" class="btn">Buka cPanel Setup Helper &rarr;</a>
                 </div>
             </div>
         </div>
