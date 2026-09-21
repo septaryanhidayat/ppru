@@ -38,8 +38,13 @@
             </div>
         </div>
 
-        {{-- INFO JALUR & PROGRAM PILIHAN --}}
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 p-3.5 bg-emerald-50/70 rounded-2xl border border-emerald-200 text-xs">
+        {{-- INFO JALUR, UNIT & PROGRAM PILIHAN --}}
+        <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 p-3.5 bg-emerald-50/70 rounded-2xl border border-emerald-200 text-xs">
+            <div>
+                <span class="text-slate-400 block text-[10px] font-bold uppercase">Unit Tujuan</span>
+                <span class="font-black text-emerald-900 block truncate">{{ $ppdb->unitPendidikan?->name ?? 'Unit #'.$ppdb->unit_pendidikan_id }}</span>
+                <span class="inline-block mt-0.5 px-2 py-0.5 rounded bg-emerald-600 text-white text-[9.5px] font-extrabold">{{ $ppdb->unitPendidikan?->short_name ?? '-' }}</span>
+            </div>
             <div>
                 <span class="text-slate-400 block text-[10px] font-bold uppercase">Gelombang</span>
                 <span class="font-black text-[#00913e]">{{ $ppdb->wave ?: 'Gelombang 1' }}</span>

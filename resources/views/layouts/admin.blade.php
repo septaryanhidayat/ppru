@@ -243,6 +243,11 @@
                         <i class="fa-solid fa-comments text-xs w-4 text-center text-amber-300"></i>
                         <span class="sidebar-label">Testimoni Unit</span>
                     </a>
+
+                    <a href="{{ route('admin.ppdb.index') }}" class="sidebar-item flex items-center space-x-3 px-3 py-1.5 rounded-lg transition {{ request()->routeIs('admin.ppdb*') ? 'bg-gradient-to-r from-[#00843d] to-[#05a849] text-white font-bold shadow-md' : 'hover:bg-slate-800/70 text-slate-300 hover:text-white' }}" title="Pendaftar PPDB Unit">
+                        <i class="fa-solid fa-user-graduate text-xs w-4 text-center text-emerald-400"></i>
+                        <span class="sidebar-label font-bold text-emerald-200">Pendaftar PPDB Unit</span>
+                    </a>
                 </div>
                 @else
                 {{-- SECTION 1: DASHBOARD & ANALITIK --}}
@@ -310,6 +315,11 @@
                     <a href="{{ route('admin.hero-slides.index') }}" class="sidebar-item flex items-center space-x-3 px-3 py-1.5 rounded-lg transition {{ request()->routeIs('admin.hero-slides*') ? 'bg-gradient-to-r from-[#00843d] to-[#05a849] text-white font-bold shadow-md' : 'hover:bg-slate-800/70 text-slate-300 hover:text-white' }}" title="Banner Hero Slider">
                         <i class="fa-solid fa-images text-xs w-4 text-center text-amber-300"></i>
                         <span class="sidebar-label font-bold text-amber-200">Hero Slider</span>
+                    </a>
+
+                    <a href="{{ route('admin.home-statistics.index') }}" class="sidebar-item flex items-center space-x-3 px-3 py-1.5 rounded-lg transition {{ request()->routeIs('admin.home-statistics*') ? 'bg-gradient-to-r from-[#00843d] to-[#05a849] text-white font-bold shadow-md' : 'hover:bg-slate-800/70 text-slate-300 hover:text-white' }}" title="Statistik Beranda">
+                        <i class="fa-solid fa-chart-simple text-xs w-4 text-center text-amber-400"></i>
+                        <span class="sidebar-label font-bold text-amber-200">Statistik Beranda</span>
                     </a>
 
                     <a href="{{ route('admin.nav-menus.index') }}" class="sidebar-item flex items-center space-x-3 px-3 py-1.5 rounded-lg transition {{ request()->routeIs('admin.nav-menus*') ? 'bg-gradient-to-r from-[#00843d] to-[#05a849] text-white font-bold shadow-md' : 'hover:bg-slate-800/70 text-slate-300 hover:text-white' }}" title="Menu Navigasi">

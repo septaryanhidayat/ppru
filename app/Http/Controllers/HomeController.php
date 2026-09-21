@@ -7,6 +7,7 @@ use App\Models\AnggotaDewan;
 use App\Models\Download;
 use App\Models\Dpc;
 use App\Models\HeroSlide;
+use App\Models\HomeStatistic;
 use App\Models\Pengumuman;
 use App\Models\Post;
 use App\Models\ProgramUnggulan;
@@ -271,6 +272,12 @@ class HomeController extends Controller
             $programUnggulan = Dpc::orderBy('order', 'asc')->get();
         }
 
+        // 19. Statistik Pesantren (Dinamis dari Kelola Statistik Beranda)
+        $homeStatistics = collect();
+        if (Schema::hasTable('home_statistics')) {
+            $homeStatistics = HomeStatistic::active()->orderBy('order', 'asc')->get();
+        }
+
         return view('frontend.home', compact(
             'heroSlides',
             'sambutan',
@@ -293,7 +300,8 @@ class HomeController extends Controller
             'programUnggulan',
             'taujihPosts',
             'visitorHits',
-            'popupSettings'
+            'popupSettings',
+            'homeStatistics'
         ));
     }
 }

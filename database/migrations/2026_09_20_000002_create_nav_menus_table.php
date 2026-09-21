@@ -11,18 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('nav_menus', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('parent_id')->nullable()->constrained('nav_menus')->nullOnDelete();
-            $table->string('name');
-            $table->string('url');
-            $table->string('icon')->nullable();
-            $table->string('location')->default('header'); // header, footer_quick, footer_info
-            $table->string('target')->default('_self'); // _self, _blank
-            $table->integer('order')->default(0);
-            $table->boolean('is_active')->default(true);
-            $table->timestamps();
-        });
+        if (! Schema::hasTable('nav_menus')) {
+            Schema::create('nav_menus', function (Blueprint $table) {
+                $table->id();
+                $table->foreignId('parent_id')->nullable()->constrained('nav_menus')->nullOnDelete();
+                $table->string('name');
+                $table->string('url');
+                $table->string('icon')->nullable();
+                $table->string('location')->default('header'); // header, footer_quick, footer_info
+                $table->string('target')->default('_self'); // _self, _blank
+                $table->integer('order')->default(0);
+                $table->boolean('is_active')->default(true);
+                $table->timestamps();
+            });
+        }
     }
 
     /**

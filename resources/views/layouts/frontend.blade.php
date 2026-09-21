@@ -4,6 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <script>
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
     
     <title>@yield('title', ($siteSettings['site_name'] ?? 'Pondok Pesantren Raudhatul Ulum') . ' - ' . ($siteSettings['site_tagline'] ?? 'Basis Kaderisasi Generasi Terbaik (Khoiru Ummah)'))</title>
     <meta name="description" content="@yield('meta_description', $siteSettings['site_description'] ?? 'Official Website Pondok Pesantren Raudhatul Ulum (PPRU) Sakatiga, Ogan Ilir, Sumatera Selatan. Pesantren modern terpadu berasrama dengan muadalah Al-Azhar Kairo Mesir.')">
@@ -121,7 +129,7 @@
 
     @stack('styles')
 </head>
-<body class="bg-white text-gray-800 flex flex-col min-h-screen font-sans selection:bg-school-green selection:text-white">
+<body class="bg-white dark:bg-[#0b1120] text-gray-800 dark:text-slate-100 flex flex-col min-h-screen font-sans selection:bg-school-green selection:text-white transition-colors duration-200">
 
     {{-- MAINTENANCE MODE BANNER FOR LOGGED IN ADMIN --}}
     @auth
@@ -202,8 +210,8 @@
     </script>
     <script src="https://cdn.gtranslate.net/widgets/latest/float.js" defer></script>
 
-    {{-- FLOATING WHATSAPP HELPDESK WIDGET (Kanan Bawah) --}}
-    <div x-data="{ openHelpdesk: false }" class="fixed bottom-5 right-5 z-40 flex flex-col items-end">
+    {{-- FLOATING WHATSAPP MULTI-CHANNEL HELPDESK WIDGET (Kanan Bawah) --}}
+    <div x-data="{ openHelpdesk: false, activeTab: 'main', searchUnit: '' }" class="fixed bottom-5 right-5 z-40 flex flex-col items-end">
         {{-- Chat Bubble Popover --}}
         <div x-show="openHelpdesk"
              x-transition:enter="transition ease-out duration-300 transform origin-bottom-right"
@@ -213,20 +221,21 @@
              x-transition:leave-start="opacity-100 scale-100 translate-y-0"
              x-transition:leave-end="opacity-0 scale-90 translate-y-2"
              @click.away="openHelpdesk = false"
-             class="mb-3 w-80 sm:w-88 bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden text-left"
+             class="mb-3 w-84 sm:w-96 bg-white dark:bg-slate-900 rounded-3xl shadow-2xl border border-gray-100 dark:border-slate-800 overflow-hidden text-left flex flex-col max-h-[85vh]"
              style="display: none;">
+             
             {{-- Header Chat Box --}}
-            <div class="bg-gradient-to-r from-school-green to-emerald-700 text-white p-4 flex items-center justify-between">
+            <div class="bg-gradient-to-r from-school-green via-[#008744] to-emerald-700 text-white p-4 flex items-center justify-between shrink-0 shadow-sm">
                 <div class="flex items-center space-x-3">
                     <div class="relative">
                         <img src="{{ asset('/uploads/logo-ppru-square.png') }}" alt="Logo PPRU" class="w-10 h-10 rounded-full bg-white p-0.5 shadow">
                         <span class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-400 border-2 border-white rounded-full"></span>
                     </div>
                     <div>
-                        <h4 class="font-bold text-sm leading-tight">Helpdesk PPRU Sakatiga</h4>
+                        <h4 class="font-black text-sm leading-tight">Konsultasi WhatsApp PPRU</h4>
                         <p class="text-[11px] text-green-100 flex items-center gap-1 mt-0.5">
                             <span class="w-1.5 h-1.5 rounded-full bg-green-300 inline-block animate-pulse"></span>
-                            Online | Siap Membantu
+                            Online | Pilih Tujuan Chat
                         </p>
                     </div>
                 </div>
@@ -234,30 +243,112 @@
                     <i class="fa-solid fa-xmark"></i>
                 </button>
             </div>
-            {{-- Body Chat --}}
-            <div class="p-4 bg-slate-50 space-y-3 text-xs text-gray-700">
-                <div class="bg-white p-3 rounded-xl rounded-tl-none shadow-xs border border-gray-100 leading-relaxed">
-                    <p class="font-semibold text-school-green mb-1">Assalamu'alaikum Warahmatullahi Wabarakatuh 👋</p>
-                    <p>Selamat datang di layanan informasi resmi Pondok Pesantren Raudhatul Ulum Sakatiga. Ada yang bisa kami bantu seputar pendaftaran santri baru (PSB), biaya, kurikulum, atau kunjungan pesantren?</p>
-                </div>
-                <div class="text-center">
-                    <span class="text-[10px] text-gray-400">Biasanya merespon dalam beberapa menit</span>
-                </div>
+
+            {{-- Tab Switcher: Admin Utama vs Unit Pendidikan --}}
+            <div class="grid grid-cols-2 p-1.5 bg-slate-100 dark:bg-slate-800/80 border-b border-gray-200/70 dark:border-slate-800 text-xs font-bold shrink-0">
+                <button @click="activeTab = 'main'" 
+                        :class="activeTab === 'main' ? 'bg-white dark:bg-slate-900 text-[#00913e] dark:text-emerald-400 shadow-xs' : 'text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200'"
+                        class="py-2 px-3 rounded-xl transition flex items-center justify-center gap-1.5 cursor-pointer">
+                    <i class="fa-solid fa-building-shield text-xs"></i>
+                    <span>Admin Utama</span>
+                </button>
+                <button @click="activeTab = 'unit'" 
+                        :class="activeTab === 'unit' ? 'bg-white dark:bg-slate-900 text-[#00913e] dark:text-emerald-400 shadow-xs' : 'text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200'"
+                        class="py-2 px-3 rounded-xl transition flex items-center justify-center gap-1.5 cursor-pointer">
+                    <i class="fa-solid fa-graduation-cap text-xs"></i>
+                    <span>Admin Unit ({{ count($navUnitPendidikans ?? []) }})</span>
+                </button>
             </div>
-            {{-- Footer Action --}}
-            <div class="p-3 bg-white border-t border-gray-100">
+
+            {{-- TAB 1: ADMIN UTAMA --}}
+            <div x-show="activeTab === 'main'" class="p-4 bg-slate-50 dark:bg-slate-900/60 overflow-y-auto space-y-3.5 text-xs">
+                <div class="bg-white dark:bg-slate-800 p-4 rounded-2xl shadow-2xs border border-gray-100 dark:border-slate-700/80 leading-relaxed space-y-2">
+                    <div class="flex items-center space-x-2 text-school-green dark:text-emerald-400 font-extrabold text-xs">
+                        <i class="fa-solid fa-hand-wave"></i>
+                        <span>Assalamu'alaikum Warahmatullahi Wabarakatuh</span>
+                    </div>
+                    <p class="text-slate-600 dark:text-slate-300">
+                        Selamat datang di layanan resmi <strong>Pondok Pesantren Raudhatul Ulum Sakatiga</strong>. Anda terhubung dengan Sekretariat Pusat &amp; Panitia SPMB Utama untuk informasi umum, administrasi pusat, dan konfirmasi pendaftaran.
+                    </p>
+                </div>
+
                 @php
-                    $waHelpNumber = preg_replace('/[^0-9]/', '', $siteSettings['site_phone'] ?? '081278901950');
-                    if (str_starts_with($waHelpNumber, '0')) {
-                        $waHelpNumber = '62' . substr($waHelpNumber, 1);
+                    $mainWaNumber = preg_replace('/[^0-9]/', '', $siteSettings['contact_whatsapp'] ?? ($siteSettings['site_phone'] ?? '081278901950'));
+                    if (str_starts_with($mainWaNumber, '0')) {
+                        $mainWaNumber = '62' . substr($mainWaNumber, 1);
                     }
+                    $mainDisplayNumber = $siteSettings['contact_whatsapp'] ?? ($siteSettings['site_phone'] ?? '0812-7890-1950');
                 @endphp
-                <a href="https://wa.me/{{ $waHelpNumber }}?text={{ urlencode('Assalamu\'alaikum, saya ingin bertanya seputar informasi Pondok Pesantren Raudhatul Ulum Sakatiga.') }}"
+
+                <div class="p-3.5 bg-emerald-50/80 dark:bg-emerald-950/40 border border-emerald-200/80 dark:border-emerald-800/60 rounded-2xl flex items-center justify-between">
+                    <div class="flex items-center space-x-2.5">
+                        <span class="w-8 h-8 rounded-xl bg-emerald-600 text-white flex items-center justify-center text-sm shadow-2xs">
+                            <i class="fa-brands fa-whatsapp"></i>
+                        </span>
+                        <div>
+                            <span class="text-[10px] uppercase tracking-wider font-extrabold text-emerald-800 dark:text-emerald-300 block">Nomor WhatsApp Pusat</span>
+                            <span class="font-black text-slate-900 dark:text-white text-xs">{{ $mainDisplayNumber }}</span>
+                        </div>
+                    </div>
+                    <span class="text-[10px] bg-emerald-200/60 dark:bg-emerald-800/60 text-emerald-900 dark:text-emerald-200 px-2 py-0.5 rounded-full font-bold">Resmi</span>
+                </div>
+
+                <a href="https://wa.me/{{ $mainWaNumber }}?text={{ urlencode('Assalamu\'alaikum Admin Utama PPRU Sakatiga, saya ingin berkonsultasi mengenai informasi pesantren / pendaftaran santri baru...') }}"
                    target="_blank"
-                   class="w-full bg-[#25D366] hover:bg-[#1EBE5D] text-white py-2.5 px-4 rounded-xl font-bold text-xs flex items-center justify-center space-x-2 shadow-md transition transform hover:scale-102">
-                    <i class="fa-brands fa-whatsapp text-base"></i>
-                    <span>Mulai Chat WhatsApp</span>
+                   class="w-full bg-[#25D366] hover:bg-[#1EBE5D] text-white py-3 px-4 rounded-2xl font-black text-xs flex items-center justify-center space-x-2 shadow-md transition transform hover:scale-[1.02]">
+                    <i class="fa-brands fa-whatsapp text-lg"></i>
+                    <span>Mulai Chat Admin Utama</span>
                 </a>
+                <p class="text-center text-[10px] text-slate-400 dark:text-slate-500">Biasanya merespon dalam beberapa menit</p>
+            </div>
+
+            {{-- TAB 2: ADMIN UNIT PENDIDIKAN --}}
+            <div x-show="activeTab === 'unit'" class="p-4 bg-slate-50 dark:bg-slate-900/60 flex flex-col flex-grow overflow-hidden text-xs" style="display: none;">
+                {{-- Quick Filter Box --}}
+                <div class="mb-3 relative shrink-0">
+                    <input type="text" 
+                           x-model="searchUnit" 
+                           placeholder="Cari unit (TK, MARU, MATSARU, SMAIT...)" 
+                           class="w-full bg-white dark:bg-slate-800 text-xs text-slate-800 dark:text-slate-100 rounded-xl pl-9 pr-4 py-2 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-[#00913e] placeholder:text-slate-400">
+                    <i class="fa-solid fa-magnifying-glass text-slate-400 text-xs absolute left-3 top-3"></i>
+                </div>
+
+                {{-- Scrollable List of Units --}}
+                <div class="overflow-y-auto space-y-2.5 max-h-72 pr-1">
+                    @foreach(($navUnitPendidikans ?? \App\Models\UnitPendidikan::active()->orderBy('order', 'asc')->get()) as $unit)
+                        @php
+                            $unitWa = preg_replace('/[^0-9]/', '', $unit->phone ?: ($siteSettings['contact_whatsapp'] ?? '081278901950'));
+                            if (str_starts_with($unitWa, '0')) {
+                                $unitWa = '62' . substr($unitWa, 1);
+                            }
+                            $searchKey = strtolower($unit->name . ' ' . $unit->short_name . ' ' . $unit->category_type);
+                        @endphp
+                        <div x-show="!searchUnit || '{{ $searchKey }}'.includes(searchUnit.toLowerCase())"
+                             class="bg-white dark:bg-slate-800 p-3 rounded-2xl border border-gray-100 dark:border-slate-700/70 shadow-2xs hover:border-emerald-300 dark:hover:border-emerald-600 transition flex items-center justify-between gap-2.5">
+                            <div class="min-w-0 flex-grow">
+                                <div class="flex items-center gap-1.5 flex-wrap">
+                                    <span class="px-2 py-0.5 rounded-md font-extrabold text-[10.5px] bg-emerald-100 dark:bg-emerald-900/60 text-emerald-800 dark:text-emerald-200">
+                                        {{ $unit->short_name }}
+                                    </span>
+                                    <span class="text-[10px] text-slate-400 dark:text-slate-400">{{ $unit->category_type }}</span>
+                                </div>
+                                <h5 class="font-bold text-slate-800 dark:text-slate-100 text-xs truncate mt-0.5" title="{{ $unit->name }}">
+                                    {{ $unit->name }}
+                                </h5>
+                                <p class="text-[10.5px] text-slate-500 dark:text-slate-400 font-mono flex items-center gap-1 mt-0.5">
+                                    <i class="fa-brands fa-whatsapp text-emerald-600 text-[11px]"></i>
+                                    <span>{{ $unit->phone ?: '0812-7890-1950' }}</span>
+                                </p>
+                            </div>
+                            <a href="https://wa.me/{{ $unitWa }}?text={{ urlencode("Assalamu'alaikum Admin {$unit->short_name} PPRU, saya ingin konsultasi mengenai informasi dan pendaftaran {$unit->name}...") }}"
+                               target="_blank"
+                               class="shrink-0 bg-emerald-50 dark:bg-emerald-950 hover:bg-[#25D366] text-[#00913e] dark:text-emerald-300 hover:text-white border border-emerald-200 dark:border-emerald-800 hover:border-[#25D366] px-3 py-1.5 rounded-xl font-extrabold text-[11px] flex items-center gap-1.5 transition shadow-2xs">
+                                <i class="fa-brands fa-whatsapp text-sm"></i>
+                                <span>Chat</span>
+                            </a>
+                        </div>
+                    @endforeach
+                </div>
             </div>
         </div>
 
@@ -370,6 +461,57 @@
     </script>
     {{-- Local Storage Form Draft Auto-Save Engine --}}
     <script src="{{ asset('js/form-draft-saver.js') }}"></script>
+
+    {{-- Dark / Light Theme Toggle Engine --}}
+    <script>
+        (function() {
+            const updateThemeUI = () => {
+                const isDark = document.documentElement.classList.contains('dark');
+                const darkIcons = document.querySelectorAll('#theme-toggle-dark-icon, #mobile-theme-toggle-dark-icon');
+                const lightIcons = document.querySelectorAll('#theme-toggle-light-icon, #mobile-theme-toggle-light-icon');
+                const themeTexts = document.querySelectorAll('#theme-toggle-text');
+
+                darkIcons.forEach(icon => {
+                    if (isDark) {
+                        icon.classList.add('hidden');
+                    } else {
+                        icon.classList.remove('hidden');
+                    }
+                });
+
+                lightIcons.forEach(icon => {
+                    if (isDark) {
+                        icon.classList.remove('hidden');
+                    } else {
+                        icon.classList.add('hidden');
+                    }
+                });
+
+                themeTexts.forEach(txt => {
+                    txt.textContent = isDark ? 'Terang' : 'Gelap';
+                });
+            };
+
+            const toggleTheme = (e) => {
+                if (e) e.preventDefault();
+                const isNowDark = document.documentElement.classList.toggle('dark');
+                localStorage.setItem('theme', isNowDark ? 'dark' : 'light');
+                updateThemeUI();
+            };
+
+            document.addEventListener('DOMContentLoaded', () => {
+                updateThemeUI();
+                document.querySelectorAll('#theme-toggle, #mobile-theme-toggle').forEach(btn => {
+                    btn.addEventListener('click', toggleTheme);
+                });
+            });
+
+            // Fast run in case DOM is already ready
+            if (document.readyState !== 'loading') {
+                updateThemeUI();
+            }
+        })();
+    </script>
 
     @stack('scripts')
 </body>

@@ -99,6 +99,17 @@ class AppServiceProvider extends ServiceProvider
             $menus = $loadNavMenus();
             $view->with('headerNavMenus', $menus['headerNavMenus']);
             $view->with('footerNavMenus', $menus['footerNavMenus']);
+
+            try {
+                if (Schema::hasTable('categories')) {
+                    $view->with('headerCategories', Category::withCount('posts')->orderBy('posts_count', 'desc')->take(8)->get());
+                }
+                if (Schema::hasTable('unit_pendidikans')) {
+                    $view->with('navUnitPendidikans', UnitPendidikan::active()->orderBy('order', 'asc')->get());
+                }
+            } catch (\Throwable $e) {
+                // Table might not exist yet during migration
+            }
         });
     }
 }

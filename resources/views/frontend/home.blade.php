@@ -1154,32 +1154,38 @@
 </section>
 
 {{-- ========================================================
-     SECTION #9: STATISTIK & PENCAPAIAN PESANTREN (Counter)
+     SECTION #9: STATISTIK & PENCAPAIAN PESANTREN (Counter Dinamis)
      ======================================================== --}}
 <section class="py-14 bg-gradient-to-r from-school-green via-emerald-800 to-school-green text-white overflow-hidden relative">
     <div class="absolute inset-0 bg-[radial-gradient(white_1px,transparent_1px)] [background-size:24px_24px] opacity-10 pointer-events-none"></div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 text-center">
-            <div class="p-4 sm:p-6 bg-white/10 backdrop-blur-xs rounded-3xl border border-white/10 reveal-fade-up delay-1">
-                <div class="text-3xl sm:text-5xl font-black text-amber-400 mb-1">{{ $siteSettings['home_stat_1_number'] ?? '75+' }}</div>
-                <div class="text-xs sm:text-sm font-bold uppercase tracking-wider text-emerald-100">{{ $siteSettings['home_stat_1_label'] ?? 'Tahun Mengabdi' }}</div>
-                <p class="text-[11px] text-emerald-200/80 mt-1">{{ $siteSettings['home_stat_1_desc'] ?? 'Berdiri sejak 1 Agustus 1950' }}</p>
+        @php
+            $displayStats = (isset($homeStatistics) && $homeStatistics->isNotEmpty()) 
+                ? $homeStatistics 
+                : collect([
+                    (object)['number' => '3.500+', 'label' => 'SANTRI AKTIF MUKIM', 'description' => 'Dari berbagai provinsi nusantara'],
+                    (object)['number' => '15.000+', 'label' => 'ALUMNI BERKHIDMAT', 'description' => 'Kiprah dakwah nasional & global'],
+                    (object)['number' => '100%', 'label' => 'MUADALAH AL-AZHAR', 'description' => 'Akses studi langsung ke Mesir & Timur Tengah'],
+                    (object)['number' => '75+', 'label' => 'TAHUN PENGABDIAN', 'description' => 'Sejak 1950 di bumi Sakatiga Mekkah Kecil'],
+                ]);
+            $statCount = $displayStats->count();
+            $gridCols = match(true) {
+                $statCount === 1 => 'grid-cols-1 max-w-md mx-auto',
+                $statCount === 2 => 'grid-cols-2 max-w-2xl mx-auto',
+                $statCount === 3 => 'grid-cols-1 sm:grid-cols-3 max-w-4xl mx-auto',
+                default => 'grid-cols-2 lg:grid-cols-4',
+            };
+        @endphp
+        <div class="grid {{ $gridCols }} gap-4 sm:gap-6 text-center">
+            @foreach($displayStats as $idx => $st)
+            <div class="p-4 sm:p-6 bg-white/10 backdrop-blur-xs rounded-3xl border border-white/10 reveal-fade-up delay-{{ ($idx % 4) + 1 }} hover:bg-white/15 transition duration-300">
+                <div class="text-3xl sm:text-5xl font-black text-amber-400 mb-1 tracking-tight">{{ $st->number }}</div>
+                <div class="text-xs sm:text-sm font-bold uppercase tracking-wider text-emerald-100">{{ $st->label }}</div>
+                @if(!empty($st->description))
+                    <p class="text-[11px] text-emerald-200/80 mt-1 leading-snug">{{ $st->description }}</p>
+                @endif
             </div>
-            <div class="p-4 sm:p-6 bg-white/10 backdrop-blur-xs rounded-3xl border border-white/10 reveal-fade-up delay-2">
-                <div class="text-3xl sm:text-5xl font-black text-amber-400 mb-1">{{ $siteSettings['home_stat_2_number'] ?? '8' }}</div>
-                <div class="text-xs sm:text-sm font-bold uppercase tracking-wider text-emerald-100">{{ $siteSettings['home_stat_2_label'] ?? 'Unit Pendidikan' }}</div>
-                <p class="text-[11px] text-emerald-200/80 mt-1">{{ $siteSettings['home_stat_2_desc'] ?? 'TK hingga Perguruan Tinggi' }}</p>
-            </div>
-            <div class="p-4 sm:p-6 bg-white/10 backdrop-blur-xs rounded-3xl border border-white/10 reveal-fade-up delay-3">
-                <div class="text-3xl sm:text-5xl font-black text-amber-400 mb-1">{{ $siteSettings['home_stat_3_number'] ?? '3.500+' }}</div>
-                <div class="text-xs sm:text-sm font-bold uppercase tracking-wider text-emerald-100">{{ $siteSettings['home_stat_3_label'] ?? 'Santri & Mahasiswa' }}</div>
-                <p class="text-[11px] text-emerald-200/80 mt-1">{{ $siteSettings['home_stat_3_desc'] ?? 'Dari berbagai penjuru Indonesia' }}</p>
-            </div>
-            <div class="p-4 sm:p-6 bg-white/10 backdrop-blur-xs rounded-3xl border border-white/10 reveal-fade-up delay-4">
-                <div class="text-3xl sm:text-5xl font-black text-amber-400 mb-1">{{ $siteSettings['home_stat_4_number'] ?? '15.000+' }}</div>
-                <div class="text-xs sm:text-sm font-bold uppercase tracking-wider text-emerald-100">{{ $siteSettings['home_stat_4_label'] ?? 'Alumni Berkhidmat' }}</div>
-                <p class="text-[11px] text-emerald-200/80 mt-1">{{ $siteSettings['home_stat_4_desc'] ?? 'Kiprah dakwah di dalam & luar negeri' }}</p>
-            </div>
+            @endforeach
         </div>
     </div>
 </section>

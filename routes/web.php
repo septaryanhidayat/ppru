@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\AdminDewanController;
 use App\Http\Controllers\Admin\AdminDownloadController;
 use App\Http\Controllers\Admin\AdminFeedbackController;
 use App\Http\Controllers\Admin\AdminHeroSlideController;
+use App\Http\Controllers\Admin\AdminHomeStatisticController;
 use App\Http\Controllers\Admin\AdminLayananController;
 use App\Http\Controllers\Admin\AdminMediaController;
 use App\Http\Controllers\Admin\AdminNavMenuController;
@@ -135,6 +136,10 @@ Route::prefix('admin')->middleware(['auth', 'unit.access'])->name('admin.')->gro
     // Popup Banner Beranda
     Route::get('/popup', [AdminPopupController::class, 'index'])->name('popup.index');
     Route::post('/popup', [AdminPopupController::class, 'update'])->name('popup.update');
+
+    // Statistik Beranda Pesantren (CRUD Kotak Counter)
+    Route::resource('home-statistics', AdminHomeStatisticController::class)->except(['show', 'create', 'edit']);
+    Route::post('/home-statistics/{home_statistic}/toggle', [AdminHomeStatisticController::class, 'toggle'])->name('home-statistics.toggle');
 
     // Testimonials Management
     Route::resource('testimonials', AdminTestimonialController::class)->except(['show']);

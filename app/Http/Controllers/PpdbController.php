@@ -190,6 +190,7 @@ class PpdbController extends Controller
 
         // Known standard column keys in ppdb_registrations table
         $standardKeys = [
+            'unit_pendidikan_id',
             'wave', 'track', 'program_type',
             'full_name', 'birth_place', 'birth_date', 'gender', 'address', 'living_with',
             'child_order', 'siblings_count', 'previous_school', 'nisn', 'hobby', 'favorite_subject',
@@ -201,8 +202,23 @@ class PpdbController extends Controller
             'birth_certificate', 'payment_proof',
         ];
 
+        $defaultUnitId = UnitPendidikan::active()->orderBy('order', 'asc')->value('id')
+            ?? UnitPendidikan::value('id')
+            ?? 1;
+
+        if (! $request->filled('unit_pendidikan_id')) {
+            $request->merge(['unit_pendidikan_id' => $defaultUnitId]);
+        }
+
+        // Always enforce unit_pendidikan_id rule
+        $rules['unit_pendidikan_id'] = 'required|integer|exists:unit_pendidikans,id';
+        $customAttributes['unit_pendidikan_id'] = 'Unit Pendidikan Tujuan';
+
         foreach ($activeFields as $field) {
             $key = $field['key'];
+            if ($key === 'unit_pendidikan_id') {
+                continue;
+            }
             $req = ! empty($field['required']) ? 'required' : 'nullable';
             $type = $field['type'] ?? 'text';
             $customAttributes[$key] = $field['label'] ?? $key;
@@ -210,6 +226,9 @@ class PpdbController extends Controller
             switch ($type) {
                 case 'file':
                     $rules[$key] = "{$req}|file|mimes:jpeg,png,jpg,webp,pdf|max:5120";
+                    break;
+                case 'select_unit':
+                    $rules[$key] = "{$req}|integer|exists:unit_pendidikans,id";
                     break;
                 case 'number':
                     $rules[$key] = "{$req}|numeric";
@@ -303,6 +322,7 @@ class PpdbController extends Controller
         // Safe registration attributes with defaults for non-nullable columns
         $registration = PpdbRegistration::create([
             'registration_number' => $regNumber,
+            'unit_pendidikan_id' => (int) $validated['unit_pendidikan_id'],
             'wave' => $validated['wave'] ?? Setting::get('ppdb_wave', 'Gelombang 1'),
             'track' => $validated['track'] ?? 'Reguler',
             'program_type' => $validated['program_type'] ?? 'Boarding School',

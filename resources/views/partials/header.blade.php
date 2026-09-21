@@ -215,7 +215,7 @@
                                                     @if($child->icon)
                                                         <i class="{{ $child->icon }} w-5 {{ $iconColor }} mr-2 text-sm"></i>
                                                     @endif
-                                                    <span>{{ $child->name }}</span>
+                                                    <span>{!! str_contains($child->name, '&') ? str_replace('&', '&amp;', str_replace('&amp;', '&', $child->name)) : e($child->name) !!}</span>
                                                 </a>
                                             @endforeach
                                         @endif
@@ -238,8 +238,15 @@
                 @endif
             </nav>
 
-            {{-- TOMBOL AKSI: DAFTAR PSB (EMAS/KUNING MENCOLOK KHAS LOGO) & LOGIN --}}
+            {{-- TOMBOL AKSI: DAFTAR PSB (EMAS/KUNING MENCOLOK KHAS LOGO), LOGIN & THEME TOGGLE --}}
             <div class="hidden lg:flex items-center space-x-2 xl:space-x-3 ml-2 flex-shrink-0">
+                {{-- Theme Toggle Desktop --}}
+                <button id="theme-toggle" type="button" class="text-white/90 hover:text-white px-2.5 py-1.5 rounded-lg hover:bg-black/15 transition flex items-center space-x-1.5 cursor-pointer text-xs font-bold" aria-label="Ganti mode gelap atau terang" title="Ganti Mode Gelap / Terang">
+                    <i id="theme-toggle-dark-icon" class="fa-solid fa-moon text-xs text-emerald-200"></i>
+                    <i id="theme-toggle-light-icon" class="fa-solid fa-sun text-xs text-amber-300 hidden"></i>
+                    <span id="theme-toggle-text" class="text-[11px]">Mode</span>
+                </button>
+
                 <a href="{{ route('ppdb.index') }}" class="bg-[#f59e0b] hover:bg-[#d97706] text-slate-950 px-4 xl:px-5 py-2 rounded-full text-xs font-black shadow-md hover:shadow-lg transition flex items-center space-x-1.5 transform hover:scale-105" aria-label="Penerimaan Santri Baru Pondok Pesantren Raudhatul Ulum">
                     <i class="fa-solid fa-graduation-cap text-xs"></i>
                     <span>Daftar PSB</span>
@@ -250,8 +257,14 @@
                 </a>
             </div>
 
-            {{-- MOBILE TOP RIGHT: Hamburger Menu --}}
-            <div class="flex lg:hidden items-center">
+            {{-- MOBILE TOP RIGHT: Theme Toggle & Hamburger Menu --}}
+            <div class="flex lg:hidden items-center space-x-1">
+                {{-- Theme Toggle Mobile --}}
+                <button id="mobile-theme-toggle" type="button" class="text-white hover:text-emerald-100 p-2 rounded-lg focus:outline-none min-w-[40px] min-h-[40px] flex items-center justify-center cursor-pointer" aria-label="Ganti mode gelap atau terang" title="Ganti Mode Gelap / Terang">
+                    <i id="mobile-theme-toggle-dark-icon" class="fa-solid fa-moon text-base text-emerald-200"></i>
+                    <i id="mobile-theme-toggle-light-icon" class="fa-solid fa-sun text-base text-amber-300 hidden"></i>
+                </button>
+
                 <button id="mobile-menu-toggle" type="button" class="text-white hover:text-emerald-100 p-2 rounded-lg focus:outline-none min-w-[44px] min-h-[44px] flex items-center justify-center cursor-pointer" aria-label="Buka Menu Navigasi">
                     <i class="fa-solid fa-bars text-2xl"></i>
                 </button>
@@ -347,7 +360,7 @@
                                         @if($child->icon)
                                             <i class="{{ $child->icon }} w-4 mr-1.5 text-xs {{ $isAlumni ? 'text-[#f59e0b]' : 'text-[#00843d]' }}"></i>
                                         @endif
-                                        <span>{{ $child->name }}</span>
+                                        <span>{!! str_contains($child->name, '&') ? str_replace('&', '&amp;', str_replace('&amp;', '&', $child->name)) : e($child->name) !!}</span>
                                     </a>
                                 @endforeach
                             @endif

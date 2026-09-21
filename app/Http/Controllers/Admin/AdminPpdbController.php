@@ -18,7 +18,16 @@ class AdminPpdbController extends Controller
 
     public function index(Request $request)
     {
-        $query = PpdbRegistration::latest();
+        $user = Auth::user();
+        $query = PpdbRegistration::with('unitPendidikan')->latest();
+
+        $currentUnit = null;
+        if ($user && $user->isUnitAdmin()) {
+            $query->where('unit_pendidikan_id', $user->unit_pendidikan_id);
+            $currentUnit = $user->unit;
+        } elseif ($request->filled('unit_id')) {
+            $query->where('unit_pendidikan_id', (int) $request->input('unit_id'));
+        }
 
         if ($status = $request->input('status')) {
             $query->where('status', $status);
@@ -35,24 +44,37 @@ class AdminPpdbController extends Controller
 
         $registrations = $query->paginate(15)->withQueryString();
 
+        $statsQuery = PpdbRegistration::query();
+        if ($user && $user->isUnitAdmin()) {
+            $statsQuery->where('unit_pendidikan_id', $user->unit_pendidikan_id);
+        } elseif ($request->filled('unit_id')) {
+            $statsQuery->where('unit_pendidikan_id', (int) $request->input('unit_id'));
+        }
+
         $stats = [
-            'total' => PpdbRegistration::count(),
-            'pending' => PpdbRegistration::where('status', 'pending')->count(),
-            'verified' => PpdbRegistration::where('status', 'verified')->count(),
-            'accepted' => PpdbRegistration::where('status', 'accepted')->count(),
-            'rejected' => PpdbRegistration::where('status', 'rejected')->count(),
+            'total' => (clone $statsQuery)->count(),
+            'pending' => (clone $statsQuery)->where('status', 'pending')->count(),
+            'verified' => (clone $statsQuery)->where('status', 'verified')->count(),
+            'accepted' => (clone $statsQuery)->where('status', 'accepted')->count(),
+            'rejected' => (clone $statsQuery)->where('status', 'rejected')->count(),
         ];
 
-        return view('admin.ppdb.index', compact('registrations', 'stats'));
+        $unitPendidikans = UnitPendidikan::active()->orderBy('order', 'asc')->get();
+
+        return view('admin.ppdb.index', compact('registrations', 'stats', 'currentUnit', 'unitPendidikans'));
     }
 
     public function show(PpdbRegistration $ppdb)
     {
+        $this->authorizeUnitAccess($ppdb);
+
         return view('admin.ppdb.show', compact('ppdb'));
     }
 
     public function updateStatus(Request $request, PpdbRegistration $ppdb)
     {
+        $this->authorizeUnitAccess($ppdb);
+
         $validated = $request->validate([
             'status' => 'required|in:pending,verified,accepted,rejected',
             'notes' => 'nullable|string|max:1000',
@@ -75,6 +97,8 @@ class AdminPpdbController extends Controller
 
     public function destroy(PpdbRegistration $ppdb)
     {
+        $this->authorizeUnitAccess($ppdb);
+
         $name = $ppdb->full_name;
 
         // Delete uploaded files if any
@@ -102,7 +126,22 @@ class AdminPpdbController extends Controller
 
     public function print(PpdbRegistration $ppdb)
     {
+        $this->authorizeUnitAccess($ppdb);
+
         return view('admin.ppdb.print', compact('ppdb'));
+    }
+
+    /**
+     * Enforce that unit admin can only access records belonging to their unit.
+     */
+    protected function authorizeUnitAccess(PpdbRegistration $ppdb): void
+    {
+        $user = Auth::user();
+        if ($user && $user->isUnitAdmin()) {
+            if ((int) $ppdb->unit_pendidikan_id !== (int) $user->unit_pendidikan_id) {
+                abort(403, 'Akses ditolak. Anda hanya berhak mengelola pendaftar pada unit pendidikan Anda.');
+            }
+        }
     }
 
     /**
@@ -499,12 +538,25 @@ class AdminPpdbController extends Controller
     }
 
     /**
-     * Export all PPDB registrations to Excel (CSV with UTF-8 BOM).
+     * Export PPDB registrations to Excel (CSV with UTF-8 BOM), scoped by unit if unit admin.
      */
-    public function exportExcel()
+    public function exportExcel(Request $request)
     {
-        $registrations = PpdbRegistration::latest()->get();
-        $filename = 'Data_Pendaftar_PSB_PPRU_'.date('Ymd_His').'.csv';
+        $user = Auth::user();
+        $query = PpdbRegistration::with('unitPendidikan')->latest();
+        $unitLabel = 'Semua_Unit';
+
+        if ($user && $user->isUnitAdmin()) {
+            $query->where('unit_pendidikan_id', $user->unit_pendidikan_id);
+            $unitLabel = Str::slug($user->unit?->short_name ?: 'unit');
+        } elseif ($request->filled('unit_id')) {
+            $query->where('unit_pendidikan_id', (int) $request->input('unit_id'));
+            $u = UnitPendidikan::find($request->input('unit_id'));
+            $unitLabel = Str::slug($u?->short_name ?: 'unit');
+        }
+
+        $registrations = $query->get();
+        $filename = 'Data_Pendaftar_PSB_'.$unitLabel.'_'.date('Ymd_His').'.csv';
 
         $headers = [
             'Content-Type' => 'text/csv; charset=UTF-8',
@@ -531,6 +583,7 @@ class AdminPpdbController extends Controller
 
             $csvHeaders = [
                 'No',
+                'Unit Pendidikan',
                 'No. Registrasi',
                 'Tanggal Pendaftaran',
                 'Status Berkas',
@@ -575,6 +628,7 @@ class AdminPpdbController extends Controller
             foreach ($registrations as $r) {
                 $row = [
                     $index++,
+                    $r->unitPendidikan?->name ?? ($r->unit_pendidikan_id ? 'Unit #'.$r->unit_pendidikan_id : '-'),
                     $r->registration_number,
                     $r->created_at ? $r->created_at->format('d/m/Y H:i') : '-',
                     $r->status_label,
@@ -628,19 +682,34 @@ class AdminPpdbController extends Controller
     }
 
     /**
-     * Export / Print all PPDB registrations to PDF format.
+     * Export / Print PPDB registrations to PDF format, scoped by unit if unit admin.
      */
-    public function exportPdf()
+    public function exportPdf(Request $request)
     {
-        $registrations = PpdbRegistration::latest()->get();
+        $user = Auth::user();
+        $query = PpdbRegistration::with('unitPendidikan')->latest();
+        $statsQuery = PpdbRegistration::query();
+
+        $currentUnit = null;
+        if ($user && $user->isUnitAdmin()) {
+            $query->where('unit_pendidikan_id', $user->unit_pendidikan_id);
+            $statsQuery->where('unit_pendidikan_id', $user->unit_pendidikan_id);
+            $currentUnit = $user->unit;
+        } elseif ($request->filled('unit_id')) {
+            $query->where('unit_pendidikan_id', (int) $request->input('unit_id'));
+            $statsQuery->where('unit_pendidikan_id', (int) $request->input('unit_id'));
+            $currentUnit = UnitPendidikan::find($request->input('unit_id'));
+        }
+
+        $registrations = $query->get();
         $stats = [
-            'total' => PpdbRegistration::count(),
-            'pending' => PpdbRegistration::where('status', 'pending')->count(),
-            'verified' => PpdbRegistration::where('status', 'verified')->count(),
-            'accepted' => PpdbRegistration::where('status', 'accepted')->count(),
-            'rejected' => PpdbRegistration::where('status', 'rejected')->count(),
+            'total' => (clone $statsQuery)->count(),
+            'pending' => (clone $statsQuery)->where('status', 'pending')->count(),
+            'verified' => (clone $statsQuery)->where('status', 'verified')->count(),
+            'accepted' => (clone $statsQuery)->where('status', 'accepted')->count(),
+            'rejected' => (clone $statsQuery)->where('status', 'rejected')->count(),
         ];
 
-        return view('admin.ppdb.export_pdf', compact('registrations', 'stats'));
+        return view('admin.ppdb.export_pdf', compact('registrations', 'stats', 'currentUnit'));
     }
 }

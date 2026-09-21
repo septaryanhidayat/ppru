@@ -54,6 +54,17 @@ class PpdbFormService
         return [
             // Section 1: Pilihan
             [
+                'key' => 'unit_pendidikan_id',
+                'label' => 'Unit Pendidikan Tujuan',
+                'section' => 'pilihan',
+                'type' => 'select_unit',
+                'required' => true,
+                'enabled' => true,
+                'options' => [],
+                'placeholder' => 'Pilih Unit Pendidikan Tujuan...',
+                'is_system' => true,
+            ],
+            [
                 'key' => 'wave',
                 'label' => 'Gelombang Pendaftaran',
                 'section' => 'pilihan',
@@ -521,14 +532,42 @@ class PpdbFormService
     public static function getSchema(): array
     {
         $raw = Setting::get('ppdb_form_schema');
+        $schema = null;
         if (! empty($raw)) {
             $decoded = json_decode((string) $raw, true);
             if (is_array($decoded) && count($decoded) > 0) {
-                return $decoded;
+                $schema = $decoded;
             }
         }
 
-        return self::getDefaultSchema();
+        if ($schema === null) {
+            $schema = self::getDefaultSchema();
+        }
+
+        // Ensure unit_pendidikan_id is always present as a system field
+        $hasUnitField = false;
+        foreach ($schema as $f) {
+            if (($f['key'] ?? '') === 'unit_pendidikan_id') {
+                $hasUnitField = true;
+                break;
+            }
+        }
+
+        if (! $hasUnitField) {
+            array_unshift($schema, [
+                'key' => 'unit_pendidikan_id',
+                'label' => 'Unit Pendidikan Tujuan',
+                'section' => 'pilihan',
+                'type' => 'select_unit',
+                'required' => true,
+                'enabled' => true,
+                'options' => [],
+                'placeholder' => 'Pilih Unit Pendidikan Tujuan...',
+                'is_system' => true,
+            ]);
+        }
+
+        return $schema;
     }
 
     /**

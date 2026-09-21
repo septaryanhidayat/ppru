@@ -1,5 +1,7 @@
 @import 'tailwindcss';
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 @source '../views/**/*.blade.php';
@@ -198,3 +200,132 @@ body {
 .delay-6 { transition-delay: 360ms; }
 .delay-7 { transition-delay: 420ms; }
 .delay-8 { transition-delay: 480ms; }
+
+/* ========================================================
+   GLOBAL DARK MODE THEME STYLING
+   ======================================================== */
+html.dark {
+    color-scheme: dark;
+}
+
+html.dark body {
+    background-color: #0b1120;
+    color: #e2e8f0;
+}
+
+/* Dark mode surfaces & cards */
+html.dark .bg-white {
+    background-color: #111a2e;
+    color: #e2e8f0;
+}
+
+html.dark .bg-slate-50,
+html.dark .bg-gray-50,
+html.dark .bg-slate-100\/60 {
+    background-color: #0d1527;
+}
+
+html.dark .bg-gray-100,
+html.dark .bg-slate-100 {
+    background-color: #162036;
+    color: #e2e8f0;
+}
+
+/* Dark mode text colors */
+html.dark .text-gray-900,
+html.dark .text-slate-900,
+html.dark .text-slate-800,
+html.dark .text-gray-800 {
+    color: #f8fafc;
+}
+
+html.dark .text-gray-700,
+html.dark .text-slate-700 {
+    color: #cbd5e1;
+}
+
+html.dark .text-gray-600,
+html.dark .text-slate-600,
+html.dark .text-gray-500,
+html.dark .text-slate-500 {
+    color: #94a3b8;
+}
+
+/* Dark mode borders */
+html.dark .border-gray-100,
+html.dark .border-gray-200,
+html.dark .border-slate-100,
+html.dark .border-slate-200,
+html.dark .border-gray-200\/70,
+html.dark .border-gray-200\/80,
+html.dark .border-slate-200\/80 {
+    border-color: #1e293b;
+}
+
+/* Dark mode form inputs & selects */
+html.dark input[type="text"],
+html.dark input[type="email"],
+html.dark input[type="password"],
+html.dark input[type="number"],
+html.dark input[type="date"],
+html.dark input[type="tel"],
+html.dark textarea,
+html.dark select {
+    background-color: #131d33;
+    border-color: #334155;
+    color: #f8fafc;
+}
+
+html.dark input::placeholder,
+html.dark textarea::placeholder {
+    color: #64748b;
+}
+
+/* Dark mode prose article content */
+html.dark .prose-content {
+    color: #cbd5e1;
+}
+
+html.dark .prose-content h1,
+html.dark .prose-content h2,
+html.dark .prose-content h3,
+html.dark .prose-content h4 {
+    color: #f8fafc;
+}
+
+html.dark .prose-content blockquote {
+    background-color: #064e3b20;
+    color: #a7f3d0;
+    border-left-color: #10b981;
+}
+
+html.dark .prose-content th {
+    background-color: #1e293b;
+    color: #f8fafc;
+}
+
+html.dark .prose-content td,
+html.dark .prose-content th {
+    border-color: #334155;
+}
+
+html.dark .prose-content code {
+    background-color: #1e293b;
+    color: #fcd34d;
+}
+
+/* Dark mode mobile menu & dropdowns */
+html.dark #mobile-menu {
+    background-color: #0b1120 !important;
+    color: #f8fafc !important;
+    border-color: #f59e0b !important;
+}
+
+html.dark #mobile-menu a {
+    color: #cbd5e1;
+}
+
+html.dark #mobile-menu a:hover {
+    color: #34d399;
+    background-color: #131d33;
+}

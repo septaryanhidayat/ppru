@@ -4,12 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class PpdbRegistration extends Model
 {
     use HasFactory;
 
     protected $fillable = [
+        'unit_pendidikan_id',
         'registration_number',
         'full_name',
         'birth_place',
@@ -54,6 +56,7 @@ class PpdbRegistration extends Model
     ];
 
     protected $casts = [
+        'unit_pendidikan_id' => 'integer',
         'birth_date' => 'date',
         'father_birth_date' => 'date',
         'mother_birth_date' => 'date',
@@ -61,6 +64,11 @@ class PpdbRegistration extends Model
         'siblings_count' => 'integer',
         'extra_fields' => 'array',
     ];
+
+    public function unitPendidikan(): BelongsTo
+    {
+        return $this->belongsTo(UnitPendidikan::class, 'unit_pendidikan_id');
+    }
 
     public static function generateRegistrationNumber(): string
     {

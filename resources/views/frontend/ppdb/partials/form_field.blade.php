@@ -7,9 +7,44 @@
     $options = $field['options'] ?? [];
 @endphp
 
-@if($type === 'select')
+@if($key === 'unit_pendidikan_id' || $type === 'select_unit')
+    @php
+        $selectedUnitId = old('unit_pendidikan_id', request('unit_id'));
+        $unitsList = $unitPendidikans ?? \App\Models\UnitPendidikan::active()->orderBy('order', 'asc')->get();
+        if (!$selectedUnitId && request('unit')) {
+            $reqUnit = request('unit');
+            if (is_numeric($reqUnit)) {
+                $selectedUnitId = (int) $reqUnit;
+            } else {
+                $found = $unitsList->first(fn($u) => strtolower($u->slug) === strtolower($reqUnit) || strtolower($u->short_name) === strtolower($reqUnit));
+                if ($found) {
+                    $selectedUnitId = $found->id;
+                }
+            }
+        }
+    @endphp
     <div class="space-y-1.5">
-        <label for="{{ $key }}" class="block font-black text-slate-800 text-xs leading-snug">
+        <label for="unit_pendidikan_id" class="block font-black text-slate-800 dark:text-slate-100 text-xs leading-snug">
+            <span>{{ $label ?: 'Unit Pendidikan Tujuan' }}</span>
+            <span class="text-red-500 font-bold ml-0.5">*</span>
+        </label>
+        <div class="relative">
+            <select name="unit_pendidikan_id" id="unit_pendidikan_id" required class="w-full bg-white dark:bg-slate-800 text-xs font-bold text-slate-800 dark:text-slate-100 rounded-xl px-3.5 py-3 pr-8 border border-slate-300 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-[#00913e] focus:border-[#00913e] shadow-xs cursor-pointer transition">
+                <option value="" class="text-slate-400 font-normal">-- Pilih Unit Pendidikan Tujuan Santri --</option>
+                @foreach($unitsList as $unit)
+                    <option value="{{ $unit->id }}" {{ (string)$selectedUnitId === (string)$unit->id ? 'selected' : '' }}>
+                        {{ $unit->name }} ({{ $unit->short_name }})
+                    </option>
+                @endforeach
+            </select>
+        </div>
+        <p class="text-[11px] text-slate-500 dark:text-slate-400 font-medium">Pilih madrasah/sekolah/ma'had tujuan pendaftaran calon santri baru.</p>
+        @error('unit_pendidikan_id') <p class="text-red-500 text-[11px] font-semibold mt-1">{{ $message }}</p> @enderror
+    </div>
+
+@elseif($type === 'select')
+    <div class="space-y-1.5">
+        <label for="{{ $key }}" class="block font-black text-slate-800 dark:text-slate-100 text-xs leading-snug">
             <span>{{ $label }}</span>
             @if($required)
                 <span class="text-red-500 font-bold ml-0.5">*</span>
@@ -18,7 +53,7 @@
             @endif
         </label>
         <div class="relative">
-            <select name="{{ $key }}" id="{{ $key }}" {{ $required ? 'required' : '' }} class="w-full bg-white text-xs font-semibold text-slate-800 rounded-xl px-3.5 py-3 pr-8 border border-slate-300 focus:outline-none focus:ring-2 focus:ring-[#00913e] focus:border-[#00913e] shadow-xs cursor-pointer transition">
+            <select name="{{ $key }}" id="{{ $key }}" {{ $required ? 'required' : '' }} class="w-full bg-white dark:bg-slate-800 text-xs font-semibold text-slate-800 dark:text-slate-100 rounded-xl px-3.5 py-3 pr-8 border border-slate-300 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-[#00913e] focus:border-[#00913e] shadow-xs cursor-pointer transition">
                 <option value="" class="text-slate-400 font-normal">{{ $placeholder ?: 'Pilih ' . $label . '...' }}</option>
                 @php
                     $opts = $options;
