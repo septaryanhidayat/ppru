@@ -229,6 +229,10 @@ Route::get('/alumni-ru', fn () => redirect()->route('ikarus.index'));
 Route::get('/karya-alumni', fn () => redirect()->route('ikarus.index'));
 Route::get('/alumni-ikarus', fn () => redirect()->route('ikarus.index'));
 
+// Karya Santri & Asatidz PPRU
+Route::get('/karya-santri', [ArticleController::class, 'karyaSantri'])->name('karya-santri');
+Route::get('/karya-santri-dan-asatidz', fn () => redirect()->route('karya-santri'));
+
 // Mimbar Khutbah Jum'at & Kajian Dakwah PPRU
 Route::get('/khutbah', [KhutbahController::class, 'index'])->name('khutbah.index');
 Route::get('/khutbah/{slug}', [KhutbahController::class, 'show'])->name('khutbah.show');

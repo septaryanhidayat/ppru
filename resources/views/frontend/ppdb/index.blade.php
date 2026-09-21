@@ -101,45 +101,45 @@
     <section id="katalog-unit" class="py-14 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10" x-data="{ selectedCategory: 'all' }">
         
         <div class="text-center max-w-3xl mx-auto space-y-3">
-            <span class="inline-block text-xs font-black uppercase tracking-wider text-[#00843d] bg-emerald-50 px-3.5 py-1.5 rounded-full border border-emerald-200">
+            <span class="inline-block text-xs font-black uppercase tracking-wider text-[#00843d] dark:text-emerald-400 bg-emerald-50 dark:bg-slate-800 px-3.5 py-1.5 rounded-full border border-emerald-200 dark:border-slate-700">
                 {{ $settings['unit_badge'] ?? 'Multi-Unit Pendidikan Terpadu' }}
             </span>
-            <h2 class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
+            <h2 class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
                 {{ $settings['unit_title'] ?? 'PILIH UNIT PENDIDIKAN TUJUAN' }}
             </h2>
-            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                {{ $settings['unit_desc'] ?? 'Pondok Pesantren Raudhatul Ulum Sakatiga menaungi 8 unit pendidikan resmi yang terstruktur mulai dari Madrasah, TK Islam, Sekolah Islam Terpadu (JSIT), hingga Perguruan Tinggi Islam.' }}
+            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                {{ $settings['unit_desc'] ?? 'Pondok Pesantren Raudhatul Ulum Sakatiga menaungi 8 unit pendidikan resmi yang terstruktur mulai dari Taman Kanak-Kanak Islam, Madrasah, Sekolah Islam Terpadu (JSIT), hingga Perguruan Tinggi Islam.' }}
             </p>
 
-            {{-- Category Filter Tabs (Madrasah, TK, Sekolah IT, Sekolah Tinggi) --}}
+            {{-- Category Filter Tabs (TK Islam urutan 1, Madrasah, Sekolah IT, Sekolah Tinggi) --}}
             <div class="flex flex-wrap items-center justify-center gap-2 pt-4">
                 <button 
                     @click="selectedCategory = 'all'" 
-                    :class="selectedCategory === 'all' ? 'bg-[#00843d] text-white shadow-md' : 'bg-white text-slate-700 hover:bg-slate-100 border border-slate-200'"
+                    :class="selectedCategory === 'all' ? 'bg-[#00843d] text-white shadow-md' : 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-750 border border-slate-200 dark:border-slate-700'"
                     class="px-4 py-2 rounded-xl text-xs font-bold transition cursor-pointer">
                     Semua Unit (8)
                 </button>
                 <button 
-                    @click="selectedCategory = 'Madrasah'" 
-                    :class="selectedCategory === 'Madrasah' ? 'bg-[#00843d] text-white shadow-md' : 'bg-white text-slate-700 hover:bg-slate-100 border border-slate-200'"
+                    @click="selectedCategory = 'TK Islam'" 
+                    :class="selectedCategory === 'TK Islam' ? 'bg-[#00843d] text-white shadow-md' : 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-750 border border-slate-200 dark:border-slate-700'"
                     class="px-4 py-2 rounded-xl text-xs font-bold transition cursor-pointer">
-                    1. Madrasah (4)
+                    1. TK Islam (1)
                 </button>
                 <button 
-                    @click="selectedCategory = 'TK Islam'" 
-                    :class="selectedCategory === 'TK Islam' ? 'bg-[#00843d] text-white shadow-md' : 'bg-white text-slate-700 hover:bg-slate-100 border border-slate-200'"
+                    @click="selectedCategory = 'Madrasah'" 
+                    :class="selectedCategory === 'Madrasah' ? 'bg-[#00843d] text-white shadow-md' : 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-750 border border-slate-200 dark:border-slate-700'"
                     class="px-4 py-2 rounded-xl text-xs font-bold transition cursor-pointer">
-                    2. TK Islam (1)
+                    2. Madrasah (4)
                 </button>
                 <button 
                     @click="selectedCategory = 'Sekolah IT'" 
-                    :class="selectedCategory === 'Sekolah IT' ? 'bg-[#00843d] text-white shadow-md' : 'bg-white text-slate-700 hover:bg-slate-100 border border-slate-200'"
+                    :class="selectedCategory === 'Sekolah IT' ? 'bg-[#00843d] text-white shadow-md' : 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-750 border border-slate-200 dark:border-slate-700'"
                     class="px-4 py-2 rounded-xl text-xs font-bold transition cursor-pointer">
                     3. Sekolah IT (2)
                 </button>
                 <button 
                     @click="selectedCategory = 'Sekolah Tinggi'" 
-                    :class="selectedCategory === 'Sekolah Tinggi' ? 'bg-[#00843d] text-white shadow-md' : 'bg-white text-slate-700 hover:bg-slate-100 border border-slate-200'"
+                    :class="selectedCategory === 'Sekolah Tinggi' ? 'bg-[#00843d] text-white shadow-md' : 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-750 border border-slate-200 dark:border-slate-700'"
                     class="px-4 py-2 rounded-xl text-xs font-bold transition cursor-pointer">
                     4. Sekolah Tinggi (1)
                 </button>
@@ -156,7 +156,7 @@
                     <div 
                         x-show="selectedCategory === 'all' || selectedCategory === '{{ $u->category_type }}'" 
                         x-transition
-                        class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl border border-slate-200/80 flex flex-col justify-between transition-all duration-300 transform hover:-translate-y-1 group">
+                        class="bg-white dark:bg-slate-900 rounded-3xl overflow-hidden shadow-sm hover:shadow-xl border border-slate-200/80 dark:border-slate-800 flex flex-col justify-between transition-all duration-300 transform hover:-translate-y-1 group">
                         
                         <div>
                             {{-- Image Cover --}}
@@ -184,17 +184,17 @@
 
                             {{-- Content --}}
                             <div class="p-5 space-y-3">
-                                <h3 class="font-black text-base text-slate-900 group-hover:text-[#00843d] transition-colors line-clamp-2 leading-snug">
+                                <h3 class="font-black text-base text-slate-900 dark:text-white group-hover:text-[#00843d] dark:group-hover:text-emerald-400 transition-colors line-clamp-2 leading-snug">
                                     {{ $cleanTitle }}
                                 </h3>
                                 
-                                <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed">
+                                <p class="text-xs text-slate-600 dark:text-slate-300 line-clamp-3 leading-relaxed">
                                     {{ $u->description }}
                                 </p>
 
-                                <div class="pt-2 border-t border-slate-100 text-[11px] text-slate-500 space-y-1">
-                                    <div class="flex items-center gap-1.5 text-slate-700 font-semibold">
-                                        <i class="fa-solid fa-graduation-cap text-[#00843d]"></i>
+                                <div class="pt-2 border-t border-slate-100 dark:border-slate-800 text-[11px] text-slate-500 dark:text-slate-400 space-y-1">
+                                    <div class="flex items-center gap-1.5 text-slate-700 dark:text-slate-300 font-semibold">
+                                        <i class="fa-solid fa-graduation-cap text-[#00843d] dark:text-emerald-400"></i>
                                         <span class="truncate">{{ $u->curriculum }}</span>
                                     </div>
                                     <div class="flex items-center gap-1.5">
@@ -210,7 +210,7 @@
                             <a href="{{ route('ppdb.form') }}?unit={{ $u->slug }}" class="flex-1 bg-[#00843d] hover:bg-[#006a31] text-white text-xs font-extrabold py-2.5 px-3 rounded-xl text-center transition shadow-sm">
                                 <span>Daftar Unit Ini</span>
                             </a>
-                            <a href="{{ route('pendidikan.show', $u->slug) }}" class="bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold py-2.5 px-3 rounded-xl transition" title="Lihat Profil Unit">
+                            <a href="{{ route('pendidikan.show', $u->slug) }}" class="bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-750 text-slate-700 dark:text-slate-200 text-xs font-bold py-2.5 px-3 rounded-xl transition" title="Lihat Profil Unit">
                                 <i class="fa-solid fa-arrow-right"></i>
                             </a>
                         </div>
@@ -287,17 +287,17 @@
     @endif
 
     {{-- 3. ALUR KERJA PENDAFTARAN PESANTREN (VISUAL STEPPER) --}}
-    <section class="py-14 sm:py-20 bg-white border-y border-slate-200/80">
+    <section class="py-14 sm:py-20 bg-white dark:bg-slate-900 border-y border-slate-200/80 dark:border-slate-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
             
             <div class="text-center max-w-3xl mx-auto space-y-2">
-                <span class="text-xs font-black uppercase tracking-wider text-[#00843d] bg-emerald-50 px-3.5 py-1.5 rounded-full border border-emerald-200">
+                <span class="text-xs font-black uppercase tracking-wider text-[#00843d] dark:text-emerald-400 bg-emerald-50 dark:bg-slate-800 px-3.5 py-1.5 rounded-full border border-emerald-200 dark:border-slate-700">
                     Proses Pendaftaran Terstruktur
                 </span>
-                <h2 class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
+                <h2 class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
                     {{ $settings['alur_title'] ?? 'ALUR PENDAFTARAN SANTRI BARU (PSB)' }}
                 </h2>
-                <p class="text-xs sm:text-sm text-slate-600">
+                <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300">
                     {{ $settings['alur_desc'] ?? '5 Tahapan mudah dan transparan pendaftaran santri baru Pondok Pesantren Raudhatul Ulum Sakatiga' }}
                 </p>
             </div>
@@ -306,81 +306,81 @@
             <div class="grid grid-cols-1 md:grid-cols-5 gap-4 relative">
                 
                 {{-- Step 1 --}}
-                <div class="bg-slate-50 rounded-2xl p-5 border border-slate-200 flex flex-col justify-between relative hover:border-emerald-500 transition">
+                <div class="bg-slate-50 dark:bg-slate-800/80 rounded-2xl p-5 border border-slate-200 dark:border-slate-700 flex flex-col justify-between relative hover:border-emerald-500 transition">
                     <div class="space-y-3">
-                        <div class="w-10 h-10 rounded-xl bg-emerald-100 text-[#00843d] font-black text-base flex items-center justify-center">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-950 text-[#00843d] dark:text-emerald-300 font-black text-base flex items-center justify-center">
                             1
                         </div>
-                        <h4 class="font-extrabold text-sm text-slate-900">{{ $settings['step_1_title'] ?? 'Pendaftaran Online' }}</h4>
-                        <p class="text-xs text-slate-600 leading-relaxed">
+                        <h4 class="font-extrabold text-sm text-slate-900 dark:text-white">{{ $settings['step_1_title'] ?? 'Pendaftaran Online' }}</h4>
+                        <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
                             {{ $settings['step_1_desc'] ?? 'Mengisi formulir PSB melalui portal website resmi ini dengan data calon santri dan orang tua secara lengkap.' }}
                         </p>
                     </div>
-                    <div class="pt-3 mt-3 border-t border-slate-200/80 text-[10px] text-slate-500 font-medium">
+                    <div class="pt-3 mt-3 border-t border-slate-200/80 dark:border-slate-700 text-[10px] text-slate-500 dark:text-slate-400 font-medium">
                         {{ $settings['step_1_sub'] ?? 'Portal aktif 24 jam' }}
                     </div>
                 </div>
 
                 {{-- Step 2 --}}
-                <div class="bg-slate-50 rounded-2xl p-5 border border-slate-200 flex flex-col justify-between relative hover:border-emerald-500 transition">
+                <div class="bg-slate-50 dark:bg-slate-800/80 rounded-2xl p-5 border border-slate-200 dark:border-slate-700 flex flex-col justify-between relative hover:border-emerald-500 transition">
                     <div class="space-y-3">
-                        <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-800 font-black text-base flex items-center justify-center">
+                        <div class="w-10 h-10 rounded-xl bg-amber-100 dark:bg-amber-950 text-amber-800 dark:text-amber-300 font-black text-base flex items-center justify-center">
                             2
                         </div>
-                        <h4 class="font-extrabold text-sm text-slate-900">{{ $settings['step_2_title'] ?? 'Transfer & Berkas' }}</h4>
-                        <p class="text-xs text-slate-600 leading-relaxed">
+                        <h4 class="font-extrabold text-sm text-slate-900 dark:text-white">{{ $settings['step_2_title'] ?? 'Transfer & Berkas' }}</h4>
+                        <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
                             {{ $settings['step_2_desc'] ?? 'Membayar biaya pendaftaran ke rekening BSI resmi pesantren dan mengunggah bukti transfer serta berkas KK/Akta.' }}
                         </p>
                     </div>
-                    <div class="pt-3 mt-3 border-t border-slate-200/80 text-[10px] text-slate-500 font-medium">
+                    <div class="pt-3 mt-3 border-t border-slate-200/80 dark:border-slate-700 text-[10px] text-slate-500 dark:text-slate-400 font-medium">
                         {{ $settings['step_2_sub'] ?? 'Biaya Rp 250.000,- via Bank BSI' }}
                     </div>
                 </div>
 
                 {{-- Step 3 --}}
-                <div class="bg-slate-50 rounded-2xl p-5 border border-slate-200 flex flex-col justify-between relative hover:border-emerald-500 transition">
+                <div class="bg-slate-50 dark:bg-slate-800/80 rounded-2xl p-5 border border-slate-200 dark:border-slate-700 flex flex-col justify-between relative hover:border-emerald-500 transition">
                     <div class="space-y-3">
-                        <div class="w-10 h-10 rounded-xl bg-blue-100 text-blue-800 font-black text-base flex items-center justify-center">
+                        <div class="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-950 text-blue-800 dark:text-blue-300 font-black text-base flex items-center justify-center">
                             3
                         </div>
-                        <h4 class="font-extrabold text-sm text-slate-900">{{ $settings['step_3_title'] ?? 'Ujian Seleksi & Wawancara' }}</h4>
-                        <p class="text-xs text-slate-600 leading-relaxed">
+                        <h4 class="font-extrabold text-sm text-slate-900 dark:text-white">{{ $settings['step_3_title'] ?? 'Ujian Seleksi & Wawancara' }}</h4>
+                        <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
                             {{ $settings['step_3_desc'] ?? 'Mengikuti tes potensi akademik, tes membaca Al-Qur\'an/tahfidz, dan wawancara kesiapan orang tua serta santri.' }}
                         </p>
                     </div>
-                    <div class="pt-3 mt-3 border-t border-slate-200/80 text-[10px] text-slate-500 font-medium">
+                    <div class="pt-3 mt-3 border-t border-slate-200/80 dark:border-slate-700 text-[10px] text-slate-500 dark:text-slate-400 font-medium">
                         {{ $settings['step_3_sub'] ?? 'Jadwal diinfokan via WhatsApp' }}
                     </div>
                 </div>
 
                 {{-- Step 4 --}}
-                <div class="bg-slate-50 rounded-2xl p-5 border border-slate-200 flex flex-col justify-between relative hover:border-emerald-500 transition">
+                <div class="bg-slate-50 dark:bg-slate-800/80 rounded-2xl p-5 border border-slate-200 dark:border-slate-700 flex flex-col justify-between relative hover:border-emerald-500 transition">
                     <div class="space-y-3">
-                        <div class="w-10 h-10 rounded-xl bg-purple-100 text-purple-800 font-black text-base flex items-center justify-center">
+                        <div class="w-10 h-10 rounded-xl bg-purple-100 dark:bg-purple-950 text-purple-800 dark:text-purple-300 font-black text-base flex items-center justify-center">
                             4
                         </div>
-                        <h4 class="font-extrabold text-sm text-slate-900">{{ $settings['step_4_title'] ?? 'Pengumuman Kelulusan' }}</h4>
-                        <p class="text-xs text-slate-600 leading-relaxed">
+                        <h4 class="font-extrabold text-sm text-slate-900 dark:text-white">{{ $settings['step_4_title'] ?? 'Pengumuman Kelulusan' }}</h4>
+                        <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
                             {{ $settings['step_4_desc'] ?? 'Mengecek hasil seleksi kelulusan melalui website dan notifikasi resmi WhatsApp panitia PSB.' }}
                         </p>
                     </div>
-                    <div class="pt-3 mt-3 border-t border-slate-200/80 text-[10px] text-slate-500 font-medium">
+                    <div class="pt-3 mt-3 border-t border-slate-200/80 dark:border-slate-700 text-[10px] text-slate-500 dark:text-slate-400 font-medium">
                         {{ $settings['step_4_sub'] ?? 'Daftar ulang & fitting seragam' }}
                     </div>
                 </div>
 
                 {{-- Step 5 --}}
-                <div class="bg-slate-50 rounded-2xl p-5 border border-slate-200 flex flex-col justify-between relative hover:border-emerald-500 transition">
+                <div class="bg-slate-50 dark:bg-slate-800/80 rounded-2xl p-5 border border-slate-200 dark:border-slate-700 flex flex-col justify-between relative hover:border-emerald-500 transition">
                     <div class="space-y-3">
                         <div class="w-10 h-10 rounded-xl bg-emerald-600 text-white font-black text-base flex items-center justify-center">
                             5
                         </div>
-                        <h4 class="font-extrabold text-sm text-slate-900">{{ $settings['step_5_title'] ?? 'Masuk Asrama (P2SB)' }}</h4>
-                        <p class="text-xs text-slate-600 leading-relaxed">
+                        <h4 class="font-extrabold text-sm text-slate-900 dark:text-white">{{ $settings['step_5_title'] ?? 'Masuk Asrama (P2SB)' }}</h4>
+                        <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
                             {{ $settings['step_5_desc'] ?? 'Kedatangan santri ke asrama, serah terima dengan Mudir dan pengasuh, serta mengikuti Pekan Perkenalan Santri Baru (P2SB).' }}
                         </p>
                     </div>
-                    <div class="pt-3 mt-3 border-t border-slate-200/80 text-[10px] text-slate-500 font-medium">
+                    <div class="pt-3 mt-3 border-t border-slate-200/80 dark:border-slate-700 text-[10px] text-slate-500 dark:text-slate-400 font-medium">
                         {{ $settings['step_5_sub'] ?? 'Khutbatul Arsy & pembagian kamar santri' }}
                     </div>
                 </div>
@@ -388,12 +388,12 @@
             </div>
 
             @if(!empty($settings['alur']))
-                <div class="mt-8 bg-slate-50 border border-slate-200 rounded-3xl p-6 sm:p-8 space-y-3">
-                    <div class="flex items-center space-x-2 text-[#00843d] font-black text-sm">
+                <div class="mt-8 bg-slate-50 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 rounded-3xl p-6 sm:p-8 space-y-3">
+                    <div class="flex items-center space-x-2 text-[#00843d] dark:text-emerald-400 font-black text-sm">
                         <i class="fa-solid fa-clipboard-list text-base"></i>
                         <span>Petunjuk &amp; Alur Lengkap Pendaftaran:</span>
                     </div>
-                    <div class="text-xs sm:text-sm text-slate-700 whitespace-pre-line leading-relaxed">
+                    <div class="text-xs sm:text-sm text-slate-700 dark:text-slate-200 whitespace-pre-line leading-relaxed">
                         {{ $settings['alur'] }}
                     </div>
                 </div>
@@ -406,13 +406,13 @@
     <section class="py-14 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
         
         <div class="text-center max-w-3xl mx-auto space-y-2">
-            <span class="text-xs font-black uppercase tracking-wider text-[#00843d] bg-emerald-50 px-3.5 py-1.5 rounded-full border border-emerald-200">
+            <span class="text-xs font-black uppercase tracking-wider text-[#00843d] dark:text-emerald-400 bg-emerald-50 dark:bg-slate-800 px-3.5 py-1.5 rounded-full border border-emerald-200 dark:border-slate-700">
                 Pilihan Jalur Masuk
             </span>
-            <h2 class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
+            <h2 class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
                 {{ $settings['jalur_title'] ?? 'JALUR PENERIMAAN SANTRI BARU' }}
             </h2>
-            <p class="text-xs sm:text-sm text-slate-600">
+            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300">
                 {{ $settings['jalur_desc'] ?? 'Tersedia berbagai pilihan jalur penerimaan sesuai bakat, hafalan Al-Qur\'an, dan prestasi santri' }}
             </p>
         </div>
@@ -420,64 +420,64 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             
             {{-- Jalur 1: Reguler --}}
-            <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-xs space-y-3 hover:border-emerald-500 transition">
-                <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-[#00843d] flex items-center justify-center text-xl font-bold">
+            <div class="bg-white dark:bg-slate-900 rounded-3xl p-6 border border-slate-200 dark:border-slate-800 shadow-xs space-y-3 hover:border-emerald-500 transition">
+                <div class="w-12 h-12 rounded-2xl bg-emerald-50 dark:bg-emerald-950/80 text-[#00843d] dark:text-emerald-300 flex items-center justify-center text-xl font-bold">
                     <i class="fa-solid fa-user-check"></i>
                 </div>
-                <h3 class="font-extrabold text-base text-slate-900">{{ $settings['jalur_reguler_title'] ?? 'Jalur Reguler (Mandiri)' }}</h3>
-                <p class="text-xs text-slate-600 leading-relaxed whitespace-pre-line">
+                <h3 class="font-extrabold text-base text-slate-900 dark:text-white">{{ $settings['jalur_reguler_title'] ?? 'Jalur Reguler (Mandiri)' }}</h3>
+                <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed whitespace-pre-line">
                     {{ $settings['mandiri'] ?? 'Jalur umum melalui tahapan tes potensi akademik, tes membaca Al-Qur\'an (tahsin & tajwid), dan wawancara kesiapan santri & orang tua.' }}
                 </p>
-                <div class="text-[11px] text-[#00843d] font-bold pt-2 border-t border-slate-100 flex items-center gap-1">
+                <div class="text-[11px] text-[#00843d] dark:text-emerald-400 font-bold pt-2 border-t border-slate-100 dark:border-slate-800 flex items-center gap-1">
                     <i class="fa-solid fa-circle-check text-[10px]"></i>
                     <span>Terbuka untuk semua jenjang</span>
                 </div>
             </div>
 
             {{-- Jalur 2: Tahfidz Qur'an --}}
-            <div class="bg-white rounded-3xl p-6 border-2 border-emerald-400 shadow-md space-y-3 relative overflow-hidden">
+            <div class="bg-white dark:bg-slate-900 rounded-3xl p-6 border-2 border-emerald-400 dark:border-emerald-500 shadow-md space-y-3 relative overflow-hidden">
                 <div class="absolute top-3 right-3 bg-amber-400 text-slate-950 text-[9px] font-black px-2 py-0.5 rounded-md uppercase">
                     Favorit
                 </div>
-                <div class="w-12 h-12 rounded-2xl bg-amber-50 text-amber-700 flex items-center justify-center text-xl font-bold">
+                <div class="w-12 h-12 rounded-2xl bg-amber-50 dark:bg-amber-950/80 text-amber-700 dark:text-amber-300 flex items-center justify-center text-xl font-bold">
                     <i class="fa-solid fa-book-quran"></i>
                 </div>
-                <h3 class="font-extrabold text-base text-slate-900">{{ $settings['jalur_tahfidz_title'] ?? 'Jalur Hafizh Al-Qur\'an' }}</h3>
-                <p class="text-xs text-slate-600 leading-relaxed whitespace-pre-line">
+                <h3 class="font-extrabold text-base text-slate-900 dark:text-white">{{ $settings['jalur_tahfidz_title'] ?? 'Jalur Hafizh Al-Qur\'an' }}</h3>
+                <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed whitespace-pre-line">
                     {{ $settings['tahfidz'] ?? 'Keringanan biaya dan beasiswa khusus santri penghafal Al-Qur\'an minimal 3 Juz s/d 30 Juz mutqin, serta bimbingan sanad Al-Qur\'an di MATQULARU.' }}
                 </p>
-                <div class="text-[11px] text-[#00843d] font-bold pt-2 border-t border-slate-100 flex items-center gap-1">
+                <div class="text-[11px] text-[#00843d] dark:text-emerald-400 font-bold pt-2 border-t border-slate-100 dark:border-slate-800 flex items-center gap-1">
                     <i class="fa-solid fa-award text-[10px]"></i>
                     <span>Beasiswa SPP &amp; Sanad Mutqin</span>
                 </div>
             </div>
 
             {{-- Jalur 3: Prestasi Sains & Olahraga --}}
-            <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-xs space-y-3 hover:border-emerald-500 transition">
-                <div class="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center text-xl font-bold">
+            <div class="bg-white dark:bg-slate-900 rounded-3xl p-6 border border-slate-200 dark:border-slate-800 shadow-xs space-y-3 hover:border-emerald-500 transition">
+                <div class="w-12 h-12 rounded-2xl bg-blue-50 dark:bg-blue-950/80 text-blue-600 dark:text-blue-300 flex items-center justify-center text-xl font-bold">
                     <i class="fa-solid fa-trophy"></i>
                 </div>
-                <h3 class="font-extrabold text-base text-slate-900">{{ $settings['jalur_prestasi_title'] ?? 'Jalur Prestasi Sains' }}</h3>
-                <p class="text-xs text-slate-600 leading-relaxed whitespace-pre-line">
+                <h3 class="font-extrabold text-base text-slate-900 dark:text-white">{{ $settings['jalur_prestasi_title'] ?? 'Jalur Prestasi Sains' }}</h3>
+                <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed whitespace-pre-line">
                     {{ $settings['prestasi'] ?? 'Bebas tes tulis akademik bagi pemenang juara 1, 2, atau 3 lomba sains (KSM/OSN), MTQ/MHQ, pidato, dan olahraga tingkat kota, provinsi, atau nasional.' }}
                 </p>
-                <div class="text-[11px] text-[#00843d] font-bold pt-2 border-t border-slate-100 flex items-center gap-1">
+                <div class="text-[11px] text-[#00843d] dark:text-emerald-400 font-bold pt-2 border-t border-slate-100 dark:border-slate-800 flex items-center gap-1">
                     <i class="fa-solid fa-certificate text-[10px]"></i>
                     <span>Bebas Tes Akademik</span>
                 </div>
             </div>
 
             {{-- Jalur 4: Alumni Internal --}}
-            <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-xs space-y-3 hover:border-emerald-500 transition">
-                <div class="w-12 h-12 rounded-2xl bg-purple-50 text-purple-600 flex items-center justify-center text-xl font-bold">
+            <div class="bg-white dark:bg-slate-900 rounded-3xl p-6 border border-slate-200 dark:border-slate-800 shadow-xs space-y-3 hover:border-emerald-500 transition">
+                <div class="w-12 h-12 rounded-2xl bg-purple-50 dark:bg-purple-950/80 text-purple-600 dark:text-purple-300 flex items-center justify-center text-xl font-bold">
                     <i class="fa-solid fa-people-roof"></i>
                 </div>
-                <h3 class="font-extrabold text-base text-slate-900">{{ $settings['jalur_alumni_title'] ?? 'Jalur Alumni Internal' }}</h3>
-                <p class="text-xs text-slate-600 leading-relaxed whitespace-pre-line">
+                <h3 class="font-extrabold text-base text-slate-900 dark:text-white">{{ $settings['jalur_alumni_title'] ?? 'Jalur Alumni Internal' }}</h3>
+                <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed whitespace-pre-line">
                     {{ $settings['alumni'] ?? 'Khusus bagi lulusan MTs Raudhatul Ulum dan SMPIT Raudhatul Ulum yang melanjutkan studi ke MARU atau SMAIT RU dengan potongan biaya uang pangkal.' }}
                 </p>
-                <div class="text-[11px] text-[#00843d] font-bold pt-2 border-t border-slate-100 flex items-center gap-1">
-                    <i class="fa-solid fa-hand-holding-dollar text-[10px]"></i>
+                <div class="text-[11px] text-[#00843d] dark:text-emerald-400 font-bold pt-2 border-t border-slate-100 dark:border-slate-800 flex items-center gap-1">
+                    <i class="fa-solid fa-handholding-dollar text-[10px]"></i>
                     <span>Potongan Biaya Masuk Khusus</span>
                 </div>
             </div>
@@ -611,7 +611,7 @@
             </p>
         </div>
 
-        <div class="bg-white p-4 sm:p-6 rounded-3xl shadow-xl border border-slate-200 overflow-hidden space-y-4">
+        <div class="bg-white dark:bg-slate-900 p-4 sm:p-6 rounded-3xl shadow-xl border border-slate-200 dark:border-slate-800 overflow-hidden space-y-4">
             <div class="relative w-full aspect-video rounded-2xl overflow-hidden bg-slate-950 shadow-2xl border border-slate-800">
                 <iframe 
                     class="w-full h-full"
@@ -628,8 +628,8 @@
                         <i class="fa-brands fa-youtube"></i>
                     </div>
                     <div>
-                        <h4 class="text-xs sm:text-sm font-extrabold text-slate-900">{{ $settings['video_title'] ?? 'Video Profil & Dokumentasi Pesantren' }}</h4>
-                        <p class="text-xs text-slate-500 font-medium">{{ $settings['video_channel'] ?? 'Channel Resmi TVRU Sakatiga (@tvrusakatiga)' }}</p>
+                        <h4 class="text-xs sm:text-sm font-extrabold text-slate-900 dark:text-white">{{ $settings['video_title'] ?? 'Video Profil & Dokumentasi Pesantren' }}</h4>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 font-medium">{{ $settings['video_channel'] ?? 'Channel Resmi TVRU Sakatiga (@tvrusakatiga)' }}</p>
                     </div>
                 </div>
                 <a href="https://www.youtube.com/watch?v={{ $settings['youtube_id'] }}" target="_blank" class="inline-flex items-center space-x-1.5 text-xs font-bold text-red-600 hover:text-red-700 bg-red-50 hover:bg-red-100 px-4 py-2 rounded-xl transition flex-shrink-0">
@@ -642,14 +642,14 @@
     @endif
 
     {{-- 7. FAQ & CALL TO ACTION FINAL --}}
-    <section class="py-14 sm:py-20 bg-emerald-50/60 border-t border-emerald-100">
+    <section class="py-14 sm:py-20 bg-emerald-50/60 dark:bg-slate-950 border-t border-emerald-100 dark:border-slate-800">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10" x-data="{ openFaq: 0 }">
             
             <div class="text-center space-y-2">
-                <h2 class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
+                <h2 class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
                     {{ $settings['faq_title'] ?? 'PERTANYAAN SERING DIAJUKAN (FAQ)' }}
                 </h2>
-                <p class="text-xs sm:text-sm text-slate-600">
+                <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
                     {{ $settings['faq_desc'] ?? 'Jawaban seputar kehidupan berasrama dan pendaftaran santri baru di PPRU Sakatiga' }}
                 </p>
             </div>
@@ -657,12 +657,12 @@
             @if(!empty($faqs))
             <div class="space-y-3">
                 @foreach($faqs as $index => $faq)
-                <div class="bg-white rounded-2xl border border-emerald-200 overflow-hidden shadow-xs">
-                    <button @click="openFaq = (openFaq === {{ $index }} ? null : {{ $index }})" class="w-full px-5 py-4 flex items-center justify-between text-left font-bold text-xs sm:text-sm text-slate-900 cursor-pointer">
+                <div class="bg-white dark:bg-slate-900 rounded-2xl border border-emerald-200 dark:border-slate-800 overflow-hidden shadow-xs">
+                    <button @click="openFaq = (openFaq === {{ $index }} ? null : {{ $index }})" class="w-full px-5 py-4 flex items-center justify-between text-left font-bold text-xs sm:text-sm text-slate-900 dark:text-white cursor-pointer">
                         <span>{!! strip_tags($faq['question'], '<b><strong><i><em><u><center><span>') !!}</span>
-                        <i class="fa-solid" :class="openFaq === {{ $index }} ? 'fa-chevron-up text-[#00843d]' : 'fa-chevron-down text-gray-400'"></i>
+                        <i class="fa-solid" :class="openFaq === {{ $index }} ? 'fa-chevron-up text-[#00843d] dark:text-emerald-400' : 'fa-chevron-down text-gray-400'"></i>
                     </button>
-                    <div x-show="openFaq === {{ $index }}" x-collapse class="px-5 pb-4 text-xs text-slate-600 leading-relaxed border-t border-emerald-50 pt-3">
+                    <div x-show="openFaq === {{ $index }}" x-collapse class="px-5 pb-4 text-xs text-slate-600 dark:text-slate-300 leading-relaxed border-t border-emerald-50 dark:border-slate-800 pt-3">
                         {!! strip_tags($faq['answer'], '<p><br><b><strong><i><em><u><center><ul><ol><li><a><span>') !!}
                     </div>
                 </div>

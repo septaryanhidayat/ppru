@@ -119,6 +119,60 @@ class ArticleController extends Controller
         return redirect()->route('artikel.index', ['kategori' => $slug]);
     }
 
+    public function karyaSantri(Request $request)
+    {
+        // Ensure category karya-santri exists
+        $karyaCategory = Category::firstOrCreate(
+            ['slug' => 'karya-santri'],
+            [
+                'name' => 'Karya Santri & Asatidz',
+                'description' => 'Kumpulan artikel, opini, riset, dan karya tulis ilmiah santri serta dewan asatidz Pondok Pesantren Raudhatul Ulum Sakatiga.',
+            ]
+        );
+
+        $search = $request->input('q');
+
+        $query = Post::whereIn('status', ['publish', 'published'])
+            ->where(function ($q) use ($karyaCategory) {
+                $q->whereHas('categories', function ($catQ) use ($karyaCategory) {
+                    $catQ->where('categories.id', $karyaCategory->id)
+                        ->orWhere('categories.slug', 'karya-santri');
+                })
+                    ->orWhereHas('tags', function ($tagQ) {
+                        $tagQ->where('slug', 'like', '%santri%')
+                            ->orWhere('slug', 'like', '%karya%');
+                    })
+                    ->orWhere('title', 'like', '%santri%')
+                    ->orWhere('title', 'like', '%karya%')
+                    ->orWhere('type', 'post');
+            })
+            ->with(['categories', 'tags', 'author']);
+
+        if ($search) {
+            $query->where(function ($q) use ($search) {
+                $q->where('title', 'like', "%{$search}%")
+                    ->orWhere('content', 'like', "%{$search}%")
+                    ->orWhere('author_name', 'like', "%{$search}%");
+            });
+        }
+
+        $posts = $query->orderBy('published_at', 'desc')->orderBy('id', 'desc')->paginate(9)->withQueryString();
+        $categories = Category::withCount('posts')->orderBy('posts_count', 'desc')->get();
+        $recentPosts = Post::posts()->published()->orderBy('published_at', 'desc')->orderBy('id', 'desc')->take(5)->get();
+        $tags = Tag::all();
+        $activeCategory = $karyaCategory;
+        $activeTag = null;
+
+        return view('frontend.artikel.karya_santri', compact(
+            'posts',
+            'categories',
+            'recentPosts',
+            'tags',
+            'activeCategory',
+            'activeTag'
+        ));
+    }
+
     public function tag(string $slug)
     {
         return redirect()->route('artikel.index', ['tag' => $slug]);

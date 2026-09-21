@@ -110,6 +110,9 @@ class AdminNavMenuController extends Controller
     public function destroy(Request $request, NavMenu $navMenu)
     {
         $name = $navMenu->name;
+
+        // Recursively delete submenus/children so they don't become orphaned or re-inserted
+        $navMenu->children()->delete();
         $navMenu->delete();
 
         ActivityLog::create([

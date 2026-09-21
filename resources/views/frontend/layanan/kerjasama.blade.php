@@ -44,17 +44,17 @@
 </section>
 
 {{-- 2. MAIN SPLIT INTERFACE --}}
-<div class="bg-slate-50/70 py-8 sm:py-12">
+<div class="bg-slate-50/70 dark:bg-slate-950 py-8 sm:py-12">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {{-- NOTIFIKASI SUKSES --}}
         @if(session('success'))
-            <div class="bg-emerald-50 border-2 border-[#00843d] rounded-3xl p-6 mb-8 text-center space-y-3 shadow-lg animate-fadeIn">
+            <div class="bg-emerald-50 dark:bg-emerald-950/60 border-2 border-[#00843d] dark:border-emerald-700 rounded-3xl p-6 mb-8 text-center space-y-3 shadow-lg animate-fadeIn">
                 <div class="w-12 h-12 rounded-full bg-[#00843d] text-white flex items-center justify-center text-2xl mx-auto shadow-md">
                     <i class="fa-solid fa-circle-check"></i>
                 </div>
-                <h3 class="font-black text-lg text-emerald-950">Permohonan Kerja Sama Terkirim!</h3>
-                <p class="text-xs sm:text-sm text-emerald-800 max-w-lg mx-auto leading-relaxed">
+                <h3 class="font-black text-lg text-emerald-950 dark:text-emerald-200">Permohonan Kerja Sama Terkirim!</h3>
+                <p class="text-xs sm:text-sm text-emerald-800 dark:text-emerald-300 max-w-lg mx-auto leading-relaxed">
                     {{ session('success') }}
                 </p>
                 @if(session('wa_url'))
@@ -73,20 +73,20 @@
             
             {{-- KOLOM KIRI (5 Kolom): SATU KOTAK CARD TERPADU (PERSYARATAN, PROSEDUR, WAKTU, BIAYA, PRODUK) --}}
             <div class="lg:col-span-5 flex flex-col">
-                <div class="bg-white rounded-3xl p-6 sm:p-7 border border-slate-200/90 shadow-md flex flex-col justify-between flex-1 space-y-6">
+                <div class="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-7 border border-slate-200/90 dark:border-slate-800 shadow-md flex flex-col justify-between flex-1 space-y-6">
                     
                     <div class="space-y-5">
                         {{-- Header Card --}}
-                        <div class="pb-3.5 border-b border-slate-100 flex items-center justify-between">
+                        <div class="pb-3.5 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between">
                             <div>
-                                <span class="text-[10px] font-black uppercase tracking-wider text-amber-700 bg-amber-50 px-2.5 py-0.5 rounded-full border border-amber-100">
+                                <span class="text-[10px] font-black uppercase tracking-wider text-amber-700 dark:text-amber-400 bg-amber-50 dark:bg-slate-800 px-2.5 py-0.5 rounded-full border border-amber-100 dark:border-slate-700">
                                     Sinergi &amp; Kemitraan
                                 </span>
-                                <h3 class="text-base sm:text-lg font-black text-slate-900 tracking-tight mt-1">
+                                <h3 class="text-base sm:text-lg font-black text-slate-900 dark:text-white tracking-tight mt-1">
                                     Informasi Kerja Sama
                                 </h3>
                             </div>
-                            <div class="w-8 h-8 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center text-sm font-bold shadow-xs">
+                            <div class="w-8 h-8 rounded-xl bg-amber-50 dark:bg-slate-800 text-amber-600 dark:text-amber-400 flex items-center justify-center text-sm font-bold shadow-xs">
                                 <i class="fa-solid fa-handshake"></i>
                             </div>
                         </div>
@@ -102,9 +102,9 @@
 
                         <div class="space-y-4">
                             @foreach($specList as $item)
-                                <div class="p-4 rounded-2xl bg-slate-50/80 border border-slate-200/70 space-y-2">
-                                    <div class="flex items-center space-x-2 pb-2 border-b border-slate-200/80">
-                                        <span class="w-6 h-6 rounded-lg bg-emerald-100 text-[#00843d] flex items-center justify-center text-xs font-black shrink-0">
+                                <div class="p-4 rounded-2xl bg-slate-50/80 dark:bg-slate-800/80 border border-slate-200/70 dark:border-slate-700 space-y-2">
+                                    <div class="flex items-center space-x-2 pb-2 border-b border-slate-200/80 dark:border-slate-700">
+                                        <span class="w-6 h-6 rounded-lg bg-emerald-100 dark:bg-emerald-950 text-[#00843d] dark:text-emerald-300 flex items-center justify-center text-xs font-black shrink-0">
                                             @if(str_contains(strtolower($item['title']), 'waktu'))
                                                 <i class="fa-solid fa-clock text-[10px]"></i>
                                             @elseif(str_contains(strtolower($item['title']), 'biaya'))
@@ -117,9 +117,9 @@
                                                 <i class="fa-solid fa-list-check text-[10px]"></i>
                                             @endif
                                         </span>
-                                        <h4 class="font-bold text-xs sm:text-sm text-slate-900 tracking-tight">{{ $item['title'] }}</h4>
+                                        <h4 class="font-bold text-xs sm:text-sm text-slate-900 dark:text-white tracking-tight">{{ $item['title'] }}</h4>
                                     </div>
-                                    <div class="text-xs text-slate-600 leading-relaxed prose prose-sm max-w-none [&>ul]:list-disc [&>ul]:pl-5 [&>ul]:space-y-1.5 [&>ol]:list-decimal [&>ol]:pl-5 [&>ol]:space-y-1.5 [&>p]:m-0">
+                                    <div class="text-xs text-slate-600 dark:text-slate-200 leading-relaxed prose prose-sm dark:prose-invert max-w-none [&>ul]:list-disc [&>ul]:pl-5 [&>ul]:space-y-1.5 [&>ol]:list-decimal [&>ol]:pl-5 [&>ol]:space-y-1.5 [&>p]:m-0">
                                         {!! $item['content'] !!}
                                     </div>
                                 </div>
@@ -147,17 +147,17 @@
 
             {{-- KOLOM KANAN (7 Kolom): FORMULIR PENGAJUAN PROPOSAL --}}
             <div class="lg:col-span-7 flex flex-col">
-                <div class="bg-white rounded-3xl p-6 sm:p-8 md:p-9 border border-slate-200/90 shadow-md space-y-6 flex-1 flex flex-col">
+                <div class="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 md:p-9 border border-slate-200/90 dark:border-slate-800 shadow-md space-y-6 flex-1 flex flex-col">
                     
-                    <div class="pb-4 border-b border-slate-100 flex items-center justify-between">
+                    <div class="pb-4 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between">
                         <div>
-                            <span class="text-[10px] font-black uppercase tracking-wider text-amber-700 block">Formulir Kemitraan</span>
-                            <h3 class="text-lg sm:text-xl font-black text-slate-900 tracking-tight mt-0.5">
+                            <span class="text-[10px] font-black uppercase tracking-wider text-amber-700 dark:text-amber-400 block">Formulir Kemitraan</span>
+                            <h3 class="text-lg sm:text-xl font-black text-slate-900 dark:text-white tracking-tight mt-0.5">
                                 Formulir Pengajuan Kerja Sama
                             </h3>
-                            <p class="text-xs text-slate-500 mt-0.5">Kirimkan rincian profil lembaga dan lampiran proposal kerja sama Anda.</p>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Kirimkan rincian profil lembaga dan lampiran proposal kerja sama Anda.</p>
                         </div>
-                        <div class="w-9 h-9 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center text-sm shrink-0 border border-amber-100" title="Koneksi Aman">
+                        <div class="w-9 h-9 rounded-xl bg-amber-50 dark:bg-slate-800 text-amber-600 dark:text-amber-400 flex items-center justify-center text-sm shrink-0 border border-amber-100 dark:border-slate-700" title="Koneksi Aman">
                             <i class="fa-solid fa-lock"></i>
                         </div>
                     </div>
@@ -170,28 +170,28 @@
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 {{-- 1. Nama Narahubung --}}
                                 <div>
-                                    <label for="name" class="block text-xs font-bold text-slate-700 mb-1.5">
+                                    <label for="name" class="block text-xs font-bold text-slate-700 dark:text-slate-200 mb-1.5">
                                         Nama Lengkap Penanggung Jawab <span class="text-red-500">*</span>
                                     </label>
                                     <div class="relative">
                                         <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
                                             <i class="fa-solid fa-user-tie text-xs"></i>
                                         </span>
-                                        <input type="text" name="name" id="name" required value="{{ old('name') }}" placeholder="Nama lengkap Anda &amp; gelar" class="w-full bg-slate-50 text-xs sm:text-sm text-slate-800 rounded-xl pl-9 pr-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00843d] focus:bg-white transition">
+                                        <input type="text" name="name" id="name" required value="{{ old('name') }}" placeholder="Nama lengkap Anda &amp; gelar" class="w-full bg-slate-50 dark:bg-slate-800 text-xs sm:text-sm text-slate-800 dark:text-slate-100 rounded-xl pl-9 pr-4 py-3 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-[#00843d] focus:bg-white dark:focus:bg-slate-750 transition">
                                     </div>
                                     @error('name') <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span> @enderror
                                 </div>
 
                                 {{-- 2. Nama Instansi / Perusahaan --}}
                                 <div>
-                                    <label for="agency" class="block text-xs font-bold text-slate-700 mb-1.5">
+                                    <label for="agency" class="block text-xs font-bold text-slate-700 dark:text-slate-200 mb-1.5">
                                         Nama Instansi / Perusahaan / Lembaga <span class="text-red-500">*</span>
                                     </label>
                                     <div class="relative">
                                         <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
                                             <i class="fa-solid fa-building-flag text-xs"></i>
                                         </span>
-                                        <input type="text" name="agency" id="agency" required value="{{ old('agency') }}" placeholder="Nama instansi/perusahaan Anda" class="w-full bg-slate-50 text-xs sm:text-sm text-slate-800 rounded-xl pl-9 pr-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00843d] focus:bg-white transition">
+                                        <input type="text" name="agency" id="agency" required value="{{ old('agency') }}" placeholder="Nama instansi/perusahaan Anda" class="w-full bg-slate-50 dark:bg-slate-800 text-xs sm:text-sm text-slate-800 dark:text-slate-100 rounded-xl pl-9 pr-4 py-3 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-[#00843d] focus:bg-white dark:focus:bg-slate-750 transition">
                                     </div>
                                     @error('agency') <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span> @enderror
                                 </div>
@@ -199,46 +199,46 @@
 
                             {{-- 3. Nomor WhatsApp --}}
                             <div>
-                                <label for="whatsapp" class="block text-xs font-bold text-slate-700 mb-1.5">
+                                <label for="whatsapp" class="block text-xs font-bold text-slate-700 dark:text-slate-200 mb-1.5">
                                     Nomor WhatsApp / Telepon Kantor <span class="text-red-500">*</span>
                                 </label>
                                 <div class="relative">
                                     <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-emerald-600">
                                         <i class="fa-brands fa-whatsapp text-sm"></i>
                                     </span>
-                                    <input type="text" name="whatsapp" id="whatsapp" required value="{{ old('whatsapp') }}" placeholder="Contoh: 081278901950" class="w-full bg-slate-50 text-xs sm:text-sm text-slate-800 rounded-xl pl-9 pr-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00843d] focus:bg-white transition">
+                                    <input type="text" name="whatsapp" id="whatsapp" required value="{{ old('whatsapp') }}" placeholder="Contoh: 081278901950" class="w-full bg-slate-50 dark:bg-slate-800 text-xs sm:text-sm text-slate-800 dark:text-slate-100 rounded-xl pl-9 pr-4 py-3 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-[#00843d] focus:bg-white dark:focus:bg-slate-750 transition">
                                 </div>
                                 @error('whatsapp') <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span> @enderror
                             </div>
 
                             {{-- 4. Rencana Kerja Sama --}}
                             <div>
-                                <label for="purpose" class="block text-xs font-bold text-slate-700 mb-1.5">
+                                <label for="purpose" class="block text-xs font-bold text-slate-700 dark:text-slate-200 mb-1.5">
                                     Ruang Lingkup &amp; Rencana Program Kerja Sama <span class="text-red-500">*</span>
                                 </label>
-                                <textarea name="purpose" id="purpose" rows="7" required placeholder="Jelaskan garis besar usulan kemitraan, manfaat timbal balik, target waktu pelaksanaan, dan pihak-pihak terkait..." class="w-full bg-slate-50 text-xs sm:text-sm text-slate-800 rounded-xl p-3.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00843d] focus:bg-white transition leading-relaxed min-h-[170px] sm:min-h-[200px]">{{ old('purpose') }}</textarea>
+                                <textarea name="purpose" id="purpose" rows="7" required placeholder="Jelaskan garis besar usulan kemitraan, manfaat timbal balik, target waktu pelaksanaan, dan pihak-pihak terkait..." class="w-full bg-slate-50 dark:bg-slate-800 text-xs sm:text-sm text-slate-800 dark:text-slate-100 rounded-xl p-3.5 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-[#00843d] focus:bg-white dark:focus:bg-slate-750 transition leading-relaxed min-h-[170px] sm:min-h-[200px]">{{ old('purpose') }}</textarea>
                                 @error('purpose') <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span> @enderror
                             </div>
 
                             {{-- 5 & 6. Upload Proposal & Identitas --}}
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
-                                <div class="bg-slate-50 p-4 rounded-2xl border border-dashed border-slate-300 hover:border-[#00843d] transition">
-                                    <label class="block text-xs font-bold text-slate-800 mb-1">
+                                <div class="bg-slate-50 dark:bg-slate-800 p-4 rounded-2xl border border-dashed border-slate-300 dark:border-slate-700 hover:border-[#00843d] transition">
+                                    <label class="block text-xs font-bold text-slate-800 dark:text-slate-200 mb-1">
                                         <span>Sertakan Surat Proposal Kerja Sama</span>
                                         <span class="text-red-500">*</span>
                                     </label>
                                     <p class="text-[10px] text-slate-400 mb-2">Format PDF / DOC (Maks 5 MB)</p>
-                                    <input type="file" name="letter_file" required accept=".pdf,.doc,.docx" class="w-full text-xs text-slate-700 font-medium file:mr-2.5 file:py-1.5 file:px-3 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-[#00843d] file:text-white hover:file:bg-emerald-800 file:cursor-pointer transition">
+                                    <input type="file" name="letter_file" required accept=".pdf,.doc,.docx" class="w-full text-xs text-slate-700 dark:text-slate-300 font-medium file:mr-2.5 file:py-1.5 file:px-3 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-[#00843d] file:text-white hover:file:bg-emerald-800 file:cursor-pointer transition">
                                     @error('letter_file') <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span> @enderror
                                 </div>
 
-                                <div class="bg-slate-50 p-4 rounded-2xl border border-dashed border-slate-300 hover:border-[#00843d] transition">
-                                    <label class="block text-xs font-bold text-slate-800 mb-1">
+                                <div class="bg-slate-50 dark:bg-slate-800 p-4 rounded-2xl border border-dashed border-slate-300 dark:border-slate-700 hover:border-[#00843d] transition">
+                                    <label class="block text-xs font-bold text-slate-800 dark:text-slate-200 mb-1">
                                         <span>Sertakan KTP Penanggung Jawab / Legalitas</span>
                                         <span class="text-red-500">*</span>
                                     </label>
                                     <p class="text-[10px] text-slate-400 mb-2">Format JPG / PNG / PDF (Maks 5 MB)</p>
-                                    <input type="file" name="ktp_file" required accept="image/*,.pdf" class="w-full text-xs text-slate-700 font-medium file:mr-2.5 file:py-1.5 file:px-3 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-[#00843d] file:text-white hover:file:bg-emerald-800 file:cursor-pointer transition">
+                                    <input type="file" name="ktp_file" required accept="image/*,.pdf" class="w-full text-xs text-slate-700 dark:text-slate-300 font-medium file:mr-2.5 file:py-1.5 file:px-3 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-[#00843d] file:text-white hover:file:bg-emerald-800 file:cursor-pointer transition">
                                     @error('ktp_file') <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span> @enderror
                                 </div>
                             </div>
@@ -264,57 +264,57 @@
 
         {{-- 3. SEKSI PENGADUAN, SARAN DAN MASUKAN (FULL-WIDTH BALANCED BOTTOM CARD) --}}
         <div class="mt-8">
-            <div class="bg-white rounded-3xl p-6 sm:p-8 md:p-9 border border-slate-200/90 shadow-md">
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-5 border-b border-slate-100">
+            <div class="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 md:p-9 border border-slate-200/90 dark:border-slate-800 shadow-md">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-5 border-b border-slate-100 dark:border-slate-800">
                     <div class="flex items-center space-x-3">
-                        <div class="w-10 h-10 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center text-lg font-bold">
+                        <div class="w-10 h-10 rounded-2xl bg-amber-100 dark:bg-amber-950 text-amber-700 dark:text-amber-300 flex items-center justify-center text-lg font-bold">
                             <i class="fa-solid fa-clipboard-check"></i>
                         </div>
                         <div>
-                            <h3 class="text-base sm:text-lg font-black text-slate-900 tracking-tight">
+                            <h3 class="text-base sm:text-lg font-black text-slate-900 dark:text-white tracking-tight">
                                 Pengaduan, Saran dan Masukan
                             </h3>
-                            <p class="text-xs text-slate-500">Kanal koordinasi kemitraan, permohonan audiensi, dan tindak lanjut kerja sama PPRU Sakatiga.</p>
+                            <p class="text-xs text-slate-500 dark:text-slate-400">Kanal koordinasi kemitraan, permohonan audiensi, dan tindak lanjut kerja sama PPRU Sakatiga.</p>
                         </div>
                     </div>
-                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-[#00843d] text-xs font-bold border border-emerald-200 self-start sm:self-auto">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 dark:bg-slate-800 text-[#00843d] dark:text-emerald-400 text-xs font-bold border border-emerald-200 dark:border-slate-700 self-start sm:self-auto">
                         <i class="fa-solid fa-headset"></i>
                         <span>Respon Cepat Pelayanan</span>
                     </span>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-6 text-xs sm:text-sm text-slate-600">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-6 text-xs sm:text-sm text-slate-600 dark:text-slate-300">
                     {{-- Col 1: Pengantar & Alamat --}}
                     <div class="space-y-2">
-                        <span class="font-extrabold text-slate-900 uppercase tracking-wider text-[11px] block text-emerald-800">
+                        <span class="font-extrabold text-slate-900 dark:text-white uppercase tracking-wider text-[11px] block text-emerald-800 dark:text-emerald-400">
                             <i class="fa-solid fa-location-dot mr-1"></i> Alamat Sekretariat &amp; Humas
                         </span>
-                        <p class="text-xs text-slate-600 leading-relaxed">
+                        <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
                             Pengaduan, saran dan masukan dapat disampaikan ke bagian Sekretariat &amp; Humas Layanan Terpadu Pondok Pesantren Raudhatul Ulum Sakatiga.
                         </p>
-                        <p class="text-xs font-semibold text-slate-800 bg-slate-50 p-3 rounded-xl border border-slate-100">
+                        <p class="text-xs font-semibold text-slate-800 dark:text-slate-200 bg-slate-50 dark:bg-slate-800 p-3 rounded-xl border border-slate-100 dark:border-slate-700">
                             Kompleks Pondok Pesantren Raudhatul Ulum, Desa Sakatiga, Kec. Indralaya, Kab. Ogan Ilir, Sumatera Selatan 30662
                         </p>
                     </div>
 
                     {{-- Col 2: Kontak WhatsApp & Email --}}
                     <div class="space-y-3">
-                        <span class="font-extrabold text-slate-900 uppercase tracking-wider text-[11px] block text-emerald-800">
+                        <span class="font-extrabold text-slate-900 dark:text-white uppercase tracking-wider text-[11px] block text-emerald-800 dark:text-emerald-400">
                             <i class="fa-solid fa-phone-volume mr-1"></i> Kontak &amp; Saluran Resmi
                         </span>
                         <div class="space-y-2">
-                            <a href="https://wa.me/6281278901950" target="_blank" class="flex items-center space-x-3 p-3 rounded-xl bg-emerald-50 hover:bg-emerald-100/70 border border-emerald-200 transition group">
+                            <a href="https://wa.me/6281278901950" target="_blank" class="flex items-center space-x-3 p-3 rounded-xl bg-emerald-50 hover:bg-emerald-100/70 dark:bg-emerald-950/60 dark:hover:bg-emerald-900/60 border border-emerald-200 dark:border-emerald-800 transition group">
                                 <i class="fa-brands fa-whatsapp text-xl text-[#25D366]"></i>
                                 <div>
-                                    <span class="text-[10px] text-emerald-800 font-bold block uppercase">No. HP (WhatsApp)</span>
-                                    <span class="text-xs sm:text-sm font-black text-slate-900 group-hover:text-[#00843d] transition">0812-7890-1950</span>
+                                    <span class="text-[10px] text-emerald-800 dark:text-emerald-400 font-bold block uppercase">No. HP (WhatsApp)</span>
+                                    <span class="text-xs sm:text-sm font-black text-slate-900 dark:text-white group-hover:text-[#00843d] dark:group-hover:text-emerald-400 transition">0812-7890-1950</span>
                                 </div>
                             </a>
-                            <a href="mailto:sekretariat@ppru.ac.id" class="flex items-center space-x-3 p-3 rounded-xl bg-slate-50 hover:bg-slate-100 border border-slate-200 transition group">
-                                <i class="fa-solid fa-envelope text-lg text-emerald-700"></i>
+                            <a href="mailto:sekretariat@ppru.ac.id" class="flex items-center space-x-3 p-3 rounded-xl bg-slate-50 hover:bg-slate-100 dark:bg-slate-800 dark:hover:bg-slate-750 border border-slate-200 dark:border-slate-700 transition group">
+                                <i class="fa-solid fa-envelope text-lg text-emerald-700 dark:text-emerald-400"></i>
                                 <div>
-                                    <span class="text-[10px] text-slate-500 font-bold block uppercase">Email Resmi</span>
-                                    <span class="text-xs sm:text-sm font-bold text-slate-900 group-hover:text-[#00843d] transition">sekretariat@ppru.ac.id</span>
+                                    <span class="text-[10px] text-slate-500 dark:text-slate-400 font-bold block uppercase">Email Resmi</span>
+                                    <span class="text-xs sm:text-sm font-bold text-slate-900 dark:text-white group-hover:text-[#00843d] dark:group-hover:text-emerald-400 transition">sekretariat@ppru.ac.id</span>
                                 </div>
                             </a>
                         </div>
@@ -322,25 +322,25 @@
 
                     {{-- Col 3: Website & Komitmen Pelayanan --}}
                     <div class="space-y-3">
-                        <span class="font-extrabold text-slate-900 uppercase tracking-wider text-[11px] block text-emerald-800">
+                        <span class="font-extrabold text-slate-900 dark:text-white uppercase tracking-wider text-[11px] block text-emerald-800 dark:text-emerald-400">
                             <i class="fa-solid fa-globe mr-1"></i> Portal &amp; Waktu Pelayanan
                         </span>
-                        <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200/80 space-y-2">
+                        <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 space-y-2">
                             <div class="flex items-center justify-between text-xs">
-                                <span class="text-slate-500 font-medium">Website:</span>
-                                <a href="https://ppru.ac.id" target="_blank" class="font-bold text-[#00843d] hover:underline">ppru.ac.id</a>
+                                <span class="text-slate-500 dark:text-slate-400 font-medium">Website:</span>
+                                <a href="https://ppru.ac.id" target="_blank" class="font-bold text-[#00843d] dark:text-emerald-400 hover:underline">ppru.ac.id</a>
                             </div>
-                            <div class="flex items-center justify-between text-xs pt-1 border-t border-slate-200">
-                                <span class="text-slate-500 font-medium">Hari Kerja:</span>
-                                <span class="font-bold text-slate-800">Senin - Sabtu</span>
+                            <div class="flex items-center justify-between text-xs pt-1 border-t border-slate-200 dark:border-slate-700">
+                                <span class="text-slate-500 dark:text-slate-400 font-medium">Hari Kerja:</span>
+                                <span class="font-bold text-slate-800 dark:text-slate-200">Senin - Sabtu</span>
                             </div>
-                            <div class="flex items-center justify-between text-xs pt-1 border-t border-slate-200">
-                                <span class="text-slate-500 font-medium">Jam Pelayanan:</span>
-                                <span class="font-bold text-slate-800">08.00 - 15.30 WIB</span>
+                            <div class="flex items-center justify-between text-xs pt-1 border-t border-slate-200 dark:border-slate-700">
+                                <span class="text-slate-500 dark:text-slate-400 font-medium">Jam Pelayanan:</span>
+                                <span class="font-bold text-slate-800 dark:text-slate-200">08.00 - 15.30 WIB</span>
                             </div>
                         </div>
-                        <p class="text-[11px] text-slate-500 leading-normal flex items-center gap-1.5">
-                            <i class="fa-solid fa-circle-check text-emerald-600 shrink-0"></i>
+                        <p class="text-[11px] text-slate-500 dark:text-slate-400 leading-normal flex items-center gap-1.5">
+                            <i class="fa-solid fa-circle-check text-emerald-600 dark:text-emerald-400 shrink-0"></i>
                             <span>Proposal kemitraan akan diproses dan diagendakan untuk telaah pimpinan.</span>
                         </p>
                     </div>

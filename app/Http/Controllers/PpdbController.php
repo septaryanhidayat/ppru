@@ -126,7 +126,13 @@ class PpdbController extends Controller
             }
         }
 
-        $unitPendidikans = UnitPendidikan::active()->orderBy('order', 'asc')->get();
+        $unitPendidikans = UnitPendidikan::active()
+            ->orderByRaw("CASE 
+                WHEN slug LIKE '%taman-kanak%' OR short_name = 'TAKIRU' OR category_type = 'TK Islam' THEN 0 
+                ELSE `order` 
+            END ASC")
+            ->orderBy('order', 'asc')
+            ->get();
 
         return view('frontend.ppdb.index', compact('settings', 'unitPendidikans', 'faqs'));
     }

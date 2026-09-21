@@ -42,17 +42,17 @@
 </section>
 
 {{-- MAIN HUB CARDS --}}
-<div class="bg-slate-50/70 py-10 sm:py-14">
+<div class="bg-slate-50/70 dark:bg-slate-950 py-10 sm:py-14">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
         
         <div class="text-center max-w-2xl mx-auto space-y-2">
-            <span class="text-[10px] font-black uppercase tracking-wider text-emerald-700 bg-emerald-50 px-3.5 py-1 rounded-full border border-emerald-200">
+            <span class="text-[10px] font-black uppercase tracking-wider text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-slate-800 px-3.5 py-1 rounded-full border border-emerald-200 dark:border-slate-700">
                 {{ $siteSettings['ptsp_section_tag'] ?? 'Pelayanan Terpadu Satu Pintu (PTSP)' }}
             </span>
-            <h2 class="text-2xl sm:text-3xl font-black text-gray-900 tracking-tight">
+            <h2 class="text-2xl sm:text-3xl font-black text-gray-900 dark:text-white tracking-tight">
                 {{ $siteSettings['ptsp_section_title'] ?? 'Pilih Layanan yang Anda Butuhkan' }}
             </h2>
-            <p class="text-xs sm:text-sm text-gray-500">
+            <p class="text-xs sm:text-sm text-gray-500 dark:text-slate-400">
                 {{ $siteSettings['ptsp_section_desc'] ?? 'Ajukan permohonan secara daring, tim Sekretariat dan Humas akan memproses permohonan Anda secara cepat, transparan, dan profesional.' }}
             </p>
         </div>
@@ -61,24 +61,24 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-7">
             
             {{-- 1. Izin Kunjungan --}}
-            <div class="bg-white rounded-3xl p-7 border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-emerald-500 transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1.5">
+            <div class="bg-white dark:bg-slate-900 rounded-3xl p-7 border border-slate-200/90 dark:border-slate-800 shadow-sm hover:shadow-xl hover:border-emerald-500 transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1.5">
                 <div class="space-y-4">
-                    <div class="w-14 h-14 rounded-2xl bg-emerald-50 text-[#00843d] flex items-center justify-center text-2xl group-hover:bg-[#00843d] group-hover:text-white transition duration-300 shadow-xs border border-emerald-100">
+                    <div class="w-14 h-14 rounded-2xl bg-emerald-50 dark:bg-emerald-950/80 text-[#00843d] dark:text-emerald-300 flex items-center justify-center text-2xl group-hover:bg-[#00843d] group-hover:text-white transition duration-300 shadow-xs border border-emerald-100 dark:border-emerald-800">
                         <i class="fa-solid fa-id-card-clip"></i>
                     </div>
                     <div>
-                        <span class="text-[10px] font-bold text-emerald-700 uppercase tracking-wider bg-emerald-50 px-2.5 py-0.5 rounded-full">{{ $siteSettings['ptsp_card1_tag'] ?? 'Layanan Izin' }}</span>
-                        <h3 class="text-base sm:text-lg font-black text-gray-900 mt-2 group-hover:text-[#00843d] transition">
+                        <span class="text-[10px] font-bold text-emerald-700 dark:text-emerald-400 uppercase tracking-wider bg-emerald-50 dark:bg-slate-800 px-2.5 py-0.5 rounded-full">{{ $siteSettings['ptsp_card1_tag'] ?? 'Layanan Izin' }}</span>
+                        <h3 class="text-base sm:text-lg font-black text-gray-900 dark:text-white mt-2 group-hover:text-[#00843d] dark:group-hover:text-emerald-400 transition">
                             {{ $siteSettings['ptsp_card1_title'] ?? 'Permohonan Izin Kunjungan ke Sekolah' }}
                         </h3>
                     </div>
-                    <p class="text-xs text-gray-500 leading-relaxed">
+                    <p class="text-xs text-gray-500 dark:text-slate-300 leading-relaxed">
                         {{ $siteSettings['ptsp_card1_desc'] ?? 'Layanan pengajuan studi banding, observasi kurikulum kepesantrenan, riset ilmiah, atau kunjungan silaturahmi instansi/sekolah ke Pondok Pesantren Raudhatul Ulum.' }}
                     </p>
-                    <ul class="text-[11px] text-gray-600 space-y-1.5 pt-2 border-t border-slate-100">
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-[#00843d]"></i> <span>{{ $siteSettings['ptsp_card1_point1'] ?? 'Bebas Biaya (Gratis)' }}</span></li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-[#00843d]"></i> <span>{{ $siteSettings['ptsp_card1_point2'] ?? 'Tur keliling fasilitas pondok' }}</span></li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-[#00843d]"></i> <span>{{ $siteSettings['ptsp_card1_point3'] ?? 'Respon konfirmasi maks 3 hari' }}</span></li>
+                    <ul class="text-[11px] text-gray-600 dark:text-slate-300 space-y-1.5 pt-2 border-t border-slate-100 dark:border-slate-800">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-[#00843d] dark:text-emerald-400"></i> <span>{{ $siteSettings['ptsp_card1_point1'] ?? 'Bebas Biaya (Gratis)' }}</span></li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-[#00843d] dark:text-emerald-400"></i> <span>{{ $siteSettings['ptsp_card1_point2'] ?? 'Tur keliling fasilitas pondok' }}</span></li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-[#00843d] dark:text-emerald-400"></i> <span>{{ $siteSettings['ptsp_card1_point3'] ?? 'Respon konfirmasi maks 3 hari' }}</span></li>
                     </ul>
                 </div>
 
@@ -91,24 +91,24 @@
             </div>
 
             {{-- 2. Permohonan Kerja Sama --}}
-            <div class="bg-white rounded-3xl p-7 border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-amber-400 transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1.5">
+            <div class="bg-white dark:bg-slate-900 rounded-3xl p-7 border border-slate-200/90 dark:border-slate-800 shadow-sm hover:shadow-xl hover:border-amber-400 transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1.5">
                 <div class="space-y-4">
-                    <div class="w-14 h-14 rounded-2xl bg-amber-50 text-amber-700 flex items-center justify-center text-2xl group-hover:bg-[#f59e0b] group-hover:text-slate-950 transition duration-300 shadow-xs border border-amber-200">
+                    <div class="w-14 h-14 rounded-2xl bg-amber-50 dark:bg-amber-950/80 text-amber-700 dark:text-amber-300 flex items-center justify-center text-2xl group-hover:bg-[#f59e0b] group-hover:text-slate-950 transition duration-300 shadow-xs border border-amber-200 dark:border-amber-800">
                         <i class="fa-solid fa-handshake"></i>
                     </div>
                     <div>
-                        <span class="text-[10px] font-bold text-amber-700 uppercase tracking-wider bg-amber-50 px-2.5 py-0.5 rounded-full">{{ $siteSettings['ptsp_card2_tag'] ?? 'Kemitraan & MoU' }}</span>
-                        <h3 class="text-base sm:text-lg font-black text-gray-900 mt-2 group-hover:text-[#00843d] transition">
+                        <span class="text-[10px] font-bold text-amber-700 dark:text-amber-400 uppercase tracking-wider bg-amber-50 dark:bg-slate-800 px-2.5 py-0.5 rounded-full">{{ $siteSettings['ptsp_card2_tag'] ?? 'Kemitraan & MoU' }}</span>
+                        <h3 class="text-base sm:text-lg font-black text-gray-900 dark:text-white mt-2 group-hover:text-[#00843d] dark:group-hover:text-emerald-400 transition">
                             {{ $siteSettings['ptsp_card2_title'] ?? 'Permohonan Kerja Sama' }}
                         </h3>
                     </div>
-                    <p class="text-xs text-gray-500 leading-relaxed">
+                    <p class="text-xs text-gray-500 dark:text-slate-300 leading-relaxed">
                         {{ $siteSettings['ptsp_card2_desc'] ?? 'Pengajuan kolaborasi program akademik, beasiswa, program CSR dunia usaha, riset bersama, dan kemitraan lembaga keuangan syariah atau universitas.' }}
                     </p>
-                    <ul class="text-[11px] text-gray-600 space-y-1.5 pt-2 border-t border-slate-100">
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-amber-600"></i> <span>{{ $siteSettings['ptsp_card2_point1'] ?? 'MoU resmi berkekuatan hukum' }}</span></li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-amber-600"></i> <span>{{ $siteSettings['ptsp_card2_point2'] ?? 'Kemitraan beasiswa & riset' }}</span></li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-amber-600"></i> <span>{{ $siteSettings['ptsp_card2_point3'] ?? 'Audiensi langsung pimpinan' }}</span></li>
+                    <ul class="text-[11px] text-gray-600 dark:text-slate-300 space-y-1.5 pt-2 border-t border-slate-100 dark:border-slate-800">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-amber-600 dark:text-amber-400"></i> <span>{{ $siteSettings['ptsp_card2_point1'] ?? 'MoU resmi berkekuatan hukum' }}</span></li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-amber-600 dark:text-amber-400"></i> <span>{{ $siteSettings['ptsp_card2_point2'] ?? 'Kemitraan beasiswa & riset' }}</span></li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-amber-600 dark:text-amber-400"></i> <span>{{ $siteSettings['ptsp_card2_point3'] ?? 'Audiensi langsung pimpinan' }}</span></li>
                     </ul>
                 </div>
 
@@ -121,24 +121,24 @@
             </div>
 
             {{-- 3. Sewa Fasilitas --}}
-            <div class="bg-white rounded-3xl p-7 border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-sky-400 transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1.5">
+            <div class="bg-white dark:bg-slate-900 rounded-3xl p-7 border border-slate-200/90 dark:border-slate-800 shadow-sm hover:shadow-xl hover:border-sky-400 transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1.5">
                 <div class="space-y-4">
-                    <div class="w-14 h-14 rounded-2xl bg-sky-50 text-sky-700 flex items-center justify-center text-2xl group-hover:bg-sky-600 group-hover:text-white transition duration-300 shadow-xs border border-sky-200">
+                    <div class="w-14 h-14 rounded-2xl bg-sky-50 dark:bg-sky-950/80 text-sky-700 dark:text-sky-300 flex items-center justify-center text-2xl group-hover:bg-sky-600 group-hover:text-white transition duration-300 shadow-xs border border-sky-200 dark:border-sky-800">
                         <i class="fa-solid fa-boxes-packing"></i>
                     </div>
                     <div>
-                        <span class="text-[10px] font-bold text-sky-700 uppercase tracking-wider bg-sky-50 px-2.5 py-0.5 rounded-full">{{ $siteSettings['ptsp_card3_tag'] ?? 'Sarana & Fasilitas' }}</span>
-                        <h3 class="text-base sm:text-lg font-black text-gray-900 mt-2 group-hover:text-[#00843d] transition">
+                        <span class="text-[10px] font-bold text-sky-700 dark:text-sky-400 uppercase tracking-wider bg-sky-50 dark:bg-slate-800 px-2.5 py-0.5 rounded-full">{{ $siteSettings['ptsp_card3_tag'] ?? 'Sarana & Fasilitas' }}</span>
+                        <h3 class="text-base sm:text-lg font-black text-gray-900 dark:text-white mt-2 group-hover:text-[#00843d] dark:group-hover:text-emerald-400 transition">
                             {{ $siteSettings['ptsp_card3_title'] ?? 'Permohonan Sewa Menyewa Barang Sekolah' }}
                         </h3>
                     </div>
-                    <p class="text-xs text-gray-500 leading-relaxed">
+                    <p class="text-xs text-gray-500 dark:text-slate-300 leading-relaxed">
                         {{ $siteSettings['ptsp_card3_desc'] ?? 'Pemanfaatan aula serbaguna, laboratorium komputer CBT, lapangan olahraga terbuka, serta inventaris kegiatan untuk acara kemasyarakatan dan dakwah.' }}
                     </p>
-                    <ul class="text-[11px] text-gray-600 space-y-1.5 pt-2 border-t border-slate-100">
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-sky-600"></i> <span>{{ $siteSettings['ptsp_card3_point1'] ?? 'Aula berkapasitas 1.000 orang' }}</span></li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-sky-600"></i> <span>{{ $siteSettings['ptsp_card3_point2'] ?? 'Sound system & multimedia lengkap' }}</span></li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-sky-600"></i> <span>{{ $siteSettings['ptsp_card3_point3'] ?? 'Infaq pemeliharaan terjangkau' }}</span></li>
+                    <ul class="text-[11px] text-gray-600 dark:text-slate-300 space-y-1.5 pt-2 border-t border-slate-100 dark:border-slate-800">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-sky-600 dark:text-sky-400"></i> <span>{{ $siteSettings['ptsp_card3_point1'] ?? 'Aula berkapasitas 1.000 orang' }}</span></li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-sky-600 dark:text-sky-400"></i> <span>{{ $siteSettings['ptsp_card3_point2'] ?? 'Sound system & multimedia lengkap' }}</span></li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-sky-600 dark:text-sky-400"></i> <span>{{ $siteSettings['ptsp_card3_point3'] ?? 'Infaq pemeliharaan terjangkau' }}</span></li>
                     </ul>
                 </div>
 

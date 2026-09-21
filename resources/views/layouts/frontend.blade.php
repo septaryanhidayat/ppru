@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <script>
-        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        if (localStorage.getItem('theme') === 'dark') {
             document.documentElement.classList.add('dark');
         } else {
             document.documentElement.classList.remove('dark');
@@ -469,7 +469,6 @@
                 const isDark = document.documentElement.classList.contains('dark');
                 const darkIcons = document.querySelectorAll('#theme-toggle-dark-icon, #mobile-theme-toggle-dark-icon');
                 const lightIcons = document.querySelectorAll('#theme-toggle-light-icon, #mobile-theme-toggle-light-icon');
-                const themeTexts = document.querySelectorAll('#theme-toggle-text');
 
                 darkIcons.forEach(icon => {
                     if (isDark) {
@@ -485,10 +484,6 @@
                     } else {
                         icon.classList.add('hidden');
                     }
-                });
-
-                themeTexts.forEach(txt => {
-                    txt.textContent = isDark ? 'Terang' : 'Gelap';
                 });
             };
 

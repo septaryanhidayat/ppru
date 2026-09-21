@@ -79,18 +79,25 @@ class CmsAutoHealService
                     }
                 });
 
-                // Auto-heal: reset head_photo to neutral gray avatar if empty or pointing to activity photos
-                UnitPendidikan::query()->each(function ($unit) {
-                    if (empty($unit->head_photo)
-                        || str_contains($unit->head_photo, '/uploads/official/')
-                        || str_contains($unit->head_photo, 'kbm-santri')
-                        || str_contains($unit->head_photo, 'kegiatan-santri')
-                        || str_contains($unit->head_photo, 'panahan-santri')
-                        || str_contains($unit->head_photo, 'drone-')
-                        || str_contains($unit->head_photo, 'ngaji-sore')) {
-                        $unit->update(['head_photo' => '/uploads/avatar-neutral-gray.svg']);
-                    }
-                });
+                // Auto-heal: Ensure Taman Kanak-Kanak (TAKIRU) is order 1, followed by sequential units
+                $unitOrders = [
+                    'taman-kanak-kanak-islam-raudhatul-ulum' => 1,
+                    'madrasah-ibtidaiyah-raudhatul-ulum' => 2,
+                    'madrasah-tsanawiyah-raudhatul-ulum' => 3,
+                    'madrasah-tahfizhul-quran-raudhatul-ulum' => 4,
+                    'madrasah-aliyah-raudhatul-ulum' => 5,
+                    'smp-islam-terpadu-raudhatul-ulum' => 6,
+                    'sma-islam-terpadu-raudhatul-ulum' => 7,
+                    'institut-agama-islam-nur-raudhatul-ulum' => 8,
+                ];
+                foreach ($unitOrders as $slug => $order) {
+                    UnitPendidikan::where('slug', $slug)->update(['order' => $order]);
+                }
+                UnitPendidikan::where(function ($q) {
+                    $q->where('slug', 'like', '%taman-kanak%')
+                        ->orWhere('short_name', 'TAKIRU')
+                        ->orWhere('name', 'like', '%Taman Kanak%');
+                })->update(['order' => 1]);
             }
         } catch (\Throwable $e) {
             Log::error('CmsAutoHealService::ensureUnitPendidikanSchemaExists error: '.$e->getMessage());
@@ -98,7 +105,7 @@ class CmsAutoHealService
     }
 
     /**
-     * Ensure nav_menus table exists and is populated with default pesantren navigation.
+     * Ensure nav_menus table exists and is populated with default pesantren navigation if empty.
      */
     public static function ensureNavMenusTableExists(): void
     {
@@ -118,183 +125,9 @@ class CmsAutoHealService
                 });
             }
 
-            // If empty, seed default menu items
+            // Only seed default menu items if the table is completely empty
             if (NavMenu::count() === 0) {
                 self::seedDefaultNavMenus();
-            } else {
-                // Ensure no orphaned standalone Khutbah, Ikarus, Kontak, or PPDB at top-level header
-                NavMenu::where('location', 'header')
-                    ->whereNull('parent_id')
-                    ->where(function ($q) {
-                        $q->whereIn('url', ['/khutbah', '/ikarus', '/kontak', '/hubungi', '/ppdb'])
-                            ->orWhere('name', 'like', '%Khutbah%')
-                            ->orWhere('name', 'like', '%IKARUS%')
-                            ->orWhere('name', 'like', '%Kontak%')
-                            ->orWhere('name', 'like', '%PPDB%')
-                            ->orWhere('name', 'like', '%PSB%');
-                    })
-                    ->delete();
-
-                // Ensure Profil dropdown contains IKARUS if missing
-                $profil = NavMenu::where('location', 'header')->whereNull('parent_id')->where('name', 'Profil')->first();
-                if ($profil && ! NavMenu::where('parent_id', $profil->id)->where('url', '/ikarus')->exists()) {
-                    NavMenu::create([
-                        'parent_id' => $profil->id,
-                        'name' => 'Ikatan Alumni (IKARUS)',
-                        'url' => '/ikarus',
-                        'icon' => 'fa-solid fa-user-graduate',
-                        'location' => 'header',
-                        'order' => 9,
-                    ]);
-                }
-
-                // Ensure Informasi dropdown contains Khutbah, Galeri, and Video if missing
-                $info = NavMenu::where('location', 'header')->whereNull('parent_id')->where('name', 'Informasi')->first();
-                if ($info) {
-                    if (! NavMenu::where('parent_id', $info->id)->where('url', '/galeri')->exists()) {
-                        NavMenu::create([
-                            'parent_id' => $info->id,
-                            'name' => 'Galeri Foto Dokumentasi',
-                            'url' => '/galeri',
-                            'icon' => 'fa-solid fa-images',
-                            'location' => 'header',
-                            'order' => 5,
-                        ]);
-                    }
-                    if (! NavMenu::where('parent_id', $info->id)->where('url', '/video')->exists()) {
-                        NavMenu::create([
-                            'parent_id' => $info->id,
-                            'name' => 'Video Kegiatan & Podcast',
-                            'url' => '/video',
-                            'icon' => 'fa-brands fa-youtube',
-                            'location' => 'header',
-                            'order' => 6,
-                        ]);
-                    }
-                    if (! NavMenu::where('parent_id', $info->id)->where('url', '/khutbah')->exists()) {
-                        NavMenu::create([
-                            'parent_id' => $info->id,
-                            'name' => 'Khutbah Jum\'at & Tausiyah',
-                            'url' => '/khutbah',
-                            'icon' => 'fa-solid fa-microphone-lines',
-                            'location' => 'header',
-                            'order' => 7,
-                        ]);
-                    }
-                }
-
-                // Ensure Layanan exists at root level (order 5)
-                $layanan = NavMenu::where('location', 'header')->whereNull('parent_id')->where(function ($q) {
-                    $q->where('name', 'like', '%Layanan%')->orWhere('url', 'like', '%layanan%');
-                })->first();
-
-                if (! $layanan) {
-                    $layanan = NavMenu::create([
-                        'name' => 'Layanan',
-                        'url' => '/layanan-terpadu',
-                        'icon' => 'fa-solid fa-handshake-angle',
-                        'location' => 'header',
-                        'order' => 5,
-                        'is_active' => true,
-                    ]);
-                } else {
-                    $layanan->update(['order' => 5, 'name' => 'Layanan', 'url' => '/layanan-terpadu', 'is_active' => true]);
-                }
-
-                // Ensure 3 Layanan Publik & Layanan Terpadu exist as children of Layanan
-                $layananItems = [
-                    [
-                        'name' => 'Permohonan Izin Kunjungan Sekolah',
-                        'url' => '/izin-sekolah',
-                        'icon' => 'fa-solid fa-school',
-                        'order' => 1,
-                    ],
-                    [
-                        'name' => 'Permohonan Kerja Sama',
-                        'url' => '/permohonan-kerja-sama',
-                        'icon' => 'fa-solid fa-handshake',
-                        'order' => 2,
-                    ],
-                    [
-                        'name' => 'Permohonan Sewa Fasilitas & Sarana',
-                        'url' => '/sewa-barang',
-                        'icon' => 'fa-solid fa-building-user',
-                        'order' => 3,
-                    ],
-                    [
-                        'name' => 'Portal Layanan Terpadu',
-                        'url' => '/layanan-terpadu',
-                        'icon' => 'fa-solid fa-circle-nodes',
-                        'order' => 4,
-                    ],
-                    [
-                        'name' => 'Brosur & Rincian Biaya',
-                        'url' => '/download',
-                        'icon' => 'fa-solid fa-file-pdf',
-                        'order' => 5,
-                    ],
-                    [
-                        'name' => 'Download Logo Resmi',
-                        'url' => '/logo',
-                        'icon' => 'fa-solid fa-image',
-                        'order' => 6,
-                    ],
-                    [
-                        'name' => 'Kontak & Lokasi Humas',
-                        'url' => '/hubungi',
-                        'icon' => 'fa-solid fa-address-book',
-                        'order' => 7,
-                    ],
-                ];
-
-                foreach ($layananItems as $item) {
-                    $child = NavMenu::where('parent_id', $layanan->id)
-                        ->where(function ($q) use ($item) {
-                            $q->where('url', $item['url'])
-                                ->orWhere('name', $item['name'])
-                                ->orWhere('url', 'like', '%'.trim($item['url'], '/').'%');
-                        })->first();
-
-                    if (! $child) {
-                        NavMenu::create([
-                            'parent_id' => $layanan->id,
-                            'name' => $item['name'],
-                            'url' => $item['url'],
-                            'icon' => $item['icon'],
-                            'location' => 'header',
-                            'order' => $item['order'],
-                            'is_active' => true,
-                        ]);
-                    } else {
-                        $child->update([
-                            'name' => $item['name'],
-                            'url' => $item['url'],
-                            'icon' => $item['icon'],
-                            'order' => $item['order'],
-                            'is_active' => true,
-                        ]);
-                    }
-                }
-
-                // Ensure Pendidikan dropdown contains all active unit pendidikans
-                $pendidikan = NavMenu::where('location', 'header')->whereNull('parent_id')->where('name', 'Pendidikan')->first();
-                if ($pendidikan && Schema::hasTable('unit_pendidikans')) {
-                    $hasChildren = NavMenu::where('parent_id', $pendidikan->id)->exists();
-                    if (! $hasChildren) {
-                        $units = UnitPendidikan::active()->orderBy('order', 'asc')->get();
-                        foreach ($units as $u) {
-                            $cleanName = trim(preg_replace('/\s*\([^)]*\)\s*$/', '', $u->name));
-                            NavMenu::create([
-                                'parent_id' => $pendidikan->id,
-                                'name' => $cleanName,
-                                'url' => '/pendidikan/'.$u->slug,
-                                'icon' => 'fa-solid fa-graduation-cap',
-                                'location' => 'header',
-                                'order' => $u->order ?: 1,
-                            ]);
-                        }
-                    }
-                }
             }
         } catch (\Throwable $e) {
             Log::error('CmsAutoHealService::ensureNavMenusTableExists error: '.$e->getMessage());

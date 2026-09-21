@@ -378,42 +378,42 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {{-- Kurikulum Pesantren --}}
-                <div class="bg-gradient-to-br from-emerald-50/70 to-white rounded-2xl p-6 border border-emerald-100 space-y-4">
+                <div class="bg-gradient-to-br from-emerald-50/70 to-white dark:from-slate-800 dark:to-slate-850 dark:bg-slate-800 rounded-2xl p-6 border border-emerald-100 dark:border-slate-700 space-y-4">
                     <div class="flex items-center space-x-3">
-                        <div class="w-10 h-10 rounded-xl bg-[#00843d] text-white flex items-center justify-center text-lg">
+                        <div class="w-10 h-10 rounded-xl bg-[#00843d] text-white flex items-center justify-center text-lg shadow-sm">
                             <i class="fa-solid fa-book-open-reader"></i>
                         </div>
                         <div>
-                            <h3 class="font-extrabold text-base text-gray-900">Kurikulum Kepesantrenan</h3>
-                            <p class="text-[11px] text-gray-500">Dirasah Islamiyyah &amp; Kitab Kuning Mu'tabarah</p>
+                            <h3 class="font-extrabold text-base text-gray-900 dark:text-white">Kurikulum Kepesantrenan</h3>
+                            <p class="text-[11px] text-gray-500 dark:text-slate-400">Dirasah Islamiyyah &amp; Kitab Kuning Mu'tabarah</p>
                         </div>
                     </div>
-                    <ul class="space-y-2 text-xs text-gray-700">
-                        <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-[#00843d] text-xs"></i> <span>Tahfidzul Qur'an, Tahsin Qira'ati &amp; Ilmu Tajwid</span></li>
-                        <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-[#00843d] text-xs"></i> <span>Nahwu, Shorof, &amp; Balaghah (Kaidah Bahasa Arab)</span></li>
-                        <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-[#00843d] text-xs"></i> <span>Fiqh &amp; Ushul Fiqh Mazhab Syafi'i &amp; Muqaranah</span></li>
-                        <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-[#00843d] text-xs"></i> <span>Tafsir Jalalain, Hadits Arbain &amp; Riyadhis Shalihin</span></li>
-                        <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-[#00843d] text-xs"></i> <span>Tauhid / Aqidah Ahlussunnah Wal Jama'ah</span></li>
+                    <ul class="space-y-2 text-xs text-gray-700 dark:text-slate-200">
+                        <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-[#00843d] dark:text-emerald-400 text-xs"></i> <span>Tahfidzul Qur'an, Tahsin Qira'ati &amp; Ilmu Tajwid</span></li>
+                        <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-[#00843d] dark:text-emerald-400 text-xs"></i> <span>Nahwu, Shorof, &amp; Balaghah (Kaidah Bahasa Arab)</span></li>
+                        <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-[#00843d] dark:text-emerald-400 text-xs"></i> <span>Fiqh &amp; Ushul Fiqh Mazhab Syafi'i &amp; Muqaranah</span></li>
+                        <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-[#00843d] dark:text-emerald-400 text-xs"></i> <span>Tafsir Jalalain, Hadits Arbain &amp; Riyadhis Shalihin</span></li>
+                        <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-[#00843d] dark:text-emerald-400 text-xs"></i> <span>Tauhid / Aqidah Ahlussunnah Wal Jama'ah</span></li>
                     </ul>
                 </div>
 
                 {{-- Kurikulum Nasional & Sains --}}
-                <div class="bg-gradient-to-br from-amber-50/70 to-white rounded-2xl p-6 border border-amber-100 space-y-4">
+                <div class="bg-gradient-to-br from-amber-50/70 to-white dark:from-slate-800 dark:to-slate-850 dark:bg-slate-800 rounded-2xl p-6 border border-amber-100 dark:border-slate-700 space-y-4">
                     <div class="flex items-center space-x-3">
-                        <div class="w-10 h-10 rounded-xl bg-[#f59e0b] text-slate-950 flex items-center justify-center text-lg">
+                        <div class="w-10 h-10 rounded-xl bg-[#f59e0b] text-slate-950 flex items-center justify-center text-lg shadow-sm">
                             <i class="fa-solid fa-microchip"></i>
                         </div>
                         <div>
-                            <h3 class="font-extrabold text-base text-gray-900">Kurikulum Nasional &amp; Sains</h3>
-                            <p class="text-[11px] text-gray-500">Kementerian Pendidikan / Kementerian Agama</p>
+                            <h3 class="font-extrabold text-base text-gray-900 dark:text-white">Kurikulum Nasional &amp; Sains</h3>
+                            <p class="text-[11px] text-gray-500 dark:text-slate-400">Kementerian Pendidikan / Kementerian Agama</p>
                         </div>
                     </div>
-                    <ul class="space-y-2 text-xs text-gray-700">
-                        <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-amber-600 text-xs"></i> <span>Matematika, Fisika, Kimia, Biologi &amp; Sains Terapan</span></li>
-                        <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-amber-600 text-xs"></i> <span>Bahasa Indonesia, Sejarah, &amp; Pendidikan Kewarganegaraan</span></li>
-                        <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-amber-600 text-xs"></i> <span>Literasi Komputer, Pemrograman Dasar &amp; Robotika</span></li>
-                        <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-amber-600 text-xs"></i> <span>English Language &amp; TOEFL Preparation</span></li>
-                        <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-amber-600 text-xs"></i> <span>Bimbingan Intensif UTBK &amp; Seleksi Beasiswa Timur Tengah</span></li>
+                    <ul class="space-y-2 text-xs text-gray-700 dark:text-slate-200">
+                        <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-amber-600 dark:text-amber-400 text-xs"></i> <span>Matematika, Fisika, Kimia, Biologi &amp; Sains Terapan</span></li>
+                        <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-amber-600 dark:text-amber-400 text-xs"></i> <span>Bahasa Indonesia, Sejarah, &amp; Pendidikan Kewarganegaraan</span></li>
+                        <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-amber-600 dark:text-amber-400 text-xs"></i> <span>Literasi Komputer, Pemrograman Dasar &amp; Robotika</span></li>
+                        <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-amber-600 dark:text-amber-400 text-xs"></i> <span>English Language &amp; TOEFL Preparation</span></li>
+                        <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-amber-600 dark:text-amber-400 text-xs"></i> <span>Bimbingan Intensif UTBK &amp; Seleksi Beasiswa Timur Tengah</span></li>
                     </ul>
                 </div>
             </div>
