@@ -34,8 +34,9 @@ class AppServiceProvider extends ServiceProvider
             URL::forceScheme('https');
         }
 
-        // Auto-heal unit schema if database migration is pending
+        // Auto-heal unit schema and home statistics if database migration is pending
         CmsAutoHealService::ensureUnitPendidikanSchemaExists();
+        CmsAutoHealService::ensureHomeStatisticsTableExists();
 
         View::composer('*', function ($view) {
             try {

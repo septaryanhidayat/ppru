@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\ActivityLog;
 use App\Models\HomeStatistic;
+use App\Services\CmsAutoHealService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,6 +16,8 @@ class AdminHomeStatisticController extends Controller
      */
     public function index()
     {
+        CmsAutoHealService::ensureHomeStatisticsTableExists();
+
         $statistics = HomeStatistic::orderBy('order', 'asc')->get();
 
         return view('admin.home-statistics.index', compact('statistics'));

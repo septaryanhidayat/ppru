@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\Agenda;
 use App\Models\AnggotaDewan;
 use App\Models\HeroSlide;
+use App\Models\HomeStatistic;
 use App\Models\NavMenu;
 use App\Models\Pengumuman;
 use App\Models\Post;
@@ -56,6 +57,13 @@ class CmsAutoHealService
             if (Schema::hasTable('users') && ! Schema::hasColumn('users', 'unit_pendidikan_id')) {
                 Schema::table('users', function (Blueprint $table) {
                     $table->unsignedBigInteger('unit_pendidikan_id')->nullable()->after('role');
+                    $table->index('unit_pendidikan_id');
+                });
+            }
+
+            if (Schema::hasTable('ppdb_registrations') && ! Schema::hasColumn('ppdb_registrations', 'unit_pendidikan_id')) {
+                Schema::table('ppdb_registrations', function (Blueprint $table) {
+                    $table->unsignedBigInteger('unit_pendidikan_id')->nullable()->after('id');
                     $table->index('unit_pendidikan_id');
                 });
             }
@@ -162,6 +170,33 @@ class CmsAutoHealService
             }
         } catch (\Throwable $e) {
             Log::error('CmsAutoHealService::ensureHeroSlidesTableExists error: '.$e->getMessage());
+        }
+    }
+
+    /**
+     * Ensure home_statistics table exists and has default 4 statistics (fail-safe for cPanel).
+     */
+    public static function ensureHomeStatisticsTableExists(): void
+    {
+        try {
+            if (! Schema::hasTable('home_statistics')) {
+                Schema::create('home_statistics', function (Blueprint $table) {
+                    $table->id();
+                    $table->string('number');
+                    $table->string('label');
+                    $table->string('description')->nullable();
+                    $table->string('icon')->nullable()->default('fa-solid fa-chart-simple');
+                    $table->integer('order')->default(0);
+                    $table->boolean('is_active')->default(true);
+                    $table->timestamps();
+                });
+            }
+
+            if (HomeStatistic::count() === 0) {
+                self::seedDefaultHomeStatistics();
+            }
+        } catch (\Throwable $e) {
+            Log::error('CmsAutoHealService::ensureHomeStatisticsTableExists error: '.$e->getMessage());
         }
     }
 
@@ -521,6 +556,7 @@ class CmsAutoHealService
         self::ensureUnitPendidikanSchemaExists();
         self::ensureHeroSlidesTableExists();
         self::ensureNavMenusTableExists();
+        self::ensureHomeStatisticsTableExists();
         self::ensureOfficialDemoContentsSeeded();
     }
 
@@ -656,5 +692,50 @@ class CmsAutoHealService
             'order' => 2,
             'is_active' => true,
         ]);
+    }
+
+    /**
+     * Seed default 4 home statistics.
+     */
+    public static function seedDefaultHomeStatistics(): void
+    {
+        $defaultStats = [
+            [
+                'number' => '3.500+',
+                'label' => 'SANTRI AKTIF MUKIM',
+                'description' => 'Dari berbagai provinsi nusantara',
+                'icon' => 'fa-solid fa-users',
+                'order' => 1,
+                'is_active' => true,
+            ],
+            [
+                'number' => '15.000+',
+                'label' => 'ALUMNI BERKHIDMAT',
+                'description' => 'Kiprah dakwah nasional & global',
+                'icon' => 'fa-solid fa-user-graduate',
+                'order' => 2,
+                'is_active' => true,
+            ],
+            [
+                'number' => '100%',
+                'label' => 'MUADALAH AL-AZHAR',
+                'description' => 'Akses studi langsung ke Mesir & Timur Tengah',
+                'icon' => 'fa-solid fa-certificate',
+                'order' => 3,
+                'is_active' => true,
+            ],
+            [
+                'number' => '75+',
+                'label' => 'TAHUN PENGABDIAN',
+                'description' => 'Sejak 1950 di bumi Sakatiga Mekkah Kecil',
+                'icon' => 'fa-solid fa-landmark',
+                'order' => 4,
+                'is_active' => true,
+            ],
+        ];
+
+        foreach ($defaultStats as $stat) {
+            HomeStatistic::create($stat);
+        }
     }
 }
