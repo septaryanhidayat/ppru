@@ -73,17 +73,32 @@ class AppServiceProvider extends ServiceProvider
         }
 
         // 3. Shared Nav Menus (Header & Footer)
-        try {
-            if (Schema::hasTable('nav_menus')) {
-                View::share('headerNavMenus', NavMenu::header()->active()->root()->with('children.children')->orderBy('order', 'asc')->get());
-                View::share('footerNavMenus', NavMenu::footer()->active()->root()->with('children.children')->orderBy('order', 'asc')->get());
-            } else {
-                View::share('headerNavMenus', collect());
-                View::share('footerNavMenus', collect());
+        $loadNavMenus = function () {
+            try {
+                if (Schema::hasTable('nav_menus')) {
+                    return [
+                        'headerNavMenus' => NavMenu::header()->active()->root()->with(['children' => fn ($q) => $q->where('is_active', true)->orderBy('order', 'asc')])->orderBy('order', 'asc')->get(),
+                        'footerNavMenus' => NavMenu::footer()->active()->root()->with(['children' => fn ($q) => $q->where('is_active', true)->orderBy('order', 'asc')])->orderBy('order', 'asc')->get(),
+                    ];
+                }
+            } catch (\Throwable $e) {
+                // Database not yet connected
             }
-        } catch (\Throwable $e) {
-            View::share('headerNavMenus', collect());
-            View::share('footerNavMenus', collect());
-        }
+
+            return [
+                'headerNavMenus' => collect(),
+                'footerNavMenus' => collect(),
+            ];
+        };
+
+        $initialMenus = $loadNavMenus();
+        View::share('headerNavMenus', $initialMenus['headerNavMenus']);
+        View::share('footerNavMenus', $initialMenus['footerNavMenus']);
+
+        View::composer(['partials.header', 'partials.footer', 'layouts.frontend', 'frontend.*'], function ($view) use ($loadNavMenus) {
+            $menus = $loadNavMenus();
+            $view->with('headerNavMenus', $menus['headerNavMenus']);
+            $view->with('footerNavMenus', $menus['footerNavMenus']);
+        });
     }
 }

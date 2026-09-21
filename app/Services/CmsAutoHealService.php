@@ -148,17 +148,39 @@ class CmsAutoHealService
                     ]);
                 }
 
-                // Ensure Informasi dropdown contains Khutbah if missing
+                // Ensure Informasi dropdown contains Khutbah, Galeri, and Video if missing
                 $info = NavMenu::where('location', 'header')->whereNull('parent_id')->where('name', 'Informasi')->first();
-                if ($info && ! NavMenu::where('parent_id', $info->id)->where('url', '/khutbah')->exists()) {
-                    NavMenu::create([
-                        'parent_id' => $info->id,
-                        'name' => 'Khutbah Jum\'at & Tausiyah',
-                        'url' => '/khutbah',
-                        'icon' => 'fa-solid fa-microphone-lines',
-                        'location' => 'header',
-                        'order' => 6,
-                    ]);
+                if ($info) {
+                    if (! NavMenu::where('parent_id', $info->id)->where('url', '/galeri')->exists()) {
+                        NavMenu::create([
+                            'parent_id' => $info->id,
+                            'name' => 'Galeri Foto Dokumentasi',
+                            'url' => '/galeri',
+                            'icon' => 'fa-solid fa-images',
+                            'location' => 'header',
+                            'order' => 5,
+                        ]);
+                    }
+                    if (! NavMenu::where('parent_id', $info->id)->where('url', '/video')->exists()) {
+                        NavMenu::create([
+                            'parent_id' => $info->id,
+                            'name' => 'Video Kegiatan & Podcast',
+                            'url' => '/video',
+                            'icon' => 'fa-brands fa-youtube',
+                            'location' => 'header',
+                            'order' => 6,
+                        ]);
+                    }
+                    if (! NavMenu::where('parent_id', $info->id)->where('url', '/khutbah')->exists()) {
+                        NavMenu::create([
+                            'parent_id' => $info->id,
+                            'name' => 'Khutbah Jum\'at & Tausiyah',
+                            'url' => '/khutbah',
+                            'icon' => 'fa-solid fa-microphone-lines',
+                            'location' => 'header',
+                            'order' => 7,
+                        ]);
+                    }
                 }
 
                 // Ensure Layanan exists at root level (order 5)

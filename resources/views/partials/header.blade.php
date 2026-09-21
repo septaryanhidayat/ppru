@@ -2,6 +2,23 @@
     $headerUnits = (isset($navUnitPendidikans) && $navUnitPendidikans->isNotEmpty())
         ? $navUnitPendidikans
         : \App\Models\UnitPendidikan::active()->orderBy('order', 'asc')->get();
+
+    $headerMenus = (isset($headerNavMenus) && $headerNavMenus->isNotEmpty())
+        ? $headerNavMenus
+        : (\Illuminate\Support\Facades\Schema::hasTable('nav_menus')
+            ? \App\Models\NavMenu::header()->active()->root()->with(['children' => fn ($q) => $q->where('is_active', true)->orderBy('order', 'asc')])->orderBy('order', 'asc')->get()
+            : collect());
+
+    $formatNavUrl = function (?string $url): string {
+        if (empty($url) || $url === '#') {
+            return '#';
+        }
+        if (str_starts_with($url, 'http://') || str_starts_with($url, 'https://') || str_starts_with($url, 'javascript:') || str_starts_with($url, 'tel:') || str_starts_with($url, 'mailto:')) {
+            return $url;
+        }
+
+        return url($url);
+    };
 @endphp
 {{-- TOP MINI BAR (Elegan: Kontak Telepon, Email, Alamat & Medsos PPRU Sakatiga) --}}
 <div class="bg-[#053d1c] text-white text-xs py-2 border-b border-green-900/70 hidden sm:block">
@@ -54,208 +71,171 @@
                      onerror="this.onerror=null;this.src='/uploads/official/logo-web-ppru.png'">
             </a>
 
-            {{-- DESKTOP NAVIGATION (Elegan, Bersih, Sempurna untuk Layar Desktop) --}}
+            {{-- DESKTOP NAVIGATION (Dinamis dari Kelola Menu Navigasi Admin) --}}
             <nav class="hidden lg:flex items-center space-x-1 xl:space-x-2 font-semibold text-[13px] xl:text-[14px] text-white" aria-label="Navigasi Utama">
-                {{-- 1. Beranda --}}
-                <a href="{{ route('home') }}" class="px-3 py-1.5 rounded-lg hover:bg-black/15 transition whitespace-nowrap {{ request()->routeIs('home') ? 'bg-black/20 text-[#fcd116]' : '' }}">
-                    Beranda
-                </a>
+                @if($headerMenus->isNotEmpty())
+                    @foreach($headerMenus as $m)
+                        @php
+                            $slug = Str::slug($m->name);
+                            $activeChildren = $m->children ? $m->children->where('is_active', true) : collect();
+                            $hasChildren = $activeChildren->isNotEmpty();
 
-                {{-- 2. Profil Dropdown --}}
-                <div id="nav-dropdown-profil" class="relative group py-2">
-                    <button type="button" aria-haspopup="true" aria-expanded="false" class="px-3 py-1.5 rounded-lg inline-flex items-center hover:bg-black/15 transition whitespace-nowrap {{ request()->is('sambutan*', 'tentang*', 'visi*', 'sejarah*', 'anggota*', 'struktur*', 'bidang*', 'program-unggulan*', 'dewan*', 'ikarus*') ? 'bg-black/20 text-[#fcd116]' : '' }}">
-                        <span>Profil</span>
-                        <i class="fa-solid fa-chevron-down text-[10px] ml-1.5 transition-transform duration-200 group-hover:rotate-180"></i>
-                    </button>
-                    <div class="absolute left-0 top-full pt-1 w-64 hidden group-hover:block transition-all duration-150 z-50">
-                        <div class="bg-white rounded-2xl shadow-2xl border border-gray-100 py-2.5 text-gray-800 animate-fadeIn">
-                            <a href="{{ route('page.sambutan') }}" class="block px-4 py-2.5 text-xs font-semibold text-gray-700 hover:bg-emerald-50 hover:text-[#00843d] transition flex items-center">
-                                <i class="fa-solid fa-user-tie w-5 text-[#00843d] mr-2 text-sm"></i> Sambutan Mudir PPRU
-                            </a>
-                            <a href="{{ route('page.tentang-kami') }}" class="block px-4 py-2.5 text-xs font-semibold text-gray-700 hover:bg-emerald-50 hover:text-[#00843d] transition flex items-center">
-                                <i class="fa-solid fa-landmark-dome w-5 text-[#00843d] mr-2 text-sm"></i> Profil Singkat Pesantren
-                            </a>
-                            <a href="{{ route('page.visi-misi') }}" class="block px-4 py-2.5 text-xs font-semibold text-gray-700 hover:bg-emerald-50 hover:text-[#00843d] transition flex items-center">
-                                <i class="fa-solid fa-compass w-5 text-[#00843d] mr-2 text-sm"></i> Visi, Misi &amp; 10 Jati Diri
-                            </a>
-                            <a href="{{ route('page.sejarah') }}" class="block px-4 py-2.5 text-xs font-semibold text-gray-700 hover:bg-emerald-50 hover:text-[#00843d] transition flex items-center">
-                                <i class="fa-solid fa-clock-rotate-left w-5 text-[#00843d] mr-2 text-sm"></i> Sejarah Sejak 1930 &amp; 1950
-                            </a>
-                            <div class="border-t border-gray-100 my-1"></div>
-                            <a href="{{ route('dewan.index') }}" class="block px-4 py-2.5 text-xs font-semibold text-gray-700 hover:bg-emerald-50 hover:text-[#00843d] transition flex items-center">
-                                <i class="fa-solid fa-chalkboard-user w-5 text-[#00843d] mr-2 text-sm"></i> Dewan Asatidz &amp; Guru
-                            </a>
-                            <a href="{{ route('page.struktur') }}" class="block px-4 py-2.5 text-xs font-semibold text-gray-700 hover:bg-emerald-50 hover:text-[#00843d] transition flex items-center">
-                                <i class="fa-solid fa-sitemap w-5 text-[#00843d] mr-2 text-sm"></i> Struktur Organisasi &amp; Pengasuh
-                            </a>
-                            <a href="{{ route('bidang.index') }}" class="block px-4 py-2.5 text-xs font-semibold text-gray-700 hover:bg-emerald-50 hover:text-[#00843d] transition flex items-center">
-                                <i class="fa-solid fa-layer-group w-5 text-[#00843d] mr-2 text-sm"></i> Sarana &amp; Fasilitas Pondok
-                            </a>
-                            <a href="{{ route('program-unggulan.index') }}" class="block px-4 py-2.5 text-xs font-semibold text-gray-700 hover:bg-emerald-50 hover:text-[#00843d] transition flex items-center">
-                                <i class="fa-solid fa-star-and-crescent w-5 text-[#00843d] mr-2 text-sm"></i> Program Unggulan Pesantren
-                            </a>
-                            <div class="border-t border-gray-100 my-1"></div>
-                            <a href="{{ route('ikarus.index') }}" class="block px-4 py-2.5 text-xs font-semibold text-[#00843d] hover:bg-emerald-50 transition flex items-center font-bold">
-                                <i class="fa-solid fa-user-graduate w-5 text-amber-500 mr-2 text-sm"></i> Ikatan Alumni (IKARUS)
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                            // Active route check
+                            $mUrl = $formatNavUrl($m->url);
+                            $isMenuRouteActive = ($m->url === '/' && request()->routeIs('home'));
+                            if (! $isMenuRouteActive && ! empty($m->url) && $m->url !== '#') {
+                                $cleanPath = trim(parse_url($m->url, PHP_URL_PATH) ?? '', '/');
+                                if (! empty($cleanPath) && request()->is($cleanPath.'*')) {
+                                    $isMenuRouteActive = true;
+                                }
+                            }
+                            if (! $isMenuRouteActive && $hasChildren) {
+                                foreach ($activeChildren as $ac) {
+                                    $childPath = trim(parse_url($ac->url, PHP_URL_PATH) ?? '', '/');
+                                    if (! empty($childPath) && request()->is($childPath.'*')) {
+                                        $isMenuRouteActive = true;
+                                        break;
+                                    }
+                                }
+                            }
+                        @endphp
 
-                {{-- 3. Pendidikan Dropdown (Semua 8 Unit Lengkap & Tepat Rute) --}}
-                <div id="nav-dropdown-pendidikan" class="relative group py-2">
-                    <button type="button" aria-haspopup="true" aria-expanded="false" class="px-3 py-1.5 rounded-lg inline-flex items-center hover:bg-black/15 transition whitespace-nowrap {{ request()->is('pendidikan*') ? 'bg-black/20 text-[#fcd116]' : '' }}">
-                        <span>Pendidikan</span>
-                        <i class="fa-solid fa-chevron-down text-[10px] ml-1.5 transition-transform duration-200 group-hover:rotate-180"></i>
-                    </button>
-                    <div class="absolute left-0 top-full pt-1 w-80 hidden group-hover:block transition-all duration-150 z-50">
-                        <div class="bg-white rounded-2xl shadow-2xl border border-gray-100 py-2.5 text-gray-800 animate-fadeIn max-h-[75vh] overflow-y-auto">
-                            <div class="px-4 py-2 border-b border-gray-100 flex items-center justify-between">
-                                <span class="text-[11px] font-black text-[#00843d] uppercase tracking-wider">Unit Pendidikan PPRU</span>
-                                <a href="{{ route('pendidikan.index') }}" class="text-[10px] font-bold text-[#00843d] hover:underline">Semua Unit &rarr;</a>
-                            </div>
+                        @if(! $hasChildren)
+                            <a href="{{ $mUrl }}" 
+                               target="{{ $m->target ?? '_self' }}"
+                               class="px-3 py-1.5 rounded-lg hover:bg-black/15 transition whitespace-nowrap {{ $isMenuRouteActive ? 'bg-black/20 text-[#fcd116]' : '' }}">
+                                {{ $m->name }}
+                            </a>
+                        @else
+                            <div id="nav-dropdown-{{ $slug }}" class="relative group py-2">
+                                <button type="button" aria-haspopup="true" aria-expanded="false" class="px-3 py-1.5 rounded-lg inline-flex items-center hover:bg-black/15 transition whitespace-nowrap {{ $isMenuRouteActive ? 'bg-black/20 text-[#fcd116]' : '' }}">
+                                    <span>{{ $m->name }}</span>
+                                    <i class="fa-solid fa-chevron-down text-[10px] ml-1.5 transition-transform duration-200 group-hover:rotate-180"></i>
+                                </button>
+                                
+                                <div class="absolute {{ $slug === 'layanan' ? 'right-0 xl:right-auto xl:left-0 w-72 sm:w-80' : ($slug === 'pendidikan' ? 'left-0 w-80' : 'left-0 w-64') }} top-full pt-1 hidden group-hover:block transition-all duration-150 z-50">
+                                    <div class="bg-white rounded-2xl shadow-2xl border border-gray-100 py-2.5 text-gray-800 animate-fadeIn {{ $slug === 'pendidikan' ? 'max-h-[75vh] overflow-y-auto' : '' }}">
+                                        
+                                        @if($slug === 'pendidikan')
+                                            <div class="px-4 py-2 border-b border-gray-100 flex items-center justify-between">
+                                                <span class="text-[11px] font-black text-[#00843d] uppercase tracking-wider">Unit Pendidikan PPRU</span>
+                                                <a href="{{ route('pendidikan.index') }}" class="text-[10px] font-bold text-[#00843d] hover:underline">Semua Unit &rarr;</a>
+                                            </div>
 
-                            @if(isset($headerUnits) && $headerUnits->isNotEmpty())
-                                @foreach($headerUnits as $nu)
-                                    @php
-                                        $cleanNuName = trim(preg_replace('/\s*\([^)]*\)\s*$/', '', $nu->name));
-                                    @endphp
-                                    <a href="{{ route('pendidikan.show', $nu->slug) }}" class="block px-4 py-2 text-xs font-semibold text-gray-700 hover:bg-emerald-50 hover:text-[#00843d] transition">
-                                        <div class="flex items-center justify-between">
-                                            <span class="font-bold truncate">{{ $cleanNuName }}</span>
-                                            @if($nu->short_name)
-                                                <span class="text-[9px] bg-emerald-100 text-[#00843d] px-1.5 py-0.5 rounded font-bold shrink-0 ml-1.5">{{ $nu->short_name }}</span>
-                                            @endif
-                                        </div>
-                                        @if($nu->category_type)
-                                            <span class="text-[10px] text-gray-400 font-normal block">{{ $nu->category_type }}</span>
+                                            @foreach($activeChildren as $child)
+                                                @php
+                                                    $childUrl = $formatNavUrl($child->url);
+                                                    $childSlug = last(explode('/', trim($child->url, '/')));
+                                                    $matchedUnit = $headerUnits->first(fn ($u) => $u->slug === $childSlug || $u->name === $child->name);
+                                                    $cleanName = $matchedUnit ? trim(preg_replace('/\s*\([^)]*\)\s*$/', '', $matchedUnit->name)) : $child->name;
+                                                @endphp
+                                                <a href="{{ $childUrl }}" target="{{ $child->target ?? '_self' }}" class="block px-4 py-2 text-xs font-semibold text-gray-700 hover:bg-emerald-50 hover:text-[#00843d] transition">
+                                                    <div class="flex items-center justify-between">
+                                                        <span class="font-bold truncate">{{ $cleanName }}</span>
+                                                        @if($matchedUnit && $matchedUnit->short_name)
+                                                            <span class="text-[9px] bg-emerald-100 text-[#00843d] px-1.5 py-0.5 rounded font-bold shrink-0 ml-1.5">{{ $matchedUnit->short_name }}</span>
+                                                        @endif
+                                                    </div>
+                                                    @if($matchedUnit && $matchedUnit->category_type)
+                                                        <span class="text-[10px] text-gray-400 font-normal block">{{ $matchedUnit->category_type }}</span>
+                                                    @endif
+                                                </a>
+                                            @endforeach
+
+                                            <div class="border-t border-gray-100 mt-1 pt-1 px-4 py-1.5 bg-emerald-50/50">
+                                                <a href="{{ route('pendidikan.index') }}" class="text-xs font-black text-[#00843d] hover:underline flex items-center justify-between">
+                                                    <span>Lihat Semua Kurikulum &amp; Jenjang</span>
+                                                    <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                                                </a>
+                                            </div>
+
+                                        @elseif($slug === 'layanan')
+                                            <div class="px-4 py-2 bg-emerald-50/80 border-b border-gray-100 flex items-center justify-between">
+                                                <span class="text-[11px] font-black text-[#00843d] uppercase tracking-wider flex items-center">
+                                                    <i class="fa-solid fa-handshake-angle mr-1.5 text-amber-500"></i>
+                                                    3 Layanan Publik
+                                                </span>
+                                                <span class="text-[9px] bg-[#00843d] text-white px-2 py-0.5 rounded-full font-bold uppercase tracking-wider">Online</span>
+                                            </div>
+
+                                            @php $isPublicDividerDone = false; @endphp
+                                            @foreach($activeChildren as $child)
+                                                @php
+                                                    $childUrl = $formatNavUrl($child->url);
+                                                    $isPublicService = in_array(trim($child->url, '/'), ['izin-sekolah', 'permohonan-kerja-sama', 'sewa-barang'])
+                                                        || str_contains($child->url, 'izin-sekolah')
+                                                        || str_contains($child->url, 'permohonan-kerja-sama')
+                                                        || str_contains($child->url, 'sewa-barang');
+                                                @endphp
+
+                                                @if(! $isPublicService && ! $isPublicDividerDone && $loop->index >= 3)
+                                                    @php $isPublicDividerDone = true; @endphp
+                                                    <div class="border-t border-gray-100 my-1"></div>
+                                                @endif
+
+                                                @if($isPublicService)
+                                                    <a href="{{ $childUrl }}" target="{{ $child->target ?? '_self' }}" class="block px-4 py-2.5 text-xs text-gray-700 hover:bg-emerald-50 hover:text-[#00843d] transition group/item">
+                                                        <div class="flex items-start">
+                                                            <div class="w-7 h-7 rounded-lg bg-emerald-100 text-[#00843d] flex items-center justify-center shrink-0 mr-2.5 mt-0.5 group-hover/item:bg-[#00843d] group-hover/item:text-white transition">
+                                                                <i class="{{ $child->icon ?: 'fa-solid fa-handshake-angle' }} text-xs"></i>
+                                                            </div>
+                                                            <div>
+                                                                <span class="font-bold block text-gray-800 group-hover/item:text-[#00843d]">{{ $child->name }}</span>
+                                                                @if(str_contains($child->url, 'izin-sekolah'))
+                                                                    <span class="text-[10px] text-gray-400 font-normal block">Studi banding, rombongan &amp; kunjungan dinas</span>
+                                                                @elseif(str_contains($child->url, 'permohonan-kerja-sama'))
+                                                                    <span class="text-[10px] text-gray-400 font-normal block">Kemitraan, magang &amp; MoU lembaga</span>
+                                                                @elseif(str_contains($child->url, 'sewa-barang'))
+                                                                    <span class="text-[10px] text-gray-400 font-normal block">Aula, gedung, perlengkapan &amp; sarana</span>
+                                                                @endif
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                @else
+                                                    <a href="{{ $childUrl }}" target="{{ $child->target ?? '_self' }}" class="block px-4 py-2 text-xs font-semibold text-gray-700 hover:bg-emerald-50 hover:text-[#00843d] transition flex items-center">
+                                                        <i class="{{ $child->icon ?: 'fa-solid fa-circle-nodes' }} w-5 text-[#00843d] mr-2.5 text-sm"></i>
+                                                        <span>{{ $child->name }}</span>
+                                                    </a>
+                                                @endif
+                                            @endforeach
+
+                                        @else
+                                            @foreach($activeChildren as $child)
+                                                @php
+                                                    $childUrl = $formatNavUrl($child->url);
+                                                    $isAlumni = str_contains($child->url, 'ikarus') || str_contains(strtolower($child->name), 'ikarus');
+                                                    $isYoutube = str_contains($child->icon ?? '', 'youtube');
+                                                    $isTrophy = str_contains($child->icon ?? '', 'trophy');
+                                                    $iconColor = $isAlumni ? 'text-amber-500' : ($isYoutube ? 'text-red-600' : ($isTrophy ? 'text-amber-500' : 'text-[#00843d]'));
+                                                @endphp
+                                                @if($loop->index > 0 && in_array(trim($child->url, '/'), ['dewan-guru', 'ikarus', 'galeri']))
+                                                    <div class="border-t border-gray-100 my-1"></div>
+                                                @endif
+                                                <a href="{{ $childUrl }}" target="{{ $child->target ?? '_self' }}" class="block px-4 py-2.5 text-xs font-semibold {{ $isAlumni ? 'text-[#00843d] font-bold' : 'text-gray-700' }} hover:bg-emerald-50 hover:text-[#00843d] transition flex items-center">
+                                                    @if($child->icon)
+                                                        <i class="{{ $child->icon }} w-5 {{ $iconColor }} mr-2 text-sm"></i>
+                                                    @endif
+                                                    <span>{{ $child->name }}</span>
+                                                </a>
+                                            @endforeach
                                         @endif
-                                    </a>
-                                @endforeach
-                            @endif
-
-                            <div class="border-t border-gray-100 mt-1 pt-1 px-4 py-1.5 bg-emerald-50/50">
-                                <a href="{{ route('pendidikan.index') }}" class="text-xs font-black text-[#00843d] hover:underline flex items-center justify-between">
-                                    <span>Lihat Semua Kurikulum &amp; Jenjang</span>
-                                    <i class="fa-solid fa-arrow-right text-[10px]"></i>
-                                </a>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                        @endif
+                    @endforeach
+                @else
+                    {{-- Fallback Hardcoded Navigasi PPRU --}}
+                    <a href="{{ route('home') }}" class="px-3 py-1.5 rounded-lg hover:bg-black/15 transition whitespace-nowrap {{ request()->routeIs('home') ? 'bg-black/20 text-[#fcd116]' : '' }}">
+                        Beranda
+                    </a>
+                    <div id="nav-dropdown-profil" class="relative group py-2">
+                        <button type="button" aria-haspopup="true" aria-expanded="false" class="px-3 py-1.5 rounded-lg inline-flex items-center hover:bg-black/15 transition whitespace-nowrap">
+                            <span>Profil</span>
+                            <i class="fa-solid fa-chevron-down text-[10px] ml-1.5 transition-transform duration-200 group-hover:rotate-180"></i>
+                        </button>
                     </div>
-                </div>
-
-                {{-- 4. Informasi Dropdown (Berita, Prestasi, Agenda, Pengumuman, Galeri, Video, Khutbah) --}}
-                <div id="nav-dropdown-informasi" class="relative group py-2">
-                    <button type="button" aria-haspopup="true" aria-expanded="false" class="px-3 py-1.5 rounded-lg inline-flex items-center hover:bg-black/15 transition whitespace-nowrap {{ request()->is('artikel*', 'agenda*', 'pengumuman*', 'kategori*', 'prestasi*', 'galeri*', 'video*', 'khutbah*') ? 'bg-black/20 text-[#fcd116]' : '' }}">
-                        <span>Informasi</span>
-                        <i class="fa-solid fa-chevron-down text-[10px] ml-1.5 transition-transform duration-200 group-hover:rotate-180"></i>
-                    </button>
-                    <div class="absolute left-0 top-full pt-1 w-64 hidden group-hover:block transition-all duration-150 z-50">
-                        <div class="bg-white rounded-2xl shadow-2xl border border-gray-100 py-2.5 text-gray-800 animate-fadeIn">
-                            <a href="{{ route('artikel.index') }}" class="block px-4 py-2.5 text-xs font-semibold text-gray-700 hover:bg-emerald-50 hover:text-[#00843d] transition flex items-center">
-                                <i class="fa-solid fa-newspaper w-5 text-[#00843d] mr-2 text-sm"></i> Berita &amp; Kabar Pondok
-                            </a>
-                            <a href="{{ route('prestasi.index') }}" class="block px-4 py-2.5 text-xs font-semibold text-gray-700 hover:bg-emerald-50 hover:text-[#00843d] transition flex items-center">
-                                <i class="fa-solid fa-trophy w-5 text-amber-500 mr-2 text-sm"></i> Prestasi Santri &amp; Guru
-                            </a>
-                            <a href="{{ route('agenda.index') }}" class="block px-4 py-2.5 text-xs font-semibold text-gray-700 hover:bg-emerald-50 hover:text-[#00843d] transition flex items-center">
-                                <i class="fa-solid fa-calendar-days w-5 text-[#00843d] mr-2 text-sm"></i> Agenda &amp; Kalender
-                            </a>
-                            <a href="{{ route('pengumuman.index') }}" class="block px-4 py-2.5 text-xs font-semibold text-gray-700 hover:bg-emerald-50 hover:text-[#00843d] transition flex items-center">
-                                <i class="fa-solid fa-bullhorn w-5 text-[#00843d] mr-2 text-sm"></i> Pengumuman Resmi
-                            </a>
-                            <div class="border-t border-gray-100 my-1"></div>
-                            <a href="{{ route('galeri.index') }}" class="block px-4 py-2.5 text-xs font-semibold text-gray-700 hover:bg-emerald-50 hover:text-[#00843d] transition flex items-center">
-                                <i class="fa-solid fa-images w-5 text-[#00843d] mr-2 text-sm"></i> Galeri Foto Dokumentasi
-                            </a>
-                            <a href="{{ route('video.index') }}" class="block px-4 py-2.5 text-xs font-semibold text-gray-700 hover:bg-emerald-50 hover:text-[#00843d] transition flex items-center">
-                                <i class="fa-brands fa-youtube w-5 text-red-600 mr-2 text-sm"></i> Video Kegiatan &amp; Podcast
-                            </a>
-                            <a href="{{ route('khutbah.index') }}" class="block px-4 py-2.5 text-xs font-semibold text-gray-700 hover:bg-emerald-50 hover:text-[#00843d] transition flex items-center">
-                                <i class="fa-solid fa-microphone-lines w-5 text-[#00843d] mr-2 text-sm"></i> Tausiyah &amp; Khutbah Jum'at
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                {{-- 5. Layanan & Unduhan Dropdown (Termasuk 3 Layanan Publik Utama) --}}
-                <div id="nav-dropdown-layanan" class="relative group py-2">
-                    <button type="button" aria-haspopup="true" aria-expanded="false" class="px-3 py-1.5 rounded-lg inline-flex items-center hover:bg-black/15 transition whitespace-nowrap {{ request()->is('layanan*', 'izin-sekolah*', 'permohonan-kerja-sama*', 'sewa-barang*', 'download*', 'e-book*', 'hymne*', 'logo*', 'hubungi*') ? 'bg-black/20 text-[#fcd116]' : '' }}">
-                        <span>Layanan</span>
-                        <i class="fa-solid fa-chevron-down text-[10px] ml-1.5 transition-transform duration-200 group-hover:rotate-180"></i>
-                    </button>
-                    <div class="absolute right-0 xl:right-auto xl:left-0 top-full pt-1 w-72 sm:w-80 hidden group-hover:block transition-all duration-150 z-50">
-                        <div class="bg-white rounded-2xl shadow-2xl border border-gray-100 py-2.5 text-gray-800 animate-fadeIn">
-                            {{-- Header Label: 3 Layanan Publik --}}
-                            <div class="px-4 py-2 bg-emerald-50/80 border-b border-gray-100 flex items-center justify-between">
-                                <span class="text-[11px] font-black text-[#00843d] uppercase tracking-wider flex items-center">
-                                    <i class="fa-solid fa-handshake-angle mr-1.5 text-amber-500"></i>
-                                    3 Layanan Publik
-                                </span>
-                                <span class="text-[9px] bg-[#00843d] text-white px-2 py-0.5 rounded-full font-bold uppercase tracking-wider">Online</span>
-                            </div>
-
-                            {{-- 1. Izin Kunjungan Sekolah --}}
-                            <a href="{{ route('layanan.izin') }}" class="block px-4 py-2.5 text-xs text-gray-700 hover:bg-emerald-50 hover:text-[#00843d] transition group/item">
-                                <div class="flex items-start">
-                                    <div class="w-7 h-7 rounded-lg bg-emerald-100 text-[#00843d] flex items-center justify-center shrink-0 mr-2.5 mt-0.5 group-hover/item:bg-[#00843d] group-hover/item:text-white transition">
-                                        <i class="fa-solid fa-school text-xs"></i>
-                                    </div>
-                                    <div>
-                                        <span class="font-bold block text-gray-800 group-hover/item:text-[#00843d]">Izin Kunjungan Sekolah</span>
-                                        <span class="text-[10px] text-gray-400 font-normal block">Studi banding, rombongan &amp; kunjungan dinas</span>
-                                    </div>
-                                </div>
-                            </a>
-
-                            {{-- 2. Permohonan Kerja Sama --}}
-                            <a href="{{ route('layanan.kerjasama') }}" class="block px-4 py-2.5 text-xs text-gray-700 hover:bg-emerald-50 hover:text-[#00843d] transition group/item">
-                                <div class="flex items-start">
-                                    <div class="w-7 h-7 rounded-lg bg-emerald-100 text-[#00843d] flex items-center justify-center shrink-0 mr-2.5 mt-0.5 group-hover/item:bg-[#00843d] group-hover/item:text-white transition">
-                                        <i class="fa-solid fa-handshake text-xs"></i>
-                                    </div>
-                                    <div>
-                                        <span class="font-bold block text-gray-800 group-hover/item:text-[#00843d]">Permohonan Kerja Sama</span>
-                                        <span class="text-[10px] text-gray-400 font-normal block">Kemitraan, magang &amp; MoU lembaga</span>
-                                    </div>
-                                </div>
-                            </a>
-
-                            {{-- 3. Sewa Fasilitas & Sarana --}}
-                            <a href="{{ route('layanan.sewa') }}" class="block px-4 py-2.5 text-xs text-gray-700 hover:bg-emerald-50 hover:text-[#00843d] transition group/item">
-                                <div class="flex items-start">
-                                    <div class="w-7 h-7 rounded-lg bg-emerald-100 text-[#00843d] flex items-center justify-center shrink-0 mr-2.5 mt-0.5 group-hover/item:bg-[#00843d] group-hover/item:text-white transition">
-                                        <i class="fa-solid fa-building-user text-xs"></i>
-                                    </div>
-                                    <div>
-                                        <span class="font-bold block text-gray-800 group-hover/item:text-[#00843d]">Sewa Fasilitas &amp; Sarana</span>
-                                        <span class="text-[10px] text-gray-400 font-normal block">Aula, gedung, perlengkapan &amp; sarana</span>
-                                    </div>
-                                </div>
-                            </a>
-
-                            <div class="border-t border-gray-100 my-1"></div>
-
-                            {{-- Layanan Terpadu & Unduhan --}}
-                            <a href="{{ route('layanan.index') }}" class="block px-4 py-2 text-xs font-semibold text-gray-700 hover:bg-emerald-50 hover:text-[#00843d] transition flex items-center">
-                                <i class="fa-solid fa-circle-nodes w-5 text-[#00843d] mr-2.5 text-sm"></i>
-                                <span>Portal Layanan Terpadu</span>
-                            </a>
-                            <a href="{{ route('download.index') }}" class="block px-4 py-2 text-xs font-semibold text-gray-700 hover:bg-emerald-50 hover:text-[#00843d] transition flex items-center">
-                                <i class="fa-solid fa-file-pdf w-5 text-[#00843d] mr-2.5 text-sm"></i>
-                                <span>Brosur &amp; Rincian Biaya</span>
-                            </a>
-                            <a href="{{ route('download.logo') }}" class="block px-4 py-2 text-xs font-semibold text-gray-700 hover:bg-emerald-50 hover:text-[#00843d] transition flex items-center">
-                                <i class="fa-solid fa-image w-5 text-[#00843d] mr-2.5 text-sm"></i>
-                                <span>Download Logo Resmi</span>
-                            </a>
-                            <a href="{{ route('hubungi') }}" class="block px-4 py-2 text-xs font-semibold text-gray-700 hover:bg-emerald-50 hover:text-[#00843d] transition flex items-center">
-                                <i class="fa-solid fa-address-book w-5 text-[#00843d] mr-2.5 text-sm"></i>
-                                <span>Kontak &amp; Lokasi Humas</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                @endif
             </nav>
 
             {{-- TOMBOL AKSI: DAFTAR PSB (EMAS/KUNING MENCOLOK KHAS LOGO) & LOGIN --}}
@@ -286,97 +266,96 @@
             <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-gray-400 text-xs"></i>
         </form>
 
-        <a href="{{ route('home') }}" class="block px-3 py-2 rounded-lg font-bold text-gray-900 hover:bg-emerald-50 hover:text-[#00843d] transition {{ request()->routeIs('home') ? 'bg-emerald-50 text-[#00843d]' : '' }}">
-            <i class="fa-solid fa-house mr-2 text-[#00843d]"></i> Beranda
-        </a>
-
-        {{-- Mobile Profil --}}
-        <details class="group">
-            <summary class="flex justify-between items-center px-3 py-2 rounded-lg font-bold text-gray-900 hover:bg-emerald-50 cursor-pointer list-none">
-                <span><i class="fa-solid fa-landmark-dome mr-2 text-[#00843d]"></i> Profil</span>
-                <i class="fa-solid fa-chevron-down text-xs group-open:rotate-180 transition"></i>
-            </summary>
-                <div class="pl-6 pt-1 space-y-1 text-xs">
-                    <a href="{{ route('page.sambutan') }}" class="block py-1.5 text-gray-600 hover:text-[#00843d]">Sambutan Mudir PPRU</a>
-                    <a href="{{ route('page.tentang-kami') }}" class="block py-1.5 text-gray-600 hover:text-[#00843d]">Profil Singkat Pesantren</a>
-                    <a href="{{ route('page.visi-misi') }}" class="block py-1.5 text-gray-600 hover:text-[#00843d]">Visi, Misi &amp; 10 Jati Diri</a>
-                    <a href="{{ route('page.sejarah') }}" class="block py-1.5 text-gray-600 hover:text-[#00843d]">Sejarah Sejak 1930 &amp; 1950</a>
-                    <a href="{{ route('dewan.index') }}" class="block py-1.5 text-gray-600 hover:text-[#00843d]">Dewan Asatidz &amp; Guru</a>
-                    <a href="{{ route('page.struktur') }}" class="block py-1.5 text-gray-600 hover:text-[#00843d]">Struktur Organisasi</a>
-                    <a href="{{ route('bidang.index') }}" class="block py-1.5 text-gray-600 hover:text-[#00843d]">Sarana &amp; Fasilitas Pondok</a>
-                    <a href="{{ route('program-unggulan.index') }}" class="block py-1.5 text-gray-600 hover:text-[#00843d]">Program Unggulan</a>
-                    <a href="{{ route('ikarus.index') }}" class="block py-1.5 text-[#00843d] font-semibold hover:underline flex items-center">
-                        <i class="fa-solid fa-user-graduate text-xs mr-1.5 text-[#f59e0b]"></i> Ikatan Alumni (IKARUS)
+        @if($headerMenus->isNotEmpty())
+            @foreach($headerMenus as $m)
+                @php
+                    $slug = Str::slug($m->name);
+                    $mChildren = $m->children ? $m->children->where('is_active', true) : collect();
+                    $mUrl = $formatNavUrl($m->url);
+                    $isRootActive = ($m->url === '/' && request()->routeIs('home')) || (trim($m->url, '/') !== '' && request()->is(trim($m->url, '/') . '*'));
+                @endphp
+                @if($mChildren->isEmpty())
+                    <a href="{{ $mUrl }}" target="{{ $m->target ?? '_self' }}" class="block px-3 py-2 rounded-lg font-bold text-gray-900 hover:bg-emerald-50 hover:text-[#00843d] transition {{ $isRootActive ? 'bg-emerald-50 text-[#00843d]' : '' }}">
+                        @if($m->icon)
+                            <i class="{{ $m->icon }} mr-2 text-[#00843d]"></i>
+                        @else
+                            <i class="fa-solid fa-house mr-2 text-[#00843d]"></i>
+                        @endif
+                        <span>{{ $m->name }}</span>
                     </a>
-                </div>
-            </details>
-
-            {{-- Mobile Pendidikan --}}
-            <details class="group">
-                <summary class="flex justify-between items-center px-3 py-2 rounded-lg font-bold text-gray-900 hover:bg-emerald-50 cursor-pointer list-none">
-                    <span><i class="fa-solid fa-building-columns mr-2 text-[#00843d]"></i> Unit Pendidikan</span>
-                    <i class="fa-solid fa-chevron-down text-xs group-open:rotate-180 transition"></i>
-                </summary>
-                <div class="pl-6 pt-1 space-y-1 text-xs">
-                    <a href="{{ route('pendidikan.index') }}" class="block py-1.5 font-bold text-[#00843d]">Katalog Semua Unit</a>
-                    @if(isset($headerUnits) && $headerUnits->isNotEmpty())
-                        @foreach($headerUnits as $nu)
-                            <a href="{{ route('pendidikan.show', $nu->slug) }}" class="block py-1.5 text-gray-600 hover:text-[#00843d] truncate flex items-center justify-between">
-                                <span>{{ trim(preg_replace('/\s*\([^)]*\)\s*$/', '', $nu->name)) }}</span>
-                                @if($nu->short_name)
-                                    <span class="text-[9px] bg-emerald-100 text-[#00843d] px-1.5 py-0.5 rounded font-bold shrink-0 ml-1">{{ $nu->short_name }}</span>
+                @else
+                    <details class="group">
+                        <summary class="flex justify-between items-center px-3 py-2 rounded-lg font-bold text-gray-900 hover:bg-emerald-50 cursor-pointer list-none">
+                            <span>
+                                @if($m->icon)
+                                    <i class="{{ $m->icon }} mr-2 text-[#00843d]"></i>
+                                @else
+                                    <i class="fa-solid fa-folder mr-2 text-[#00843d]"></i>
                                 @endif
-                            </a>
-                        @endforeach
-                    @endif
-                </div>
-            </details>
-
-            {{-- Mobile Informasi --}}
-            <details class="group">
-                <summary class="flex justify-between items-center px-3 py-2 rounded-lg font-bold text-gray-900 hover:bg-emerald-50 cursor-pointer list-none">
-                    <span><i class="fa-solid fa-newspaper mr-2 text-[#00843d]"></i> Informasi &amp; Kabar</span>
-                    <i class="fa-solid fa-chevron-down text-xs group-open:rotate-180 transition"></i>
-                </summary>
-                <div class="pl-6 pt-1 space-y-1 text-xs">
-                    <a href="{{ route('artikel.index') }}" class="block py-1.5 text-gray-600 hover:text-[#00843d]">Berita Pondok</a>
-                    <a href="{{ route('prestasi.index') }}" class="block py-1.5 text-gray-600 hover:text-[#00843d]">Prestasi Santri &amp; Guru</a>
-                    <a href="{{ route('agenda.index') }}" class="block py-1.5 text-gray-600 hover:text-[#00843d]">Agenda Pesantren</a>
-                    <a href="{{ route('pengumuman.index') }}" class="block py-1.5 text-gray-600 hover:text-[#00843d]">Pengumuman Resmi</a>
-                    <a href="{{ route('galeri.index') }}" class="block py-1.5 text-gray-600 hover:text-[#00843d]">Galeri Foto Kegiatan</a>
-                    <a href="{{ route('video.index') }}" class="block py-1.5 text-gray-600 hover:text-[#00843d]">Video Kegiatan &amp; Podcast</a>
-                    <a href="{{ route('khutbah.index') }}" class="block py-1.5 text-gray-600 hover:text-[#00843d] flex items-center">
-                        <i class="fa-solid fa-microphone-lines text-xs mr-1.5 text-[#00843d]"></i> Tausiyah &amp; Khutbah Jum'at
-                    </a>
-                </div>
-            </details>
-
-            {{-- Mobile Layanan --}}
-            <details class="group">
-                <summary class="flex justify-between items-center px-3 py-2 rounded-lg font-bold text-gray-900 hover:bg-emerald-50 cursor-pointer list-none">
-                    <span><i class="fa-solid fa-handshake-angle mr-2 text-[#00843d]"></i> Layanan &amp; Unduhan</span>
-                    <i class="fa-solid fa-chevron-down text-xs group-open:rotate-180 transition"></i>
-                </summary>
-                <div class="pl-6 pt-1 space-y-1 text-xs">
-                    <div class="pt-1 pb-1 text-[10px] font-black uppercase text-[#00843d] tracking-wider flex items-center">
-                        <i class="fa-solid fa-star text-amber-500 mr-1 text-[9px]"></i> 3 Layanan Publik
-                    </div>
-                    <a href="{{ route('layanan.izin') }}" class="block py-1.5 text-gray-800 font-bold hover:text-[#00843d] flex items-center">
-                        <i class="fa-solid fa-school w-5 text-[#00843d] mr-1.5 text-xs"></i> Izin Kunjungan Sekolah
-                    </a>
-                    <a href="{{ route('layanan.kerjasama') }}" class="block py-1.5 text-gray-800 font-bold hover:text-[#00843d] flex items-center">
-                        <i class="fa-solid fa-handshake w-5 text-[#00843d] mr-1.5 text-xs"></i> Permohonan Kerja Sama
-                    </a>
-                    <a href="{{ route('layanan.sewa') }}" class="block py-1.5 text-gray-800 font-bold hover:text-[#00843d] flex items-center">
-                        <i class="fa-solid fa-building-user w-5 text-[#00843d] mr-1.5 text-xs"></i> Sewa Fasilitas &amp; Sarana
-                    </a>
-                    <div class="border-t border-gray-100 my-1 pt-1 text-[10px] font-black uppercase text-gray-400 tracking-wider">Layanan Lainnya</div>
-                    <a href="{{ route('layanan.index') }}" class="block py-1 text-gray-600 hover:text-[#00843d]">Portal Layanan Terpadu</a>
-                    <a href="{{ route('download.index') }}" class="block py-1 text-gray-600 hover:text-[#00843d]">Brosur &amp; Berkas Resmi</a>
-                    <a href="{{ route('download.logo') }}" class="block py-1 text-gray-600 hover:text-[#00843d]">Download Logo Resmi</a>
-                    <a href="{{ route('hubungi') }}" class="block py-1 text-gray-600 hover:text-[#00843d]">Kontak &amp; Lokasi Humas</a>
-                </div>
-            </details>
+                                {{ $m->name }}
+                            </span>
+                            <i class="fa-solid fa-chevron-down text-xs group-open:rotate-180 transition"></i>
+                        </summary>
+                        <div class="pl-6 pt-1 space-y-1 text-xs">
+                            @if($slug === 'pendidikan')
+                                <a href="{{ route('pendidikan.index') }}" class="block py-1.5 font-bold text-[#00843d]">Katalog Semua Unit</a>
+                                @foreach($mChildren as $child)
+                                    @php
+                                        $childUrl = $formatNavUrl($child->url);
+                                        $childSlug = last(explode('/', trim($child->url, '/')));
+                                        $matchedUnit = $headerUnits->first(fn ($u) => $u->slug === $childSlug || $u->name === $child->name);
+                                        $cleanName = $matchedUnit ? trim(preg_replace('/\s*\([^)]*\)\s*$/', '', $matchedUnit->name)) : $child->name;
+                                    @endphp
+                                    <a href="{{ $childUrl }}" target="{{ $child->target ?? '_self' }}" class="block py-1.5 text-gray-600 hover:text-[#00843d] truncate flex items-center justify-between">
+                                        <span>{{ $cleanName }}</span>
+                                        @if($matchedUnit && $matchedUnit->short_name)
+                                            <span class="text-[9px] bg-emerald-100 text-[#00843d] px-1.5 py-0.5 rounded font-bold shrink-0 ml-1">{{ $matchedUnit->short_name }}</span>
+                                        @endif
+                                    </a>
+                                @endforeach
+                            @elseif($slug === 'layanan')
+                                <div class="pt-1 pb-1 text-[10px] font-black uppercase text-[#00843d] tracking-wider flex items-center">
+                                    <i class="fa-solid fa-star text-amber-500 mr-1 text-[9px]"></i> 3 Layanan Publik
+                                </div>
+                                @php $isMobileDividerDone = false; @endphp
+                                @foreach($mChildren as $child)
+                                    @php
+                                        $childUrl = $formatNavUrl($child->url);
+                                        $isPublic = in_array(trim($child->url, '/'), ['izin-sekolah', 'permohonan-kerja-sama', 'sewa-barang'])
+                                            || str_contains($child->url, 'izin-sekolah')
+                                            || str_contains($child->url, 'permohonan-kerja-sama')
+                                            || str_contains($child->url, 'sewa-barang');
+                                    @endphp
+                                    @if(! $isPublic && ! $isMobileDividerDone && $loop->index >= 3)
+                                        @php $isMobileDividerDone = true; @endphp
+                                        <div class="border-t border-gray-100 my-1 pt-1 text-[10px] font-black uppercase text-gray-400 tracking-wider">Layanan Lainnya</div>
+                                    @endif
+                                    <a href="{{ $childUrl }}" target="{{ $child->target ?? '_self' }}" class="block py-1.5 {{ $isPublic ? 'text-gray-800 font-bold' : 'text-gray-600' }} hover:text-[#00843d] flex items-center">
+                                        @if($child->icon)
+                                            <i class="{{ $child->icon }} w-4 text-[#00843d] mr-1.5 text-xs"></i>
+                                        @endif
+                                        <span>{{ $child->name }}</span>
+                                    </a>
+                                @endforeach
+                            @else
+                                @foreach($mChildren as $child)
+                                    @php
+                                        $childUrl = $formatNavUrl($child->url);
+                                        $isAlumni = str_contains($child->url, 'ikarus') || str_contains(strtolower($child->name), 'ikarus');
+                                    @endphp
+                                    <a href="{{ $childUrl }}" target="{{ $child->target ?? '_self' }}" class="block py-1.5 {{ $isAlumni ? 'text-[#00843d] font-semibold hover:underline' : 'text-gray-600' }} hover:text-[#00843d] flex items-center">
+                                        @if($child->icon)
+                                            <i class="{{ $child->icon }} w-4 mr-1.5 text-xs {{ $isAlumni ? 'text-[#f59e0b]' : 'text-[#00843d]' }}"></i>
+                                        @endif
+                                        <span>{{ $child->name }}</span>
+                                    </a>
+                                @endforeach
+                            @endif
+                        </div>
+                    </details>
+                @endif
+            @endforeach
+        @endif
 
         <div class="pt-3 border-t border-gray-100 flex flex-col space-y-2">
             <a href="{{ route('ppdb.index') }}" class="block w-full text-center bg-[#f59e0b] hover:bg-[#d97706] text-slate-900 font-black py-2.5 rounded-full text-xs shadow">
