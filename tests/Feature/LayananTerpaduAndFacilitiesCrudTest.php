@@ -3,19 +3,77 @@
 use App\Models\Bidang;
 use App\Models\Dpc;
 use App\Models\ServiceSubmission;
+use App\Models\Setting;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
 
 uses(RefreshDatabase::class);
 
-test('layanan terpadu portal page loads successfully with all services', function () {
-    $response = $this->get('/layanan-terpadu-2');
+test('layanan terpadu portal page displays 2 services when sewa barang is hidden', function () {
+    Setting::set('layanan_sewa_active', '0', 'layanan');
+
+    $response = $this->get(route('layanan.index'));
     $response->assertStatus(200);
-    $response->assertSee('LAYANAN TERPADU');
+    $response->assertSee('PORTAL LAYANAN TERPADU');
+    $response->assertSee('Permohonan Izin Kunjungan ke Sekolah');
+    $response->assertSee('Permohonan Kerja Sama');
+    $response->assertDontSee('Permohonan Sewa Menyewa Barang Sekolah');
+    $response->assertSee('2 Layanan Publik');
+});
+
+test('layanan terpadu portal page displays 3 services when sewa barang is enabled', function () {
+    Setting::set('layanan_sewa_active', '1', 'layanan');
+
+    $response = $this->get(route('layanan.index'));
+    $response->assertStatus(200);
+    $response->assertSee('PORTAL LAYANAN TERPADU');
     $response->assertSee('Permohonan Izin Kunjungan ke Sekolah');
     $response->assertSee('Permohonan Kerja Sama');
     $response->assertSee('Permohonan Sewa Menyewa Barang Sekolah');
+    $response->assertSee('3 Layanan Publik');
+});
+
+test('layanan sewa menyewa barang page redirects when hidden and loads when enabled', function () {
+    // 1. When hidden: guest gets redirected
+    Setting::set('layanan_sewa_active', '0', 'layanan');
+    $responseHidden = $this->get('/sewa-barang');
+    $responseHidden->assertRedirect(route('layanan.index'));
+    $responseHidden->assertSessionHas('info');
+
+    // 2. When enabled: loads successfully
+    Setting::set('layanan_sewa_active', '1', 'layanan');
+    $response = $this->get('/sewa-barang');
+    $response->assertStatus(200);
+    $response->assertSee('PERMOHONAN SEWA MENYEWA BARANG MILIK SEKOLAH');
+    $response->assertSee('Persyaratan Pelayanan');
+    $response->assertSee('Individu (perorangan)');
+    $response->assertSee('Fotokopi KTP');
+    $response->assertSee('Fotokopi NPWP');
+    $response->assertSee('Lembaga Organisasi');
+    $response->assertSee('Sistem Mekanisme dan Prosedur');
+    $response->assertSee('Jangka Waktu Penyelesaian');
+    $response->assertSee('Biaya dan Tarif');
+    $response->assertSee('Produk Layanan');
+    $response->assertSee('Pengaduan, Saran dan Masukan');
+});
+
+test('admin can toggle layanan_sewa_active setting from dashboard', function () {
+    $admin = User::factory()->create(['role' => 'admin']);
+
+    $response = $this->actingAs($admin)->post(route('admin.layanan.content.update'), [
+        'service_type' => 'portal',
+        'layanan_sewa_active' => '1',
+    ]);
+    $response->assertRedirect();
+    expect(Setting::get('layanan_sewa_active'))->toBe('1');
+
+    $response2 = $this->actingAs($admin)->post(route('admin.layanan.content.update'), [
+        'service_type' => 'portal',
+        'layanan_sewa_active' => '0',
+    ]);
+    $response2->assertRedirect();
+    expect(Setting::get('layanan_sewa_active'))->toBe('0');
 });
 
 test('layanan izin kunjungan sekolah page displays exact requirements and accordions from original site', function () {
@@ -42,22 +100,6 @@ test('layanan permohonan kerja sama page displays exact requirements and accordi
     $response->assertSee('Persyaratan Pelayanan');
     $response->assertSee('Surat permohonan dari Pemerintah/Swasta/Industri/Yayasan/Organisasi/Instansi lainnya');
     $response->assertSee('Surat permohonan dari Individu (perorangan)');
-    $response->assertSee('Sistem Mekanisme dan Prosedur');
-    $response->assertSee('Jangka Waktu Penyelesaian');
-    $response->assertSee('Biaya dan Tarif');
-    $response->assertSee('Produk Layanan');
-    $response->assertSee('Pengaduan, Saran dan Masukan');
-});
-
-test('layanan sewa menyewa barang page displays exact requirements and accordions from original site', function () {
-    $response = $this->get('/sewa-barang');
-    $response->assertStatus(200);
-    $response->assertSee('PERMOHONAN SEWA MENYEWA BARANG MILIK SEKOLAH');
-    $response->assertSee('Persyaratan Pelayanan');
-    $response->assertSee('Individu (perorangan)');
-    $response->assertSee('Fotokopi KTP');
-    $response->assertSee('Fotokopi NPWP');
-    $response->assertSee('Lembaga Organisasi');
     $response->assertSee('Sistem Mekanisme dan Prosedur');
     $response->assertSee('Jangka Waktu Penyelesaian');
     $response->assertSee('Biaya dan Tarif');
@@ -124,6 +166,8 @@ test('layanan permohonan kerja sama form submission creates ServiceSubmission re
 });
 
 test('layanan sewa barang form submission creates ServiceSubmission record with npwp', function () {
+    Setting::set('layanan_sewa_active', '1', 'layanan');
+
     $postData = [
         'name' => 'Ustadz Ridwan',
         'whatsapp' => '082187654321',

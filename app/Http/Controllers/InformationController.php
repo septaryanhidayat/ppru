@@ -405,6 +405,11 @@ class InformationController extends Controller
 
     public function sewaBarang()
     {
+        $isSewaActive = Setting::get('layanan_sewa_active', '0') === '1';
+        if (! $isSewaActive && ! auth()->check()) {
+            return redirect()->route('layanan.index')->with('info', 'Layanan Sewa Fasilitas saat ini sedang tidak dibuka.');
+        }
+
         $page = Post::pages()->where('slug', 'sewa-barang')->first();
         $stored = json_decode(Setting::get('layanan_sewa_accordions', '[]'), true) ?: [];
         $accordions = ! empty($stored) ? $stored : self::getDefaultAccordions('sewa');
@@ -414,6 +419,11 @@ class InformationController extends Controller
 
     public function submitSewa(Request $request)
     {
+        $isSewaActive = Setting::get('layanan_sewa_active', '0') === '1';
+        if (! $isSewaActive && ! auth()->check()) {
+            return redirect()->route('layanan.index')->with('error', 'Layanan Sewa Fasilitas saat ini sedang ditutup.');
+        }
+
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'agency' => 'required|string|max:255',

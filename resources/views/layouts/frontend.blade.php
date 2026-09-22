@@ -6,11 +6,23 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <script>
-        if (localStorage.getItem('theme') === 'dark') {
-            document.documentElement.classList.add('dark');
-        } else {
-            document.documentElement.classList.remove('dark');
-        }
+        (function() {
+            try {
+                // Light mode is the default when visiting the website
+                // Dark mode is only activated when explicitly clicked by user
+                const savedTheme = localStorage.getItem('theme');
+                if (savedTheme === 'dark') {
+                    document.documentElement.classList.add('dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                    if (!savedTheme) {
+                        localStorage.setItem('theme', 'light');
+                    }
+                }
+            } catch (e) {
+                document.documentElement.classList.remove('dark');
+            }
+        })();
     </script>
     
     <title>@yield('title', ($siteSettings['site_name'] ?? 'Pondok Pesantren Raudhatul Ulum') . ' - ' . ($siteSettings['site_tagline'] ?? 'Basis Kaderisasi Generasi Terbaik (Khoiru Ummah)'))</title>
@@ -473,16 +485,20 @@
                 darkIcons.forEach(icon => {
                     if (isDark) {
                         icon.classList.add('hidden');
+                        icon.style.display = 'none';
                     } else {
                         icon.classList.remove('hidden');
+                        icon.style.display = 'inline-block';
                     }
                 });
 
                 lightIcons.forEach(icon => {
                     if (isDark) {
                         icon.classList.remove('hidden');
+                        icon.style.display = 'inline-block';
                     } else {
                         icon.classList.add('hidden');
+                        icon.style.display = 'none';
                     }
                 });
             };
@@ -490,7 +506,9 @@
             const toggleTheme = (e) => {
                 if (e) e.preventDefault();
                 const isNowDark = document.documentElement.classList.toggle('dark');
-                localStorage.setItem('theme', isNowDark ? 'dark' : 'light');
+                try {
+                    localStorage.setItem('theme', isNowDark ? 'dark' : 'light');
+                } catch (err) {}
                 updateThemeUI();
             };
 

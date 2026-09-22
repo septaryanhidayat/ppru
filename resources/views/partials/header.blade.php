@@ -9,6 +9,8 @@
             ? \App\Models\NavMenu::header()->active()->root()->with(['children' => fn ($q) => $q->where('is_active', true)->orderBy('order', 'asc')])->orderBy('order', 'asc')->get()
             : collect());
 
+    $isSewaActive = \App\Models\Setting::get('layanan_sewa_active', '0') === '1';
+
     $formatNavUrl = function (?string $url): string {
         if (empty($url) || $url === '#') {
             return '#';
@@ -150,10 +152,23 @@
                                             </div>
 
                                         @elseif($slug === 'layanan')
-                                            <div class="px-4 py-2 bg-emerald-50/80 dark:bg-slate-800/80 border-b border-gray-100 dark:border-slate-800 flex items-center justify-between">
+                                            @php
+                                                $publicServices = $activeChildren->filter(function($c) use ($isSewaActive) {
+                                                    $isS = str_contains($c->url, 'sewa-barang') || str_contains($c->name, 'Sewa');
+                                                    if ($isS && ! $isSewaActive) {
+                                                        return false;
+                                                    }
+                                                    return in_array(trim($c->url, '/'), ['izin-sekolah', 'permohonan-kerja-sama', 'sewa-barang'])
+                                                        || str_contains($c->url, 'izin-sekolah')
+                                                        || str_contains($c->url, 'permohonan-kerja-sama')
+                                                        || str_contains($c->url, 'sewa-barang');
+                                                });
+                                                $totalPublicCount = $publicServices->count() ?: ($isSewaActive ? 3 : 2);
+                                            @endphp
+                                            <div class="px-4 py-2 bg-emerald-50/90 dark:bg-slate-800/90 border-b border-gray-100 dark:border-slate-800 flex items-center justify-between">
                                                 <span class="text-[11px] font-black text-[#00843d] dark:text-emerald-400 uppercase tracking-wider flex items-center">
                                                     <i class="fa-solid fa-handshake-angle mr-1.5 text-amber-500"></i>
-                                                    3 Layanan Publik
+                                                    {{ $totalPublicCount }} Layanan Publik
                                                 </span>
                                                 <span class="text-[9px] bg-[#00843d] text-white px-2 py-0.5 rounded-full font-bold uppercase tracking-wider">Online</span>
                                             </div>
@@ -161,6 +176,10 @@
                                             @php $isPublicDividerDone = false; @endphp
                                             @foreach($activeChildren as $child)
                                                 @php
+                                                    $isChildSewa = str_contains($child->url, 'sewa-barang') || str_contains($child->name, 'Sewa');
+                                                    if ($isChildSewa && ! $isSewaActive) {
+                                                        continue;
+                                                    }
                                                     $childUrl = $formatNavUrl($child->url);
                                                     $isPublicService = in_array(trim($child->url, '/'), ['izin-sekolah', 'permohonan-kerja-sama', 'sewa-barang'])
                                                         || str_contains($child->url, 'izin-sekolah')
@@ -243,7 +262,7 @@
                 {{-- Theme Toggle Desktop (Icon Only, Clean Round Button) --}}
                 <button id="theme-toggle" type="button" class="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition cursor-pointer text-sm shadow-xs border border-white/10" aria-label="Ganti mode gelap atau terang" title="Ganti Mode Gelap / Terang">
                     <i id="theme-toggle-dark-icon" class="fa-solid fa-moon text-emerald-100"></i>
-                    <i id="theme-toggle-light-icon" class="fa-solid fa-sun text-amber-300 hidden"></i>
+                    <i id="theme-toggle-light-icon" class="fa-solid fa-sun text-amber-300 hidden" style="display: none;"></i>
                 </button>
 
                 <a href="{{ route('ppdb.index') }}" class="bg-[#f59e0b] hover:bg-[#d97706] text-slate-950 px-4 xl:px-5 py-2 rounded-full text-xs font-black shadow-md hover:shadow-lg transition flex items-center space-x-1.5 transform hover:scale-105" aria-label="Penerimaan Santri Baru Pondok Pesantren Raudhatul Ulum">
@@ -261,7 +280,7 @@
                 {{-- Theme Toggle Mobile --}}
                 <button id="mobile-theme-toggle" type="button" class="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center cursor-pointer transition" aria-label="Ganti mode gelap atau terang" title="Ganti Mode Gelap / Terang">
                     <i id="mobile-theme-toggle-dark-icon" class="fa-solid fa-moon text-emerald-100 text-sm"></i>
-                    <i id="mobile-theme-toggle-light-icon" class="fa-solid fa-sun text-amber-300 text-sm hidden"></i>
+                    <i id="mobile-theme-toggle-light-icon" class="fa-solid fa-sun text-amber-300 text-sm hidden" style="display: none;"></i>
                 </button>
 
                 <button id="mobile-menu-toggle" type="button" class="text-white hover:text-emerald-100 p-2 rounded-lg focus:outline-none min-w-[44px] min-h-[44px] flex items-center justify-center cursor-pointer" aria-label="Buka Menu Navigasi">
@@ -326,12 +345,29 @@
                                     </a>
                                 @endforeach
                             @elseif($slug === 'layanan')
+                                @php
+                                    $mPublicServices = $mChildren->filter(function($c) use ($isSewaActive) {
+                                        $isS = str_contains($c->url, 'sewa-barang') || str_contains($c->name, 'Sewa');
+                                        if ($isS && ! $isSewaActive) {
+                                            return false;
+                                        }
+                                        return in_array(trim($c->url, '/'), ['izin-sekolah', 'permohonan-kerja-sama', 'sewa-barang'])
+                                            || str_contains($c->url, 'izin-sekolah')
+                                            || str_contains($c->url, 'permohonan-kerja-sama')
+                                            || str_contains($c->url, 'sewa-barang');
+                                    });
+                                    $totalMPublicCount = $mPublicServices->count() ?: ($isSewaActive ? 3 : 2);
+                                @endphp
                                 <div class="pt-1 pb-1 text-[10px] font-black uppercase text-[#00843d] dark:text-emerald-400 tracking-wider flex items-center">
-                                    <i class="fa-solid fa-star text-amber-500 mr-1 text-[9px]"></i> 3 Layanan Publik
+                                    <i class="fa-solid fa-star text-amber-500 mr-1 text-[9px]"></i> {{ $totalMPublicCount }} Layanan Publik
                                 </div>
                                 @php $isMobileDividerDone = false; @endphp
                                 @foreach($mChildren as $child)
                                     @php
+                                        $isChildSewa = str_contains($child->url, 'sewa-barang') || str_contains($child->name, 'Sewa');
+                                        if ($isChildSewa && ! $isSewaActive) {
+                                            continue;
+                                        }
                                         $childUrl = $formatNavUrl($child->url);
                                         $isPublic = in_array(trim($child->url, '/'), ['izin-sekolah', 'permohonan-kerja-sama', 'sewa-barang'])
                                             || str_contains($child->url, 'izin-sekolah')

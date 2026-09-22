@@ -208,6 +208,7 @@ class AdminLayananController extends Controller
                 'ptsp_helpdesk_phone',
                 'ptsp_helpdesk_btn_text',
                 'ptsp_helpdesk_wa_template',
+                'layanan_sewa_active',
             ];
 
             $portalData = $request->only($allowedLayananKeys);
@@ -274,6 +275,10 @@ class AdminLayananController extends Controller
         };
 
         Setting::set($key, json_encode($accordions), 'layanan');
+
+        if ($type === 'sewa' && $request->has('layanan_sewa_active')) {
+            Setting::set('layanan_sewa_active', $request->input('layanan_sewa_active', '0'), 'layanan');
+        }
 
         ActivityLog::create([
             'user_id' => Auth::id(),

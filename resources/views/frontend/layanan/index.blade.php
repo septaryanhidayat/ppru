@@ -57,8 +57,12 @@
             </p>
         </div>
 
-        {{-- 3 KARTU UTAMA LAYANAN --}}
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-7">
+@php
+    $isSewaActive = \App\Models\Setting::get('layanan_sewa_active', '0') === '1';
+@endphp
+
+        {{-- KARTU UTAMA LAYANAN --}}
+        <div class="grid grid-cols-1 {{ $isSewaActive ? 'md:grid-cols-3' : 'md:grid-cols-2 max-w-4xl mx-auto' }} gap-6 sm:gap-7">
             
             {{-- 1. Izin Kunjungan --}}
             <div class="bg-white dark:bg-slate-900 rounded-3xl p-7 border border-slate-200/90 dark:border-slate-800 shadow-sm hover:shadow-xl hover:border-emerald-500 transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1.5">
@@ -120,6 +124,7 @@
                 </div>
             </div>
 
+            @if($isSewaActive)
             {{-- 3. Sewa Fasilitas --}}
             <div class="bg-white dark:bg-slate-900 rounded-3xl p-7 border border-slate-200/90 dark:border-slate-800 shadow-sm hover:shadow-xl hover:border-sky-400 transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1.5">
                 <div class="space-y-4">
@@ -149,6 +154,7 @@
                     </a>
                 </div>
             </div>
+            @endif
 
         </div>
 

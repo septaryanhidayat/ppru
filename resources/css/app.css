@@ -349,7 +349,7 @@ html.dark .prose-content code {
 
 /* Dark mode mobile menu & dropdowns */
 html.dark #mobile-menu {
-    background-color: #0b1120 !important;
+    background-color: #0f172a !important;
     color: #f8fafc !important;
     border-color: #f59e0b !important;
 }
@@ -359,7 +359,7 @@ html.dark #mobile-menu a {
 }
 
 /* ========================================================
-   NAVBAR & DROPDOWN HIGH-CONTRAST HOVER GUARANTEES
+   NAVBAR & DROPDOWN HIGH-CONTRAST LIGHT & DARK MODE RULES
    ======================================================== */
 
 /* Main top navbar item hover (Crisp Gold #fcd116 on Dark Translucent) */
@@ -374,7 +374,55 @@ header nav > div > button:hover * {
     color: #fcd116 !important;
 }
 
-/* Submenu / Dropdown links hover (Pure White on Pesantren Green #00843d) */
+/* Base reset for dropdowns & mobile menu inside header: do not inherit header text-white */
+header [id^="nav-dropdown-"] > div:last-child > div,
+header #mobile-menu {
+    color: #1e293b;
+}
+
+/* --- LIGHT MODE DROPDOWN & MENU HIGH-CONTRAST RULES --- */
+html:not(.dark) header [id^="nav-dropdown-"] > div:last-child > div {
+    background-color: #ffffff !important;
+    border-color: #e2e8f0 !important;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.12), 0 8px 10px -6px rgba(0, 0, 0, 0.08) !important;
+}
+
+/* Light mode dropdown non-hover text */
+html:not(.dark) [id^="nav-dropdown-"] a:not(:hover) {
+    color: #1e293b !important;
+}
+
+html:not(.dark) [id^="nav-dropdown-"] a:not(:hover) span.font-bold,
+html:not(.dark) [id^="nav-dropdown-"] a:not(:hover) span[class*="font-bold"] {
+    color: #0f172a !important;
+}
+
+html:not(.dark) [id^="nav-dropdown-"] a:not(:hover) span.font-normal,
+html:not(.dark) [id^="nav-dropdown-"] a:not(:hover) span[class*="text-slate-400"] {
+    color: #64748b !important;
+}
+
+/* Light mode dropdown badge / section header */
+html:not(.dark) [id^="nav-dropdown-"] .bg-emerald-50,
+html:not(.dark) [id^="nav-dropdown-"] [class*="bg-emerald-50"] {
+    background-color: #ecfdf5 !important;
+}
+
+html:not(.dark) [id^="nav-dropdown-"] .bg-emerald-50 span,
+html:not(.dark) [id^="nav-dropdown-"] [class*="bg-emerald-50"] span {
+    color: #00843d !important;
+}
+
+/* Light mode icon container inside dropdown */
+html:not(.dark) [id^="nav-dropdown-"] a:not(:hover) .w-7.h-7 {
+    background-color: #ecfdf5 !important;
+}
+
+html:not(.dark) [id^="nav-dropdown-"] a:not(:hover) .w-7.h-7 i {
+    color: #00843d !important;
+}
+
+/* Light mode dropdown link hover: Vibrant Pesantren Green #00843d with crisp white text */
 [id^="nav-dropdown-"] a:hover,
 .group\/item:hover,
 .group\/sub:hover {
@@ -388,7 +436,40 @@ header nav > div > button:hover * {
     color: #ffffff !important;
 }
 
-/* Mobile drawer link & summary hover */
+[id^="nav-dropdown-"] a:hover .w-7.h-7 {
+    background-color: #ffffff !important;
+}
+
+[id^="nav-dropdown-"] a:hover .w-7.h-7 i {
+    color: #00843d !important;
+}
+
+[id^="nav-dropdown-"] a:hover span[class*="text-slate-400"],
+[id^="nav-dropdown-"] a:hover span.font-normal {
+    color: #a7f3d0 !important;
+}
+
+/* --- LIGHT MODE MOBILE DRAWER CONTRAST --- */
+html:not(.dark) #mobile-menu {
+    background-color: #ffffff !important;
+    color: #0f172a !important;
+}
+
+html:not(.dark) #mobile-menu a:not(:hover),
+html:not(.dark) #mobile-menu summary:not(:hover) {
+    color: #1e293b !important;
+}
+
+html:not(.dark) #mobile-menu a:not(:hover) span,
+html:not(.dark) #mobile-menu summary:not(:hover) span {
+    color: #1e293b !important;
+}
+
+html:not(.dark) #mobile-menu a:not(:hover) i,
+html:not(.dark) #mobile-menu summary:not(:hover) i {
+    color: #00843d !important;
+}
+
 #mobile-menu a:hover,
 #mobile-menu summary:hover {
     background-color: #00843d !important;
@@ -398,6 +479,27 @@ header nav > div > button:hover * {
 #mobile-menu a:hover *,
 #mobile-menu summary:hover * {
     color: #ffffff !important;
+}
+
+/* --- DARK MODE DROPDOWN GUARANTEES --- */
+html.dark [id^="nav-dropdown-"] > div:last-child > div {
+    background-color: #0f172a !important;
+    border-color: #1e293b !important;
+    color: #f8fafc !important;
+}
+
+html.dark [id^="nav-dropdown-"] a:not(:hover) {
+    color: #e2e8f0 !important;
+}
+
+html.dark [id^="nav-dropdown-"] a:not(:hover) span.font-bold,
+html.dark [id^="nav-dropdown-"] a:not(:hover) span[class*="font-bold"] {
+    color: #f8fafc !important;
+}
+
+html.dark [id^="nav-dropdown-"] a:not(:hover) span.font-normal,
+html.dark [id^="nav-dropdown-"] a:not(:hover) span[class*="text-slate-400"] {
+    color: #94a3b8 !important;
 }
 
 /* Preserve dark text on vibrant yellow/amber badges & buttons in dark mode */
@@ -418,17 +520,22 @@ html.dark [class*="bg-[#fcd116]"] * {
     color: #0f172a !important;
 }
 
-/* Preserve pure white text on green buttons in both modes */
-.bg-\[\#00843d\],
-.bg-emerald-600,
-.bg-emerald-700,
-.bg-emerald-800 {
+/* Preserve pure white text ONLY on actual buttons/badges with green backgrounds, never on wildcard parent containers */
+button.bg-\[\#00843d\],
+a.bg-\[\#00843d\],
+span.bg-\[\#00843d\],
+button[class*="bg-[#00843d]"],
+a[class*="bg-[#00843d]"],
+span[class*="bg-[#00843d]"],
+.btn-green {
     color: #ffffff !important;
 }
 
-.bg-\[\#00843d\] *,
-.bg-emerald-600 *,
-.bg-emerald-700 * {
+button.bg-\[\#00843d\] *,
+a.bg-\[\#00843d\] *,
+button[class*="bg-[#00843d]"] *,
+a[class*="bg-[#00843d]"] * {
     color: #ffffff !important;
 }
+
 

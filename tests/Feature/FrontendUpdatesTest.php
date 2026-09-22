@@ -5,6 +5,7 @@ use App\Models\Download;
 use App\Models\Dpc;
 use App\Models\NavMenu;
 use App\Models\Post;
+use App\Models\Setting;
 use App\Models\UnitPendidikan;
 
 test('halaman program unggulan / dpc menampilkan program sekolah', function () {
@@ -166,7 +167,18 @@ test('header navigation maintains clean 5 core desktop sections and daftar psb b
     }
 });
 
-test('header navigation includes Layanan with 3 public service submenus', function () {
+test('header navigation includes Layanan with dynamic public service submenus based on setting', function () {
+    // 1. By default / when hidden (layanan_sewa_active = 0): only 2 public services shown
+    Setting::set('layanan_sewa_active', '0', 'layanan');
+    $responseDefault = $this->get(route('home'));
+    $responseDefault->assertStatus(200);
+    $responseDefault->assertSee('2 Layanan Publik');
+    $responseDefault->assertSee('Izin Kunjungan Sekolah');
+    $responseDefault->assertSee('Permohonan Kerja Sama');
+    $responseDefault->assertDontSee('Sewa Fasilitas &amp; Sarana', false);
+
+    // 2. When enabled (layanan_sewa_active = 1): 3 public services shown
+    Setting::set('layanan_sewa_active', '1', 'layanan');
     $response = $this->get(route('home'));
     $response->assertStatus(200);
 
@@ -185,7 +197,7 @@ test('header navigation includes Layanan with 3 public service submenus', functi
     $redirectResponse = $this->get('/layanan');
     $redirectResponse->assertRedirect(route('layanan.index'));
 
-    // Test that all 3 public service pages load successfully
+    // Test that all 3 public service pages load successfully when active
     $izinPage = $this->get(route('layanan.izin'));
     $izinPage->assertStatus(200);
 

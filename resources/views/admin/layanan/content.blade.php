@@ -81,6 +81,9 @@
             <button type="button" @click="activeTab = 'sewa'" :class="activeTab === 'sewa' ? 'bg-[#00913e] text-white shadow-xs' : 'bg-white text-slate-700 hover:bg-slate-50 border border-slate-200'" class="px-4 py-2 rounded-xl text-xs font-bold transition flex items-center space-x-1.5 cursor-pointer">
                 <i class="fa-solid fa-boxes-packing"></i>
                 <span>3. Sewa Barang</span>
+                @if(($settings['layanan_sewa_active'] ?? '0') === '0')
+                    <span class="text-[9px] bg-amber-400 text-slate-950 font-black px-1.5 py-0.5 rounded-full uppercase ml-1">Hide</span>
+                @endif
             </button>
         </div>
 
@@ -209,6 +212,25 @@
                         </div>
                         <h4 class="font-black text-slate-900 text-sm">3. Sewa Sarana &amp; Fasilitas</h4>
                     </div>
+
+                    {{-- Status Hide / Show Layanan Sewa --}}
+                    <div class="p-4 rounded-2xl {{ ($settings['layanan_sewa_active'] ?? '0') === '1' ? 'bg-emerald-50/80 border border-emerald-200' : 'bg-amber-50/80 border border-amber-200' }} space-y-2">
+                        <div class="flex items-center justify-between">
+                            <label class="text-xs font-black text-slate-800 flex items-center gap-1.5">
+                                <i class="fa-solid {{ ($settings['layanan_sewa_active'] ?? '0') === '1' ? 'fa-eye text-emerald-600' : 'fa-eye-slash text-amber-600' }}"></i>
+                                <span>Status Tampilan Publik:</span>
+                            </label>
+                            <span class="text-[10px] font-bold px-2 py-0.5 rounded-full {{ ($settings['layanan_sewa_active'] ?? '0') === '1' ? 'bg-emerald-200 text-emerald-900' : 'bg-amber-200 text-amber-900' }}">
+                                {{ ($settings['layanan_sewa_active'] ?? '0') === '1' ? 'Show (Tampil)' : 'Hide (Disembunyikan)' }}
+                            </span>
+                        </div>
+                        <p class="text-[11px] text-slate-500">Pilih apakah layanan sewa fasilitas ini ditampilkan ke publik atau disembunyikan (agar layanan publik hanya 2).</p>
+                        <select name="layanan_sewa_active" class="w-full bg-white text-xs font-bold rounded-xl px-3 py-2.5 border border-slate-300 focus:ring-2 focus:ring-[#00913e] focus:outline-none shadow-xs">
+                            <option value="0" {{ ($settings['layanan_sewa_active'] ?? '0') === '0' ? 'selected' : '' }}>🚫 Sembunyikan dari Publik (Hide) - Hanya 2 Layanan Publik</option>
+                            <option value="1" {{ ($settings['layanan_sewa_active'] ?? '0') === '1' ? 'selected' : '' }}>✅ Tampilkan ke Publik (Show) - 3 Layanan Publik</option>
+                        </select>
+                    </div>
+
                     <div>
                         <label class="text-[11px] font-bold text-slate-600 block mb-1">Badge Kartu</label>
                         <input type="text" name="layanan_card_3_badge" value="{{ $settings['layanan_card_3_badge'] ?? 'Peminjaman Aset' }}" class="w-full bg-slate-50 text-xs rounded-xl px-3 py-2 border border-slate-200">
@@ -452,6 +474,33 @@
                         <i class="fa-solid fa-plus"></i>
                         <span>Tambah Butir Baru</span>
                     </button>
+                </div>
+
+                {{-- BANNER KONTROL PUBLIKASI HIDE / SHOW --}}
+                <div class="p-4 sm:p-5 rounded-2xl {{ ($settings['layanan_sewa_active'] ?? '0') === '1' ? 'bg-emerald-50 border border-emerald-200' : 'bg-amber-50 border border-amber-200' }} flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div class="flex items-start sm:items-center space-x-3">
+                        <div class="w-10 h-10 rounded-xl {{ ($settings['layanan_sewa_active'] ?? '0') === '1' ? 'bg-emerald-100 text-[#00913e]' : 'bg-amber-100 text-amber-700' }} flex items-center justify-center font-bold text-lg shrink-0">
+                            <i class="fa-solid {{ ($settings['layanan_sewa_active'] ?? '0') === '1' ? 'fa-eye' : 'fa-eye-slash' }}"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-slate-900 text-sm">
+                                Status Publikasi Layanan Sewa Barang: 
+                                <span class="{{ ($settings['layanan_sewa_active'] ?? '0') === '1' ? 'text-emerald-700 font-extrabold' : 'text-amber-700 font-extrabold' }}">
+                                    {{ ($settings['layanan_sewa_active'] ?? '0') === '1' ? 'Sedang Ditampilkan (Show)' : 'Sedang Disembunyikan (Hide)' }}
+                                </span>
+                            </h4>
+                            <p class="text-xs text-slate-600 mt-0.5">
+                                Saat disembunyikan, menu navigasi atas dan kartu di portal layanan publik otomatis disembunyikan (sehingga hanya 2 layanan publik aktif). Kode tetap aman dan sewaktu-waktu bisa ditampilkan kembali.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="shrink-0 flex items-center space-x-2">
+                        <select name="layanan_sewa_active" class="bg-white border border-slate-300 text-xs font-bold rounded-xl px-3.5 py-2.5 text-slate-800 focus:ring-2 focus:ring-[#00913e] focus:outline-none shadow-xs">
+                            <option value="0" {{ ($settings['layanan_sewa_active'] ?? '0') === '0' ? 'selected' : '' }}>🚫 Sembunyikan (Hide)</option>
+                            <option value="1" {{ ($settings['layanan_sewa_active'] ?? '0') === '1' ? 'selected' : '' }}>✅ Tampilkan (Show)</option>
+                        </select>
+                    </div>
                 </div>
 
                 <div id="items-container-sewa" class="space-y-5">
