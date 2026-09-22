@@ -16,6 +16,7 @@ use App\Models\Testimonial;
 use App\Models\UnitPendidikan;
 use App\Models\Video;
 use App\Services\CmsAutoHealService;
+use App\Services\VisitorTrackerService;
 use Illuminate\Support\Facades\Schema;
 
 class HomeController extends Controller
@@ -252,7 +253,8 @@ class HomeController extends Controller
         }
 
         // 16. Visitor counter hits
-        $visitorHits = view()->shared('visitorHits') ?? '53.512';
+        $rawVisitorHits = view()->shared('rawVisitorHits') ?? VisitorTrackerService::getVisitorHits();
+        $visitorHits = view()->shared('visitorHits') ?? number_format($rawVisitorHits, 0, ',', '.');
 
         // 17. Popup Banner Settings
         $popupSettings = [
@@ -299,6 +301,7 @@ class HomeController extends Controller
             'programUnggulan',
             'taujihPosts',
             'visitorHits',
+            'rawVisitorHits',
             'popupSettings',
             'homeStatistics'
         ));

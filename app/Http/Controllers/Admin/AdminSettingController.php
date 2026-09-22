@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\ActivityLog;
 use App\Models\Setting;
+use App\Services\VisitorTrackerService;
 use App\Services\WebpService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -109,8 +110,8 @@ class AdminSettingController extends Controller
             );
         }
 
-        if (isset($data['analytics_base_hits']) && is_numeric($data['analytics_base_hits'])) {
-            @file_put_contents(storage_path('app/visitor_hits.txt'), (string) (int) $data['analytics_base_hits']);
+        if (isset($data['analytics_base_hits']) && is_numeric($data['analytics_base_hits']) && (int) $data['analytics_base_hits'] > 0) {
+            VisitorTrackerService::setBaseHits((int) $data['analytics_base_hits']);
         }
 
         ActivityLog::create([

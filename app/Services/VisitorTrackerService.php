@@ -354,4 +354,158 @@ class VisitorTrackerService
 
         return Str::headline($p);
     }
+
+    public const DEFAULT_BASE_HITS = 53520;
+
+    /**
+     * Dapatkan total hits pengunjung secara persisten & monotonik (tidak pernah berkurang).
+     */
+    public static function getVisitorHits(): int
+    {
+        $counterFile = storage_path('app/visitor_hits.txt');
+        $fileHits = 0;
+
+        if (file_exists($counterFile)) {
+            $handle = @fopen($counterFile, 'rb');
+            if ($handle) {
+                @flock($handle, LOCK_SH);
+                $content = @stream_get_contents($handle);
+                @flock($handle, LOCK_UN);
+                @fclose($handle);
+                $fileHits = (int) trim($content ?? '');
+            }
+        }
+
+        $dbTotalHits = 0;
+        $dbBaseHits = self::DEFAULT_BASE_HITS;
+
+        try {
+            if (Schema::hasTable('settings')) {
+                $savedTotal = Setting::get('visitor_hits_total');
+                if ($savedTotal !== null && is_numeric($savedTotal)) {
+                    $dbTotalHits = (int) $savedTotal;
+                }
+
+                $savedBase = Setting::get('analytics_base_hits');
+                if ($savedBase !== null && is_numeric($savedBase) && (int) $savedBase > 0) {
+                    $dbBaseHits = (int) $savedBase;
+                }
+            }
+        } catch (\Throwable) {
+            // Abaikan jika migrasi
+        }
+
+        // Nilai akhir dijamin tidak pernah lebih rendah dari baseline resmi pesantren
+        $finalHits = max($fileHits, $dbTotalHits, $dbBaseHits, self::DEFAULT_BASE_HITS);
+
+        return $finalHits;
+    }
+
+    /**
+     * Tambah counter pengunjung secara atomik, aman dan persisten.
+     */
+    public static function incrementVisitorHits(): int
+    {
+        $current = self::getVisitorHits();
+        $next = $current + 1;
+
+        $counterFile = storage_path('app/visitor_hits.txt');
+        try {
+            $dir = dirname($counterFile);
+            if (! is_dir($dir)) {
+                @mkdir($dir, 0755, true);
+            }
+            $handle = @fopen($counterFile, 'c+');
+            if ($handle) {
+                if (@flock($handle, LOCK_EX)) {
+                    $fileContent = @stream_get_contents($handle);
+                    $fileHits = (int) trim($fileContent ?? '');
+                    if ($fileHits >= $next) {
+                        $next = $fileHits + 1;
+                    }
+                    @ftruncate($handle, 0);
+                    @rewind($handle);
+                    @fwrite($handle, (string) $next);
+                    @fflush($handle);
+                    @flock($handle, LOCK_UN);
+                }
+                @fclose($handle);
+            }
+        } catch (\Throwable) {
+            // Non-blocking fallback
+        }
+
+        // Simpan ke database settings dan cache
+        try {
+            if (Schema::hasTable('settings')) {
+                Setting::updateOrCreate(
+                    ['key' => 'visitor_hits_total'],
+                    ['value' => (string) $next, 'group' => 'analytics']
+                );
+            }
+        } catch (\Throwable) {
+            // Abaikan jika migrasi
+        }
+
+        try {
+            Cache::forever('school_visitor_hits', $next);
+        } catch (\Throwable) {
+            // Abaikan
+        }
+
+        return $next;
+    }
+
+    /**
+     * Setel baseline counter baru jika valid dan tidak mengecilkan counter live.
+     */
+    public static function setBaseHits(int $newBase): int
+    {
+        if ($newBase <= 0) {
+            return self::getVisitorHits();
+        }
+
+        $current = self::getVisitorHits();
+        $final = max($current, $newBase);
+
+        try {
+            if (Schema::hasTable('settings')) {
+                Setting::updateOrCreate(
+                    ['key' => 'analytics_base_hits'],
+                    ['value' => (string) $newBase, 'group' => 'analytics']
+                );
+                Setting::updateOrCreate(
+                    ['key' => 'visitor_hits_total'],
+                    ['value' => (string) $final, 'group' => 'analytics']
+                );
+            }
+        } catch (\Throwable) {
+            // Abaikan
+        }
+
+        $counterFile = storage_path('app/visitor_hits.txt');
+        try {
+            $handle = @fopen($counterFile, 'c+');
+            if ($handle) {
+                if (@flock($handle, LOCK_EX)) {
+                    @ftruncate($handle, 0);
+                    @rewind($handle);
+                    @fwrite($handle, (string) $final);
+                    @fflush($handle);
+                    @flock($handle, LOCK_UN);
+                }
+                @fclose($handle);
+            }
+        } catch (\Throwable) {
+            // Abaikan
+        }
+
+        try {
+            Cache::forever('school_visitor_hits', $final);
+        } catch (\Throwable) {
+            // Abaikan
+        }
+
+        return $final;
+    }
 }

@@ -22,10 +22,10 @@ use App\Models\Video;
 use App\Models\VisitorLog;
 use App\Services\UnitAccountService;
 use App\Services\UnitDemoContentService;
+use App\Services\VisitorTrackerService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Schema;
 
 class AdminDashboardController extends Controller
@@ -129,7 +129,7 @@ class AdminDashboardController extends Controller
         $stats = [
             'total_posts' => Post::where('type', 'post')->count(),
             'total_views' => Post::where('type', 'post')->sum('views_count'),
-            'visitor_hits' => Cache::get('school_visitor_hits', 12850),
+            'visitor_hits' => VisitorTrackerService::getVisitorHits(),
             'today_visitors' => $todayVisitors,
             'today_pageviews' => $todayPageviews,
             'week_visitors' => $weekVisitors,

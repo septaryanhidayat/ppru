@@ -1168,17 +1168,10 @@
                     (object)['number' => '100%', 'label' => 'MUADALAH AL-AZHAR', 'description' => 'Akses studi langsung ke Mesir & Timur Tengah'],
                     (object)['number' => '75+', 'label' => 'TAHUN PENGABDIAN', 'description' => 'Sejak 1950 di bumi Sakatiga Mekkah Kecil'],
                 ]);
-            $statCount = $displayStats->count();
-            $gridCols = match(true) {
-                $statCount === 1 => 'grid-cols-1 max-w-md mx-auto',
-                $statCount === 2 => 'grid-cols-2 max-w-2xl mx-auto',
-                $statCount === 3 => 'grid-cols-1 sm:grid-cols-3 max-w-4xl mx-auto',
-                default => 'grid-cols-2 lg:grid-cols-4',
-            };
         @endphp
-        <div class="grid {{ $gridCols }} gap-4 sm:gap-6 text-center">
+        <div class="flex flex-wrap justify-center gap-4 sm:gap-6 text-center">
             @foreach($displayStats as $idx => $st)
-            <div class="p-4 sm:p-6 bg-white/10 backdrop-blur-xs rounded-3xl border border-white/10 reveal-fade-up delay-{{ ($idx % 4) + 1 }} hover:bg-white/15 transition duration-300">
+            <div class="w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(25%-1.125rem)] min-w-[220px] max-w-[280px] p-4 sm:p-6 bg-white/10 backdrop-blur-xs rounded-3xl border border-white/10 reveal-fade-up delay-{{ ($idx % 4) + 1 }} hover:bg-white/15 transition duration-300 flex flex-col justify-center">
                 <div class="text-3xl sm:text-5xl font-black text-amber-400 mb-1 tracking-tight">{{ $st->number }}</div>
                 <div class="text-xs sm:text-sm font-bold uppercase tracking-wider text-emerald-100">{{ $st->label }}</div>
                 @if(!empty($st->description))

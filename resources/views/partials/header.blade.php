@@ -133,7 +133,7 @@
                                                 @endphp
                                                 <a href="{{ $childUrl }}" target="{{ $child->target ?? '_self' }}" class="block px-4 py-2 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-[#00843d] hover:text-white dark:hover:bg-[#00843d] dark:hover:text-white transition group/item rounded-lg mx-1.5">
                                                     <div class="flex items-center justify-between">
-                                                        <span class="font-bold truncate group-hover/item:text-white">{{ $cleanName }}</span>
+                                                        <span class="font-bold truncate text-slate-800 dark:text-slate-100 group-hover/item:text-white">{{ $cleanName }}</span>
                                                         @if($matchedUnit && $matchedUnit->short_name)
                                                             <span class="text-[9px] bg-emerald-100 dark:bg-emerald-950 text-[#00843d] dark:text-emerald-300 group-hover/item:bg-white/20 group-hover/item:text-white px-1.5 py-0.5 rounded font-bold shrink-0 ml-1.5">{{ $matchedUnit->short_name }}</span>
                                                         @endif
@@ -213,7 +213,7 @@
                                                 @else
                                                     <a href="{{ $childUrl }}" target="{{ $child->target ?? '_self' }}" class="block px-4 py-2 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-[#00843d] hover:text-white dark:hover:bg-[#00843d] dark:hover:text-white transition flex items-center group/sub rounded-lg mx-1.5">
                                                         <i class="{{ $child->icon ?: 'fa-solid fa-circle-nodes' }} w-5 text-[#00843d] dark:text-emerald-400 group-hover/sub:text-white mr-2.5 text-sm"></i>
-                                                        <span class="group-hover/sub:text-white">{{ $child->name }}</span>
+                                                        <span class="font-semibold text-slate-800 dark:text-slate-100 group-hover/sub:text-white">{{ $child->name }}</span>
                                                     </a>
                                                 @endif
                                             @endforeach
@@ -234,7 +234,7 @@
                                                     @if($child->icon)
                                                         <i class="{{ $child->icon }} w-5 {{ $iconColor }} group-hover/sub:text-white mr-2 text-sm"></i>
                                                     @endif
-                                                    <span class="group-hover/sub:text-white">{!! str_contains($child->name, '&') ? str_replace('&', '&amp;', str_replace('&amp;', '&', $child->name)) : e($child->name) !!}</span>
+                                                    <span class="font-semibold text-slate-800 dark:text-slate-100 group-hover/sub:text-white">{!! str_contains($child->name, '&') ? str_replace('&', '&amp;', str_replace('&amp;', '&', $child->name)) : e($child->name) !!}</span>
                                                 </a>
                                             @endforeach
                                         @endif

@@ -389,15 +389,14 @@ html:not(.dark) header [id^="nav-dropdown-"] > div:last-child > div {
 
 /* Light mode dropdown non-hover text */
 html:not(.dark) [id^="nav-dropdown-"] a:not(:hover) {
-    color: #1e293b !important;
-}
-
-html:not(.dark) [id^="nav-dropdown-"] a:not(:hover) span.font-bold,
-html:not(.dark) [id^="nav-dropdown-"] a:not(:hover) span[class*="font-bold"] {
     color: #0f172a !important;
 }
 
-html:not(.dark) [id^="nav-dropdown-"] a:not(:hover) span.font-normal,
+html:not(.dark) [id^="nav-dropdown-"] a:not(:hover) span {
+    color: #0f172a !important;
+}
+
+html:not(.dark) [id^="nav-dropdown-"] a:not(:hover) span.text-slate-400,
 html:not(.dark) [id^="nav-dropdown-"] a:not(:hover) span[class*="text-slate-400"] {
     color: #64748b !important;
 }
@@ -422,7 +421,7 @@ html:not(.dark) [id^="nav-dropdown-"] a:not(:hover) .w-7.h-7 i {
     color: #00843d !important;
 }
 
-/* Light mode dropdown link hover: Vibrant Pesantren Green #00843d with crisp white text */
+/* Dropdown link hover: Vibrant Pesantren Green #00843d with crisp white text */
 [id^="nav-dropdown-"] a:hover,
 .group\/item:hover,
 .group\/sub:hover {
@@ -489,15 +488,14 @@ html.dark [id^="nav-dropdown-"] > div:last-child > div {
 }
 
 html.dark [id^="nav-dropdown-"] a:not(:hover) {
-    color: #e2e8f0 !important;
-}
-
-html.dark [id^="nav-dropdown-"] a:not(:hover) span.font-bold,
-html.dark [id^="nav-dropdown-"] a:not(:hover) span[class*="font-bold"] {
     color: #f8fafc !important;
 }
 
-html.dark [id^="nav-dropdown-"] a:not(:hover) span.font-normal,
+html.dark [id^="nav-dropdown-"] a:not(:hover) span {
+    color: #f8fafc !important;
+}
+
+html.dark [id^="nav-dropdown-"] a:not(:hover) span.text-slate-400,
 html.dark [id^="nav-dropdown-"] a:not(:hover) span[class*="text-slate-400"] {
     color: #94a3b8 !important;
 }
@@ -508,33 +506,30 @@ html.dark .bg-amber-400,
 html.dark .bg-amber-500,
 html.dark .bg-yellow-300,
 html.dark .bg-yellow-400,
-html.dark [class*="bg-[#f59e0b]"],
-html.dark [class*="bg-[#fcd116]"] {
+html.dark .bg-\[\#f59e0b\],
+html.dark .bg-\[\#fcd116\] {
     color: #0f172a !important;
 }
 
 html.dark .bg-amber-400 *,
 html.dark .bg-amber-300 *,
-html.dark [class*="bg-[#f59e0b]"] *,
-html.dark [class*="bg-[#fcd116]"] * {
+html.dark .bg-amber-500 *,
+html.dark .bg-\[\#f59e0b\] *,
+html.dark .bg-\[\#fcd116\] * {
     color: #0f172a !important;
 }
 
-/* Preserve pure white text ONLY on actual buttons/badges with green backgrounds, never on wildcard parent containers */
+/* Preserve pure white text ONLY on actual buttons/badges with solid green backgrounds, never on wildcard parent containers */
 button.bg-\[\#00843d\],
 a.bg-\[\#00843d\],
 span.bg-\[\#00843d\],
-button[class*="bg-[#00843d]"],
-a[class*="bg-[#00843d]"],
-span[class*="bg-[#00843d]"],
 .btn-green {
     color: #ffffff !important;
 }
 
 button.bg-\[\#00843d\] *,
 a.bg-\[\#00843d\] *,
-button[class*="bg-[#00843d]"] *,
-a[class*="bg-[#00843d]"] * {
+.btn-green * {
     color: #ffffff !important;
 }
 

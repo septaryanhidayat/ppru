@@ -7,6 +7,7 @@ use App\Models\NavMenu;
 use App\Models\Post;
 use App\Models\Setting;
 use App\Models\UnitPendidikan;
+use App\Services\VisitorTrackerService;
 
 test('halaman program unggulan / dpc menampilkan program sekolah', function () {
     Dpc::create([
@@ -50,22 +51,22 @@ test('halaman home menampilkan kabar sekolah dan showcase e-library', function (
 
 test('counter pengunjung bertambah pada setiap request get web', function () {
     $counterFile = storage_path('app/visitor_hits.txt');
-    @unlink($counterFile);
+    $initialHits = VisitorTrackerService::getVisitorHits();
 
-    // Request 1: hits awal (12850) di-increment jadi 12851
+    // Request 1: hits awal di-increment jadi +1
     $this->get(route('home'));
     $hits1 = (int) file_get_contents($counterFile);
-    expect($hits1)->toBe(12851);
+    expect($hits1)->toBe($initialHits + 1);
 
-    // Request 2: hits di-increment lagi jadi 12852
+    // Request 2: hits di-increment lagi jadi +2
     $this->get(route('page.tentang-kami'));
     $hits2 = (int) file_get_contents($counterFile);
-    expect($hits2)->toBe(12852);
+    expect($hits2)->toBe($hits1 + 1);
 
-    // Request 3: hits di-increment lagi jadi 12853
+    // Request 3: hits di-increment lagi jadi +3
     $this->get(route('dpc.index'));
     $hits3 = (int) file_get_contents($counterFile);
-    expect($hits3)->toBe(12853);
+    expect($hits3)->toBe($hits2 + 1);
 });
 
 test('halaman download ebook memuat tombol unduh modul', function () {
