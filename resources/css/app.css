@@ -500,37 +500,89 @@ html.dark [id^="nav-dropdown-"] a:not(:hover) span[class*="text-slate-400"] {
     color: #94a3b8 !important;
 }
 
-/* Preserve dark text on vibrant yellow/amber badges & buttons in dark mode */
-html.dark .bg-amber-300,
-html.dark .bg-amber-400,
-html.dark .bg-amber-500,
-html.dark .bg-yellow-300,
-html.dark .bg-yellow-400,
-html.dark .bg-\[\#f59e0b\],
-html.dark .bg-\[\#fcd116\] {
+/* High contrast text on amber & gold buttons/badges in dark mode */
+html.dark button.bg-amber-300,
+html.dark button.bg-amber-400,
+html.dark button.bg-amber-500,
+html.dark button.bg-yellow-300,
+html.dark button.bg-yellow-400,
+html.dark button.bg-\[\#f59e0b\],
+html.dark button.bg-\[\#fcd116\],
+html.dark a.bg-amber-300,
+html.dark a.bg-amber-400,
+html.dark a.bg-amber-500,
+html.dark a.bg-yellow-300,
+html.dark a.bg-yellow-400,
+html.dark a.bg-\[\#f59e0b\],
+html.dark a.bg-\[\#fcd116\],
+html.dark span.bg-amber-300,
+html.dark span.bg-amber-400,
+html.dark span.bg-amber-500,
+html.dark span.bg-yellow-300,
+html.dark span.bg-yellow-400,
+html.dark span.bg-\[\#f59e0b\],
+html.dark span.bg-\[\#fcd116\] {
     color: #0f172a !important;
 }
 
-html.dark .bg-amber-400 *,
-html.dark .bg-amber-300 *,
-html.dark .bg-amber-500 *,
-html.dark .bg-\[\#f59e0b\] *,
-html.dark .bg-\[\#fcd116\] * {
+html.dark button.bg-amber-400 i,
+html.dark button.bg-amber-400 span,
+html.dark a.bg-amber-400 i,
+html.dark a.bg-amber-400 span,
+html.dark button.bg-\[\#f59e0b\] i,
+html.dark button.bg-\[\#f59e0b\] span,
+html.dark a.bg-\[\#f59e0b\] i,
+html.dark a.bg-\[\#f59e0b\] span {
     color: #0f172a !important;
 }
 
-/* Preserve pure white text ONLY on actual buttons/badges with solid green backgrounds, never on wildcard parent containers */
+/* High contrast pure white text on solid green buttons and tags */
 button.bg-\[\#00843d\],
 a.bg-\[\#00843d\],
 span.bg-\[\#00843d\],
+button.bg-school-green,
+a.bg-school-green,
+span.bg-school-green,
 .btn-green {
     color: #ffffff !important;
 }
 
-button.bg-\[\#00843d\] *,
-a.bg-\[\#00843d\] *,
-.btn-green * {
+button.bg-\[\#00843d\] i,
+button.bg-\[\#00843d\] span,
+a.bg-\[\#00843d\] i,
+a.bg-\[\#00843d\] span,
+button.bg-school-green i,
+button.bg-school-green span,
+a.bg-school-green i,
+a.bg-school-green span,
+.btn-green i,
+.btn-green span {
     color: #ffffff !important;
+}
+
+/* Pagination high contrast styling across light & dark mode */
+nav[role="navigation"] a,
+nav[role="navigation"] span {
+    font-weight: 600;
+}
+html.dark nav[role="navigation"] [aria-current="page"] span {
+    background-color: #00843d !important;
+    border-color: #00843d !important;
+    color: #ffffff !important;
+}
+html.dark nav[role="navigation"] a {
+    background-color: #162036 !important;
+    border-color: #334155 !important;
+    color: #e2e8f0 !important;
+}
+html.dark nav[role="navigation"] a:hover {
+    background-color: #00843d !important;
+    color: #ffffff !important;
+}
+html.dark nav[role="navigation"] span:not([aria-current="page"]) {
+    background-color: #111a2e !important;
+    border-color: #1e293b !important;
+    color: #64748b !important;
 }
 
 

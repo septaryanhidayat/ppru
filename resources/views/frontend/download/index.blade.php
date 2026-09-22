@@ -42,17 +42,17 @@
     </div>
 
     {{-- DOWNLOADS TABLE --}}
-    <div class="bg-white rounded-3xl p-6 sm:p-10 shadow-xl border border-gray-100 reveal-fade-up delay-1">
+    <div class="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-10 shadow-xl border border-gray-100 dark:border-slate-800 reveal-fade-up delay-1 transition-colors">
         <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
             <div>
                 <span class="text-xs font-bold text-orange-500 uppercase tracking-wider block">Arsip Dokumen Akademik</span>
-                <h2 class="text-xl sm:text-2xl font-extrabold text-gray-900 mt-1">Daftar Dokumen & Berkas Publik</h2>
+                <h2 class="text-xl sm:text-2xl font-extrabold text-gray-900 dark:text-white mt-1">Daftar Dokumen & Berkas Publik</h2>
             </div>
         </div>
 
         <div class="overflow-x-auto">
-            <table class="w-full text-left text-sm text-gray-600">
-                <thead class="text-xs uppercase bg-gray-50 text-gray-500 font-bold border-b border-gray-100">
+            <table class="w-full text-left text-sm text-gray-600 dark:text-slate-300">
+                <thead class="text-xs uppercase bg-gray-50 dark:bg-slate-800 text-gray-500 dark:text-slate-400 font-bold border-b border-gray-100 dark:border-slate-800">
                     <tr>
                         <th class="py-3 px-4">Nama File / Dokumen</th>
                         <th class="py-3 px-4">Kategori</th>
@@ -61,11 +61,11 @@
                         <th class="py-3 px-4 text-right">Aksi</th>
                     </tr>
                 </thead>
-                <tbody class="divide-y divide-gray-100">
+                <tbody class="divide-y divide-gray-100 dark:divide-slate-800">
                     @forelse($downloads as $dl)
-                        <tr class="hover:bg-emerald-50/50 transition">
-                            <td class="py-4 px-4 font-bold text-gray-900 flex items-center space-x-3">
-                                <div class="w-10 h-10 rounded-xl bg-emerald-100 text-[#00913e] flex items-center justify-center flex-shrink-0 text-base">
+                        <tr class="hover:bg-emerald-50/50 dark:hover:bg-slate-800/60 transition">
+                            <td class="py-4 px-4 font-bold text-gray-900 dark:text-white flex items-center space-x-3">
+                                <div class="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-slate-800 text-[#00913e] dark:text-emerald-400 flex items-center justify-center flex-shrink-0 text-base">
                                     @if(in_array(strtoupper($dl->file_type), ['MP3', 'WAV']))
                                         <i class="fa-solid fa-music"></i>
                                     @elseif(in_array(strtoupper($dl->file_type), ['PDF']))
@@ -79,16 +79,16 @@
                                 <span class="leading-snug">{{ $dl->title }}</span>
                             </td>
                             <td class="py-4 px-4">
-                                <span class="text-xs bg-gray-100 px-2.5 py-1 rounded-full text-gray-600 font-medium">
+                                <span class="text-xs bg-gray-100 dark:bg-slate-800 px-2.5 py-1 rounded-full text-gray-600 dark:text-slate-300 font-medium">
                                     {{ $dl->category_type ?: 'Akademik' }}
                                 </span>
                             </td>
                             <td class="py-4 px-4">
-                                <span class="text-xs font-bold text-orange-600">
+                                <span class="text-xs font-bold text-orange-600 dark:text-amber-400">
                                     {{ strtoupper($dl->file_type ?: 'FILE') }}
                                 </span>
                             </td>
-                            <td class="py-4 px-4 text-center text-xs text-gray-400">
+                            <td class="py-4 px-4 text-center text-xs text-gray-400 dark:text-slate-400">
                                 {{ number_format($dl->download_count) }} kali
                             </td>
                             <td class="py-4 px-4 text-right">
@@ -99,8 +99,8 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="5" class="text-center py-12 text-gray-400">
-                                <i class="fa-solid fa-box-open text-3xl text-gray-300 mb-2 block"></i>
+                            <td colspan="5" class="text-center py-12 text-gray-400 dark:text-slate-400">
+                                <i class="fa-solid fa-box-open text-3xl text-gray-300 dark:text-slate-600 mb-2 block"></i>
                                 <span>Belum ada file di kategori ini.</span>
                             </td>
                         </tr>

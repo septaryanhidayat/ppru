@@ -80,19 +80,19 @@
 </div>
 
 {{-- 2. TEMA / TOPIK FILTER BAR --}}
-<div class="bg-white border-b border-gray-200 sticky top-0 z-30 shadow-xs">
+<div class="bg-white dark:bg-slate-900 border-b border-gray-200 dark:border-slate-800 sticky top-0 z-30 shadow-xs transition-colors">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
         <div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1">
-            <span class="text-xs font-bold text-gray-500 uppercase tracking-wider mr-2 shrink-0 flex items-center gap-1.5">
-                <i class="fa-solid fa-layer-group text-[#00843d]"></i> Tema:
+            <span class="text-xs font-bold text-gray-500 dark:text-slate-400 uppercase tracking-wider mr-2 shrink-0 flex items-center gap-1.5">
+                <i class="fa-solid fa-layer-group text-[#00843d] dark:text-emerald-400"></i> Tema:
             </span>
             @foreach($themes as $t)
                 @php
                     $isActive = request('tema') === $t['slug'] || (!request('tema') && $t['slug'] === '');
                 @endphp
                 <a href="{{ route('khutbah.index', array_filter(['tema' => $t['slug'], 'q' => request('q')])) }}" 
-                   class="inline-flex items-center space-x-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition {{ $isActive ? 'bg-[#00843d] text-white shadow-sm' : 'bg-gray-100 text-gray-700 hover:bg-emerald-50 hover:text-[#00843d]' }}">
-                    <i class="{{ $t['icon'] }} text-[11px] {{ $isActive ? 'text-amber-300' : 'text-gray-400' }}"></i>
+                   class="inline-flex items-center space-x-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition {{ $isActive ? 'bg-[#00843d] text-white shadow-sm' : 'bg-gray-100 dark:bg-slate-800 text-gray-700 dark:text-slate-200 hover:bg-[#00843d] hover:text-white dark:hover:bg-[#00843d] dark:hover:text-white border border-transparent dark:border-slate-700' }}">
+                    <i class="{{ $t['icon'] }} text-[11px] {{ $isActive ? 'text-amber-300' : 'text-gray-400 dark:text-slate-400' }}"></i>
                     <span>{{ $t['name'] }}</span>
                 </a>
             @endforeach
@@ -157,11 +157,11 @@
     {{-- 4. DAFTAR ARSIP NASKAH KHUTBAH --}}
     <div class="flex items-center justify-between mb-6">
         <div>
-            <h2 class="text-xl sm:text-2xl font-black text-gray-900 tracking-tight flex items-center gap-2">
-                <i class="fa-solid fa-microphone-lines text-[#00843d]"></i>
+            <h2 class="text-xl sm:text-2xl font-black text-gray-900 dark:text-white tracking-tight flex items-center gap-2">
+                <i class="fa-solid fa-microphone-lines text-[#00843d] dark:text-emerald-400"></i>
                 <span>Koleksi Naskah Khutbah</span>
             </h2>
-            <p class="text-xs text-gray-500 mt-0.5">
+            <p class="text-xs text-gray-500 dark:text-slate-400 mt-0.5">
                 Menampilkan total <strong>{{ $totalKhutbah }}</strong> naskah khutbah dan kajian dakwah resmi
                 @if(request('q'))
                     dengan kata kunci <em>"{{ request('q') }}"</em>
@@ -173,50 +173,50 @@
     @if($posts->count() > 0)
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             @foreach($posts as $post)
-                <div class="bg-white rounded-2xl p-6 shadow-md hover:shadow-xl border border-gray-100 transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1">
+                <div class="bg-white dark:bg-slate-900 rounded-2xl p-6 shadow-md hover:shadow-xl border border-gray-100 dark:border-slate-800 transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1">
                     <div class="space-y-3">
                         {{-- Top Badges: Rubrik & Waktu Baca --}}
                         <div class="flex items-center justify-between gap-2">
-                            <span class="inline-flex items-center gap-1 bg-emerald-50 text-[#00843d] border border-emerald-200 text-[11px] font-bold px-2.5 py-0.5 rounded-full">
+                            <span class="inline-flex items-center gap-1 bg-emerald-50 dark:bg-emerald-950/80 text-[#00843d] dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800/80 text-[11px] font-bold px-2.5 py-0.5 rounded-full">
                                 <i class="fa-solid fa-microphone text-[10px]"></i> Khutbah Jum'at
                             </span>
-                            <span class="text-[11px] text-gray-400 flex items-center gap-1">
+                            <span class="text-[11px] text-gray-400 dark:text-slate-400 flex items-center gap-1">
                                 <i class="fa-regular fa-clock text-[10px]"></i> 7-10 mnt
                             </span>
                         </div>
 
                         {{-- Judul Khutbah --}}
-                        <h3 class="text-base sm:text-lg font-bold text-gray-900 leading-snug group-hover:text-[#00843d] transition line-clamp-2">
+                        <h3 class="text-base sm:text-lg font-bold text-gray-900 dark:text-white leading-snug group-hover:text-[#00843d] dark:group-hover:text-emerald-400 transition line-clamp-2">
                             <a href="{{ route('khutbah.show', $post->slug) }}">
                                 {{ $post->title }}
                             </a>
                         </h3>
 
                         {{-- Ringkasan / Excerpt --}}
-                        <p class="text-xs text-gray-600 leading-relaxed line-clamp-3 font-light">
+                        <p class="text-xs text-gray-600 dark:text-slate-300 leading-relaxed line-clamp-3 font-light">
                             {{ $post->excerpt ?: Str::limit(strip_tags($post->content), 140) }}
                         </p>
                     </div>
 
                     {{-- Footer Kartu Khutbah --}}
-                    <div class="pt-4 mt-4 border-t border-gray-100 space-y-3">
-                        <div class="flex items-center justify-between text-[11px] text-gray-500">
+                    <div class="pt-4 mt-4 border-t border-gray-100 dark:border-slate-800 space-y-3">
+                        <div class="flex items-center justify-between text-[11px] text-gray-500 dark:text-slate-400">
                             <span class="flex items-center gap-1.5 truncate max-w-[170px]" title="{{ $post->author_name ?: ($post->author?->name ?? 'Dewan Asatidz PPRU') }}">
-                                <i class="fa-solid fa-user-tie text-emerald-700"></i>
-                                <span class="truncate">{{ $post->author_name ?: ($post->author?->name ?? 'Dewan Asatidz PPRU') }}</span>
+                                <i class="fa-solid fa-user-tie text-emerald-700 dark:text-emerald-400"></i>
+                                <span class="truncate text-gray-600 dark:text-slate-300">{{ $post->author_name ?: ($post->author?->name ?? 'Dewan Asatidz PPRU') }}</span>
                             </span>
-                            <span class="flex items-center gap-1 shrink-0">
-                                <i class="fa-regular fa-calendar text-gray-400"></i>
+                            <span class="flex items-center gap-1 shrink-0 text-gray-400 dark:text-slate-400">
+                                <i class="fa-regular fa-calendar"></i>
                                 <span>{{ ($post->published_at ?? $post->created_at)->isoFormat('D MMM Y') }}</span>
                             </span>
                         </div>
 
                         <div class="flex items-center gap-2 pt-1">
-                            <a href="{{ route('khutbah.show', $post->slug) }}" class="flex-1 bg-emerald-50 hover:bg-[#00843d] text-[#00843d] hover:text-white font-bold text-xs py-2 rounded-xl text-center transition flex items-center justify-center gap-1.5">
+                            <a href="{{ route('khutbah.show', $post->slug) }}" class="flex-1 bg-[#00843d] hover:bg-emerald-800 text-white font-bold text-xs py-2.5 rounded-xl text-center transition flex items-center justify-center gap-1.5 shadow-sm">
                                 <i class="fa-solid fa-book-open-reader text-[11px]"></i>
                                 <span>Baca Naskah</span>
                             </a>
-                            <a href="{{ route('khutbah.show', $post->slug) }}#print" class="bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs px-3 py-2 rounded-xl transition" title="Cetak naskah untuk mimbar">
+                            <a href="{{ route('khutbah.show', $post->slug) }}#print" class="bg-slate-100 hover:bg-slate-200 text-slate-700 dark:bg-slate-800 dark:hover:bg-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 text-xs px-3.5 py-2.5 rounded-xl transition flex items-center justify-center shadow-xs" title="Cetak naskah untuk mimbar">
                                 <i class="fa-solid fa-print"></i>
                             </a>
                         </div>
@@ -230,16 +230,16 @@
             {{ $posts->links() }}
         </div>
     @else
-        <div class="bg-white rounded-3xl p-12 text-center border border-gray-200 max-w-lg mx-auto shadow-sm space-y-4">
-            <div class="w-16 h-16 bg-emerald-100 text-[#00843d] rounded-full flex items-center justify-center mx-auto text-2xl">
+        <div class="bg-white dark:bg-slate-900 rounded-3xl p-12 text-center border border-gray-200 dark:border-slate-800 max-w-lg mx-auto shadow-sm space-y-4">
+            <div class="w-16 h-16 bg-emerald-100 dark:bg-emerald-950/80 text-[#00843d] dark:text-emerald-300 rounded-full flex items-center justify-center mx-auto text-2xl">
                 <i class="fa-solid fa-file-circle-question"></i>
             </div>
-            <h3 class="text-lg font-bold text-gray-900">Belum Ada Naskah Khutbah yang Cocok</h3>
-            <p class="text-xs text-gray-500 leading-relaxed">
+            <h3 class="text-lg font-bold text-gray-900 dark:text-white">Belum Ada Naskah Khutbah yang Cocok</h3>
+            <p class="text-xs text-gray-500 dark:text-slate-400 leading-relaxed">
                 Tidak ditemukan naskah khutbah dengan kriteria pencarian yang Anda masukkan. Silakan coba kata kunci lain atau bersihkan filter.
             </p>
             <div class="pt-2">
-                <a href="{{ route('khutbah.index') }}" class="inline-flex items-center gap-2 bg-[#00843d] hover:bg-[#006e30] text-white text-xs font-bold px-5 py-2.5 rounded-xl transition">
+                <a href="{{ route('khutbah.index') }}" class="inline-flex items-center gap-2 bg-[#00843d] hover:bg-[#006e30] text-white text-xs font-bold px-5 py-2.5 rounded-xl transition shadow">
                     <i class="fa-solid fa-arrow-rotate-left"></i>
                     <span>Tampilkan Semua Naskah</span>
                 </a>
@@ -248,19 +248,19 @@
     @endif
 
     {{-- 5. CALLOUT PANDUAN KHATIB --}}
-    <div class="mt-14 bg-emerald-50/70 border border-emerald-200 rounded-3xl p-6 sm:p-8 text-emerald-950">
+    <div class="mt-14 bg-emerald-50/70 dark:bg-slate-900 border border-emerald-200 dark:border-slate-800 rounded-3xl p-6 sm:p-8 text-emerald-950 dark:text-slate-200">
         <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-5">
             <div class="space-y-2">
-                <div class="inline-flex items-center gap-1.5 text-xs font-bold text-[#00843d] uppercase tracking-wider">
+                <div class="inline-flex items-center gap-1.5 text-xs font-bold text-[#00843d] dark:text-emerald-400 uppercase tracking-wider">
                     <i class="fa-solid fa-circle-check"></i>
                     <span>Panduan Syar'i Khutbah Jum'at</span>
                 </div>
-                <h3 class="text-lg sm:text-xl font-black text-gray-900">Rukun dan Adab Khutbah Jum'at</h3>
-                <p class="text-xs text-gray-700 leading-relaxed max-w-3xl font-light">
+                <h3 class="text-lg sm:text-xl font-black text-gray-900 dark:text-white">Rukun dan Adab Khutbah Jum'at</h3>
+                <p class="text-xs text-gray-700 dark:text-slate-300 leading-relaxed max-w-3xl font-light">
                     Setiap naskah khutbah yang diterbitkan di portal ini telah melalui penelaahan rukun-rukun khutbah: <strong>Hamdalah</strong>, <strong>Shalawat kepada Nabi SAW</strong>, <strong>Wasiat Taqwa</strong>, <strong>Membaca ayat Al-Qur'an</strong> pada salah satu khutbah, dan <strong>Doa ampunan bagi kaum muslimin</strong> pada khutbah kedua. Naskah dapat diunduh, dicetak, maupun langsung dibaca dari ponsel/tablet saat bertugas di atas mimbar.
                 </p>
             </div>
-            <a href="{{ route('hubungi') }}" class="bg-[#00843d] hover:bg-[#006e30] text-white text-xs font-bold px-5 py-3 rounded-xl transition shrink-0 flex items-center gap-2">
+            <a href="{{ route('hubungi') }}" class="bg-[#00843d] hover:bg-[#006e30] text-white text-xs font-bold px-5 py-3 rounded-xl transition shrink-0 flex items-center gap-2 shadow-sm">
                 <i class="fa-solid fa-pen-to-square"></i>
                 <span>Kirim Naskah Khutbah</span>
             </a>

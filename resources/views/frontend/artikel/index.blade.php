@@ -54,8 +54,8 @@
             {{-- Articles Grid --}}
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 @forelse($posts as $idx => $post)
-                    <article class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col group reveal-fade-up delay-{{ $idx % 4 }}">
-                        <a href="{{ route('artikel.show', $post->slug) }}" class="block relative h-48 overflow-hidden bg-gray-100">
+                    <article class="bg-white dark:bg-slate-900 rounded-2xl overflow-hidden border border-gray-100 dark:border-slate-800 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col group reveal-fade-up delay-{{ $idx % 4 }} hover:-translate-y-1">
+                        <a href="{{ route('artikel.show', $post->slug) }}" class="block relative h-48 overflow-hidden bg-gray-100 dark:bg-slate-800">
                             @if($post->featured_image)
                                 <img src="{{ $post->featured_image }}" alt="{{ $post->title }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.onerror=null;this.src='/images/hero-1.webp'">
                             @else
@@ -75,32 +75,32 @@
 
                         <div class="p-5 flex-grow flex flex-col justify-between space-y-3">
                             <div>
-                                <div class="flex items-center text-[11px] text-gray-400 gap-2 mb-2 flex-wrap">
-                                    <span><i class="fa-regular fa-calendar mr-1 text-[#00913e]"></i>{{ $post->published_at ? $post->published_at->translatedFormat('d M Y') : '-' }}</span>
+                                <div class="flex items-center text-[11px] text-gray-400 dark:text-slate-400 gap-2 mb-2 flex-wrap">
+                                    <span><i class="fa-regular fa-calendar mr-1 text-[#00913e] dark:text-emerald-400"></i>{{ $post->published_at ? $post->published_at->translatedFormat('d M Y') : '-' }}</span>
                                     <span>&bull;</span>
-                                    <span><i class="fa-regular fa-clock mr-1 text-[#00913e]"></i>{{ $post->reading_time }}</span>
+                                    <span><i class="fa-regular fa-clock mr-1 text-[#00913e] dark:text-emerald-400"></i>{{ $post->reading_time }}</span>
                                     <span>&bull;</span>
                                     <span><i class="fa-regular fa-eye mr-1"></i>{{ number_format($post->views_count) }}</span>
                                 </div>
-                                <h2 class="font-bold text-gray-900 text-sm sm:text-base line-clamp-2 group-hover:text-[#00913e] transition">
+                                <h2 class="font-bold text-gray-900 dark:text-white text-sm sm:text-base line-clamp-2 group-hover:text-[#00913e] dark:group-hover:text-emerald-400 transition">
                                     <a href="{{ route('artikel.show', $post->slug) }}">{{ $post->title }}</a>
                                 </h2>
-                                <p class="text-xs text-gray-500 line-clamp-2 mt-2 font-light">
+                                <p class="text-xs text-gray-500 dark:text-slate-300 line-clamp-2 mt-2 font-light">
                                     {{ $post->excerpt }}
                                 </p>
                             </div>
-                            <div class="pt-2 border-t border-gray-50 flex items-center justify-between text-xs font-semibold text-[#00913e] group-hover:text-orange-600">
+                            <div class="pt-2 border-t border-gray-50 dark:border-slate-800 flex items-center justify-between text-xs font-semibold text-[#00913e] dark:text-emerald-400 group-hover:text-orange-600 dark:group-hover:text-amber-400">
                                 <span>Baca Selengkapnya</span>
                                 <i class="fa-solid fa-arrow-right text-[10px]"></i>
                             </div>
                         </div>
                     </article>
                 @empty
-                    <div class="col-span-2 text-center py-16 bg-white rounded-2xl border border-gray-100">
-                        <i class="fa-solid fa-newspaper text-4xl text-gray-300 mb-3"></i>
-                        <h3 class="text-base font-bold text-gray-700">Tidak ada artikel ditemukan</h3>
-                        <p class="text-xs text-gray-500 mt-1">Coba gunakan kata kunci pencarian yang lain.</p>
-                        <a href="{{ route('artikel.index') }}" class="inline-block mt-4 text-xs font-semibold text-[#00913e] hover:underline">
+                    <div class="col-span-2 text-center py-16 bg-white dark:bg-slate-900 rounded-2xl border border-gray-100 dark:border-slate-800">
+                        <i class="fa-solid fa-newspaper text-4xl text-gray-300 dark:text-slate-600 mb-3"></i>
+                        <h3 class="text-base font-bold text-gray-700 dark:text-slate-200">Tidak ada artikel ditemukan</h3>
+                        <p class="text-xs text-gray-500 dark:text-slate-400 mt-1">Coba gunakan kata kunci pencarian yang lain.</p>
+                        <a href="{{ route('artikel.index') }}" class="inline-block mt-4 text-xs font-semibold text-[#00913e] dark:text-emerald-400 hover:underline">
                             Kembali ke Semua Artikel
                         </a>
                     </div>
@@ -128,20 +128,20 @@
             </div>
 
             {{-- Modern Categories Widget --}}
-            <div class="bg-white rounded-2xl shadow-sm border border-gray-100/90 overflow-hidden relative group/card">
+            <div class="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-gray-100/90 dark:border-slate-800 overflow-hidden relative group/card transition-colors">
                 <div class="h-1 bg-gradient-to-r from-[#00843d] via-emerald-400 to-[#f59e0b]"></div>
                 <div class="p-5 sm:p-6">
-                    <div class="flex items-center justify-between mb-4 pb-3 border-b border-gray-100">
+                    <div class="flex items-center justify-between mb-4 pb-3 border-b border-gray-100 dark:border-slate-800">
                         <div class="flex items-center space-x-2.5">
-                            <div class="w-8 h-8 rounded-xl bg-emerald-50 text-[#00843d] flex items-center justify-center text-xs shadow-inner">
+                            <div class="w-8 h-8 rounded-xl bg-emerald-50 dark:bg-slate-800 text-[#00843d] dark:text-emerald-400 flex items-center justify-center text-xs shadow-inner">
                                 <i class="fa-solid fa-shapes"></i>
                             </div>
                             <div>
-                                <h3 class="font-extrabold text-xs tracking-wider uppercase text-gray-900">Kategori Pilihan</h3>
-                                <p class="text-[10px] text-gray-400 font-medium">Jelajahi rubrik &amp; topik</p>
+                                <h3 class="font-extrabold text-xs tracking-wider uppercase text-gray-900 dark:text-white">Kategori Pilihan</h3>
+                                <p class="text-[10px] text-gray-400 dark:text-slate-400 font-medium">Jelajahi rubrik &amp; topik</p>
                             </div>
                         </div>
-                        <span class="text-[10px] font-bold text-emerald-700 bg-emerald-50/80 px-2.5 py-0.5 rounded-full border border-emerald-100">
+                        <span class="text-[10px] font-bold text-emerald-700 dark:text-emerald-300 bg-emerald-50/80 dark:bg-slate-800 px-2.5 py-0.5 rounded-full border border-emerald-100 dark:border-slate-700">
                             {{ $categories->count() }} Topik
                         </span>
                     </div>
@@ -191,16 +191,16 @@
                                     </div>
                                 </a>
                             @else
-                                <a href="{{ route('artikel.index', ['kategori' => $cat->slug]) }}" class="group flex items-center justify-between p-2 rounded-xl bg-white hover:bg-emerald-50/60 border border-gray-100 hover:border-emerald-200 text-gray-700 hover:text-[#00843d] transition-all duration-200">
+                                <a href="{{ route('artikel.index', ['kategori' => $cat->slug]) }}" class="group flex items-center justify-between p-2 rounded-xl bg-white dark:bg-slate-800/80 hover:bg-emerald-50/60 dark:hover:bg-slate-750 border border-gray-100 dark:border-slate-700 hover:border-emerald-200 dark:hover:border-slate-600 text-gray-700 dark:text-slate-200 hover:text-[#00843d] dark:hover:text-emerald-400 transition-all duration-200">
                                     <div class="flex items-center space-x-2.5 min-w-0">
-                                        <span class="w-7 h-7 rounded-lg {{ $iconData['bg'] }} {{ $iconData['color'] }} group-hover:bg-white flex items-center justify-center shrink-0 text-xs transition-colors shadow-none group-hover:shadow-sm">
+                                        <span class="w-7 h-7 rounded-lg {{ $iconData['bg'] }} {{ $iconData['color'] }} group-hover:bg-white dark:group-hover:bg-slate-900 flex items-center justify-center shrink-0 text-xs transition-colors shadow-none group-hover:shadow-sm">
                                             <i class="{{ $iconData['icon'] }}"></i>
                                         </span>
-                                        <span class="font-semibold text-xs text-gray-700 group-hover:text-[#00843d] truncate group-hover:translate-x-0.5 transition-transform">{{ $cat->name }}</span>
+                                        <span class="font-semibold text-xs text-gray-700 dark:text-slate-200 group-hover:text-[#00843d] dark:group-hover:text-emerald-400 truncate group-hover:translate-x-0.5 transition-transform">{{ $cat->name }}</span>
                                     </div>
                                     <div class="flex items-center space-x-1 shrink-0 ml-2">
-                                        <span class="text-[11px] font-bold text-gray-400 bg-gray-100 group-hover:bg-emerald-100 group-hover:text-[#00843d] px-2 py-0.5 rounded-full transition-colors">{{ $cat->posts_count }}</span>
-                                        <i class="fa-solid fa-chevron-right text-[9px] text-gray-300 group-hover:text-emerald-500 group-hover:translate-x-0.5 transition-all"></i>
+                                        <span class="text-[11px] font-bold text-gray-400 dark:text-slate-400 bg-gray-100 dark:bg-slate-700 group-hover:bg-emerald-100 dark:group-hover:bg-emerald-950/80 group-hover:text-[#00843d] dark:group-hover:text-emerald-400 px-2 py-0.5 rounded-full transition-colors">{{ $cat->posts_count }}</span>
+                                        <i class="fa-solid fa-chevron-right text-[9px] text-gray-300 dark:text-slate-500 group-hover:text-emerald-500 group-hover:translate-x-0.5 transition-all"></i>
                                     </div>
                                 </a>
                             @endif
@@ -210,14 +210,14 @@
             </div>
 
             {{-- Recent Posts Widget --}}
-            <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-                <h3 class="font-bold text-sm text-gray-900 mb-4 uppercase tracking-wider pb-2 border-b border-gray-100">
+            <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-slate-800 transition-colors">
+                <h3 class="font-bold text-sm text-gray-900 dark:text-white mb-4 uppercase tracking-wider pb-2 border-b border-gray-100 dark:border-slate-800">
                     Artikel Terbaru
                 </h3>
                 <div class="space-y-4">
                     @foreach($recentPosts as $rPost)
                         <div class="flex items-start space-x-3 group">
-                            <a href="{{ route('artikel.show', $rPost->slug) }}" class="w-16 h-16 rounded-xl overflow-hidden bg-gray-100 flex-shrink-0">
+                            <a href="{{ route('artikel.show', $rPost->slug) }}" class="w-16 h-16 rounded-xl overflow-hidden bg-gray-100 dark:bg-slate-800 flex-shrink-0">
                                 @if($rPost->featured_image)
                                     <img src="{{ $rPost->featured_image }}" alt="{{ $rPost->title }}" class="w-full h-full object-cover group-hover:scale-105 transition" onerror="this.onerror=null;this.src='/images/hero-1.webp'">
                                 @else

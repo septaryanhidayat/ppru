@@ -29,29 +29,29 @@
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
     {{-- STATS HIGHLIGHT --}}
     <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-10">
-        <div class="bg-white rounded-2xl p-5 border border-emerald-100 shadow-sm text-center">
-            <span class="text-2xl sm:text-3xl font-black text-[#00913e] block">20+</span>
-            <span class="text-xs text-gray-600 font-medium">Prestasi Tercatat</span>
+        <div class="bg-white dark:bg-slate-900 rounded-2xl p-5 border border-emerald-100 dark:border-slate-800 shadow-sm text-center transition-colors">
+            <span class="text-2xl sm:text-3xl font-black text-[#00913e] dark:text-emerald-400 block">20+</span>
+            <span class="text-xs text-gray-600 dark:text-slate-300 font-medium">Prestasi Tercatat</span>
         </div>
-        <div class="bg-white rounded-2xl p-5 border border-emerald-100 shadow-sm text-center">
+        <div class="bg-white dark:bg-slate-900 rounded-2xl p-5 border border-emerald-100 dark:border-slate-800 shadow-sm text-center transition-colors">
             <span class="text-2xl sm:text-3xl font-black text-amber-500 block">30 Juz</span>
-            <span class="text-xs text-gray-600 font-medium">Hafalan Qur'an</span>
+            <span class="text-xs text-gray-600 dark:text-slate-300 font-medium">Hafalan Qur'an</span>
         </div>
-        <div class="bg-white rounded-2xl p-5 border border-emerald-100 shadow-sm text-center">
-            <span class="text-2xl sm:text-3xl font-black text-blue-600 block">Nasional</span>
-            <span class="text-xs text-gray-600 font-medium">&amp; Internasional</span>
+        <div class="bg-white dark:bg-slate-900 rounded-2xl p-5 border border-emerald-100 dark:border-slate-800 shadow-sm text-center transition-colors">
+            <span class="text-2xl sm:text-3xl font-black text-blue-600 dark:text-sky-400 block">Nasional</span>
+            <span class="text-xs text-gray-600 dark:text-slate-300 font-medium">&amp; Internasional</span>
         </div>
-        <div class="bg-white rounded-2xl p-5 border border-emerald-100 shadow-sm text-center">
-            <span class="text-2xl sm:text-3xl font-black text-purple-600 block">PTN &amp; PTKIN</span>
-            <span class="text-xs text-gray-600 font-medium">Lolos SNBP</span>
+        <div class="bg-white dark:bg-slate-900 rounded-2xl p-5 border border-emerald-100 dark:border-slate-800 shadow-sm text-center transition-colors">
+            <span class="text-2xl sm:text-3xl font-black text-purple-600 dark:text-purple-400 block">PTN &amp; PTKIN</span>
+            <span class="text-xs text-gray-600 dark:text-slate-300 font-medium">Lolos SNBP</span>
         </div>
     </div>
 
     {{-- PRESTASI GRID --}}
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         @forelse($prestasi as $idx => $item)
-            <div class="bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group reveal-fade-up">
-                <a href="{{ route('prestasi.show', $item->slug) }}" class="block relative h-52 overflow-hidden bg-gray-100">
+            <div class="bg-white dark:bg-slate-900 rounded-3xl overflow-hidden border border-gray-100 dark:border-slate-800 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group reveal-fade-up">
+                <a href="{{ route('prestasi.show', $item->slug) }}" class="block relative h-52 overflow-hidden bg-gray-100 dark:bg-slate-800">
                     <img src="{{ $item->featured_image ?: '/images/hero-1.webp' }}" alt="{{ $item->title }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.onerror=null;this.src='/images/hero-1.webp'">
                     <span class="absolute top-3 left-3 bg-gradient-to-r from-amber-500 to-amber-600 text-white text-[11px] font-bold px-3 py-1 rounded-full shadow-md flex items-center space-x-1.5">
                         <i class="fa-solid fa-award text-xs"></i>
@@ -60,21 +60,21 @@
                 </a>
                 <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
                     <div>
-                        <div class="text-[11px] text-gray-400 mb-2 flex items-center space-x-1.5">
-                            <i class="fa-regular fa-calendar text-[#00913e]"></i>
+                        <div class="text-[11px] text-gray-400 dark:text-slate-400 mb-2 flex items-center space-x-1.5">
+                            <i class="fa-regular fa-calendar text-[#00913e] dark:text-emerald-400"></i>
                             <span>{{ $item->published_at ? $item->published_at->format('d M Y') : $item->created_at->format('d M Y') }}</span>
                         </div>
-                        <h3 class="font-bold text-gray-900 text-lg group-hover:text-[#00913e] transition line-clamp-2 leading-snug">
+                        <h3 class="font-bold text-gray-900 dark:text-white text-lg group-hover:text-[#00913e] dark:group-hover:text-emerald-400 transition line-clamp-2 leading-snug">
                             <a href="{{ route('prestasi.show', $item->slug) }}">
                                 {{ $item->title }}
                             </a>
                         </h3>
-                        <p class="text-xs sm:text-sm text-gray-600 line-clamp-3 mt-2 font-light leading-relaxed">
+                        <p class="text-xs sm:text-sm text-gray-600 dark:text-slate-300 line-clamp-3 mt-2 font-light leading-relaxed">
                             {{ $item->excerpt ?: Str::limit(strip_tags($item->content), 120) }}
                         </p>
                     </div>
-                    <div class="pt-3 border-t border-gray-50 flex items-center justify-between">
-                        <span class="text-xs font-semibold text-[#00913e] flex items-center space-x-1 group-hover:translate-x-1 transition">
+                    <div class="pt-3 border-t border-gray-50 dark:border-slate-800 flex items-center justify-between">
+                        <span class="text-xs font-semibold text-[#00913e] dark:text-emerald-400 flex items-center space-x-1 group-hover:translate-x-1 transition">
                             <span>Baca Selengkapnya</span>
                             <i class="fa-solid fa-arrow-right text-[10px]"></i>
                         </span>
@@ -82,9 +82,9 @@
                 </div>
             </div>
         @empty
-            <div class="col-span-full py-12 text-center bg-white rounded-3xl border border-gray-100">
-                <i class="fa-solid fa-trophy text-4xl text-gray-300 mb-3 block"></i>
-                <p class="text-gray-500 font-medium">Belum ada data prestasi yang ditampilkan.</p>
+            <div class="col-span-full py-12 text-center bg-white dark:bg-slate-900 rounded-3xl border border-gray-100 dark:border-slate-800">
+                <i class="fa-solid fa-trophy text-4xl text-gray-300 dark:text-slate-600 mb-3 block"></i>
+                <p class="text-gray-500 dark:text-slate-400 font-medium">Belum ada data prestasi yang ditampilkan.</p>
             </div>
         @endforelse
     </div>

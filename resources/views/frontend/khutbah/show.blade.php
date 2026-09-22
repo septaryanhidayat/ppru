@@ -20,82 +20,82 @@
 <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
 
     {{-- TOOLBAR PEMBACA MIMBAR (FLOATING / STICKY CONTROLS) --}}
-    <div class="bg-white rounded-2xl shadow-md border border-emerald-100 p-3 mb-8 sticky top-3 z-40 flex flex-wrap items-center justify-between gap-3 print:hidden">
+    <div class="bg-white dark:bg-slate-900 rounded-2xl shadow-md border border-emerald-100 dark:border-slate-800 p-3 mb-8 sticky top-3 z-40 flex flex-wrap items-center justify-between gap-3 print:hidden transition-colors">
         <div class="flex items-center space-x-1 sm:space-x-2">
-            <span class="text-xs font-bold text-gray-500 uppercase tracking-wider hidden sm:inline mr-1">
-                <i class="fa-solid fa-text-height text-[#00843d]"></i> Ukuran Huruf:
+            <span class="text-xs font-bold text-gray-500 dark:text-slate-400 uppercase tracking-wider hidden sm:inline mr-1">
+                <i class="fa-solid fa-text-height text-[#00843d] dark:text-emerald-400"></i> Ukuran Huruf:
             </span>
-            <button type="button" onclick="adjustFontSize(-2)" class="w-8 h-8 rounded-lg bg-gray-100 hover:bg-emerald-50 hover:text-[#00843d] font-bold text-xs transition flex items-center justify-center cursor-pointer" title="Perkecil Huruf">
+            <button type="button" onclick="adjustFontSize(-2)" class="w-8 h-8 rounded-lg bg-gray-100 dark:bg-slate-800 hover:bg-emerald-50 dark:hover:bg-slate-700 text-gray-700 dark:text-slate-200 hover:text-[#00843d] dark:hover:text-emerald-400 font-bold text-xs transition flex items-center justify-center cursor-pointer border border-transparent dark:border-slate-700" title="Perkecil Huruf">
                 A-
             </button>
-            <button type="button" onclick="resetFontSize()" class="px-2.5 h-8 rounded-lg bg-gray-100 hover:bg-emerald-50 hover:text-[#00843d] font-bold text-xs transition flex items-center justify-center cursor-pointer" title="Ukuran Standar">
+            <button type="button" onclick="resetFontSize()" class="px-2.5 h-8 rounded-lg bg-gray-100 dark:bg-slate-800 hover:bg-emerald-50 dark:hover:bg-slate-700 text-gray-700 dark:text-slate-200 hover:text-[#00843d] dark:hover:text-emerald-400 font-bold text-xs transition flex items-center justify-center cursor-pointer border border-transparent dark:border-slate-700" title="Ukuran Standar">
                 Normal
             </button>
-            <button type="button" onclick="adjustFontSize(2)" class="w-8 h-8 rounded-lg bg-gray-100 hover:bg-emerald-50 hover:text-[#00843d] font-bold text-xs transition flex items-center justify-center cursor-pointer" title="Perbesar Huruf">
+            <button type="button" onclick="adjustFontSize(2)" class="w-8 h-8 rounded-lg bg-gray-100 dark:bg-slate-800 hover:bg-emerald-50 dark:hover:bg-slate-700 text-gray-700 dark:text-slate-200 hover:text-[#00843d] dark:hover:text-emerald-400 font-bold text-xs transition flex items-center justify-center cursor-pointer border border-transparent dark:border-slate-700" title="Perbesar Huruf">
                 A+
             </button>
-            <button type="button" onclick="adjustFontSize(4)" class="w-8 h-8 rounded-lg bg-gray-100 hover:bg-emerald-50 hover:text-[#00843d] font-black text-xs transition flex items-center justify-center cursor-pointer" title="Ukuran Ekstra Besar untuk Mimbar">
+            <button type="button" onclick="adjustFontSize(4)" class="w-8 h-8 rounded-lg bg-gray-100 dark:bg-slate-800 hover:bg-emerald-50 dark:hover:bg-slate-700 text-gray-700 dark:text-slate-200 hover:text-[#00843d] dark:hover:text-emerald-400 font-black text-xs transition flex items-center justify-center cursor-pointer border border-transparent dark:border-slate-700" title="Ukuran Ekstra Besar untuk Mimbar">
                 A++
             </button>
         </div>
 
         <div class="flex items-center space-x-2">
             {{-- Tombol Cetak / Print --}}
-            <button type="button" onclick="window.print()" class="bg-[#00843d] hover:bg-[#006e30] text-white px-3.5 py-1.5 rounded-xl font-bold text-xs transition flex items-center space-x-1.5 shadow-sm cursor-pointer" title="Cetak naskah untuk dibaca di mimbar">
+            <button type="button" onclick="window.print()" class="bg-[#00843d] hover:bg-emerald-800 text-white px-3.5 py-1.5 rounded-xl font-bold text-xs transition flex items-center space-x-1.5 shadow-sm cursor-pointer" title="Cetak naskah untuk dibaca di mimbar">
                 <i class="fa-solid fa-print"></i>
                 <span class="hidden sm:inline">Cetak Naskah</span>
             </button>
 
             {{-- Tombol Salin Naskah --}}
-            <button type="button" id="btn-copy-khutbah" onclick="copyKhutbahText()" class="bg-amber-100 hover:bg-amber-200 text-amber-900 border border-amber-300 px-3.5 py-1.5 rounded-xl font-bold text-xs transition flex items-center space-x-1.5 cursor-pointer" title="Salin seluruh teks khutbah">
+            <button type="button" id="btn-copy-khutbah" onclick="copyKhutbahText()" class="bg-amber-100 dark:bg-amber-500 hover:bg-amber-200 dark:hover:bg-amber-400 text-amber-950 dark:text-slate-950 border border-amber-300 dark:border-amber-400 px-3.5 py-1.5 rounded-xl font-bold text-xs transition flex items-center space-x-1.5 cursor-pointer shadow-xs" title="Salin seluruh teks khutbah">
                 <i class="fa-solid fa-copy"></i>
                 <span id="label-copy-khutbah" class="hidden sm:inline">Salin Teks</span>
             </button>
 
             {{-- Bagikan WhatsApp --}}
-            <a href="https://api.whatsapp.com/send?text={{ urlencode($post->title . ' - Naskah Khutbah PPRU: ' . url()->current()) }}" target="_blank" rel="noopener" class="bg-[#25d366] hover:bg-[#1eb956] text-white px-3 py-1.5 rounded-xl font-bold text-xs transition flex items-center space-x-1" title="Bagikan ke WhatsApp">
+            <a href="https://api.whatsapp.com/send?text={{ urlencode($post->title . ' - Naskah Khutbah PPRU: ' . url()->current()) }}" target="_blank" rel="noopener" class="bg-[#25d366] hover:bg-[#1eb956] text-white px-3 py-1.5 rounded-xl font-bold text-xs transition flex items-center space-x-1 shadow-xs" title="Bagikan ke WhatsApp">
                 <i class="fa-brands fa-whatsapp text-sm"></i>
             </a>
         </div>
     </div>
 
     {{-- KONTEN UTAMA NASKAH KHUTBAH --}}
-    <article class="bg-white rounded-3xl shadow-xl border border-gray-100 p-6 sm:p-10 lg:p-12 print:p-0 print:shadow-none print:border-0" id="printable-khutbah">
+    <article class="bg-white dark:bg-slate-900 rounded-3xl shadow-xl border border-gray-100 dark:border-slate-800 p-6 sm:p-10 lg:p-12 print:p-0 print:shadow-none print:border-0 transition-colors" id="printable-khutbah">
 
         {{-- Header Naskah Khutbah --}}
-        <header class="border-b border-gray-200 pb-6 mb-6">
+        <header class="border-b border-gray-200 dark:border-slate-800 pb-6 mb-6">
             <div class="flex flex-wrap items-center gap-2 mb-3 print:hidden">
-                <span class="bg-emerald-100 text-[#00843d] text-xs font-black px-3 py-1 rounded-full border border-emerald-200 flex items-center gap-1.5">
+                <span class="bg-emerald-100 dark:bg-emerald-950/80 text-[#00843d] dark:text-emerald-400 text-xs font-black px-3 py-1 rounded-full border border-emerald-200 dark:border-emerald-800/80 flex items-center gap-1.5">
                     <i class="fa-solid fa-microphone-lines text-[10px]"></i> Naskah Khutbah Resmi
                 </span>
-                <span class="bg-amber-100 text-amber-900 text-xs font-bold px-3 py-1 rounded-full border border-amber-200">
+                <span class="bg-amber-100 dark:bg-amber-950/80 text-amber-900 dark:text-amber-300 text-xs font-bold px-3 py-1 rounded-full border border-amber-200 dark:border-amber-800/80">
                     YAPIRUS • PPRU Sakatiga
                 </span>
             </div>
 
-            <h1 class="text-2xl sm:text-3xl lg:text-4xl font-black text-gray-900 tracking-tight leading-snug mb-4">
+            <h1 class="text-2xl sm:text-3xl lg:text-4xl font-black text-gray-900 dark:text-white tracking-tight leading-snug mb-4">
                 {{ $post->title }}
             </h1>
 
-            <div class="flex flex-wrap items-center text-xs text-gray-600 gap-4 sm:gap-6 pt-2">
+            <div class="flex flex-wrap items-center text-xs text-gray-600 dark:text-slate-300 gap-4 sm:gap-6 pt-2">
                 <div class="flex items-center space-x-2">
-                    <i class="fa-solid fa-user-tie text-[#00843d]"></i>
-                    <span>Khatib / Penyusun: <strong>{{ $post->author_name ?: ($post->author?->name ?? 'Dewan Asatidz PPRU') }}</strong></span>
+                    <i class="fa-solid fa-user-tie text-[#00843d] dark:text-emerald-400"></i>
+                    <span>Khatib / Penyusun: <strong class="text-gray-900 dark:text-white">{{ $post->author_name ?: ($post->author?->name ?? 'Dewan Asatidz PPRU') }}</strong></span>
                 </div>
                 <div class="flex items-center space-x-2">
-                    <i class="fa-regular fa-calendar-check text-[#00843d]"></i>
+                    <i class="fa-regular fa-calendar-check text-[#00843d] dark:text-emerald-400"></i>
                     <span>{{ ($post->published_at ?? $post->created_at)->isoFormat('dddd, D MMMM Y') }}</span>
                 </div>
                 <div class="flex items-center space-x-2 print:hidden">
-                    <i class="fa-solid fa-eye text-gray-400"></i>
+                    <i class="fa-solid fa-eye text-gray-400 dark:text-slate-500"></i>
                     <span>{{ number_format($post->views_count) }} kali dibaca</span>
                 </div>
             </div>
 
             {{-- Checklist Rukun Khutbah --}}
-            <div class="mt-4 p-3.5 bg-emerald-50/70 rounded-xl border border-emerald-200 text-xs text-emerald-950 flex flex-wrap items-center gap-x-4 gap-y-1 print:hidden">
-                <span class="font-bold text-[#00843d] flex items-center gap-1">
-                    <i class="fa-solid fa-circle-check text-emerald-600"></i> Rukun Syar'i:
+            <div class="mt-4 p-3.5 bg-emerald-50/70 dark:bg-slate-800/80 rounded-xl border border-emerald-200 dark:border-slate-700 text-xs text-emerald-950 dark:text-emerald-300 flex flex-wrap items-center gap-x-4 gap-y-1 print:hidden">
+                <span class="font-bold text-[#00843d] dark:text-emerald-400 flex items-center gap-1">
+                    <i class="fa-solid fa-circle-check text-emerald-600 dark:text-emerald-400"></i> Rukun Syar'i:
                 </span>
                 <span>✓ Hamdalah</span>
                 <span>✓ Shalawat Nabi</span>
@@ -106,18 +106,18 @@
         </header>
 
         {{-- Isi Naskah Khutbah --}}
-        <div id="khutbah-text-content" class="khutbah-content prose max-w-none text-slate-800 leading-relaxed space-y-6 text-base" style="font-size: 16px;">
+        <div id="khutbah-text-content" class="khutbah-content prose dark:prose-invert max-w-none text-slate-800 dark:text-slate-200 leading-relaxed space-y-6 text-base" style="font-size: 16px;">
             {!! $post->content !!}
         </div>
 
         {{-- Footer Naskah Khutbah --}}
-        <footer class="mt-10 pt-6 border-t border-gray-200 text-xs text-gray-500 flex flex-col sm:flex-row items-center justify-between gap-4 print:mt-4">
+        <footer class="mt-10 pt-6 border-t border-gray-200 dark:border-slate-800 text-xs text-gray-500 dark:text-slate-400 flex flex-col sm:flex-row items-center justify-between gap-4 print:mt-4">
             <div>
-                <p class="font-bold text-gray-700">Pondok Pesantren Raudhatul Ulum Sakatiga</p>
+                <p class="font-bold text-gray-700 dark:text-slate-300">Pondok Pesantren Raudhatul Ulum Sakatiga</p>
                 <p>Desa Sakatiga, Indralaya, Ogan Ilir, Sumatera Selatan 30816</p>
             </div>
             <div class="print:hidden">
-                <a href="{{ route('khutbah.index') }}" class="inline-flex items-center gap-2 text-[#00843d] hover:underline font-bold">
+                <a href="{{ route('khutbah.index') }}" class="inline-flex items-center gap-2 text-[#00843d] dark:text-emerald-400 hover:underline font-bold">
                     <i class="fa-solid fa-arrow-left"></i>
                     <span>Kembali ke Koleksi Khutbah</span>
                 </a>
@@ -128,22 +128,22 @@
     {{-- NASKAH KHUTBAH TERKAIT --}}
     @if(isset($related) && $related->isNotEmpty())
         <div class="mt-12 print:hidden">
-            <h2 class="text-xl font-black text-gray-900 mb-4 flex items-center gap-2">
-                <i class="fa-solid fa-book-bookmark text-[#00843d]"></i>
+            <h2 class="text-xl font-black text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+                <i class="fa-solid fa-book-bookmark text-[#00843d] dark:text-emerald-400"></i>
                 <span>Naskah Khutbah Terkait Lainnya</span>
             </h2>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 @foreach($related as $rel)
-                    <a href="{{ route('khutbah.show', $rel->slug) }}" class="bg-white p-5 rounded-2xl border border-gray-200 hover:border-[#00843d] hover:shadow-md transition group block">
-                        <span class="text-[10px] uppercase font-bold text-gray-400 block mb-1">
+                    <a href="{{ route('khutbah.show', $rel->slug) }}" class="bg-white dark:bg-slate-900 p-5 rounded-2xl border border-gray-200 dark:border-slate-800 hover:border-[#00843d] dark:hover:border-emerald-500 hover:shadow-md transition group block">
+                        <span class="text-[10px] uppercase font-bold text-gray-400 dark:text-slate-500 block mb-1">
                             {{ ($rel->published_at ?? $rel->created_at)->isoFormat('D MMMM Y') }}
                         </span>
-                        <h3 class="text-sm font-bold text-gray-900 group-hover:text-[#00843d] transition line-clamp-2">
+                        <h3 class="text-sm font-bold text-gray-900 dark:text-white group-hover:text-[#00843d] dark:group-hover:text-emerald-400 transition line-clamp-2">
                             {{ $rel->title }}
                         </h3>
-                        <p class="text-xs text-gray-500 mt-2 flex items-center gap-1.5 font-light">
-                            <i class="fa-solid fa-user-tie text-emerald-600 text-[10px]"></i>
+                        <p class="text-xs text-gray-500 dark:text-slate-400 mt-2 flex items-center gap-1.5 font-light">
+                            <i class="fa-solid fa-user-tie text-emerald-600 dark:text-emerald-400 text-[10px]"></i>
                             <span>{{ $rel->author_name ?: 'Dewan Asatidz PPRU' }}</span>
                         </p>
                     </a>

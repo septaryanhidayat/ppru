@@ -698,20 +698,20 @@
         {{-- 8 Unit Cards Grid (1 col mobile, 2 col sm, 4 col lg) --}}
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
             @foreach($unitPendidikans as $index => $u)
-            <div class="bg-white rounded-3xl p-5 shadow-sm hover:shadow-xl border border-gray-200/70 hover:border-school-green/50 transition-all duration-300 flex flex-col justify-between group transform hover:-translate-y-1.5 reveal-fade-up delay-{{ ($index % 4) + 1 }}">
+            <div class="bg-white dark:bg-slate-900 rounded-3xl p-5 shadow-sm hover:shadow-xl border border-gray-200/70 dark:border-slate-800 hover:border-school-green/50 transition-all duration-300 flex flex-col justify-between group transform hover:-translate-y-1.5 reveal-fade-up delay-{{ ($index % 4) + 1 }}">
                 <div>
                     {{-- Top Card Header --}}
                     <div class="flex items-start justify-between gap-3 mb-4">
-                        <div class="w-12 h-12 rounded-2xl bg-white p-1.5 shadow-sm border border-emerald-100/80 group-hover:border-school-green group-hover:scale-105 flex items-center justify-center transition duration-300 overflow-hidden">
+                        <div class="w-12 h-12 rounded-2xl bg-white dark:bg-slate-800 p-1.5 shadow-sm border border-emerald-100/80 dark:border-slate-700 group-hover:border-school-green group-hover:scale-105 flex items-center justify-center transition duration-300 overflow-hidden">
                             @if(!empty($u->logo))
                                 <img src="{{ $u->logo_url }}" alt="Logo {{ $u->name }}" class="w-full h-full object-contain">
                             @else
-                                <div class="w-full h-full rounded-xl bg-emerald-50 text-school-green group-hover:bg-school-green group-hover:text-white flex items-center justify-center text-lg transition">
+                                <div class="w-full h-full rounded-xl bg-emerald-50 dark:bg-slate-700 text-school-green dark:text-emerald-300 group-hover:bg-school-green group-hover:text-white flex items-center justify-center text-lg transition">
                                     <i class="{{ $u->icon ?: 'fa-solid fa-graduation-cap' }}"></i>
                                 </div>
                             @endif
                         </div>
-                        <span class="inline-block px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider {{ str_contains(strtolower($u->category_type), 'boarding') ? 'bg-emerald-100 text-emerald-800' : (str_contains(strtolower($u->category_type), 'tahfidz') ? 'bg-amber-100 text-amber-800' : 'bg-sky-100 text-sky-800') }}">
+                        <span class="inline-block px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider {{ str_contains(strtolower($u->category_type), 'boarding') ? 'bg-emerald-100 dark:bg-emerald-950/80 text-emerald-800 dark:text-emerald-300' : (str_contains(strtolower($u->category_type), 'tahfidz') ? 'bg-amber-100 dark:bg-amber-950/80 text-amber-800 dark:text-amber-300' : 'bg-sky-100 dark:bg-sky-950/80 text-sky-800 dark:text-sky-300') }}">
                             {{ $u->category_type }}
                         </span>
                     </div>
@@ -719,7 +719,7 @@
                     {{-- Nama Unit --}}
                     <div class="mb-2">
                         <span class="text-[11px] font-black text-school-gold uppercase tracking-wider">{{ $u->short_name }}</span>
-                        <h3 class="text-base font-black text-gray-900 group-hover:text-school-green transition line-clamp-2 leading-snug">
+                        <h3 class="text-base font-black text-gray-900 dark:text-white group-hover:text-school-green dark:group-hover:text-emerald-400 transition line-clamp-2 leading-snug">
                             <a href="{{ route('pendidikan.show', $u->slug) }}">
                                 {{ $u->name }}
                             </a>
@@ -728,25 +728,25 @@
 
                     {{-- Badge Akreditasi / Muadalah --}}
                     @if($u->badge)
-                    <div class="inline-flex items-center space-x-1 px-2 py-0.5 bg-gray-100 rounded-md text-[10px] font-bold text-gray-700 mb-3">
+                    <div class="inline-flex items-center space-x-1 px-2 py-0.5 bg-gray-100 dark:bg-slate-800 rounded-md text-[10px] font-bold text-gray-700 dark:text-slate-300 mb-3 border border-transparent dark:border-slate-700">
                         <i class="fa-solid fa-certificate text-amber-500 text-[10px]"></i>
                         <span>{{ $u->badge }}</span>
                     </div>
                     @endif
 
                     {{-- Deskripsi Singkat --}}
-                    <p class="text-xs text-gray-600 line-clamp-3 leading-relaxed mb-4">
+                    <p class="text-xs text-gray-600 dark:text-slate-300 line-clamp-3 leading-relaxed mb-4">
                         {{ $u->description }}
                     </p>
                 </div>
 
                 {{-- Card Footer Action --}}
-                <div class="pt-4 border-t border-gray-100 flex items-center justify-between">
-                    <a href="{{ route('pendidikan.show', $u->slug) }}" class="text-xs font-bold text-school-green hover:underline flex items-center">
+                <div class="pt-4 border-t border-gray-100 dark:border-slate-800 flex items-center justify-between">
+                    <a href="{{ route('pendidikan.show', $u->slug) }}" class="text-xs font-bold text-school-green dark:text-emerald-400 hover:underline flex items-center">
                         <span>Detail &amp; Kurikulum</span>
                         <i class="fa-solid fa-chevron-right ml-1 text-[10px]"></i>
                     </a>
-                    <a href="{{ route('ppdb.index') }}" class="w-8 h-8 rounded-full bg-emerald-50 hover:bg-school-green text-school-green hover:text-white flex items-center justify-center text-xs transition" title="Daftar ke unit ini">
+                    <a href="{{ route('ppdb.index') }}" class="w-8 h-8 rounded-full bg-[#00843d] hover:bg-emerald-800 text-white flex items-center justify-center text-xs shadow-xs transition" title="Daftar ke unit ini">
                         <i class="fa-solid fa-user-plus"></i>
                     </a>
                 </div>

@@ -30,11 +30,11 @@
 </div>
 
 {{-- MAIN CONTENT --}}
-<div class="py-14 bg-gray-50/70 min-h-[60vh]">
+<div class="py-14 bg-gray-50/70 dark:bg-slate-950 min-h-[60vh] transition-colors">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             @forelse($units as $unit)
-                <div class="bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1.5 flex flex-col justify-between group">
+                <div class="bg-white dark:bg-slate-900 rounded-3xl overflow-hidden border border-gray-100 dark:border-slate-800 shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1.5 flex flex-col justify-between group">
                     <div>
                         {{-- Photo Thumbnail --}}
                         <div class="relative h-52 w-full overflow-hidden bg-emerald-950">
@@ -56,7 +56,7 @@
                             </div>
 
                             @if($unit->short_name)
-                                <span class="absolute bottom-3 right-3 bg-white/90 text-[#00843d] text-xs font-black px-2.5 py-1 rounded-lg backdrop-blur shadow-sm">
+                                <span class="absolute bottom-3 right-3 bg-white/90 dark:bg-slate-900/90 text-[#00843d] dark:text-emerald-400 text-xs font-black px-2.5 py-1 rounded-lg backdrop-blur shadow-sm border border-transparent dark:border-slate-700">
                                     {{ $unit->short_name }}
                                 </span>
                             @endif
@@ -65,46 +65,46 @@
                         {{-- Details --}}
                         <div class="p-6 space-y-3">
                             <div class="flex items-center space-x-3">
-                                <div class="w-12 h-12 rounded-2xl bg-white p-1 flex items-center justify-center shrink-0 border border-emerald-100 group-hover:border-[#00843d] shadow-xs group-hover:scale-105 transition duration-300 overflow-hidden">
+                                <div class="w-12 h-12 rounded-2xl bg-white dark:bg-slate-800 p-1 flex items-center justify-center shrink-0 border border-emerald-100 dark:border-slate-700 group-hover:border-[#00843d] shadow-xs group-hover:scale-105 transition duration-300 overflow-hidden">
                                     @if(!empty($unit->logo))
                                         <img src="{{ $unit->logo_url }}" alt="Logo {{ $unit->name }}" class="w-full h-full object-contain">
                                     @else
-                                        <div class="w-full h-full rounded-xl bg-emerald-50 text-[#00843d] group-hover:bg-[#00843d] group-hover:text-white flex items-center justify-center text-base transition">
+                                        <div class="w-full h-full rounded-xl bg-emerald-50 dark:bg-slate-700 text-[#00843d] dark:text-emerald-300 group-hover:bg-[#00843d] group-hover:text-white flex items-center justify-center text-base transition">
                                             <i class="{{ $unit->icon ?: 'fa-solid fa-graduation-cap' }}"></i>
                                         </div>
                                     @endif
                                 </div>
-                                <h3 class="font-extrabold text-base sm:text-lg text-gray-900 group-hover:text-[#00843d] transition line-clamp-1">
+                                <h3 class="font-extrabold text-base sm:text-lg text-gray-900 dark:text-white group-hover:text-[#00843d] dark:group-hover:text-emerald-400 transition line-clamp-1">
                                     {{ $unit->name }}
                                 </h3>
                             </div>
 
                             @if($unit->curriculum)
-                                <div class="text-[11px] text-emerald-800 font-semibold bg-emerald-50/80 px-3 py-1.5 rounded-xl border border-emerald-100 flex items-center">
-                                    <i class="fa-solid fa-book-quran mr-2 text-[#00843d]"></i>
+                                <div class="text-[11px] text-emerald-800 dark:text-emerald-300 font-semibold bg-emerald-50/80 dark:bg-slate-800/80 px-3 py-1.5 rounded-xl border border-emerald-100 dark:border-slate-700 flex items-center">
+                                    <i class="fa-solid fa-book-quran mr-2 text-[#00843d] dark:text-emerald-400"></i>
                                     <span class="truncate">{{ $unit->curriculum }}</span>
                                 </div>
                             @endif
 
-                            <p class="text-xs text-gray-600 font-light leading-relaxed line-clamp-3">
+                            <p class="text-xs text-gray-600 dark:text-slate-300 font-light leading-relaxed line-clamp-3">
                                 {{ strip_tags($unit->description) ?: 'Menyelenggarakan pendidikan islami terpadu dan berkualitas berorientasi pada pembentukan generasi khoiru ummah.' }}
                             </p>
                         </div>
                     </div>
 
-                    <div class="px-6 pb-6 pt-2 border-t border-gray-100 flex items-center justify-between">
-                        <a href="{{ route('pendidikan.show', $unit->slug) }}" class="inline-flex items-center text-xs font-extrabold text-[#00843d] hover:text-[#006830] transition group/btn">
+                    <div class="px-6 pb-6 pt-2 border-t border-gray-100 dark:border-slate-800 flex items-center justify-between">
+                        <a href="{{ route('pendidikan.show', $unit->slug) }}" class="inline-flex items-center text-xs font-extrabold text-[#00843d] dark:text-emerald-400 hover:text-[#006830] dark:hover:text-emerald-300 transition group/btn">
                             <span>Selengkapnya</span>
                             <i class="fa-solid fa-arrow-right ml-1.5 transform group-hover/btn:translate-x-1 transition"></i>
                         </a>
-                        <a href="{{ route('ppdb.index') }}" class="bg-emerald-50 hover:bg-[#00843d] text-[#00843d] hover:text-white text-[11px] font-bold px-3 py-1.5 rounded-full transition">
+                        <a href="{{ route('ppdb.index') }}" class="bg-[#00843d] hover:bg-emerald-800 text-white text-[11px] font-bold px-3.5 py-1.5 rounded-full shadow-xs transition">
                             Daftar Unit
                         </a>
                     </div>
                 </div>
             @empty
-                <div class="col-span-full py-16 text-center text-gray-400">
-                    <i class="fa-solid fa-school text-5xl text-gray-300 mb-3 block"></i>
+                <div class="col-span-full py-16 text-center text-gray-400 dark:text-slate-500">
+                    <i class="fa-solid fa-school text-5xl text-gray-300 dark:text-slate-600 mb-3 block"></i>
                     Belum ada data unit pendidikan yang dipublikasikan.
                 </div>
             @endforelse
