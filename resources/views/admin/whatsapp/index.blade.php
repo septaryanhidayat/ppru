@@ -4,7 +4,7 @@
 @section('header_title', 'Kelola Nomor WhatsApp')
 
 @section('content')
-<form action="{{ route('admin.whatsapp.update') }}" method="POST" class="space-y-8">
+<form action="{{ Route::has('admin.whatsapp.update') ? route('admin.whatsapp.update') : url('/admin/whatsapp') }}" method="POST" class="space-y-8">
     @csrf
 
     {{-- 1. HERO HEADER BANNER --}}
