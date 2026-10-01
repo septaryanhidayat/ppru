@@ -285,11 +285,9 @@
                 </div>
 
                 @php
-                    $mainWaNumber = preg_replace('/[^0-9]/', '', $siteSettings['contact_whatsapp'] ?? ($siteSettings['site_phone'] ?? '081278901950'));
-                    if (str_starts_with($mainWaNumber, '0')) {
-                        $mainWaNumber = '62' . substr($mainWaNumber, 1);
-                    }
                     $mainDisplayNumber = $siteSettings['contact_whatsapp'] ?? ($siteSettings['site_phone'] ?? '0812-7890-1950');
+                    $mainWaMessage = $siteSettings['wa_helpdesk_message'] ?? 'Assalamu\'alaikum Admin Utama PPRU Sakatiga, saya ingin berkonsultasi mengenai informasi pesantren / pendaftaran santri baru...';
+                    $mainWaUrl = \App\Models\Setting::waUrl($siteSettings['contact_whatsapp'] ?? ($siteSettings['site_phone'] ?? '0812-7890-1950'), $mainWaMessage);
                 @endphp
 
                 <div class="p-3.5 bg-emerald-50/80 dark:bg-emerald-950/40 border border-emerald-200/80 dark:border-emerald-800/60 rounded-2xl flex items-center justify-between">
@@ -298,14 +296,14 @@
                             <i class="fa-brands fa-whatsapp"></i>
                         </span>
                         <div>
-                            <span class="text-[10px] uppercase tracking-wider font-extrabold text-emerald-800 dark:text-emerald-300 block">Nomor WhatsApp Pusat</span>
+                            <span class="text-[10px] uppercase tracking-wider font-extrabold text-emerald-800 dark:text-emerald-300 block">{{ $siteSettings['contact_whatsapp_label'] ?? 'Nomor WhatsApp Pusat' }}</span>
                             <span class="font-black text-slate-900 dark:text-white text-xs">{{ $mainDisplayNumber }}</span>
                         </div>
                     </div>
                     <span class="text-[10px] bg-emerald-200/60 dark:bg-emerald-800/60 text-emerald-900 dark:text-emerald-200 px-2 py-0.5 rounded-full font-bold">Resmi</span>
                 </div>
 
-                <a href="https://wa.me/{{ $mainWaNumber }}?text={{ urlencode('Assalamu\'alaikum Admin Utama PPRU Sakatiga, saya ingin berkonsultasi mengenai informasi pesantren / pendaftaran santri baru...') }}"
+                <a href="{{ $mainWaUrl }}"
                    target="_blank"
                    class="w-full bg-[#25D366] hover:bg-[#1EBE5D] text-white py-3 px-4 rounded-2xl font-black text-xs flex items-center justify-center space-x-2 shadow-md transition transform hover:scale-[1.02]">
                     <i class="fa-brands fa-whatsapp text-lg"></i>
@@ -329,10 +327,8 @@
                 <div class="overflow-y-auto space-y-2.5 max-h-72 pr-1">
                     @foreach(($navUnitPendidikans ?? \App\Models\UnitPendidikan::active()->orderBy('order', 'asc')->get()) as $unit)
                         @php
-                            $unitWa = preg_replace('/[^0-9]/', '', $unit->phone ?: ($siteSettings['contact_whatsapp'] ?? '081278901950'));
-                            if (str_starts_with($unitWa, '0')) {
-                                $unitWa = '62' . substr($unitWa, 1);
-                            }
+                            $unitMessage = "Assalamu'alaikum Admin {$unit->short_name} PPRU, saya ingin konsultasi mengenai informasi dan pendaftaran {$unit->name}...";
+                            $unitWaUrl = \App\Models\Setting::waUrl($unit->phone ?: ($siteSettings['contact_whatsapp'] ?? '0812-7890-1950'), $unitMessage);
                             $searchKey = strtolower($unit->name . ' ' . $unit->short_name . ' ' . $unit->category_type);
                         @endphp
                         <div x-show="!searchUnit || '{{ $searchKey }}'.includes(searchUnit.toLowerCase())"
@@ -352,7 +348,7 @@
                                     <span>{{ $unit->phone ?: '0812-7890-1950' }}</span>
                                 </p>
                             </div>
-                            <a href="https://wa.me/{{ $unitWa }}?text={{ urlencode("Assalamu'alaikum Admin {$unit->short_name} PPRU, saya ingin konsultasi mengenai informasi dan pendaftaran {$unit->name}...") }}"
+                            <a href="{{ $unitWaUrl }}"
                                target="_blank"
                                class="shrink-0 bg-emerald-50 dark:bg-emerald-950 hover:bg-[#25D366] text-[#00913e] dark:text-emerald-300 hover:text-white border border-emerald-200 dark:border-emerald-800 hover:border-[#25D366] px-3 py-1.5 rounded-xl font-extrabold text-[11px] flex items-center gap-1.5 transition shadow-2xs">
                                 <i class="fa-brands fa-whatsapp text-sm"></i>

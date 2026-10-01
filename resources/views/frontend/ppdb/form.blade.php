@@ -26,13 +26,11 @@
                 </div>
 
                 @php
-                    $cleanHotline = preg_replace('/[^0-9]/', '', (string) ($formSettings['hotline_phone'] ?? '081278901950'));
-                    if (str_starts_with($cleanHotline, '0')) {
-                        $cleanHotline = '62' . substr($cleanHotline, 1);
-                    }
+                    $formHotline = $formSettings['hotline_phone'] ?? ($siteSettings['ppdb_hotline_phone'] ?? '0812-7890-1950');
+                    $formHotlineMsg = $siteSettings['ppdb_wa_template'] ?? "Assalamu'alaikum Panitia PSB PPRU Sakatiga, saya ingin menanyakan jadwal pendaftaran/kuota santri baru.";
                 @endphp
                 <div class="pt-4 flex flex-wrap items-center justify-center gap-3">
-                    <a href="https://wa.me/{{ $cleanHotline }}?text={{ urlencode('Assalamu\'alaikum Panitia PSB PPRU Sakatiga, saya ingin menanyakan jadwal pendaftaran/kuota santri baru.') }}" target="_blank" class="inline-flex items-center space-x-2 bg-[#00913e] hover:bg-[#007532] text-white px-7 py-3.5 rounded-2xl text-xs sm:text-sm font-black transition shadow-lg shadow-emerald-500/25">
+                    <a href="{{ \App\Models\Setting::waUrl($formHotline, $formHotlineMsg) }}" target="_blank" class="inline-flex items-center space-x-2 bg-[#00913e] hover:bg-[#007532] text-white px-7 py-3.5 rounded-2xl text-xs sm:text-sm font-black transition shadow-lg shadow-emerald-500/25">
                         <i class="fa-brands fa-whatsapp text-lg"></i>
                         <span>Hubungi Panitia via WhatsApp</span>
                     </a>

@@ -128,15 +128,19 @@
                     </div>
 
                     {{-- Helpdesk Sarpras WA inside the same card --}}
+                    @php
+                        $sewaPhone = !empty($siteSettings['wa_layanan_sewa']) ? $siteSettings['wa_layanan_sewa'] : (!empty($siteSettings['ptsp_helpdesk_phone']) ? $siteSettings['ptsp_helpdesk_phone'] : ($siteSettings['contact_whatsapp'] ?? '0812-7890-1950'));
+                        $sewaMessage = "Assalamu'alaikum Tim Sarpras PPRU, saya ingin cek ketersediaan gedung aula/sarana.";
+                    @endphp
                     <div class="p-3.5 rounded-2xl bg-gradient-to-r from-emerald-950 to-slate-950 text-white flex items-center justify-between gap-3 shadow-sm border border-emerald-900/40 mt-auto">
                         <div class="flex items-center space-x-2.5">
                             <i class="fa-brands fa-whatsapp text-amber-400 text-xl shrink-0"></i>
                             <div class="text-[11px] leading-tight">
                                 <span class="font-bold text-white block">Cek Ketersediaan Gedung</span>
-                                <span class="text-emerald-200 text-[10px]">WhatsApp: 0812-7890-1950</span>
+                                <span class="text-emerald-200 text-[10px]">WhatsApp: {{ $sewaPhone }}</span>
                             </div>
                         </div>
-                        <a href="https://wa.me/6281278901950?text={{ urlencode('Assalamu\'alaikum Tim Sarpras PPRU, saya ingin cek ketersediaan gedung aula/sarana.') }}" target="_blank" class="bg-[#25D366] hover:bg-[#1EBE5D] text-white text-[11px] font-bold px-3 py-1.5 rounded-xl transition shrink-0 shadow-sm flex items-center gap-1">
+                        <a href="{{ \App\Models\Setting::waUrl($sewaPhone, $sewaMessage) }}" target="_blank" class="bg-[#25D366] hover:bg-[#1EBE5D] text-white text-[11px] font-bold px-3 py-1.5 rounded-xl transition shrink-0 shadow-sm flex items-center gap-1">
                             <span>Chat WA</span>
                             <i class="fa-solid fa-arrow-right text-[9px]"></i>
                         </a>
@@ -313,11 +317,11 @@
                             <i class="fa-solid fa-phone-volume mr-1"></i> Kontak &amp; Saluran Resmi
                         </span>
                         <div class="space-y-2">
-                            <a href="https://wa.me/6281278901950" target="_blank" class="flex items-center space-x-3 p-3 rounded-xl bg-emerald-50 hover:bg-emerald-100/70 dark:bg-emerald-950/60 dark:hover:bg-emerald-900/60 border border-emerald-200 dark:border-emerald-800 transition group">
+                            <a href="{{ \App\Models\Setting::waUrl($sewaPhone, $sewaMessage) }}" target="_blank" class="flex items-center space-x-3 p-3 rounded-xl bg-emerald-50 hover:bg-emerald-100/70 dark:bg-emerald-950/60 dark:hover:bg-emerald-900/60 border border-emerald-200 dark:border-emerald-800 transition group">
                                 <i class="fa-brands fa-whatsapp text-xl text-[#25D366]"></i>
                                 <div>
                                     <span class="text-[10px] text-emerald-800 dark:text-emerald-400 font-bold block uppercase">No. HP (WhatsApp)</span>
-                                    <span class="text-xs sm:text-sm font-black text-slate-900 dark:text-white group-hover:text-[#00843d] dark:group-hover:text-emerald-400 transition">0812-7890-1950</span>
+                                    <span class="text-xs sm:text-sm font-black text-slate-900 dark:text-white group-hover:text-[#00843d] dark:group-hover:text-emerald-400 transition">{{ $sewaPhone }}</span>
                                 </div>
                             </a>
                             <a href="mailto:sekretariat@ppru.ac.id" class="flex items-center space-x-3 p-3 rounded-xl bg-slate-50 hover:bg-slate-100 dark:bg-slate-800 dark:hover:bg-slate-750 border border-slate-200 dark:border-slate-700 transition group">

@@ -83,7 +83,7 @@
 
             {{-- Contact Hotline Boxes --}}
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-lg mx-auto pt-2 mb-6">
-                <a href="https://wa.me/6281278901950?text={{ urlencode('Assalamu\'alaikum Sekretariat PPRU, saya ingin menanyakan perihal...') }}" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm px-4 py-3 rounded-2xl shadow-lg shadow-emerald-700/20 transition group">
+                <a href="{{ \App\Models\Setting::waUrl($siteSettings['contact_whatsapp'] ?? '0812-7890-1950', 'Assalamu\'alaikum Sekretariat PPRU, saya ingin menanyakan perihal...') }}" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm px-4 py-3 rounded-2xl shadow-lg shadow-emerald-700/20 transition group">
                     <i class="fa-brands fa-whatsapp text-lg group-hover:scale-110 transition"></i>
                     <span>WhatsApp Sekretariat</span>
                 </a>

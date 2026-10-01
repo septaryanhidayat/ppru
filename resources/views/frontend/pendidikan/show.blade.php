@@ -64,8 +64,8 @@
                 <i class="fa-solid fa-graduation-cap"></i>
                 <span>Daftar PSB Online {{ $unit->short_name ?: $unit->name }}</span>
             </a>
-            @if($unit->phone)
-                <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $unit->phone) }}?text=Assalamu%27alaikum%20Panitia%20PSB%20{{ urlencode($unit->name) }}%2C%20saya%20ingin%20konsultasi%20pendaftaran" target="_blank" rel="noopener" class="bg-white/15 hover:bg-white/25 text-white font-bold text-xs sm:text-sm px-5 py-3 rounded-full border border-white/20 backdrop-blur-xs transition flex items-center space-x-2">
+            @if($unit->phone || !empty($siteSettings['contact_whatsapp']))
+                <a href="{{ \App\Models\Setting::waUrl($unit->phone ?: ($siteSettings['contact_whatsapp'] ?? '0812-7890-1950'), 'Assalamu\'alaikum Panitia PSB ' . $unit->name . ', saya ingin konsultasi pendaftaran') }}" target="_blank" rel="noopener" class="bg-white/15 hover:bg-white/25 text-white font-bold text-xs sm:text-sm px-5 py-3 rounded-full border border-white/20 backdrop-blur-xs transition flex items-center space-x-2">
                     <i class="fa-brands fa-whatsapp text-emerald-300 text-base"></i>
                     <span>Konsultasi WhatsApp</span>
                 </a>
@@ -156,8 +156,8 @@
                     </div>
                     <div class="min-w-0 flex-1">
                         <span class="text-[10px] font-extrabold uppercase tracking-wider text-emerald-700 block">Layanan Konsultasi</span>
-                        <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $unit->phone ?? '081278901950') }}?text={{ urlencode('Assalamu\'alaikum, saya ingin konsultasi PSB unit ' . $unit->name) }}" target="_blank" rel="noopener" class="text-sm font-black text-emerald-700 hover:text-emerald-800 hover:underline block mt-0.5 leading-snug">
-                            {{ $unit->phone ?: '0812-7890-1950' }}
+                        <a href="{{ \App\Models\Setting::waUrl($unit->phone ?: ($siteSettings['contact_whatsapp'] ?? '0812-7890-1950'), 'Assalamu\'alaikum, saya ingin konsultasi PSB unit ' . $unit->name) }}" target="_blank" rel="noopener" class="text-sm font-black text-emerald-700 hover:text-emerald-800 hover:underline block mt-0.5 leading-snug">
+                            {{ $unit->phone ?: ($siteSettings['contact_whatsapp'] ?? '0812-7890-1950') }}
                         </a>
                     </div>
                 </div>
@@ -920,8 +920,8 @@
                     <i class="fa-solid fa-graduation-cap text-base"></i>
                     <span>Daftar PSB {{ $unit->short_name ?: 'Online' }} Sekarang</span>
                 </a>
-                @if($unit->phone)
-                    <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $unit->phone) }}?text=Assalamu%27alaikum%20Panitia%20PSB%20{{ urlencode($unit->name) }}" target="_blank" rel="noopener" class="bg-white/20 hover:bg-white/30 text-white text-xs sm:text-sm font-bold px-6 py-3.5 rounded-full transition flex items-center space-x-2">
+                @if($unit->phone || !empty($siteSettings['contact_whatsapp']))
+                    <a href="{{ \App\Models\Setting::waUrl($unit->phone ?: ($siteSettings['contact_whatsapp'] ?? '0812-7890-1950'), 'Assalamu\'alaikum Panitia PSB ' . $unit->name) }}" target="_blank" rel="noopener" class="bg-white/20 hover:bg-white/30 text-white text-xs sm:text-sm font-bold px-6 py-3.5 rounded-full transition flex items-center space-x-2">
                         <i class="fa-brands fa-whatsapp text-emerald-300 text-base"></i>
                         <span>Hubungi Panitia PSB</span>
                     </a>

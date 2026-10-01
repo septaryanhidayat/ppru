@@ -72,4 +72,36 @@ class Setting extends Model
     {
         static::$memoryCache = null;
     }
+
+    /**
+     * Standardize any phone number format to a valid international WhatsApp digits string (default 62...).
+     */
+    public static function formatWaNumber(?string $phone, string $default = '6281278901950'): string
+    {
+        $clean = preg_replace('/[^0-9]/', '', (string) ($phone ?: ''));
+        if (empty($clean)) {
+            $clean = preg_replace('/[^0-9]/', '', $default);
+        }
+
+        if (str_starts_with($clean, '0')) {
+            $clean = '62'.substr($clean, 1);
+        }
+
+        return $clean;
+    }
+
+    /**
+     * Generate a valid wa.me link with optional pre-filled message text.
+     */
+    public static function waUrl(?string $phone, ?string $message = null, string $default = '6281278901950'): string
+    {
+        $digits = static::formatWaNumber($phone, $default);
+        $url = 'https://wa.me/'.$digits;
+
+        if ($message !== null && trim($message) !== '') {
+            $url .= '?text='.urlencode(trim($message));
+        }
+
+        return $url;
+    }
 }

@@ -67,22 +67,19 @@
 
         {{-- Box 3: WhatsApp --}}
         @php
-            $rawPhone = $siteSettings['contact_phone'] ?? '0812-7890-1950';
-            $cleanWa = preg_replace('/[^0-9]/', '', $rawPhone);
-            if (str_starts_with($cleanWa, '0')) {
-                $cleanWa = '62' . substr($cleanWa, 1);
-            }
+            $rawPhone = $siteSettings['contact_whatsapp'] ?? ($siteSettings['contact_phone'] ?? '0812-7890-1950');
+            $hubungiWaUrl = \App\Models\Setting::waUrl($rawPhone, $siteSettings['wa_helpdesk_message'] ?? null);
         @endphp
         <div class="bg-white dark:bg-slate-900 p-6 sm:p-8 rounded-3xl shadow-md border border-gray-100 dark:border-slate-800 hover:shadow-xl transition transform hover:-translate-y-1 space-y-4 reveal-fade-up delay-2">
             <div class="w-14 h-14 rounded-2xl bg-emerald-100 dark:bg-slate-800 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-2xl shadow-inner">
                 <i class="fa-brands fa-whatsapp"></i>
             </div>
             <div>
-                <span class="text-xs font-bold text-gray-400 dark:text-slate-500 uppercase tracking-wider block">WhatsApp PSB :</span>
-                <a href="https://wa.me/{{ $cleanWa }}" target="_blank" class="text-base font-extrabold text-gray-900 dark:text-white hover:text-[#00913e] dark:hover:text-emerald-400 transition mt-1 block">
+                <span class="text-xs font-bold text-gray-400 dark:text-slate-500 uppercase tracking-wider block">{{ $siteSettings['contact_whatsapp_label'] ?? 'WhatsApp Resmi' }} :</span>
+                <a href="{{ $hubungiWaUrl }}" target="_blank" class="text-base font-extrabold text-gray-900 dark:text-white hover:text-[#00913e] dark:hover:text-emerald-400 transition mt-1 block">
                     {{ $rawPhone }}
                 </a>
-                <p class="text-xs text-gray-500 dark:text-slate-400 mt-1">Konsultasi cepat PSB dan beasiswa santri via chat.</p>
+                <p class="text-xs text-gray-500 dark:text-slate-400 mt-1">Konsultasi cepat informasi pesantren dan pendaftaran santri baru via chat.</p>
             </div>
         </div>
 

@@ -39,7 +39,7 @@ class AdminSettingController extends Controller
             'site_name', 'site_tagline', 'site_description', 'site_logo',
             'og_title', 'og_description', 'og_image', 'twitter_card',
             'meta_keywords', 'google_site_verification',
-            'contact_address', 'contact_email', 'contact_phone',
+            'contact_address', 'contact_email', 'contact_phone', 'contact_whatsapp',
             'social_facebook', 'social_instagram', 'social_youtube', 'social_tiktok', 'social_twitter',
             'home_mudir_name', 'home_mudir_role', 'mudir_photo',
             'home_sambutan_badge', 'home_sambutan_title', 'home_sambutan_quote',

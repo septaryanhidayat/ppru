@@ -127,8 +127,11 @@
                         <p class="text-xs sm:text-sm text-emerald-100/90 max-w-lg leading-relaxed">
                             Santri dan Asatidz Raudhatul Ulum dapat mengirimkan naskah tulisan untuk dipublikasikan di website resmi dan buletin pesantren. Kirimkan naskah Anda ke tim redaksi Humas.
                         </p>
-                    </div>
-                    <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $siteSettings['contact_whatsapp'] ?? '6281278901950') }}?text={{ urlencode('Assalamu\'alaikum Redaksi Web PPRU, saya santri/asatidz ingin mengirimkan naskah karya tulis untuk website.') }}" target="_blank" rel="noopener noreferrer" class="bg-[#25D366] hover:bg-[#1EBE5D] text-white px-6 py-3.5 rounded-2xl font-black text-xs shadow-lg transition flex items-center justify-center space-x-2 shrink-0">
+                    @php
+                        $santriWa = !empty($siteSettings['wa_santri_article']) ? $siteSettings['wa_santri_article'] : ($siteSettings['contact_whatsapp'] ?? '0812-7890-1950');
+                        $santriMsg = $siteSettings['wa_santri_article_template'] ?? "Assalamu'alaikum Redaksi Web PPRU, saya santri/asatidz ingin mengirimkan naskah karya tulis untuk website.";
+                    @endphp
+                    <a href="{{ \App\Models\Setting::waUrl($santriWa, $santriMsg) }}" target="_blank" rel="noopener noreferrer" class="bg-[#25D366] hover:bg-[#1EBE5D] text-white px-6 py-3.5 rounded-2xl font-black text-xs shadow-lg transition flex items-center justify-center space-x-2 shrink-0">
                         <i class="fa-brands fa-whatsapp text-base"></i>
                         <span>Kirim Naskah via WA</span>
                     </a>

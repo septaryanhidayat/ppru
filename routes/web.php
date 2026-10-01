@@ -26,6 +26,7 @@ use App\Http\Controllers\Admin\AdminStaticPageController;
 use App\Http\Controllers\Admin\AdminTestimonialController;
 use App\Http\Controllers\Admin\AdminUnitPendidikanController;
 use App\Http\Controllers\Admin\AdminUserController;
+use App\Http\Controllers\Admin\AdminWhatsAppController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BidangController;
@@ -171,6 +172,10 @@ Route::prefix('admin')->middleware(['auth', 'unit.access'])->name('admin.')->gro
     // Website & SEO Settings
     Route::get('/settings', [AdminSettingController::class, 'index'])->name('settings.index');
     Route::post('/settings', [AdminSettingController::class, 'update'])->name('settings.update');
+
+    // Kelola Nomor WhatsApp Resmi Website
+    Route::get('/whatsapp', [AdminWhatsAppController::class, 'index'])->name('whatsapp.index');
+    Route::post('/whatsapp', [AdminWhatsAppController::class, 'update'])->name('whatsapp.update');
 
     // Database Migration Runner
     Route::post('/migrate', [AdminDashboardController::class, 'runMigration'])->name('migrate');

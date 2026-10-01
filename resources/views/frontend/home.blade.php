@@ -765,12 +765,9 @@
             </div>
             <div class="flex-shrink-0 flex flex-wrap gap-3 justify-center">
                 @php
-                    $waHelpNumber = preg_replace('/[^0-9]/', '', $siteSettings['site_phone'] ?? '081278901950');
-                    if (str_starts_with($waHelpNumber, '0')) {
-                        $waHelpNumber = '62' . substr($waHelpNumber, 1);
-                    }
+                    $waHelpNumber = $siteSettings['contact_whatsapp'] ?? ($siteSettings['site_phone'] ?? ($siteSettings['contact_phone'] ?? '0812-7890-1950'));
                 @endphp
-                <a href="https://wa.me/{{ $waHelpNumber }}?text={{ urlencode('Assalamu\'alaikum, saya ingin berkonsultasi mengenai pilihan unit pendidikan di Pondok Pesantren Raudhatul Ulum Sakatiga.') }}" target="_blank" class="bg-[#25D366] hover:bg-[#1EBE5D] text-white font-bold text-xs sm:text-sm px-6 py-3 rounded-full shadow-lg transition flex items-center space-x-2 transform hover:scale-105">
+                <a href="{{ \App\Models\Setting::waUrl($waHelpNumber, 'Assalamu\'alaikum, saya ingin berkonsultasi mengenai pilihan unit pendidikan di Pondok Pesantren Raudhatul Ulum Sakatiga.') }}" target="_blank" class="bg-[#25D366] hover:bg-[#1EBE5D] text-white font-bold text-xs sm:text-sm px-6 py-3 rounded-full shadow-lg transition flex items-center space-x-2 transform hover:scale-105">
                     <i class="fa-brands fa-whatsapp text-base"></i>
                     <span>Konsultasi via WhatsApp</span>
                 </a>
@@ -1529,7 +1526,7 @@
                         <i class="fa-solid fa-hand-holding-heart mr-2"></i>
                         <span>{{ $siteSettings['home_infaq_btn1_text'] ?? 'Salurkan Infaq & Wakaf' }}</span>
                     </a>
-                    <a href="{{ $siteSettings['home_infaq_btn2_url'] ?? ('https://wa.me/' . $waHelpNumber . '?text=' . urlencode('Assalamu\'alaikum, saya ingin konfirmasi infaq/wakaf untuk Pondok Pesantren Raudhatul Ulum Sakatiga.')) }}" target="_blank" class="w-full sm:w-auto text-center bg-white/10 hover:bg-white/20 text-white font-bold text-xs px-6 py-2.5 rounded-xl border border-white/20 transition">
+                    <a href="{{ $siteSettings['home_infaq_btn2_url'] ?? \App\Models\Setting::waUrl($siteSettings['donation_confirm_phone'] ?? ($siteSettings['contact_whatsapp'] ?? '0812-7890-1950'), 'Assalamu\'alaikum, saya ingin konfirmasi infaq/wakaf untuk Pondok Pesantren Raudhatul Ulum Sakatiga.') }}" target="_blank" class="w-full sm:w-auto text-center bg-white/10 hover:bg-white/20 text-white font-bold text-xs px-6 py-2.5 rounded-xl border border-white/20 transition">
                         <i class="fa-brands fa-whatsapp mr-1.5"></i>
                         <span>{{ $siteSettings['home_infaq_btn2_text'] ?? 'Konfirmasi via WhatsApp' }}</span>
                     </a>

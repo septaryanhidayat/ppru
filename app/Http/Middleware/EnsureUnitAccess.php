@@ -43,6 +43,7 @@ class EnsureUnitAccess
         if ($user->role === 'editor') {
             $disallowedForEditor = [
                 'admin/settings',
+                'admin/whatsapp',
                 'admin/backup',
                 'admin/security',
                 'admin/users',
@@ -69,6 +70,7 @@ class EnsureUnitAccess
             // Disallowed route patterns for unit admins
             $disallowedPrefixes = [
                 'admin/settings',
+                'admin/whatsapp',
                 'admin/hero-slides',
                 'admin/nav-menus',
                 'admin/pages',

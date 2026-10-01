@@ -386,8 +386,11 @@
                 </p>
             </div>
 
-            <div class="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col gap-3 justify-center">
-                <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $siteSettings['contact_whatsapp'] ?? '6281278901950') }}?text={{ urlencode('Assalamu\'alaikum Redaksi IKARUS PPRU, saya alumni ingin mengirimkan naskah karya tulis untuk website.') }}" target="_blank" rel="noopener noreferrer" class="bg-[#25D366] hover:bg-[#1EBE5D] text-white px-5 py-3 rounded-xl font-bold text-xs text-center shadow-lg transition flex items-center justify-center space-x-2">
+                @php
+                    $alumniWa = !empty($siteSettings['wa_alumni_article']) ? $siteSettings['wa_alumni_article'] : ($siteSettings['contact_whatsapp'] ?? '0812-7890-1950');
+                    $alumniMsg = $siteSettings['wa_alumni_article_template'] ?? "Assalamu'alaikum Redaksi IKARUS PPRU, saya alumni ingin mengirimkan naskah karya tulis untuk website.";
+                @endphp
+                <a href="{{ \App\Models\Setting::waUrl($alumniWa, $alumniMsg) }}" target="_blank" rel="noopener noreferrer" class="bg-[#25D366] hover:bg-[#1EBE5D] text-white px-5 py-3 rounded-xl font-bold text-xs text-center shadow-lg transition flex items-center justify-center space-x-2">
                     <i class="fa-brands fa-whatsapp text-base"></i>
                     <span>Kirim Naskah via WhatsApp</span>
                 </a>

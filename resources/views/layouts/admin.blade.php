@@ -459,6 +459,16 @@
                     <span class="sidebar-section-title px-3 text-[10px] font-bold tracking-wider text-slate-400 uppercase block py-0.5">Sistem</span>
                     <div class="sidebar-section-divider hidden"></div>
                     
+                    <a href="{{ route('admin.whatsapp.index') }}" class="sidebar-item flex items-center justify-between px-3 py-1.5 rounded-lg transition {{ request()->routeIs('admin.whatsapp*') ? 'bg-gradient-to-r from-[#00843d] to-[#05a849] text-white font-bold shadow-md' : 'hover:bg-slate-800/70 text-slate-300 hover:text-white' }}" title="Kelola Nomor WhatsApp">
+                        <div class="flex items-center space-x-3">
+                            <i class="fa-brands fa-whatsapp text-xs w-4 text-center text-[#25d366]"></i>
+                            <span class="sidebar-label font-bold text-emerald-200">Nomor WhatsApp</span>
+                        </div>
+                        <span class="sidebar-badge bg-[#25d366] text-slate-950 text-[9px] px-1.5 py-0.2 rounded-full font-black">
+                            Pusat &amp; Unit
+                        </span>
+                    </a>
+
                     <a href="{{ route('admin.settings.index') }}" class="sidebar-item flex items-center space-x-3 px-3 py-1.5 rounded-lg transition {{ request()->routeIs('admin.settings*') ? 'bg-gradient-to-r from-[#da251c] to-[#ef4444] text-white font-bold shadow-md shadow-red-500/20' : 'hover:bg-slate-800/70 text-slate-300 hover:text-white' }}" title="Pengaturan">
                         <i class="fa-solid fa-gear text-xs w-4 text-center"></i>
                         <span class="sidebar-label">Pengaturan</span>

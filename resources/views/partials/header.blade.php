@@ -52,9 +52,9 @@
             <a href="{{ $siteSettings['social_youtube'] ?? 'https://www.youtube.com/@pprusakatiga' }}" target="_blank" rel="noopener" class="text-emerald-200 hover:text-[#f59e0b] transition" aria-label="YouTube PPRU">
                 <i class="fa-brands fa-youtube"></i>
             </a>
-            <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $siteSettings['contact_whatsapp'] ?? '6281278901950') }}" target="_blank" rel="noopener" class="text-emerald-200 hover:text-[#f59e0b] transition flex items-center space-x-1" aria-label="WhatsApp PPRU">
+            <a href="{{ \App\Models\Setting::waUrl($siteSettings['contact_whatsapp'] ?? '0812-7890-1950', $siteSettings['wa_helpdesk_message'] ?? null) }}" target="_blank" rel="noopener" class="text-emerald-200 hover:text-[#f59e0b] transition flex items-center space-x-1" aria-label="WhatsApp PPRU">
                 <i class="fa-brands fa-whatsapp text-emerald-400"></i>
-                <span class="text-[11px] font-semibold">Helpdesk</span>
+                <span class="text-[11px] font-semibold">{{ $siteSettings['contact_whatsapp_label'] ?? 'Helpdesk' }}</span>
             </a>
         </div>
     </div>

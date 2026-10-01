@@ -29,11 +29,8 @@
     $bank3Note = $siteSettings['donation_bank_3_note'] ?? '';
     $bank3Btn = $siteSettings['donation_bank_3_btn_text'] ?? 'Salin Nomor Rekening';
 
-    $confirmPhone = !empty($siteSettings['donation_confirm_phone']) ? $siteSettings['donation_confirm_phone'] : ($siteSettings['contact_phone'] ?? '081278901950');
-    $cleanWa = preg_replace('/[^0-9]/', '', $confirmPhone);
-    if (str_starts_with($cleanWa, '0')) {
-        $cleanWa = '62' . substr($cleanWa, 1);
-    }
+    $confirmPhone = !empty($siteSettings['donation_confirm_phone']) ? $siteSettings['donation_confirm_phone'] : ($siteSettings['contact_whatsapp'] ?? ($siteSettings['contact_phone'] ?? '0812-7890-1950'));
+    $cleanWa = \App\Models\Setting::formatWaNumber($confirmPhone);
     $rawConfirmText = $siteSettings['donation_confirm_text'] ?? "Assalamu'alaikum Bendahara Pondok Pesantren Raudhatul Ulum Sakatiga, saya telah menyalurkan infaq / donasi pendidikan untuk kemaslahatan sekolah.";
     $confirmText = urlencode($rawConfirmText);
 @endphp
