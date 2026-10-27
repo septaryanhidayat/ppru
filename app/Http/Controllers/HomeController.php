@@ -15,7 +15,6 @@ use App\Models\Setting;
 use App\Models\Testimonial;
 use App\Models\UnitPendidikan;
 use App\Models\Video;
-use App\Services\CmsAutoHealService;
 use App\Services\VisitorTrackerService;
 use Illuminate\Support\Facades\Schema;
 
@@ -276,7 +275,6 @@ class HomeController extends Controller
         }
 
         // 19. Statistik Pesantren (Dinamis dari Kelola Statistik Beranda)
-        CmsAutoHealService::ensureHomeStatisticsTableExists();
         $homeStatistics = HomeStatistic::active()->orderBy('order', 'asc')->get();
 
         return view('frontend.home', compact(

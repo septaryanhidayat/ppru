@@ -11,7 +11,6 @@ use App\Models\ServiceSubmission;
 use App\Models\Setting;
 use App\Models\Testimonial;
 use App\Models\Video;
-use App\Services\IkarusDemoService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -127,9 +126,6 @@ class InformationController extends Controller
 
     public function ikarus(Request $request)
     {
-        // Pastikan sample demo data IKARUS tersedia jika database masih kosong
-        IkarusDemoService::seedIfEmpty();
-
         $search = $request->input('q');
         $jenis = $request->input('jenis'); // 'berita', 'tulisan', atau null/semua
         $tahun = $request->input('tahun'); // '2026', '2025', '2024', atau null/semua

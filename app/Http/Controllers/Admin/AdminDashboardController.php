@@ -39,11 +39,6 @@ class AdminDashboardController extends Controller
             $unit = $user->unit;
             $unitId = $user->unit_pendidikan_id;
 
-            // Auto-heal and seed demo content if unit data is missing
-            if ($unit) {
-                UnitDemoContentService::seedUnitIfEmpty($unit);
-            }
-
             $stats = [
                 'total_posts' => Post::where('type', 'post')->where('unit_pendidikan_id', $unitId)->count(),
                 'total_views' => Post::where('type', 'post')->where('unit_pendidikan_id', $unitId)->sum('views_count'),

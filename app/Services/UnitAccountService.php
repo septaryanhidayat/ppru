@@ -144,9 +144,16 @@ class UnitAccountService
             $defaultPassword = Hash::make('AdminUnitPPRU2026!');
 
             foreach (self::getUnitsConfig() as $cfg) {
+                $cleanShort = str_replace([' ', '-', '_'], '', strtolower((string) $cfg['short_name']));
                 $unit = UnitPendidikan::where('short_name', $cfg['short_name'])
                     ->orWhere('slug', $cfg['slug'])
-                    ->first();
+                    ->orWhere('name', $cfg['name'])
+                    ->get()
+                    ->first(function ($u) use ($cfg, $cleanShort) {
+                        $uClean = str_replace([' ', '-', '_'], '', strtolower((string) $u->short_name));
+
+                        return $uClean === $cleanShort || $u->slug === $cfg['slug'] || $u->name === $cfg['name'];
+                    });
 
                 if (! $unit) {
                     $unit = UnitPendidikan::create([
@@ -182,9 +189,6 @@ class UnitAccountService
                     $userData
                 );
             }
-
-            // Ensure all units have complete demo content populated
-            UnitDemoContentService::seedAllUnitsDemo(false);
         } catch (\Throwable $e) {
             Log::error('UnitAccountService::ensureUnitAccountsExist error: '.$e->getMessage());
         }
@@ -198,8 +202,6 @@ class UnitAccountService
     public static function getUnitAdminsSummary(): array
     {
         try {
-            self::ensureUnitAccountsExist();
-
             if (! Schema::hasTable('unit_pendidikans')) {
                 return [];
             }

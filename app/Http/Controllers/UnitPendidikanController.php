@@ -9,8 +9,6 @@ use App\Models\Post;
 use App\Models\Testimonial;
 use App\Models\UnitPendidikan;
 use App\Models\Video;
-use App\Services\CmsAutoHealService;
-use App\Services\UnitDemoContentService;
 use Illuminate\Support\Facades\Schema;
 
 class UnitPendidikanController extends Controller
@@ -24,13 +22,7 @@ class UnitPendidikanController extends Controller
 
     public function show(string $slug)
     {
-        // Auto-heal schema if running on an unmigrated database
-        CmsAutoHealService::ensureUnitPendidikanSchemaExists();
-
         $unit = UnitPendidikan::where('slug', $slug)->firstOrFail();
-
-        // Ensure this unit is fully seeded with 8 teachers, 4 videos, 4 prestasi, 4 ekskul, 4 testimoni, 4 posts
-        UnitDemoContentService::seedUnitIfEmpty($unit);
 
         $hasDewanUnitCol = Schema::hasTable('dewan_asatidz') && Schema::hasColumn('dewan_asatidz', 'unit_pendidikan_id');
         $teacherQuery = AnggotaDewan::query();

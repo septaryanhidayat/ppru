@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\ActivityLog;
 use App\Models\AnggotaDewan;
 use App\Models\UnitPendidikan;
-use App\Services\CmsAutoHealService;
 use App\Services\WebpService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,7 +19,6 @@ class AdminDewanController extends Controller
     public function __construct(WebpService $webpService)
     {
         $this->webpService = $webpService;
-        CmsAutoHealService::ensureUnitPendidikanSchemaExists();
     }
 
     public function index(Request $request)

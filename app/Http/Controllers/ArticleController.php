@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
-use App\Services\IkarusDemoService;
 use Illuminate\Http\Request;
 
 class ArticleController extends Controller
@@ -66,10 +65,6 @@ class ArticleController extends Controller
             ->where('slug', $slug)
             ->with(['categories', 'tags', 'author'])
             ->first();
-
-        if (! $post) {
-            $post = IkarusDemoService::findOrCreateDemoArticle($slug);
-        }
 
         if (! $post) {
             abort(404);

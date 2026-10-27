@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\ActivityLog;
 use App\Models\Testimonial;
 use App\Models\UnitPendidikan;
-use App\Services\CmsAutoHealService;
 use App\Services\WebpService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -14,10 +13,7 @@ use Illuminate\Support\Facades\Schema;
 
 class AdminTestimonialController extends Controller
 {
-    public function __construct(protected WebpService $webpService)
-    {
-        CmsAutoHealService::ensureUnitPendidikanSchemaExists();
-    }
+    public function __construct(protected WebpService $webpService) {}
 
     public function index(Request $request)
     {

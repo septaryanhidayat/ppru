@@ -40,22 +40,8 @@ class UnitDemoContentService
      */
     public static function seedUnitIfEmpty(UnitPendidikan $unit): void
     {
-        try {
-            CmsAutoHealService::ensureUnitPendidikanSchemaExists();
-
-            $teachersCount = AnggotaDewan::where('unit_pendidikan_id', $unit->id)->count();
-            $postsCount = Post::where('unit_pendidikan_id', $unit->id)->where('type', 'post')->count();
-            $prestasiCount = Post::where('unit_pendidikan_id', $unit->id)->where('type', 'prestasi')->count();
-            $ekskulCount = Post::where('unit_pendidikan_id', $unit->id)->where('type', 'ekskul')->count();
-            $testimonialsCount = Testimonial::where('unit_pendidikan_id', $unit->id)->count();
-            $videosCount = Video::where('unit_pendidikan_id', $unit->id)->where('youtube_id', '!=', 'dQw4w9WgXcQ')->count();
-
-            if ($teachersCount < 8 || $postsCount < 4 || $prestasiCount < 4 || $ekskulCount < 4 || $testimonialsCount < 4 || $videosCount < 4) {
-                self::seedSingleUnit($unit, true);
-            }
-        } catch (\Throwable $e) {
-            Log::error("UnitDemoContentService::seedUnitIfEmpty for {$unit->name} error: ".$e->getMessage());
-        }
+        // Safe guard: Do not automatically re-seed demo content during web requests.
+        // This ensures user deletions of posts, teachers, or units in the CMS persist permanently.
     }
 
     /**

@@ -6,11 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\ActivityLog;
 use App\Models\UnitPendidikan;
 use App\Models\User;
-use App\Services\UnitAccountService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Validation\Rule;
 
@@ -18,13 +16,6 @@ class AdminUserController extends Controller
 {
     public function index(Request $request)
     {
-        // Pastikan 8 akun admin unit terisi otomatis jika belum ada di database
-        try {
-            UnitAccountService::ensureUnitAccountsExist();
-        } catch (\Throwable $e) {
-            Log::warning('UnitAccountService::ensureUnitAccountsExist skipped: '.$e->getMessage());
-        }
-
         $roleFilter = $request->input('role');
         $hasUnitColumn = Schema::hasTable('users') && Schema::hasColumn('users', 'unit_pendidikan_id');
         $query = $hasUnitColumn ? User::with('unit') : User::query();

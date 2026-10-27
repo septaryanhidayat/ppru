@@ -86,26 +86,6 @@ class CmsAutoHealService
                         $table->string('head_photo')->nullable();
                     }
                 });
-
-                // Auto-heal: Ensure Taman Kanak-Kanak (TAKIRU) is order 1, followed by sequential units
-                $unitOrders = [
-                    'taman-kanak-kanak-islam-raudhatul-ulum' => 1,
-                    'madrasah-ibtidaiyah-raudhatul-ulum' => 2,
-                    'madrasah-tsanawiyah-raudhatul-ulum' => 3,
-                    'madrasah-tahfizhul-quran-raudhatul-ulum' => 4,
-                    'madrasah-aliyah-raudhatul-ulum' => 5,
-                    'smp-islam-terpadu-raudhatul-ulum' => 6,
-                    'sma-islam-terpadu-raudhatul-ulum' => 7,
-                    'institut-agama-islam-nur-raudhatul-ulum' => 8,
-                ];
-                foreach ($unitOrders as $slug => $order) {
-                    UnitPendidikan::where('slug', $slug)->update(['order' => $order]);
-                }
-                UnitPendidikan::where(function ($q) {
-                    $q->where('slug', 'like', '%taman-kanak%')
-                        ->orWhere('short_name', 'TAKIRU')
-                        ->orWhere('name', 'like', '%Taman Kanak%');
-                })->update(['order' => 1]);
             }
         } catch (\Throwable $e) {
             Log::error('CmsAutoHealService::ensureUnitPendidikanSchemaExists error: '.$e->getMessage());
