@@ -36,11 +36,9 @@ git push origin main
 Setelah berhasil di-push ke GitHub, login ke cPanel hosting Anda, lalu buka menu **Terminal** di dashboard cPanel dan jalankan langkah-langkah berikut:
 
 ### 1. Masuk ke Folder Project Website di cPanel
-Sesuaikan path folder dengan letak instalasi website Anda di cPanel (misalnya `ppru` atau nama domain/subfolder Anda):
 ```bash
-cd ~/ppru
+cd /home/pesonaas/repositories/ppru
 ```
-*(atau jika diletakkan di root: `cd ~/public_html` atau sesuai path folder instalasi)*
 
 ### 2. Set Versi PHP (Jika Belum Default PHP 8.4)
 ```bash
