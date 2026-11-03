@@ -131,6 +131,108 @@
         .prose-content .ql-align-right, .prose-content p.ql-align-right { text-align: right !important; }
         .prose-content .ql-align-justify, .prose-content p.ql-align-justify { text-align: justify !important; text-justify: inter-word; }
         .prose-content img { margin-left: auto !important; margin-right: auto !important; display: block; border-radius: 1rem; max-width: 100%; height: auto; }
+
+        /* High-Contrast Dark Mode Rules for Article & Page Content */
+        html.dark .prose-content,
+        html.dark .prose-content *,
+        html.dark .prose-content p,
+        html.dark .prose-content span,
+        html.dark .prose-content div,
+        html.dark .prose-content li,
+        html.dark .prose-content font,
+        html.dark .prose-content em,
+        html.dark .prose-content i,
+        html.dark .prose,
+        html.dark .prose p,
+        html.dark .prose span,
+        html.dark .prose div,
+        html.dark .prose li,
+        html.dark .prose font,
+        html.dark .prose em,
+        html.dark .prose i {
+            color: #e2e8f0 !important;
+        }
+
+        html.dark .prose-content strong,
+        html.dark .prose-content b,
+        html.dark .prose-content h1,
+        html.dark .prose-content h2,
+        html.dark .prose-content h3,
+        html.dark .prose-content h4,
+        html.dark .prose-content h5,
+        html.dark .prose-content h6,
+        html.dark .prose strong,
+        html.dark .prose b,
+        html.dark .prose h1,
+        html.dark .prose h2,
+        html.dark .prose h3,
+        html.dark .prose h4,
+        html.dark .prose h5,
+        html.dark .prose h6 {
+            color: #ffffff !important;
+        }
+
+        html.dark .prose-content a,
+        html.dark .prose a {
+            color: #34d399 !important;
+            text-decoration: underline !important;
+        }
+
+        html.dark .prose-content a:hover,
+        html.dark .prose a:hover {
+            color: #fcd116 !important;
+        }
+
+        html.dark .prose-content blockquote,
+        html.dark .prose blockquote {
+            background-color: rgba(6, 78, 59, 0.25) !important;
+            color: #a7f3d0 !important;
+            border-left-color: #10b981 !important;
+        }
+
+        html.dark .prose-content th,
+        html.dark .prose th {
+            background-color: #1e293b !important;
+            color: #ffffff !important;
+            border-color: #334155 !important;
+        }
+
+        html.dark .prose-content td,
+        html.dark .prose td {
+            color: #e2e8f0 !important;
+            border-color: #334155 !important;
+            background-color: transparent !important;
+        }
+
+        html.dark .prose-content code,
+        html.dark .prose code {
+            background-color: #1e293b !important;
+            color: #fcd34d !important;
+        }
+
+        html.dark .prose-content [style*="color:"],
+        html.dark .prose [style*="color:"] {
+            color: #e2e8f0 !important;
+        }
+
+        html.dark .prose-content strong[style*="color:"],
+        html.dark .prose-content b[style*="color:"],
+        html.dark .prose strong[style*="color:"],
+        html.dark .prose b[style*="color:"] {
+            color: #ffffff !important;
+        }
+
+        html.dark .prose-content [style*="background-color: rgb(255"],
+        html.dark .prose-content [style*="background-color: #fff"],
+        html.dark .prose-content [style*="background-color: white"],
+        html.dark .prose-content [style*="background: rgb(255"],
+        html.dark .prose-content [style*="background: #fff"],
+        html.dark .prose-content [style*="background: white"],
+        html.dark .prose [style*="background-color: rgb(255"],
+        html.dark .prose [style*="background-color: #fff"],
+        html.dark .prose [style*="background-color: white"] {
+            background-color: transparent !important;
+        }
         @media (min-width: 768px) {
             .footer-address-col, .footer-address-col * { text-align: left !important; }
             .footer-address-col { align-items: flex-start !important; }

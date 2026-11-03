@@ -15,8 +15,8 @@
 </div>
 
 <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
-    <div class="bg-white rounded-3xl p-8 sm:p-12 shadow-xl border border-gray-100">
-        <div class="prose-content text-gray-700 text-sm sm:text-base leading-relaxed space-y-4">
+    <div class="bg-white dark:bg-slate-900 rounded-3xl p-8 sm:p-12 shadow-xl border border-gray-100 dark:border-slate-800">
+        <div class="prose-content text-gray-700 dark:text-slate-200 text-sm sm:text-base leading-relaxed space-y-4">
             {!! $page->content !!}
         </div>
     </div>

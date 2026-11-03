@@ -37,20 +37,20 @@
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
         {{-- MAIN CONTENT --}}
         <div class="lg:col-span-2 space-y-8">
-            <div class="bg-white rounded-3xl p-6 sm:p-10 border border-gray-100 shadow-sm space-y-6">
+            <div class="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-10 border border-gray-100 dark:border-slate-800 shadow-sm space-y-6">
                 @if($item->featured_image)
-                    <div class="rounded-2xl overflow-hidden shadow-md bg-gray-100 max-h-[480px]">
+                    <div class="rounded-2xl overflow-hidden shadow-md bg-gray-100 dark:bg-slate-800 max-h-[480px]">
                         <img src="{{ $item->featured_image }}" alt="{{ $item->title }}" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='/images/hero-1.webp'">
                     </div>
                 @endif
 
-                <div class="prose max-w-none text-gray-700 leading-relaxed space-y-4">
+                <div class="prose prose-content max-w-none text-gray-700 dark:text-slate-200 leading-relaxed space-y-4">
                     {!! $item->content !!}
                 </div>
 
                 {{-- SHARE BUTTONS --}}
-                <div class="pt-6 border-t border-gray-100 flex flex-wrap items-center justify-between gap-4">
-                    <span class="text-xs font-bold text-gray-500 uppercase tracking-wider">Bagikan Kabar Baik Ini:</span>
+                <div class="pt-6 border-t border-gray-100 dark:border-slate-800 flex flex-wrap items-center justify-between gap-4">
+                    <span class="text-xs font-bold text-gray-500 dark:text-slate-400 uppercase tracking-wider">Bagikan Kabar Baik Ini:</span>
                     <div class="flex items-center space-x-2">
                         <a href="https://api.whatsapp.com/send?text={{ urlencode($item->title . ' ' . url()->current()) }}" target="_blank" class="w-9 h-9 rounded-full bg-emerald-500 text-white flex items-center justify-center text-sm hover:bg-emerald-600 transition shadow-sm" title="Bagikan ke WhatsApp">
                             <i class="fa-brands fa-whatsapp"></i>
@@ -65,28 +65,28 @@
 
         {{-- SIDEBAR --}}
         <div class="space-y-6">
-            <div class="bg-white rounded-3xl p-6 border border-gray-100 shadow-sm space-y-4">
-                <h3 class="font-bold text-gray-900 text-base border-b border-gray-100 pb-3 flex items-center space-x-2">
+            <div class="bg-white dark:bg-slate-900 rounded-3xl p-6 border border-gray-100 dark:border-slate-800 shadow-sm space-y-4">
+                <h3 class="font-bold text-gray-900 dark:text-white text-base border-b border-gray-100 dark:border-slate-800 pb-3 flex items-center space-x-2">
                     <i class="fa-solid fa-trophy text-amber-500"></i>
                     <span>Prestasi Lainnya</span>
                 </h3>
                 <div class="space-y-4">
                     @forelse($related as $rel)
                         <a href="{{ route('prestasi.show', $rel->slug) }}" class="flex items-center space-x-3 group">
-                            <div class="w-16 h-16 rounded-xl overflow-hidden bg-gray-100 flex-shrink-0 shadow-sm">
+                            <div class="w-16 h-16 rounded-xl overflow-hidden bg-gray-100 dark:bg-slate-800 flex-shrink-0 shadow-sm">
                                 <img src="{{ $rel->featured_image ?: '/images/hero-1.webp' }}" alt="{{ $rel->title }}" class="w-full h-full object-cover group-hover:scale-105 transition" onerror="this.onerror=null;this.src='/images/hero-1.webp'">
                             </div>
                             <div class="flex-1 min-w-0">
-                                <h4 class="text-xs sm:text-sm font-semibold text-gray-800 group-hover:text-[#00913e] transition line-clamp-2 leading-snug">
+                                <h4 class="text-xs sm:text-sm font-semibold text-gray-800 dark:text-slate-200 group-hover:text-[#00913e] dark:group-hover:text-emerald-400 transition line-clamp-2 leading-snug">
                                     {{ $rel->title }}
                                 </h4>
-                                <span class="text-[10px] text-gray-400 mt-1 block">
+                                <span class="text-[10px] text-gray-400 dark:text-slate-500 mt-1 block">
                                     {{ $rel->published_at ? $rel->published_at->format('d M Y') : $rel->created_at->format('d M Y') }}
                                 </span>
                             </div>
                         </a>
                     @empty
-                        <p class="text-xs text-gray-400">Belum ada prestasi lainnya.</p>
+                        <p class="text-xs text-gray-400 dark:text-slate-500">Belum ada prestasi lainnya.</p>
                     @endforelse
                 </div>
             </div>
