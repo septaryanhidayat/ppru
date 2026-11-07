@@ -79,11 +79,11 @@ class AdminPostController extends Controller
 
     public function store(Request $request)
     {
-        $validated = $request->validate([
+        $rules = [
             'title' => 'required|string|max:255',
             'type' => 'nullable|in:post,prestasi,ekskul,alumni',
             'content' => 'required|string',
-            'excerpt' => 'nullable|string|max:500',
+            'excerpt' => 'nullable|string|max:5000',
             'status' => 'required|in:publish,draft',
             'is_featured' => 'nullable|boolean',
             'published_at' => 'nullable|date',
@@ -95,9 +95,27 @@ class AdminPostController extends Controller
             'new_category' => 'nullable|string|max:255',
             'tags' => 'nullable|string',
             'meta_title' => 'nullable|string|max:255',
-            'meta_description' => 'nullable|string|max:500',
+            'meta_description' => 'nullable|string|max:2000',
             'meta_keywords' => 'nullable|string|max:255',
-        ]);
+        ];
+
+        $messages = [
+            'title.required' => 'Judul artikel wajib diisi.',
+            'title.max' => 'Judul artikel tidak boleh lebih dari 255 karakter.',
+            'content.required' => 'Isi konten artikel wajib diisi.',
+            'excerpt.max' => 'Ringkasan (excerpt) tidak boleh lebih dari 5000 karakter.',
+            'featured_image.image' => 'File gambar utama harus berupa gambar yang valid (JPEG, PNG, JPG, WebP).',
+            'featured_image.mimes' => 'Format gambar utama harus berupa JPEG, PNG, JPG, atau WebP.',
+            'featured_image.max' => 'Ukuran gambar utama tidak boleh lebih dari 5 MB.',
+            'featured_image_caption.max' => 'Takarir / keterangan foto tidak boleh lebih dari 255 karakter.',
+            'author_name.max' => 'Nama penulis kustom tidak boleh lebih dari 255 karakter.',
+            'new_category.max' => 'Nama kategori baru tidak boleh lebih dari 255 karakter.',
+            'meta_title.max' => 'Meta Title SEO tidak boleh lebih dari 255 karakter.',
+            'meta_description.max' => 'Meta Description SEO tidak boleh lebih dari 2000 karakter.',
+            'meta_keywords.max' => 'Meta Keywords SEO tidak boleh lebih dari 255 karakter.',
+        ];
+
+        $validated = $request->validate($rules, $messages);
 
         $featuredImageUrl = null;
         $type = $validated['type'] ?? 'post';
@@ -228,11 +246,11 @@ class AdminPostController extends Controller
             abort(403, 'Anda tidak memiliki izin mengedit konten unit lain.');
         }
 
-        $validated = $request->validate([
+        $rules = [
             'title' => 'required|string|max:255',
             'type' => 'nullable|in:post,prestasi,ekskul,alumni',
             'content' => 'required|string',
-            'excerpt' => 'nullable|string|max:500',
+            'excerpt' => 'nullable|string|max:5000',
             'status' => 'required|in:publish,draft',
             'is_featured' => 'nullable|boolean',
             'published_at' => 'nullable|date',
@@ -244,9 +262,27 @@ class AdminPostController extends Controller
             'new_category' => 'nullable|string|max:255',
             'tags' => 'nullable|string',
             'meta_title' => 'nullable|string|max:255',
-            'meta_description' => 'nullable|string|max:500',
+            'meta_description' => 'nullable|string|max:2000',
             'meta_keywords' => 'nullable|string|max:255',
-        ]);
+        ];
+
+        $messages = [
+            'title.required' => 'Judul artikel wajib diisi.',
+            'title.max' => 'Judul artikel tidak boleh lebih dari 255 karakter.',
+            'content.required' => 'Isi konten artikel wajib diisi.',
+            'excerpt.max' => 'Ringkasan (excerpt) tidak boleh lebih dari 5000 karakter.',
+            'featured_image.image' => 'File gambar utama harus berupa gambar yang valid (JPEG, PNG, JPG, WebP).',
+            'featured_image.mimes' => 'Format gambar utama harus berupa JPEG, PNG, JPG, atau WebP.',
+            'featured_image.max' => 'Ukuran gambar utama tidak boleh lebih dari 5 MB.',
+            'featured_image_caption.max' => 'Takarir / keterangan foto tidak boleh lebih dari 255 karakter.',
+            'author_name.max' => 'Nama penulis kustom tidak boleh lebih dari 255 karakter.',
+            'new_category.max' => 'Nama kategori baru tidak boleh lebih dari 255 karakter.',
+            'meta_title.max' => 'Meta Title SEO tidak boleh lebih dari 255 karakter.',
+            'meta_description.max' => 'Meta Description SEO tidak boleh lebih dari 2000 karakter.',
+            'meta_keywords.max' => 'Meta Keywords SEO tidak boleh lebih dari 255 karakter.',
+        ];
+
+        $validated = $request->validate($rules, $messages);
 
         $featuredImageUrl = $post->featured_image;
 

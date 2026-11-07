@@ -50,7 +50,7 @@
             <label for="title" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
                 Judul {{ $currentTypeTitle }} <span class="text-red-500">*</span>
             </label>
-            <input type="text" name="title" id="title" required value="{{ old('title', $post->title) }}" class="w-full bg-slate-50 text-xs sm:text-sm text-slate-800 rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00843d] transition font-medium">
+            <input type="text" name="title" id="title" required maxlength="255" value="{{ old('title', $post->title) }}" class="w-full bg-slate-50 text-xs sm:text-sm text-slate-800 rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00843d] transition font-medium">
             @error('title') <p class="text-red-500 text-[11px] mt-1">{{ $message }}</p> @enderror
         </div>
 
@@ -101,7 +101,8 @@
                         </option>
                     @endforeach
                 </select>
-                <input type="text" name="author_name" id="author_name" value="{{ old('author_name', $post->author_name) }}" placeholder="Atau ketik nama kustom (Opsional)..." class="w-full bg-white text-xs text-slate-800 rounded-xl px-3 py-1.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00843d]">
+                <input type="text" name="author_name" id="author_name" maxlength="255" value="{{ old('author_name', $post->author_name) }}" placeholder="Atau ketik nama kustom (Opsional)..." class="w-full bg-white text-xs text-slate-800 rounded-xl px-3 py-1.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00843d]">
+                @error('author_name') <p class="text-red-500 text-[11px] mt-1">{{ $message }}</p> @enderror
             </div>
         </div>
 
@@ -136,7 +137,8 @@
                 <label for="featured_image_caption" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
                     Takarir / Keterangan &amp; Sumber Foto (Opsional)
                 </label>
-                <input type="text" name="featured_image_caption" id="featured_image_caption" value="{{ old('featured_image_caption', $post->featured_image_caption) }}" placeholder="Contoh: Foto: Dokumentasi Tim Humas PPRU Sakatiga" class="w-full bg-white text-xs text-slate-800 rounded-xl px-4 py-2.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00843d]">
+                <input type="text" name="featured_image_caption" id="featured_image_caption" maxlength="255" value="{{ old('featured_image_caption', $post->featured_image_caption) }}" placeholder="Contoh: Foto: Dokumentasi Tim Humas PPRU Sakatiga" class="w-full bg-white text-xs text-slate-800 rounded-xl px-4 py-2.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00843d]">
+                @error('featured_image_caption') <p class="text-red-500 text-[11px] mt-1">{{ $message }}</p> @enderror
             </div>
         </div>
 
@@ -210,7 +212,8 @@
                     <label for="excerpt" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
                         <i class="fa-solid fa-align-left text-[#00843d] mr-1"></i> Ringkasan (Excerpt)
                     </label>
-                    <textarea name="excerpt" id="excerpt" rows="3" placeholder="Ringkasan singkat untuk tampilan kartu berita." class="w-full bg-white text-xs text-slate-800 rounded-xl p-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00843d]">{{ old('excerpt', $post->excerpt) }}</textarea>
+                    <textarea name="excerpt" id="excerpt" rows="3" maxlength="5000" placeholder="Ringkasan singkat untuk tampilan kartu berita." class="w-full bg-white text-xs text-slate-800 rounded-xl p-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00843d]">{{ old('excerpt', $post->excerpt) }}</textarea>
+                    @error('excerpt') <p class="text-red-500 text-[11px] mt-1">{{ $message }}</p> @enderror
                 </div>
             </div>
         </div>
@@ -258,6 +261,7 @@
                         <span id="meta_title_counter" class="text-[10px] text-slate-400">{{ strlen($post->meta_title ?? '') }} / 70 karakter</span>
                     </div>
                     <input type="text" name="meta_title" id="meta_title" maxlength="70" value="{{ old('meta_title', $post->meta_title) }}" placeholder="Judul khusus SEO Google (bila ingin beda dari judul berita)..." class="w-full bg-slate-50 text-xs text-slate-800 rounded-xl px-4 py-2.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00843d]">
+                    @error('meta_title') <p class="text-red-500 text-[11px] mt-1">{{ $message }}</p> @enderror
                 </div>
 
                 <div>
@@ -266,11 +270,13 @@
                         <span id="meta_desc_counter" class="text-[10px] text-slate-400">{{ strlen($post->meta_description ?? '') }} / 160 karakter</span>
                     </div>
                     <textarea name="meta_description" id="meta_description" maxlength="160" rows="2" placeholder="Ringkasan informatif maksimal 160 karakter untuk ditampilkan di bawah judul Google..." class="w-full bg-slate-50 text-xs text-slate-800 rounded-xl p-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00843d]">{{ old('meta_description', $post->meta_description) }}</textarea>
+                    @error('meta_description') <p class="text-red-500 text-[11px] mt-1">{{ $message }}</p> @enderror
                 </div>
 
                 <div>
                     <label for="meta_keywords" class="block text-xs font-bold text-slate-700 mb-1">Meta Keywords</label>
-                    <input type="text" name="meta_keywords" id="meta_keywords" value="{{ old('meta_keywords', $post->meta_keywords) }}" placeholder="pesantren, ppru sakatiga, berita sekolah, pendidikan islam" class="w-full bg-slate-50 text-xs text-slate-800 rounded-xl px-4 py-2.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00843d]">
+                    <input type="text" name="meta_keywords" id="meta_keywords" maxlength="255" value="{{ old('meta_keywords', $post->meta_keywords) }}" placeholder="pesantren, ppru sakatiga, berita sekolah, pendidikan islam" class="w-full bg-slate-50 text-xs text-slate-800 rounded-xl px-4 py-2.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00843d]">
+                    @error('meta_keywords') <p class="text-red-500 text-[11px] mt-1">{{ $message }}</p> @enderror
                 </div>
             </div>
         </div>

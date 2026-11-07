@@ -197,3 +197,48 @@ test('public web correctly displays custom date, author, reading time, caption, 
     $categoryFilterResponse->assertOk();
     $categoryFilterResponse->assertSee('Santri PPRU Raih Medali Emas Kompetisi Robotik Turki');
 });
+
+test('admin can create post with excerpt longer than 500 characters and up to 5000 characters', function () {
+    $longExcerpt = str_repeat('Ini adalah ringkasan berita yang cukup panjang mengenai kegiatan santri di pondok pesantren. ', 15); // ~1350 characters
+    expect(strlen($longExcerpt))->toBeGreaterThan(500);
+
+    $response = $this->actingAs($this->admin)->post('/admin/posts', [
+        'title' => 'Liputan Khusus Kegiatan Santriwati PPRU '.time(),
+        'content' => '<p>Konten lengkap kegiatan santriwati PPRU.</p>',
+        'excerpt' => $longExcerpt,
+        'status' => 'publish',
+    ]);
+
+    $response->assertRedirect('/admin/posts');
+    $response->assertSessionHasNoErrors();
+
+    $post = Post::where('title', 'like', 'Liputan Khusus Kegiatan Santriwati PPRU%')->first();
+    expect($post)->not->toBeNull();
+    expect($post->excerpt)->toBe(trim($longExcerpt));
+});
+
+test('validation errors return indonesian messages and do not leak raw translation keys', function () {
+    // 1. Excerpt exceeding 5000 characters
+    $tooLongExcerpt = str_repeat('a', 5001);
+
+    $response = $this->actingAs($this->admin)
+        ->from('/admin/posts/create')
+        ->post('/admin/posts', [
+            'title' => '',
+            'content' => '',
+            'excerpt' => $tooLongExcerpt,
+            'status' => 'publish',
+        ]);
+
+    $response->assertRedirect('/admin/posts/create');
+    $response->assertSessionHasErrors([
+        'title' => 'Judul artikel wajib diisi.',
+        'content' => 'Isi konten artikel wajib diisi.',
+        'excerpt' => 'Ringkasan (excerpt) tidak boleh lebih dari 5000 karakter.',
+    ]);
+
+    $errors = session('errors')->all();
+    foreach ($errors as $error) {
+        expect($error)->not->toContain('validation.');
+    }
+});
