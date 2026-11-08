@@ -67,7 +67,9 @@ class InformationController extends Controller
 
     public function video()
     {
-        $videos = Video::latest()->paginate(9);
+        Video::syncMissingYoutubeIds();
+
+        $videos = Video::orderBy('created_at', 'desc')->orderBy('id', 'desc')->paginate(9);
 
         return view('frontend.video.index', compact('videos'));
     }

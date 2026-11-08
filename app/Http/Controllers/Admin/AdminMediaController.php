@@ -25,6 +25,9 @@ class AdminMediaController extends Controller
         $user = $request->user();
         $unitId = $user?->isUnitAdmin() ? $user->unit_pendidikan_id : null;
 
+        // Otomatis sinkronisasi ID YouTube jika ada URL siaran langsung / link yang belum terekstraksi
+        Video::syncMissingYoutubeIds();
+
         $photoQuery = Post::where('type', 'gallery');
         $videoQuery = Video::query();
 
@@ -147,11 +150,21 @@ class AdminMediaController extends Controller
             'title' => 'required|string|max:255',
             'youtube_url' => 'required|url',
             'description' => 'nullable|string',
+        ], [
+            'title.required' => 'Judul video wajib diisi.',
+            'title.max' => 'Judul video tidak boleh lebih dari 255 karakter.',
+            'youtube_url.required' => 'Link URL YouTube wajib diisi.',
+            'youtube_url.url' => 'Format URL video YouTube tidak valid.',
         ]);
 
-        // Extract YouTube video ID
-        preg_match('/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([\w-]{11})/', $validated['youtube_url'], $matches);
-        $youtubeId = $matches[1] ?? '';
+        // Ekstraksi YouTube Video ID (mendukung reguler watch, live streaming, shorts, embed, youtu.be, dll)
+        $youtubeId = Video::extractYoutubeId($validated['youtube_url']);
+
+        if (! $youtubeId) {
+            return back()->withInput()->withErrors([
+                'youtube_url' => 'Link YouTube tidak valid. Pastikan link berasal dari YouTube yang benar (contoh: https://www.youtube.com/watch?v=... atau https://www.youtube.com/live/...).',
+            ]);
+        }
 
         $user = $request->user();
         $video = Video::create([

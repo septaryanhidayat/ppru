@@ -100,11 +100,14 @@
             @csrf
             <div class="w-full md:w-5/12">
                 <label class="block text-xs font-bold text-slate-800 mb-1">Judul Video <span class="text-red-500">*</span></label>
-                <input type="text" name="title" required placeholder="Judul video YouTube..." class="w-full bg-white text-xs font-medium text-slate-900 rounded-xl px-4 py-2.5 border border-slate-300 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
+                <input type="text" name="title" required value="{{ old('title') }}" placeholder="Judul video YouTube..." class="w-full bg-white text-xs font-medium text-slate-900 rounded-xl px-4 py-2.5 border border-slate-300 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
+                @error('title') <p class="text-red-500 text-[11px] mt-1">{{ $message }}</p> @enderror
             </div>
             <div class="w-full md:w-5/12">
                 <label class="block text-xs font-bold text-slate-800 mb-1">Link URL YouTube <span class="text-red-500">*</span></label>
-                <input type="url" name="youtube_url" required placeholder="https://www.youtube.com/watch?v=..." class="w-full bg-white text-xs font-medium text-slate-900 rounded-xl px-4 py-2.5 border border-slate-300 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
+                <input type="url" name="youtube_url" required value="{{ old('youtube_url') }}" placeholder="https://www.youtube.com/watch?v=... atau https://www.youtube.com/live/..." class="w-full bg-white text-xs font-medium text-slate-900 rounded-xl px-4 py-2.5 border border-slate-300 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
+                <p class="text-[10px] text-slate-500 mt-1">Mendukung link video reguler, siaran langsung (live streaming), Shorts, dan tautan youtu.be.</p>
+                @error('youtube_url') <p class="text-red-500 text-[11px] mt-1">{{ $message }}</p> @enderror
             </div>
             <div class="w-full md:w-2/12 flex items-end pt-5 md:pt-0">
                 <button type="submit" class="w-full bg-[#da251c] hover:bg-[#b91c1c] text-white font-extrabold text-xs py-3 px-4 rounded-xl shadow-md transition flex items-center justify-center space-x-2 cursor-pointer">
