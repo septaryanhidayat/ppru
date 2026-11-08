@@ -101,6 +101,7 @@ Route::prefix('admin')->middleware(['auth', 'unit.access'])->name('admin.')->gro
     Route::put('/media/photo/{photo}', [AdminMediaController::class, 'updatePhoto'])->name('media.photo.update');
     Route::delete('/media/photo/{photo}', [AdminMediaController::class, 'destroyPhoto'])->name('media.photo.destroy');
     Route::post('/media/video', [AdminMediaController::class, 'storeVideo'])->name('media.video.store');
+    Route::put('/media/video/{video}', [AdminMediaController::class, 'updateVideo'])->name('media.video.update');
     Route::delete('/media/video/{video}', [AdminMediaController::class, 'destroyVideo'])->name('media.video.destroy');
 
     // Agenda & Pengumuman / Info Resmi

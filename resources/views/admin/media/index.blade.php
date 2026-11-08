@@ -4,7 +4,7 @@
 @section('header_title', 'Galeri Foto & Video YouTube')
 
 @section('content')
-<div class="space-y-8" x-data="{ editModalOpen: false, editId: null, editTitle: '', editAction: '' }">
+<div class="space-y-8" x-data="{ editModalOpen: false, editId: null, editTitle: '', editAction: '', editVideoModalOpen: false, editVideoId: null, editVideoTitle: '', editVideoUrl: '', editVideoDescription: '', editVideoAction: '' }">
     
     {{-- BAGIAN 1: GALERI FOTO --}}
     <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-sm border border-slate-200 space-y-6">
@@ -133,7 +133,14 @@
                             <h4 class="font-bold text-xs text-slate-900 line-clamp-2">{{ $video->title }}</h4>
                         </div>
                     </div>
-                    <div class="p-4 pt-0 flex justify-end bg-white">
+                    <div class="p-4 pt-0 flex items-center justify-end space-x-2 bg-white">
+                        <button type="button" 
+                                @click="editVideoId = {{ $video->id }}; editVideoTitle = {{ json_encode($video->title) }}; editVideoUrl = {{ json_encode($video->youtube_url) }}; editVideoDescription = {{ json_encode($video->description ?? '') }}; editVideoAction = '{{ route('admin.media.video.update', $video) }}'; editVideoModalOpen = true"
+                                class="p-2 text-slate-600 hover:text-amber-600 hover:bg-amber-50 rounded-lg transition text-xs font-bold flex items-center space-x-1 cursor-pointer" 
+                                title="Edit Video">
+                            <i class="fa-solid fa-pen-to-square text-amber-500"></i>
+                            <span>Edit</span>
+                        </button>
                         <form action="{{ route('admin.media.video.destroy', $video) }}" method="POST" class="delete-video-form">
                             @csrf
                             @method('DELETE')
@@ -192,6 +199,62 @@
 
                 <div class="flex items-center justify-end space-x-3 pt-4 border-t border-slate-200">
                     <button type="button" @click="editModalOpen = false" class="px-5 py-2.5 rounded-xl border border-slate-300 text-xs font-bold text-slate-700 hover:bg-slate-50 transition cursor-pointer">
+                        Batal
+                    </button>
+                    <button type="submit" class="px-6 py-2.5 rounded-xl bg-[#00913e] hover:bg-[#094d28] text-white text-xs font-extrabold shadow-md transition cursor-pointer">
+                        Simpan Perubahan
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    {{-- MODAL EDIT VIDEO YOUTUBE --}}
+    <div x-show="editVideoModalOpen" 
+         x-transition:enter="transition ease-out duration-200"
+         x-transition:enter-start="opacity-0"
+         x-transition:enter-end="opacity-100"
+         x-transition:leave="transition ease-in duration-150"
+         x-transition:leave-start="opacity-100"
+         x-transition:leave-end="opacity-0"
+         class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs"
+         style="display: none;">
+        
+        <div class="fixed inset-0" @click="editVideoModalOpen = false"></div>
+
+        <div class="relative bg-white rounded-3xl shadow-2xl max-w-lg w-full p-6 sm:p-8 border border-slate-200 z-10 space-y-6">
+            <div class="flex items-center justify-between pb-4 border-b border-slate-200">
+                <div class="flex items-center space-x-2">
+                    <i class="fa-brands fa-youtube text-red-600 text-lg"></i>
+                    <h3 class="text-base font-black text-slate-900">Edit Video YouTube</h3>
+                </div>
+                <button @click="editVideoModalOpen = false" class="text-slate-400 hover:text-slate-600 p-1 rounded-lg">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <form :action="editVideoAction" method="POST" class="space-y-4">
+                @csrf
+                @method('PUT')
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-800 mb-1">Judul Video <span class="text-red-500">*</span></label>
+                    <input type="text" name="title" x-model="editVideoTitle" required class="w-full bg-white text-xs font-semibold text-slate-900 rounded-xl px-4 py-2.5 border border-slate-300 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-800 mb-1">Link URL YouTube <span class="text-red-500">*</span></label>
+                    <input type="url" name="youtube_url" x-model="editVideoUrl" required placeholder="https://www.youtube.com/watch?v=... atau https://www.youtube.com/live/..." class="w-full bg-white text-xs font-semibold text-slate-900 rounded-xl px-4 py-2.5 border border-slate-300 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
+                    <p class="text-[10px] text-slate-500 mt-1">Mendukung link video reguler, siaran langsung (live streaming), Shorts, dan tautan youtu.be.</p>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-800 mb-1">Deskripsi Singkat (Opsional)</label>
+                    <textarea name="description" x-model="editVideoDescription" rows="3" placeholder="Keterangan singkat tentang video ini..." class="w-full bg-white text-xs text-slate-800 rounded-xl p-3 border border-slate-300 focus:outline-none focus:ring-2 focus:ring-[#00913e]"></textarea>
+                </div>
+
+                <div class="flex items-center justify-end space-x-3 pt-4 border-t border-slate-200">
+                    <button type="button" @click="editVideoModalOpen = false" class="px-5 py-2.5 rounded-xl border border-slate-300 text-xs font-bold text-slate-700 hover:bg-slate-50 transition cursor-pointer">
                         Batal
                     </button>
                     <button type="submit" class="px-6 py-2.5 rounded-xl bg-[#00913e] hover:bg-[#094d28] text-white text-xs font-extrabold shadow-md transition cursor-pointer">

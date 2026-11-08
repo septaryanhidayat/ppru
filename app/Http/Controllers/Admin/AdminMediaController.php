@@ -189,6 +189,53 @@ class AdminMediaController extends Controller
         return back()->with('success', 'Video YouTube berhasil ditambahkan.');
     }
 
+    public function updateVideo(Request $request, Video $video)
+    {
+        $user = $request->user();
+        if ($user?->isUnitAdmin() && (int) $video->unit_pendidikan_id !== (int) $user->unit_pendidikan_id) {
+            abort(403, 'Anda tidak memiliki izin mengedit video unit lain.');
+        }
+
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'youtube_url' => 'required|url',
+            'description' => 'nullable|string',
+        ], [
+            'title.required' => 'Judul video wajib diisi.',
+            'title.max' => 'Judul video tidak boleh lebih dari 255 karakter.',
+            'youtube_url.required' => 'Link URL YouTube wajib diisi.',
+            'youtube_url.url' => 'Format URL video YouTube tidak valid.',
+        ]);
+
+        // Ekstraksi YouTube Video ID (mendukung reguler watch, live streaming, shorts, embed, youtu.be, dll)
+        $youtubeId = Video::extractYoutubeId($validated['youtube_url']);
+
+        if (! $youtubeId) {
+            return back()->withInput()->withErrors([
+                'youtube_url' => 'Link YouTube tidak valid. Pastikan link berasal dari YouTube yang benar (contoh: https://www.youtube.com/watch?v=... atau https://www.youtube.com/live/...).',
+            ]);
+        }
+
+        $video->update([
+            'title' => $validated['title'],
+            'youtube_url' => $validated['youtube_url'],
+            'youtube_id' => $youtubeId,
+            'description' => $validated['description'] ?? '',
+        ]);
+
+        ActivityLog::create([
+            'user_id' => Auth::id(),
+            'user_name' => Auth::user()->name,
+            'action' => 'video_update',
+            'description' => "Memperbarui Video YouTube: {$video->title}",
+            'ip_address' => $request->ip(),
+            'user_agent' => $request->userAgent(),
+            'status' => 'info',
+        ]);
+
+        return back()->with('success', 'Video YouTube berhasil diperbarui.');
+    }
+
     public function destroyVideo(Request $request, Video $video)
     {
         $user = $request->user();

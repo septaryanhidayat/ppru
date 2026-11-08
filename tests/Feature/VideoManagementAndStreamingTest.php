@@ -99,3 +99,43 @@ test('frontend video gallery displays live stream video with correct thumbnail a
     $response->assertSee('playPageVideo');
     $response->assertSee('mRdb_kGhbiQ');
 });
+
+test('admin can update video details and id is re-extracted properly', function () {
+    $video = Video::create([
+        'title' => 'Video Awal Sebelum Diedit',
+        'slug' => 'video-awal-'.time(),
+        'youtube_url' => 'https://www.youtube.com/watch?v=BG311kT-yXc',
+        'youtube_id' => 'BG311kT-yXc',
+        'description' => 'Deskripsi lama.',
+    ]);
+
+    $response = $this->actingAs($this->admin)->put("/admin/media/video/{$video->id}", [
+        'title' => 'Video Setelah Diperbarui Menjadi Live Stream',
+        'youtube_url' => 'https://www.youtube.com/live/p8B8wKu5o4c?feature=share',
+        'description' => 'Deskripsi baru yang diperbarui.',
+    ]);
+
+    $response->assertRedirect();
+    $response->assertSessionHas('success', 'Video YouTube berhasil diperbarui.');
+
+    $video->refresh();
+    expect($video->title)->toBe('Video Setelah Diperbarui Menjadi Live Stream');
+    expect($video->youtube_id)->toBe('p8B8wKu5o4c');
+    expect($video->description)->toBe('Deskripsi baru yang diperbarui.');
+    expect($video->thumbnail_url)->toBe('https://i.ytimg.com/vi/p8B8wKu5o4c/hqdefault.jpg');
+});
+
+test('admin media index displays edit button and edit video modal is present', function () {
+    $video = Video::create([
+        'title' => 'Video Uji Modal Edit',
+        'slug' => 'video-uji-modal-'.time(),
+        'youtube_url' => 'https://www.youtube.com/watch?v=cFXK5Of-IzQ',
+        'youtube_id' => 'cFXK5Of-IzQ',
+    ]);
+
+    $response = $this->actingAs($this->admin)->get('/admin/media');
+    $response->assertOk();
+    $response->assertSee('Edit Video YouTube');
+    $response->assertSee('editVideoModalOpen');
+    $response->assertSee('Simpan Perubahan');
+});
