@@ -62,13 +62,19 @@ class PageController extends Controller
         } elseif (Schema::hasTable('dpcs')) {
             $dpcs = Dpc::orderBy('order', 'asc')->get();
         }
-        $dewan = AnggotaDewan::whereIn('fraction', ['Yayasan', 'Pimpinan Pesantren'])->orderBy('order', 'asc')->get();
+        $dewan = AnggotaDewan::where(function ($q) {
+            $q->whereIn('fraction', ['Yayasan', 'Pimpinan Pesantren', 'Dewan Pembina', 'Pengurus Harian', 'Dewan Pengawas', 'YAPIRUS'])
+                ->orWhereNull('unit_pendidikan_id');
+        })->orderBy('order', 'asc')->get();
         if ($dewan->isEmpty()) {
             $dewan = AnggotaDewan::orderBy('order', 'asc')->get();
         }
         $tree = AnggotaDewan::getHierarchyTree();
 
-        $chartImageUrl = Setting::get('struktur_chart_image_url') ?: ($page?->featured_image ?: null);
+        $defaultChartImage = file_exists(public_path('uploads/official/bagan-struktur-organisasi-resmi.png'))
+            ? '/uploads/official/bagan-struktur-organisasi-resmi.png'
+            : null;
+        $chartImageUrl = Setting::get('struktur_chart_image_url') ?: ($page?->featured_image ?: $defaultChartImage);
         $chartMode = Setting::get('struktur_chart_mode', $chartImageUrl ? 'image' : 'chart');
         $showFacilities = Setting::get('struktur_show_facilities', '1') === '1';
         $showPrograms = Setting::get('struktur_show_programs', '1') === '1';

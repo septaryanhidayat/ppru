@@ -144,3 +144,38 @@ test('admin can upload organization chart image and update struktur page setting
     $tree = AnggotaDewan::getHierarchyTree();
     expect($tree)->toBeArray();
 });
+
+test('frontend struktur page renders without raw html tags and full names without truncation', function () {
+    $official = AnggotaDewan::firstOrCreate(
+        ['name' => "KH. Tol'at Wafa Ahmad, Lc."],
+        [
+            'position' => 'Mudir Pondok Pesantren Raudhatul Ulum',
+            'fraction' => 'Pimpinan Pesantren',
+            'order' => 1,
+        ]
+    );
+
+    // Save with HTML tags as produced by Quill/WYSIWYG
+    $official->update([
+        'profile_summary' => '<p>Pimpinan &amp; Pengasuh Utama Pondok Pesantren Raudhatul Ulum Sakatiga. Alumni Universitas Al-Azhar Kairo Mesir.</p>',
+    ]);
+
+    $response = $this->get(route('page.struktur'));
+    $response->assertStatus(200);
+
+    // Must NOT contain literal escaped "<p>" in the card text
+    $response->assertDontSee('&lt;p&gt;Pimpinan', false);
+    $response->assertDontSee('<p>Pimpinan &amp; Pengasuh', false);
+
+    // Must display cleaned human text
+    $response->assertSee('Pimpinan & Pengasuh Utama Pondok Pesantren Raudhatul Ulum Sakatiga. Alumni Universitas Al-Azhar Kairo Mesir.');
+
+    // Hierarchy tree must contain the 4 official levels from the diagram
+    $tree = AnggotaDewan::getHierarchyTree();
+    expect($tree['pembina_ketua'])->not->toBeNull()
+        ->and($tree['harian_ketua'])->not->toBeNull()
+        ->and($tree['pengawas_ketua'])->not->toBeNull()
+        ->and($tree['mudir'])->not->toBeNull()
+        ->and($tree['naibah_mudir'])->not->toBeNull()
+        ->and($tree['naib_mudir'])->not->toBeNull();
+});

@@ -37,7 +37,14 @@ class AdminStaticPageController extends Controller
         }
 
         $settings = Setting::all()->pluck('value', 'key')->toArray();
-        $pengurus = AnggotaDewan::orderBy('order', 'asc')->get();
+        $pengurus = AnggotaDewan::where(function ($q) {
+            $q->whereIn('fraction', ['Yayasan', 'Pimpinan Pesantren', 'Dewan Pembina', 'Pengurus Harian', 'Dewan Pengawas', 'YAPIRUS', 'Yayasan & Pimpinan Pesantren'])
+                ->orWhereNull('unit_pendidikan_id');
+        })->orderBy('order', 'asc')->get();
+
+        if ($pengurus->isEmpty()) {
+            $pengurus = AnggotaDewan::orderBy('order', 'asc')->get();
+        }
 
         return view('admin.pages.struktur', compact('page', 'settings', 'pengurus'));
     }

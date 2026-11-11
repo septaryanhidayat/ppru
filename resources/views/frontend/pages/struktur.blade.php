@@ -215,13 +215,13 @@
                 @forelse($dewan as $d)
                     <div class="bg-white rounded-3xl p-6 border border-gray-200/90 shadow-sm hover:shadow-xl transition-all duration-300 group hover:-translate-y-1 flex flex-col justify-between">
                         <div>
-                            <div class="flex items-center gap-4 mb-4">
+                            <div class="flex items-start gap-4 mb-4">
                                 <div class="w-16 h-16 rounded-2xl bg-emerald-50 text-slate-700 flex items-center justify-center font-bold text-lg shadow-sm ring-2 ring-emerald-200 overflow-hidden shrink-0 aspect-square">
                                     <img src="{{ $d->photo_url }}" alt="{{ $d->name }}" width="64" height="64" loading="lazy" decoding="async" class="w-full h-full object-cover object-top" onerror="this.onerror=null;this.src='/uploads/avatar-neutral-gray.svg'">
                                 </div>
                                 <div class="min-w-0 flex-1">
-                                    <h4 class="text-sm font-black text-gray-900 truncate group-hover:text-[#00843d] transition-colors leading-snug">{{ $d->name }}</h4>
-                                    <span class="block text-[10px] font-bold text-emerald-700 uppercase truncate mt-0.5">
+                                    <h4 class="text-sm font-black text-gray-900 break-words group-hover:text-[#00843d] transition-colors leading-snug">{{ $d->name }}</h4>
+                                    <span class="block text-[10px] font-bold text-emerald-700 uppercase break-words mt-0.5">
                                         {{ $d->fraction ?: 'Pengurus Yayasan & PPRU' }}
                                     </span>
                                 </div>
@@ -229,13 +229,20 @@
 
                             <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-100 mb-4">
                                 <div class="text-[9px] uppercase font-black text-slate-400">Amanah / Jabatan</div>
-                                <div class="text-xs font-black text-[#00843d] leading-snug mt-0.5">{{ $d->position }}</div>
+                                <div class="text-xs font-black text-[#00843d] leading-snug mt-0.5 break-words">{{ $d->position }}</div>
                             </div>
 
-                            @if($d->profile_summary)
-                                <p class="text-[11px] text-gray-600 line-clamp-3 leading-relaxed font-light mb-4">
-                                    {{ $d->profile_summary }}
-                                </p>
+                            @php
+                                $rawSummary = $d->profile_summary ?? '';
+                                $cleanSummary = trim(strip_tags(html_entity_decode($rawSummary, ENT_QUOTES | ENT_HTML5, 'UTF-8')));
+                                if (empty($cleanSummary)) {
+                                    $cleanSummary = trim(strip_tags($rawSummary));
+                                }
+                            @endphp
+                            @if(!empty($cleanSummary))
+                                <div class="text-[11px] text-gray-600 leading-relaxed font-light mb-4 break-words">
+                                    {{ $cleanSummary }}
+                                </div>
                             @endif
                         </div>
 
@@ -286,21 +293,28 @@
                                         <div class="flex items-center gap-3">
                                             <img src="{{ $d->photo_url }}" alt="{{ $d->name }}" class="w-10 h-10 rounded-xl object-cover object-top border border-emerald-200 shadow-xs shrink-0" onerror="this.onerror=null;this.src='/uploads/avatar-neutral-gray.svg'">
                                             <div>
-                                                <div class="font-extrabold text-gray-900 text-sm">{{ $d->name }}</div>
+                                                <div class="font-extrabold text-gray-900 text-sm break-words">{{ $d->name }}</div>
                                                 <span class="text-[10px] text-emerald-700 font-semibold">{{ $d->fraction ?: 'Yayasan YAPIRUS' }}</span>
                                             </div>
                                         </div>
                                     </td>
                                     <td class="py-3.5 px-4">
-                                        <span class="inline-block px-2.5 py-1 rounded-lg bg-emerald-100/70 text-[#00843d] font-bold text-xs">
+                                        <span class="inline-block px-2.5 py-1 rounded-lg bg-emerald-100/70 text-[#00843d] font-bold text-xs break-words">
                                             {{ $d->position }}
                                         </span>
                                     </td>
-                                    <td class="py-3.5 px-4 font-semibold text-slate-700">
+                                    <td class="py-3.5 px-4 font-semibold text-slate-700 break-words">
                                         {{ $d->fraction ?? 'Pengurus Yayasan' }}
                                     </td>
-                                    <td class="py-3.5 px-4 text-slate-500 max-w-xs truncate">
-                                        {{ $d->profile_summary ?: 'Pejabat resmi Pondok Pesantren Raudhatul Ulum Sakatiga' }}
+                                    @php
+                                        $rawTableSummary = $d->profile_summary ?? '';
+                                        $cleanTableSummary = trim(strip_tags(html_entity_decode($rawTableSummary, ENT_QUOTES | ENT_HTML5, 'UTF-8')));
+                                        if (empty($cleanTableSummary)) {
+                                            $cleanTableSummary = trim(strip_tags($rawTableSummary));
+                                        }
+                                    @endphp
+                                    <td class="py-3.5 px-4 text-slate-500 max-w-sm break-words leading-relaxed text-[11px]">
+                                        {{ $cleanTableSummary ?: 'Pejabat resmi Pondok Pesantren Raudhatul Ulum Sakatiga' }}
                                     </td>
                                 </tr>
                             @endforeach

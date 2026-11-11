@@ -274,256 +274,311 @@
             </div>
 
             <!-- ==================================================== -->
-            <!-- LEVEL 1: DEWAN PEMBINA & KETUA UMUM YAYASAN (YAPIRUS) -->
+            <!-- LEVEL 1: DEWAN PEMBINA YAPIRUS                       -->
             <!-- ==================================================== -->
             <div class="relative flex flex-col items-center">
-                <div class="w-[620px] mx-auto flex justify-between items-stretch">
-                    
-                    <!-- Dewan Pembina Yayasan Card -->
-                    <div class="w-[290px] rounded-xl bg-white border-2 border-amber-500 shadow-md">
-                        <div class="h-8 bg-gradient-to-r from-amber-600 to-amber-500 text-white rounded-t-lg px-3 flex items-center justify-center gap-1.5 text-center">
-                            <i class="fa-solid fa-crown text-xs text-amber-200"></i>
-                            <span class="text-[11px] font-black uppercase tracking-wider text-center">
-                                DEWAN PEMBINA YAPIRUS
-                            </span>
-                        </div>
-                        <div class="h-16 px-3 py-1.5 text-center bg-white rounded-b-lg flex flex-col justify-center items-center">
-                            <h3 class="text-xs sm:text-sm font-black text-slate-900 leading-tight text-center m-0">
-                                {{ $tree['pembina']->name ?? '-' }}
-                            </h3>
-                            <p class="text-[10px] text-amber-700 font-bold mt-1 leading-none text-center m-0">
-                                {{ $tree['pembina']->position ?? 'Ketua Dewan Pembina YAPIRUS' }}
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Ketua Umum Pengurus Yayasan Card -->
-                    <div class="w-[290px] rounded-xl bg-white border-2 border-emerald-600 shadow-md">
-                        <div class="h-8 bg-gradient-to-r from-emerald-700 to-[#00843d] text-white rounded-t-lg px-3 flex items-center justify-center gap-1.5 text-center">
-                            <i class="fa-solid fa-building-columns text-xs text-emerald-200"></i>
-                            <span class="text-[11px] font-black uppercase tracking-wider text-center">
-                                PENGURUS HARIAN YAYASAN
-                            </span>
-                        </div>
-                        <div class="h-16 px-3 py-1.5 text-center bg-white rounded-b-lg flex flex-col justify-center items-center">
-                            <h3 class="text-xs sm:text-sm font-black text-slate-900 leading-tight text-center m-0">
-                                {{ $tree['ketua_yayasan']->name ?? '-' }}
-                            </h3>
-                            <p class="text-[10px] text-emerald-700 font-bold mt-1 leading-none text-center m-0">
-                                {{ $tree['ketua_yayasan']->position ?? 'Ketua Umum Pengurus YAPIRUS' }}
-                            </p>
-                        </div>
-                    </div>
-
-                </div>
-
-                <!-- SVG Bracket Connector from Level 1 down to Mudir Pesantren -->
-                <svg class="w-[620px] h-7 text-[#00843d] mx-auto block" viewBox="0 0 620 28" fill="none">
-                    <path d="M 145 0 V 14 M 465 0 V 14" stroke="currentColor" stroke-width="2"/>
-                    <path d="M 145 14 H 465" stroke="currentColor" stroke-width="2"/>
-                    <path d="M 310 14 V 28" stroke="currentColor" stroke-width="2"/>
-                </svg>
-            </div>
-
-            <!-- ==================================================== -->
-            <!-- LEVEL 2: MUDIR PONDOK PESANTREN (PIMPINAN UTAMA MA'HAD) -->
-            <!-- ==================================================== -->
-            <div class="flex flex-col items-center">
-                <div class="w-[360px] rounded-xl bg-white border-2 border-[#00843d] shadow-lg">
-                    <div class="h-9 bg-gradient-to-r from-emerald-800 via-[#00843d] to-emerald-700 text-white rounded-t-lg px-3 flex items-center justify-center gap-2 text-center">
-                        <i class="fa-solid fa-user-check text-xs text-amber-300"></i>
-                        <span class="text-xs font-black uppercase tracking-wider text-center">
-                            PIMPINAN PONDOK PESANTREN (MUDIR MA'HAD)
+                <!-- Ketua Dewan Pembina Card -->
+                <div class="w-[360px] rounded-2xl bg-white border-2 border-amber-500 shadow-md">
+                    <div class="h-8 bg-gradient-to-r from-amber-600 to-amber-500 text-white rounded-t-xl px-3 flex items-center justify-center gap-1.5 text-center">
+                        <i class="fa-solid fa-crown text-xs text-amber-200"></i>
+                        <span class="text-[11px] font-black uppercase tracking-wider text-center">
+                            DEWAN PEMBINA YAPIRUS
                         </span>
                     </div>
-                    <div class="h-16 px-4 py-1 text-center bg-white rounded-b-lg flex flex-col justify-center items-center">
-                        <h3 class="text-sm sm:text-base font-black text-slate-900 leading-tight text-center m-0">
-                            {{ $tree['mudir']->name ?? '-' }}
+                    <div class="min-h-[58px] px-3 py-2 text-center bg-white rounded-b-xl flex flex-col justify-center items-center">
+                        <h3 class="text-xs sm:text-sm font-black text-slate-900 leading-snug break-words text-center m-0">
+                            {{ $tree['pembina_ketua']->name ?? ($tree['pembina']->name ?? "KH. Tol'at Wafa Ahmad, Lc.") }}
                         </h3>
-                        <p class="text-[11px] text-[#00843d] font-bold mt-1 leading-none text-center m-0">
-                            {{ $tree['mudir']->position ?? 'Mudir Pondok Pesantren Raudhatul Ulum Sakatiga' }}
+                        <p class="text-[10px] text-amber-700 font-bold mt-1 leading-none break-words text-center m-0">
+                            {{ $tree['pembina_ketua']->position ?? ($tree['pembina']->position ?? 'Ketua Dewan Pembina YAPIRUS') }}
                         </p>
                     </div>
                 </div>
 
-                <!-- Vertical Connector from Mudir down to Administration & Operasional -->
-                <div class="w-[2px] h-5 bg-[#00843d]"></div>
-            </div>
-
-            <!-- ==================================================== -->
-            <!-- LEVEL 3: SEKRETARIS & BENDAHARA YAYASAN (SAYAP PENGELOLA) -->
-            <!-- ==================================================== -->
-            <div class="relative flex flex-col items-center">
-                <!-- SVG Bracket Connector Sekretaris & Bendahara -->
-                <svg class="w-[740px] h-7 text-[#00843d] mx-auto block" viewBox="0 0 740 28" fill="none">
-                    <path d="M 370 0 V 14" stroke="currentColor" stroke-width="2"/>
-                    <path d="M 130 14 H 610" stroke="currentColor" stroke-width="2"/>
-                    <path d="M 130 14 V 28 M 610 14 V 28" stroke="currentColor" stroke-width="2"/>
-                    <!-- Direct Line to ASDIR Below -->
-                    <path d="M 370 14 V 28" stroke="currentColor" stroke-width="2"/>
+                <!-- SVG Bracket Connector to 5 Anggota Dewan Pembina -->
+                <svg class="w-[1100px] h-7 text-emerald-600 mx-auto block" viewBox="0 0 1100 28" fill="none">
+                    <path d="M 550 0 V 14" stroke="currentColor" stroke-width="2"/>
+                    <path d="M 110 14 H 990" stroke="currentColor" stroke-width="2"/>
+                    <path d="M 110 14 V 28 M 330 14 V 28 M 550 14 V 28 M 770 14 V 28 M 990 14 V 28" stroke="currentColor" stroke-width="2"/>
                 </svg>
 
-                <div class="w-[740px] mx-auto flex justify-between items-center">
-                    <!-- Sekretaris Yayasan Card (Warna Hijau Teal, Bukan Hitam) -->
-                    <div class="w-[240px] rounded-xl bg-white border border-teal-300 shadow-xs">
-                        <div class="h-7 bg-gradient-to-r from-teal-800 to-teal-600 text-white rounded-t-lg px-2 flex items-center justify-center gap-1.5 text-center">
-                            <i class="fa-solid fa-file-signature text-[10px] text-emerald-200"></i>
-                            <span class="text-[10px] font-black uppercase tracking-wide text-center">SEKRETARIS YAYASAN</span>
-                        </div>
-                        <div class="h-12 px-2 py-1 text-center bg-white rounded-b-lg flex flex-col justify-center items-center">
-                            <h4 class="text-xs font-black text-slate-900 leading-tight truncate w-full text-center m-0">
-                                {{ $tree['sekretaris']->name ?? '-' }}
-                            </h4>
-                            <p class="text-[9px] text-teal-700 font-semibold mt-0.5 leading-none text-center m-0 truncate w-full" title="{{ $tree['sekretaris']->position ?? 'Sekretaris Yayasan YAPIRUS' }}">
-                                {{ $tree['sekretaris']->position ?? 'Sekretaris Yayasan YAPIRUS' }}
-                            </p>
-                        </div>
-                    </div>
-
-
-                    <!-- Bendahara Yayasan Card (Warna Hijau Zamrud, Bukan Hitam) -->
-                    <div class="w-[240px] rounded-xl bg-white border border-emerald-300 shadow-xs">
-                        <div class="h-7 bg-gradient-to-r from-emerald-800 to-emerald-600 text-white rounded-t-lg px-2 flex items-center justify-center gap-1.5 text-center">
-                            <i class="fa-solid fa-coins text-[10px] text-amber-300"></i>
-                            <span class="text-[10px] font-black uppercase tracking-wide text-center">BENDAHARA YAYASAN</span>
-                        </div>
-                        <div class="h-12 px-2 py-1 text-center bg-white rounded-b-lg flex flex-col justify-center items-center">
-                            <h4 class="text-xs font-black text-slate-900 leading-tight truncate w-full text-center m-0">
-                                {{ $tree['bendahara']->name ?? '-' }}
-                            </h4>
-                            <p class="text-[9px] text-emerald-700 font-semibold mt-0.5 leading-none text-center m-0 truncate w-full" title="{{ $tree['bendahara']->position ?? 'Bendahara Yayasan YAPIRUS' }}">
-                                {{ $tree['bendahara']->position ?? 'Bendahara Yayasan YAPIRUS' }}
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Connector down from Center to ASDIR / Wakil Mudir -->
-                <div class="w-[2px] h-5 bg-[#00843d]"></div>
-            </div>
-
-            <!-- ==================================================== -->
-            <!-- LEVEL 4: WAKIL MUDIR / ASISTEN MUDIR OPERASIONAL     -->
-            <!-- ==================================================== -->
-            <div class="relative flex flex-col items-center">
-                <!-- SVG Bracket Connector Wakil Mudir 3 Bidang (Lebar 920px) -->
-                <svg class="w-[920px] h-7 text-[#00843d] mx-auto block" viewBox="0 0 920 28" fill="none">
-                    <path d="M 460 0 V 14" stroke="currentColor" stroke-width="2"/>
-                    <path d="M 140 14 H 780" stroke="currentColor" stroke-width="2"/>
-                    <path d="M 140 14 V 28 M 460 14 V 28 M 780 14 V 28" stroke="currentColor" stroke-width="2"/>
-                </svg>
-
-                <div class="w-[920px] mx-auto flex justify-between items-stretch">
-                    
-                    <!-- Wadir 1: Pendidikan -->
-                    <div class="w-[260px] rounded-xl bg-white border border-emerald-500 shadow-xs">
-                        <div class="h-7 bg-gradient-to-r from-emerald-600 to-teal-600 text-white rounded-t-lg px-2 flex items-center justify-center gap-1.5 text-center">
-                            <i class="fa-solid fa-graduation-cap text-[10px]"></i>
-                            <span class="text-[10px] font-black uppercase tracking-wide text-center">WAKIL MUDIR I &bull; PENDIDIKAN</span>
-                        </div>
-                        <div class="h-14 px-2.5 py-1 text-center bg-white rounded-b-lg flex flex-col justify-center items-center">
-                            <h4 class="text-xs font-black text-slate-900 leading-tight truncate w-full text-center m-0">
-                                {{ $tree['wadir_pendidikan']->name ?? ($tree['wakil_mudir'][0]->name ?? '-') }}
-                            </h4>
-                            <p class="text-[9px] text-emerald-700 font-medium mt-0.5 leading-none text-center m-0 truncate w-full" title="{{ $tree['wadir_pendidikan']->position ?? ($tree['wakil_mudir'][0]->position ?? 'Wakil Mudir Bidang Pendidikan') }}">
-                                {{ $tree['wadir_pendidikan']->position ?? ($tree['wakil_mudir'][0]->position ?? 'Wakil Mudir Bidang Pendidikan') }}
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Wadir 2: Kepengasuhan -->
-                    <div class="w-[260px] rounded-xl bg-white border border-amber-500 shadow-xs">
-                        <div class="h-7 bg-gradient-to-r from-amber-600 to-amber-500 text-white rounded-t-lg px-2 flex items-center justify-center gap-1.5 text-center">
-                            <i class="fa-solid fa-users text-[10px]"></i>
-                            <span class="text-[10px] font-black uppercase tracking-wide text-center">WAKIL MUDIR II &bull; PENGASUHAN</span>
-                        </div>
-                        <div class="h-14 px-2.5 py-1 text-center bg-white rounded-b-lg flex flex-col justify-center items-center">
-                            <h4 class="text-xs font-black text-slate-900 leading-tight truncate w-full text-center m-0">
-                                {{ $tree['wadir_pengasuhan']->name ?? ($tree['wakil_mudir'][1]->name ?? '-') }}
-                            </h4>
-                            <p class="text-[9px] text-amber-700 font-medium mt-0.5 leading-none text-center m-0 truncate w-full" title="{{ $tree['wadir_pengasuhan']->position ?? ($tree['wakil_mudir'][1]->position ?? 'Wakil Mudir Bidang Kepengasuhan') }}">
-                                {{ $tree['wadir_pengasuhan']->position ?? ($tree['wakil_mudir'][1]->position ?? 'Wakil Mudir Bidang Kepengasuhan') }}
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Wadir 3: Sarana & Pembangunan -->
-                    <div class="w-[260px] rounded-xl bg-white border border-sky-500 shadow-xs">
-                        <div class="h-7 bg-gradient-to-r from-sky-600 to-blue-600 text-white rounded-t-lg px-2 flex items-center justify-center gap-1.5 text-center">
-                            <i class="fa-solid fa-layer-group text-[10px]"></i>
-                            <span class="text-[10px] font-black uppercase tracking-wide text-center">WAKIL MUDIR III &bull; SARPRAS</span>
-                        </div>
-                        <div class="h-14 px-2.5 py-1 text-center bg-white rounded-b-lg flex flex-col justify-center items-center">
-                            <h4 class="text-xs font-black text-slate-900 leading-tight truncate w-full text-center m-0">
-                                {{ $tree['wadir_sarpras']->name ?? ($tree['wakil_mudir'][2]->name ?? '-') }}
-                            </h4>
-                            <p class="text-[9px] text-sky-700 font-medium mt-0.5 leading-none text-center m-0 truncate w-full" title="{{ $tree['wadir_sarpras']->position ?? ($tree['wakil_mudir'][2]->position ?? 'Wakil Mudir Bidang Sarpras') }}">
-                                {{ $tree['wadir_sarpras']->position ?? ($tree['wakil_mudir'][2]->position ?? 'Wakil Mudir Bidang Sarpras') }}
-                            </p>
-                        </div>
-                    </div>
-
-                </div>
-
-                <!-- Direct Connector down to Unit Pendidikan -->
-                <div class="w-[2px] h-5 bg-[#00843d]"></div>
-            </div>
-
-            <!-- ==================================================== -->
-            <!-- LEVEL 5: PIMPINAN UNIT PENDIDIKAN & LEMBAGA (8 UNIT) -->
-            <!-- ==================================================== -->
-            <div class="relative flex flex-col items-center pt-1">
-                <!-- SVG Bracket Connector 8 Unit Pendidikan (Lebar 1120px) -->
-                <svg class="w-[1120px] h-7 text-[#00843d] mx-auto block" viewBox="0 0 1120 28" fill="none">
-                    <path d="M 560 0 V 14" stroke="currentColor" stroke-width="2"/>
-                    <path d="M 65 14 H 1055" stroke="currentColor" stroke-width="2"/>
-                    <path d="M 65 14 V 28 M 205 14 V 28 M 345 14 V 28 M 485 14 V 28 M 635 14 V 28 M 775 14 V 28 M 915 14 V 28 M 1055 14 V 28" stroke="currentColor" stroke-width="2"/>
-                </svg>
-
-                <div class="w-[1120px] mx-auto grid grid-cols-8 gap-2">
+                <!-- 5 Anggota Dewan Pembina Grid -->
+                <div class="w-[1140px] mx-auto grid grid-cols-5 gap-3">
                     @php
-                        $unitModels = \App\Models\UnitPendidikan::active()->orderBy('order', 'asc')->get();
+                        $pembinaList = [
+                            'KH. Abdul Karim Umar',
+                            'Drs. KH. Nadjib Subkie',
+                            'Drs. KH. Mohd. Iqbal Romzie',
+                            'H. M. Akram Afifi, Lc., M.Pd.',
+                            'Faiz Nabil, M.Pd.',
+                        ];
                     @endphp
-
-                    @foreach($unitModels as $u)
-                        <div class="rounded-xl bg-white border border-emerald-500 shadow-xs p-2 text-center flex flex-col justify-between min-h-[76px]">
-                            <span class="inline-block bg-emerald-50 text-emerald-800 text-[9px] font-black px-1.5 py-0.5 rounded uppercase tracking-wider mx-auto">
-                                {{ $u->short_name ?: 'UNIT' }}
-                            </span>
-                            <div>
-                                <h5 class="text-[10px] font-black text-slate-900 leading-tight truncate w-full mt-1" title="{{ $u->head_name }}">
-                                    {{ $u->head_name ?: 'Kepala Lembaga' }}
-                                </h5>
-                                <p class="text-[8.5px] text-slate-500 font-medium truncate w-full leading-none mt-0.5" title="{{ $u->name }}">
-                                    {{ Str::limit($u->name, 22) }}
-                                </p>
+                    @foreach($pembinaList as $idx => $fallbackName)
+                        @php
+                            $member = $tree['pembina_anggota']->get($idx);
+                            $name = $member?->name ?: $fallbackName;
+                        @endphp
+                        <div class="rounded-xl bg-white border border-emerald-600 shadow-xs">
+                            <div class="h-6 bg-gradient-to-r from-emerald-700 to-[#00843d] text-white rounded-t-lg px-2 flex items-center justify-center gap-1 text-center">
+                                <i class="fa-solid fa-user-group text-[9px] text-emerald-200"></i>
+                                <span class="text-[9px] font-black uppercase tracking-wider text-center">ANGGOTA DEWAN PEMBINA</span>
+                            </div>
+                            <div class="min-h-[48px] px-2 py-1.5 text-center bg-white rounded-b-lg flex flex-col justify-center items-center">
+                                <h4 class="text-xs font-black text-slate-900 leading-snug break-words text-center m-0">
+                                    {{ $name }}
+                                </h4>
                             </div>
                         </div>
                     @endforeach
                 </div>
+
+                <!-- Connector line from Level 1 down to Level 2 -->
+                <div class="w-[2px] h-6 bg-[#00843d]"></div>
             </div>
 
-            <!-- Bagan Footer Legend -->
-            <div class="pt-4 mt-2 border-t border-slate-200 flex flex-wrap items-center justify-between text-[10px] text-slate-500">
-                <div class="flex items-center gap-4">
+            <!-- ==================================================== -->
+            <!-- LEVEL 2: PENGURUS HARIAN YAPIRUS                     -->
+            <!-- ==================================================== -->
+            <div class="relative flex flex-col items-center">
+                <!-- Ketua Dewan Harian YAPIRUS Card -->
+                <div class="w-[360px] rounded-2xl bg-white border-2 border-blue-600 shadow-md">
+                    <div class="h-8 bg-gradient-to-r from-blue-700 to-sky-600 text-white rounded-t-xl px-3 flex items-center justify-center gap-1.5 text-center">
+                        <i class="fa-solid fa-building-columns text-xs text-blue-200"></i>
+                        <span class="text-[11px] font-black uppercase tracking-wider text-center">
+                            PENGURUS HARIAN
+                        </span>
+                    </div>
+                    <div class="min-h-[58px] px-3 py-2 text-center bg-white rounded-b-xl flex flex-col justify-center items-center">
+                        <h3 class="text-xs sm:text-sm font-black text-slate-900 leading-snug break-words text-center m-0">
+                            {{ $tree['harian_ketua']->name ?? ($tree['ketua_yayasan']->name ?? 'Dr. H. Husnul Amin, Lc., M.H.I., M.M.') }}
+                        </h3>
+                        <p class="text-[10px] text-blue-700 font-bold mt-1 leading-none break-words text-center m-0">
+                            {{ $tree['harian_ketua']->position ?? 'Ketua Dewan Harian YAPIRUS' }}
+                        </p>
+                    </div>
+                </div>
+
+                <!-- SVG Bracket Connector to 4 Pengurus Harian (Sekretaris & Bendahara) -->
+                <svg class="w-[960px] h-7 text-teal-600 mx-auto block" viewBox="0 0 960 28" fill="none">
+                    <path d="M 480 0 V 14" stroke="currentColor" stroke-width="2"/>
+                    <path d="M 120 14 H 840" stroke="currentColor" stroke-width="2"/>
+                    <path d="M 120 14 V 28 M 360 14 V 28 M 600 14 V 28 M 840 14 V 28" stroke="currentColor" stroke-width="2"/>
+                </svg>
+
+                <!-- 4 Pengurus Harian Grid (Sekretaris, Wasekr, Bendahara, Wabend) -->
+                <div class="w-[1000px] mx-auto grid grid-cols-4 gap-3.5">
+                    <!-- Sekretaris -->
+                    <div class="rounded-xl bg-white border border-teal-500 shadow-xs">
+                        <div class="h-6 bg-gradient-to-r from-teal-700 to-teal-600 text-white rounded-t-lg px-2 flex items-center justify-center gap-1 text-center">
+                            <i class="fa-solid fa-file-signature text-[9px] text-teal-200"></i>
+                            <span class="text-[9px] font-black uppercase tracking-wider text-center">SEKRETARIS YAYASAN</span>
+                        </div>
+                        <div class="min-h-[52px] px-2 py-1.5 text-center bg-white rounded-b-lg flex flex-col justify-center items-center">
+                            <h4 class="text-xs font-black text-slate-900 leading-snug break-words text-center m-0">
+                                {{ $tree['sekretaris_1']->name ?? ($tree['sekretaris']->name ?? 'Salamuddin, S.Si.') }}
+                            </h4>
+                            <p class="text-[9px] text-teal-700 font-semibold mt-0.5 leading-none break-words text-center m-0">Sekretaris</p>
+                        </div>
+                    </div>
+
+                    <!-- Wakil Sekretaris -->
+                    <div class="rounded-xl bg-white border border-teal-500 shadow-xs">
+                        <div class="h-6 bg-gradient-to-r from-teal-700 to-teal-600 text-white rounded-t-lg px-2 flex items-center justify-center gap-1 text-center">
+                            <i class="fa-solid fa-file-lines text-[9px] text-teal-200"></i>
+                            <span class="text-[9px] font-black uppercase tracking-wider text-center">SEKRETARIS YAYASAN</span>
+                        </div>
+                        <div class="min-h-[52px] px-2 py-1.5 text-center bg-white rounded-b-lg flex flex-col justify-center items-center">
+                            <h4 class="text-xs font-black text-slate-900 leading-snug break-words text-center m-0">
+                                {{ $tree['sekretaris_2']->name ?? 'H. Muhammad Rido, S.Ag.' }}
+                            </h4>
+                            <p class="text-[9px] text-teal-700 font-semibold mt-0.5 leading-none break-words text-center m-0">Wakil Sekretaris</p>
+                        </div>
+                    </div>
+
+                    <!-- Bendahara -->
+                    <div class="rounded-xl bg-white border border-teal-500 shadow-xs">
+                        <div class="h-6 bg-gradient-to-r from-teal-700 to-teal-600 text-white rounded-t-lg px-2 flex items-center justify-center gap-1 text-center">
+                            <i class="fa-solid fa-coins text-[9px] text-amber-300"></i>
+                            <span class="text-[9px] font-black uppercase tracking-wider text-center">BENDAHARA YAYASAN</span>
+                        </div>
+                        <div class="min-h-[52px] px-2 py-1.5 text-center bg-white rounded-b-lg flex flex-col justify-center items-center">
+                            <h4 class="text-xs font-black text-slate-900 leading-snug break-words text-center m-0">
+                                {{ $tree['bendahara_1']->name ?? ($tree['bendahara']->name ?? 'Hj. Risa Fauziah Aristina') }}
+                            </h4>
+                            <p class="text-[9px] text-teal-700 font-semibold mt-0.5 leading-none break-words text-center m-0">Bendahara</p>
+                        </div>
+                    </div>
+
+                    <!-- Wakil Bendahara -->
+                    <div class="rounded-xl bg-white border border-teal-500 shadow-xs">
+                        <div class="h-6 bg-gradient-to-r from-teal-700 to-teal-600 text-white rounded-t-lg px-2 flex items-center justify-center gap-1 text-center">
+                            <i class="fa-solid fa-coins text-[9px] text-amber-300"></i>
+                            <span class="text-[9px] font-black uppercase tracking-wider text-center">BENDAHARA YAYASAN</span>
+                        </div>
+                        <div class="min-h-[52px] px-2 py-1.5 text-center bg-white rounded-b-lg flex flex-col justify-center items-center">
+                            <h4 class="text-xs font-black text-slate-900 leading-snug break-words text-center m-0">
+                                {{ $tree['bendahara_2']->name ?? 'Maila Rasyidah, Lc' }}
+                            </h4>
+                            <p class="text-[9px] text-teal-700 font-semibold mt-0.5 leading-none break-words text-center m-0">Wakil Bendahara</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Connector line from Level 2 down to Level 3 -->
+                <div class="w-[2px] h-6 bg-[#00843d]"></div>
+            </div>
+
+            <!-- ==================================================== -->
+            <!-- LEVEL 3: DEWAN PENGAWAS                              -->
+            <!-- ==================================================== -->
+            <div class="relative flex flex-col items-center">
+                <!-- Ketua Dewan Pengawas Card -->
+                <div class="w-[360px] rounded-2xl bg-white border-2 border-emerald-700 shadow-md">
+                    <div class="h-8 bg-gradient-to-r from-emerald-800 to-emerald-700 text-white rounded-t-xl px-3 flex items-center justify-center gap-1.5 text-center">
+                        <i class="fa-solid fa-shield-halved text-xs text-amber-300"></i>
+                        <span class="text-[11px] font-black uppercase tracking-wider text-center">
+                            DEWAN PENGAWAS
+                        </span>
+                    </div>
+                    <div class="min-h-[58px] px-3 py-2 text-center bg-white rounded-b-xl flex flex-col justify-center items-center">
+                        <h3 class="text-xs sm:text-sm font-black text-slate-900 leading-snug break-words text-center m-0">
+                            {{ $tree['pengawas_ketua']->name ?? 'Drs. KH. Ahmad Nahrowi, MM' }}
+                        </h3>
+                        <p class="text-[10px] text-emerald-700 font-bold mt-1 leading-none break-words text-center m-0">
+                            {{ $tree['pengawas_ketua']->position ?? 'Ketua Dewan Pengawas' }}
+                        </p>
+                    </div>
+                </div>
+
+                <!-- SVG Bracket Connector to 5 Anggota Dewan Pengawas -->
+                <svg class="w-[1100px] h-7 text-emerald-600 mx-auto block" viewBox="0 0 1100 28" fill="none">
+                    <path d="M 550 0 V 14" stroke="currentColor" stroke-width="2"/>
+                    <path d="M 110 14 H 990" stroke="currentColor" stroke-width="2"/>
+                    <path d="M 110 14 V 28 M 330 14 V 28 M 550 14 V 28 M 770 14 V 28 M 990 14 V 28" stroke="currentColor" stroke-width="2"/>
+                </svg>
+
+                <!-- 5 Anggota Dewan Pengawas Grid -->
+                <div class="w-[1140px] mx-auto grid grid-cols-5 gap-3">
+                    @php
+                        $pengawasList = [
+                            'H. Husnul Anam, S.H.I',
+                            'Lazuwardi, S.Kom',
+                            'H. Ahmad Almanfaluty, Lc., M.Pd',
+                            'Azzam Mujahid Izzulhaq',
+                            'Mohd. Hafiy Nawwaf, S.H., M.H',
+                        ];
+                    @endphp
+                    @foreach($pengawasList as $idx => $fallbackName)
+                        @php
+                            $member = $tree['pengawas_anggota']->get($idx);
+                            $name = $member?->name ?: $fallbackName;
+                        @endphp
+                        <div class="rounded-xl bg-white border border-emerald-600 shadow-xs">
+                            <div class="h-6 bg-gradient-to-r from-emerald-700 to-[#00843d] text-white rounded-t-lg px-2 flex items-center justify-center gap-1 text-center">
+                                <i class="fa-solid fa-user-shield text-[9px] text-emerald-200"></i>
+                                <span class="text-[9px] font-black uppercase tracking-wider text-center">ANGGOTA DEWAN PENGAWAS</span>
+                            </div>
+                            <div class="min-h-[48px] px-2 py-1.5 text-center bg-white rounded-b-lg flex flex-col justify-center items-center">
+                                <h4 class="text-xs font-black text-slate-900 leading-snug break-words text-center m-0">
+                                    {{ $name }}
+                                </h4>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+
+                <!-- Connector line from Level 3 down to Level 4 -->
+                <div class="w-[2px] h-6 bg-[#00843d]"></div>
+            </div>
+
+            <!-- ==================================================== -->
+            <!-- LEVEL 4: PIMPINAN PONDOK PESANTREN (MUDIR MA'HAD)    -->
+            <!-- ==================================================== -->
+            <div class="relative flex flex-col items-center">
+                <div class="w-[1060px] mx-auto flex justify-between items-stretch">
+                    
+                    <!-- Wakil Pimpinan Putri (Naibah Mudir) -->
+                    <div class="w-[310px] rounded-2xl bg-white border-2 border-purple-600 shadow-md">
+                        <div class="h-8 bg-gradient-to-r from-purple-700 to-fuchsia-600 text-white rounded-t-xl px-3 flex items-center justify-center gap-1.5 text-center">
+                            <i class="fa-solid fa-user-tie text-xs text-purple-200"></i>
+                            <span class="text-[10px] font-black uppercase tracking-wider text-center">
+                                WAKIL PIMPINAN PONDOK PESANTREN
+                            </span>
+                        </div>
+                        <div class="min-h-[60px] px-3 py-2 text-center bg-white rounded-b-xl flex flex-col justify-center items-center">
+                            <h4 class="text-xs sm:text-sm font-black text-slate-900 leading-snug break-words text-center m-0">
+                                {{ $tree['naibah_mudir']->name ?? 'Maila Rasyidah, Lc' }}
+                            </h4>
+                            <p class="text-[10px] text-purple-700 font-bold mt-1 leading-none break-words text-center m-0">
+                                {{ $tree['naibah_mudir']->position ?? 'Naibah Mudir Pondok Pesantren Raudhatul Ulum' }}
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Mudir Pondok Pesantren (Pimpinan Utama) -->
+                    <div class="w-[380px] rounded-2xl bg-white border-2 border-[#00843d] shadow-xl">
+                        <div class="h-9 bg-gradient-to-r from-emerald-900 via-[#00843d] to-emerald-800 text-white rounded-t-xl px-3 flex items-center justify-center gap-2 text-center">
+                            <i class="fa-solid fa-mosque text-xs text-amber-300"></i>
+                            <span class="text-xs font-black uppercase tracking-wider text-center">
+                                PIMPINAN PONDOK PESANTREN (MUDIR MA'HAD)
+                            </span>
+                        </div>
+                        <div class="min-h-[64px] px-4 py-2 text-center bg-white rounded-b-xl flex flex-col justify-center items-center">
+                            <h3 class="text-sm sm:text-base font-black text-slate-900 leading-snug break-words text-center m-0">
+                                {{ $tree['mudir']->name ?? "KH. Tol'at Wafa Ahmad, Lc." }}
+                            </h3>
+                            <p class="text-[11px] text-[#00843d] font-bold mt-1 leading-none break-words text-center m-0">
+                                {{ $tree['mudir']->position ?? 'Mudir Pondok Pesantren Raudhatul Ulum' }}
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Wakil Pimpinan Putra (Naib Mudir) -->
+                    <div class="w-[310px] rounded-2xl bg-white border-2 border-blue-600 shadow-md">
+                        <div class="h-8 bg-gradient-to-r from-blue-700 to-indigo-600 text-white rounded-t-xl px-3 flex items-center justify-center gap-1.5 text-center">
+                            <i class="fa-solid fa-user-tie text-xs text-blue-200"></i>
+                            <span class="text-[10px] font-black uppercase tracking-wider text-center">
+                                WAKIL PIMPINAN PONDOK PESANTREN
+                            </span>
+                        </div>
+                        <div class="min-h-[60px] px-3 py-2 text-center bg-white rounded-b-xl flex flex-col justify-center items-center">
+                            <h4 class="text-xs sm:text-sm font-black text-slate-900 leading-snug break-words text-center m-0">
+                                {{ $tree['naib_mudir']->name ?? 'H. M. Akram Afifi, Lc., M.Pd' }}
+                            </h4>
+                            <p class="text-[10px] text-blue-700 font-bold mt-1 leading-none break-words text-center m-0">
+                                {{ $tree['naib_mudir']->position ?? 'Naib Mudir Pondok Pesantren Raudhatul Ulum' }}
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Bagan Footer Legend Sesuai Bagan Resmi PPRU -->
+            <div class="pt-4 mt-4 border-t border-slate-200 flex flex-wrap items-center justify-between text-[10px] text-slate-500">
+                <div class="flex flex-wrap items-center gap-4">
                     <span class="flex items-center gap-1.5">
                         <span class="w-3 h-3 rounded-md bg-amber-500 inline-block"></span>
-                        <span>Badan Pembina Yayasan</span>
+                        <span class="font-bold text-slate-700">Dewan Pembina YAPIRUS</span>
+                    </span>
+                    <span class="flex items-center gap-1.5">
+                        <span class="w-3 h-3 rounded-md bg-blue-600 inline-block"></span>
+                        <span class="font-bold text-slate-700">Pengurus Harian YAPIRUS</span>
+                    </span>
+                    <span class="flex items-center gap-1.5">
+                        <span class="w-3 h-3 rounded-md bg-emerald-700 inline-block"></span>
+                        <span class="font-bold text-slate-700">Dewan Pengawas YAPIRUS</span>
                     </span>
                     <span class="flex items-center gap-1.5">
                         <span class="w-3 h-3 rounded-md bg-[#00843d] inline-block"></span>
-                        <span>Pimpinan Utama Pesantren (Mudir Ma'had)</span>
+                        <span class="font-bold text-slate-700">Pimpinan Utama (Mudir Ma'had)</span>
                     </span>
                     <span class="flex items-center gap-1.5">
-                        <span class="w-3 h-3 rounded-md bg-teal-700 inline-block"></span>
-                        <span>Sekretariat &amp; Kebendaharaan</span>
-                    </span>
-                    <span class="flex items-center gap-1.5">
-                        <span class="w-3 h-3 rounded-md bg-teal-600 inline-block"></span>
-                        <span>Pimpinan Unit Pendidikan</span>
+                        <span class="w-3 h-3 rounded-md bg-purple-600 inline-block"></span>
+                        <span class="font-bold text-slate-700">Wakil Pimpinan Pesantren</span>
                     </span>
                 </div>
-                <span class="font-bold text-slate-400">Pondok Pesantren Raudhatul Ulum Sakatiga &copy; {{ date('Y') }}</span>
+                <span class="font-bold text-slate-400">Pondok Pesantren Raudhatul Ulum Sakatiga &copy; 2026</span>
             </div>
 
         </div>

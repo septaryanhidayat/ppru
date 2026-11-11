@@ -233,10 +233,16 @@
                         <p class="text-xs text-slate-500">Data pengurus yang tampil di tab "Daftar Kartu Pengurus" dan "Tabel Nama". Tidak ada satupun yang di-hardcode.</p>
                     </div>
                 </div>
-                <a href="{{ route('admin.dewan.index') }}" class="inline-flex items-center space-x-2 bg-slate-800 hover:bg-slate-900 text-white text-xs font-bold px-4 py-2.5 rounded-xl shadow-sm transition">
-                    <i class="fa-solid fa-user-plus text-xs"></i>
-                    <span>Kelola Pejabat &amp; Asatidz &rarr;</span>
-                </a>
+                <div class="flex items-center gap-2">
+                    <a href="{{ route('admin.dewan.create') }}" class="inline-flex items-center space-x-1.5 bg-[#00843d] hover:bg-[#006e33] text-white text-xs font-bold px-3.5 py-2.5 rounded-xl shadow-xs transition">
+                        <i class="fa-solid fa-plus text-xs"></i>
+                        <span>Tambah Pejabat Baru</span>
+                    </a>
+                    <a href="{{ route('admin.dewan.index') }}" class="inline-flex items-center space-x-2 bg-slate-800 hover:bg-slate-900 text-white text-xs font-bold px-4 py-2.5 rounded-xl shadow-sm transition">
+                        <i class="fa-solid fa-users-gear text-xs"></i>
+                        <span>Kelola Semua &rarr;</span>
+                    </a>
+                </div>
             </div>
 
             <div class="overflow-x-auto border border-slate-200/80 rounded-2xl">
@@ -247,6 +253,7 @@
                             <th class="py-3 px-4">Nama Lengkap</th>
                             <th class="py-3 px-4">Amanah / Jabatan</th>
                             <th class="py-3 px-4">Bidang / Lembaga</th>
+                            <th class="py-3 px-4 w-20 text-center">Aksi</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-slate-100">
@@ -261,10 +268,15 @@
                                 </td>
                                 <td class="py-3 px-4 font-semibold text-[#00843d]">{{ $p->position }}</td>
                                 <td class="py-3 px-4 text-slate-500">{{ $p->fraction ?: 'Yayasan YAPIRUS' }}</td>
+                                <td class="py-3 px-4 text-center">
+                                    <a href="{{ route('admin.dewan.edit', $p) }}" class="w-7 h-7 rounded-lg bg-amber-50 hover:bg-amber-100 text-amber-700 inline-flex items-center justify-center transition" title="Edit Pejabat Ini">
+                                        <i class="fa-solid fa-pen-to-square text-[10px]"></i>
+                                    </a>
+                                </td>
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="4" class="py-8 text-center text-xs text-slate-400">
+                                <td colspan="5" class="py-8 text-center text-xs text-slate-400">
                                     Belum ada data pengurus. Tambahkan data di menu <a href="{{ route('admin.dewan.index') }}" class="text-[#00843d] underline font-bold">Struktur Pengurus &amp; Dewan Guru</a>.
                                 </td>
                             </tr>
