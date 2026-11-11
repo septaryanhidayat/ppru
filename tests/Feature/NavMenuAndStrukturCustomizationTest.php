@@ -225,4 +225,48 @@ test('organization chart renders with solid inline flex columns and explicit gra
     $chartModeRes->assertSee('PENGURUS HARIAN');
     $chartModeRes->assertSee('DEWAN PENGAWAS');
     $chartModeRes->assertSee("PIMPINAN PONDOK PESANTREN (MUDIR MA'HAD)", false);
+
+    // Assert no stray broken comment syntax or random text in rendered public view
+    $chartModeRes->assertDontSee('[Mudir Ma\'had] <--- garis', false);
+    $chartModeRes->assertDontSee('[Naib Mudir] -->', false);
+});
+
+test('admin can crud dewan yayasan officials with sequential order and default neutral avatar', function () {
+    $this->actingAs($this->admin);
+
+    // 1. Admin dewan index shows official list and delete action is available
+    $indexRes = $this->get(route('admin.dewan.index'));
+    $indexRes->assertStatus(200);
+    $indexRes->assertSee('KH. Abdul Karim Umar');
+    $indexRes->assertSee('avatar-neutral-gray.svg');
+
+    // 2. Main admin can create a new yayasan official
+    $createRes = $this->post(route('admin.dewan.store'), [
+        'name' => 'Pengurus Baru Uji Coba',
+        'position' => 'Staf Khusus Yayasan',
+        'fraction' => 'Yayasan',
+        'order' => 18,
+    ]);
+    $createRes->assertRedirect(route('admin.dewan.index'));
+    $newMember = AnggotaDewan::where('name', 'Pengurus Baru Uji Coba')->first();
+    expect($newMember)->not->toBeNull();
+    expect($newMember->order)->toBe(18);
+    expect($newMember->photo_url)->toBe('/uploads/avatar-neutral-gray.svg');
+
+    // 3. Main admin can edit the member
+    $updateRes = $this->put(route('admin.dewan.update', $newMember), [
+        'name' => 'Pengurus Baru Terupdate',
+        'position' => 'Penasihat Yayasan',
+        'fraction' => 'Yayasan',
+        'order' => 19,
+    ]);
+    $updateRes->assertRedirect(route('admin.dewan.index'));
+    $newMember->refresh();
+    expect($newMember->name)->toBe('Pengurus Baru Terupdate');
+    expect($newMember->order)->toBe(19);
+
+    // 4. Main admin can delete the member (CRUD full access)
+    $deleteRes = $this->delete(route('admin.dewan.destroy', $newMember));
+    $deleteRes->assertRedirect(route('admin.dewan.index'));
+    expect(AnggotaDewan::find($newMember->id))->toBeNull();
 });

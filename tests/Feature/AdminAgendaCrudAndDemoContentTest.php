@@ -98,13 +98,13 @@ test('demo content seeder populates exactly 8 dewan yayasan, official TVRU video
         ->and(Pengumuman::count())->toBeGreaterThanOrEqual(4);
 });
 
-test('public dewan guru page displays 8 prominent yayasan leaders', function () {
+test('public dewan guru page displays prominent yayasan leaders', function () {
     $this->seed(PpruDemoContentSeeder::class);
 
     $response = $this->get(route('dewan.index'));
     $response->assertStatus(200);
-    $response->assertSee('Drs. KH. Karim Kasim');
-    $response->assertSee('Faisal Abdullah');
+    $response->assertSee('KH. Abdul Karim Umar');
+    $response->assertSee('Dr. H. Husnul Amin');
 });
 
 test('unit page displays 8 teachers, 4 TVRU videos, 4 prestasi, 4 ekskul, and 4 testimonials', function () {

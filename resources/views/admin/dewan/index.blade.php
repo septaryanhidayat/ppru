@@ -67,7 +67,7 @@
                 <div class="bg-slate-50 rounded-2xl p-5 border border-slate-200/80 flex flex-col justify-between space-y-4 hover:shadow-md transition">
                     <div class="text-center space-y-3">
                         <div class="w-24 h-24 mx-auto rounded-2xl bg-white p-1 shadow-xs border border-slate-200 overflow-hidden">
-                            <img src="{{ $d->photo }}" alt="{{ $d->name }}" class="w-full h-full object-cover object-top rounded-xl" onerror="this.onerror=null;this.src='/uploads/logo-ppru-square.png'">
+                            <img src="{{ $d->photo_url }}" alt="{{ $d->name }}" class="w-full h-full object-cover object-top rounded-xl" onerror="this.onerror=null;this.src='/uploads/avatar-neutral-gray.svg'">
                         </div>
                         <div>
                             <h3 class="font-extrabold text-sm text-slate-900">{{ $d->name }}</h3>
@@ -84,15 +84,15 @@
                             <a href="{{ route('admin.dewan.edit', $d) }}" class="p-2 text-slate-600 hover:text-[#da251c] hover:bg-red-100 rounded-lg transition" title="Edit Profil">
                                 <i class="fa-solid fa-pen-to-square"></i>
                             </a>
-                            @if($d->fraction === 'Yayasan')
-                                <span class="p-2 text-amber-500/70" title="Pimpinan Yayasan (Dilindungi)">
+                            @if(auth()->user()?->isUnitAdmin() && ($d->fraction === 'Yayasan' || str_contains($d->fraction ?? '', 'Yayasan')))
+                                <span class="p-2 text-amber-500/70" title="Pimpinan Yayasan (Hanya Admin Utama)">
                                     <i class="fa-solid fa-shield text-xs"></i>
                                 </span>
                             @else
-                                <form action="{{ route('admin.dewan.destroy', $d) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data anggota dewan ini?');" class="inline">
+                                <form action="{{ route('admin.dewan.destroy', $d) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data anggota dewan/pengurus ini?');" class="inline">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition" title="Hapus">
+                                    <button type="submit" class="p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition cursor-pointer" title="Hapus">
                                         <i class="fa-solid fa-trash"></i>
                                     </button>
                                 </form>

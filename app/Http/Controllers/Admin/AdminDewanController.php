@@ -178,12 +178,14 @@ class AdminDewanController extends Controller
     public function destroy(Request $request, AnggotaDewan $dewan)
     {
         $user = $request->user();
-        if ($dewan->fraction === 'Yayasan') {
-            abort(403, 'Data Pengurus Yayasan dilindungi dan tidak dapat dihapus.');
-        }
 
-        if ($user?->isUnitAdmin() && $dewan->unit_pendidikan_id !== $user->unit_pendidikan_id && $dewan->fraction !== $user->unit?->short_name) {
-            abort(403, 'Anda hanya berhak mengelola dewan guru untuk unit Anda.');
+        if ($user?->isUnitAdmin()) {
+            if ($dewan->fraction === 'Yayasan' || str_contains($dewan->fraction ?? '', 'Yayasan')) {
+                abort(403, 'Pengurus Yayasan hanya dapat dikelola oleh Administrator Utama.');
+            }
+            if ($dewan->unit_pendidikan_id !== $user->unit_pendidikan_id && $dewan->fraction !== $user->unit?->short_name) {
+                abort(403, 'Anda hanya berhak mengelola dewan guru untuk unit Anda.');
+            }
         }
 
         $name = $dewan->name;

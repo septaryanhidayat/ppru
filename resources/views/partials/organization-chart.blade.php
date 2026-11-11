@@ -497,11 +497,10 @@
                 <div style="width: 2px; height: 32px; background-color: #00843d; margin: 0 auto;"></div>
             </div>
 
-            <!-- ==================================================== -->
-            <!-- LEVEL 4: PIMPINAN PONDOK PESANTREN                   -->
-            <!-- Sesuai Bagan Resmi: Sambungan Garis Horizontal Flank -->
-            <!-- [Naibah Mudir] <--- garis ---> [Mudir Ma'had] <--- garis ---> [Naib Mudir] -->
-            <!-- ==================================================== -->
+            {{-- ==================================================== --}}
+            {{-- LEVEL 4: PIMPINAN PONDOK PESANTREN (MUDIR & NAIB)    --}}
+            {{-- Sesuai Bagan Resmi: Sambungan Garis Horizontal Flank --}}
+            {{-- ==================================================== --}}
             <div class="relative flex flex-col items-center">
                 <div style="display: flex; flex-direction: row; align-items: center; justify-content: center; width: 1140px; margin: 0 auto;">
                     
