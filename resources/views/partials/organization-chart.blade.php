@@ -247,7 +247,7 @@
         <div id="org-chart-canvas" 
              :style="'transform: scale(' + (zoomLevel / 100) + '); transform-origin: top center; transition: transform 0.2s ease-out;'"
              class="w-[1180px] mx-auto p-6 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-5"
-             style="background-color: #ffffff; background-image: none;">
+             style="background-color: #ffffff; background-image: none; width: 1180px; min-width: 1180px;">
             
             <!-- Bagan Header Title dengan Logo PPRU Resmi (Base64 Inlined untuk Anti-CORS) -->
             <div class="text-center pb-4 border-b border-slate-200">
@@ -278,32 +278,32 @@
             <!-- ==================================================== -->
             <div class="relative flex flex-col items-center">
                 <!-- Ketua Dewan Pembina Card -->
-                <div class="w-[360px] rounded-2xl bg-white border-2 border-amber-500 shadow-md">
-                    <div class="h-8 bg-gradient-to-r from-amber-600 to-amber-500 text-white rounded-t-xl px-3 flex items-center justify-center gap-1.5 text-center">
-                        <i class="fa-solid fa-crown text-xs text-amber-200"></i>
-                        <span class="text-[11px] font-black uppercase tracking-wider text-center">
+                <div style="width: 360px; background-color: #ffffff; border: 2px solid #d97706; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); margin: 0 auto;">
+                    <div style="height: 32px; background: linear-gradient(135deg, #d97706, #b45309) !important; color: #ffffff !important; display: flex; align-items: center; justify-content: center; gap: 6px; padding: 0 12px; text-align: center;">
+                        <i class="fa-solid fa-crown" style="font-size: 12px; color: #fde68a;"></i>
+                        <span style="font-size: 11px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.05em; color: #ffffff;">
                             DEWAN PEMBINA YAPIRUS
                         </span>
                     </div>
-                    <div class="min-h-[58px] px-3 py-2 text-center bg-white rounded-b-xl flex flex-col justify-center items-center">
-                        <h3 class="text-xs sm:text-sm font-black text-slate-900 leading-snug break-words text-center m-0">
+                    <div style="min-h: 58px; padding: 8px 12px; text-align: center; background-color: #ffffff; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                        <h3 style="font-size: 13px; font-weight: 900; color: #0f172a; line-height: 1.3; margin: 0; text-align: center; word-break: break-word;">
                             {{ $tree['pembina_ketua']->name ?? ($tree['pembina']->name ?? "KH. Tol'at Wafa Ahmad, Lc.") }}
                         </h3>
-                        <p class="text-[10px] text-amber-700 font-bold mt-1 leading-none break-words text-center m-0">
+                        <p style="font-size: 10px; font-weight: 700; color: #b45309; margin-top: 4px; line-height: 1.2; text-align: center; word-break: break-word;">
                             {{ $tree['pembina_ketua']->position ?? ($tree['pembina']->position ?? 'Ketua Dewan Pembina YAPIRUS') }}
                         </p>
                     </div>
                 </div>
 
-                <!-- SVG Bracket Connector to 5 Anggota Dewan Pembina -->
-                <svg class="w-[1100px] h-7 text-emerald-600 mx-auto block" viewBox="0 0 1100 28" fill="none">
-                    <path d="M 550 0 V 14" stroke="currentColor" stroke-width="2"/>
-                    <path d="M 110 14 H 990" stroke="currentColor" stroke-width="2"/>
-                    <path d="M 110 14 V 28 M 330 14 V 28 M 550 14 V 28 M 770 14 V 28 M 990 14 V 28" stroke="currentColor" stroke-width="2"/>
+                <!-- SVG Bracket Connector to 5 Anggota Dewan Pembina (Centers at 114, 342, 570, 798, 1026) -->
+                <svg style="width: 1140px; height: 28px; display: block; margin: 0 auto;" viewBox="0 0 1140 28" fill="none">
+                    <path d="M 570 0 V 14" stroke="#00843d" stroke-width="2"/>
+                    <path d="M 114 14 H 1026" stroke="#00843d" stroke-width="2"/>
+                    <path d="M 114 14 V 28 M 342 14 V 28 M 570 14 V 28 M 798 14 V 28 M 1026 14 V 28" stroke="#00843d" stroke-width="2"/>
                 </svg>
 
-                <!-- 5 Anggota Dewan Pembina Grid -->
-                <div class="w-[1140px] mx-auto grid grid-cols-5 gap-3">
+                <!-- 5 Anggota Dewan Pembina (Explicit Inline Flex Row, 5 Horizontal Columns) -->
+                <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: stretch; width: 1140px; margin: 0 auto; gap: 12px;">
                     @php
                         $pembinaList = [
                             'KH. Abdul Karim Umar',
@@ -318,13 +318,13 @@
                             $member = $tree['pembina_anggota']->get($idx);
                             $name = $member?->name ?: $fallbackName;
                         @endphp
-                        <div class="rounded-xl bg-white border border-emerald-600 shadow-xs">
-                            <div class="h-6 bg-gradient-to-r from-emerald-700 to-[#00843d] text-white rounded-t-lg px-2 flex items-center justify-center gap-1 text-center">
-                                <i class="fa-solid fa-user-group text-[9px] text-emerald-200"></i>
-                                <span class="text-[9px] font-black uppercase tracking-wider text-center">ANGGOTA DEWAN PEMBINA</span>
+                        <div style="flex: 1 1 0; min-width: 0; width: 216px; background-color: #ffffff; border: 1.5px solid #00843d; border-radius: 12px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.08);">
+                            <div style="height: 28px; background: linear-gradient(135deg, #047857, #00843d) !important; color: #ffffff !important; display: flex; align-items: center; justify-content: center; gap: 5px; padding: 0 6px; text-align: center;">
+                                <i class="fa-solid fa-user-group" style="font-size: 10px; color: #a7f3d0;"></i>
+                                <span style="font-size: 9px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.05em; color: #ffffff; white-space: nowrap;">ANGGOTA DEWAN PEMBINA</span>
                             </div>
-                            <div class="min-h-[48px] px-2 py-1.5 text-center bg-white rounded-b-lg flex flex-col justify-center items-center">
-                                <h4 class="text-xs font-black text-slate-900 leading-snug break-words text-center m-0">
+                            <div style="min-height: 48px; padding: 6px 8px; text-align: center; background-color: #ffffff; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                                <h4 style="font-size: 11px; font-weight: 800; color: #0f172a; line-height: 1.25; margin: 0; text-align: center; word-break: break-word;">
                                     {{ $name }}
                                 </h4>
                             </div>
@@ -333,7 +333,7 @@
                 </div>
 
                 <!-- Connector line from Level 1 down to Level 2 -->
-                <div class="w-[2px] h-6 bg-[#00843d]"></div>
+                <div style="width: 2px; height: 24px; background-color: #00843d; margin: 0 auto;"></div>
             </div>
 
             <!-- ==================================================== -->
@@ -341,91 +341,91 @@
             <!-- ==================================================== -->
             <div class="relative flex flex-col items-center">
                 <!-- Ketua Dewan Harian YAPIRUS Card -->
-                <div class="w-[360px] rounded-2xl bg-white border-2 border-blue-600 shadow-md">
-                    <div class="h-8 bg-gradient-to-r from-blue-700 to-sky-600 text-white rounded-t-xl px-3 flex items-center justify-center gap-1.5 text-center">
-                        <i class="fa-solid fa-building-columns text-xs text-blue-200"></i>
-                        <span class="text-[11px] font-black uppercase tracking-wider text-center">
+                <div style="width: 360px; background-color: #ffffff; border: 2px solid #2563eb; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); margin: 0 auto;">
+                    <div style="height: 32px; background: linear-gradient(135deg, #1d4ed8, #2563eb) !important; color: #ffffff !important; display: flex; align-items: center; justify-content: center; gap: 6px; padding: 0 12px; text-align: center;">
+                        <i class="fa-solid fa-building-columns" style="font-size: 12px; color: #bfdbfe;"></i>
+                        <span style="font-size: 11px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.05em; color: #ffffff;">
                             PENGURUS HARIAN
                         </span>
                     </div>
-                    <div class="min-h-[58px] px-3 py-2 text-center bg-white rounded-b-xl flex flex-col justify-center items-center">
-                        <h3 class="text-xs sm:text-sm font-black text-slate-900 leading-snug break-words text-center m-0">
-                            {{ $tree['harian_ketua']->name ?? ($tree['ketua_yayasan']->name ?? 'Dr. H. Husnul Amin, Lc., M.H.I., M.M.') }}
+                    <div style="min-height: 58px; padding: 8px 12px; text-align: center; background-color: #ffffff; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                        <h3 style="font-size: 13px; font-weight: 900; color: #0f172a; line-height: 1.3; margin: 0; text-align: center; word-break: break-word;">
+                            {{ $tree['harian_ketua']->name ?? ($tree['ketua_yayasan']->name ?? 'Dr. H. Husnul Amin, Lc., M.H.I., MM.') }}
                         </h3>
-                        <p class="text-[10px] text-blue-700 font-bold mt-1 leading-none break-words text-center m-0">
+                        <p style="font-size: 10px; font-weight: 700; color: #1d4ed8; margin-top: 4px; line-height: 1.2; text-align: center; word-break: break-word;">
                             {{ $tree['harian_ketua']->position ?? 'Ketua Dewan Harian YAPIRUS' }}
                         </p>
                     </div>
                 </div>
 
                 <!-- SVG Bracket Connector to 4 Pengurus Harian (Sekretaris & Bendahara) -->
-                <svg class="w-[960px] h-7 text-teal-600 mx-auto block" viewBox="0 0 960 28" fill="none">
-                    <path d="M 480 0 V 14" stroke="currentColor" stroke-width="2"/>
-                    <path d="M 120 14 H 840" stroke="currentColor" stroke-width="2"/>
-                    <path d="M 120 14 V 28 M 360 14 V 28 M 600 14 V 28 M 840 14 V 28" stroke="currentColor" stroke-width="2"/>
+                <svg style="width: 1040px; height: 28px; display: block; margin: 0 auto;" viewBox="0 0 1040 28" fill="none">
+                    <path d="M 520 0 V 14" stroke="#0d9488" stroke-width="2"/>
+                    <path d="M 125 14 H 915" stroke="#0d9488" stroke-width="2"/>
+                    <path d="M 125 14 V 28 M 388 14 V 28 M 652 14 V 28 M 915 14 V 28" stroke="#0d9488" stroke-width="2"/>
                 </svg>
 
-                <!-- 4 Pengurus Harian Grid (Sekretaris, Wasekr, Bendahara, Wabend) -->
-                <div class="w-[1000px] mx-auto grid grid-cols-4 gap-3.5">
+                <!-- 4 Pengurus Harian (Explicit Inline Flex Row, 4 Columns) -->
+                <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: stretch; width: 1040px; margin: 0 auto; gap: 14px;">
                     <!-- Sekretaris -->
-                    <div class="rounded-xl bg-white border border-teal-500 shadow-xs">
-                        <div class="h-6 bg-gradient-to-r from-teal-700 to-teal-600 text-white rounded-t-lg px-2 flex items-center justify-center gap-1 text-center">
-                            <i class="fa-solid fa-file-signature text-[9px] text-teal-200"></i>
-                            <span class="text-[9px] font-black uppercase tracking-wider text-center">SEKRETARIS YAYASAN</span>
+                    <div style="flex: 1 1 0; min-width: 0; width: 245px; background-color: #ffffff; border: 1.5px solid #0d9488; border-radius: 12px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.08);">
+                        <div style="height: 26px; background: linear-gradient(135deg, #0f766e, #0d9488) !important; color: #ffffff !important; display: flex; align-items: center; justify-content: center; gap: 5px; padding: 0 8px; text-align: center;">
+                            <i class="fa-solid fa-file-signature" style="font-size: 10px; color: #99f6e4;"></i>
+                            <span style="font-size: 9px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.05em; color: #ffffff;">SEKRETARIS YAYASAN</span>
                         </div>
-                        <div class="min-h-[52px] px-2 py-1.5 text-center bg-white rounded-b-lg flex flex-col justify-center items-center">
-                            <h4 class="text-xs font-black text-slate-900 leading-snug break-words text-center m-0">
+                        <div style="min-height: 52px; padding: 6px 8px; text-align: center; background-color: #ffffff; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                            <h4 style="font-size: 11px; font-weight: 800; color: #0f172a; line-height: 1.25; margin: 0; text-align: center; word-break: break-word;">
                                 {{ $tree['sekretaris_1']->name ?? ($tree['sekretaris']->name ?? 'Salamuddin, S.Si.') }}
                             </h4>
-                            <p class="text-[9px] text-teal-700 font-semibold mt-0.5 leading-none break-words text-center m-0">Sekretaris</p>
+                            <p style="font-size: 9px; font-weight: 700; color: #0f766e; margin-top: 2px; line-height: 1.2; text-align: center;">Sekretaris</p>
                         </div>
                     </div>
 
                     <!-- Wakil Sekretaris -->
-                    <div class="rounded-xl bg-white border border-teal-500 shadow-xs">
-                        <div class="h-6 bg-gradient-to-r from-teal-700 to-teal-600 text-white rounded-t-lg px-2 flex items-center justify-center gap-1 text-center">
-                            <i class="fa-solid fa-file-lines text-[9px] text-teal-200"></i>
-                            <span class="text-[9px] font-black uppercase tracking-wider text-center">SEKRETARIS YAYASAN</span>
+                    <div style="flex: 1 1 0; min-width: 0; width: 245px; background-color: #ffffff; border: 1.5px solid #0d9488; border-radius: 12px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.08);">
+                        <div style="height: 26px; background: linear-gradient(135deg, #0f766e, #0d9488) !important; color: #ffffff !important; display: flex; align-items: center; justify-content: center; gap: 5px; padding: 0 8px; text-align: center;">
+                            <i class="fa-solid fa-file-lines" style="font-size: 10px; color: #99f6e4;"></i>
+                            <span style="font-size: 9px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.05em; color: #ffffff;">SEKRETARIS YAYASAN</span>
                         </div>
-                        <div class="min-h-[52px] px-2 py-1.5 text-center bg-white rounded-b-lg flex flex-col justify-center items-center">
-                            <h4 class="text-xs font-black text-slate-900 leading-snug break-words text-center m-0">
+                        <div style="min-height: 52px; padding: 6px 8px; text-align: center; background-color: #ffffff; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                            <h4 style="font-size: 11px; font-weight: 800; color: #0f172a; line-height: 1.25; margin: 0; text-align: center; word-break: break-word;">
                                 {{ $tree['sekretaris_2']->name ?? 'H. Muhammad Rido, S.Ag.' }}
                             </h4>
-                            <p class="text-[9px] text-teal-700 font-semibold mt-0.5 leading-none break-words text-center m-0">Wakil Sekretaris</p>
+                            <p style="font-size: 9px; font-weight: 700; color: #0f766e; margin-top: 2px; line-height: 1.2; text-align: center;">Wakil Sekretaris</p>
                         </div>
                     </div>
 
                     <!-- Bendahara -->
-                    <div class="rounded-xl bg-white border border-teal-500 shadow-xs">
-                        <div class="h-6 bg-gradient-to-r from-teal-700 to-teal-600 text-white rounded-t-lg px-2 flex items-center justify-center gap-1 text-center">
-                            <i class="fa-solid fa-coins text-[9px] text-amber-300"></i>
-                            <span class="text-[9px] font-black uppercase tracking-wider text-center">BENDAHARA YAYASAN</span>
+                    <div style="flex: 1 1 0; min-width: 0; width: 245px; background-color: #ffffff; border: 1.5px solid #0d9488; border-radius: 12px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.08);">
+                        <div style="height: 26px; background: linear-gradient(135deg, #0f766e, #0d9488) !important; color: #ffffff !important; display: flex; align-items: center; justify-content: center; gap: 5px; padding: 0 8px; text-align: center;">
+                            <i class="fa-solid fa-coins" style="font-size: 10px; color: #fde68a;"></i>
+                            <span style="font-size: 9px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.05em; color: #ffffff;">BENDAHARA YAYASAN</span>
                         </div>
-                        <div class="min-h-[52px] px-2 py-1.5 text-center bg-white rounded-b-lg flex flex-col justify-center items-center">
-                            <h4 class="text-xs font-black text-slate-900 leading-snug break-words text-center m-0">
+                        <div style="min-height: 52px; padding: 6px 8px; text-align: center; background-color: #ffffff; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                            <h4 style="font-size: 11px; font-weight: 800; color: #0f172a; line-height: 1.25; margin: 0; text-align: center; word-break: break-word;">
                                 {{ $tree['bendahara_1']->name ?? ($tree['bendahara']->name ?? 'Hj. Risa Fauziah Aristina') }}
                             </h4>
-                            <p class="text-[9px] text-teal-700 font-semibold mt-0.5 leading-none break-words text-center m-0">Bendahara</p>
+                            <p style="font-size: 9px; font-weight: 700; color: #0f766e; margin-top: 2px; line-height: 1.2; text-align: center;">Bendahara</p>
                         </div>
                     </div>
 
                     <!-- Wakil Bendahara -->
-                    <div class="rounded-xl bg-white border border-teal-500 shadow-xs">
-                        <div class="h-6 bg-gradient-to-r from-teal-700 to-teal-600 text-white rounded-t-lg px-2 flex items-center justify-center gap-1 text-center">
-                            <i class="fa-solid fa-coins text-[9px] text-amber-300"></i>
-                            <span class="text-[9px] font-black uppercase tracking-wider text-center">BENDAHARA YAYASAN</span>
+                    <div style="flex: 1 1 0; min-width: 0; width: 245px; background-color: #ffffff; border: 1.5px solid #0d9488; border-radius: 12px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.08);">
+                        <div style="height: 26px; background: linear-gradient(135deg, #0f766e, #0d9488) !important; color: #ffffff !important; display: flex; align-items: center; justify-content: center; gap: 5px; padding: 0 8px; text-align: center;">
+                            <i class="fa-solid fa-coins" style="font-size: 10px; color: #fde68a;"></i>
+                            <span style="font-size: 9px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.05em; color: #ffffff;">BENDAHARA YAYASAN</span>
                         </div>
-                        <div class="min-h-[52px] px-2 py-1.5 text-center bg-white rounded-b-lg flex flex-col justify-center items-center">
-                            <h4 class="text-xs font-black text-slate-900 leading-snug break-words text-center m-0">
+                        <div style="min-height: 52px; padding: 6px 8px; text-align: center; background-color: #ffffff; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                            <h4 style="font-size: 11px; font-weight: 800; color: #0f172a; line-height: 1.25; margin: 0; text-align: center; word-break: break-word;">
                                 {{ $tree['bendahara_2']->name ?? 'Maila Rasyidah, Lc' }}
                             </h4>
-                            <p class="text-[9px] text-teal-700 font-semibold mt-0.5 leading-none break-words text-center m-0">Wakil Bendahara</p>
+                            <p style="font-size: 9px; font-weight: 700; color: #0f766e; margin-top: 2px; line-height: 1.2; text-align: center;">Wakil Bendahara</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Connector line from Level 2 down to Level 3 -->
-                <div class="w-[2px] h-6 bg-[#00843d]"></div>
+                <div style="width: 2px; height: 24px; background-color: #00843d; margin: 0 auto;"></div>
             </div>
 
             <!-- ==================================================== -->
@@ -433,32 +433,32 @@
             <!-- ==================================================== -->
             <div class="relative flex flex-col items-center">
                 <!-- Ketua Dewan Pengawas Card -->
-                <div class="w-[360px] rounded-2xl bg-white border-2 border-emerald-700 shadow-md">
-                    <div class="h-8 bg-gradient-to-r from-emerald-800 to-emerald-700 text-white rounded-t-xl px-3 flex items-center justify-center gap-1.5 text-center">
-                        <i class="fa-solid fa-shield-halved text-xs text-amber-300"></i>
-                        <span class="text-[11px] font-black uppercase tracking-wider text-center">
+                <div style="width: 360px; background-color: #ffffff; border: 2px solid #047857; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); margin: 0 auto;">
+                    <div style="height: 32px; background: linear-gradient(135deg, #065f46, #047857) !important; color: #ffffff !important; display: flex; align-items: center; justify-content: center; gap: 6px; padding: 0 12px; text-align: center;">
+                        <i class="fa-solid fa-shield-halved" style="font-size: 12px; color: #fde68a;"></i>
+                        <span style="font-size: 11px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.05em; color: #ffffff;">
                             DEWAN PENGAWAS
                         </span>
                     </div>
-                    <div class="min-h-[58px] px-3 py-2 text-center bg-white rounded-b-xl flex flex-col justify-center items-center">
-                        <h3 class="text-xs sm:text-sm font-black text-slate-900 leading-snug break-words text-center m-0">
+                    <div style="min-height: 58px; padding: 8px 12px; text-align: center; background-color: #ffffff; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                        <h3 style="font-size: 13px; font-weight: 900; color: #0f172a; line-height: 1.3; margin: 0; text-align: center; word-break: break-word;">
                             {{ $tree['pengawas_ketua']->name ?? 'Drs. KH. Ahmad Nahrowi, MM' }}
                         </h3>
-                        <p class="text-[10px] text-emerald-700 font-bold mt-1 leading-none break-words text-center m-0">
+                        <p style="font-size: 10px; font-weight: 700; color: #047857; margin-top: 4px; line-height: 1.2; text-align: center; word-break: break-word;">
                             {{ $tree['pengawas_ketua']->position ?? 'Ketua Dewan Pengawas' }}
                         </p>
                     </div>
                 </div>
 
-                <!-- SVG Bracket Connector to 5 Anggota Dewan Pengawas -->
-                <svg class="w-[1100px] h-7 text-emerald-600 mx-auto block" viewBox="0 0 1100 28" fill="none">
-                    <path d="M 550 0 V 14" stroke="currentColor" stroke-width="2"/>
-                    <path d="M 110 14 H 990" stroke="currentColor" stroke-width="2"/>
-                    <path d="M 110 14 V 28 M 330 14 V 28 M 550 14 V 28 M 770 14 V 28 M 990 14 V 28" stroke="currentColor" stroke-width="2"/>
+                <!-- SVG Bracket Connector to 5 Anggota Dewan Pengawas (Centers at 114, 342, 570, 798, 1026) -->
+                <svg style="width: 1140px; height: 28px; display: block; margin: 0 auto;" viewBox="0 0 1140 28" fill="none">
+                    <path d="M 570 0 V 14" stroke="#00843d" stroke-width="2"/>
+                    <path d="M 114 14 H 1026" stroke="#00843d" stroke-width="2"/>
+                    <path d="M 114 14 V 28 M 342 14 V 28 M 570 14 V 28 M 798 14 V 28 M 1026 14 V 28" stroke="#00843d" stroke-width="2"/>
                 </svg>
 
-                <!-- 5 Anggota Dewan Pengawas Grid -->
-                <div class="w-[1140px] mx-auto grid grid-cols-5 gap-3">
+                <!-- 5 Anggota Dewan Pengawas (Explicit Inline Flex Row, 5 Horizontal Columns) -->
+                <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: stretch; width: 1140px; margin: 0 auto; gap: 12px;">
                     @php
                         $pengawasList = [
                             'H. Husnul Anam, S.H.I',
@@ -473,13 +473,13 @@
                             $member = $tree['pengawas_anggota']->get($idx);
                             $name = $member?->name ?: $fallbackName;
                         @endphp
-                        <div class="rounded-xl bg-white border border-emerald-600 shadow-xs">
-                            <div class="h-6 bg-gradient-to-r from-emerald-700 to-[#00843d] text-white rounded-t-lg px-2 flex items-center justify-center gap-1 text-center">
-                                <i class="fa-solid fa-user-shield text-[9px] text-emerald-200"></i>
-                                <span class="text-[9px] font-black uppercase tracking-wider text-center">ANGGOTA DEWAN PENGAWAS</span>
+                        <div style="flex: 1 1 0; min-width: 0; width: 216px; background-color: #ffffff; border: 1.5px solid #00843d; border-radius: 12px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.08);">
+                            <div style="height: 28px; background: linear-gradient(135deg, #047857, #00843d) !important; color: #ffffff !important; display: flex; align-items: center; justify-content: center; gap: 5px; padding: 0 6px; text-align: center;">
+                                <i class="fa-solid fa-user-shield" style="font-size: 10px; color: #a7f3d0;"></i>
+                                <span style="font-size: 9px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.05em; color: #ffffff; white-space: nowrap;">ANGGOTA DEWAN PENGAWAS</span>
                             </div>
-                            <div class="min-h-[48px] px-2 py-1.5 text-center bg-white rounded-b-lg flex flex-col justify-center items-center">
-                                <h4 class="text-xs font-black text-slate-900 leading-snug break-words text-center m-0">
+                            <div style="min-height: 48px; padding: 6px 8px; text-align: center; background-color: #ffffff; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                                <h4 style="font-size: 11px; font-weight: 800; color: #0f172a; line-height: 1.25; margin: 0; text-align: center; word-break: break-word;">
                                     {{ $name }}
                                 </h4>
                             </div>
@@ -487,65 +487,69 @@
                     @endforeach
                 </div>
 
-                <!-- Connector line from Level 3 down to Level 4 -->
-                <div class="w-[2px] h-6 bg-[#00843d]"></div>
+                <!-- SVG Connector from Level 3 down to Level 4 (Mudir center 530, Naibah 155, Naib 905) -->
+                <svg style="width: 1060px; height: 28px; display: block; margin: 0 auto;" viewBox="0 0 1060 28" fill="none">
+                    <path d="M 530 0 V 28" stroke="#00843d" stroke-width="2"/>
+                    <path d="M 155 14 H 905" stroke="#00843d" stroke-width="2"/>
+                    <path d="M 155 14 V 28 M 905 14 V 28" stroke="#00843d" stroke-width="2"/>
+                </svg>
             </div>
 
             <!-- ==================================================== -->
             <!-- LEVEL 4: PIMPINAN PONDOK PESANTREN (MUDIR MA'HAD)    -->
             <!-- ==================================================== -->
             <div class="relative flex flex-col items-center">
-                <div class="w-[1060px] mx-auto flex justify-between items-stretch">
+                <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: stretch; width: 1060px; margin: 0 auto;">
                     
                     <!-- Wakil Pimpinan Putri (Naibah Mudir) -->
-                    <div class="w-[310px] rounded-2xl bg-white border-2 border-purple-600 shadow-md">
-                        <div class="h-8 bg-gradient-to-r from-purple-700 to-fuchsia-600 text-white rounded-t-xl px-3 flex items-center justify-center gap-1.5 text-center">
-                            <i class="fa-solid fa-user-tie text-xs text-purple-200"></i>
-                            <span class="text-[10px] font-black uppercase tracking-wider text-center">
+                    <div style="width: 310px; background-color: #ffffff; border: 2px solid #7e22ce; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
+                        <div style="height: 32px; background: linear-gradient(135deg, #6b21a8, #7e22ce) !important; color: #ffffff !important; display: flex; align-items: center; justify-content: center; gap: 6px; padding: 0 12px; text-align: center;">
+                            <i class="fa-solid fa-user-tie" style="font-size: 11px; color: #f3e8ff;"></i>
+                            <span style="font-size: 10px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.05em; color: #ffffff;">
                                 WAKIL PIMPINAN PONDOK PESANTREN
                             </span>
                         </div>
-                        <div class="min-h-[60px] px-3 py-2 text-center bg-white rounded-b-xl flex flex-col justify-center items-center">
-                            <h4 class="text-xs sm:text-sm font-black text-slate-900 leading-snug break-words text-center m-0">
+                        <div style="min-height: 60px; padding: 8px 12px; text-align: center; background-color: #ffffff; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                            <h4 style="font-size: 13px; font-weight: 900; color: #0f172a; line-height: 1.3; margin: 0; text-align: center; word-break: break-word;">
                                 {{ $tree['naibah_mudir']->name ?? 'Maila Rasyidah, Lc' }}
                             </h4>
-                            <p class="text-[10px] text-purple-700 font-bold mt-1 leading-none break-words text-center m-0">
+                            <p style="font-size: 10px; font-weight: 700; color: #7e22ce; margin-top: 4px; line-height: 1.2; text-align: center; word-break: break-word;">
                                 {{ $tree['naibah_mudir']->position ?? 'Naibah Mudir Pondok Pesantren Raudhatul Ulum' }}
                             </p>
                         </div>
                     </div>
 
                     <!-- Mudir Pondok Pesantren (Pimpinan Utama) -->
-                    <div class="w-[380px] rounded-2xl bg-white border-2 border-[#00843d] shadow-xl">
-                        <div class="h-9 bg-gradient-to-r from-emerald-900 via-[#00843d] to-emerald-800 text-white rounded-t-xl px-3 flex items-center justify-center gap-2 text-center">
-                            <i class="fa-solid fa-mosque text-xs text-amber-300"></i>
-                            <span class="text-xs font-black uppercase tracking-wider text-center">
+                    <div style="width: 380px; background-color: #ffffff; border: 2px solid #00843d; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);">
+                        <div style="height: 36px; background: linear-gradient(135deg, #064e3b, #00843d) !important; color: #ffffff !important; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 0 12px; text-align: center;">
+                            <i class="fa-solid fa-mosque" style="font-size: 12px; color: #fde68a;"></i>
+                            <span style="font-size: 11px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.05em; color: #ffffff;">
                                 PIMPINAN PONDOK PESANTREN (MUDIR MA'HAD)
                             </span>
                         </div>
-                        <div class="min-h-[64px] px-4 py-2 text-center bg-white rounded-b-xl flex flex-col justify-center items-center">
-                            <h3 class="text-sm sm:text-base font-black text-slate-900 leading-snug break-words text-center m-0">
+                        <div style="min-height: 64px; padding: 8px 16px; text-align: center; background-color: #ffffff; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                            <h3 style="font-size: 14px; font-weight: 900; color: #0f172a; line-height: 1.3; margin: 0; text-align: center; word-break: break-word;">
                                 {{ $tree['mudir']->name ?? "KH. Tol'at Wafa Ahmad, Lc." }}
                             </h3>
-                            <p class="text-[11px] text-[#00843d] font-bold mt-1 leading-none break-words text-center m-0">
+                            <p style="font-size: 11px; font-weight: 700; color: #00843d; margin-top: 4px; line-height: 1.2; text-align: center; word-break: break-word;">
                                 {{ $tree['mudir']->position ?? 'Mudir Pondok Pesantren Raudhatul Ulum' }}
                             </p>
                         </div>
                     </div>
 
                     <!-- Wakil Pimpinan Putra (Naib Mudir) -->
-                    <div class="w-[310px] rounded-2xl bg-white border-2 border-blue-600 shadow-md">
-                        <div class="h-8 bg-gradient-to-r from-blue-700 to-indigo-600 text-white rounded-t-xl px-3 flex items-center justify-center gap-1.5 text-center">
-                            <i class="fa-solid fa-user-tie text-xs text-blue-200"></i>
-                            <span class="text-[10px] font-black uppercase tracking-wider text-center">
+                    <div style="width: 310px; background-color: #ffffff; border: 2px solid #2563eb; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
+                        <div style="height: 32px; background: linear-gradient(135deg, #1e40af, #2563eb) !important; color: #ffffff !important; display: flex; align-items: center; justify-content: center; gap: 6px; padding: 0 12px; text-align: center;">
+                            <i class="fa-solid fa-user-tie" style="font-size: 11px; color: #dbeafe;"></i>
+                            <span style="font-size: 10px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.05em; color: #ffffff;">
                                 WAKIL PIMPINAN PONDOK PESANTREN
                             </span>
                         </div>
-                        <div class="min-h-[60px] px-3 py-2 text-center bg-white rounded-b-xl flex flex-col justify-center items-center">
-                            <h4 class="text-xs sm:text-sm font-black text-slate-900 leading-snug break-words text-center m-0">
+                        <div style="min-height: 60px; padding: 8px 12px; text-align: center; background-color: #ffffff; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                            <h4 style="font-size: 13px; font-weight: 900; color: #0f172a; line-height: 1.3; margin: 0; text-align: center; word-break: break-word;">
                                 {{ $tree['naib_mudir']->name ?? 'H. M. Akram Afifi, Lc., M.Pd' }}
                             </h4>
-                            <p class="text-[10px] text-blue-700 font-bold mt-1 leading-none break-words text-center m-0">
+                            <p style="font-size: 10px; font-weight: 700; color: #1d4ed8; margin-top: 4px; line-height: 1.2; text-align: center; word-break: break-word;">
                                 {{ $tree['naib_mudir']->position ?? 'Naib Mudir Pondok Pesantren Raudhatul Ulum' }}
                             </p>
                         </div>
@@ -555,30 +559,30 @@
             </div>
 
             <!-- Bagan Footer Legend Sesuai Bagan Resmi PPRU -->
-            <div class="pt-4 mt-4 border-t border-slate-200 flex flex-wrap items-center justify-between text-[10px] text-slate-500">
-                <div class="flex flex-wrap items-center gap-4">
-                    <span class="flex items-center gap-1.5">
-                        <span class="w-3 h-3 rounded-md bg-amber-500 inline-block"></span>
-                        <span class="font-bold text-slate-700">Dewan Pembina YAPIRUS</span>
+            <div style="padding-top: 16px; margin-top: 16px; border-top: 1px solid #e2e8f0; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; font-size: 10px; color: #64748b;">
+                <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 16px;">
+                    <span style="display: flex; align-items: center; gap: 6px;">
+                        <span style="width: 12px; height: 12px; border-radius: 4px; background-color: #d97706; display: inline-block;"></span>
+                        <span style="font-weight: 700; color: #334155;">Dewan Pembina YAPIRUS</span>
                     </span>
-                    <span class="flex items-center gap-1.5">
-                        <span class="w-3 h-3 rounded-md bg-blue-600 inline-block"></span>
-                        <span class="font-bold text-slate-700">Pengurus Harian YAPIRUS</span>
+                    <span style="display: flex; align-items: center; gap: 6px;">
+                        <span style="width: 12px; height: 12px; border-radius: 4px; background-color: #2563eb; display: inline-block;"></span>
+                        <span style="font-weight: 700; color: #334155;">Pengurus Harian YAPIRUS</span>
                     </span>
-                    <span class="flex items-center gap-1.5">
-                        <span class="w-3 h-3 rounded-md bg-emerald-700 inline-block"></span>
-                        <span class="font-bold text-slate-700">Dewan Pengawas YAPIRUS</span>
+                    <span style="display: flex; align-items: center; gap: 6px;">
+                        <span style="width: 12px; height: 12px; border-radius: 4px; background-color: #047857; display: inline-block;"></span>
+                        <span style="font-weight: 700; color: #334155;">Dewan Pengawas YAPIRUS</span>
                     </span>
-                    <span class="flex items-center gap-1.5">
-                        <span class="w-3 h-3 rounded-md bg-[#00843d] inline-block"></span>
-                        <span class="font-bold text-slate-700">Pimpinan Utama (Mudir Ma'had)</span>
+                    <span style="display: flex; align-items: center; gap: 6px;">
+                        <span style="width: 12px; height: 12px; border-radius: 4px; background-color: #00843d; display: inline-block;"></span>
+                        <span style="font-weight: 700; color: #334155;">Pimpinan Utama (Mudir Ma'had)</span>
                     </span>
-                    <span class="flex items-center gap-1.5">
-                        <span class="w-3 h-3 rounded-md bg-purple-600 inline-block"></span>
-                        <span class="font-bold text-slate-700">Wakil Pimpinan Pesantren</span>
+                    <span style="display: flex; align-items: center; gap: 6px;">
+                        <span style="width: 12px; height: 12px; border-radius: 4px; background-color: #7e22ce; display: inline-block;"></span>
+                        <span style="font-weight: 700; color: #334155;">Wakil Pimpinan Pesantren</span>
                     </span>
                 </div>
-                <span class="font-bold text-slate-400">Pondok Pesantren Raudhatul Ulum Sakatiga &copy; 2026</span>
+                <span style="font-weight: 700; color: #94a3b8;">Pondok Pesantren Raudhatul Ulum Sakatiga &copy; 2026</span>
             </div>
 
         </div>

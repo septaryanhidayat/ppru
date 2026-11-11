@@ -49,7 +49,7 @@
         @csrf
 
         {{-- CARD 1: UNGGAH BAGAN GAMBAR STRUKTUR ORGANISASI --}}
-        <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-xs border border-slate-200/80 space-y-6">
+        <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-xs border border-slate-200/80 space-y-6 clear-both">
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-slate-100">
                 <div class="flex items-center space-x-3">
                     <div class="w-10 h-10 rounded-2xl bg-emerald-100 text-[#00843d] flex items-center justify-center text-lg font-black shadow-xs">
@@ -57,7 +57,7 @@
                     </div>
                     <div>
                         <h3 class="font-extrabold text-slate-900 text-base">Bagan Gambar Struktur Organisasi (Resmi)</h3>
-                        <p class="text-xs text-slate-500">Unggah bagan struktur dalam format gambar (hasil desain dari Canva, Corel, Photoshop, atau PPT) agar bebas menyesuaikan bentuk bagan.</p>
+                        <p class="text-xs text-slate-500">Unggah bagan struktur dalam format gambar (hasil desain Canva, Photoshop, Corel, atau PPT) agar bebas menyesuaikan bentuk bagan.</p>
                     </div>
                 </div>
                 <span class="px-3 py-1 rounded-full text-[11px] font-bold bg-emerald-50 text-[#00843d] border border-emerald-200 self-start sm:self-auto">
@@ -87,7 +87,7 @@
                         <input type="text" 
                                name="struktur_chart_image_url" 
                                value="{{ old('struktur_chart_image_url', $settings['struktur_chart_image_url'] ?? ($page->featured_image ?? '')) }}" 
-                               placeholder="Contoh: /uploads/struktur/bagan-resmi-ppru.webp atau https://..."
+                               placeholder="Contoh: /uploads/official/bagan-struktur-organisasi-resmi.png"
                                class="w-full bg-slate-50 text-xs font-mono text-slate-800 rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00843d]">
                     </div>
 
@@ -129,7 +129,7 @@
                         <div class="relative rounded-xl overflow-hidden border border-slate-300 bg-white shadow-inner max-h-72 flex items-center justify-center p-2 group">
                             <img src="{{ $currentChart }}" 
                                  alt="Bagan Struktur Organisasi PPRU" 
-                                 class="max-h-64 w-auto object-contain transition duration-300 group-hover:scale-105">
+                                 class="max-h-64 max-w-full object-contain transition duration-300 group-hover:scale-105">
                         </div>
 
                         <div class="pt-2 flex items-center justify-between">
@@ -151,7 +151,7 @@
         </div>
 
         {{-- CARD 2: KONTEN TEKS & INFORMASI KEPEMIMPINAN --}}
-        <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-xs border border-slate-200/80 space-y-6">
+        <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-xs border border-slate-200/80 space-y-6 clear-both">
             <div class="flex items-center space-x-3 pb-4 border-b border-slate-100">
                 <div class="w-10 h-10 rounded-2xl bg-teal-100 text-teal-700 flex items-center justify-center text-lg font-black shadow-xs">
                     <i class="fa-solid fa-align-left"></i>
@@ -170,34 +170,32 @@
 
                 <div>
                     <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Teks Pengantar / Intro Singkat</label>
-                    <input type="text" name="struktur_intro" value="{{ old('struktur_intro', $settings['struktur_intro'] ?? ($page->excerpt ?: 'Susunan pengurus Yayasan Perguruan Islam Raudhatul Ulum (YAPIRUS) dan pimpinan Pondok Pesantren Raudhatul Ulum Sakatiga.')) }}" placeholder="Ringkasan singkat di bawah judul..." class="w-full bg-slate-50 text-xs font-semibold text-slate-800 rounded-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00843d]">
+                    <textarea name="struktur_intro" rows="3" placeholder="Ringkasan singkat di bawah judul..." class="w-full bg-slate-50 text-xs font-semibold text-slate-800 rounded-xl px-4 py-2.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00843d] leading-relaxed">{{ old('struktur_intro', $settings['struktur_intro'] ?? ($page->excerpt ?: 'Susunan pengurus Yayasan Perguruan Islam Raudhatul Ulum (YAPIRUS) dan pimpinan Pondok Pesantren Raudhatul Ulum Sakatiga.')) }}</textarea>
+                </div>
+
+                <div class="md:col-span-2">
+                    <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
+                        Uraian Informasi Kepemimpinan / Pedoman Tata Kelola (Opsional)
+                    </label>
+                    <textarea name="content" rows="4" placeholder="Tuliskan uraian informasi atau pedoman kepemimpinan pondok pesantren di sini..." class="w-full bg-slate-50 text-xs text-slate-800 rounded-xl p-3.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00843d] leading-relaxed font-sans">{{ old('content', $page->content) }}</textarea>
+                    <p class="text-[11px] text-slate-500 mt-1.5">Teks ini akan tampil dalam kotak informasi elegan di atas bagan struktur pada website publik.</p>
                 </div>
 
                 <div class="md:col-span-2">
                     <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Ringkasan Pendek (Excerpt Meta)</label>
                     <textarea name="excerpt" rows="2" class="w-full bg-slate-50 text-xs text-slate-800 rounded-xl p-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00843d]">{{ old('excerpt', $page->excerpt) }}</textarea>
                 </div>
-
-                {{-- WYSIWYG EDITOR UNTUK ISI INFORMASI KEPEMIMPINAN --}}
-                <div class="md:col-span-2">
-                    <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
-                        Uraian Informasi Kepemimpinan / Pedoman Tata Kelola (Opsional)
-                    </label>
-                    <input type="hidden" name="content" id="struktur_content_input" value="{{ old('content', $page->content) }}">
-                    <div id="struktur_editor" data-quill="struktur_content_input" class="bg-white min-h-[160px] rounded-xl border border-slate-200"></div>
-                    <p class="text-[11px] text-slate-500 mt-1.5">Teks ini akan tampil dalam kotak informasi elegan di atas bagan struktur pada website publik.</p>
-                </div>
             </div>
         </div>
 
         {{-- CARD 3: PENGATURAN TAMPILAN SEKSI TAMBAHAN --}}
-        <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-xs border border-slate-200/80 space-y-6">
+        <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-xs border border-slate-200/80 space-y-6 clear-both">
             <div class="flex items-center space-x-3 pb-4 border-b border-slate-100">
                 <div class="w-10 h-10 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center text-lg font-black shadow-xs">
                     <i class="fa-solid fa-sliders"></i>
                 </div>
                 <div>
-                    <h3 class="font-extrabold text-slate-900 text-base">Pengaturan Seksi Tambahan di Bawah Struktur</h3>
+                    <h3 class="font-extrabold text-slate-900 text-base">Pengaturan Seksi Tambahan di Bawah Bagan Struktur</h3>
                     <p class="text-xs text-slate-500">Tentukan apakah seksi fasilitas dan program unggulan ditampilkan di halaman struktur.</p>
                 </div>
             </div>
@@ -222,7 +220,7 @@
         </div>
 
         {{-- CARD 4: DATA PEJABAT & PENGURUS STRUKTUR (DARI DATABASE) --}}
-        <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-xs border border-slate-200/80 space-y-6">
+        <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-xs border border-slate-200/80 space-y-6 clear-both">
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-slate-100">
                 <div class="flex items-center space-x-3">
                     <div class="w-10 h-10 rounded-2xl bg-cyan-100 text-cyan-700 flex items-center justify-center text-lg font-black shadow-xs">
@@ -287,7 +285,7 @@
         </div>
 
         {{-- CARD 5: OPTIMASI MESIN PENCARI (SEO GOOGLE) --}}
-        <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-xs border border-slate-200/80 space-y-6">
+        <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-xs border border-slate-200/80 space-y-6 clear-both">
             <div class="flex items-center space-x-3 pb-4 border-b border-slate-100">
                 <div class="w-10 h-10 rounded-2xl bg-blue-100 text-blue-700 flex items-center justify-center text-lg font-black shadow-xs">
                     <i class="fa-brands fa-google"></i>
@@ -311,7 +309,7 @@
         </div>
 
         {{-- SUBMIT BUTTON (STICKY) --}}
-        <div class="sticky bottom-4 z-20 bg-white/95 backdrop-blur-md p-4 sm:p-5 rounded-2xl border border-slate-200 shadow-xl flex items-center justify-between">
+        <div class="sticky bottom-4 z-20 bg-white/95 backdrop-blur-md p-4 sm:p-5 rounded-2xl border border-slate-200 shadow-xl flex items-center justify-between clear-both">
             <div class="text-xs text-slate-500 hidden sm:block">
                 <span>Pastikan gambar bagan dan data pengurus sudah benar sebelum menyimpan.</span>
             </div>

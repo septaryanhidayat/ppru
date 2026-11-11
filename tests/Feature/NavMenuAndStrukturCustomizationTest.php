@@ -179,3 +179,33 @@ test('frontend struktur page renders without raw html tags and full names withou
         ->and($tree['naibah_mudir'])->not->toBeNull()
         ->and($tree['naib_mudir'])->not->toBeNull();
 });
+
+test('organization chart renders with solid inline flex columns and explicit gradient styling', function () {
+    // 1. Render the organization chart component directly
+    $tree = AnggotaDewan::getHierarchyTree();
+    $renderedChart = view('partials.organization-chart', compact('tree'))->render();
+
+    // Chart has inline flex rows for 5 horizontal cards (no uncompiled CSS grid dependency)
+    expect($renderedChart)->toContain('display: flex; flex-direction: row; justify-content: space-between; align-items: stretch; width: 1140px;')
+        ->and($renderedChart)->toContain('ANGGOTA DEWAN PEMBINA')
+        ->and($renderedChart)->toContain('ANGGOTA DEWAN PENGAWAS')
+        ->and($renderedChart)->toContain('WAKIL PIMPINAN PONDOK PESANTREN');
+
+    // Chart has explicit gradient inline styles for each role
+    expect($renderedChart)->toContain('linear-gradient(135deg, #d97706, #b45309)') // Dewan Pembina
+        ->and($renderedChart)->toContain('linear-gradient(135deg, #047857, #00843d)') // Anggota Pembina
+        ->and($renderedChart)->toContain('linear-gradient(135deg, #1d4ed8, #2563eb)') // Pengurus Harian
+        ->and($renderedChart)->toContain('linear-gradient(135deg, #0f766e, #0d9488)') // Sekretaris & Bendahara
+        ->and($renderedChart)->toContain('linear-gradient(135deg, #065f46, #047857)') // Dewan Pengawas
+        ->and($renderedChart)->toContain('linear-gradient(135deg, #064e3b, #00843d)') // Mudir Ma'had
+        ->and($renderedChart)->toContain('linear-gradient(135deg, #6b21a8, #7e22ce)') // Naibah Mudir
+        ->and($renderedChart)->toContain('linear-gradient(135deg, #1e40af, #2563eb)'); // Naib Mudir
+
+    // 2. Admin view has independent cards with clear-both and clean textarea controls
+    $this->actingAs($this->admin);
+    $adminRes = $this->get(route('admin.pages.struktur'));
+    $adminRes->assertStatus(200);
+    $adminRes->assertSee('clear-both', false);
+    $adminRes->assertSee('<textarea name="content"', false);
+    $adminRes->assertDontSee('data-quill="struktur_content_input"', false);
+});
