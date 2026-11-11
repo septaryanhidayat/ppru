@@ -2,7 +2,7 @@
     $logoPath = public_path('uploads/logo-ppru-transparent.png');
     $logoBase64 = file_exists($logoPath) ? 'data:image/png;base64,' . base64_encode(file_get_contents($logoPath)) : '/uploads/logo-ppru-transparent.png';
 @endphp
-{{-- Component Bagan Struktur Organisasi Visual Landscape Simetris Presisi dengan Logo PPRU --}}
+{{-- Component Bagan Struktur Organisasi Visual Landscape Simetris Presisi Sesuai Bagan Resmi PPRU --}}
 <div x-data="{
     zoomLevel: 100,
     isFullscreen: false,
@@ -227,7 +227,7 @@
             </button>
 
             <!-- Export Image Button -->
-            <button type="button" @click="exportChartImage()" :disabled="isExporting" aria-label="Unduh Gambar PNG Landscape" class="h-8 px-3 rounded-xl bg-[#00843d] hover:bg-[#006830] text-white text-xs font-bold flex items-center gap-1.5 shadow-sm transition-all cursor-pointer disabled:opacity-50">
+            <button type="button" @click="exportChartImage()" :disabled="isExporting" aria-label="Unduh Gambar PNG Landscape" class="h-8 px-3 rounded-xl bg-[#00843d] hover:bg-[#006e33] text-white text-xs font-bold flex items-center gap-1.5 shadow-sm transition-all cursor-pointer disabled:opacity-50">
                 <i class="fa-solid fa-download" :class="isExporting ? 'fa-bounce' : ''"></i>
                 <span x-text="isExporting ? 'Memproses...' : 'Unduh PNG'">Unduh PNG</span>
             </button>
@@ -246,11 +246,11 @@
         <!-- The Printable & Exportable Canvas (Landscape Width ~1180px, Simetris & Anti-Clipping, Pure White Background) -->
         <div id="org-chart-canvas" 
              :style="'transform: scale(' + (zoomLevel / 100) + '); transform-origin: top center; transition: transform 0.2s ease-out;'"
-             class="w-[1180px] mx-auto p-6 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-5"
+             class="w-[1180px] mx-auto p-6 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-0"
              style="background-color: #ffffff; background-image: none; width: 1180px; min-width: 1180px;">
             
             <!-- Bagan Header Title dengan Logo PPRU Resmi (Base64 Inlined untuk Anti-CORS) -->
-            <div class="text-center pb-4 border-b border-slate-200">
+            <div class="text-center pb-4 mb-4 border-b border-slate-200">
                 <div class="flex items-center justify-center mb-2.5">
                     <img src="{{ $logoBase64 }}" 
                          alt="Logo Pondok Pesantren Raudhatul Ulum Sakatiga" 
@@ -285,7 +285,7 @@
                             DEWAN PEMBINA YAPIRUS
                         </span>
                     </div>
-                    <div style="min-h: 58px; padding: 8px 12px; text-align: center; background-color: #ffffff; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                    <div style="min-height: 58px; padding: 8px 12px; text-align: center; background-color: #ffffff; display: flex; flex-direction: column; justify-content: center; align-items: center;">
                         <h3 style="font-size: 13px; font-weight: 900; color: #0f172a; line-height: 1.3; margin: 0; text-align: center; word-break: break-word;">
                             {{ $tree['pembina_ketua']->name ?? ($tree['pembina']->name ?? "KH. Tol'at Wafa Ahmad, Lc.") }}
                         </h3>
@@ -295,11 +295,13 @@
                     </div>
                 </div>
 
+                <!-- Vertical Stem down from Ketua Dewan Pembina -->
+                <div style="width: 2px; height: 16px; background-color: #00843d; margin: 0 auto;"></div>
+
                 <!-- SVG Bracket Connector to 5 Anggota Dewan Pembina (Centers at 114, 342, 570, 798, 1026) -->
-                <svg style="width: 1140px; height: 28px; display: block; margin: 0 auto;" viewBox="0 0 1140 28" fill="none">
-                    <path d="M 570 0 V 14" stroke="#00843d" stroke-width="2"/>
-                    <path d="M 114 14 H 1026" stroke="#00843d" stroke-width="2"/>
-                    <path d="M 114 14 V 28 M 342 14 V 28 M 570 14 V 28 M 798 14 V 28 M 1026 14 V 28" stroke="#00843d" stroke-width="2"/>
+                <svg style="width: 1140px; height: 16px; display: block; margin: 0 auto;" viewBox="0 0 1140 16" fill="none">
+                    <path d="M 114 0 H 1026" stroke="#00843d" stroke-width="2"/>
+                    <path d="M 114 0 V 16 M 342 0 V 16 M 570 0 V 16 M 798 0 V 16 M 1026 0 V 16" stroke="#00843d" stroke-width="2"/>
                 </svg>
 
                 <!-- 5 Anggota Dewan Pembina (Explicit Inline Flex Row, 5 Horizontal Columns) -->
@@ -332,8 +334,8 @@
                     @endforeach
                 </div>
 
-                <!-- Connector line from Level 1 down to Level 2 -->
-                <div style="width: 2px; height: 24px; background-color: #00843d; margin: 0 auto;"></div>
+                <!-- Connector line from Center Card (Drs. KH. Mohd. Iqbal Romzie) straight down to Level 2 (Pengurus Harian) -->
+                <div style="width: 2px; height: 32px; background-color: #00843d; margin: 0 auto;"></div>
             </div>
 
             <!-- ==================================================== -->
@@ -358,11 +360,13 @@
                     </div>
                 </div>
 
-                <!-- SVG Bracket Connector to 4 Pengurus Harian (Sekretaris & Bendahara) -->
-                <svg style="width: 1040px; height: 28px; display: block; margin: 0 auto;" viewBox="0 0 1040 28" fill="none">
-                    <path d="M 520 0 V 14" stroke="#0d9488" stroke-width="2"/>
-                    <path d="M 125 14 H 915" stroke="#0d9488" stroke-width="2"/>
-                    <path d="M 125 14 V 28 M 388 14 V 28 M 652 14 V 28 M 915 14 V 28" stroke="#0d9488" stroke-width="2"/>
+                <!-- Vertical Stem down from Ketua Dewan Harian -->
+                <div style="width: 2px; height: 16px; background-color: #0d9488; margin: 0 auto;"></div>
+
+                <!-- SVG Bracket Connector to 4 Pengurus Harian (Sekretaris & Bendahara, Centers at 125, 388, 652, 915) -->
+                <svg style="width: 1040px; height: 16px; display: block; margin: 0 auto;" viewBox="0 0 1040 16" fill="none">
+                    <path d="M 125 0 H 915" stroke="#0d9488" stroke-width="2"/>
+                    <path d="M 125 0 V 16 M 388 0 V 16 M 652 0 V 16 M 915 0 V 16" stroke="#0d9488" stroke-width="2"/>
                 </svg>
 
                 <!-- 4 Pengurus Harian (Explicit Inline Flex Row, 4 Columns) -->
@@ -424,12 +428,12 @@
                     </div>
                 </div>
 
-                <!-- Connector line from Level 2 down to Level 3 -->
-                <div style="width: 2px; height: 24px; background-color: #00843d; margin: 0 auto;"></div>
+                <!-- Clean Gap: Sesuai Bagan Resmi, Dewan Pengawas adalah Lembaga Pengawas Mandiri yang Tidak Berada di Bawah Pengurus Harian (Tanpa Garis Vertikal Sambungan) -->
+                <div style="height: 38px;"></div>
             </div>
 
             <!-- ==================================================== -->
-            <!-- LEVEL 3: DEWAN PENGAWAS                              -->
+            <!-- LEVEL 3: DEWAN PENGAWAS (LEMBAGA PENGAWAS MANDIRI)   -->
             <!-- ==================================================== -->
             <div class="relative flex flex-col items-center">
                 <!-- Ketua Dewan Pengawas Card -->
@@ -450,11 +454,13 @@
                     </div>
                 </div>
 
+                <!-- Vertical Stem down from Ketua Dewan Pengawas -->
+                <div style="width: 2px; height: 16px; background-color: #00843d; margin: 0 auto;"></div>
+
                 <!-- SVG Bracket Connector to 5 Anggota Dewan Pengawas (Centers at 114, 342, 570, 798, 1026) -->
-                <svg style="width: 1140px; height: 28px; display: block; margin: 0 auto;" viewBox="0 0 1140 28" fill="none">
-                    <path d="M 570 0 V 14" stroke="#00843d" stroke-width="2"/>
-                    <path d="M 114 14 H 1026" stroke="#00843d" stroke-width="2"/>
-                    <path d="M 114 14 V 28 M 342 14 V 28 M 570 14 V 28 M 798 14 V 28 M 1026 14 V 28" stroke="#00843d" stroke-width="2"/>
+                <svg style="width: 1140px; height: 16px; display: block; margin: 0 auto;" viewBox="0 0 1140 16" fill="none">
+                    <path d="M 114 0 H 1026" stroke="#00843d" stroke-width="2"/>
+                    <path d="M 114 0 V 16 M 342 0 V 16 M 570 0 V 16 M 798 0 V 16 M 1026 0 V 16" stroke="#00843d" stroke-width="2"/>
                 </svg>
 
                 <!-- 5 Anggota Dewan Pengawas (Explicit Inline Flex Row, 5 Horizontal Columns) -->
@@ -487,22 +493,20 @@
                     @endforeach
                 </div>
 
-                <!-- SVG Connector from Level 3 down to Level 4 (Mudir center 530, Naibah 155, Naib 905) -->
-                <svg style="width: 1060px; height: 28px; display: block; margin: 0 auto;" viewBox="0 0 1060 28" fill="none">
-                    <path d="M 530 0 V 28" stroke="#00843d" stroke-width="2"/>
-                    <path d="M 155 14 H 905" stroke="#00843d" stroke-width="2"/>
-                    <path d="M 155 14 V 28 M 905 14 V 28" stroke="#00843d" stroke-width="2"/>
-                </svg>
+                <!-- Connector line from Center Card (H. Ahmad Almanfaluty) straight down into Mudir Ma'had -->
+                <div style="width: 2px; height: 32px; background-color: #00843d; margin: 0 auto;"></div>
             </div>
 
             <!-- ==================================================== -->
-            <!-- LEVEL 4: PIMPINAN PONDOK PESANTREN (MUDIR MA'HAD)    -->
+            <!-- LEVEL 4: PIMPINAN PONDOK PESANTREN                   -->
+            <!-- Sesuai Bagan Resmi: Sambungan Garis Horizontal Flank -->
+            <!-- [Naibah Mudir] <--- garis ---> [Mudir Ma'had] <--- garis ---> [Naib Mudir] -->
             <!-- ==================================================== -->
             <div class="relative flex flex-col items-center">
-                <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: stretch; width: 1060px; margin: 0 auto;">
+                <div style="display: flex; flex-direction: row; align-items: center; justify-content: center; width: 1140px; margin: 0 auto;">
                     
                     <!-- Wakil Pimpinan Putri (Naibah Mudir) -->
-                    <div style="width: 310px; background-color: #ffffff; border: 2px solid #7e22ce; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
+                    <div style="width: 320px; background-color: #ffffff; border: 2px solid #7e22ce; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); flex-shrink: 0;">
                         <div style="height: 32px; background: linear-gradient(135deg, #6b21a8, #7e22ce) !important; color: #ffffff !important; display: flex; align-items: center; justify-content: center; gap: 6px; padding: 0 12px; text-align: center;">
                             <i class="fa-solid fa-user-tie" style="font-size: 11px; color: #f3e8ff;"></i>
                             <span style="font-size: 10px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.05em; color: #ffffff;">
@@ -519,8 +523,11 @@
                         </div>
                     </div>
 
+                    <!-- Garis Penghubung Horizontal Kiri (Dari Naibah Mudir ke Mudir Ma'had) -->
+                    <div style="width: 50px; height: 2px; background-color: #00843d; flex-shrink: 0;"></div>
+
                     <!-- Mudir Pondok Pesantren (Pimpinan Utama) -->
-                    <div style="width: 380px; background-color: #ffffff; border: 2px solid #00843d; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);">
+                    <div style="width: 400px; background-color: #ffffff; border: 2px solid #00843d; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); flex-shrink: 0;">
                         <div style="height: 36px; background: linear-gradient(135deg, #064e3b, #00843d) !important; color: #ffffff !important; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 0 12px; text-align: center;">
                             <i class="fa-solid fa-mosque" style="font-size: 12px; color: #fde68a;"></i>
                             <span style="font-size: 11px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.05em; color: #ffffff;">
@@ -537,8 +544,11 @@
                         </div>
                     </div>
 
+                    <!-- Garis Penghubung Horizontal Kanan (Dari Mudir Ma'had ke Naib Mudir) -->
+                    <div style="width: 50px; height: 2px; background-color: #00843d; flex-shrink: 0;"></div>
+
                     <!-- Wakil Pimpinan Putra (Naib Mudir) -->
-                    <div style="width: 310px; background-color: #ffffff; border: 2px solid #2563eb; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
+                    <div style="width: 320px; background-color: #ffffff; border: 2px solid #2563eb; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); flex-shrink: 0;">
                         <div style="height: 32px; background: linear-gradient(135deg, #1e40af, #2563eb) !important; color: #ffffff !important; display: flex; align-items: center; justify-content: center; gap: 6px; padding: 0 12px; text-align: center;">
                             <i class="fa-solid fa-user-tie" style="font-size: 11px; color: #dbeafe;"></i>
                             <span style="font-size: 10px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.05em; color: #ffffff;">
@@ -559,7 +569,7 @@
             </div>
 
             <!-- Bagan Footer Legend Sesuai Bagan Resmi PPRU -->
-            <div style="padding-top: 16px; margin-top: 16px; border-top: 1px solid #e2e8f0; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; font-size: 10px; color: #64748b;">
+            <div style="padding-top: 16px; margin-top: 20px; border-top: 1px solid #e2e8f0; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; font-size: 10px; color: #64748b;">
                 <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 16px;">
                     <span style="display: flex; align-items: center; gap: 6px;">
                         <span style="width: 12px; height: 12px; border-radius: 4px; background-color: #d97706; display: inline-block;"></span>

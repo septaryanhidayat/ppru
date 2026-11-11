@@ -143,6 +143,10 @@ test('admin can upload organization chart image and update struktur page setting
     // Verify no hardcoded dummy names exist in the tree output
     $tree = AnggotaDewan::getHierarchyTree();
     expect($tree)->toBeArray();
+
+    if ($chartUrl && file_exists(public_path(ltrim($chartUrl, '/')))) {
+        @unlink(public_path(ltrim($chartUrl, '/')));
+    }
 });
 
 test('frontend struktur page renders without raw html tags and full names without truncation', function () {
@@ -201,6 +205,9 @@ test('organization chart renders with solid inline flex columns and explicit gra
         ->and($renderedChart)->toContain('linear-gradient(135deg, #6b21a8, #7e22ce)') // Naibah Mudir
         ->and($renderedChart)->toContain('linear-gradient(135deg, #1e40af, #2563eb)'); // Naib Mudir
 
+    // Chart has horizontal wing connections in Level 4 (Naibah Mudir <-> Mudir <-> Naib Mudir)
+    expect($renderedChart)->toContain('width: 50px; height: 2px; background-color: #00843d; flex-shrink: 0;');
+
     // 2. Admin view has independent cards with clear-both and clean textarea controls
     $this->actingAs($this->admin);
     $adminRes = $this->get(route('admin.pages.struktur'));
@@ -208,4 +215,14 @@ test('organization chart renders with solid inline flex columns and explicit gra
     $adminRes->assertSee('clear-both', false);
     $adminRes->assertSee('<textarea name="content"', false);
     $adminRes->assertDontSee('data-quill="struktur_content_input"', false);
+
+    // 3. When struktur_chart_mode is set to 'chart' (interactive only), public page shows the chart
+    Setting::set('struktur_chart_mode', 'chart', 'struktur');
+    $chartModeRes = $this->get(route('page.struktur'));
+    $chartModeRes->assertStatus(200);
+    $chartModeRes->assertSee('Bagan Alur &amp; Hirarki Kepengurusan Yayasan &amp; Pesantren', false);
+    $chartModeRes->assertSee('DEWAN PEMBINA YAPIRUS');
+    $chartModeRes->assertSee('PENGURUS HARIAN');
+    $chartModeRes->assertSee('DEWAN PENGAWAS');
+    $chartModeRes->assertSee("PIMPINAN PONDOK PESANTREN (MUDIR MA'HAD)", false);
 });

@@ -190,8 +190,8 @@
                 </div>
             @endif
 
-            {{-- TAMPILKAN BAGAN HIRARKI SVG/NODE JIKA MODE 'DYNAMIC', 'BOTH', ATAU BELUM ADA GAMBAR --}}
-            @if(empty($chartImageUrl) || in_array($chartMode ?? 'both', ['dynamic', 'both']))
+            {{-- TAMPILKAN BAGAN HIRARKI SVG/NODE JIKA MODE 'chart', 'dynamic', 'both', ATAU BELUM ADA GAMBAR --}}
+            @if(empty($chartImageUrl) || in_array($chartMode ?? 'both', ['chart', 'dynamic', 'both']))
                 @if(!empty($chartImageUrl) && ($chartMode ?? 'both') === 'both')
                     <div class="pt-4 border-t border-slate-200">
                         <div class="mb-4">
