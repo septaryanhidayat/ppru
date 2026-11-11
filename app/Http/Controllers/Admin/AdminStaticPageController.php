@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\ActivityLog;
+use App\Models\AnggotaDewan;
+use App\Models\Post;
 use App\Models\Setting;
+use App\Services\HtmlSanitizer;
 use App\Services\WebpService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,6 +15,113 @@ use Illuminate\Support\Facades\Auth;
 class AdminStaticPageController extends Controller
 {
     public function __construct(protected WebpService $webpService) {}
+
+    /**
+     * Halaman Pengelolaan Khusus Struktur Organisasi & Bagan
+     */
+    public function struktur()
+    {
+        $page = Post::pages()->whereIn('slug', ['struktur-organisasi', 'struktur-kepengurusan'])->first();
+        if (! $page) {
+            $page = Post::create([
+                'title' => 'Struktur Organisasi & Kepengurusan',
+                'slug' => 'struktur-organisasi',
+                'excerpt' => 'Bagan struktur organisasi pimpinan dan kepengurusan Yayasan Perguruan Islam Raudhatul Ulum (YAPIRUS) Sakatiga.',
+                'content' => '',
+                'status' => 'publish',
+                'type' => 'page',
+                'author_id' => Auth::id() ?? 1,
+                'author_name' => Auth::user()?->name ?? 'Administrator',
+                'published_at' => now(),
+            ]);
+        }
+
+        $settings = Setting::all()->pluck('value', 'key')->toArray();
+        $pengurus = AnggotaDewan::orderBy('order', 'asc')->get();
+
+        return view('admin.pages.struktur', compact('page', 'settings', 'pengurus'));
+    }
+
+    /**
+     * Simpan Perubahan Halaman Khusus Struktur Organisasi & Bagan
+     */
+    public function updateStruktur(Request $request)
+    {
+        $page = Post::pages()->whereIn('slug', ['struktur-organisasi', 'struktur-kepengurusan'])->first();
+        if (! $page) {
+            $page = Post::create([
+                'title' => 'Struktur Organisasi & Kepengurusan',
+                'slug' => 'struktur-organisasi',
+                'excerpt' => 'Bagan struktur organisasi pimpinan dan kepengurusan Yayasan Perguruan Islam Raudhatul Ulum (YAPIRUS) Sakatiga.',
+                'content' => '',
+                'type' => 'page',
+                'status' => 'published',
+            ]);
+        }
+
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'excerpt' => 'nullable|string|max:1000',
+            'content' => 'nullable|string',
+            'meta_title' => 'nullable|string|max:255',
+            'meta_description' => 'nullable|string|max:1000',
+            'struktur_intro' => 'nullable|string',
+            'struktur_chart_image_url' => 'nullable|string|max:500',
+            'struktur_chart_image_file' => 'nullable|image|mimes:jpeg,png,jpg,webp,svg|max:15360',
+            'struktur_chart_mode' => 'nullable|string|in:image,chart,dynamic,both',
+            'struktur_show_facilities' => 'nullable|boolean',
+            'struktur_show_programs' => 'nullable|boolean',
+            'remove_chart_image' => 'nullable|boolean',
+        ]);
+
+        $page->update([
+            'title' => $validated['title'],
+            'excerpt' => $validated['excerpt'] ?? '',
+            'content' => HtmlSanitizer::clean($validated['content'] ?? ''),
+            'meta_title' => $validated['meta_title'] ?? null,
+            'meta_description' => $validated['meta_description'] ?? null,
+        ]);
+
+        if ($request->has('struktur_intro')) {
+            Setting::set('struktur_intro', $request->input('struktur_intro') ?? '', 'struktur');
+        }
+
+        Setting::set('struktur_chart_mode', $request->input('struktur_chart_mode', 'image'), 'struktur');
+        Setting::set('struktur_show_facilities', $request->has('struktur_show_facilities') ? '1' : '0', 'struktur');
+        Setting::set('struktur_show_programs', $request->has('struktur_show_programs') ? '1' : '0', 'struktur');
+
+        if ($request->boolean('remove_chart_image')) {
+            Setting::set('struktur_chart_image_url', '', 'struktur');
+            $page->update(['featured_image' => null]);
+        } elseif ($request->hasFile('struktur_chart_image_file')) {
+            $converted = $this->webpService->processUploadedFile(
+                $request->file('struktur_chart_image_file'),
+                'struktur',
+                92,
+                2500
+            );
+            if ($converted['success']) {
+                $chartUrl = $converted['url'];
+                Setting::set('struktur_chart_image_url', $chartUrl, 'struktur');
+                $page->update(['featured_image' => $chartUrl]);
+            }
+        } elseif (! empty($validated['struktur_chart_image_url'])) {
+            Setting::set('struktur_chart_image_url', $validated['struktur_chart_image_url'], 'struktur');
+            $page->update(['featured_image' => $validated['struktur_chart_image_url']]);
+        }
+
+        ActivityLog::create([
+            'user_id' => Auth::id(),
+            'user_name' => Auth::user()->name ?? 'Administrator',
+            'action' => 'page_update',
+            'description' => "Memperbarui halaman Struktur Organisasi: {$page->title}",
+            'ip_address' => $request->ip(),
+            'user_agent' => $request->userAgent(),
+            'status' => 'info',
+        ]);
+
+        return redirect()->route('admin.pages.struktur')->with('success', 'Halaman Struktur Organisasi & Bagan berhasil diperbarui.');
+    }
 
     /**
      * Halaman Pengelolaan Konten Dinamis Donasi & Infaq

@@ -289,7 +289,7 @@
                         </div>
                         <div class="h-16 px-3 py-1.5 text-center bg-white rounded-b-lg flex flex-col justify-center items-center">
                             <h3 class="text-xs sm:text-sm font-black text-slate-900 leading-tight text-center m-0">
-                                {{ $tree['pembina']->name ?? 'Drs. KH. Karim Kasim' }}
+                                {{ $tree['pembina']->name ?? '-' }}
                             </h3>
                             <p class="text-[10px] text-amber-700 font-bold mt-1 leading-none text-center m-0">
                                 {{ $tree['pembina']->position ?? 'Ketua Dewan Pembina YAPIRUS' }}
@@ -307,7 +307,7 @@
                         </div>
                         <div class="h-16 px-3 py-1.5 text-center bg-white rounded-b-lg flex flex-col justify-center items-center">
                             <h3 class="text-xs sm:text-sm font-black text-slate-900 leading-tight text-center m-0">
-                                {{ $tree['ketua_yayasan']->name ?? 'H. Faisal Abdullah, S.T.' }}
+                                {{ $tree['ketua_yayasan']->name ?? '-' }}
                             </h3>
                             <p class="text-[10px] text-emerald-700 font-bold mt-1 leading-none text-center m-0">
                                 {{ $tree['ketua_yayasan']->position ?? 'Ketua Umum Pengurus YAPIRUS' }}
@@ -338,7 +338,7 @@
                     </div>
                     <div class="h-16 px-4 py-1 text-center bg-white rounded-b-lg flex flex-col justify-center items-center">
                         <h3 class="text-sm sm:text-base font-black text-slate-900 leading-tight text-center m-0">
-                            {{ $tree['mudir']->name ?? "KH. Tol'at Wafa Ahmad, Lc." }}
+                            {{ $tree['mudir']->name ?? '-' }}
                         </h3>
                         <p class="text-[11px] text-[#00843d] font-bold mt-1 leading-none text-center m-0">
                             {{ $tree['mudir']->position ?? 'Mudir Pondok Pesantren Raudhatul Ulum Sakatiga' }}
@@ -372,7 +372,7 @@
                         </div>
                         <div class="h-12 px-2 py-1 text-center bg-white rounded-b-lg flex flex-col justify-center items-center">
                             <h4 class="text-xs font-black text-slate-900 leading-tight truncate w-full text-center m-0">
-                                {{ $tree['sekretaris']->name ?? 'Ustadz H. Ahmad Dailami, S.Pd.I.' }}
+                                {{ $tree['sekretaris']->name ?? '-' }}
                             </h4>
                             <p class="text-[9px] text-teal-700 font-semibold mt-0.5 leading-none text-center m-0 truncate w-full" title="{{ $tree['sekretaris']->position ?? 'Sekretaris Yayasan YAPIRUS' }}">
                                 {{ $tree['sekretaris']->position ?? 'Sekretaris Yayasan YAPIRUS' }}
@@ -389,7 +389,7 @@
                         </div>
                         <div class="h-12 px-2 py-1 text-center bg-white rounded-b-lg flex flex-col justify-center items-center">
                             <h4 class="text-xs font-black text-slate-900 leading-tight truncate w-full text-center m-0">
-                                {{ $tree['bendahara']->name ?? 'H. M. Husin, M.Si.' }}
+                                {{ $tree['bendahara']->name ?? '-' }}
                             </h4>
                             <p class="text-[9px] text-emerald-700 font-semibold mt-0.5 leading-none text-center m-0 truncate w-full" title="{{ $tree['bendahara']->position ?? 'Bendahara Yayasan YAPIRUS' }}">
                                 {{ $tree['bendahara']->position ?? 'Bendahara Yayasan YAPIRUS' }}
@@ -423,7 +423,7 @@
                         </div>
                         <div class="h-14 px-2.5 py-1 text-center bg-white rounded-b-lg flex flex-col justify-center items-center">
                             <h4 class="text-xs font-black text-slate-900 leading-tight truncate w-full text-center m-0">
-                                {{ $tree['wadir_pendidikan']->name ?? ($tree['wakil_mudir'][0]->name ?? 'Ustadz H. Abdul Halim, Lc.') }}
+                                {{ $tree['wadir_pendidikan']->name ?? ($tree['wakil_mudir'][0]->name ?? '-') }}
                             </h4>
                             <p class="text-[9px] text-emerald-700 font-medium mt-0.5 leading-none text-center m-0 truncate w-full" title="{{ $tree['wadir_pendidikan']->position ?? ($tree['wakil_mudir'][0]->position ?? 'Wakil Mudir Bidang Pendidikan') }}">
                                 {{ $tree['wadir_pendidikan']->position ?? ($tree['wakil_mudir'][0]->position ?? 'Wakil Mudir Bidang Pendidikan') }}
@@ -439,7 +439,7 @@
                         </div>
                         <div class="h-14 px-2.5 py-1 text-center bg-white rounded-b-lg flex flex-col justify-center items-center">
                             <h4 class="text-xs font-black text-slate-900 leading-tight truncate w-full text-center m-0">
-                                {{ $tree['wadir_pengasuhan']->name ?? ($tree['wakil_mudir'][1]->name ?? 'Ustadz H. Syamsuddin, S.Ag.') }}
+                                {{ $tree['wadir_pengasuhan']->name ?? ($tree['wakil_mudir'][1]->name ?? '-') }}
                             </h4>
                             <p class="text-[9px] text-amber-700 font-medium mt-0.5 leading-none text-center m-0 truncate w-full" title="{{ $tree['wadir_pengasuhan']->position ?? ($tree['wakil_mudir'][1]->position ?? 'Wakil Mudir Bidang Kepengasuhan') }}">
                                 {{ $tree['wadir_pengasuhan']->position ?? ($tree['wakil_mudir'][1]->position ?? 'Wakil Mudir Bidang Kepengasuhan') }}
@@ -455,7 +455,7 @@
                         </div>
                         <div class="h-14 px-2.5 py-1 text-center bg-white rounded-b-lg flex flex-col justify-center items-center">
                             <h4 class="text-xs font-black text-slate-900 leading-tight truncate w-full text-center m-0">
-                                {{ $tree['wadir_sarpras']->name ?? ($tree['wakil_mudir'][2]->name ?? 'Ir. H. Ahmad Fauzi') }}
+                                {{ $tree['wadir_sarpras']->name ?? ($tree['wakil_mudir'][2]->name ?? '-') }}
                             </h4>
                             <p class="text-[9px] text-sky-700 font-medium mt-0.5 leading-none text-center m-0 truncate w-full" title="{{ $tree['wadir_sarpras']->position ?? ($tree['wakil_mudir'][2]->position ?? 'Wakil Mudir Bidang Sarpras') }}">
                                 {{ $tree['wadir_sarpras']->position ?? ($tree['wakil_mudir'][2]->position ?? 'Wakil Mudir Bidang Sarpras') }}

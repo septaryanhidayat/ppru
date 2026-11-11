@@ -327,9 +327,14 @@
                         <span class="sidebar-label font-bold text-cyan-200">Menu Navigasi</span>
                     </a>
 
-                    <a href="{{ route('admin.pages.index') }}" class="sidebar-item flex items-center space-x-3 px-3 py-1.5 rounded-lg transition {{ request()->routeIs('admin.pages*') ? 'bg-gradient-to-r from-[#00843d] to-[#05a849] text-white font-bold shadow-md' : 'hover:bg-slate-800/70 text-slate-300 hover:text-white' }}" title="Halaman Profil">
+                    <a href="{{ route('admin.pages.index') }}" class="sidebar-item flex items-center space-x-3 px-3 py-1.5 rounded-lg transition {{ request()->routeIs('admin.pages.index') || request()->routeIs('admin.pages.edit') || request()->routeIs('admin.pages.create') ? 'bg-gradient-to-r from-[#00843d] to-[#05a849] text-white font-bold shadow-md' : 'hover:bg-slate-800/70 text-slate-300 hover:text-white' }}" title="Halaman Profil">
                         <i class="fa-solid fa-file-lines text-xs w-4 text-center"></i>
                         <span class="sidebar-label">Halaman Profil</span>
+                    </a>
+
+                    <a href="{{ route('admin.pages.struktur') }}" class="sidebar-item flex items-center space-x-3 px-3 py-1.5 rounded-lg transition {{ request()->routeIs('admin.pages.struktur*') ? 'bg-gradient-to-r from-[#00843d] to-[#05a849] text-white font-bold shadow-md' : 'hover:bg-slate-800/70 text-slate-300 hover:text-white' }}" title="Struktur Organisasi & Bagan">
+                        <i class="fa-solid fa-sitemap text-xs w-4 text-center text-teal-300"></i>
+                        <span class="sidebar-label">Struktur Organisasi</span>
                     </a>
 
                     <a href="{{ route('admin.pages.donasi') }}" class="sidebar-item flex items-center space-x-3 px-3 py-1.5 rounded-lg transition {{ request()->routeIs('admin.pages.donasi*') ? 'bg-gradient-to-r from-[#00843d] to-[#05a849] text-white font-bold shadow-md' : 'hover:bg-slate-800/70 text-slate-300 hover:text-white' }}" title="Donasi & Rekening">

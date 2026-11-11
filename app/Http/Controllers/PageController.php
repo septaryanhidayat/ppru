@@ -8,6 +8,7 @@ use App\Models\Bidang;
 use App\Models\Dpc;
 use App\Models\Post;
 use App\Models\ProgramUnggulan;
+use App\Models\Setting;
 use App\Models\Testimonial;
 use Illuminate\Support\Facades\Schema;
 
@@ -67,7 +68,24 @@ class PageController extends Controller
         }
         $tree = AnggotaDewan::getHierarchyTree();
 
-        return view('frontend.pages.struktur', compact('page', 'bidangs', 'dpcs', 'dewan', 'tree'));
+        $chartImageUrl = Setting::get('struktur_chart_image_url') ?: ($page?->featured_image ?: null);
+        $chartMode = Setting::get('struktur_chart_mode', $chartImageUrl ? 'image' : 'chart');
+        $showFacilities = Setting::get('struktur_show_facilities', '1') === '1';
+        $showPrograms = Setting::get('struktur_show_programs', '1') === '1';
+        $strukturIntro = Setting::get('struktur_intro', '');
+
+        return view('frontend.pages.struktur', compact(
+            'page',
+            'bidangs',
+            'dpcs',
+            'dewan',
+            'tree',
+            'chartImageUrl',
+            'chartMode',
+            'showFacilities',
+            'showPrograms',
+            'strukturIntro'
+        ));
     }
 
     public function privacyPolicy()

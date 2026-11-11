@@ -11,6 +11,16 @@
 
     $isSewaActive = \App\Models\Setting::get('layanan_sewa_active', '0') === '1';
 
+    $ctaActive = ($siteSettings['header_cta_active'] ?? '1') === '1';
+    $ctaText = $siteSettings['header_cta_text'] ?? 'Daftar PSB';
+    $ctaUrl = $siteSettings['header_cta_url'] ?? route('ppdb.index');
+    $ctaIcon = $siteSettings['header_cta_icon'] ?? 'fa-solid fa-graduation-cap';
+
+    $loginActive = ($siteSettings['header_login_active'] ?? '1') === '1';
+    $loginText = $siteSettings['header_login_text'] ?? 'Login';
+    $loginUrl = $siteSettings['header_login_url'] ?? '/login';
+    $loginIcon = $siteSettings['header_login_icon'] ?? 'fa-solid fa-lock';
+
     $formatNavUrl = function (?string $url): string {
         if (empty($url) || $url === '#') {
             return '#';
@@ -257,7 +267,7 @@
                 @endif
             </nav>
 
-            {{-- TOMBOL AKSI: DAFTAR PSB, LOGIN & THEME TOGGLE (ICON ONLY) --}}
+            {{-- TOMBOL AKSI: DAFTAR PSB, LOGIN & THEME TOGGLE (ICON ONLY) - DINAMIS DARI PENGATURAN ADMIN --}}
             <div class="hidden lg:flex items-center space-x-2 xl:space-x-3 ml-2 flex-shrink-0">
                 {{-- Theme Toggle Desktop (Icon Only, Clean Round Button) --}}
                 <button id="theme-toggle" type="button" class="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition cursor-pointer text-sm shadow-xs border border-white/10" aria-label="Ganti mode gelap atau terang" title="Ganti Mode Gelap / Terang">
@@ -265,14 +275,23 @@
                     <i id="theme-toggle-light-icon" class="fa-solid fa-sun text-amber-300 hidden" style="display: none;"></i>
                 </button>
 
-                <a href="{{ route('ppdb.index') }}" class="bg-[#f59e0b] hover:bg-[#d97706] text-slate-950 px-4 xl:px-5 py-2 rounded-full text-xs font-black shadow-md hover:shadow-lg transition flex items-center space-x-1.5 transform hover:scale-105" aria-label="Penerimaan Santri Baru Pondok Pesantren Raudhatul Ulum">
-                    <i class="fa-solid fa-graduation-cap text-xs"></i>
-                    <span>Daftar PSB</span>
+                @if($ctaActive)
+                <a href="{{ $formatNavUrl($ctaUrl) }}" class="bg-[#f59e0b] hover:bg-[#d97706] text-slate-950 px-4 xl:px-5 py-2 rounded-full text-xs font-black shadow-md hover:shadow-lg transition flex items-center space-x-1.5 transform hover:scale-105" aria-label="{{ $ctaText }} PPRU">
+                    @if($ctaIcon)
+                        <i class="{{ $ctaIcon }} text-xs"></i>
+                    @endif
+                    <span>{{ $ctaText }}</span>
                 </a>
-                <a href="/login" class="text-white/90 hover:text-white px-3 py-1.5 text-xs font-bold transition flex items-center space-x-1 rounded-xl hover:bg-black/20" aria-label="Login Admin">
-                    <i class="fa-solid fa-lock text-[11px]"></i>
-                    <span>Login</span>
+                @endif
+
+                @if($loginActive)
+                <a href="{{ $formatNavUrl($loginUrl) }}" class="text-white/90 hover:text-white px-3 py-1.5 text-xs font-bold transition flex items-center space-x-1 rounded-xl hover:bg-black/20" aria-label="{{ $loginText }}">
+                    @if($loginIcon)
+                        <i class="{{ $loginIcon }} text-[11px]"></i>
+                    @endif
+                    <span>{{ $loginText }}</span>
                 </a>
+                @endif
             </div>
 
             {{-- MOBILE TOP RIGHT: Theme Toggle (Icon Only) & Hamburger Menu --}}
@@ -406,12 +425,22 @@
         @endif
 
         <div class="pt-3 border-t border-slate-100 dark:border-slate-800 flex flex-col space-y-2">
-            <a href="{{ route('ppdb.index') }}" class="block w-full text-center bg-[#f59e0b] hover:bg-[#d97706] text-slate-900 font-black py-2.5 rounded-full text-xs shadow">
-                <i class="fa-solid fa-graduation-cap mr-1"></i> Daftar PSB Online
+            @if($ctaActive)
+            <a href="{{ $formatNavUrl($ctaUrl) }}" class="block w-full text-center bg-[#f59e0b] hover:bg-[#d97706] text-slate-900 font-black py-2.5 rounded-full text-xs shadow">
+                @if($ctaIcon)
+                    <i class="{{ $ctaIcon }} mr-1"></i>
+                @endif
+                <span>{{ $ctaText }}</span>
             </a>
-            <a href="/login" class="block w-full text-center bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-bold py-2 rounded-full text-xs">
-                <i class="fa-solid fa-lock mr-1"></i> Login Portal
+            @endif
+            @if($loginActive)
+            <a href="{{ $formatNavUrl($loginUrl) }}" class="block w-full text-center bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-bold py-2 rounded-full text-xs">
+                @if($loginIcon)
+                    <i class="{{ $loginIcon }} mr-1"></i>
+                @endif
+                <span>{{ $loginText }}</span>
             </a>
+            @endif
         </div>
     </div>
 </header>

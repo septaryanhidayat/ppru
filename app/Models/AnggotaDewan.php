@@ -81,11 +81,11 @@ class AnggotaDewan extends Model
         $kepalaUnit = $all->filter(fn ($d) => (str_contains(strtolower($d->position), 'kepala') || str_contains(strtolower($d->position), 'ketua stit') || str_contains(strtolower($d->position), 'rektor') || str_contains(strtolower($d->position), 'mudir tahfiz')) && $d->id !== $mudir?->id)->values();
 
         return [
-            'pembina' => $pembina ?: (object) ['name' => 'Drs. KH. Karim Kasim', 'position' => 'Ketua Dewan Pembina YAPIRUS'],
-            'ketua_yayasan' => $ketuaYayasan ?: (object) ['name' => 'H. Faisal Abdullah, S.T.', 'position' => 'Ketua Umum Pengurus YAPIRUS'],
-            'mudir' => $mudir ?: (object) ['name' => "KH. Tol'at Wafa Ahmad, Lc.", 'position' => 'Mudir Pondok Pesantren Raudhatul Ulum'],
-            'sekretaris' => $sekretaris ?: (object) ['name' => 'Ustadz H. Ahmad Dailami, S.Pd.I.', 'position' => 'Sekretaris Yayasan YAPIRUS'],
-            'bendahara' => $bendahara ?: (object) ['name' => 'H. M. Husin, M.Si.', 'position' => 'Bendahara Yayasan YAPIRUS'],
+            'pembina' => $pembina,
+            'ketua_yayasan' => $ketuaYayasan,
+            'mudir' => $mudir,
+            'sekretaris' => $sekretaris,
+            'bendahara' => $bendahara,
             'wadir_pendidikan' => $wadirPendidikan ?: $wakilMudir->get(0),
             'wadir_pengasuhan' => $wadirPengasuhan ?: $wakilMudir->get(1),
             'wadir_sarpras' => $wadirSarpras ?: $wakilMudir->get(2),

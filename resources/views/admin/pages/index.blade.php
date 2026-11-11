@@ -18,7 +18,23 @@
         </div>
 
         {{-- QUICK ACCESS CARDS UNTUK HALAMAN STATIS KHUSUS --}}
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 mt-6">
+            <a href="{{ route('admin.pages.struktur') }}" class="p-4 rounded-2xl bg-teal-50/80 border border-teal-200 hover:border-teal-400 hover:bg-teal-100/60 transition group flex flex-col justify-between space-y-3">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-xl bg-teal-700 text-white flex items-center justify-center text-base shadow-sm group-hover:scale-105 transition">
+                        <i class="fa-solid fa-sitemap"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-black text-slate-900 text-xs group-hover:text-teal-800 transition">Struktur &amp; Bagan</h3>
+                        <span class="text-[10px] text-teal-800 font-semibold">Upload Gambar &amp; Bagan</span>
+                    </div>
+                </div>
+                <div class="flex items-center justify-between text-[11px] font-bold text-teal-700 pt-2 border-t border-teal-200/60">
+                    <span>Kelola Struktur</span>
+                    <i class="fa-solid fa-arrow-right text-[10px] group-hover:translate-x-1 transition"></i>
+                </div>
+            </a>
+
             <a href="{{ route('admin.pages.donasi') }}" class="p-4 rounded-2xl bg-emerald-50/80 border border-emerald-200 hover:border-emerald-400 hover:bg-emerald-100/60 transition group flex flex-col justify-between space-y-3">
                 <div class="flex items-center space-x-3">
                     <div class="w-10 h-10 rounded-xl bg-[#00843d] text-white flex items-center justify-center text-base shadow-sm group-hover:scale-105 transition">
@@ -111,6 +127,9 @@
                             } elseif (in_array($page->slug, ['layanan-terpadu', 'layanan-terpadu-2', 'layanan'])) {
                                 $editUrl = route('admin.layanan.content');
                                 $specialBadge = 'Editor Khusus Layanan';
+                            } elseif (in_array($page->slug, ['struktur', 'struktur-organisasi', 'struktur-kepengurusan'])) {
+                                $editUrl = route('admin.pages.struktur');
+                                $specialBadge = 'Editor Khusus Bagan & Struktur';
                             }
                         @endphp
                         <tr class="hover:bg-slate-50/80 transition">

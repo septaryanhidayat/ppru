@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\ActivityLog;
 use App\Models\NavMenu;
+use App\Models\Setting;
 use App\Services\CmsAutoHealService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -30,7 +31,45 @@ class AdminNavMenuController extends Controller
             ->orderBy('order', 'asc')
             ->get();
 
-        return view('admin.nav-menus.index', compact('headerMenus', 'footerMenus', 'allParentCandidates'));
+        $settings = Setting::all()->pluck('value', 'key')->toArray();
+
+        return view('admin.nav-menus.index', compact('headerMenus', 'footerMenus', 'allParentCandidates', 'settings'));
+    }
+
+    public function updateHeaderActions(Request $request)
+    {
+        $validated = $request->validate([
+            'header_cta_text' => 'nullable|string|max:100',
+            'header_cta_url' => 'nullable|string|max:500',
+            'header_cta_icon' => 'nullable|string|max:100',
+            'header_cta_active' => 'nullable|boolean',
+            'header_login_text' => 'nullable|string|max:100',
+            'header_login_url' => 'nullable|string|max:500',
+            'header_login_icon' => 'nullable|string|max:100',
+            'header_login_active' => 'nullable|boolean',
+        ]);
+
+        Setting::set('header_cta_text', $validated['header_cta_text'] ?? 'Daftar PSB', 'navigation');
+        Setting::set('header_cta_url', $validated['header_cta_url'] ?? '/ppdb', 'navigation');
+        Setting::set('header_cta_icon', $validated['header_cta_icon'] ?? 'fa-solid fa-graduation-cap', 'navigation');
+        Setting::set('header_cta_active', $request->has('header_cta_active') ? '1' : '0', 'navigation');
+
+        Setting::set('header_login_text', $validated['header_login_text'] ?? 'Login', 'navigation');
+        Setting::set('header_login_url', $validated['header_login_url'] ?? '/login', 'navigation');
+        Setting::set('header_login_icon', $validated['header_login_icon'] ?? 'fa-solid fa-lock', 'navigation');
+        Setting::set('header_login_active', $request->has('header_login_active') ? '1' : '0', 'navigation');
+
+        ActivityLog::create([
+            'user_id' => Auth::id(),
+            'user_name' => Auth::user()->name ?? 'Administrator',
+            'action' => 'menu_update',
+            'description' => 'Memperbarui tombol aksi header navigasi (Daftar PSB & Login)',
+            'ip_address' => $request->ip(),
+            'user_agent' => $request->userAgent(),
+            'status' => 'info',
+        ]);
+
+        return redirect()->route('admin.nav-menus.index')->with('success', 'Pengaturan tombol aksi header navigasi (Daftar PSB & Login) berhasil disimpan.');
     }
 
     public function store(Request $request)

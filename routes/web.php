@@ -64,6 +64,7 @@ Route::prefix('admin')->middleware(['auth', 'unit.access'])->name('admin.')->gro
     Route::resource('hero-slides', AdminHeroSlideController::class)->except(['show']);
 
     // Nav Menus (Header & Footer Dynamic Links)
+    Route::post('/nav-menus/header-actions', [AdminNavMenuController::class, 'updateHeaderActions'])->name('nav-menus.header-actions');
     Route::resource('nav-menus', AdminNavMenuController::class)->except(['create', 'show', 'edit']);
 
     // Static Pages Management (Profil, Visi Misi, Sejarah, Sambutan, Struktur, Privacy Policy, Halaman Baru)
@@ -76,6 +77,8 @@ Route::prefix('admin')->middleware(['auth', 'unit.access'])->name('admin.')->gro
     Route::post('/pages/hymne-mars', [AdminStaticPageController::class, 'updateHymneMars'])->name('pages.hymne-mars.update');
     Route::get('/pages/logo', [AdminStaticPageController::class, 'logo'])->name('pages.logo');
     Route::post('/pages/logo', [AdminStaticPageController::class, 'updateLogo'])->name('pages.logo.update');
+    Route::get('/pages/struktur', [AdminStaticPageController::class, 'struktur'])->name('pages.struktur');
+    Route::post('/pages/struktur', [AdminStaticPageController::class, 'updateStruktur'])->name('pages.struktur.update');
     Route::get('/pages/{page}/edit', [AdminPageController::class, 'edit'])->name('pages.edit');
     Route::put('/pages/{page}', [AdminPageController::class, 'update'])->name('pages.update');
     Route::delete('/pages/{page}', [AdminPageController::class, 'destroy'])->name('pages.destroy');

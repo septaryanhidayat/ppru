@@ -79,6 +79,10 @@ class AdminPageController extends Controller
 
     public function edit(Post $page)
     {
+        if (in_array($page->slug, ['struktur', 'struktur-organisasi', 'struktur-kepengurusan'])) {
+            return redirect()->route('admin.pages.struktur');
+        }
+
         $settings = Setting::all()->pluck('value', 'key')->toArray();
 
         return view('admin.pages.edit', compact('page', 'settings'));

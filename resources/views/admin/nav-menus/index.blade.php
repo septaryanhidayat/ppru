@@ -45,6 +45,112 @@
             </button>
         </div>
 
+        {{-- PENGATURAN TOMBOL AKSI HEADER (CTA DAFTAR PSB & LOGIN) --}}
+        <div class="mt-6 p-6 rounded-2xl bg-gradient-to-br from-emerald-50/70 via-slate-50 to-amber-50/40 border border-emerald-200/80 shadow-xs">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 border-b border-emerald-100">
+                <div>
+                    <h3 class="text-sm font-black text-slate-800 flex items-center gap-2">
+                        <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
+                        <span>Pengaturan Tombol Aksi Header (Daftar PSB &amp; Login)</span>
+                    </h3>
+                    <p class="text-xs text-slate-500 mt-0.5">Atur teks, link URL tujuan, ikon, atau aktif/nonaktifkan tombol aksi yang berada di pojok kanan atas header website.</p>
+                </div>
+                <span class="text-[10px] font-bold uppercase tracking-wider text-emerald-800 bg-emerald-100 px-3 py-1 rounded-full self-start sm:self-auto">
+                    Kustomisasi Header
+                </span>
+            </div>
+
+            <form action="{{ route('admin.nav-menus.header-actions') }}" method="POST" class="mt-5 space-y-6">
+                @csrf
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    
+                    {{-- KARTU TOMBOL CTA UTAMA (DEFAULT: DAFTAR PSB) --}}
+                    <div class="p-5 rounded-2xl bg-white border border-amber-200/80 shadow-xs space-y-4">
+                        <div class="flex items-center justify-between pb-3 border-b border-amber-100">
+                            <div class="flex items-center gap-2">
+                                <div class="w-8 h-8 rounded-xl bg-amber-500 text-slate-950 flex items-center justify-center font-bold text-xs shadow-xs">
+                                    <i class="fa-solid fa-graduation-cap"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xs font-black text-slate-900">Tombol Utama CTA (Oranye)</h4>
+                                    <span class="text-[10px] text-slate-400">Tombol paling mencolok di navbar</span>
+                                </div>
+                            </div>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" name="header_cta_active" value="1" {{ ($settings['header_cta_active'] ?? '1') === '1' ? 'checked' : '' }} class="sr-only peer">
+                                <div class="w-9 h-5 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-amber-500"></div>
+                                <span class="ml-2 text-xs font-bold text-slate-700">Tampilkan</span>
+                            </label>
+                        </div>
+
+                        <div class="space-y-3">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 mb-1">Label Teks Tombol</label>
+                                <input type="text" name="header_cta_text" value="{{ $settings['header_cta_text'] ?? 'Daftar PSB' }}" placeholder="Contoh: Daftar PSB / PPDB Online" class="w-full bg-slate-50 text-xs font-bold rounded-xl px-3.5 py-2.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-amber-500">
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-700 mb-1">URL / Link Target</label>
+                                    <input type="text" name="header_cta_url" value="{{ $settings['header_cta_url'] ?? '/ppdb' }}" placeholder="Contoh: /ppdb atau https://..." class="w-full bg-slate-50 text-xs font-mono rounded-xl px-3 py-2 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-amber-500">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-700 mb-1">Ikon FontAwesome</label>
+                                    <input type="text" name="header_cta_icon" value="{{ $settings['header_cta_icon'] ?? 'fa-solid fa-graduation-cap' }}" placeholder="fa-solid fa-graduation-cap" class="w-full bg-slate-50 text-xs font-mono rounded-xl px-3 py-2 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-amber-500">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {{-- KARTU TOMBOL LOGIN / PORTAL --}}
+                    <div class="p-5 rounded-2xl bg-white border border-slate-200 shadow-xs space-y-4">
+                        <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+                            <div class="flex items-center gap-2">
+                                <div class="w-8 h-8 rounded-xl bg-slate-800 text-white flex items-center justify-center font-bold text-xs shadow-xs">
+                                    <i class="fa-solid fa-lock"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xs font-black text-slate-900">Tombol Login Portal</h4>
+                                    <span class="text-[10px] text-slate-400">Tautan login portal santri / admin</span>
+                                </div>
+                            </div>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" name="header_login_active" value="1" {{ ($settings['header_login_active'] ?? '1') === '1' ? 'checked' : '' }} class="sr-only peer">
+                                <div class="w-9 h-5 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-emerald-600"></div>
+                                <span class="ml-2 text-xs font-bold text-slate-700">Tampilkan</span>
+                            </label>
+                        </div>
+
+                        <div class="space-y-3">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 mb-1">Label Teks Tombol</label>
+                                <input type="text" name="header_login_text" value="{{ $settings['header_login_text'] ?? 'Login' }}" placeholder="Contoh: Login / Portal" class="w-full bg-slate-50 text-xs font-bold rounded-xl px-3.5 py-2.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-700 mb-1">URL / Link Target</label>
+                                    <input type="text" name="header_login_url" value="{{ $settings['header_login_url'] ?? '/login' }}" placeholder="Contoh: /login atau https://..." class="w-full bg-slate-50 text-xs font-mono rounded-xl px-3 py-2 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-700 mb-1">Ikon FontAwesome</label>
+                                    <input type="text" name="header_login_icon" value="{{ $settings['header_login_icon'] ?? 'fa-solid fa-lock' }}" placeholder="fa-solid fa-lock" class="w-full bg-slate-50 text-xs font-mono rounded-xl px-3 py-2 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="flex justify-end pt-2">
+                    <button type="submit" class="inline-flex items-center space-x-2 bg-gradient-to-r from-[#00843d] to-[#05a849] hover:from-[#006e33] text-white px-6 py-2.5 rounded-xl text-xs font-bold shadow-md shadow-emerald-500/20 transition cursor-pointer">
+                        <i class="fa-solid fa-floppy-disk text-xs"></i>
+                        <span>Simpan Pengaturan Tombol Aksi Header</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+
         {{-- TABEL MENU HEADER --}}
         <div class="mt-6 space-y-4">
             <div class="flex items-center justify-between">

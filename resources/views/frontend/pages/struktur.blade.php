@@ -21,12 +21,29 @@
     </div>
 </div>
 
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-16" x-data="{ viewMode: 'chart' }">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-16" x-data="{ 
+    viewMode: 'chart',
+    imageModalOpen: false,
+    imageZoom: 100,
+    zoomIn() { if (this.imageZoom < 180) this.imageZoom += 15; },
+    zoomOut() { if (this.imageZoom > 50) this.imageZoom -= 15; },
+    resetZoom() { this.imageZoom = 100; }
+}">
     
     {{-- SEKSI 1: STRUKTUR ORGANISASI DUAL-MODE (Bagan Hirarki vs Daftar Kartu) --}}
     <section class="space-y-6">
 
-        @if(!empty($page?->content) && strlen(trim(strip_tags($page->content))) > 0)
+        @if(!empty($strukturIntro))
+            <div class="bg-gradient-to-r from-emerald-50 via-white to-emerald-50/60 rounded-3xl p-6 sm:p-8 shadow-xs border border-emerald-200/80 text-gray-700 text-xs sm:text-sm leading-relaxed reveal-fade-up">
+                <div class="inline-flex items-center space-x-2 bg-emerald-100 text-[#00843d] px-3.5 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider mb-3">
+                    <i class="fa-solid fa-circle-info"></i>
+                    <span>Informasi Kepengurusan</span>
+                </div>
+                <div class="prose-content text-slate-800 dark:text-slate-100">
+                    {!! nl2br(e($strukturIntro)) !!}
+                </div>
+            </div>
+        @elseif(!empty($page?->content) && strlen(trim(strip_tags($page->content))) > 0)
             <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-emerald-100 text-gray-700 text-xs sm:text-sm leading-relaxed reveal-fade-up">
                 <div class="inline-flex items-center space-x-2 bg-emerald-100 text-[#00843d] px-3.5 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider mb-3">
                     <i class="fa-solid fa-circle-info"></i>
@@ -59,7 +76,7 @@
                         :class="viewMode === 'chart' ? 'bg-[#00843d] text-white shadow-md' : 'text-gray-600 hover:text-gray-900'"
                         class="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer">
                     <i class="fa-solid fa-sitemap"></i>
-                    <span>Bagan Hirarki (Org Chart)</span>
+                    <span>Bagan Struktur &amp; Hirarki</span>
                 </button>
                 <button type="button" 
                         @click="viewMode = 'grid'"
@@ -78,9 +95,118 @@
             </div>
         </div>
 
-        <!-- TAMPILAN 1: BAGAN STRUKTUR HIRARKI VISUAL INTERAKTIF -->
-        <div x-show="viewMode === 'chart'" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-2" x-transition:enter-end="opacity-100 translate-y-0">
-            @include('partials.organization-chart', ['tree' => $tree])
+        <!-- TAMPILAN 1: BAGAN STRUKTUR (GAMBAR RESMI DAN/ATAU HIRARKI INTERAKTIF) -->
+        <div x-show="viewMode === 'chart'" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-2" x-transition:enter-end="opacity-100 translate-y-0" class="space-y-8">
+            
+            @if(!empty($chartImageUrl) && in_array($chartMode ?? 'both', ['image', 'both']))
+                {{-- DISPLAY GAMBAR BAGAN STRUKTUR ORGANISASI RESMI --}}
+                <div class="bg-white rounded-3xl border border-slate-200/90 shadow-sm overflow-hidden p-4 sm:p-6 space-y-4">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-slate-100">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-2xl bg-emerald-50 text-[#00843d] flex items-center justify-center text-lg font-bold border border-emerald-200 shadow-xs">
+                                <i class="fa-solid fa-image"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-sm sm:text-base font-black text-slate-900 flex items-center gap-2">
+                                    <span>Gambar Bagan Struktur Organisasi Resmi</span>
+                                    <span class="text-[10px] font-bold uppercase tracking-wider text-emerald-800 bg-emerald-100 px-2.5 py-0.5 rounded-full">
+                                        Resolusi Tinggi
+                                    </span>
+                                </h3>
+                                <p class="text-xs text-slate-500 mt-0.5">Bagan visual lengkap Yayasan Perguruan Islam Raudhatul Ulum (YAPIRUS) Sakatiga.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-wrap items-center gap-2">
+                            {{-- ZOOM CONTROLS --}}
+                            <div class="flex items-center bg-slate-100 p-0.5 rounded-xl border border-slate-200">
+                                <button type="button" @click="zoomOut()" class="w-7 h-7 rounded-lg flex items-center justify-center text-slate-700 hover:bg-white text-xs font-bold transition cursor-pointer" title="Perkecil (-)">
+                                    <i class="fa-solid fa-minus"></i>
+                                </button>
+                                <span class="px-2 text-[10px] font-bold text-slate-700 min-w-[2.8rem] text-center" x-text="imageZoom + '%'">100%</span>
+                                <button type="button" @click="zoomIn()" class="w-7 h-7 rounded-lg flex items-center justify-center text-slate-700 hover:bg-white text-xs font-bold transition cursor-pointer" title="Perbesar (+)">
+                                    <i class="fa-solid fa-plus"></i>
+                                </button>
+                                <button type="button" @click="resetZoom()" class="px-2 py-1 rounded-lg text-[10px] font-bold text-slate-600 hover:bg-white transition cursor-pointer" title="Reset Ukuran">
+                                    Reset
+                                </button>
+                            </div>
+
+                            {{-- LIGHTBOX MODAL TRIGGER --}}
+                            <button type="button" @click="imageModalOpen = true" class="h-8 px-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold inline-flex items-center gap-1.5 transition cursor-pointer">
+                                <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+                                <span>Layar Penuh</span>
+                            </button>
+
+                            {{-- UNDUH FILE GAMBAR --}}
+                            <a href="{{ $chartImageUrl }}" download="bagan-struktur-organisasi-ppru.webp" target="_blank" class="h-8 px-3.5 rounded-xl bg-[#00843d] hover:bg-[#006e33] text-white text-xs font-bold inline-flex items-center gap-1.5 shadow-sm transition">
+                                <i class="fa-solid fa-download"></i>
+                                <span>Unduh Gambar</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    {{-- GAMBAR VIEWPORT DENGAN ZOOM & SCROLL --}}
+                    <div class="w-full overflow-x-auto overflow-y-hidden bg-slate-50/80 rounded-2xl border border-slate-200/60 p-3 sm:p-6 flex justify-center items-center min-h-[380px]">
+                        <div class="transition-transform duration-200 cursor-zoom-in" 
+                             :style="'transform: scale(' + (imageZoom / 100) + '); transform-origin: top center;'"
+                             @click="imageModalOpen = true">
+                            <img src="{{ $chartImageUrl }}" 
+                                 alt="Bagan Struktur Organisasi Yayasan & Pimpinan PPRU Sakatiga" 
+                                 class="max-w-full h-auto mx-auto rounded-xl shadow-md border border-slate-200 object-contain hover:shadow-xl transition-shadow" 
+                                 loading="lazy" 
+                                 decoding="async">
+                        </div>
+                    </div>
+                    <p class="text-center text-[11px] text-slate-400 italic">Klik gambar atau tombol Layar Penuh untuk melihat dalam ukuran maksimal.</p>
+                </div>
+
+                {{-- MODAL LIGHTBOX FULLSCREEN PREVIEW --}}
+                <div x-show="imageModalOpen" 
+                     x-cloak 
+                     style="display: none;"
+                     @keydown.escape.window="imageModalOpen = false"
+                     class="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/85 backdrop-blur-sm">
+                    <div class="fixed inset-0" @click="imageModalOpen = false"></div>
+                    <div class="relative max-w-6xl max-h-[92vh] w-full bg-white dark:bg-slate-900 rounded-3xl shadow-2xl border border-slate-200 dark:border-slate-800 overflow-hidden flex flex-col z-10" @click.stop>
+                        <div class="p-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between bg-slate-50 dark:bg-slate-850">
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-sitemap text-emerald-600"></i>
+                                <span class="font-bold text-xs sm:text-sm text-slate-900 dark:text-white">Pratinjau Layar Penuh: Bagan Struktur Organisasi</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <a href="{{ $chartImageUrl }}" target="_blank" class="px-3 py-1.5 rounded-lg bg-emerald-50 text-emerald-700 hover:bg-emerald-100 text-xs font-bold transition">
+                                    <i class="fa-solid fa-arrow-up-right-from-square mr-1"></i> Buka Asli
+                                </a>
+                                <button type="button" @click="imageModalOpen = false" class="w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 hover:bg-rose-100 hover:text-rose-600 flex items-center justify-center transition cursor-pointer">
+                                    <i class="fa-solid fa-xmark text-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="flex-1 overflow-auto p-4 flex justify-center items-center bg-slate-100 dark:bg-slate-950">
+                            <img src="{{ $chartImageUrl }}" alt="Bagan Struktur Organisasi" class="max-w-full max-h-[80vh] object-contain rounded-xl shadow-lg">
+                        </div>
+                    </div>
+                </div>
+            @endif
+
+            {{-- TAMPILKAN BAGAN HIRARKI SVG/NODE JIKA MODE 'DYNAMIC', 'BOTH', ATAU BELUM ADA GAMBAR --}}
+            @if(empty($chartImageUrl) || in_array($chartMode ?? 'both', ['dynamic', 'both']))
+                @if(!empty($chartImageUrl) && ($chartMode ?? 'both') === 'both')
+                    <div class="pt-4 border-t border-slate-200">
+                        <div class="mb-4">
+                            <h3 class="text-base font-black text-slate-800 flex items-center gap-2">
+                                <i class="fa-solid fa-diagram-project text-[#00843d]"></i>
+                                <span>Bagan Interaktif &amp; Skema Alur Kepemimpinan</span>
+                            </h3>
+                            <p class="text-xs text-slate-500">Bagan skema hirarki struktural pimpinan yayasan, mudir pesantren, asisten mudir, dan unit-unit pendidikan.</p>
+                        </div>
+                        @include('partials.organization-chart', ['tree' => $tree])
+                    </div>
+                @else
+                    @include('partials.organization-chart', ['tree' => $tree])
+                @endif
+            @endif
         </div>
 
         <!-- TAMPILAN 2: DAFTAR KARTU GRID PENGURUS YAYASAN & PIMPINAN PPRU -->
@@ -186,6 +312,7 @@
 
     </section>
 
+    @if($showFacilities && $bidangs->isNotEmpty())
     {{-- SEKSI 2: FASILITAS & SARANA PRASARANA SEKOLAH --}}
     <section class="bg-white p-8 sm:p-12 rounded-3xl shadow-xl border border-gray-100 reveal-fade-up">
         <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
@@ -226,7 +353,9 @@
             @endforelse
         </div>
     </section>
+    @endif
 
+    @if($showPrograms && $dpcs->isNotEmpty())
     {{-- SEKSI 3: PROGRAM UNGGULAN SEKOLAH --}}
     <section class="bg-white p-8 sm:p-12 rounded-3xl shadow-xl border border-gray-100 reveal-fade-up">
         <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
@@ -264,6 +393,7 @@
             @endforelse
         </div>
     </section>
+    @endif
 
 </div>
 @endsection
