@@ -44,7 +44,7 @@
                                             <span class="text-[10px] bg-emerald-50 text-[#00843d] font-bold px-1.5 py-0.5 rounded">{{ $u->short_name }}</span>
                                         @endif
                                     </div>
-                                    <span class="text-[10px] text-slate-400 font-mono">/pendidikan/{{ $u->slug }}</span>
+                                    <span class="text-[10px] text-emerald-600 font-mono font-bold">/{{ $u->slug }}</span>
                                 </div>
                             </div>
 
@@ -65,7 +65,10 @@
                             <span class="w-2 h-2 rounded-full mr-1.5 {{ $u->is_active ? 'bg-emerald-500 animate-pulse' : 'bg-slate-300' }}"></span>
                             {{ $u->is_active ? 'Aktif' : 'Non-Aktif' }}
                         </span>
-                        <div class="flex items-center space-x-2">
+                        <div class="flex items-center space-x-1.5">
+                            <a href="{{ route('pendidikan.show', $u->slug) }}" target="_blank" class="p-2 text-slate-400 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg transition" title="Kunjungi Halaman Publik (/{{ $u->slug }})">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </a>
                             <a href="{{ route('admin.unit-pendidikan.edit', $u) }}" class="p-2 text-slate-600 hover:text-[#00843d] hover:bg-emerald-50 rounded-lg transition" title="Edit Unit">
                                 <i class="fa-solid fa-pen-to-square"></i>
                             </a>

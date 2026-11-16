@@ -20,9 +20,66 @@ class UnitPendidikanController extends Controller
         return view('frontend.pendidikan.index', compact('units'));
     }
 
+    /**
+     * Map old verbose slugs and short abbreviations to canonical short URLs.
+     */
+    public static function resolveSlug(string $slug): string
+    {
+        $normalized = strtolower(trim($slug));
+        $aliases = [
+            'taman-kanak-kanak-islam-raudhatul-ulum' => 'takiru',
+            'taman-kanak-kanak' => 'takiru',
+            'tk' => 'takiru',
+            'tk-islam' => 'takiru',
+            'madrasah-ibtidaiyah-raudhatul-ulum' => 'miru',
+            'madrasah-ibtidaiyah' => 'miru',
+            'mi' => 'miru',
+            'madrasah-tsanawiyah-raudhatul-ulum' => 'matsaru',
+            'madrasah-tsanawiyah' => 'matsaru',
+            'mts' => 'matsaru',
+            'madrasah-aliyah-raudhatul-ulum' => 'maru',
+            'madrasah-aliyah' => 'maru',
+            'ma' => 'maru',
+            'smp-islam-terpadu-raudhatul-ulum' => 'smpitru',
+            'smp-islam-terpadu' => 'smpitru',
+            'smpit-ru' => 'smpitru',
+            'smpit' => 'smpitru',
+            'sma-islam-terpadu-raudhatul-ulum' => 'smaitru',
+            'sma-islam-terpadu' => 'smaitru',
+            'smait-ru' => 'smaitru',
+            'smait' => 'smaitru',
+            'institut-agama-islam-nur-raudhatul-ulum' => 'iainru',
+            'institut-agama-islam' => 'iainru',
+            'iai-nru' => 'iainru',
+            'iain-ru' => 'iainru',
+            'madrasah-tahfizhul-quran-raudhatul-ulum' => 'matqularu',
+            'madrasah-tahfizhul-quran-lil-aulad' => 'matqularu',
+            'tahfizhul-quran' => 'matqularu',
+            'matqula' => 'matqularu',
+        ];
+
+        return $aliases[$normalized] ?? $normalized;
+    }
+
     public function show(string $slug)
     {
-        $unit = UnitPendidikan::where('slug', $slug)->firstOrFail();
+        $resolvedSlug = self::resolveSlug($slug);
+
+        $unit = UnitPendidikan::where('slug', $resolvedSlug)
+            ->orWhere('slug', $slug)
+            ->first();
+
+        if (! $unit) {
+            $unit = UnitPendidikan::all()->first(function ($u) use ($resolvedSlug, $slug) {
+                $uClean = str_replace([' ', '-', '_'], '', strtolower((string) $u->short_name));
+
+                return $uClean === $resolvedSlug || $uClean === $slug;
+            });
+        }
+
+        if (! $unit) {
+            abort(404);
+        }
 
         $hasDewanUnitCol = Schema::hasTable('dewan_asatidz') && Schema::hasColumn('dewan_asatidz', 'unit_pendidikan_id');
         $teacherQuery = AnggotaDewan::query();

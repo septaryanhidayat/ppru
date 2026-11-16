@@ -44,6 +44,11 @@ class UnitPendidikan extends Model
         return $query->where('is_active', true);
     }
 
+    public function getUrlAttribute(): string
+    {
+        return url('/'.ltrim($this->slug, '/'));
+    }
+
     public function getThumbnailUrlAttribute(): string
     {
         if (! empty($this->thumbnail)) {

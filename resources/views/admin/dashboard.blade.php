@@ -871,7 +871,7 @@
                                             <i class="fa-solid fa-pen-to-square text-[11px]"></i>
                                             <span>Kelola</span>
                                         </a>
-                                        <a href="{{ route('pendidikan.show', $ua['unit']->slug) }}" target="_blank" class="inline-flex items-center justify-center w-7 h-7 text-slate-400 hover:text-emerald-700 hover:bg-emerald-50 rounded-lg transition border border-slate-200/70" title="Kunjungi Halaman Publik">
+                                        <a href="{{ $ua['unit']->url }}" target="_blank" class="inline-flex items-center justify-center w-7 h-7 text-slate-400 hover:text-emerald-700 hover:bg-emerald-50 rounded-lg transition border border-slate-200/70" title="Kunjungi Halaman Publik (/{{ $ua['unit']->slug }})">
                                             <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
                                         </a>
                                     @endif

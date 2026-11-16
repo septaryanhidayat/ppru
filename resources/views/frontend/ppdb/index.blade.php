@@ -208,7 +208,7 @@
                             <a href="{{ route('ppdb.form') }}?unit={{ $u->slug }}" class="flex-1 bg-[#00843d] hover:bg-[#006a31] text-white text-xs font-extrabold py-2.5 px-3 rounded-xl text-center transition shadow-sm">
                                 <span>Daftar Unit Ini</span>
                             </a>
-                            <a href="{{ route('pendidikan.show', $u->slug) }}" class="bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-750 text-slate-700 dark:text-slate-200 text-xs font-bold py-2.5 px-3 rounded-xl transition" title="Lihat Profil Unit">
+                            <a href="{{ $u->url }}" class="bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-750 text-slate-700 dark:text-slate-200 text-xs font-bold py-2.5 px-3 rounded-xl transition" title="Lihat Profil Unit">
                                 <i class="fa-solid fa-arrow-right"></i>
                             </a>
                         </div>

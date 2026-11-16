@@ -162,7 +162,7 @@
                                 $cleanUnitName = trim(preg_replace('/\s*\([^)]*\)\s*$/', '', $nu->name));
                             @endphp
                             <li>
-                                <a href="{{ route('pendidikan.show', $nu->slug) }}" class="hover:text-[#fcd116] transition flex items-center justify-center md:justify-start text-left group">
+                                <a href="{{ $nu->url }}" class="hover:text-[#fcd116] transition flex items-center justify-center md:justify-start text-left group">
                                     <i class="fa-solid fa-angle-right text-[10px] text-emerald-500 mr-2 shrink-0 group-hover:translate-x-0.5 transition-transform"></i>
                                     <span class="leading-relaxed">{{ $cleanUnitName }}</span>
                                 </a>

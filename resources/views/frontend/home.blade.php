@@ -720,7 +720,7 @@
                     <div class="mb-2">
                         <span class="text-[11px] font-black text-school-gold uppercase tracking-wider">{{ $u->short_name }}</span>
                         <h3 class="text-base font-black text-gray-900 dark:text-white group-hover:text-school-green dark:group-hover:text-emerald-400 transition line-clamp-2 leading-snug">
-                            <a href="{{ route('pendidikan.show', $u->slug) }}">
+                            <a href="{{ $u->url }}">
                                 {{ $u->name }}
                             </a>
                         </h3>
@@ -742,7 +742,7 @@
 
                 {{-- Card Footer Action --}}
                 <div class="pt-4 border-t border-gray-100 dark:border-slate-800 flex items-center justify-between">
-                    <a href="{{ route('pendidikan.show', $u->slug) }}" class="text-xs font-bold text-school-green dark:text-emerald-400 hover:underline flex items-center">
+                    <a href="{{ $u->url }}" class="text-xs font-bold text-school-green dark:text-emerald-400 hover:underline flex items-center">
                         <span>Detail &amp; Kurikulum</span>
                         <i class="fa-solid fa-chevron-right ml-1 text-[10px]"></i>
                     </a>

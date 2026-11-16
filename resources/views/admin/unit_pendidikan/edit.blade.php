@@ -30,6 +30,15 @@
                 </div>
             </div>
 
+            <div>
+                <label for="slug" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Tautan URL Singkat (Slug)</label>
+                <div class="flex items-center">
+                    <span class="inline-flex items-center px-3.5 py-3 rounded-l-xl border border-r-0 border-slate-200 bg-slate-100 text-slate-500 text-xs font-mono font-semibold">{{ url('/') }}/</span>
+                    <input type="text" name="slug" id="slug" value="{{ old('slug', $unit->slug) }}" placeholder="Contoh: miru / maru / takiru" class="w-full bg-slate-50 text-xs font-mono font-bold text-[#00843d] rounded-r-xl px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00843d]">
+                </div>
+                <p class="text-[10px] text-slate-400 mt-1">Alamat website singkat resmi untuk unit ini (misal: <code>ppru.ac.id/miru</code>, <code>ppru.ac.id/takiru</code>, dsb).</p>
+            </div>
+
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div>
                     <label for="category_type" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Kategori Unit *</label>

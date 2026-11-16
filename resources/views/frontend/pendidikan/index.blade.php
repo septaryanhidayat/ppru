@@ -93,7 +93,7 @@
                     </div>
 
                     <div class="px-6 pb-6 pt-2 border-t border-gray-100 dark:border-slate-800 flex items-center justify-between">
-                        <a href="{{ route('pendidikan.show', $unit->slug) }}" class="inline-flex items-center text-xs font-extrabold text-[#00843d] dark:text-emerald-400 hover:text-[#006830] dark:hover:text-emerald-300 transition group/btn">
+                        <a href="{{ $unit->url }}" class="inline-flex items-center text-xs font-extrabold text-[#00843d] dark:text-emerald-400 hover:text-[#006830] dark:hover:text-emerald-300 transition group/btn">
                             <span>Selengkapnya</span>
                             <i class="fa-solid fa-arrow-right ml-1.5 transform group-hover/btn:translate-x-1 transition"></i>
                         </a>

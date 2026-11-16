@@ -948,7 +948,7 @@
                         @php
                             $cleanOuName = trim(preg_replace('/\s*\([^)]*\)\s*$/', '', $ou->name));
                         @endphp
-                        <a href="{{ route('pendidikan.show', $ou->slug) }}" class="bg-white rounded-2xl p-4 border border-gray-100 hover:border-emerald-300 hover:shadow-md transition duration-300 group flex items-start space-x-3.5">
+                        <a href="{{ $ou->url }}" class="bg-white rounded-2xl p-4 border border-gray-100 hover:border-emerald-300 hover:shadow-md transition duration-300 group flex items-start space-x-3.5">
                             <div class="w-10 h-10 rounded-xl bg-emerald-50 text-[#00843d] flex items-center justify-center text-sm shrink-0 group-hover:bg-[#00843d] group-hover:text-white transition">
                                 <i class="{{ $ou->icon ?: 'fa-solid fa-school' }}"></i>
                             </div>

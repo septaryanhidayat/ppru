@@ -23,7 +23,7 @@ class UnitAccountService
         return [
             [
                 'short_name' => 'MARU',
-                'slug' => 'madrasah-aliyah-raudhatul-ulum',
+                'slug' => 'maru',
                 'name' => 'Madrasah Aliyah Raudhatul Ulum',
                 'category_type' => 'Madrasah',
                 'head_name' => 'Ustadz H. M. Said, S.Ag.',
@@ -32,7 +32,7 @@ class UnitAccountService
             ],
             [
                 'short_name' => 'MATSARU',
-                'slug' => 'madrasah-tsanawiyah-raudhatul-ulum',
+                'slug' => 'matsaru',
                 'name' => 'Madrasah Tsanawiyah Raudhatul Ulum',
                 'category_type' => 'Madrasah',
                 'head_name' => 'Ustadz Drs. H. Syamsuddin',
@@ -41,7 +41,7 @@ class UnitAccountService
             ],
             [
                 'short_name' => 'MIRU',
-                'slug' => 'madrasah-ibtidaiyah-raudhatul-ulum',
+                'slug' => 'miru',
                 'name' => 'Madrasah Ibtidaiyah Raudhatul Ulum',
                 'category_type' => 'Madrasah',
                 'head_name' => 'Ustadzah Hj. Maryam, S.Pd.I.',
@@ -50,7 +50,7 @@ class UnitAccountService
             ],
             [
                 'short_name' => 'MATQULARU',
-                'slug' => 'madrasah-tahfizhul-quran-raudhatul-ulum',
+                'slug' => 'matqularu',
                 'name' => 'Madrasah Tahfizhul Quran Lil Aulad',
                 'category_type' => 'Madrasah',
                 'head_name' => 'Ustadz H. Abdul Halim, Al-Hafizh',
@@ -59,7 +59,7 @@ class UnitAccountService
             ],
             [
                 'short_name' => 'TAKIRU',
-                'slug' => 'taman-kanak-kanak-islam-raudhatul-ulum',
+                'slug' => 'takiru',
                 'name' => 'Taman Kanak-Kanak Islam Raudhatul Ulum',
                 'category_type' => 'TK Islam',
                 'head_name' => 'Ustadzah Fatimah, S.Pd.',
@@ -68,7 +68,7 @@ class UnitAccountService
             ],
             [
                 'short_name' => 'SMPIT RU',
-                'slug' => 'smp-islam-terpadu-raudhatul-ulum',
+                'slug' => 'smpitru',
                 'name' => 'SMP Islam Terpadu Raudhatul Ulum',
                 'category_type' => 'Sekolah IT',
                 'head_name' => 'Ustadz Ridwan, S.Pd.I.',
@@ -77,7 +77,7 @@ class UnitAccountService
             ],
             [
                 'short_name' => 'SMAIT RU',
-                'slug' => 'sma-islam-terpadu-raudhatul-ulum',
+                'slug' => 'smaitru',
                 'name' => 'SMA Islam Terpadu Raudhatul Ulum',
                 'category_type' => 'Sekolah IT',
                 'head_name' => 'Ustadz Ahmad Fauzi, M.Pd.',
@@ -86,7 +86,7 @@ class UnitAccountService
             ],
             [
                 'short_name' => 'IAI NRU',
-                'slug' => 'institut-agama-islam-nur-raudhatul-ulum',
+                'slug' => 'iainru',
                 'name' => 'Institut Agama Islam Nur Raudhatul Ulum',
                 'category_type' => 'Perguruan Tinggi',
                 'head_name' => 'Dr. H. M. Husin, M.A.',
@@ -168,6 +168,7 @@ class UnitAccountService
                 } else {
                     $isFulan = ! $unit->head_name || str_contains(strtolower((string) $unit->head_name), 'fulan');
                     $unit->update([
+                        'slug' => $cfg['slug'],
                         'order' => $cfg['order'],
                         'category_type' => $cfg['category_type'],
                         'head_name' => $isFulan ? $cfg['head_name'] : $unit->head_name,

@@ -10,6 +10,7 @@ use App\Models\Post;
 use App\Models\ProgramUnggulan;
 use App\Models\Setting;
 use App\Models\Testimonial;
+use App\Models\UnitPendidikan;
 use Illuminate\Support\Facades\Schema;
 
 class PageController extends Controller
@@ -123,6 +124,11 @@ class PageController extends Controller
 
     public function show(string $slug)
     {
+        $shortUnits = ['takiru', 'miru', 'matsaru', 'maru', 'smpitru', 'smaitru', 'iainru', 'matqularu'];
+        if (in_array(strtolower($slug), $shortUnits) || UnitPendidikan::where('slug', $slug)->exists()) {
+            return app(UnitPendidikanController::class)->show($slug);
+        }
+
         $page = Post::pages()->where('slug', $slug)->firstOrFail();
 
         return view('frontend.pages.default', compact('page'));

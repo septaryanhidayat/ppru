@@ -48,6 +48,7 @@ class AdminUnitPendidikanController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
+            'slug' => 'nullable|string|max:100',
             'short_name' => 'nullable|string|max:50',
             'category_type' => 'required|string|max:100',
             'curriculum' => 'nullable|string|max:255',
@@ -138,6 +139,7 @@ class AdminUnitPendidikanController extends Controller
         }
         $validated = $request->validate([
             'name' => 'required|string|max:255',
+            'slug' => 'nullable|string|max:100',
             'short_name' => 'nullable|string|max:50',
             'category_type' => 'required|string|max:100',
             'curriculum' => 'nullable|string|max:255',
@@ -203,7 +205,16 @@ class AdminUnitPendidikanController extends Controller
             $headPhotoPath = $validated['head_photo'];
         }
 
-        if ($unitPendidikan->name !== $validated['name']) {
+        $slug = $unitPendidikan->slug;
+        if (! empty($validated['slug'])) {
+            $baseSlug = Str::slug($validated['slug']);
+            $slug = $baseSlug;
+            $counter = 1;
+            while (UnitPendidikan::where('slug', $slug)->where('id', '!=', $unitPendidikan->id)->exists()) {
+                $slug = "{$baseSlug}-{$counter}";
+                $counter++;
+            }
+        } elseif (empty($slug)) {
             $baseSlug = Str::slug($validated['name']);
             $slug = $baseSlug;
             $counter = 1;
@@ -211,11 +222,11 @@ class AdminUnitPendidikanController extends Controller
                 $slug = "{$baseSlug}-{$counter}";
                 $counter++;
             }
-            $unitPendidikan->slug = $slug;
         }
 
         $unitPendidikan->update([
             'name' => $validated['name'],
+            'slug' => $slug,
             'short_name' => $validated['short_name'] ?? null,
             'category_type' => $validated['category_type'],
             'curriculum' => $validated['curriculum'] ?? null,

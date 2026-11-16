@@ -453,13 +453,21 @@ class CmsAutoHealService
             // 2. Auto-heal Unit Principals (eliminate Ustadz Fulan from unit pages)
             if (Schema::hasTable('unit_pendidikans')) {
                 $principals = [
+                    'maru' => 'Ustadz H. Ahmad Dailami, S.Pd.I.',
                     'madrasah-aliyah-raudhatul-ulum' => 'Ustadz H. Ahmad Dailami, S.Pd.I.',
+                    'matsaru' => 'Ustadz Muhammad Syakir, M.Pd.',
                     'madrasah-tsanawiyah-raudhatul-ulum' => 'Ustadz Muhammad Syakir, M.Pd.',
+                    'miru' => 'Ustadzah Siti Aminah, S.Pd.I.',
                     'madrasah-ibtidaiyah-raudhatul-ulum' => 'Ustadzah Siti Aminah, S.Pd.I.',
+                    'matqularu' => 'Ustadzah Hj. Fatimah Azzahra, Lc., M.Ag.',
                     'madrasah-tahfizhul-quran-raudhatul-ulum' => 'Ustadzah Hj. Fatimah Azzahra, Lc., M.Ag.',
+                    'takiru' => 'Ustadzah Maryam, S.Pd.',
                     'taman-kanak-kanak-islam-raudhatul-ulum' => 'Ustadzah Maryam, S.Pd.',
+                    'smpitru' => 'Ustadz Abdullah, S.Pd.I., M.Pd.',
                     'smp-islam-terpadu-raudhatul-ulum' => 'Ustadz Abdullah, S.Pd.I., M.Pd.',
+                    'smaitru' => 'Ustadz Agi Gustiawan, S.Pd.',
                     'sma-islam-terpadu-raudhatul-ulum' => 'Ustadz Agi Gustiawan, S.Pd.',
+                    'iainru' => 'Dr. H. Ahmad Fauzi, M.A.',
                     'institut-agama-islam-nur-raudhatul-ulum' => 'Dr. H. Ahmad Fauzi, M.A.',
                 ];
                 foreach ($principals as $uSlug => $hName) {

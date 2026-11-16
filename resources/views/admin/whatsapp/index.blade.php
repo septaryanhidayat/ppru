@@ -307,7 +307,7 @@
                                         <span class="text-[10px] px-1.5 py-0.2 rounded bg-slate-100 text-slate-600 font-semibold">{{ $unit->category_type }}</span>
                                     </div>
                                     <p class="text-[11px] text-slate-500 truncate" title="{{ $unit->name }}">{{ $unit->name }}</p>
-                                    <a href="{{ route('pendidikan.show', $unit->slug) }}" target="_blank" class="text-[10px] text-emerald-600 hover:underline flex items-center gap-1 mt-0.5">
+                                    <a href="{{ $unit->url }}" target="_blank" class="text-[10px] text-emerald-600 hover:underline flex items-center gap-1 mt-0.5">
                                         <span>Lihat Halaman Unit</span>
                                         <i class="fa-solid fa-arrow-up-right-from-square text-[8px]"></i>
                                     </a>

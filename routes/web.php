@@ -212,7 +212,14 @@ Route::get('/privacy-policy', [PageController::class, 'privacyPolicy'])->name('p
 
 // Unit Pendidikan (Jenjang & Lembaga Pesantren)
 Route::get('/pendidikan', [UnitPendidikanController::class, 'index'])->name('pendidikan.index');
-Route::get('/pendidikan/{slug}', [UnitPendidikanController::class, 'show'])->name('pendidikan.show');
+
+// Short URLs di Root Domain (ppru.ac.id/takiru, ppru.ac.id/miru, ppru.ac.id/matsaru, ppru.ac.id/maru, ppru.ac.id/smpitru, ppru.ac.id/smaitru, ppru.ac.id/iainru, ppru.ac.id/matqularu)
+Route::get('/{slug}', [UnitPendidikanController::class, 'show'])
+    ->whereIn('slug', ['takiru', 'miru', 'matsaru', 'maru', 'smpitru', 'smaitru', 'iainru', 'matqularu'])
+    ->name('pendidikan.show');
+
+// Backward compatibility: /pendidikan/{slug}
+Route::get('/pendidikan/{slug}', [UnitPendidikanController::class, 'show'])->name('pendidikan.legacy');
 
 // Dewan Guru & GTK
 Route::get('/dewan-guru', [DewanController::class, 'index'])->name('dewan.index');
@@ -344,4 +351,4 @@ Route::any('/wp-{any}', function () {
 })->where('any', '.*');
 
 // Generic page fallback route
-Route::get('/{slug}', [PageController::class, 'show'])->name('page.show');
+Route::get('/{page_slug}', [PageController::class, 'show'])->name('page.show');
