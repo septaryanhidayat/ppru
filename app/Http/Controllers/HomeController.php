@@ -106,25 +106,24 @@ class HomeController extends Controller
             $senayanPosts = $senayanPosts->merge($allPosts)->unique('id')->take(8);
         }
 
-        // 5. Berita Prestasi Siswa (Section 3 - 8 posts)
-        $prestasiPosts = Post::posts()
-            ->published()
+        // 5. Berita Prestasi Siswa & Santri (Section Prestasi di Beranda)
+        $prestasiPosts = Post::published()
             ->with(['categories'])
             ->where(function ($q) {
-                $q->whereHas('categories', fn ($c) => $c->whereIn('slug', ['prestasi-siswa', 'akademik-riset']))
-                    ->orWhereHas('tags', fn ($t) => $t->whereIn('slug', ['prestasi', 'juara', 'olimpiade', 'sains']));
+                $q->where('type', 'prestasi')
+                    ->orWhere(function ($sub) {
+                        $sub->where('type', 'post')
+                            ->where(function ($cat) {
+                                $cat->whereHas('categories', fn ($c) => $c->whereIn('slug', ['prestasi-siswa', 'akademik-riset']))
+                                    ->orWhereHas('tags', fn ($t) => $t->whereIn('slug', ['prestasi', 'juara', 'olimpiade', 'sains']));
+                            });
+                    });
             })
             ->whereNotIn('id', $senayanPosts->pluck('id'))
             ->orderBy('published_at', 'desc')
             ->orderBy('id', 'desc')
             ->take(8)
             ->get();
-
-        if ($prestasiPosts->count() < 8) {
-            $fallbackPosts = $allPosts->whereNotIn('id', $senayanPosts->pluck('id'));
-            $prestasiPosts = $prestasiPosts->merge($fallbackPosts)->unique('id')->take(8);
-        }
-
         // 6. Kabar Akademik & Kurikulum (Section 4 Kolom 1 - 6 posts)
         $nasionalPosts = Post::posts()
             ->published()

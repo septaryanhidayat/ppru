@@ -1052,10 +1052,15 @@
 
         {{-- 4 Kolom di Desktop, 2 Kolom di Tablet, 1 Kolom di Mobile --}}
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            @foreach($prestasiPosts as $index => $post)
+        {{-- 4 Kolom di Desktop, 2 Kolom di Tablet, 1 Kolom di Mobile --}}
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            @forelse($prestasiPosts as $index => $post)
+            @php
+                $targetUrl = $post->type === 'prestasi' ? route('prestasi.show', $post->slug) : route('artikel.show', $post->slug);
+            @endphp
             <article class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-xs hover:shadow-lg transition-all duration-300 flex flex-col group reveal-fade-up delay-{{ ($index % 4) + 1 }}">
                 <div class="aspect-[16/10] overflow-hidden rounded-t-2xl bg-gray-100 relative">
-                    <a href="{{ route('artikel.show', $post->slug) }}" class="block w-full h-full" aria-label="Baca berita: {{ $post->title }}">
+                    <a href="{{ $targetUrl }}" class="block w-full h-full" aria-label="Baca prestasi: {{ $post->title }}">
                         <img src="{{ $post->featured_image_url }}" alt="{{ $post->title }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" onerror="this.onerror=null;this.src='/images/hero-2.webp'">
                     </a>
                     <span class="absolute bottom-2.5 left-2.5 bg-black/75 backdrop-blur-xs text-white text-[10px] font-bold px-2.5 py-0.5 rounded-md flex items-center">
@@ -1064,7 +1069,7 @@
                 </div>
                 <div class="p-4 flex-1 flex flex-col justify-between">
                     <h3 class="font-extrabold text-xs sm:text-sm text-gray-900 group-hover:text-school-green transition line-clamp-2 leading-snug">
-                        <a href="{{ route('artikel.show', $post->slug) }}">
+                        <a href="{{ $targetUrl }}">
                             {{ $post->title }}
                         </a>
                     </h3>
@@ -1074,7 +1079,12 @@
                     </div>
                 </div>
             </article>
-            @endforeach
+            @empty
+            <div class="col-span-full py-12 text-center bg-gray-50/60 rounded-3xl border border-dashed border-gray-200">
+                <i class="fa-solid fa-trophy text-3xl text-gray-300 mb-2 block"></i>
+                <p class="text-xs font-semibold text-gray-500">Belum ada data prestasi yang dipublikasikan.</p>
+            </div>
+            @endforelse
         </div>
 
         <div class="text-center mt-10 reveal-fade-up">

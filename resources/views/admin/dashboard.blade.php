@@ -888,6 +888,57 @@
         </div>
     </div>
 
+    {{-- 3D. PUSAT AKSI CEPAT ADMIN --}}
+    <div class="bg-white p-6 rounded-3xl shadow-xs border border-slate-200/80 space-y-4">
+        <h3 class="text-sm font-extrabold text-slate-800 uppercase tracking-wider flex items-center space-x-2">
+            <i class="fa-solid fa-bolt text-[#da251c]"></i>
+            <span>Pusat Aksi Cepat</span>
+        </h3>
+        <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3 text-center">
+            
+            <a href="{{ route('admin.posts.create') }}" class="p-4 rounded-2xl bg-slate-50 hover:bg-red-50 border border-slate-200/70 hover:border-red-200 text-slate-700 hover:text-[#da251c] transition group">
+                <i class="fa-solid fa-file-pen text-xl mb-2 text-[#da251c] group-hover:scale-110 transition block"></i>
+                <span class="text-xs font-bold block">Tulis Berita</span>
+            </a>
+
+            <a href="{{ route('admin.posts.index', ['type' => 'prestasi']) }}" class="p-4 rounded-2xl bg-slate-50 hover:bg-amber-50 border border-slate-200/70 hover:border-amber-200 text-slate-700 hover:text-amber-600 transition group" title="Kelola Prestasi Santri & Guru">
+                <i class="fa-solid fa-trophy text-xl mb-2 text-amber-500 group-hover:scale-110 transition block"></i>
+                <span class="text-xs font-bold block">Prestasi Santri</span>
+            </a>
+
+            <a href="{{ route('admin.settings.index') }}#social-media" class="p-4 rounded-2xl bg-slate-50 hover:bg-sky-50 border border-slate-200/70 hover:border-sky-200 text-slate-700 hover:text-sky-600 transition group" title="Atur Media Sosial & Footer">
+                <i class="fa-solid fa-share-nodes text-xl mb-2 text-sky-500 group-hover:scale-110 transition block"></i>
+                <span class="text-xs font-bold block">Media Sosial</span>
+            </a>
+
+            <a href="{{ route('admin.pages.index') }}" class="p-4 rounded-2xl bg-slate-50 hover:bg-indigo-50 border border-slate-200/70 hover:border-indigo-200 text-slate-700 hover:text-indigo-600 transition group">
+                <i class="fa-solid fa-file-signature text-xl mb-2 text-indigo-500 group-hover:scale-110 transition block"></i>
+                <span class="text-xs font-bold block">Edit Profil</span>
+            </a>
+
+            <a href="{{ route('admin.dewan.index') }}" class="p-4 rounded-2xl bg-slate-50 hover:bg-purple-50 border border-slate-200/70 hover:border-purple-200 text-slate-700 hover:text-purple-600 transition group">
+                <i class="fa-solid fa-chalkboard-user text-xl mb-2 text-purple-500 group-hover:scale-110 transition block"></i>
+                <span class="text-xs font-bold block">Dewan Guru</span>
+            </a>
+
+            <a href="{{ route('admin.media.index') }}" class="p-4 rounded-2xl bg-slate-50 hover:bg-pink-50 border border-slate-200/70 hover:border-pink-200 text-slate-700 hover:text-pink-600 transition group">
+                <i class="fa-solid fa-photo-film text-xl mb-2 text-pink-500 group-hover:scale-110 transition block"></i>
+                <span class="text-xs font-bold block">Galeri Foto</span>
+            </a>
+
+            <a href="{{ route('admin.settings.index') }}" class="p-4 rounded-2xl bg-slate-50 hover:bg-emerald-50 border border-slate-200/70 hover:border-emerald-200 text-slate-700 hover:text-emerald-600 transition group">
+                <i class="fa-solid fa-sliders text-xl mb-2 text-emerald-500 group-hover:scale-110 transition block"></i>
+                <span class="text-xs font-bold block">Setting & SEO</span>
+            </a>
+
+            <a href="{{ route('admin.backup.download') }}" class="p-4 rounded-2xl bg-slate-50 hover:bg-amber-50 border border-slate-200/70 hover:border-amber-200 text-slate-700 hover:text-amber-600 transition group">
+                <i class="fa-solid fa-download text-xl mb-2 text-amber-500 group-hover:scale-110 transition block"></i>
+                <span class="text-xs font-bold block">Backup DB</span>
+            </a>
+
+        </div>
+    </div>
+
     {{-- 4. TWO COLUMN DATA GRID (Berita Terbaru & Log Aktivitas) --}}
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8">
         {{-- KOLOM KIRI: Berita Terbaru (7 Cols) --}}

@@ -53,19 +53,36 @@
         </div>
 
         <div class="flex items-center space-x-3 text-xs">
-            <a href="{{ $siteSettings['social_facebook'] ?? 'https://www.facebook.com/pprusakatigasumsel/?locale=id_ID' }}" target="_blank" rel="noopener" class="text-emerald-200 hover:text-[#f59e0b] transition" aria-label="Facebook PPRU">
-                <i class="fa-brands fa-facebook-f"></i>
-            </a>
-            <a href="{{ $siteSettings['social_instagram'] ?? 'https://www.instagram.com/ppru_sakatiga/' }}" target="_blank" rel="noopener" class="text-emerald-200 hover:text-[#f59e0b] transition" aria-label="Instagram PPRU">
-                <i class="fa-brands fa-instagram"></i>
-            </a>
-            <a href="{{ $siteSettings['social_youtube'] ?? 'https://www.youtube.com/@pprusakatiga' }}" target="_blank" rel="noopener" class="text-emerald-200 hover:text-[#f59e0b] transition" aria-label="YouTube PPRU">
-                <i class="fa-brands fa-youtube"></i>
-            </a>
-            <a href="{{ \App\Models\Setting::waUrl($siteSettings['contact_whatsapp'] ?? '0812-7890-1950', $siteSettings['wa_helpdesk_message'] ?? null) }}" target="_blank" rel="noopener" class="text-emerald-200 hover:text-[#f59e0b] transition flex items-center space-x-1" aria-label="WhatsApp PPRU">
+        <div class="flex items-center space-x-3 text-xs">
+            @if(!empty($siteSettings['social_facebook']))
+                <a href="{{ $siteSettings['social_facebook'] }}" target="_blank" rel="noopener" class="text-emerald-200 hover:text-[#f59e0b] transition" aria-label="Facebook PPRU" title="Facebook">
+                    <i class="fa-brands fa-facebook-f"></i>
+                </a>
+            @endif
+            @if(!empty($siteSettings['social_instagram']))
+                <a href="{{ $siteSettings['social_instagram'] }}" target="_blank" rel="noopener" class="text-emerald-200 hover:text-[#f59e0b] transition" aria-label="Instagram PPRU" title="Instagram">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+            @endif
+            @if(!empty($siteSettings['social_youtube']))
+                <a href="{{ $siteSettings['social_youtube'] }}" target="_blank" rel="noopener" class="text-emerald-200 hover:text-[#f59e0b] transition" aria-label="YouTube PPRU" title="YouTube">
+                    <i class="fa-brands fa-youtube"></i>
+                </a>
+            @endif
+            @if(!empty($siteSettings['social_tiktok']))
+                <a href="{{ $siteSettings['social_tiktok'] }}" target="_blank" rel="noopener" class="text-emerald-200 hover:text-[#f59e0b] transition" aria-label="TikTok PPRU" title="TikTok">
+                    <i class="fa-brands fa-tiktok"></i>
+                </a>
+            @endif
+            @php
+                $headerWa = $siteSettings['social_whatsapp'] ?? ($siteSettings['contact_whatsapp'] ?? '0812-7890-1950');
+                $headerWaUrl = \App\Models\Setting::waUrl($headerWa, $siteSettings['wa_helpdesk_message'] ?? null);
+            @endphp
+            <a href="{{ $headerWaUrl }}" target="_blank" rel="noopener" class="text-emerald-200 hover:text-[#f59e0b] transition flex items-center space-x-1" aria-label="WhatsApp PPRU" title="WhatsApp Helpdesk">
                 <i class="fa-brands fa-whatsapp text-emerald-400"></i>
                 <span class="text-[11px] font-semibold">{{ $siteSettings['contact_whatsapp_label'] ?? 'Helpdesk' }}</span>
             </a>
+        </div>
         </div>
     </div>
 </div>

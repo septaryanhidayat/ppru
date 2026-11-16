@@ -41,6 +41,7 @@ class AdminSettingController extends Controller
             'meta_keywords', 'google_site_verification',
             'contact_address', 'contact_email', 'contact_phone', 'contact_whatsapp',
             'social_facebook', 'social_instagram', 'social_youtube', 'social_tiktok', 'social_twitter',
+            'social_whatsapp', 'social_telegram', 'social_threads', 'social_linkedin',
             'home_mudir_name', 'home_mudir_role', 'mudir_photo',
             'home_sambutan_badge', 'home_sambutan_title', 'home_sambutan_quote',
             'home_sambutan_text_1', 'home_sambutan_text_2', 'home_sambutan_btn_text', 'home_sambutan_btn_url',
@@ -98,6 +99,13 @@ class AdminSettingController extends Controller
             if ($converted['success']) {
                 $data['mudir_photo'] = $converted['url'];
             }
+        }
+
+        // Sync WhatsApp setting keys if either is provided
+        if (isset($data['social_whatsapp']) && ! isset($data['contact_whatsapp'])) {
+            $data['contact_whatsapp'] = $data['social_whatsapp'];
+        } elseif (isset($data['contact_whatsapp']) && ! isset($data['social_whatsapp'])) {
+            $data['social_whatsapp'] = $data['contact_whatsapp'];
         }
 
         // Whitelist filter: ensure only recognized setting keys are saved

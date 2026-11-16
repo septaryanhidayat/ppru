@@ -41,19 +41,61 @@
                 {{-- Sosial Media Resmi PPRU --}}
                 <div class="pt-2 flex flex-col items-center md:items-start">
                     <span class="text-[11px] font-bold uppercase tracking-wider text-emerald-400 block mb-2">Media Sosial Resmi:</span>
-                    <div class="flex items-center justify-center md:justify-start space-x-2.5">
-                        <a href="{{ $siteSettings['social_facebook'] ?? 'https://www.facebook.com/pprusakatigasumsel/?locale=id_ID' }}" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-white/10 hover:bg-[#00843d] text-white flex items-center justify-center transition hover:scale-110 shadow-sm" aria-label="Facebook PPRU">
-                            <i class="fa-brands fa-facebook-f text-sm"></i>
-                        </a>
-                        <a href="{{ $siteSettings['social_instagram'] ?? 'https://www.instagram.com/ppru_sakatiga/' }}" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-white/10 hover:bg-[#e1306c] text-white flex items-center justify-center transition hover:scale-110 shadow-sm" aria-label="Instagram PPRU">
-                            <i class="fa-brands fa-instagram text-sm"></i>
-                        </a>
-                        <a href="{{ $siteSettings['social_youtube'] ?? 'https://www.youtube.com/@pprusakatiga' }}" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-white/10 hover:bg-[#ff0000] text-white flex items-center justify-center transition hover:scale-110 shadow-sm" aria-label="YouTube PPRU">
-                            <i class="fa-brands fa-youtube text-sm"></i>
-                        </a>
-                        <a href="{{ \App\Models\Setting::waUrl($siteSettings['contact_whatsapp'] ?? '0812-7890-1950', $siteSettings['wa_helpdesk_message'] ?? null) }}" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-white/10 hover:bg-[#25d366] text-white flex items-center justify-center transition hover:scale-110 shadow-sm" aria-label="WhatsApp PPRU">
-                            <i class="fa-brands fa-whatsapp text-sm"></i>
-                        </a>
+                    <div class="flex flex-wrap items-center justify-center md:justify-start gap-2.5">
+                        @if(!empty($siteSettings['social_facebook']))
+                            <a href="{{ $siteSettings['social_facebook'] }}" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-white/10 hover:bg-[#1877f2] text-white flex items-center justify-center transition hover:scale-110 shadow-sm" aria-label="Facebook PPRU" title="Facebook">
+                                <i class="fa-brands fa-facebook-f text-sm"></i>
+                            </a>
+                        @endif
+
+                        @if(!empty($siteSettings['social_instagram']))
+                            <a href="{{ $siteSettings['social_instagram'] }}" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-white/10 hover:bg-[#e1306c] text-white flex items-center justify-center transition hover:scale-110 shadow-sm" aria-label="Instagram PPRU" title="Instagram">
+                                <i class="fa-brands fa-instagram text-sm"></i>
+                            </a>
+                        @endif
+
+                        @if(!empty($siteSettings['social_youtube']))
+                            <a href="{{ $siteSettings['social_youtube'] }}" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-white/10 hover:bg-[#ff0000] text-white flex items-center justify-center transition hover:scale-110 shadow-sm" aria-label="YouTube PPRU" title="YouTube">
+                                <i class="fa-brands fa-youtube text-sm"></i>
+                            </a>
+                        @endif
+
+                        @if(!empty($siteSettings['social_tiktok']))
+                            <a href="{{ $siteSettings['social_tiktok'] }}" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-white/10 hover:bg-black hover:ring-1 hover:ring-white/40 text-white flex items-center justify-center transition hover:scale-110 shadow-sm" aria-label="TikTok PPRU" title="TikTok">
+                                <i class="fa-brands fa-tiktok text-sm"></i>
+                            </a>
+                        @endif
+
+                        @php
+                            $footerWa = $siteSettings['social_whatsapp'] ?? ($siteSettings['contact_whatsapp'] ?? '');
+                            $footerWaUrl = '';
+                            if (!empty($footerWa)) {
+                                $footerWaUrl = \App\Models\Setting::waUrl($footerWa, $siteSettings['wa_helpdesk_message'] ?? null);
+                            }
+                        @endphp
+                        @if(!empty($footerWaUrl))
+                            <a href="{{ $footerWaUrl }}" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-white/10 hover:bg-[#25d366] text-white flex items-center justify-center transition hover:scale-110 shadow-sm" aria-label="WhatsApp PPRU" title="WhatsApp">
+                                <i class="fa-brands fa-whatsapp text-sm"></i>
+                            </a>
+                        @endif
+
+                        @if(!empty($siteSettings['social_twitter']))
+                            <a href="{{ $siteSettings['social_twitter'] }}" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-white/10 hover:bg-black hover:ring-1 hover:ring-white/40 text-white flex items-center justify-center transition hover:scale-110 shadow-sm" aria-label="X (Twitter) PPRU" title="X (Twitter)">
+                                <i class="fa-brands fa-x-twitter text-sm"></i>
+                            </a>
+                        @endif
+
+                        @if(!empty($siteSettings['social_telegram']))
+                            <a href="{{ $siteSettings['social_telegram'] }}" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-white/10 hover:bg-[#229ed9] text-white flex items-center justify-center transition hover:scale-110 shadow-sm" aria-label="Telegram PPRU" title="Telegram">
+                                <i class="fa-brands fa-telegram text-sm"></i>
+                            </a>
+                        @endif
+
+                        @if(!empty($siteSettings['social_threads']))
+                            <a href="{{ $siteSettings['social_threads'] }}" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-white/10 hover:bg-black hover:ring-1 hover:ring-white/40 text-white flex items-center justify-center transition hover:scale-110 shadow-sm" aria-label="Threads PPRU" title="Threads">
+                                <i class="fa-brands fa-threads text-sm"></i>
+                            </a>
+                        @endif
                     </div>
                 </div>
             </div>

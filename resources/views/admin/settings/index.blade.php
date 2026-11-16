@@ -210,48 +210,84 @@
         </div>
 
         {{-- 4. MEDIA SOSIAL RESMI --}}
-        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+        <div id="social-media" class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden scroll-mt-6">
             <div class="px-6 py-4 bg-gray-50/80 border-b border-gray-100 flex items-center justify-between">
                 <div class="flex items-center space-x-2.5">
                     <span class="w-7 h-7 rounded-lg bg-emerald-100 text-[#00913e] flex items-center justify-center text-xs font-bold">4</span>
                     <div>
                         <h2 class="font-bold text-sm text-gray-900">Tautan Media Sosial Resmi</h2>
-                        <p class="text-[11px] text-gray-500">Ikon dan tautan otomatis aktif di seluruh header dan footer</p>
+                        <p class="text-[11px] text-gray-500">Ikon dan tautan otomatis aktif di Footer dan Header website</p>
                     </div>
                 </div>
+                <span class="text-[10px] font-semibold bg-emerald-50 text-emerald-700 px-3 py-1 rounded-full border border-emerald-200">
+                    <i class="fa-solid fa-check-circle mr-1"></i> Tampil di Footer
+                </span>
             </div>
 
-            <div class="p-6">
+            <div class="p-6 space-y-4">
+                <div class="bg-emerald-50/60 border border-emerald-200/60 rounded-xl p-3.5 text-xs text-emerald-900 flex items-start space-x-2.5">
+                    <i class="fa-solid fa-circle-info text-emerald-600 mt-0.5 shrink-0 text-sm"></i>
+                    <p class="leading-relaxed">
+                        Tautan media sosial di bawah ini akan otomatis tampil di <strong>Footer</strong> dan <strong>Header</strong> website. Kosongkan isian jika Anda ingin menyembunyikan media sosial tertentu dari halaman publik.
+                    </p>
+                </div>
+
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                         <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5">
                             <i class="fa-brands fa-facebook text-blue-600 mr-1"></i> Facebook Page
                         </label>
-                        <input type="text" name="social_facebook" value="{{ $settings['social_facebook'] ?? 'https://www.facebook.com/pprusakatigasumsel/?locale=id_ID' }}" class="w-full bg-gray-50 text-xs text-gray-800 rounded-xl px-4 py-3 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
+                        <input type="text" name="social_facebook" value="{{ old('social_facebook', $settings['social_facebook'] ?? 'https://www.facebook.com/pprusakatigasumsel/?locale=id_ID') }}" placeholder="https://www.facebook.com/..." class="w-full bg-gray-50 text-xs text-gray-800 rounded-xl px-4 py-3 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
                     </div>
-                    <div>
-                        <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5">
-                            <i class="fa-brands fa-x-twitter text-black mr-1"></i> X / Twitter
-                        </label>
-                        <input type="text" name="social_twitter" value="{{ $settings['social_twitter'] ?? 'https://x.com/ppru_sakatiga' }}" class="w-full bg-gray-50 text-xs text-gray-800 rounded-xl px-4 py-3 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
-                    </div>
+
                     <div>
                         <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5">
                             <i class="fa-brands fa-instagram text-pink-600 mr-1"></i> Instagram
                         </label>
-                        <input type="text" name="social_instagram" value="{{ $settings['social_instagram'] ?? 'https://www.instagram.com/ppru_sakatiga/' }}" class="w-full bg-gray-50 text-xs text-gray-800 rounded-xl px-4 py-3 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
+                        <input type="text" name="social_instagram" value="{{ old('social_instagram', $settings['social_instagram'] ?? 'https://www.instagram.com/ppru_sakatiga/') }}" placeholder="https://www.instagram.com/..." class="w-full bg-gray-50 text-xs text-gray-800 rounded-xl px-4 py-3 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
                     </div>
+
                     <div>
                         <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5">
                             <i class="fa-brands fa-youtube text-red-600 mr-1"></i> YouTube Channel
                         </label>
-                        <input type="text" name="social_youtube" value="{{ $settings['social_youtube'] ?? 'https://www.youtube.com/@pprusakatiga' }}" class="w-full bg-gray-50 text-xs text-gray-800 rounded-xl px-4 py-3 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
+                        <input type="text" name="social_youtube" value="{{ old('social_youtube', $settings['social_youtube'] ?? 'https://www.youtube.com/@pprusakatiga') }}" placeholder="https://www.youtube.com/@..." class="w-full bg-gray-50 text-xs text-gray-800 rounded-xl px-4 py-3 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
                     </div>
-                    <div class="sm:col-span-2">
+
+                    <div>
                         <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5">
                             <i class="fa-brands fa-tiktok text-black mr-1"></i> TikTok
                         </label>
-                        <input type="text" name="social_tiktok" value="{{ $settings['social_tiktok'] ?? 'https://www.tiktok.com/@pprusakatiga' }}" class="w-full bg-gray-50 text-xs text-gray-800 rounded-xl px-4 py-3 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
+                        <input type="text" name="social_tiktok" value="{{ old('social_tiktok', $settings['social_tiktok'] ?? 'https://www.tiktok.com/@pprusakatiga') }}" placeholder="https://www.tiktok.com/@..." class="w-full bg-gray-50 text-xs text-gray-800 rounded-xl px-4 py-3 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5">
+                            <i class="fa-brands fa-whatsapp text-emerald-600 mr-1"></i> WhatsApp Resmi / Helpdesk
+                        </label>
+                        <input type="text" name="social_whatsapp" value="{{ old('social_whatsapp', $settings['social_whatsapp'] ?? ($settings['contact_whatsapp'] ?? '0812-7890-1950')) }}" placeholder="Contoh: 081278901950 atau https://wa.me/..." class="w-full bg-gray-50 text-xs text-gray-800 rounded-xl px-4 py-3 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
+                        <p class="text-[10px] text-gray-400 mt-1">Bisa diisi nomor telepon (0812xxx) atau link lengkap wa.me.</p>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5">
+                            <i class="fa-brands fa-x-twitter text-black mr-1"></i> X / Twitter
+                        </label>
+                        <input type="text" name="social_twitter" value="{{ old('social_twitter', $settings['social_twitter'] ?? '') }}" placeholder="https://x.com/..." class="w-full bg-gray-50 text-xs text-gray-800 rounded-xl px-4 py-3 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5">
+                            <i class="fa-brands fa-telegram text-sky-500 mr-1"></i> Telegram Channel / Kontak
+                        </label>
+                        <input type="text" name="social_telegram" value="{{ old('social_telegram', $settings['social_telegram'] ?? '') }}" placeholder="https://t.me/..." class="w-full bg-gray-50 text-xs text-gray-800 rounded-xl px-4 py-3 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5">
+                            <i class="fa-brands fa-threads text-black mr-1"></i> Threads
+                        </label>
+                        <input type="text" name="social_threads" value="{{ old('social_threads', $settings['social_threads'] ?? '') }}" placeholder="https://www.threads.net/@..." class="w-full bg-gray-50 text-xs text-gray-800 rounded-xl px-4 py-3 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
                     </div>
                 </div>
             </div>

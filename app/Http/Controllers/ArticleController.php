@@ -60,7 +60,7 @@ class ArticleController extends Controller
 
     public function show(string $slug)
     {
-        $post = Post::posts()
+        $post = Post::whereIn('type', ['post', 'prestasi'])
             ->published()
             ->where('slug', $slug)
             ->with(['categories', 'tags', 'author'])
