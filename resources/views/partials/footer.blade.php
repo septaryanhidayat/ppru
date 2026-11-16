@@ -96,6 +96,24 @@
                                 <i class="fa-brands fa-threads text-sm"></i>
                             </a>
                         @endif
+
+                        @php
+                            $customSocials = [];
+                            if (!empty($siteSettings['custom_social_links'])) {
+                                $decoded = json_decode($siteSettings['custom_social_links'], true);
+                                if (is_array($decoded)) {
+                                    $customSocials = $decoded;
+                                }
+                            }
+                        @endphp
+                        @foreach($customSocials as $cs)
+                            @php
+                                $csIcon = !empty($cs['icon']) ? $cs['icon'] : 'fa-solid fa-globe';
+                            @endphp
+                            <a href="{{ $cs['url'] }}" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-white/10 hover:bg-[#00843d] text-white flex items-center justify-center transition hover:scale-110 shadow-sm" aria-label="{{ $cs['name'] }}" title="{{ $cs['name'] }}">
+                                <i class="{{ $csIcon }} text-sm"></i>
+                            </a>
+                        @endforeach
                     </div>
                 </div>
             </div>

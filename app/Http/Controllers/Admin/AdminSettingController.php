@@ -41,7 +41,7 @@ class AdminSettingController extends Controller
             'meta_keywords', 'google_site_verification',
             'contact_address', 'contact_email', 'contact_phone', 'contact_whatsapp',
             'social_facebook', 'social_instagram', 'social_youtube', 'social_tiktok', 'social_twitter',
-            'social_whatsapp', 'social_telegram', 'social_threads', 'social_linkedin',
+            'social_whatsapp', 'social_telegram', 'social_threads', 'social_linkedin', 'custom_social_links',
             'home_mudir_name', 'home_mudir_role', 'mudir_photo',
             'home_sambutan_badge', 'home_sambutan_title', 'home_sambutan_quote',
             'home_sambutan_text_1', 'home_sambutan_text_2', 'home_sambutan_btn_text', 'home_sambutan_btn_url',
@@ -106,6 +106,24 @@ class AdminSettingController extends Controller
             $data['contact_whatsapp'] = $data['social_whatsapp'];
         } elseif (isset($data['contact_whatsapp']) && ! isset($data['social_whatsapp'])) {
             $data['social_whatsapp'] = $data['contact_whatsapp'];
+        }
+
+        // Process custom dynamic social media links
+        if (isset($data['custom_social_links']) && is_array($data['custom_social_links'])) {
+            $cleanedCustom = [];
+            foreach ($data['custom_social_links'] as $item) {
+                $name = trim($item['name'] ?? '');
+                $url = trim($item['url'] ?? '');
+                $icon = trim($item['icon'] ?? 'fa-solid fa-globe');
+                if ($name !== '' && $url !== '') {
+                    $cleanedCustom[] = [
+                        'name' => $name,
+                        'url' => $url,
+                        'icon' => $icon,
+                    ];
+                }
+            }
+            $data['custom_social_links'] = json_encode(array_values($cleanedCustom), JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
         }
 
         // Whitelist filter: ensure only recognized setting keys are saved

@@ -35,6 +35,10 @@ test('admin can update social media settings and they appear in footer', functio
         'social_twitter' => 'https://x.com/ppru_custom',
         'social_telegram' => 'https://t.me/ppru_custom',
         'social_threads' => 'https://threads.net/@ppru_custom',
+        'custom_social_links' => [
+            ['name' => 'Podcast Resmi', 'url' => 'https://spotify.com/show/ppru_official', 'icon' => 'fa-brands fa-spotify'],
+            ['name' => 'LinkedIn PPRU', 'url' => 'https://linkedin.com/company/ppru', 'icon' => 'fa-brands fa-linkedin-in'],
+        ],
     ];
 
     $response = $this->actingAs($admin)->post(route('admin.settings.update'), $postData);
@@ -50,6 +54,10 @@ test('admin can update social media settings and they appear in footer', functio
     $homeResponse->assertSee('https://x.com/ppru_custom');
     $homeResponse->assertSee('https://t.me/ppru_custom');
     $homeResponse->assertSee('https://threads.net/@ppru_custom');
+    $homeResponse->assertSee('https://spotify.com/show/ppru_official');
+    $homeResponse->assertSee('fa-brands fa-spotify');
+    $homeResponse->assertSee('https://linkedin.com/company/ppru');
+    $homeResponse->assertSee('fa-brands fa-linkedin-in');
 });
 
 test('prestasi section on homepage only displays actual prestasi without unrelated news fallback', function () {
