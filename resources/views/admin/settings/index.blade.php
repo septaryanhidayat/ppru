@@ -291,19 +291,48 @@
                     </div>
                 </div>
 
-                {{-- Media Sosial Tambahan / Kustom --}}
-                <div class="pt-6 border-t border-gray-100 space-y-3">
-                    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+                {{-- Media Sosial Tambahan / Kustom / Multi-Akun --}}
+                <div class="pt-6 border-t border-gray-100 space-y-4">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-3">
                         <div>
                             <h3 class="text-xs font-bold text-gray-800 uppercase tracking-wider flex items-center gap-1.5">
-                                <i class="fa-solid fa-plus-circle text-[#00913e]"></i>
-                                <span>Akun Media Sosial / Saluran Lainnya (Kustom)</span>
+                                <i class="fa-solid fa-share-nodes text-[#00913e]"></i>
+                                <span>Akun Media Sosial Tambahan / Multi Akun (Bisa Gandakan TikTok, WA, FB, IG, Telegram, dll)</span>
                             </h3>
-                            <p class="text-[11px] text-gray-500">Tambahkan akun lain seperti Spotify Podcast, LinkedIn, Saluran WhatsApp, Instagram Putri, Line, Pinterest, dll.</p>
+                            <p class="text-[11px] text-gray-500 mt-0.5">Pondok punya lebih dari 1 akun (misal beberapa nomor WhatsApp, akun TikTok Santri, IG Kampus Putri, Facebook Grup, Channel Telegram)? Tambahkan di bawah:</p>
                         </div>
-                        <button type="button" id="btn-add-social" class="inline-flex items-center space-x-1.5 px-3.5 py-2 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-[#00913e] font-bold text-xs border border-emerald-200 transition cursor-pointer shadow-2xs shrink-0">
+                    </div>
+
+                    {{-- Tombol Cepat Tambah Multi Akun --}}
+                    <div class="flex flex-wrap items-center gap-2 p-3 bg-gray-50/90 rounded-xl border border-gray-200">
+                        <span class="text-[10px] font-bold text-gray-400 uppercase tracking-wider mr-1">Tambah Cepat:</span>
+                        <button type="button" onclick="addCustomSocial('WhatsApp', 'fa-brands fa-whatsapp', 'WhatsApp Layanan / Pendaftaran', '0812... atau https://wa.me/...')" class="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-700 text-xs font-semibold border border-emerald-200 transition cursor-pointer">
+                            <i class="fa-brands fa-whatsapp text-emerald-600"></i>
+                            <span>+ WA Lain</span>
+                        </button>
+                        <button type="button" onclick="addCustomSocial('Instagram', 'fa-brands fa-instagram', 'Instagram Santriwati / Unit', 'https://www.instagram.com/...')" class="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-pink-50 hover:bg-pink-100 text-pink-700 text-xs font-semibold border border-pink-200 transition cursor-pointer">
+                            <i class="fa-brands fa-instagram text-pink-600"></i>
+                            <span>+ IG Lain</span>
+                        </button>
+                        <button type="button" onclick="addCustomSocial('TikTok', 'fa-brands fa-tiktok', 'TikTok Santri / Unit', 'https://www.tiktok.com/@...')" class="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold border border-slate-300 transition cursor-pointer">
+                            <i class="fa-brands fa-tiktok text-black"></i>
+                            <span>+ TikTok Lain</span>
+                        </button>
+                        <button type="button" onclick="addCustomSocial('Facebook', 'fa-brands fa-facebook-f', 'Facebook Alumni / Grup', 'https://www.facebook.com/...')" class="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-blue-50 hover:bg-blue-100 text-blue-700 text-xs font-semibold border border-blue-200 transition cursor-pointer">
+                            <i class="fa-brands fa-facebook-f text-blue-600"></i>
+                            <span>+ Facebook Lain</span>
+                        </button>
+                        <button type="button" onclick="addCustomSocial('Telegram', 'fa-brands fa-telegram', 'Telegram Channel / Grup', 'https://t.me/...')" class="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-sky-50 hover:bg-sky-100 text-sky-700 text-xs font-semibold border border-sky-200 transition cursor-pointer">
+                            <i class="fa-brands fa-telegram text-sky-600"></i>
+                            <span>+ Telegram Lain</span>
+                        </button>
+                        <button type="button" onclick="addCustomSocial('YouTube', 'fa-brands fa-youtube', 'YouTube TV Santri / Streaming', 'https://www.youtube.com/@...')" class="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-red-50 hover:bg-red-100 text-red-700 text-xs font-semibold border border-red-200 transition cursor-pointer">
+                            <i class="fa-brands fa-youtube text-red-600"></i>
+                            <span>+ YouTube Lain</span>
+                        </button>
+                        <button type="button" id="btn-add-social" class="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-[#00913e] hover:bg-[#094d28] text-white text-xs font-semibold shadow-xs transition cursor-pointer">
                             <i class="fa-solid fa-plus text-[10px]"></i>
-                            <span>Tambah Akun Media Sosial</span>
+                            <span>+ Platform Lainnya</span>
                         </button>
                     </div>
 
@@ -322,28 +351,32 @@
                             <div class="custom-social-row flex flex-col sm:flex-row items-center gap-3 p-3.5 bg-gray-50/80 rounded-xl border border-gray-200">
                                 <div class="w-full sm:w-1/4">
                                     <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-wider mb-1">Nama Platform / Akun</label>
-                                    <input type="text" name="custom_social_links[{{ $idx }}][name]" value="{{ $cs['name'] ?? '' }}" placeholder="Contoh: Spotify Podcast" class="w-full bg-white text-xs text-gray-800 rounded-lg px-3 py-2 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
+                                    <input type="text" name="custom_social_links[{{ $idx }}][name]" value="{{ $cs['name'] ?? '' }}" placeholder="Contoh: WhatsApp CS 2" class="w-full bg-white text-xs text-gray-800 rounded-lg px-3 py-2 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
                                 </div>
                                 <div class="w-full sm:w-5/12">
-                                    <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-wider mb-1">Tautan / URL Lengkap</label>
-                                    <input type="text" name="custom_social_links[{{ $idx }}][url]" value="{{ $cs['url'] ?? '' }}" placeholder="https://..." class="w-full bg-white text-xs text-gray-800 rounded-lg px-3 py-2 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
+                                    <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-wider mb-1">Tautan / URL Lengkap (atau No. HP WA)</label>
+                                    <input type="text" name="custom_social_links[{{ $idx }}][url]" value="{{ $cs['url'] ?? '' }}" placeholder="https://... atau 0812..." class="w-full bg-white text-xs text-gray-800 rounded-lg px-3 py-2 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
                                 </div>
                                 <div class="w-full sm:w-3/12">
                                     <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-wider mb-1">Pilihan Ikon</label>
                                     <select name="custom_social_links[{{ $idx }}][icon]" class="w-full bg-white text-xs text-gray-800 rounded-lg px-3 py-2 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
-                                        <option value="fa-brands fa-spotify" {{ ($cs['icon'] ?? '') === 'fa-brands fa-spotify' ? 'selected' : '' }}>🎵 Spotify</option>
+                                        <option value="fa-brands fa-whatsapp" {{ ($cs['icon'] ?? '') === 'fa-brands fa-whatsapp' ? 'selected' : '' }}>🟢 WhatsApp (Nomor / CS / Saluran / Grup)</option>
+                                        <option value="fa-brands fa-instagram" {{ ($cs['icon'] ?? '') === 'fa-brands fa-instagram' ? 'selected' : '' }}>📸 Instagram (Akun Tambahan / Unit)</option>
+                                        <option value="fa-brands fa-tiktok" {{ ($cs['icon'] ?? '') === 'fa-brands fa-tiktok' ? 'selected' : '' }}>🎵 TikTok (Akun Tambahan / Unit)</option>
+                                        <option value="fa-brands fa-facebook-f" {{ ($cs['icon'] ?? '') === 'fa-brands fa-facebook-f' ? 'selected' : '' }}>📘 Facebook (Halaman / Grup / Alumni)</option>
+                                        <option value="fa-brands fa-telegram" {{ ($cs['icon'] ?? '') === 'fa-brands fa-telegram' ? 'selected' : '' }}>✈️ Telegram (Channel / Grup / Admin)</option>
+                                        <option value="fa-brands fa-youtube" {{ ($cs['icon'] ?? '') === 'fa-brands fa-youtube' ? 'selected' : '' }}>▶️ YouTube (Channel Tambahan / Streaming)</option>
+                                        <option value="fa-brands fa-x-twitter" {{ ($cs['icon'] ?? '') === 'fa-brands fa-x-twitter' ? 'selected' : '' }}>𝕏 X / Twitter (Akun Tambahan)</option>
+                                        <option value="fa-brands fa-threads" {{ ($cs['icon'] ?? '') === 'fa-brands fa-threads' ? 'selected' : '' }}>🧵 Threads (Akun Tambahan)</option>
+                                        <option value="fa-brands fa-spotify" {{ ($cs['icon'] ?? '') === 'fa-brands fa-spotify' ? 'selected' : '' }}>🎵 Spotify Podcast</option>
                                         <option value="fa-brands fa-linkedin-in" {{ ($cs['icon'] ?? '') === 'fa-brands fa-linkedin-in' ? 'selected' : '' }}>💼 LinkedIn</option>
-                                        <option value="fa-solid fa-podcast" {{ ($cs['icon'] ?? '') === 'fa-solid fa-podcast' ? 'selected' : '' }}>🎙️ Podcast / Radio</option>
-                                        <option value="fa-brands fa-discord" {{ ($cs['icon'] ?? '') === 'fa-brands fa-discord' ? 'selected' : '' }}>💬 Discord</option>
+                                        <option value="fa-solid fa-podcast" {{ ($cs['icon'] ?? '') === 'fa-solid fa-podcast' ? 'selected' : '' }}>🎙️ Podcast / Radio Streaming</option>
+                                        <option value="fa-brands fa-discord" {{ ($cs['icon'] ?? '') === 'fa-brands fa-discord' ? 'selected' : '' }}>💬 Discord Community</option>
                                         <option value="fa-brands fa-pinterest" {{ ($cs['icon'] ?? '') === 'fa-brands fa-pinterest' ? 'selected' : '' }}>📌 Pinterest</option>
-                                        <option value="fa-brands fa-line" {{ ($cs['icon'] ?? '') === 'fa-brands fa-line' ? 'selected' : '' }}>🟢 Line</option>
-                                        <option value="fa-brands fa-whatsapp" {{ ($cs['icon'] ?? '') === 'fa-brands fa-whatsapp' ? 'selected' : '' }}>🟢 WhatsApp Saluran</option>
-                                        <option value="fa-brands fa-instagram" {{ ($cs['icon'] ?? '') === 'fa-brands fa-instagram' ? 'selected' : '' }}>📸 Instagram Unit</option>
-                                        <option value="fa-brands fa-facebook-f" {{ ($cs['icon'] ?? '') === 'fa-brands fa-facebook-f' ? 'selected' : '' }}>📘 Facebook Lain</option>
-                                        <option value="fa-brands fa-youtube" {{ ($cs['icon'] ?? '') === 'fa-brands fa-youtube' ? 'selected' : '' }}>▶️ YouTube Lain</option>
-                                        <option value="fa-solid fa-globe" {{ ($cs['icon'] ?? 'fa-solid fa-globe') === 'fa-solid fa-globe' ? 'selected' : '' }}>🌐 Website Resmi / Web</option>
+                                        <option value="fa-brands fa-line" {{ ($cs['icon'] ?? '') === 'fa-brands fa-line' ? 'selected' : '' }}>🟢 LINE Official</option>
+                                        <option value="fa-solid fa-globe" {{ ($cs['icon'] ?? 'fa-solid fa-globe') === 'fa-solid fa-globe' ? 'selected' : '' }}>🌐 Website Resmi / Portal Unit</option>
                                         <option value="fa-solid fa-envelope" {{ ($cs['icon'] ?? '') === 'fa-solid fa-envelope' ? 'selected' : '' }}>✉️ Email Resmi</option>
-                                        <option value="fa-solid fa-phone" {{ ($cs['icon'] ?? '') === 'fa-solid fa-phone' ? 'selected' : '' }}>📞 Telepon / Hotline</option>
+                                        <option value="fa-solid fa-phone" {{ ($cs['icon'] ?? '') === 'fa-solid fa-phone' ? 'selected' : '' }}>📞 Telepon / Call Center</option>
                                         <option value="fa-brands fa-github" {{ ($cs['icon'] ?? '') === 'fa-brands fa-github' ? 'selected' : '' }}>💻 GitHub</option>
                                     </select>
                                 </div>
@@ -991,49 +1024,58 @@
             });
         }
 
-        const btnAddSocial = document.getElementById('btn-add-social');
-        const customSocialContainer = document.getElementById('custom-social-container');
+        window.addCustomSocial = function(platformName = '', icon = 'fa-solid fa-globe', defaultName = '', placeholder = 'https://...') {
+            const container = document.getElementById('custom-social-container');
+            if (!container) return;
 
-        if (btnAddSocial && customSocialContainer) {
+            const uniqueId = Date.now() + Math.floor(Math.random() * 1000);
+            const row = document.createElement('div');
+            row.className = 'custom-social-row flex flex-col sm:flex-row items-center gap-3 p-3.5 bg-gray-50/80 rounded-xl border border-gray-200 transition';
+            row.innerHTML = `
+                <div class="w-full sm:w-1/4">
+                    <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-wider mb-1">Nama Platform / Akun</label>
+                    <input type="text" name="custom_social_links[\${uniqueId}][name]" value="\${defaultName}" placeholder="Contoh: \${defaultName || 'Nama Akun / Layanan'}" class="w-full bg-white text-xs text-gray-800 rounded-lg px-3 py-2 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
+                </div>
+                <div class="w-full sm:w-5/12">
+                    <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-wider mb-1">Tautan / URL Lengkap (atau No. HP WA)</label>
+                    <input type="text" name="custom_social_links[\${uniqueId}][url]" placeholder="\${placeholder}" class="w-full bg-white text-xs text-gray-800 rounded-lg px-3 py-2 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
+                </div>
+                <div class="w-full sm:w-3/12">
+                    <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-wider mb-1">Pilihan Ikon</label>
+                    <select name="custom_social_links[\${uniqueId}][icon]" class="w-full bg-white text-xs text-gray-800 rounded-lg px-3 py-2 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
+                        <option value="fa-brands fa-whatsapp" \${icon === 'fa-brands fa-whatsapp' ? 'selected' : ''}>🟢 WhatsApp (Nomor / CS / Saluran / Grup)</option>
+                        <option value="fa-brands fa-instagram" \${icon === 'fa-brands fa-instagram' ? 'selected' : ''}>📸 Instagram (Akun Tambahan / Unit)</option>
+                        <option value="fa-brands fa-tiktok" \${icon === 'fa-brands fa-tiktok' ? 'selected' : ''}>🎵 TikTok (Akun Tambahan / Unit)</option>
+                        <option value="fa-brands fa-facebook-f" \${icon === 'fa-brands fa-facebook-f' ? 'selected' : ''}>📘 Facebook (Halaman / Grup / Alumni)</option>
+                        <option value="fa-brands fa-telegram" \${icon === 'fa-brands fa-telegram' ? 'selected' : ''}>✈️ Telegram (Channel / Grup / Admin)</option>
+                        <option value="fa-brands fa-youtube" \${icon === 'fa-brands fa-youtube' ? 'selected' : ''}>▶️ YouTube (Channel Tambahan / Streaming)</option>
+                        <option value="fa-brands fa-x-twitter" \${icon === 'fa-brands fa-x-twitter' ? 'selected' : ''}>𝕏 X / Twitter (Akun Tambahan)</option>
+                        <option value="fa-brands fa-threads" \${icon === 'fa-brands fa-threads' ? 'selected' : ''}>🧵 Threads (Akun Tambahan)</option>
+                        <option value="fa-brands fa-spotify" \${icon === 'fa-brands fa-spotify' ? 'selected' : ''}>🎵 Spotify Podcast</option>
+                        <option value="fa-brands fa-linkedin-in" \${icon === 'fa-brands fa-linkedin-in' ? 'selected' : ''}>💼 LinkedIn</option>
+                        <option value="fa-solid fa-podcast" \${icon === 'fa-solid fa-podcast' ? 'selected' : ''}>🎙️ Podcast / Radio Streaming</option>
+                        <option value="fa-brands fa-discord" \${icon === 'fa-brands fa-discord' ? 'selected' : ''}>💬 Discord Community</option>
+                        <option value="fa-brands fa-pinterest" \${icon === 'fa-brands fa-pinterest' ? 'selected' : ''}>📌 Pinterest</option>
+                        <option value="fa-brands fa-line" \${icon === 'fa-brands fa-line' ? 'selected' : ''}>🟢 LINE Official</option>
+                        <option value="fa-solid fa-globe" \${icon === 'fa-solid fa-globe' ? 'selected' : ''}>🌐 Website Resmi / Portal Unit</option>
+                        <option value="fa-solid fa-envelope" \${icon === 'fa-solid fa-envelope' ? 'selected' : ''}>✉️ Email Resmi</option>
+                        <option value="fa-solid fa-phone" \${icon === 'fa-solid fa-phone' ? 'selected' : ''}>📞 Telepon / Call Center</option>
+                        <option value="fa-brands fa-github" \${icon === 'fa-brands fa-github' ? 'selected' : ''}>💻 GitHub</option>
+                    </select>
+                </div>
+                <div class="w-full sm:w-auto pt-3 sm:pt-4 flex justify-end">
+                    <button type="button" onclick="this.closest('.custom-social-row').remove()" class="p-2 text-red-500 hover:text-red-700 hover:bg-red-50 rounded-lg transition" title="Hapus Akun Ini">
+                        <i class="fa-solid fa-trash-can text-xs"></i>
+                    </button>
+                </div>
+            `;
+            container.appendChild(row);
+        };
+
+        const btnAddSocial = document.getElementById('btn-add-social');
+        if (btnAddSocial) {
             btnAddSocial.addEventListener('click', function() {
-                const uniqueId = Date.now();
-                const row = document.createElement('div');
-                row.className = 'custom-social-row flex flex-col sm:flex-row items-center gap-3 p-3.5 bg-gray-50/80 rounded-xl border border-gray-200';
-                row.innerHTML = `
-                    <div class="w-full sm:w-1/4">
-                        <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-wider mb-1">Nama Platform / Akun</label>
-                        <input type="text" name="custom_social_links[\${uniqueId}][name]" placeholder="Contoh: Saluran WhatsApp / Podcast" class="w-full bg-white text-xs text-gray-800 rounded-lg px-3 py-2 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
-                    </div>
-                    <div class="w-full sm:w-5/12">
-                        <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-wider mb-1">Tautan / URL Lengkap</label>
-                        <input type="text" name="custom_social_links[\${uniqueId}][url]" placeholder="https://..." class="w-full bg-white text-xs text-gray-800 rounded-lg px-3 py-2 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
-                    </div>
-                    <div class="w-full sm:w-3/12">
-                        <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-wider mb-1">Pilihan Ikon</label>
-                        <select name="custom_social_links[\${uniqueId}][icon]" class="w-full bg-white text-xs text-gray-800 rounded-lg px-3 py-2 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#00913e]">
-                            <option value="fa-brands fa-spotify">🎵 Spotify</option>
-                            <option value="fa-brands fa-linkedin-in">💼 LinkedIn</option>
-                            <option value="fa-solid fa-podcast">🎙️ Podcast / Radio</option>
-                            <option value="fa-brands fa-discord">💬 Discord</option>
-                            <option value="fa-brands fa-pinterest">📌 Pinterest</option>
-                            <option value="fa-brands fa-line">🟢 Line</option>
-                            <option value="fa-brands fa-whatsapp">🟢 WhatsApp Saluran</option>
-                            <option value="fa-brands fa-instagram">📸 Instagram Unit</option>
-                            <option value="fa-brands fa-facebook-f">📘 Facebook Lain</option>
-                            <option value="fa-brands fa-youtube">▶️ YouTube Lain</option>
-                            <option value="fa-solid fa-globe" selected>🌐 Website Resmi / Web</option>
-                            <option value="fa-solid fa-envelope">✉️ Email Resmi</option>
-                            <option value="fa-solid fa-phone">📞 Telepon / Hotline</option>
-                            <option value="fa-brands fa-github">💻 GitHub</option>
-                        </select>
-                    </div>
-                    <div class="w-full sm:w-auto pt-3 sm:pt-4 flex justify-end">
-                        <button type="button" onclick="this.closest('.custom-social-row').remove()" class="p-2 text-red-500 hover:text-red-700 hover:bg-red-50 rounded-lg transition" title="Hapus Akun Ini">
-                            <i class="fa-solid fa-trash-can text-xs"></i>
-                        </button>
-                    </div>
-                `;
-                customSocialContainer.appendChild(row);
+                window.addCustomSocial('Platform Lain', 'fa-solid fa-globe', '', 'https://...');
             });
         }
 

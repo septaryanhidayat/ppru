@@ -109,8 +109,39 @@
                         @foreach($customSocials as $cs)
                             @php
                                 $csIcon = !empty($cs['icon']) ? $cs['icon'] : 'fa-solid fa-globe';
+                                $csUrl = $cs['url'] ?? '#';
+                                if (str_contains($csIcon, 'fa-whatsapp') && !str_starts_with($csUrl, 'http://') && !str_starts_with($csUrl, 'https://')) {
+                                    $csUrl = \App\Models\Setting::waUrl($csUrl);
+                                } elseif (!str_starts_with($csUrl, 'http://') && !str_starts_with($csUrl, 'https://') && !str_starts_with($csUrl, 'mailto:') && !str_starts_with($csUrl, 'tel:')) {
+                                    $csUrl = 'https://' . ltrim($csUrl, '/');
+                                }
+
+                                $hoverClass = 'hover:bg-[#00843d]';
+                                if (str_contains($csIcon, 'fa-facebook')) {
+                                    $hoverClass = 'hover:bg-[#1877f2]';
+                                } elseif (str_contains($csIcon, 'fa-instagram')) {
+                                    $hoverClass = 'hover:bg-[#e1306c]';
+                                } elseif (str_contains($csIcon, 'fa-youtube')) {
+                                    $hoverClass = 'hover:bg-[#ff0000]';
+                                } elseif (str_contains($csIcon, 'fa-tiktok')) {
+                                    $hoverClass = 'hover:bg-black hover:ring-1 hover:ring-white/40';
+                                } elseif (str_contains($csIcon, 'fa-whatsapp')) {
+                                    $hoverClass = 'hover:bg-[#25d366]';
+                                } elseif (str_contains($csIcon, 'fa-telegram')) {
+                                    $hoverClass = 'hover:bg-[#229ed9]';
+                                } elseif (str_contains($csIcon, 'fa-x-twitter') || str_contains($csIcon, 'fa-threads')) {
+                                    $hoverClass = 'hover:bg-black hover:ring-1 hover:ring-white/40';
+                                } elseif (str_contains($csIcon, 'fa-spotify')) {
+                                    $hoverClass = 'hover:bg-[#1db954]';
+                                } elseif (str_contains($csIcon, 'fa-linkedin')) {
+                                    $hoverClass = 'hover:bg-[#0a66c2]';
+                                } elseif (str_contains($csIcon, 'fa-discord')) {
+                                    $hoverClass = 'hover:bg-[#5865f2]';
+                                } elseif (str_contains($csIcon, 'fa-line')) {
+                                    $hoverClass = 'hover:bg-[#06c755]';
+                                }
                             @endphp
-                            <a href="{{ $cs['url'] }}" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-white/10 hover:bg-[#00843d] text-white flex items-center justify-center transition hover:scale-110 shadow-sm" aria-label="{{ $cs['name'] }}" title="{{ $cs['name'] }}">
+                            <a href="{{ $csUrl }}" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-white/10 {{ $hoverClass }} text-white flex items-center justify-center transition hover:scale-110 shadow-sm" aria-label="{{ $cs['name'] }}" title="{{ $cs['name'] }}">
                                 <i class="{{ $csIcon }} text-sm"></i>
                             </a>
                         @endforeach

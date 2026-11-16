@@ -108,22 +108,39 @@ class AdminSettingController extends Controller
             $data['social_whatsapp'] = $data['contact_whatsapp'];
         }
 
-        // Process custom dynamic social media links
-        if (isset($data['custom_social_links']) && is_array($data['custom_social_links'])) {
+        // Process custom dynamic social media links (allows multiple/duplicate accounts for WA, IG, TikTok, FB, etc.)
+        if ($request->has('custom_social_links')) {
+            $rawCustom = $request->input('custom_social_links');
             $cleanedCustom = [];
-            foreach ($data['custom_social_links'] as $item) {
-                $name = trim($item['name'] ?? '');
-                $url = trim($item['url'] ?? '');
-                $icon = trim($item['icon'] ?? 'fa-solid fa-globe');
-                if ($name !== '' && $url !== '') {
-                    $cleanedCustom[] = [
-                        'name' => $name,
-                        'url' => $url,
-                        'icon' => $icon,
-                    ];
+            if (is_array($rawCustom)) {
+                foreach ($rawCustom as $item) {
+                    $name = trim($item['name'] ?? '');
+                    $url = trim($item['url'] ?? '');
+                    $icon = trim($item['icon'] ?? 'fa-solid fa-globe');
+                    if ($name !== '' && $url !== '') {
+                        if (str_contains($icon, 'fa-whatsapp')) {
+                            if (! str_starts_with($url, 'http://') && ! str_starts_with($url, 'https://')) {
+                                $url = Setting::waUrl($url);
+                            }
+                        } elseif (! str_starts_with($url, 'http://') && ! str_starts_with($url, 'https://') && ! str_starts_with($url, 'mailto:') && ! str_starts_with($url, 'tel:')) {
+                            $url = 'https://'.ltrim($url, '/');
+                        }
+
+                        $cleanedCustom[] = [
+                            'name' => $name,
+                            'url' => $url,
+                            'icon' => $icon,
+                        ];
+                    }
                 }
             }
-            $data['custom_social_links'] = json_encode(array_values($cleanedCustom), JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+            $data['custom_social_links'] = ! empty($cleanedCustom)
+                ? json_encode(array_values($cleanedCustom), JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE)
+                : '';
+        } else {
+            if ($request->has('site_title') || $request->has('social_facebook')) {
+                $data['custom_social_links'] = '';
+            }
         }
 
         // Whitelist filter: ensure only recognized setting keys are saved

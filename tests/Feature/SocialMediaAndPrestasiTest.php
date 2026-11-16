@@ -60,6 +60,56 @@ test('admin can update social media settings and they appear in footer', functio
     $homeResponse->assertSee('fa-brands fa-linkedin-in');
 });
 
+test('admin can add multiple duplicate accounts for whatsapp, instagram, tiktok, facebook, telegram and they appear in footer with correct branding', function () {
+    $admin = User::firstOrCreate(
+        ['email' => 'admin_test@ppru.ac.id'],
+        ['name' => 'Admin Test', 'password' => Hash::make('password123')]
+    );
+
+    $postData = [
+        'site_title' => 'PPRU Sakatiga',
+        'social_whatsapp' => '081211111111',
+        'social_instagram' => 'https://instagram.com/ppru_main',
+        'social_tiktok' => 'https://tiktok.com/@ppru_main',
+        'social_facebook' => 'https://facebook.com/ppru_main',
+        'social_telegram' => 'https://t.me/ppru_main',
+        'custom_social_links' => [
+            ['name' => 'WA Pendaftaran Putri', 'url' => '081222222222', 'icon' => 'fa-brands fa-whatsapp'],
+            ['name' => 'Instagram Santriwati', 'url' => 'https://instagram.com/santriwati_ppru', 'icon' => 'fa-brands fa-instagram'],
+            ['name' => 'TikTok Santri', 'url' => 'https://tiktok.com/@santri_ppru', 'icon' => 'fa-brands fa-tiktok'],
+            ['name' => 'Facebook Alumni', 'url' => 'https://facebook.com/alumni_ppru', 'icon' => 'fa-brands fa-facebook-f'],
+            ['name' => 'Telegram Diskusi', 'url' => 'https://t.me/diskusi_ppru', 'icon' => 'fa-brands fa-telegram'],
+        ],
+    ];
+
+    $response = $this->actingAs($admin)->post(route('admin.settings.update'), $postData);
+    $response->assertSessionHas('success');
+
+    $homeResponse = $this->get('/');
+    $homeResponse->assertStatus(200);
+
+    // Primary accounts
+    $homeResponse->assertSee('6281211111111');
+    $homeResponse->assertSee('https://instagram.com/ppru_main');
+    $homeResponse->assertSee('https://tiktok.com/@ppru_main');
+    $homeResponse->assertSee('https://facebook.com/ppru_main');
+    $homeResponse->assertSee('https://t.me/ppru_main');
+
+    // Duplicate accounts
+    $homeResponse->assertSee('6281222222222');
+    $homeResponse->assertSee('https://instagram.com/santriwati_ppru');
+    $homeResponse->assertSee('https://tiktok.com/@santri_ppru');
+    $homeResponse->assertSee('https://facebook.com/alumni_ppru');
+    $homeResponse->assertSee('https://t.me/diskusi_ppru');
+
+    // Brand tooltips
+    $homeResponse->assertSee('title="WA Pendaftaran Putri"', false);
+    $homeResponse->assertSee('title="Instagram Santriwati"', false);
+    $homeResponse->assertSee('title="TikTok Santri"', false);
+    $homeResponse->assertSee('title="Facebook Alumni"', false);
+    $homeResponse->assertSee('title="Telegram Diskusi"', false);
+});
+
 test('prestasi section on homepage only displays actual prestasi without unrelated news fallback', function () {
     // Buat post berita biasa (tanpa kategori prestasi)
     $beritaBiasa = Post::create([
