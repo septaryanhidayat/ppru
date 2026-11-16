@@ -169,14 +169,14 @@
                             </li>
                         @endforeach
                     @else
-                        <li><a href="{{ route('pendidikan.index') }}" class="hover:text-[#fcd116] transition flex items-center justify-center md:justify-start"><i class="fa-solid fa-angle-right text-[10px] text-emerald-500 mr-2 shrink-0"></i> Madrasah Aliyah Raudhatul Ulum</a></li>
-                        <li><a href="{{ route('pendidikan.index') }}" class="hover:text-[#fcd116] transition flex items-center justify-center md:justify-start"><i class="fa-solid fa-angle-right text-[10px] text-emerald-500 mr-2 shrink-0"></i> Madrasah Tsanawiyah Raudhatul Ulum</a></li>
-                        <li><a href="{{ route('pendidikan.index') }}" class="hover:text-[#fcd116] transition flex items-center justify-center md:justify-start"><i class="fa-solid fa-angle-right text-[10px] text-emerald-500 mr-2 shrink-0"></i> Madrasah Ibtidaiyah Raudhatul Ulum</a></li>
-                        <li><a href="{{ route('pendidikan.index') }}" class="hover:text-[#fcd116] transition flex items-center justify-center md:justify-start"><i class="fa-solid fa-angle-right text-[10px] text-emerald-500 mr-2 shrink-0"></i> Madrasah Tahfizhul Qur'an Lil Aulad</a></li>
-                        <li><a href="{{ route('pendidikan.index') }}" class="hover:text-[#fcd116] transition flex items-center justify-center md:justify-start"><i class="fa-solid fa-angle-right text-[10px] text-emerald-500 mr-2 shrink-0"></i> TK Islam Raudhatul Ulum</a></li>
-                        <li><a href="{{ route('pendidikan.index') }}" class="hover:text-[#fcd116] transition flex items-center justify-center md:justify-start"><i class="fa-solid fa-angle-right text-[10px] text-emerald-500 mr-2 shrink-0"></i> SMP Islam Terpadu Raudhatul Ulum</a></li>
-                        <li><a href="{{ route('pendidikan.index') }}" class="hover:text-[#fcd116] transition flex items-center justify-center md:justify-start"><i class="fa-solid fa-angle-right text-[10px] text-emerald-500 mr-2 shrink-0"></i> SMA Islam Terpadu Raudhatul Ulum</a></li>
-                        <li><a href="{{ route('pendidikan.index') }}" class="hover:text-[#fcd116] transition flex items-center justify-center md:justify-start"><i class="fa-solid fa-angle-right text-[10px] text-emerald-500 mr-2 shrink-0"></i> Institut Agama Islam Nur Raudhatul Ulum</a></li>
+                        <li><a href="{{ url('/maru') }}" class="hover:text-[#fcd116] transition flex items-center justify-center md:justify-start"><i class="fa-solid fa-angle-right text-[10px] text-emerald-500 mr-2 shrink-0"></i> Madrasah Aliyah Raudhatul Ulum</a></li>
+                        <li><a href="{{ url('/matsaru') }}" class="hover:text-[#fcd116] transition flex items-center justify-center md:justify-start"><i class="fa-solid fa-angle-right text-[10px] text-emerald-500 mr-2 shrink-0"></i> Madrasah Tsanawiyah Raudhatul Ulum</a></li>
+                        <li><a href="{{ url('/miru') }}" class="hover:text-[#fcd116] transition flex items-center justify-center md:justify-start"><i class="fa-solid fa-angle-right text-[10px] text-emerald-500 mr-2 shrink-0"></i> Madrasah Ibtidaiyah Raudhatul Ulum</a></li>
+                        <li><a href="{{ url('/matqularu') }}" class="hover:text-[#fcd116] transition flex items-center justify-center md:justify-start"><i class="fa-solid fa-angle-right text-[10px] text-emerald-500 mr-2 shrink-0"></i> Madrasah Tahfizhul Qur'an Lil Aulad</a></li>
+                        <li><a href="{{ url('/takiru') }}" class="hover:text-[#fcd116] transition flex items-center justify-center md:justify-start"><i class="fa-solid fa-angle-right text-[10px] text-emerald-500 mr-2 shrink-0"></i> TK Islam Raudhatul Ulum</a></li>
+                        <li><a href="{{ url('/smpitru') }}" class="hover:text-[#fcd116] transition flex items-center justify-center md:justify-start"><i class="fa-solid fa-angle-right text-[10px] text-emerald-500 mr-2 shrink-0"></i> SMP Islam Terpadu Raudhatul Ulum</a></li>
+                        <li><a href="{{ url('/smaitru') }}" class="hover:text-[#fcd116] transition flex items-center justify-center md:justify-start"><i class="fa-solid fa-angle-right text-[10px] text-emerald-500 mr-2 shrink-0"></i> SMA Islam Terpadu Raudhatul Ulum</a></li>
+                        <li><a href="{{ url('/iainru') }}" class="hover:text-[#fcd116] transition flex items-center justify-center md:justify-start"><i class="fa-solid fa-angle-right text-[10px] text-emerald-500 mr-2 shrink-0"></i> Institut Agama Islam Nur Raudhatul Ulum</a></li>
                     @endif
                     <li class="pt-1 text-center md:text-left">
                         <a href="{{ route('pendidikan.index') }}" class="font-bold text-[#f59e0b] hover:underline inline-flex items-center">
@@ -195,7 +195,14 @@
                 <ul class="space-y-2 text-xs text-gray-300 w-full text-center md:text-left">
                     @if(isset($footerNavMenus) && $footerNavMenus->isNotEmpty())
                         @foreach($footerNavMenus as $fm)
-                            <li><a href="{{ $fm->url }}" target="{{ $fm->target }}" class="hover:text-[#fcd116] transition block">{{ $fm->title }}</a></li>
+                            @php
+                                $fmSlug = last(explode('/', trim($fm->url, '/')));
+                                $resolvedFmSlug = \App\Http\Controllers\UnitPendidikanController::resolveSlug($fmSlug);
+                                $fmUrl = in_array($resolvedFmSlug, ['takiru', 'miru', 'matsaru', 'maru', 'smpitru', 'smaitru', 'iainru', 'matqularu'])
+                                    ? url('/' . $resolvedFmSlug)
+                                    : $fm->url;
+                            @endphp
+                            <li><a href="{{ $fmUrl }}" target="{{ $fm->target }}" class="hover:text-[#fcd116] transition block">{{ $fm->title }}</a></li>
                         @endforeach
                     @else
                         <li><a href="{{ route('page.sambutan') }}" class="hover:text-[#fcd116] transition block">Sambutan Mudir</a></li>

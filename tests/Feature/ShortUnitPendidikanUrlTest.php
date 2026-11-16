@@ -42,14 +42,16 @@ test('legacy verbose urls and /pendidikan/ urls are seamlessly supported', funct
     $responsePendidikanShort->assertSee('Madrasah Ibtidaiyah');
 });
 
-test('homepage and footer display the new short urls for unit pendidikan', function () {
+test('homepage header navigation and footer display the new short urls for all 8 unit pendidikan', function () {
     $response = $this->get('/');
 
     $response->assertStatus(200);
-    $response->assertSee(url('/miru'), false);
-    $response->assertSee(url('/maru'), false);
-    $response->assertSee(url('/takiru'), false);
-    $response->assertSee(url('/matsaru'), false);
+
+    // All 8 short URLs must be present in rendered HTML (header nav & footer)
+    $shortSlugs = ['takiru', 'miru', 'matsaru', 'maru', 'smpitru', 'smaitru', 'iainru', 'matqularu'];
+    foreach ($shortSlugs as $slug) {
+        $response->assertSee(url('/'.$slug), false);
+    }
 });
 
 test('admin can update unit slug and still access via new slug', function () {

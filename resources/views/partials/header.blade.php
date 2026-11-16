@@ -153,9 +153,17 @@
 
                                             @foreach($activeChildren as $child)
                                                 @php
-                                                    $childUrl = $formatNavUrl($child->url);
                                                     $childSlug = last(explode('/', trim($child->url, '/')));
-                                                    $matchedUnit = $headerUnits->first(fn ($u) => $u->slug === $childSlug || $u->name === $child->name);
+                                                    $resolvedSlug = \App\Http\Controllers\UnitPendidikanController::resolveSlug($childSlug);
+                                                    $matchedUnit = $headerUnits->first(function ($u) use ($childSlug, $resolvedSlug, $child) {
+                                                        if ($u->slug === $childSlug || $u->slug === $resolvedSlug || $u->name === $child->name) {
+                                                            return true;
+                                                        }
+                                                        $uClean = str_replace([' ', '-', '_'], '', strtolower((string) $u->short_name));
+                                                        $childClean = str_replace([' ', '-', '_'], '', strtolower((string) $child->name));
+                                                        return ($uClean !== '' && ($uClean === $childSlug || $uClean === $resolvedSlug || str_contains($childClean, $uClean)));
+                                                    });
+                                                    $childUrl = $matchedUnit ? $matchedUnit->url : (in_array($resolvedSlug, ['takiru', 'miru', 'matsaru', 'maru', 'smpitru', 'smaitru', 'iainru', 'matqularu']) ? url('/' . $resolvedSlug) : $formatNavUrl($child->url));
                                                     $cleanName = $matchedUnit ? trim(preg_replace('/\s*\([^)]*\)\s*$/', '', $matchedUnit->name)) : $child->name;
                                                 @endphp
                                                 <a href="{{ $childUrl }}" target="{{ $child->target ?? '_self' }}" class="block px-4 py-2 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-[#00843d] hover:text-white dark:hover:bg-[#00843d] dark:hover:text-white transition group/item rounded-lg mx-1.5">
@@ -368,9 +376,17 @@
                                 <a href="{{ route('pendidikan.index') }}" class="block py-1.5 font-bold text-[#00843d] dark:text-emerald-400 hover:underline">Katalog Semua Unit</a>
                                 @foreach($mChildren as $child)
                                     @php
-                                        $childUrl = $formatNavUrl($child->url);
                                         $childSlug = last(explode('/', trim($child->url, '/')));
-                                        $matchedUnit = $headerUnits->first(fn ($u) => $u->slug === $childSlug || $u->name === $child->name);
+                                        $resolvedSlug = \App\Http\Controllers\UnitPendidikanController::resolveSlug($childSlug);
+                                        $matchedUnit = $headerUnits->first(function ($u) use ($childSlug, $resolvedSlug, $child) {
+                                            if ($u->slug === $childSlug || $u->slug === $resolvedSlug || $u->name === $child->name) {
+                                                return true;
+                                            }
+                                            $uClean = str_replace([' ', '-', '_'], '', strtolower((string) $u->short_name));
+                                            $childClean = str_replace([' ', '-', '_'], '', strtolower((string) $child->name));
+                                            return ($uClean !== '' && ($uClean === $childSlug || $uClean === $resolvedSlug || str_contains($childClean, $uClean)));
+                                        });
+                                        $childUrl = $matchedUnit ? $matchedUnit->url : (in_array($resolvedSlug, ['takiru', 'miru', 'matsaru', 'maru', 'smpitru', 'smaitru', 'iainru', 'matqularu']) ? url('/' . $resolvedSlug) : $formatNavUrl($child->url));
                                         $cleanName = $matchedUnit ? trim(preg_replace('/\s*\([^)]*\)\s*$/', '', $matchedUnit->name)) : $child->name;
                                     @endphp
                                     <a href="{{ $childUrl }}" target="{{ $child->target ?? '_self' }}" class="block py-2 text-slate-600 dark:text-slate-300 hover:text-[#00843d] dark:hover:text-emerald-400 truncate flex items-center justify-between">
