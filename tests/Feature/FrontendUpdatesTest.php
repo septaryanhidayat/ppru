@@ -221,3 +221,29 @@ test('header navigation includes Layanan with dynamic public service submenus ba
         ->and($childUrls)->toContain('/permohonan-kerja-sama')
         ->and($childUrls)->toContain('/sewa-barang');
 });
+
+test('prestasi section on homepage renders balanced responsive grid without nested duplicate wrappers', function () {
+    Post::where('type', 'prestasi')->delete();
+
+    for ($i = 1; $i <= 3; $i++) {
+        Post::create([
+            'title' => "Prestasi Juara $i Santri Raudhatul Ulum",
+            'slug' => "prestasi-juara-$i-santri-raudhatul-ulum",
+            'type' => 'prestasi',
+            'status' => 'publish',
+            'content' => "Isi detail prestasi $i",
+            'excerpt' => "Ringkasan capaian prestasi $i",
+            'published_at' => now(),
+        ]);
+    }
+
+    $response = $this->get(route('home'));
+    $response->assertStatus(200);
+    $response->assertSee('Prestasi Santri &amp; Prestasi Siswa', false);
+    $response->assertSee('Capaian Membanggakan');
+    $response->assertSee('Lihat Semua Prestasi Santri');
+    $response->assertSee('lg:grid-cols-3');
+    $response->assertSee('Prestasi Juara 1 Santri Raudhatul Ulum');
+    $response->assertSee('Prestasi Juara 2 Santri Raudhatul Ulum');
+    $response->assertSee('Prestasi Juara 3 Santri Raudhatul Ulum');
+});

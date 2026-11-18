@@ -1050,10 +1050,17 @@
             <div class="w-16 h-1 bg-school-gold mx-auto mt-2.5 rounded-full"></div>
         </div>
 
-        {{-- 4 Kolom di Desktop, 2 Kolom di Tablet, 1 Kolom di Mobile --}}
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {{-- 4 Kolom di Desktop, 2 Kolom di Tablet, 1 Kolom di Mobile --}}
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {{-- Grid Prestasi: Responsif 1 Kolom (Mobile), 2 Kolom (Tablet), 3/4 Kolom (Desktop Sesuai Jumlah Data) --}}
+        @php
+            $prestasiCount = $prestasiPosts->count();
+            $prestasiGridCols = match(true) {
+                $prestasiCount === 1 => 'grid-cols-1 max-w-md mx-auto',
+                $prestasiCount === 2 => 'grid-cols-1 sm:grid-cols-2 max-w-3xl mx-auto',
+                $prestasiCount === 3 => 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3',
+                default => 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4',
+            };
+        @endphp
+        <div class="grid {{ $prestasiGridCols }} gap-6">
             @forelse($prestasiPosts as $index => $post)
             @php
                 $targetUrl = $post->type === 'prestasi' ? route('prestasi.show', $post->slug) : route('artikel.show', $post->slug);
@@ -1067,15 +1074,25 @@
                         <i class="fa-solid fa-medal text-amber-400 mr-1.5"></i> Prestasi
                     </span>
                 </div>
-                <div class="p-4 flex-1 flex flex-col justify-between">
-                    <h3 class="font-extrabold text-xs sm:text-sm text-gray-900 group-hover:text-school-green transition line-clamp-2 leading-snug">
-                        <a href="{{ $targetUrl }}">
-                            {{ $post->title }}
-                        </a>
-                    </h3>
-                    <div class="text-[11px] sm:text-xs text-school-green mt-3 font-semibold flex items-center justify-between">
+                <div class="p-4 sm:p-5 flex-1 flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-extrabold text-sm sm:text-base text-gray-900 group-hover:text-school-green transition line-clamp-2 leading-snug">
+                            <a href="{{ $targetUrl }}">
+                                {{ $post->title }}
+                            </a>
+                        </h3>
+                        @if(!empty($post->excerpt))
+                            <p class="text-xs text-gray-500 line-clamp-2 mt-2 leading-relaxed">
+                                {{ $post->excerpt }}
+                            </p>
+                        @endif
+                    </div>
+                    <div class="text-[11px] sm:text-xs text-school-green mt-3.5 pt-3 border-t border-gray-100 font-semibold flex items-center justify-between">
                         <span>{{ $post->published_at ? $post->published_at->translatedFormat('j F Y') : '' }}</span>
-                        <i class="fa-solid fa-arrow-right text-[10px] group-hover:translate-x-1 transition"></i>
+                        <span class="inline-flex items-center gap-1 group-hover:translate-x-1 transition text-xs font-bold text-school-green">
+                            <span>Baca</span>
+                            <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                        </span>
                     </div>
                 </div>
             </article>
