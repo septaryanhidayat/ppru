@@ -4,47 +4,45 @@
 @section('meta_description', 'Database dan direktori resmi alumni Pondok Pesantren Raudhatul Ulum Sakatiga: rekam jejak lulusan di perguruan tinggi dan dunia profesional.')
 
 @section('content')
-{{-- HERO HEADER (High Contrast Deep Emerald) --}}
-<div class="bg-gradient-to-r from-[#032e18] via-[#064e3b] to-[#043317] text-white py-12 sm:py-16 relative overflow-hidden shadow-inner border-b-2 border-emerald-800/60">
-    <div class="absolute inset-0 opacity-15 bg-[radial-gradient(#fcd116_1px,transparent_1px)] [background-size:20px_20px] pointer-events-none"></div>
-
+{{-- HERO HEADER (High Contrast Solid Deep Emerald) --}}
+<div style="background-color: #064e3b; background: linear-gradient(135deg, #022c14 0%, #064e3b 50%, #022c14 100%) !important; color: #ffffff !important;" class="py-12 sm:py-16 relative overflow-hidden shadow-inner border-b-2 border-emerald-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {{-- Breadcrumbs: High Contrast --}}
-        <nav class="text-xs text-emerald-200 mb-4 flex items-center space-x-2 font-medium">
-            <a href="{{ route('home') }}" class="text-emerald-200 hover:text-amber-300 transition">Beranda</a>
-            <span class="text-emerald-500">/</span>
-            <a href="{{ route('ikarus.index') }}" class="text-emerald-200 hover:text-amber-300 transition">IKARUS</a>
-            <span class="text-emerald-500">/</span>
-            <span class="text-amber-300 font-bold">Data Alumni</span>
+        <nav class="text-xs mb-4 flex items-center space-x-2 font-semibold">
+            <a href="{{ route('home') }}" style="color: #a7f3d0 !important;" class="hover:underline">Beranda</a>
+            <span style="color: #6ee7b7 !important;">/</span>
+            <a href="{{ route('ikarus.index') }}" style="color: #a7f3d0 !important;" class="hover:underline">IKARUS</a>
+            <span style="color: #6ee7b7 !important;">/</span>
+            <span style="color: #fcd34d !important; font-weight: 800;">Data Alumni</span>
         </nav>
 
         <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
             <div class="max-w-2xl">
-                <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-black bg-amber-400 text-slate-950 shadow-md mb-3.5">
+                <span style="background-color: #f59e0b; color: #022c14; font-weight: 900; font-size: 11px; padding: 4px 14px; border-radius: 9999px; display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.25);" class="mb-3.5">
                     <i class="fa-solid fa-user-graduate"></i>
                     <span>Direktori Resmi Alumni PPRU Sakatiga</span>
                 </span>
-                <h1 class="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-white drop-shadow-md">
+                <h1 style="color: #ffffff !important; text-shadow: 0 2px 6px rgba(0,0,0,0.4);" class="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight leading-tight">
                     Data &amp; Rekam Jejak Alumni
                 </h1>
-                <p class="text-sm sm:text-base text-emerald-100 mt-3 font-normal leading-relaxed">
+                <p style="color: #ecfdf5 !important; font-size: 15px; line-height: 1.6; text-shadow: 0 1px 3px rgba(0,0,0,0.3);" class="mt-3 font-normal max-w-2xl">
                     Kiprah dan dedikasi lulusan Pondok Pesantren Raudhatul Ulum Sakatiga di berbagai perguruan tinggi ternama dan ranah profesional di penjuru nusantara serta mancanegara.
                 </p>
             </div>
 
             {{-- QUICK STATS BADGES (High Contrast Dark Slate Card) --}}
             <div class="grid grid-cols-3 gap-3 shrink-0">
-                <div class="bg-black/40 backdrop-blur-md p-4 rounded-2xl border border-white/20 text-center shadow-lg">
-                    <span class="text-2xl sm:text-3xl font-black text-amber-400 block leading-tight">{{ number_format($countTotal) }}</span>
-                    <span class="text-xs text-white font-bold mt-1 block">Total Alumni</span>
+                <div style="background-color: rgba(0, 0, 0, 0.5) !important; border: 1px solid rgba(255, 255, 255, 0.25) !important; border-radius: 16px; padding: 14px 16px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.2);">
+                    <span style="color: #fbbf24 !important; font-size: 26px; font-weight: 900; display: block; line-height: 1;">{{ number_format($countTotal) }}</span>
+                    <span style="color: #ffffff !important; font-size: 11px; font-weight: 700; display: block; margin-top: 4px;">Total Alumni</span>
                 </div>
-                <div class="bg-black/40 backdrop-blur-md p-4 rounded-2xl border border-white/20 text-center shadow-lg">
-                    <span class="text-2xl sm:text-3xl font-black text-emerald-300 block leading-tight">{{ number_format($countPutra) }}</span>
-                    <span class="text-xs text-white font-bold mt-1 block">Santriwan (PA)</span>
+                <div style="background-color: rgba(0, 0, 0, 0.5) !important; border: 1px solid rgba(255, 255, 255, 0.25) !important; border-radius: 16px; padding: 14px 16px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.2);">
+                    <span style="color: #6ee7b7 !important; font-size: 26px; font-weight: 900; display: block; line-height: 1;">{{ number_format($countPutra) }}</span>
+                    <span style="color: #ffffff !important; font-size: 11px; font-weight: 700; display: block; margin-top: 4px;">Santriwan (PA)</span>
                 </div>
-                <div class="bg-black/40 backdrop-blur-md p-4 rounded-2xl border border-white/20 text-center shadow-lg">
-                    <span class="text-2xl sm:text-3xl font-black text-purple-300 block leading-tight">{{ number_format($countPutri) }}</span>
-                    <span class="text-xs text-white font-bold mt-1 block">Santriwati (PI)</span>
+                <div style="background-color: rgba(0, 0, 0, 0.5) !important; border: 1px solid rgba(255, 255, 255, 0.25) !important; border-radius: 16px; padding: 14px 16px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.2);">
+                    <span style="color: #d8b4fe !important; font-size: 26px; font-weight: 900; display: block; line-height: 1;">{{ number_format($countPutri) }}</span>
+                    <span style="color: #ffffff !important; font-size: 11px; font-weight: 700; display: block; margin-top: 4px;">Santriwati (PI)</span>
                 </div>
             </div>
         </div>
