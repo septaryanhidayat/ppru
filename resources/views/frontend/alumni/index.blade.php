@@ -4,45 +4,47 @@
 @section('meta_description', 'Database dan direktori resmi alumni Pondok Pesantren Raudhatul Ulum Sakatiga: rekam jejak lulusan di perguruan tinggi dan dunia profesional.')
 
 @section('content')
-{{-- HERO HEADER --}}
-<div class="bg-gradient-to-br from-[#053d1c] via-[#00843d] to-emerald-950 text-white py-12 sm:py-16 relative overflow-hidden">
-    <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#fcd116_1px,transparent_1px)] [background-size:16px_16px]"></div>
+{{-- HERO HEADER (High Contrast Deep Emerald) --}}
+<div class="bg-gradient-to-r from-[#032e18] via-[#064e3b] to-[#043317] text-white py-12 sm:py-16 relative overflow-hidden shadow-inner border-b-2 border-emerald-800/60">
+    <div class="absolute inset-0 opacity-15 bg-[radial-gradient(#fcd116_1px,transparent_1px)] [background-size:20px_20px] pointer-events-none"></div>
+
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <nav class="text-xs text-emerald-200 mb-4 flex items-center space-x-2">
-            <a href="{{ route('home') }}" class="hover:text-amber-300 transition">Beranda</a>
-            <span>/</span>
-            <a href="{{ route('ikarus.index') }}" class="hover:text-amber-300 transition">IKARUS</a>
-            <span>/</span>
+        {{-- Breadcrumbs: High Contrast --}}
+        <nav class="text-xs text-emerald-200 mb-4 flex items-center space-x-2 font-medium">
+            <a href="{{ route('home') }}" class="text-emerald-200 hover:text-amber-300 transition">Beranda</a>
+            <span class="text-emerald-500">/</span>
+            <a href="{{ route('ikarus.index') }}" class="text-emerald-200 hover:text-amber-300 transition">IKARUS</a>
+            <span class="text-emerald-500">/</span>
             <span class="text-amber-300 font-bold">Data Alumni</span>
         </nav>
 
-        <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
             <div class="max-w-2xl">
-                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-extrabold bg-amber-400/20 text-amber-300 border border-amber-400/30 mb-3">
+                <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-black bg-amber-400 text-slate-950 shadow-md mb-3.5">
                     <i class="fa-solid fa-user-graduate"></i>
                     <span>Direktori Resmi Alumni PPRU Sakatiga</span>
                 </span>
-                <h1 class="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-white">
+                <h1 class="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-white drop-shadow-md">
                     Data &amp; Rekam Jejak Alumni
                 </h1>
-                <p class="text-sm sm:text-base text-emerald-100 mt-2 font-light leading-relaxed">
+                <p class="text-sm sm:text-base text-emerald-100 mt-3 font-normal leading-relaxed">
                     Kiprah dan dedikasi lulusan Pondok Pesantren Raudhatul Ulum Sakatiga di berbagai perguruan tinggi ternama dan ranah profesional di penjuru nusantara serta mancanegara.
                 </p>
             </div>
 
-            {{-- QUICK STATS BADGES --}}
+            {{-- QUICK STATS BADGES (High Contrast Dark Slate Card) --}}
             <div class="grid grid-cols-3 gap-3 shrink-0">
-                <div class="bg-white/10 backdrop-blur-md p-3.5 sm:p-4 rounded-2xl border border-white/15 text-center">
-                    <span class="text-2xl sm:text-3xl font-black text-amber-300 block leading-tight">{{ number_format($countTotal) }}</span>
-                    <span class="text-[11px] text-emerald-100 font-medium mt-0.5 block">Total Alumni</span>
+                <div class="bg-black/40 backdrop-blur-md p-4 rounded-2xl border border-white/20 text-center shadow-lg">
+                    <span class="text-2xl sm:text-3xl font-black text-amber-400 block leading-tight">{{ number_format($countTotal) }}</span>
+                    <span class="text-xs text-white font-bold mt-1 block">Total Alumni</span>
                 </div>
-                <div class="bg-white/10 backdrop-blur-md p-3.5 sm:p-4 rounded-2xl border border-white/15 text-center">
-                    <span class="text-2xl sm:text-3xl font-black text-emerald-200 block leading-tight">{{ number_format($countPutra) }}</span>
-                    <span class="text-[11px] text-emerald-100 font-medium mt-0.5 block">Santriwan (PA)</span>
+                <div class="bg-black/40 backdrop-blur-md p-4 rounded-2xl border border-white/20 text-center shadow-lg">
+                    <span class="text-2xl sm:text-3xl font-black text-emerald-300 block leading-tight">{{ number_format($countPutra) }}</span>
+                    <span class="text-xs text-white font-bold mt-1 block">Santriwan (PA)</span>
                 </div>
-                <div class="bg-white/10 backdrop-blur-md p-3.5 sm:p-4 rounded-2xl border border-white/15 text-center">
-                    <span class="text-2xl sm:text-3xl font-black text-purple-200 block leading-tight">{{ number_format($countPutri) }}</span>
-                    <span class="text-[11px] text-emerald-100 font-medium mt-0.5 block">Santriwati (PI)</span>
+                <div class="bg-black/40 backdrop-blur-md p-4 rounded-2xl border border-white/20 text-center shadow-lg">
+                    <span class="text-2xl sm:text-3xl font-black text-purple-300 block leading-tight">{{ number_format($countPutri) }}</span>
+                    <span class="text-xs text-white font-bold mt-1 block">Santriwati (PI)</span>
                 </div>
             </div>
         </div>
@@ -51,144 +53,98 @@
 
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 space-y-8">
 
-    {{-- SEGMEN WRAPPER CARD --}}
-    <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-gray-100 space-y-6">
-
-        {{-- SEGMEN 1: ASAL SEKOLAH / UNIT LEMBAGA --}}
-        <div>
-            <div class="flex items-center justify-between mb-3">
-                <div class="flex items-center gap-2">
-                    <span class="w-6 h-6 rounded-lg bg-emerald-100 text-[#00843d] flex items-center justify-center text-xs font-black">1</span>
-                    <h3 class="text-xs sm:text-sm font-extrabold uppercase tracking-wider text-gray-800 flex items-center gap-1.5">
-                        <i class="fa-solid fa-school text-[#00843d]"></i>
-                        <span>Asal Sekolah / Unit Lembaga</span>
-                    </h3>
-                </div>
-                @if(!empty($selectedUnit))
-                    @php $currUnit = $units->firstWhere('id', $selectedUnit); @endphp
-                    @if($currUnit)
-                        <span class="text-xs font-bold text-[#00843d]">Unit: {{ $currUnit->short_name ?: $currUnit->name }}</span>
-                    @endif
-                @endif
+    {{-- KOTAK FILTER & PENCARIAN (SEDERHANA, JELAS, & MUDAH DIPAHAMI) --}}
+    <div class="bg-white rounded-3xl p-6 sm:p-7 shadow-sm border border-slate-200/80 space-y-5">
+        
+        {{-- Pilihan Kategori Santri: Putra, Putri, atau Semua --}}
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-slate-100">
+            <div>
+                <span class="text-xs font-bold text-slate-700 uppercase tracking-wider block">Pilihan Kategori Santri:</span>
+                <span class="text-xs text-slate-400">Segmen Santriwan (Putra) &amp; Santriwati (Putri)</span>
             </div>
-
-            <div class="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-thin">
-                <a href="{{ request()->fullUrlWithQuery(['unit_id' => null, 'page' => 1]) }}"
-                   class="px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition flex items-center gap-1.5 {{ empty($selectedUnit) ? 'bg-[#00843d] text-white shadow-sm' : 'bg-gray-100 text-gray-600 hover:bg-gray-200' }}">
-                    <i class="fa-solid fa-graduation-cap text-xs"></i>
-                    <span>Semua Lembaga</span>
-                </a>
-
-                @foreach($units as $u)
-                    @php
-                        $isActiveUnit = ($selectedUnit == $u->id);
-                    @endphp
-                    <a href="{{ request()->fullUrlWithQuery(['unit_id' => $u->id, 'page' => 1]) }}"
-                       class="px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition flex items-center gap-1.5 {{ $isActiveUnit ? 'bg-[#00843d] text-white shadow-sm ring-2 ring-emerald-500/30' : 'bg-gray-100 text-gray-700 hover:bg-gray-200' }}"
-                       title="{{ $u->name }}">
-                        <span class="font-extrabold">{{ $u->short_name ?: $u->name }}</span>
-                    </a>
-                @endforeach
-            </div>
-        </div>
-
-        {{-- SEGMEN 2: TAHUN LULUS (ANGKATAN) --}}
-        <div class="pt-5 border-t border-gray-100">
-            <div class="flex items-center justify-between mb-3">
-                <div class="flex items-center gap-2">
-                    <span class="w-6 h-6 rounded-lg bg-emerald-100 text-[#00843d] flex items-center justify-center text-xs font-black">2</span>
-                    <h3 class="text-xs sm:text-sm font-extrabold uppercase tracking-wider text-gray-800 flex items-center gap-1.5">
-                        <i class="fa-solid fa-calendar-check text-[#00843d]"></i>
-                        <span>Pilih Tahun Lulus (Angkatan)</span>
-                    </h3>
-                </div>
-                @if(!empty($selectedYear))
-                    <span class="text-xs font-bold text-[#00843d]">Tahun Terpilih: {{ $selectedYear }}</span>
-                @endif
-            </div>
-
-            <div class="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-thin">
-                <a href="{{ request()->fullUrlWithQuery(['year' => null, 'page' => 1]) }}"
-                   class="px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition flex items-center gap-1.5 {{ empty($selectedYear) ? 'bg-[#00843d] text-white shadow-sm' : 'bg-gray-100 text-gray-600 hover:bg-gray-200' }}">
-                    <span>Semua Angkatan</span>
-                    <span class="px-1.5 py-0.5 rounded-md text-[10px] {{ empty($selectedYear) ? 'bg-white/20 text-white' : 'bg-gray-200 text-gray-700' }}">
-                        {{ $countTotal }}
-                    </span>
-                </a>
-
-                @foreach($availableYears as $yItem)
-                    @php
-                        $isActiveYear = ($selectedYear == $yItem->graduation_year);
-                    @endphp
-                    <a href="{{ request()->fullUrlWithQuery(['year' => $yItem->graduation_year, 'page' => 1]) }}"
-                       class="px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition flex items-center gap-1.5 {{ $isActiveYear ? 'bg-[#00843d] text-white shadow-sm' : 'bg-gray-100 text-gray-600 hover:bg-gray-200' }}">
-                        <span>Tahun {{ $yItem->graduation_year }}</span>
-                        <span class="px-1.5 py-0.5 rounded-md text-[10px] {{ $isActiveYear ? 'bg-white/20 text-white' : 'bg-gray-200 text-gray-700' }}">
-                            {{ $yItem->count }}
-                        </span>
-                    </a>
-                @endforeach
-            </div>
-        </div>
-
-        {{-- SEGMEN 3: PUTRA & PUTRI (GENDER SWITCHER) --}}
-        <div class="pt-5 border-t border-gray-100">
-            <div class="flex items-center gap-2 mb-3">
-                <span class="w-6 h-6 rounded-lg bg-emerald-100 text-[#00843d] flex items-center justify-center text-xs font-black">3</span>
-                <h3 class="text-xs sm:text-sm font-extrabold uppercase tracking-wider text-gray-800 flex items-center gap-1.5">
-                    <i class="fa-solid fa-users text-[#00843d]"></i>
-                    <span>Segmen Santriwan (Putra) &amp; Santriwati (Putri)</span>
-                </h3>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-2xl">
-                {{-- Tab Semua --}}
+            
+            <div class="flex items-center gap-1.5 p-1 bg-slate-100 rounded-2xl self-start sm:self-auto">
+                {{-- Semua --}}
                 <a href="{{ request()->fullUrlWithQuery(['gender' => null, 'page' => 1]) }}"
-                   class="p-3 rounded-2xl border text-center transition flex items-center justify-center gap-2 {{ empty($selectedGender) ? 'bg-[#00843d] text-white border-[#00843d] shadow-sm' : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-50' }}">
-                    <i class="fa-solid fa-layer-group text-sm"></i>
-                    <span class="text-xs font-extrabold">Semua Alumni</span>
+                   class="px-4 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 {{ empty($selectedGender) ? 'bg-[#00843d] text-white shadow-xs' : 'text-slate-600 hover:text-slate-900' }}">
+                    <i class="fa-solid fa-users text-[11px]"></i>
+                    <span>Semua Alumni ({{ $countTotal }})</span>
                 </a>
 
-                {{-- Tab Putra --}}
+                {{-- Putra --}}
                 <a href="{{ request()->fullUrlWithQuery(['gender' => 'putra', 'page' => 1]) }}"
-                   class="p-3 rounded-2xl border text-center transition flex items-center justify-center gap-2 {{ $selectedGender === 'putra' ? 'bg-[#00843d] text-white border-[#00843d] shadow-sm' : 'bg-white text-emerald-800 border-gray-200 hover:bg-emerald-50/50' }}">
-                    <i class="fa-solid fa-mars text-sm"></i>
-                    <span class="text-xs font-extrabold">Putra (Santriwan)</span>
+                   class="px-4 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 {{ $selectedGender === 'putra' ? 'bg-[#00843d] text-white shadow-xs' : 'text-slate-600 hover:text-slate-900' }}">
+                    <i class="fa-solid fa-mars text-[11px]"></i>
+                    <span>Santriwan ({{ $countPutra }})</span>
                 </a>
 
-                {{-- Tab Putri --}}
+                {{-- Putri --}}
                 <a href="{{ request()->fullUrlWithQuery(['gender' => 'putri', 'page' => 1]) }}"
-                   class="p-3 rounded-2xl border text-center transition flex items-center justify-center gap-2 {{ $selectedGender === 'putri' ? 'bg-purple-700 text-white border-purple-700 shadow-sm' : 'bg-white text-purple-700 border-gray-200 hover:bg-purple-50/50' }}">
-                    <i class="fa-solid fa-venus text-sm"></i>
-                    <span class="text-xs font-extrabold">Putri (Santriwati)</span>
+                   class="px-4 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 {{ $selectedGender === 'putri' ? 'bg-purple-700 text-white shadow-xs' : 'text-slate-600 hover:text-slate-900' }}">
+                    <i class="fa-solid fa-venus text-[11px]"></i>
+                    <span>Santriwati ({{ $countPutri }})</span>
                 </a>
             </div>
         </div>
 
-        {{-- FILTER PENCARIAN ALUMNI --}}
-        <form action="{{ route('alumni.index') }}" method="GET" class="pt-5 border-t border-gray-100 flex flex-col sm:flex-row gap-3 items-center justify-between">
-            @if(!empty($selectedUnit))
-                <input type="hidden" name="unit_id" value="{{ $selectedUnit }}">
-            @endif
-            @if(!empty($selectedYear))
-                <input type="hidden" name="year" value="{{ $selectedYear }}">
-            @endif
+        {{-- FORM FILTER UTAMA: Asal Lembaga, Tahun Lulus, & Pencarian --}}
+        <form action="{{ route('alumni.index') }}" method="GET" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-end">
             @if(!empty($selectedGender))
                 <input type="hidden" name="gender" value="{{ $selectedGender }}">
             @endif
 
-            <div class="relative w-full sm:max-w-md">
-                <input type="text" name="q" value="{{ $search }}" placeholder="Cari nama alumni, profesi, kampus, instansi..." class="w-full bg-gray-50 text-xs text-gray-800 rounded-xl pl-9 pr-3.5 py-2.5 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#00843d]">
-                <i class="fa-solid fa-magnifying-glass text-gray-400 text-xs absolute left-3 top-3"></i>
+            {{-- 1. ASAL SEKOLAH / UNIT LEMBAGA --}}
+            <div>
+                <label class="block text-xs font-bold text-slate-700 mb-1.5 flex items-center gap-1.5">
+                    <i class="fa-solid fa-school text-[#00843d]"></i>
+                    <span>Asal Sekolah / Unit Lembaga</span>
+                </label>
+                <select name="unit_id" onchange="this.form.submit()" class="w-full bg-slate-50 text-xs text-slate-800 rounded-xl px-3.5 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00843d] font-medium cursor-pointer">
+                    <option value="">Semua Lembaga</option>
+                    @foreach($units as $u)
+                        <option value="{{ $u->id }}" {{ ($selectedUnit == $u->id) ? 'selected' : '' }}>
+                            {{ $u->short_name ?: $u->name }} ({{ $u->name }})
+                        </option>
+                    @endforeach
+                </select>
             </div>
 
-            <div class="flex items-center gap-2 w-full sm:w-auto justify-end">
-                <button type="submit" class="px-5 py-2.5 bg-[#00843d] hover:bg-emerald-800 text-white text-xs font-bold rounded-xl transition flex items-center gap-1.5 shadow-xs">
-                    <i class="fa-solid fa-magnifying-glass text-xs"></i>
-                    <span>Cari</span>
+            {{-- 2. PILIH TAHUN LULUS (ANGKATAN) --}}
+            <div>
+                <label class="block text-xs font-bold text-slate-700 mb-1.5 flex items-center gap-1.5">
+                    <i class="fa-solid fa-calendar-check text-[#00843d]"></i>
+                    <span>Pilih Tahun Lulus (Angkatan)</span>
+                </label>
+                <select name="year" onchange="this.form.submit()" class="w-full bg-slate-50 text-xs text-slate-800 rounded-xl px-3.5 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00843d] font-medium cursor-pointer">
+                    <option value="">Semua Angkatan</option>
+                    @foreach($availableYears as $yItem)
+                        <option value="{{ $yItem->graduation_year }}" {{ ($selectedYear == $yItem->graduation_year) ? 'selected' : '' }}>
+                            Tahun {{ $yItem->graduation_year }} ({{ $yItem->count }} Alumni)
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+
+            {{-- 3. KATA KUNCI / PENCARIAN --}}
+            <div>
+                <label class="block text-xs font-bold text-slate-700 mb-1.5 flex items-center gap-1.5">
+                    <i class="fa-solid fa-magnifying-glass text-[#00843d]"></i>
+                    <span>Cari Nama / Profesi</span>
+                </label>
+                <div class="relative">
+                    <input type="text" name="q" value="{{ $search }}" placeholder="Nama, profesi, kampus..." class="w-full bg-slate-50 text-xs text-slate-800 rounded-xl pl-9 pr-3 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00843d]">
+                    <i class="fa-solid fa-user text-slate-400 text-xs absolute left-3 top-3.5"></i>
+                </div>
+            </div>
+
+            {{-- 4. TOMBOL FILTER & RESET --}}
+            <div class="flex items-center gap-2">
+                <button type="submit" class="flex-1 px-4 py-3 bg-[#00843d] hover:bg-emerald-800 text-white text-xs font-bold rounded-xl transition shadow-xs flex items-center justify-center gap-1.5 cursor-pointer">
+                    <i class="fa-solid fa-filter text-xs"></i>
+                    <span>Cari Alumni</span>
                 </button>
-                @if(request()->hasAny(['year', 'gender', 'unit_id', 'q']))
-                    <a href="{{ route('alumni.index') }}" class="px-4 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs font-bold rounded-xl transition flex items-center gap-1.5" title="Reset Semua Filter">
+                @if(!empty($selectedUnit) || !empty($selectedYear) || !empty($selectedGender) || !empty($search))
+                    <a href="{{ route('alumni.index') }}" class="px-3.5 py-3 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold rounded-xl transition flex items-center justify-center gap-1" title="Reset Semua Filter">
                         <i class="fa-solid fa-rotate-left text-xs"></i>
                         <span>Reset</span>
                     </a>
@@ -196,18 +152,59 @@
             </div>
         </form>
 
+        {{-- STATUS FILTER AKTIF (TAGS) --}}
+        @if(!empty($selectedUnit) || !empty($selectedYear) || !empty($selectedGender) || !empty($search))
+            <div class="pt-3 border-t border-slate-100 flex flex-wrap items-center gap-2 text-xs">
+                <span class="text-slate-400 font-bold text-[11px] uppercase tracking-wider">Filter Aktif:</span>
+
+                @if(!empty($selectedUnit) && ($uObj = $units->firstWhere('id', $selectedUnit)))
+                    <a href="{{ request()->fullUrlWithQuery(['unit_id' => null, 'page' => 1]) }}" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-[#00843d] border border-emerald-200 text-xs font-bold hover:bg-emerald-100 transition" title="Hapus filter lembaga">
+                        <span>Lembaga: {{ $uObj->short_name ?: $uObj->name }}</span>
+                        <i class="fa-solid fa-xmark text-[10px]"></i>
+                    </a>
+                @endif
+
+                @if(!empty($selectedYear))
+                    <a href="{{ request()->fullUrlWithQuery(['year' => null, 'page' => 1]) }}" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-50 text-amber-800 border border-amber-200 text-xs font-bold hover:bg-amber-100 transition" title="Hapus filter tahun">
+                        <span>Tahun {{ $selectedYear }}</span>
+                        <i class="fa-solid fa-xmark text-[10px]"></i>
+                    </a>
+                @endif
+
+                @if(!empty($selectedGender))
+                    <a href="{{ request()->fullUrlWithQuery(['gender' => null, 'page' => 1]) }}" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full {{ $selectedGender === 'putri' ? 'bg-purple-50 text-purple-700 border-purple-200 hover:bg-purple-100' : 'bg-emerald-50 text-[#00843d] border-emerald-200 hover:bg-emerald-100' }} text-xs font-bold transition" title="Hapus filter gender">
+                        <span>Santri: {{ ucfirst($selectedGender) }}</span>
+                        <i class="fa-solid fa-xmark text-[10px]"></i>
+                    </a>
+                @endif
+
+                @if(!empty($search))
+                    <a href="{{ request()->fullUrlWithQuery(['q' => null, 'page' => 1]) }}" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 text-slate-700 border border-slate-200 text-xs font-bold hover:bg-slate-200 transition" title="Hapus kata kunci">
+                        <span>Cari: "{{ $search }}"</span>
+                        <i class="fa-solid fa-xmark text-[10px]"></i>
+                    </a>
+                @endif
+
+                <a href="{{ route('alumni.index') }}" class="text-[11px] text-red-600 hover:underline font-bold ml-1">
+                    Hapus Semua Filter
+                </a>
+            </div>
+        @endif
+
     </div>
 
-    {{-- SEGMEN 4: DATA ALUMNI (GRID KARTU PROFIL) --}}
+    {{-- DAFTAR KARTU ALUMNI (GRID PROFIL) --}}
     <div class="space-y-4">
         <div class="flex items-center justify-between">
             <div class="flex items-center gap-2">
-                <span class="w-6 h-6 rounded-lg bg-emerald-100 text-[#00843d] flex items-center justify-center text-xs font-black">4</span>
+                <span class="w-7 h-7 rounded-lg bg-emerald-100 text-[#00843d] flex items-center justify-center text-xs font-black">
+                    <i class="fa-solid fa-user-graduate"></i>
+                </span>
                 <h2 class="text-sm sm:text-base font-extrabold uppercase tracking-wider text-gray-900">
                     Data Rekam Jejak Alumni
                 </h2>
             </div>
-            <span class="text-xs font-semibold text-gray-500">
+            <span class="text-xs font-bold text-slate-500 bg-slate-100 px-3 py-1 rounded-full">
                 Menampilkan {{ $alumni->total() }} alumni terdata
             </span>
         </div>
@@ -290,7 +287,7 @@
                 <div class="col-span-full py-16 text-center bg-white rounded-3xl border border-dashed border-gray-200">
                     <i class="fa-solid fa-user-graduate text-4xl text-gray-300 mb-3 block"></i>
                     <h4 class="font-extrabold text-sm text-gray-700">Belum ada data alumni yang cocok.</h4>
-                    <p class="text-xs text-gray-500 mt-1">Silakan sesuaikan filter tahun lulus atau segmen putra/putri di atas.</p>
+                    <p class="text-xs text-gray-500 mt-1">Silakan sesuaikan pilihan lembaga, tahun kelulusan, atau kategori putra/putri di atas.</p>
                     <a href="{{ route('alumni.index') }}" class="mt-3 inline-block px-4 py-2 bg-emerald-50 text-[#00843d] font-bold text-xs rounded-xl hover:bg-emerald-100 transition">
                         Reset Filter
                     </a>
