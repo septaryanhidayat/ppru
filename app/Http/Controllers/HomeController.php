@@ -107,23 +107,29 @@ class HomeController extends Controller
         }
 
         // 5. Berita Prestasi Siswa & Santri (Section Prestasi di Beranda)
-        $prestasiPosts = Post::published()
-            ->with(['categories'])
-            ->where(function ($q) {
-                $q->where('type', 'prestasi')
-                    ->orWhere(function ($sub) {
-                        $sub->where('type', 'post')
-                            ->where(function ($cat) {
-                                $cat->whereHas('categories', fn ($c) => $c->whereIn('slug', ['prestasi-siswa', 'akademik-riset']))
-                                    ->orWhereHas('tags', fn ($t) => $t->whereIn('slug', ['prestasi', 'juara', 'olimpiade', 'sains']));
-                            });
-                    });
-            })
+        // Prioritaskan data resmi dari modul Prestasi (type = 'prestasi')
+        $prestasiPosts = Post::where('type', 'prestasi')
+            ->published()
             ->whereNotIn('id', $senayanPosts->pluck('id'))
             ->orderBy('published_at', 'desc')
             ->orderBy('id', 'desc')
             ->take(8)
             ->get();
+
+        if ($prestasiPosts->isEmpty()) {
+            $prestasiPosts = Post::published()
+                ->where('type', 'post')
+                ->where(function ($cat) {
+                    $cat->whereHas('categories', fn ($c) => $c->whereIn('slug', ['prestasi-siswa', 'akademik-riset']))
+                        ->orWhereHas('tags', fn ($t) => $t->whereIn('slug', ['prestasi', 'juara', 'olimpiade', 'sains']));
+                })
+                ->whereNotIn('id', $senayanPosts->pluck('id'))
+                ->where('slug', '!=', 'raudhatul-ulum-goes-to-international-1789785862')
+                ->orderBy('published_at', 'desc')
+                ->orderBy('id', 'desc')
+                ->take(8)
+                ->get();
+        }
         // 6. Kabar Akademik & Kurikulum (Section 4 Kolom 1 - 6 posts)
         $nasionalPosts = Post::posts()
             ->published()

@@ -1055,7 +1055,7 @@
             $prestasiCount = $prestasiPosts->count();
             $prestasiGridCols = match(true) {
                 $prestasiCount === 1 => 'grid-cols-1 max-w-md mx-auto',
-                $prestasiCount === 2 => 'grid-cols-1 sm:grid-cols-2 max-w-3xl mx-auto',
+                $prestasiCount === 2 => 'grid-cols-1 md:grid-cols-2 max-w-4xl mx-auto',
                 $prestasiCount === 3 => 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3',
                 default => 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4',
             };

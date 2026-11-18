@@ -247,3 +247,34 @@ test('prestasi section on homepage renders balanced responsive grid without nest
     $response->assertSee('Prestasi Juara 2 Santri Raudhatul Ulum');
     $response->assertSee('Prestasi Juara 3 Santri Raudhatul Ulum');
 });
+
+test('prestasi section prioritizes type prestasi and adapts layout cleanly when 2 items exist', function () {
+    Post::where('type', 'prestasi')->delete();
+
+    $p1 = Post::create([
+        'title' => 'Santri PPRU Sakatiga Raih Juara Umum Musabaqah',
+        'slug' => 'santri-ppru-sakatiga-raih-juara-umum-musabaqah',
+        'type' => 'prestasi',
+        'status' => 'publish',
+        'content' => 'Prestasi juara umum musabaqah.',
+        'published_at' => now()->subDay(),
+    ]);
+
+    $p2 = Post::create([
+        'title' => 'Al-Fath Santri Berprestasi Tingkat Nasional',
+        'slug' => 'al-fath-santri-berprestasi-tingkat-nasional',
+        'type' => 'prestasi',
+        'status' => 'publish',
+        'content' => 'Prestasi santri nasional.',
+        'published_at' => now()->subDays(2),
+    ]);
+
+    $response = $this->get(route('home'));
+    $response->assertStatus(200);
+    $response->assertSee('md:grid-cols-2 max-w-4xl mx-auto');
+    $response->assertSee('Santri PPRU Sakatiga Raih Juara Umum Musabaqah');
+    $response->assertSee('Al-Fath Santri Berprestasi Tingkat Nasional');
+    $response->assertDontSee('Raudhatul Ulum Goes To International');
+    $response->assertSee(route('prestasi.show', $p1->slug));
+    $response->assertSee(route('prestasi.show', $p2->slug));
+});
