@@ -54,11 +54,49 @@
     {{-- SEGMEN WRAPPER CARD --}}
     <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-gray-100 space-y-6">
 
-        {{-- SEGMEN 1: TAHUN LULUS (ANGKATAN) --}}
+        {{-- SEGMEN 1: ASAL SEKOLAH / UNIT LEMBAGA --}}
         <div>
             <div class="flex items-center justify-between mb-3">
                 <div class="flex items-center gap-2">
                     <span class="w-6 h-6 rounded-lg bg-emerald-100 text-[#00843d] flex items-center justify-center text-xs font-black">1</span>
+                    <h3 class="text-xs sm:text-sm font-extrabold uppercase tracking-wider text-gray-800 flex items-center gap-1.5">
+                        <i class="fa-solid fa-school text-[#00843d]"></i>
+                        <span>Asal Sekolah / Unit Lembaga</span>
+                    </h3>
+                </div>
+                @if(!empty($selectedUnit))
+                    @php $currUnit = $units->firstWhere('id', $selectedUnit); @endphp
+                    @if($currUnit)
+                        <span class="text-xs font-bold text-[#00843d]">Unit: {{ $currUnit->short_name ?: $currUnit->name }}</span>
+                    @endif
+                @endif
+            </div>
+
+            <div class="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-thin">
+                <a href="{{ request()->fullUrlWithQuery(['unit_id' => null, 'page' => 1]) }}"
+                   class="px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition flex items-center gap-1.5 {{ empty($selectedUnit) ? 'bg-[#00843d] text-white shadow-sm' : 'bg-gray-100 text-gray-600 hover:bg-gray-200' }}">
+                    <i class="fa-solid fa-graduation-cap text-xs"></i>
+                    <span>Semua Lembaga</span>
+                </a>
+
+                @foreach($units as $u)
+                    @php
+                        $isActiveUnit = ($selectedUnit == $u->id);
+                    @endphp
+                    <a href="{{ request()->fullUrlWithQuery(['unit_id' => $u->id, 'page' => 1]) }}"
+                       class="px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition flex items-center gap-1.5 {{ $isActiveUnit ? 'bg-[#00843d] text-white shadow-sm ring-2 ring-emerald-500/30' : 'bg-gray-100 text-gray-700 hover:bg-gray-200' }}"
+                       title="{{ $u->name }}">
+                        <span class="font-extrabold">{{ $u->short_name ?: $u->name }}</span>
+                    </a>
+                @endforeach
+            </div>
+        </div>
+
+        {{-- SEGMEN 2: TAHUN LULUS (ANGKATAN) --}}
+        <div class="pt-5 border-t border-gray-100">
+            <div class="flex items-center justify-between mb-3">
+                <div class="flex items-center gap-2">
+                    <span class="w-6 h-6 rounded-lg bg-emerald-100 text-[#00843d] flex items-center justify-center text-xs font-black">2</span>
                     <h3 class="text-xs sm:text-sm font-extrabold uppercase tracking-wider text-gray-800 flex items-center gap-1.5">
                         <i class="fa-solid fa-calendar-check text-[#00843d]"></i>
                         <span>Pilih Tahun Lulus (Angkatan)</span>
@@ -93,10 +131,10 @@
             </div>
         </div>
 
-        {{-- SEGMEN 2: PUTRA & PUTRI (GENDER SWITCHER) --}}
+        {{-- SEGMEN 3: PUTRA & PUTRI (GENDER SWITCHER) --}}
         <div class="pt-5 border-t border-gray-100">
             <div class="flex items-center gap-2 mb-3">
-                <span class="w-6 h-6 rounded-lg bg-emerald-100 text-[#00843d] flex items-center justify-center text-xs font-black">2</span>
+                <span class="w-6 h-6 rounded-lg bg-emerald-100 text-[#00843d] flex items-center justify-center text-xs font-black">3</span>
                 <h3 class="text-xs sm:text-sm font-extrabold uppercase tracking-wider text-gray-800 flex items-center gap-1.5">
                     <i class="fa-solid fa-users text-[#00843d]"></i>
                     <span>Segmen Santriwan (Putra) &amp; Santriwati (Putri)</span>
@@ -127,8 +165,11 @@
             </div>
         </div>
 
-        {{-- FILTER PENCARIAN & UNIT ASAL --}}
-        <form action="{{ route('alumni.index') }}" method="GET" class="pt-5 border-t border-gray-100 grid grid-cols-1 md:grid-cols-3 gap-4 items-end">
+        {{-- FILTER PENCARIAN ALUMNI --}}
+        <form action="{{ route('alumni.index') }}" method="GET" class="pt-5 border-t border-gray-100 flex flex-col sm:flex-row gap-3 items-center justify-between">
+            @if(!empty($selectedUnit))
+                <input type="hidden" name="unit_id" value="{{ $selectedUnit }}">
+            @endif
             @if(!empty($selectedYear))
                 <input type="hidden" name="year" value="{{ $selectedYear }}">
             @endif
@@ -136,48 +177,34 @@
                 <input type="hidden" name="gender" value="{{ $selectedGender }}">
             @endif
 
-            {{-- Filter Unit --}}
-            <div>
-                <label class="block text-xs font-bold text-gray-600 mb-1.5">Unit Madrasah / Sekolah Asal:</label>
-                <select name="unit_id" onchange="this.form.submit()" class="w-full bg-gray-50 text-xs text-gray-800 rounded-xl px-3.5 py-2.5 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#00843d]">
-                    <option value="">-- Semua Unit Pendidikan --</option>
-                    @foreach($units as $u)
-                        <option value="{{ $u->id }}" {{ request('unit_id') == $u->id ? 'selected' : '' }}>
-                            {{ $u->name }} {{ $u->short_name ? "({$u->short_name})" : '' }}
-                        </option>
-                    @endforeach
-                </select>
+            <div class="relative w-full sm:max-w-md">
+                <input type="text" name="q" value="{{ $search }}" placeholder="Cari nama alumni, profesi, kampus, instansi..." class="w-full bg-gray-50 text-xs text-gray-800 rounded-xl pl-9 pr-3.5 py-2.5 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#00843d]">
+                <i class="fa-solid fa-magnifying-glass text-gray-400 text-xs absolute left-3 top-3"></i>
             </div>
 
-            {{-- Keyword Search --}}
-            <div class="md:col-span-2">
-                <label class="block text-xs font-bold text-gray-600 mb-1.5">Pencarian Alumni:</label>
-                <div class="flex items-center gap-2">
-                    <div class="relative flex-1">
-                        <input type="text" name="q" value="{{ $search }}" placeholder="Cari nama alumni, profesi, kampus, instansi..." class="w-full bg-gray-50 text-xs text-gray-800 rounded-xl pl-9 pr-3.5 py-2.5 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#00843d]">
-                        <i class="fa-solid fa-magnifying-glass text-gray-400 text-xs absolute left-3 top-3"></i>
-                    </div>
-                    <button type="submit" class="px-5 py-2.5 bg-[#00843d] hover:bg-emerald-800 text-white text-xs font-bold rounded-xl transition shadow-xs">
-                        Cari
-                    </button>
-                    @if(request()->hasAny(['year', 'gender', 'unit_id', 'q']))
-                        <a href="{{ route('alumni.index') }}" class="px-3.5 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs font-bold rounded-xl transition" title="Reset Semua Filter">
-                            Reset
-                        </a>
-                    @endif
-                </div>
+            <div class="flex items-center gap-2 w-full sm:w-auto justify-end">
+                <button type="submit" class="px-5 py-2.5 bg-[#00843d] hover:bg-emerald-800 text-white text-xs font-bold rounded-xl transition flex items-center gap-1.5 shadow-xs">
+                    <i class="fa-solid fa-magnifying-glass text-xs"></i>
+                    <span>Cari</span>
+                </button>
+                @if(request()->hasAny(['year', 'gender', 'unit_id', 'q']))
+                    <a href="{{ route('alumni.index') }}" class="px-4 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs font-bold rounded-xl transition flex items-center gap-1.5" title="Reset Semua Filter">
+                        <i class="fa-solid fa-rotate-left text-xs"></i>
+                        <span>Reset</span>
+                    </a>
+                @endif
             </div>
         </form>
 
     </div>
 
-    {{-- SEGMEN 3: DATA ALUMNI (GRID KARTU PROFIL) --}}
+    {{-- SEGMEN 4: DATA ALUMNI (GRID KARTU PROFIL) --}}
     <div class="space-y-4">
         <div class="flex items-center justify-between">
             <div class="flex items-center gap-2">
-                <span class="w-6 h-6 rounded-lg bg-emerald-100 text-[#00843d] flex items-center justify-center text-xs font-black">3</span>
+                <span class="w-6 h-6 rounded-lg bg-emerald-100 text-[#00843d] flex items-center justify-center text-xs font-black">4</span>
                 <h2 class="text-sm sm:text-base font-extrabold uppercase tracking-wider text-gray-900">
-                    Daftar Profil Alumni
+                    Data Rekam Jejak Alumni
                 </h2>
             </div>
             <span class="text-xs font-semibold text-gray-500">

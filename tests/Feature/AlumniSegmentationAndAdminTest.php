@@ -92,12 +92,16 @@ test('admin can delete alumni', function () {
     $this->assertDatabaseMissing('alumnis', ['id' => $alumni->id]);
 });
 
-test('public alumni page displays segmen tahun lulus, putra putri, and data alumni', function () {
-    // Pastikan ada data putra & putri
+test('public alumni page displays ordered segments: asal sekolah, tahun lulus, putra putri, and data alumni', function () {
+    $takiru = UnitPendidikan::where('short_name', 'TAKIRU')->first();
+    $matsaru = UnitPendidikan::where('short_name', 'MATSARU')->first();
+
+    // Pastikan ada data putra & putri dengan unit asal
     Alumni::create([
         'name' => 'Zaidan Santriwan Teladan',
         'gender' => 'putra',
         'graduation_year' => '2024',
+        'unit_pendidikan_id' => $takiru?->id,
         'activity' => 'Mahasiswa Teknik Elektro ITB Bandung',
         'is_published' => true,
     ]);
@@ -106,6 +110,7 @@ test('public alumni page displays segmen tahun lulus, putra putri, and data alum
         'name' => 'Maryam Santriwati Berprestasi',
         'gender' => 'putri',
         'graduation_year' => '2024',
+        'unit_pendidikan_id' => $matsaru?->id,
         'activity' => 'Mahasiswi Kedokteran UGM Yogyakarta',
         'is_published' => true,
     ]);
@@ -113,20 +118,30 @@ test('public alumni page displays segmen tahun lulus, putra putri, and data alum
     // Akses halaman publik tanpa filter (Semua)
     $responseAll = $this->get(route('alumni.index'));
     $responseAll->assertStatus(200);
-    $responseAll->assertSee('Data &amp; Rekam Jejak Alumni', false);
+    $responseAll->assertSee('Asal Sekolah / Unit Lembaga');
+    $responseAll->assertSee('Semua Lembaga');
     $responseAll->assertSee('Pilih Tahun Lulus (Angkatan)');
     $responseAll->assertSee('Segmen Santriwan (Putra) &amp; Santriwati (Putri)', false);
+    $responseAll->assertSee('Data Rekam Jejak Alumni');
     $responseAll->assertSee('Zaidan Santriwan Teladan');
     $responseAll->assertSee('Maryam Santriwati Berprestasi');
     $responseAll->assertSee('Tahun 2024');
 
-    // Filter Segmen Putra
+    // Filter Segmen 1: Unit Asal TAKIRU
+    if ($takiru) {
+        $responseUnit = $this->get(route('alumni.index', ['unit_id' => $takiru->id]));
+        $responseUnit->assertStatus(200);
+        $responseUnit->assertSee('Zaidan Santriwan Teladan');
+        $responseUnit->assertDontSee('Maryam Santriwati Berprestasi');
+    }
+
+    // Filter Segmen Putra & Tahun 2024
     $responsePutra = $this->get(route('alumni.index', ['gender' => 'putra', 'year' => '2024']));
     $responsePutra->assertStatus(200);
     $responsePutra->assertSee('Zaidan Santriwan Teladan');
     $responsePutra->assertDontSee('Maryam Santriwati Berprestasi');
 
-    // Filter Segmen Putri
+    // Filter Segmen Putri & Tahun 2024
     $responsePutri = $this->get(route('alumni.index', ['gender' => 'putri', 'year' => '2024']));
     $responsePutri->assertStatus(200);
     $responsePutri->assertSee('Maryam Santriwati Berprestasi');

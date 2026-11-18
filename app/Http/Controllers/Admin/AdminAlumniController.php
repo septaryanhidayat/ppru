@@ -32,6 +32,7 @@ class AdminAlumniController extends Controller
 
         $selectedYear = $request->input('year');
         $selectedGender = $request->input('gender');
+        $selectedUnit = $request->input('unit_id');
 
         if (! Schema::hasTable('alumnis')) {
             $alumnis = new LengthAwarePaginator([], 0, 15);
@@ -45,7 +46,8 @@ class AdminAlumniController extends Controller
                 'availableYears',
                 'units',
                 'selectedYear',
-                'selectedGender'
+                'selectedGender',
+                'selectedUnit'
             ));
         }
 
@@ -107,7 +109,8 @@ class AdminAlumniController extends Controller
             'availableYears',
             'units',
             'selectedYear',
-            'selectedGender'
+            'selectedGender',
+            'selectedUnit'
         ));
     }
 

@@ -246,8 +246,9 @@ class InformationController extends Controller
 
         $selectedYear = $request->input('year');
         $selectedGender = $request->input('gender');
+        $selectedUnit = $request->input('unit_id');
         $search = $request->input('q');
-        $unitId = $request->input('unit_id');
+        $unitId = $selectedUnit;
 
         if (! Schema::hasTable('alumnis')) {
             $alumniList = new LengthAwarePaginator([], 0, 12);
@@ -261,6 +262,7 @@ class InformationController extends Controller
                 'alumniList',
                 'selectedYear',
                 'selectedGender',
+                'selectedUnit',
                 'search',
                 'unitId',
                 'units',
@@ -321,6 +323,7 @@ class InformationController extends Controller
             'alumni',
             'availableYears',
             'units',
+            'selectedUnit',
             'selectedYear',
             'selectedGender',
             'search',
