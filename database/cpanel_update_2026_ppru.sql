@@ -501,6 +501,33 @@ SELECT 'Admin IAI NRU', 'admin.iainru@ppru.ac.id', '$2y$12$Fnv7z3clAUXgnb2cjLWcS
 FROM `unit_pendidikans` u WHERE u.short_name = 'IAI NRU'
 ON DUPLICATE KEY UPDATE `unit_pendidikan_id` = VALUES(`unit_pendidikan_id`), `role` = VALUES(`role`);
 
+-- ------------------------------------------------------------------------------
+-- TABEL: alumnis (Penyimpanan Profil Alumni, Segmentasi Tahun & Gender)
+-- ------------------------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS `alumnis` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `gender` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'putra',
+  `graduation_year` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `unit_pendidikan_id` bigint(20) unsigned DEFAULT NULL,
+  `activity` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `photo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `social_media` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `bio` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `order` int(11) NOT NULL DEFAULT '1',
+  `is_published` tinyint(1) NOT NULL DEFAULT '1',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `alumnis_slug_index` (`slug`),
+  KEY `alumnis_gender_index` (`gender`),
+  KEY `alumnis_graduation_year_index` (`graduation_year`),
+  KEY `alumnis_unit_pendidikan_id_index` (`unit_pendidikan_id`),
+  KEY `alumnis_is_published_index` (`is_published`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 SET FOREIGN_KEY_CHECKS = 1;
 
 -- ==============================================================================

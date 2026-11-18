@@ -4,6 +4,7 @@ use App\Models\Alumni;
 use App\Models\UnitPendidikan;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Storage;
 
 beforeEach(function () {
@@ -130,4 +131,13 @@ test('public alumni page displays segmen tahun lulus, putra putri, and data alum
     $responsePutri->assertStatus(200);
     $responsePutri->assertSee('Maryam Santriwati Berprestasi');
     $responsePutri->assertDontSee('Zaidan Santriwan Teladan');
+});
+
+test('alumni controller auto heals and creates alumnis table if missing on cpanel', function () {
+    Schema::dropIfExists('alumnis');
+    expect(Schema::hasTable('alumnis'))->toBeFalse();
+
+    $response = $this->actingAs($this->admin)->get(route('admin.alumni.index'));
+    $response->assertStatus(200);
+    expect(Schema::hasTable('alumnis'))->toBeTrue();
 });

@@ -6,9 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Models\ActivityLog;
 use App\Models\Alumni;
 use App\Models\UnitPendidikan;
+use App\Services\CmsAutoHealService;
 use App\Services\WebpService;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
 
 class AdminAlumniController extends Controller
@@ -18,10 +21,34 @@ class AdminAlumniController extends Controller
     public function __construct(WebpService $webpService)
     {
         $this->webpService = $webpService;
+        CmsAutoHealService::ensureAlumnisTableExists();
     }
 
     public function index(Request $request)
     {
+        if (! Schema::hasTable('alumnis')) {
+            CmsAutoHealService::ensureAlumnisTableExists();
+        }
+
+        $selectedYear = $request->input('year');
+        $selectedGender = $request->input('gender');
+
+        if (! Schema::hasTable('alumnis')) {
+            $alumnis = new LengthAwarePaginator([], 0, 15);
+            $counts = ['total' => 0, 'putra' => 0, 'putri' => 0];
+            $availableYears = collect();
+            $units = Schema::hasTable('unit_pendidikans') ? UnitPendidikan::orderBy('order', 'asc')->get() : collect();
+
+            return view('admin.alumni.index', compact(
+                'alumnis',
+                'counts',
+                'availableYears',
+                'units',
+                'selectedYear',
+                'selectedGender'
+            ));
+        }
+
         $user = $request->user();
         $query = Alumni::query()->with('unitPendidikan');
 

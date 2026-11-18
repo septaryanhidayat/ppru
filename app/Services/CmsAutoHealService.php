@@ -14,6 +14,7 @@ use App\Models\UnitPendidikan;
 use App\Models\User;
 use App\Models\Video;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
@@ -177,6 +178,94 @@ class CmsAutoHealService
             }
         } catch (\Throwable $e) {
             Log::error('CmsAutoHealService::ensureHomeStatisticsTableExists error: '.$e->getMessage());
+        }
+    }
+
+    /**
+     * Ensure alumnis table exists and is populated (fail-safe for cPanel).
+     */
+    public static function ensureAlumnisTableExists(): void
+    {
+        try {
+            if (! Schema::hasTable('alumnis')) {
+                Schema::create('alumnis', function (Blueprint $table) {
+                    $table->id();
+                    $table->string('name');
+                    $table->string('slug')->nullable()->index();
+                    $table->string('gender')->default('putra')->index(); // 'putra' atau 'putri'
+                    $table->string('graduation_year', 10)->index(); // Contoh: '2024', '2020'
+                    $table->unsignedBigInteger('unit_pendidikan_id')->nullable()->index();
+                    $table->string('activity')->comment('Aktivitas, profesi, pekerjaan, atau perkuliahan setelah lulus');
+                    $table->string('photo')->nullable();
+                    $table->string('phone')->nullable();
+                    $table->string('social_media')->nullable();
+                    $table->text('bio')->nullable();
+                    $table->integer('order')->default(1);
+                    $table->boolean('is_published')->default(true)->index();
+                    $table->timestamps();
+                });
+            }
+
+            // Populate from posts if empty
+            if (Schema::hasTable('alumnis') && DB::table('alumnis')->count() === 0) {
+                if (Schema::hasTable('posts')) {
+                    $existingAlumniPosts = DB::table('posts')->where('type', 'alumni')->get();
+                    $units = Schema::hasTable('unit_pendidikans') ? DB::table('unit_pendidikans')->get() : collect();
+
+                    foreach ($existingAlumniPosts as $idx => $post) {
+                        $year = '2020';
+                        if (preg_match('/(19|20)\d{2}/', ($post->excerpt ?? '').' '.($post->content ?? ''), $yearMatch)) {
+                            $year = $yearMatch[0];
+                        }
+
+                        $nameLower = strtolower($post->title);
+                        $isPutri = str_contains($nameLower, 'ustadzah')
+                            || str_contains($nameLower, 'fatimah')
+                            || str_contains($nameLower, 'aisyah')
+                            || str_contains($nameLower, 'nurul')
+                            || str_contains($nameLower, 'khadijah')
+                            || str_contains($nameLower, 'maryam')
+                            || str_contains(strtolower((string) ($post->content ?? '')), 'santriwati');
+                        $gender = $isPutri ? 'putri' : 'putra';
+
+                        $matchedUnitId = null;
+                        $excerptAndContent = ($post->excerpt ?? '').' '.($post->content ?? '');
+                        foreach ($units as $u) {
+                            if (! empty($u->short_name) && str_contains($excerptAndContent, $u->short_name)) {
+                                $matchedUnitId = $u->id;
+                                break;
+                            }
+                            if (! empty($u->name) && str_contains($excerptAndContent, $u->name)) {
+                                $matchedUnitId = $u->id;
+                                break;
+                            }
+                        }
+
+                        $activity = $post->excerpt ?? '';
+                        if (str_contains((string) $activity, '•')) {
+                            $parts = explode('•', (string) $activity);
+                            $activity = trim(end($parts));
+                        }
+
+                        DB::table('alumnis')->insert([
+                            'name' => $post->title,
+                            'slug' => $post->slug ?: Str::slug($post->title).'-'.($idx + 1),
+                            'gender' => $gender,
+                            'graduation_year' => $year,
+                            'unit_pendidikan_id' => $matchedUnitId,
+                            'activity' => $activity ?: 'Alumni Pondok Pesantren Raudhatul Ulum Sakatiga',
+                            'photo' => $post->featured_image ?: null,
+                            'bio' => strip_tags((string) ($post->content ?? '')),
+                            'order' => $idx + 1,
+                            'is_published' => ($post->status ?? 'publish') === 'publish',
+                            'created_at' => $post->created_at ?: now(),
+                            'updated_at' => now(),
+                        ]);
+                    }
+                }
+            }
+        } catch (\Throwable $e) {
+            Log::error('CmsAutoHealService::ensureAlumnisTableExists error: '.$e->getMessage());
         }
     }
 
@@ -628,6 +717,7 @@ class CmsAutoHealService
         self::ensureHeroSlidesTableExists();
         self::ensureNavMenusTableExists();
         self::ensureHomeStatisticsTableExists();
+        self::ensureAlumnisTableExists();
         self::ensureOfficialDemoContentsSeeded();
     }
 

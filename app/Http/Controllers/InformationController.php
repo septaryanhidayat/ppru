@@ -13,7 +13,10 @@ use App\Models\Setting;
 use App\Models\Testimonial;
 use App\Models\UnitPendidikan;
 use App\Models\Video;
+use App\Services\CmsAutoHealService;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
 
 class InformationController extends Controller
@@ -215,7 +218,11 @@ class InformationController extends Controller
 
         $posts = $query->latest('published_at')->latest('id')->paginate(9)->withQueryString();
 
-        $alumniProfilesCount = Alumni::published()->count();
+        if (! Schema::hasTable('alumnis')) {
+            CmsAutoHealService::ensureAlumnisTableExists();
+        }
+
+        $alumniProfilesCount = Schema::hasTable('alumnis') ? Alumni::published()->count() : 0;
 
         return view('frontend.ikarus.index', compact(
             'posts',
@@ -233,10 +240,36 @@ class InformationController extends Controller
 
     public function alumni(Request $request)
     {
+        if (! Schema::hasTable('alumnis')) {
+            CmsAutoHealService::ensureAlumnisTableExists();
+        }
+
         $selectedYear = $request->input('year');
         $selectedGender = $request->input('gender');
         $search = $request->input('q');
         $unitId = $request->input('unit_id');
+
+        if (! Schema::hasTable('alumnis')) {
+            $alumniList = new LengthAwarePaginator([], 0, 12);
+            $countTotal = 0;
+            $countPutra = 0;
+            $countPutri = 0;
+            $availableYears = collect();
+            $units = Schema::hasTable('unit_pendidikans') ? UnitPendidikan::orderBy('order', 'asc')->get() : collect();
+
+            return view('frontend.alumni.index', compact(
+                'alumniList',
+                'selectedYear',
+                'selectedGender',
+                'search',
+                'unitId',
+                'units',
+                'countTotal',
+                'countPutra',
+                'countPutri',
+                'availableYears'
+            ));
+        }
 
         $query = Alumni::published()->with('unitPendidikan');
 
