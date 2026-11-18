@@ -1,57 +1,283 @@
 @extends('layouts.frontend')
 
 @section('title', 'Data Alumni - Pondok Pesantren Raudhatul Ulum Sakatiga')
-@section('meta_description', 'Database dan profil alumni Pondok Pesantren Raudhatul Ulum Sakatiga: jejak langkah lulusan di perguruan tinggi dan dunia profesional.')
+@section('meta_description', 'Database dan direktori resmi alumni Pondok Pesantren Raudhatul Ulum Sakatiga: rekam jejak lulusan di perguruan tinggi dan dunia profesional.')
 
 @section('content')
-<div class="bg-gradient-to-r from-emerald-950 via-[#00913e] to-emerald-900 text-white py-12">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <nav class="text-xs text-emerald-200 mb-3 flex items-center space-x-2">
-            <a href="{{ route('home') }}" class="hover:text-white transition">Beranda</a>
+{{-- HERO HEADER --}}
+<div class="bg-gradient-to-br from-[#053d1c] via-[#00843d] to-emerald-950 text-white py-12 sm:py-16 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#fcd116_1px,transparent_1px)] [background-size:16px_16px]"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <nav class="text-xs text-emerald-200 mb-4 flex items-center space-x-2">
+            <a href="{{ route('home') }}" class="hover:text-amber-300 transition">Beranda</a>
             <span>/</span>
-            <span class="text-amber-300 font-semibold">Data Alumni</span>
+            <a href="{{ route('ikarus.index') }}" class="hover:text-amber-300 transition">IKARUS</a>
+            <span>/</span>
+            <span class="text-amber-300 font-bold">Data Alumni</span>
         </nav>
-        <div class="flex items-center space-x-3">
-            <div class="w-10 h-10 rounded-xl bg-amber-400 text-emerald-950 flex items-center justify-center font-bold text-xl shadow-md">
-                <i class="fa-solid fa-user-graduate"></i>
-            </div>
-            <div>
-                <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Data Alumni Kebanggaan</h1>
-                <p class="text-sm text-emerald-100 mt-1 font-light">
-                    Kiprah dan rekam jejak lulusan Pondok Pesantren Raudhatul Ulum Sakatiga di berbagai penjuru nusantara.
+
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+            <div class="max-w-2xl">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-extrabold bg-amber-400/20 text-amber-300 border border-amber-400/30 mb-3">
+                    <i class="fa-solid fa-user-graduate"></i>
+                    <span>Direktori Resmi Alumni PPRU Sakatiga</span>
+                </span>
+                <h1 class="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-white">
+                    Data &amp; Rekam Jejak Alumni
+                </h1>
+                <p class="text-sm sm:text-base text-emerald-100 mt-2 font-light leading-relaxed">
+                    Kiprah dan dedikasi lulusan Pondok Pesantren Raudhatul Ulum Sakatiga di berbagai perguruan tinggi ternama dan ranah profesional di penjuru nusantara serta mancanegara.
                 </p>
+            </div>
+
+            {{-- QUICK STATS BADGES --}}
+            <div class="grid grid-cols-3 gap-3 shrink-0">
+                <div class="bg-white/10 backdrop-blur-md p-3.5 sm:p-4 rounded-2xl border border-white/15 text-center">
+                    <span class="text-2xl sm:text-3xl font-black text-amber-300 block leading-tight">{{ number_format($countTotal) }}</span>
+                    <span class="text-[11px] text-emerald-100 font-medium mt-0.5 block">Total Alumni</span>
+                </div>
+                <div class="bg-white/10 backdrop-blur-md p-3.5 sm:p-4 rounded-2xl border border-white/15 text-center">
+                    <span class="text-2xl sm:text-3xl font-black text-emerald-200 block leading-tight">{{ number_format($countPutra) }}</span>
+                    <span class="text-[11px] text-emerald-100 font-medium mt-0.5 block">Santriwan (PA)</span>
+                </div>
+                <div class="bg-white/10 backdrop-blur-md p-3.5 sm:p-4 rounded-2xl border border-white/15 text-center">
+                    <span class="text-2xl sm:text-3xl font-black text-purple-200 block leading-tight">{{ number_format($countPutri) }}</span>
+                    <span class="text-[11px] text-emerald-100 font-medium mt-0.5 block">Santriwati (PI)</span>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
-        @forelse($alumni as $idx => $item)
-            <div class="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 text-center flex flex-col items-center group reveal-fade-up">
-                <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden mb-4 bg-emerald-50 ring-4 ring-emerald-100 shadow-md group-hover:scale-105 transition">
-                    <img src="{{ $item->featured_image ?: '/uploads/logo-ppru-square.png' }}" alt="{{ $item->title }}" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='/uploads/logo-ppru-square.png'">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 space-y-8">
+
+    {{-- SEGMEN WRAPPER CARD --}}
+    <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-gray-100 space-y-6">
+
+        {{-- SEGMEN 1: TAHUN LULUS (ANGKATAN) --}}
+        <div>
+            <div class="flex items-center justify-between mb-3">
+                <div class="flex items-center gap-2">
+                    <span class="w-6 h-6 rounded-lg bg-emerald-100 text-[#00843d] flex items-center justify-center text-xs font-black">1</span>
+                    <h3 class="text-xs sm:text-sm font-extrabold uppercase tracking-wider text-gray-800 flex items-center gap-1.5">
+                        <i class="fa-solid fa-calendar-check text-[#00843d]"></i>
+                        <span>Pilih Tahun Lulus (Angkatan)</span>
+                    </h3>
                 </div>
-                <h3 class="font-bold text-gray-900 text-sm sm:text-base group-hover:text-[#00913e] transition line-clamp-1">
-                    {{ $item->title }}
+                @if(!empty($selectedYear))
+                    <span class="text-xs font-bold text-[#00843d]">Tahun Terpilih: {{ $selectedYear }}</span>
+                @endif
+            </div>
+
+            <div class="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-thin">
+                <a href="{{ request()->fullUrlWithQuery(['year' => null, 'page' => 1]) }}"
+                   class="px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition flex items-center gap-1.5 {{ empty($selectedYear) ? 'bg-[#00843d] text-white shadow-sm' : 'bg-gray-100 text-gray-600 hover:bg-gray-200' }}">
+                    <span>Semua Angkatan</span>
+                    <span class="px-1.5 py-0.5 rounded-md text-[10px] {{ empty($selectedYear) ? 'bg-white/20 text-white' : 'bg-gray-200 text-gray-700' }}">
+                        {{ $countTotal }}
+                    </span>
+                </a>
+
+                @foreach($availableYears as $yItem)
+                    @php
+                        $isActiveYear = ($selectedYear == $yItem->graduation_year);
+                    @endphp
+                    <a href="{{ request()->fullUrlWithQuery(['year' => $yItem->graduation_year, 'page' => 1]) }}"
+                       class="px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition flex items-center gap-1.5 {{ $isActiveYear ? 'bg-[#00843d] text-white shadow-sm' : 'bg-gray-100 text-gray-600 hover:bg-gray-200' }}">
+                        <span>Tahun {{ $yItem->graduation_year }}</span>
+                        <span class="px-1.5 py-0.5 rounded-md text-[10px] {{ $isActiveYear ? 'bg-white/20 text-white' : 'bg-gray-200 text-gray-700' }}">
+                            {{ $yItem->count }}
+                        </span>
+                    </a>
+                @endforeach
+            </div>
+        </div>
+
+        {{-- SEGMEN 2: PUTRA & PUTRI (GENDER SWITCHER) --}}
+        <div class="pt-5 border-t border-gray-100">
+            <div class="flex items-center gap-2 mb-3">
+                <span class="w-6 h-6 rounded-lg bg-emerald-100 text-[#00843d] flex items-center justify-center text-xs font-black">2</span>
+                <h3 class="text-xs sm:text-sm font-extrabold uppercase tracking-wider text-gray-800 flex items-center gap-1.5">
+                    <i class="fa-solid fa-users text-[#00843d]"></i>
+                    <span>Segmen Santriwan (Putra) &amp; Santriwati (Putri)</span>
                 </h3>
-                <span class="text-xs text-[#00913e] font-semibold mt-1">
-                    {{ $item->excerpt ?: 'Alumni Pondok Pesantren Raudhatul Ulum' }}
-                </span>
-                <span class="inline-block mt-3 bg-emerald-50 text-emerald-700 text-[10px] font-bold px-2.5 py-0.5 rounded-full">
-                    Terverifikasi
-                </span>
             </div>
-        @empty
-            <div class="col-span-full py-12 text-center bg-white rounded-3xl border border-gray-100">
-                <i class="fa-solid fa-user-graduate text-4xl text-gray-300 mb-3 block"></i>
-                <p class="text-gray-500 font-medium">Data alumni sedang diperbarui.</p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-2xl">
+                {{-- Tab Semua --}}
+                <a href="{{ request()->fullUrlWithQuery(['gender' => null, 'page' => 1]) }}"
+                   class="p-3 rounded-2xl border text-center transition flex items-center justify-center gap-2 {{ empty($selectedGender) ? 'bg-[#00843d] text-white border-[#00843d] shadow-sm' : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-50' }}">
+                    <i class="fa-solid fa-layer-group text-sm"></i>
+                    <span class="text-xs font-extrabold">Semua Alumni</span>
+                </a>
+
+                {{-- Tab Putra --}}
+                <a href="{{ request()->fullUrlWithQuery(['gender' => 'putra', 'page' => 1]) }}"
+                   class="p-3 rounded-2xl border text-center transition flex items-center justify-center gap-2 {{ $selectedGender === 'putra' ? 'bg-[#00843d] text-white border-[#00843d] shadow-sm' : 'bg-white text-emerald-800 border-gray-200 hover:bg-emerald-50/50' }}">
+                    <i class="fa-solid fa-mars text-sm"></i>
+                    <span class="text-xs font-extrabold">Putra (Santriwan)</span>
+                </a>
+
+                {{-- Tab Putri --}}
+                <a href="{{ request()->fullUrlWithQuery(['gender' => 'putri', 'page' => 1]) }}"
+                   class="p-3 rounded-2xl border text-center transition flex items-center justify-center gap-2 {{ $selectedGender === 'putri' ? 'bg-purple-700 text-white border-purple-700 shadow-sm' : 'bg-white text-purple-700 border-gray-200 hover:bg-purple-50/50' }}">
+                    <i class="fa-solid fa-venus text-sm"></i>
+                    <span class="text-xs font-extrabold">Putri (Santriwati)</span>
+                </a>
             </div>
-        @endforelse
+        </div>
+
+        {{-- FILTER PENCARIAN & UNIT ASAL --}}
+        <form action="{{ route('alumni.index') }}" method="GET" class="pt-5 border-t border-gray-100 grid grid-cols-1 md:grid-cols-3 gap-4 items-end">
+            @if(!empty($selectedYear))
+                <input type="hidden" name="year" value="{{ $selectedYear }}">
+            @endif
+            @if(!empty($selectedGender))
+                <input type="hidden" name="gender" value="{{ $selectedGender }}">
+            @endif
+
+            {{-- Filter Unit --}}
+            <div>
+                <label class="block text-xs font-bold text-gray-600 mb-1.5">Unit Madrasah / Sekolah Asal:</label>
+                <select name="unit_id" onchange="this.form.submit()" class="w-full bg-gray-50 text-xs text-gray-800 rounded-xl px-3.5 py-2.5 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#00843d]">
+                    <option value="">-- Semua Unit Pendidikan --</option>
+                    @foreach($units as $u)
+                        <option value="{{ $u->id }}" {{ request('unit_id') == $u->id ? 'selected' : '' }}>
+                            {{ $u->name }} {{ $u->short_name ? "({$u->short_name})" : '' }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+
+            {{-- Keyword Search --}}
+            <div class="md:col-span-2">
+                <label class="block text-xs font-bold text-gray-600 mb-1.5">Pencarian Alumni:</label>
+                <div class="flex items-center gap-2">
+                    <div class="relative flex-1">
+                        <input type="text" name="q" value="{{ $search }}" placeholder="Cari nama alumni, profesi, kampus, instansi..." class="w-full bg-gray-50 text-xs text-gray-800 rounded-xl pl-9 pr-3.5 py-2.5 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#00843d]">
+                        <i class="fa-solid fa-magnifying-glass text-gray-400 text-xs absolute left-3 top-3"></i>
+                    </div>
+                    <button type="submit" class="px-5 py-2.5 bg-[#00843d] hover:bg-emerald-800 text-white text-xs font-bold rounded-xl transition shadow-xs">
+                        Cari
+                    </button>
+                    @if(request()->hasAny(['year', 'gender', 'unit_id', 'q']))
+                        <a href="{{ route('alumni.index') }}" class="px-3.5 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs font-bold rounded-xl transition" title="Reset Semua Filter">
+                            Reset
+                        </a>
+                    @endif
+                </div>
+            </div>
+        </form>
+
     </div>
 
-    <div class="mt-10">
-        {{ $alumni->links() }}
+    {{-- SEGMEN 3: DATA ALUMNI (GRID KARTU PROFIL) --}}
+    <div class="space-y-4">
+        <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <span class="w-6 h-6 rounded-lg bg-emerald-100 text-[#00843d] flex items-center justify-center text-xs font-black">3</span>
+                <h2 class="text-sm sm:text-base font-extrabold uppercase tracking-wider text-gray-900">
+                    Daftar Profil Alumni
+                </h2>
+            </div>
+            <span class="text-xs font-semibold text-gray-500">
+                Menampilkan {{ $alumni->total() }} alumni terdata
+            </span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            @forelse($alumni as $idx => $item)
+                @php
+                    $isItemPutri = ($item->gender === 'putri');
+                    $ringColor = $isItemPutri ? 'ring-purple-200 group-hover:ring-purple-400' : 'ring-emerald-200 group-hover:ring-emerald-400';
+                @endphp
+                <div class="bg-white rounded-3xl p-5 border border-gray-100 shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col justify-between group reveal-fade-up">
+                    <div>
+                        {{-- Top Badges: Tahun Lulus & Gender --}}
+                        <div class="flex items-center justify-between gap-2 mb-4">
+                            <span class="px-2.5 py-1 rounded-lg text-[11px] font-extrabold bg-amber-50 text-amber-800 border border-amber-200 flex items-center gap-1">
+                                <i class="fa-solid fa-graduation-cap text-[10px]"></i>
+                                <span>Lulusan {{ $item->graduation_year }}</span>
+                            </span>
+
+                            @if($isItemPutri)
+                                <span class="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold bg-purple-50 text-purple-700 flex items-center gap-1">
+                                    <i class="fa-solid fa-venus text-[9px]"></i>
+                                    <span>Putri</span>
+                                </span>
+                            @else
+                                <span class="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold bg-emerald-50 text-[#00843d] flex items-center gap-1">
+                                    <i class="fa-solid fa-mars text-[9px]"></i>
+                                    <span>Putra</span>
+                                </span>
+                            @endif
+                        </div>
+
+                        {{-- Photo --}}
+                        <div class="flex justify-center mb-4">
+                            <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden bg-gray-50 ring-4 {{ $ringColor }} shadow-md group-hover:scale-105 transition duration-300 relative">
+                                <img src="{{ $item->photo_url }}" alt="{{ $item->name }}" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='/uploads/avatar-neutral-gray.svg'">
+                            </div>
+                        </div>
+
+                        {{-- Name & Unit --}}
+                        <div class="text-center">
+                            <h3 class="font-black text-gray-900 text-sm sm:text-base leading-snug group-hover:text-[#00843d] transition line-clamp-2">
+                                {{ $item->name }}
+                            </h3>
+                            <p class="text-[11px] text-[#00843d] font-bold mt-1">
+                                {{ $item->unitPendidikan?->name ?? 'Pondok Pesantren Raudhatul Ulum' }}
+                            </p>
+                        </div>
+
+                        {{-- Aktivitas / Pekerjaan / Perkuliahan --}}
+                        <div class="mt-4 p-3 rounded-2xl bg-slate-50 border border-slate-100 text-center">
+                            <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1">Aktivitas Saat Ini</span>
+                            <p class="text-xs font-semibold text-slate-800 line-clamp-2 leading-relaxed" title="{{ $item->activity }}">
+                                <i class="fa-solid fa-briefcase text-emerald-600 mr-1 text-[11px]"></i>
+                                {{ $item->activity }}
+                            </p>
+                        </div>
+
+                        @if(!empty($item->bio))
+                            <p class="text-[11px] text-gray-500 line-clamp-2 mt-3 text-center italic font-light leading-relaxed">
+                                "{{ $item->bio }}"
+                            </p>
+                        @endif
+                    </div>
+
+                    {{-- Card Footer --}}
+                    <div class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between text-[11px] text-gray-400">
+                        <span class="font-medium text-emerald-700 flex items-center gap-1">
+                            <i class="fa-solid fa-circle-check text-[10px]"></i>
+                            <span>Terverifikasi</span>
+                        </span>
+                        @if($item->social_media)
+                            <span class="font-mono text-slate-500 truncate max-w-[120px]">{{ $item->social_media }}</span>
+                        @else
+                            <span class="text-slate-400">PPRU Sakatiga</span>
+                        @endif
+                    </div>
+                </div>
+            @empty
+                <div class="col-span-full py-16 text-center bg-white rounded-3xl border border-dashed border-gray-200">
+                    <i class="fa-solid fa-user-graduate text-4xl text-gray-300 mb-3 block"></i>
+                    <h4 class="font-extrabold text-sm text-gray-700">Belum ada data alumni yang cocok.</h4>
+                    <p class="text-xs text-gray-500 mt-1">Silakan sesuaikan filter tahun lulus atau segmen putra/putri di atas.</p>
+                    <a href="{{ route('alumni.index') }}" class="mt-3 inline-block px-4 py-2 bg-emerald-50 text-[#00843d] font-bold text-xs rounded-xl hover:bg-emerald-100 transition">
+                        Reset Filter
+                    </a>
+                </div>
+            @endforelse
+        </div>
+
+        {{-- PAGINATION --}}
+        @if($alumni->hasPages())
+            <div class="mt-8 pt-4">
+                {{ $alumni->links() }}
+            </div>
+        @endif
     </div>
+
 </div>
 @endsection

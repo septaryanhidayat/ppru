@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\ActivityLog;
 use App\Models\Agenda;
+use App\Models\Alumni;
 use App\Models\Feedback;
 use App\Models\Pengumuman;
 use App\Models\Post;
 use App\Models\ServiceSubmission;
 use App\Models\Setting;
 use App\Models\Testimonial;
+use App\Models\UnitPendidikan;
 use App\Models\Video;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -213,7 +215,7 @@ class InformationController extends Controller
 
         $posts = $query->latest('published_at')->latest('id')->paginate(9)->withQueryString();
 
-        $alumniProfilesCount = Post::where('type', 'alumni')->whereIn('status', ['publish', 'published'])->count();
+        $alumniProfilesCount = Alumni::published()->count();
 
         return view('frontend.ikarus.index', compact(
             'posts',
@@ -229,14 +231,70 @@ class InformationController extends Controller
         ));
     }
 
-    public function alumni()
+    public function alumni(Request $request)
     {
-        $alumni = Post::where('type', 'alumni')
-            ->where('status', 'publish')
-            ->latest('created_at')
-            ->paginate(16);
+        $selectedYear = $request->input('year');
+        $selectedGender = $request->input('gender');
+        $search = $request->input('q');
+        $unitId = $request->input('unit_id');
 
-        return view('frontend.alumni.index', compact('alumni'));
+        $query = Alumni::published()->with('unitPendidikan');
+
+        // Segmen 1: Tahun Lulus
+        if (! empty($selectedYear) && $selectedYear !== 'all') {
+            $query->where('graduation_year', $selectedYear);
+        }
+
+        // Segmen 2: Putra / Putri
+        if (in_array($selectedGender, ['putra', 'putri'])) {
+            $query->where('gender', $selectedGender);
+        }
+
+        // Filter Unit Asal
+        if (! empty($unitId)) {
+            $query->where('unit_pendidikan_id', $unitId);
+        }
+
+        // Search Keyword
+        if (! empty($search)) {
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'like', "%{$search}%")
+                    ->orWhere('activity', 'like', "%{$search}%")
+                    ->orWhere('bio', 'like', "%{$search}%");
+            });
+        }
+
+        $countTotal = Alumni::published()->count();
+        $countPutra = Alumni::published()->where('gender', 'putra')->count();
+        $countPutri = Alumni::published()->where('gender', 'putri')->count();
+
+        // Daftar tahun kelulusan yang tersedia beserta jumlah alumni
+        $availableYears = Alumni::published()
+            ->select('graduation_year')
+            ->selectRaw('count(*) as count')
+            ->groupBy('graduation_year')
+            ->orderBy('graduation_year', 'desc')
+            ->get();
+
+        $units = UnitPendidikan::orderBy('order', 'asc')->get();
+
+        $alumni = $query->orderBy('graduation_year', 'desc')
+            ->orderBy('order', 'asc')
+            ->orderBy('id', 'desc')
+            ->paginate(16)
+            ->withQueryString();
+
+        return view('frontend.alumni.index', compact(
+            'alumni',
+            'availableYears',
+            'units',
+            'selectedYear',
+            'selectedGender',
+            'search',
+            'countTotal',
+            'countPutra',
+            'countPutri'
+        ));
     }
 
     public function layanan()

@@ -357,7 +357,7 @@
                         <span class="sidebar-label">Layanan &amp; Syarat</span>
                     </a>
 
-                    <a href="{{ route('admin.posts.index', ['type' => 'alumni']) }}" class="sidebar-item flex items-center space-x-3 px-3 py-1.5 rounded-lg transition {{ request('type') === 'alumni' ? 'bg-gradient-to-r from-[#00913e] to-[#05a849] text-white font-bold shadow-md' : 'hover:bg-slate-800/70 text-slate-300 hover:text-white' }}" title="Data Alumni">
+                    <a href="{{ route('admin.alumni.index') }}" class="sidebar-item flex items-center space-x-3 px-3 py-1.5 rounded-lg transition {{ request()->routeIs('admin.alumni*') ? 'bg-gradient-to-r from-[#00913e] to-[#05a849] text-white font-bold shadow-md' : 'hover:bg-slate-800/70 text-slate-300 hover:text-white' }}" title="Data Alumni">
                         <i class="fa-solid fa-user-graduate text-xs w-4 text-center text-cyan-400"></i>
                         <span class="sidebar-label">Data Alumni</span>
                     </a>

@@ -18,12 +18,16 @@
     {{-- Type Tabs Navigation --}}
     <div class="flex flex-wrap items-center gap-2 border-b border-slate-200 pb-3">
         @foreach($typeLabels as $tKey => $tInfo)
-            <a href="{{ route('admin.posts.index', ['type' => $tKey]) }}" 
+            @php
+                $tabUrl = $tKey === 'alumni' ? route('admin.alumni.index') : route('admin.posts.index', ['type' => $tKey]);
+                $tabCount = $tKey === 'alumni' ? \App\Models\Alumni::count() : ($counts[$tKey] ?? 0);
+            @endphp
+            <a href="{{ $tabUrl }}" 
                class="inline-flex items-center space-x-2 px-4 py-2.5 rounded-xl font-bold text-xs transition {{ ($type ?? 'post') === $tKey ? 'bg-[#00843d] text-white shadow-sm' : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200' }}">
                 <i class="fa-solid {{ $tInfo['icon'] }}"></i>
                 <span>{{ $tInfo['title'] }}</span>
                 <span class="ml-1.5 px-2 py-0.5 rounded-full text-[10px] {{ ($type ?? 'post') === $tKey ? 'bg-white/20 text-white' : 'bg-slate-100 text-slate-600' }}">
-                    {{ number_format($counts[$tKey] ?? 0) }}
+                    {{ number_format($tabCount) }}
                 </span>
             </a>
         @endforeach

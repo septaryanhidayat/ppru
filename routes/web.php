@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminAgendaController;
+use App\Http\Controllers\Admin\AdminAlumniController;
 use App\Http\Controllers\Admin\AdminAnalyticsController;
 use App\Http\Controllers\Admin\AdminBackupController;
 use App\Http\Controllers\Admin\AdminBidangController;
@@ -90,6 +91,9 @@ Route::prefix('admin')->middleware(['auth', 'unit.access'])->name('admin.')->gro
 
     // Dewan Guru & GTK
     Route::resource('dewan', AdminDewanController::class)->except(['show']);
+
+    // Data Alumni
+    Route::resource('alumni', AdminAlumniController::class)->parameters(['alumni' => 'alumni'])->except(['show']);
 
     // Fasilitas Sekolah
     Route::resource('bidang', AdminBidangController::class)->except(['show']);
