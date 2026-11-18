@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\ActivityLog;
 use App\Models\HeroSlide;
+use App\Models\Setting;
 use App\Services\CmsAutoHealService;
 use App\Services\WebpService;
 use Illuminate\Http\Request;
@@ -68,6 +69,10 @@ class AdminHeroSlideController extends Controller
             'is_active' => $request->has('is_active') ? (bool) $request->input('is_active') : true,
         ]);
 
+        if (! empty($slide->badge)) {
+            Setting::set('home_hero_badge', $slide->badge);
+        }
+
         ActivityLog::create([
             'user_id' => Auth::id(),
             'user_name' => Auth::user()->name ?? 'Administrator',
@@ -125,6 +130,10 @@ class AdminHeroSlideController extends Controller
             'order' => $validated['order'] ?? $heroSlide->order,
             'is_active' => $request->has('is_active') ? (bool) $request->input('is_active') : false,
         ]);
+
+        if (! empty($heroSlide->badge)) {
+            Setting::set('home_hero_badge', $heroSlide->badge);
+        }
 
         ActivityLog::create([
             'user_id' => Auth::id(),

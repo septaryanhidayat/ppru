@@ -3,6 +3,7 @@
 use App\Models\Category;
 use App\Models\Download;
 use App\Models\Dpc;
+use App\Models\HeroSlide;
 use App\Models\NavMenu;
 use App\Models\Post;
 use App\Models\Setting;
@@ -277,4 +278,29 @@ test('prestasi section prioritizes type prestasi and adapts layout cleanly when 
     $response->assertDontSee('Raudhatul Ulum Goes To International');
     $response->assertSee(route('prestasi.show', $p1->slug));
     $response->assertSee(route('prestasi.show', $p2->slug));
+});
+
+test('hero slider displays updated custom badge and secondary button from database', function () {
+    $slide = HeroSlide::first();
+    if (! $slide) {
+        $slide = HeroSlide::create([
+            'title' => 'Pondok Pesantren Raudhatul Ulum Sakatiga',
+            'subtitle' => 'Basis Kaderisasi Generasi Terbaik',
+            'badge' => 'Selamat Datang di Official Website',
+            'order' => 1,
+            'is_active' => true,
+        ]);
+    } else {
+        $slide->update([
+            'badge' => 'Selamat Datang di Official Website',
+            'btn_secondary_text' => 'Daftar Santri Baru',
+            'btn_secondary_url' => '/pendaftaran',
+        ]);
+    }
+
+    $response = $this->get(route('home'));
+    $response->assertStatus(200);
+    $response->assertSee('Selamat Datang di Official Website');
+    $response->assertSee('x-text="slide.badge"', false);
+    $response->assertSee('Daftar Santri Baru');
 });

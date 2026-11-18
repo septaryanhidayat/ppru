@@ -37,9 +37,9 @@
                 {{-- Konten Rata Tengah --}}
                 <div class="absolute inset-0 flex items-center justify-center pt-4 pb-20 sm:pb-16">
                     <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center text-white space-y-3 sm:space-y-4">
-                        <div class="inline-flex items-center space-x-1.5 sm:space-x-2 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full text-[9px] xs:text-[10px] sm:text-xs font-bold uppercase tracking-wider sm:tracking-widest bg-school-green/90 text-white shadow-lg backdrop-blur-xs border border-white/20 reveal-fade-up max-w-[95vw] sm:max-w-none">
+                        <div x-show="slide.badge" class="inline-flex items-center space-x-1.5 sm:space-x-2 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full text-[9px] xs:text-[10px] sm:text-xs font-bold uppercase tracking-wider sm:tracking-widest bg-school-green/90 text-white shadow-lg backdrop-blur-xs border border-white/20 reveal-fade-up max-w-[95vw] sm:max-w-none">
                             <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-amber-400 animate-pulse shrink-0"></span>
-                            <span class="whitespace-nowrap overflow-hidden text-ellipsis">
+                            <span class="whitespace-nowrap overflow-hidden text-ellipsis" x-text="slide.badge">
                                 {{ $siteSettings['home_hero_badge'] ?? 'Pondok Pesantren Raudhatul Ulum Sakatiga' }}
                             </span>
                         </div>
@@ -50,9 +50,9 @@
                                 <span x-text="slide.btn_text"></span>
                                 <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
                             </a>
-                            <a href="{{ route('ppdb.index') }}" class="inline-flex items-center justify-center bg-school-green hover:bg-emerald-800 text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-full font-bold text-xs sm:text-sm shadow-xl transition border border-white/20 transform hover:scale-105">
+                            <a :href="slide.btn_sec_link || '{{ route('ppdb.index') }}'" class="inline-flex items-center justify-center bg-school-green hover:bg-emerald-800 text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-full font-bold text-xs sm:text-sm shadow-xl transition border border-white/20 transform hover:scale-105">
                                 <i class="fa-solid fa-user-graduate mr-2 text-xs"></i>
-                                <span>Pendaftaran PSB</span>
+                                <span x-text="slide.btn_sec_text || 'Pendaftaran PSB'"></span>
                             </a>
                         </div>
                     </div>
