@@ -6,6 +6,28 @@
 @section('content')
 <div class="space-y-6">
 
+    {{-- TYPE TABS NAVIGATION --}}
+    @php
+        $typeTabs = [
+            'post' => ['title' => 'Artikel & Berita', 'icon' => 'fa-newspaper', 'url' => route('admin.posts.index', ['type' => 'post']), 'count' => \App\Models\Post::where('type', 'post')->count()],
+            'prestasi' => ['title' => 'Prestasi Siswa', 'icon' => 'fa-trophy', 'url' => route('admin.posts.index', ['type' => 'prestasi']), 'count' => \App\Models\Post::where('type', 'prestasi')->count()],
+            'ekskul' => ['title' => 'Ekstrakurikuler', 'icon' => 'fa-people-group', 'url' => route('admin.posts.index', ['type' => 'ekskul']), 'count' => \App\Models\Post::where('type', 'ekskul')->count()],
+            'alumni' => ['title' => 'Data Alumni', 'icon' => 'fa-user-graduate', 'url' => route('admin.alumni.index'), 'count' => $counts['total'] ?? 0],
+        ];
+    @endphp
+    <div class="flex flex-wrap items-center gap-2 border-b border-slate-200 pb-3">
+        @foreach($typeTabs as $tKey => $tInfo)
+            <a href="{{ $tInfo['url'] }}" 
+               class="inline-flex items-center space-x-2 px-4 py-2.5 rounded-xl font-bold text-xs transition {{ $tKey === 'alumni' ? 'bg-[#00843d] text-white shadow-sm' : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200' }}">
+                <i class="fa-solid {{ $tInfo['icon'] }}"></i>
+                <span>{{ $tInfo['title'] }}</span>
+                <span class="ml-1.5 px-2 py-0.5 rounded-full text-[10px] {{ $tKey === 'alumni' ? 'bg-white/20 text-white' : 'bg-slate-100 text-slate-600' }}">
+                    {{ number_format($tInfo['count']) }}
+                </span>
+            </a>
+        @endforeach
+    </div>
+
     {{-- STATS & QUICK INFO --}}
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs flex items-center justify-between">
@@ -55,19 +77,19 @@
                 @if(!empty($selectedUnit))
                     @php $currUnit = $units->firstWhere('id', $selectedUnit); @endphp
                     @if($currUnit)
-                        <span class="text-[11px] font-bold text-[#00843d]">Unit: {{ $currUnit->short_name ?: $currUnit->name }}</span>
+                        <span class="text-[11px] font-bold text-[#00843d]">Terpilih: {{ $currUnit->short_name ?: $currUnit->name }}</span>
                     @endif
                 @endif
             </div>
             <div class="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-thin">
                 <a href="{{ request()->fullUrlWithQuery(['unit_id' => null, 'page' => 1]) }}"
-                   class="px-3 py-1.5 rounded-lg text-xs font-bold whitespace-nowrap transition {{ empty($selectedUnit) ? 'bg-[#00843d] text-white shadow-xs' : 'bg-slate-100 text-slate-600 hover:bg-slate-200' }}">
+                   class="px-3.5 py-1.5 rounded-lg text-xs font-bold whitespace-nowrap transition {{ empty($selectedUnit) ? 'bg-[#00843d] text-white shadow-xs' : 'bg-slate-100 text-slate-600 hover:bg-slate-200' }}">
                     Semua Lembaga
                 </a>
                 @foreach($units as $u)
                     @php $isActive = ($selectedUnit == $u->id); @endphp
                     <a href="{{ request()->fullUrlWithQuery(['unit_id' => $u->id, 'page' => 1]) }}"
-                       class="px-3 py-1.5 rounded-lg text-xs font-bold whitespace-nowrap transition {{ $isActive ? 'bg-[#00843d] text-white shadow-xs ring-2 ring-emerald-500/30' : 'bg-slate-100 text-slate-700 hover:bg-slate-200' }}"
+                       class="px-3.5 py-1.5 rounded-lg text-xs font-bold whitespace-nowrap transition {{ $isActive ? 'bg-[#00843d] text-white shadow-xs ring-2 ring-emerald-500/30' : 'bg-slate-100 text-slate-700 hover:bg-slate-200' }}"
                        title="{{ $u->name }}">
                         {{ $u->short_name ?: $u->name }}
                     </a>
@@ -75,26 +97,28 @@
             </div>
         </div>
 
-        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pt-3 border-t border-slate-100">
+        {{-- SEGMEN 2, 3 & ACTION BAR --}}
+        <div class="pt-3 border-t border-slate-100 flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+            
             {{-- SEGMEN 3: PUTRA / PUTRI TABS --}}
-            <div class="flex items-center gap-1.5 p-1 bg-slate-100 rounded-xl self-start sm:self-auto">
+            <div class="flex items-center gap-1 p-1 bg-slate-100 rounded-xl self-start sm:self-auto">
                 <a href="{{ request()->fullUrlWithQuery(['gender' => null, 'page' => 1]) }}" 
-                   class="px-4 py-2 rounded-lg text-xs font-bold transition {{ empty($selectedGender) ? 'bg-white text-slate-900 shadow-xs' : 'text-slate-600 hover:text-slate-900' }}">
+                   class="px-3.5 py-2 rounded-lg text-xs font-bold transition {{ empty($selectedGender) ? 'bg-white text-slate-900 shadow-xs' : 'text-slate-600 hover:text-slate-900' }}">
                     Semua ({{ $counts['total'] }})
                 </a>
                 <a href="{{ request()->fullUrlWithQuery(['gender' => 'putra', 'page' => 1]) }}" 
-                   class="px-4 py-2 rounded-lg text-xs font-bold transition flex items-center gap-1.5 {{ $selectedGender === 'putra' ? 'bg-[#00843d] text-white shadow-xs' : 'text-slate-600 hover:text-slate-900' }}">
+                   class="px-3.5 py-2 rounded-lg text-xs font-bold transition flex items-center gap-1.5 {{ $selectedGender === 'putra' ? 'bg-[#00843d] text-white shadow-xs' : 'text-slate-600 hover:text-slate-900' }}">
                     <i class="fa-solid fa-mars text-[10px]"></i>
                     <span>Putra ({{ $counts['putra'] }})</span>
                 </a>
                 <a href="{{ request()->fullUrlWithQuery(['gender' => 'putri', 'page' => 1]) }}" 
-                   class="px-4 py-2 rounded-lg text-xs font-bold transition flex items-center gap-1.5 {{ $selectedGender === 'putri' ? 'bg-purple-700 text-white shadow-xs' : 'text-slate-600 hover:text-slate-900' }}">
+                   class="px-3.5 py-2 rounded-lg text-xs font-bold transition flex items-center gap-1.5 {{ $selectedGender === 'putri' ? 'bg-purple-700 text-white shadow-xs' : 'text-slate-600 hover:text-slate-900' }}">
                     <i class="fa-solid fa-venus text-[10px]"></i>
                     <span>Putri ({{ $counts['putri'] }})</span>
                 </a>
             </div>
 
-            {{-- TOMBOL TAMBAH ALUMNI --}}
+            {{-- TOMBOL AKSI: HALAMAN PUBLIK & TAMBAH ALUMNI --}}
             <div class="flex items-center gap-2">
                 <a href="{{ route('alumni.index') }}" target="_blank" class="px-4 py-2.5 rounded-xl border border-slate-200 text-xs font-bold text-slate-600 hover:bg-slate-50 transition flex items-center gap-1.5" title="Lihat Tampilan Publik">
                     <i class="fa-solid fa-arrow-up-right-from-square text-[11px]"></i>
@@ -102,12 +126,12 @@
                 </a>
                 <a href="{{ route('admin.alumni.create') }}" class="px-5 py-2.5 rounded-xl bg-[#00843d] hover:bg-emerald-800 text-white text-xs font-bold transition shadow-sm flex items-center gap-2">
                     <i class="fa-solid fa-plus text-xs"></i>
-                    <span>Tambah Data Alumni</span>
+                    <span>+ Tambah Alumni</span>
                 </a>
             </div>
         </div>
 
-        {{-- FILTER FORM: TAHUN LULUS, SEARCH --}}
+        {{-- FILTER FORM: SEGMEN 2 (TAHUN LULUS) & PENCARIAN --}}
         <form action="{{ route('admin.alumni.index') }}" method="GET" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 pt-3 border-t border-slate-100">
             @if(!empty($selectedUnit))
                 <input type="hidden" name="unit_id" value="{{ $selectedUnit }}">
@@ -119,7 +143,7 @@
             {{-- Filter 2: Tahun Lulus --}}
             <div>
                 <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">2. Tahun Lulus</label>
-                <select name="year" onchange="this.form.submit()" class="w-full bg-slate-50 text-xs text-slate-800 rounded-xl px-3 py-2 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00843d]">
+                <select name="year" onchange="this.form.submit()" class="w-full bg-slate-50 text-xs text-slate-800 rounded-xl px-3 py-2.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00843d]">
                     <option value="">-- Semua Tahun Lulus --</option>
                     @foreach($availableYears as $yr)
                         <option value="{{ $yr }}" {{ $selectedYear == $yr ? 'selected' : '' }}>Tahun {{ $yr }}</option>
@@ -129,12 +153,12 @@
 
             {{-- Status Unit Terpilih Info --}}
             <div>
-                <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Pilihan Unit</label>
-                <div class="px-3 py-2 bg-slate-50 rounded-xl text-xs font-bold text-slate-700 truncate border border-slate-200">
+                <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Status Lembaga</label>
+                <div class="px-3 py-2.5 bg-slate-50 rounded-xl text-xs font-bold text-slate-700 truncate border border-slate-200">
                     @if(!empty($selectedUnit) && ($uObj = $units->firstWhere('id', $selectedUnit)))
                         {{ $uObj->short_name ?: $uObj->name }}
                     @else
-                        Semua Unit Pendidikan
+                        Semua Lembaga
                     @endif
                 </div>
             </div>
@@ -144,31 +168,14 @@
                 <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Cari Alumni</label>
                 <div class="flex items-center gap-2">
                     <div class="relative flex-1">
-                        <input type="text" name="q" value="{{ request('q') }}" placeholder="Cari nama, profesi, perkuliahan, atau instansi..." class="w-full bg-slate-50 text-xs text-slate-800 rounded-xl pl-9 pr-3 py-2 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00843d]">
-                        <i class="fa-solid fa-magnifying-glass text-slate-400 text-xs absolute left-3 top-2.5"></i>
+                        <input type="text" name="q" value="{{ request('q') }}" placeholder="Cari nama, profesi, perkuliahan, atau instansi..." class="w-full bg-slate-50 text-xs text-slate-800 rounded-xl pl-9 pr-3 py-2.5 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00843d]">
+                        <i class="fa-solid fa-magnifying-glass text-slate-400 text-xs absolute left-3 top-3"></i>
                     </div>
-                    <button type="submit" class="px-4 py-2 bg-slate-800 hover:bg-slate-900 text-white text-xs font-bold rounded-xl transition">
+                    <button type="submit" class="px-5 py-2.5 bg-slate-800 hover:bg-slate-900 text-white text-xs font-bold rounded-xl transition">
                         Cari
                     </button>
                     @if(request()->hasAny(['q', 'year', 'unit_id', 'gender']))
-                        <a href="{{ route('admin.alumni.index') }}" class="px-3 py-2 bg-slate-100 hover:bg-slate-200 text-slate-600 text-xs font-bold rounded-xl transition" title="Reset Filter">
-                            Reset
-                        </a>
-                    @endif
-                </div>
-            </div>
-        </form>
-    </div>
-                <div class="flex items-center gap-2">
-                    <div class="relative flex-1">
-                        <input type="text" name="q" value="{{ request('q') }}" placeholder="Cari nama, profesi, perkuliahan, atau instansi..." class="w-full bg-slate-50 text-xs text-slate-800 rounded-xl pl-9 pr-3 py-2 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#00843d]">
-                        <i class="fa-solid fa-magnifying-glass text-slate-400 text-xs absolute left-3 top-2.5"></i>
-                    </div>
-                    <button type="submit" class="px-4 py-2 bg-slate-800 hover:bg-slate-900 text-white text-xs font-bold rounded-xl transition">
-                        Cari
-                    </button>
-                    @if(request()->hasAny(['q', 'year', 'unit_id', 'gender']))
-                        <a href="{{ route('admin.alumni.index') }}" class="px-3 py-2 bg-slate-100 hover:bg-slate-200 text-slate-600 text-xs font-bold rounded-xl transition" title="Reset Filter">
+                        <a href="{{ route('admin.alumni.index') }}" class="px-3.5 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-600 text-xs font-bold rounded-xl transition" title="Reset Filter">
                             Reset
                         </a>
                     @endif
@@ -177,7 +184,7 @@
         </form>
     </div>
 
-    {{-- ALUMNI TABLE --}}
+    {{-- ALUMNI TABLE (SEGMEN 4: DATA ALUMNI) --}}
     <div class="bg-white rounded-3xl border border-slate-200/80 shadow-xs overflow-hidden">
         <div class="overflow-x-auto">
             <table class="w-full text-left text-xs text-slate-700">
